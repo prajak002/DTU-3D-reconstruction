@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Observe, Imagine, Abstain</title>
+<meta name="description" content="HalluBench-3D: measuring how confidently 3D foundation models report geometry no camera saw. CVPR 2027 submission.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F8F6; --ink:#17201F; --slate:#4C5A58; --rule:#D9DEDC;
+  --observed:#1E8A7A; --unsupported:#18B8E0; --pending:#B86E00; --pending-bg:#FFF4E3;
+  --measure:66ch;
+}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:19px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{color:inherit;text-decoration-color:var(--unsupported);text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{color:var(--observed)}
+:focus-visible{outline:3px solid var(--unsupported);outline-offset:3px}
+main{padding:0 20px 120px}
+.measure{max-width:var(--measure);margin:0 auto}
+h1{font-weight:400;font-size:clamp(2.2rem,6vw,4.6rem);line-height:1.02;letter-spacing:-0.015em;margin:0 0 .4em}
+h1 em{font-style:italic;font-weight:300}
+h2{font-weight:500;font-size:1.65rem;line-height:1.2;margin:3.2rem 0 .8rem}
+h3{font-weight:500;font-size:1.15rem;margin:1.8rem 0 .4rem}
+p{margin:0 0 1em}
+.lede{font-size:1.32rem;line-height:1.4;color:var(--ink);max-width:36ch}
+.sub{color:var(--slate)}
+.meta{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;margin:1.6rem 0 2.4rem;color:var(--slate);font-size:.95rem}
+.meta a{white-space:nowrap}
+header{padding:64px 0 24px}
+.small{font-size:.9rem;color:var(--slate)}
+
+/* hero reveal */
+.reveal{max-width:960px;margin:0 auto 2rem;padding:0}
+.reveal figure{margin:0}
+.stage{position:relative;aspect-ratio:432/324;background:#e9ecea;border:1px solid var(--rule);overflow:hidden}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease}
+.stage img.on{opacity:1}
+.seg{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--ink);width:max-content;max-width:100%;margin:14px 0 8px}
+.seg button{font:inherit;font-size:1rem;background:none;border:0;border-right:1px solid var(--ink);padding:.5rem 1rem;cursor:pointer;color:var(--ink);flex:1 1 auto}
+.seg button:last-child{border-right:0}
+@media (max-width:640px){.seg{width:100%}.seg button{border-right:0;border-bottom:1px solid var(--ink);flex-basis:100%;text-align:left}.seg button:last-child{border-bottom:0}}
+.seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.reveal figcaption{color:var(--slate);font-size:.95rem;max-width:70ch}
+.cyan{color:var(--unsupported);font-weight:500}
+@media (prefers-reduced-motion:reduce){.stage img{transition:none}}
+
+/* headline bars */
+.bars{margin:1.2rem 0 .4rem;border-top:1px solid var(--rule)}
+.row{display:grid;grid-template-columns:11ch 1fr 1fr;gap:0 1.2rem;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--rule)}
+.row.head{color:var(--slate);font-size:.9rem;padding:.4rem 0}
+.bar{position:relative;height:14px;background:#E6EAE8}
+.bar span{position:absolute;left:0;top:0;bottom:0;background:var(--unsupported)}
+.bar.dtu span{background:var(--observed)}
+.bar b{position:absolute;left:calc(var(--v) * 100% + 8px);top:-4px;font-weight:500;font-size:.95rem;white-space:nowrap}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.9rem;color:var(--slate);margin:.5rem 0 0}
+.legend span{white-space:nowrap}.legend span:last-child{white-space:normal;flex-basis:100%}
+.legend i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:.4rem}
+figure.fig{margin:1.8rem auto;max-width:1180px}
+figure.fig img{width:100%;height:auto;display:block;border:1px solid var(--rule);background:#fff}
+figure.fig figcaption{max-width:var(--measure);margin:.6rem auto 0;color:var(--slate);font-size:.95rem}
+.pending{background:var(--pending-bg);color:var(--pending);padding:.05em .4em;border-radius:2px;font-size:.9em}
+ol.steps{padding-left:1.4em}
+ol.steps li{margin-bottom:.4em}
+video{width:100%;height:auto;display:block;background:#000;border:1px solid var(--rule)}
+.video{max-width:1180px;margin:1.6rem auto}
+table{border-collapse:collapse;width:100%;font-size:.95rem;margin:1rem 0}
+th,td{text-align:left;padding:.45rem .6rem .45rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:500;color:var(--slate)}
+td.n{text-align:right;padding-right:1.2rem}
+th.n{text-align:right;padding-right:1.2rem}
+pre{font-size:.8rem;line-height:1.4;overflow:auto;background:#EEF1EF;padding:1rem;border:1px solid var(--rule)}
+footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top:1px solid var(--rule);color:var(--slate);font-size:.9rem}
+@media (max-width:640px){.row{grid-template-columns:9ch 1fr 1fr;gap:0 .6rem}.bar b{font-size:.85rem}}
+</style>
+</head>
+<body>
+<main>
+
+<header class="measure">
+  <h1>Observe, Imagine, <em>Abstain</em></h1>
+  <p class="lede">When a 3D model has not seen a surface, does it say so? We measured five of them. Mostly, no.</p>
+  <p class="sub">Hallucination-aware 3D reconstruction with discrete diffusion and continual adaptation. Anonymous submission to CVPR 2027.</p>
+  <div class="meta">
+    <a href="assets/paper.pdf">Paper (PDF)</a>
+    <a href="#demo">Demo video</a>
+    <a href="https://github.com/prajak002/DTU-3D-reconstruction">Code and results</a>
+    <a href="#pending">What is not done yet</a>
+  </div>
+</header>
+
+<section class="reveal" aria-labelledby="reveal-h">
+  <figure>
+    <div class="stage" id="stage">
+      <img class="on" src="assets/hero_input.png" alt="DTU scan 17, one of ten input views, with a region of the courtyard inpainted so no seam remains" data-k="input">
+      <img src="assets/hero_depth.png" alt="VGGT depth for the same view: the inpainted region is filled with plausible facade geometry; a cyan contour marks pixels no camera saw" data-k="depth">
+      <img src="assets/hero_conf.png" alt="VGGT confidence for the same view: high across most of the hidden region" data-k="conf">
+    </div>
+    <div class="seg" role="group" aria-label="Choose what to show">
+      <button type="button" aria-pressed="true" data-k="input">What the model saw</button>
+      <button type="button" aria-pressed="false" data-k="depth">The depth it returned</button>
+      <button type="button" aria-pressed="false" data-k="conf">How sure it was</button>
+    </div>
+    <figcaption id="reveal-h">DTU scan 17, VGGT. A 3D region of the real surface was hidden in all ten views and inpainted. The <span class="cyan">cyan contour</span> encloses pixels that no camera observed. The model draws a building there anyway, and its confidence barely drops. Recorded output, not a mock-up.</figcaption>
+  </figure>
+</section>
+
+<section class="measure">
+  <h2>The finding</h2>
+  <p>Feed-forward 3D models such as VGGT, Pi3 and Depth Anything 3 return geometry at every pixel, including pixels whose surface appears in no photograph. The training objective rewards a plausible guess, so they learn to guess. The guess is often good. The trouble is that the confidence map, the one signal you get, does not tell you which parts were observed and which were guessed.</p>
+  <p>We define a predicted point as <strong>hallucinated</strong> when it lies on a surface that no input view shows, and we measure how much of that geometry survives a confidence filter tuned to keep 90% of the observed geometry. We call that the Confident-Unsupported Rate, or CUR. Zero means the model abstains where it should; 0.9 is what a blind guesser gets.</p>
+
+  <div class="bars" aria-label="Confident-Unsupported Rate per model on DTU and CO3Dv2">
+    <div class="row head"><div>model</div><div>DTU, 18 scans</div><div>CO3Dv2, 18 scenes</div></div>
+    <div class="row"><div>VGGT-1B</div><div class="bar dtu"><span style="width:24.2%"></span><b style="--v:.242">0.24</b></div><div class="bar"><span style="width:65.1%"></span><b style="--v:.651">0.65</b></div></div>
+    <div class="row"><div>Pi3</div><div class="bar dtu"><span style="width:28.1%"></span><b style="--v:.281">0.28</b></div><div class="bar"><span style="width:27.2%"></span><b style="--v:.272">0.27</b></div></div>
+    <div class="row"><div>Pi3X</div><div class="bar dtu"><span style="width:53.2%"></span><b style="--v:.532">0.53</b></div><div class="bar"><span style="width:57%"></span><b style="--v:.57">0.57</b></div></div>
+    <div class="row"><div>MapAnything</div><div class="bar dtu"><span style="width:62.2%"></span><b style="--v:.622">0.62</b></div><div class="bar"><span style="width:81%"></span><b style="--v:.81">0.81</b></div></div>
+    <div class="row"><div>Depth Anything 3</div><div class="bar dtu"><span style="width:70.1%"></span><b style="--v:.701">0.70</b></div><div class="bar"><span style="width:79.7%"></span><b style="--v:.797">0.80</b></div></div>
+  </div>
+  <p class="legend"><span><i style="background:var(--observed)"></i>lab rig (DTU)</span><span><i style="background:var(--unsupported)"></i>phone captures (CO3Dv2)</span><span>share of unseen geometry that passes the filter; pooled over blur and noise fills, five mask seeds, two radii</span></p>
+
+  <p>Three things stand out. The leak is large for every model. It is larger on phone captures than on the lab rig for three of the five, and only Pi3 behaves the same on both. And the imagined geometry is usually <em>accurate</em>: the depth error inside the hidden region is about the same as outside it. The models are good at imagining. They are bad at saying that they did.</p>
+</section>
+
+<section class="measure">
+  <h2>How the labels come for free</h2>
+  <p>Hallucination labels are expensive if you annotate them. We get them by construction.</p>
+  <ol class="steps">
+    <li>Place a sphere on the ground-truth surface of a scene.</li>
+    <li>Hide every pixel, in every view, whose true point lies inside the sphere. The hidden region is therefore consistent in 3D: no camera sees it from any angle.</li>
+    <li>Fill the hole with gray, a blur, noise, or an inpainting, so that the result is not an artefact of one kind of patch.</li>
+    <li>Run the model on the filled views. Pixels inside the sphere are unsupported; pixels well outside it are supported; a thin ring in between is ignored.</li>
+    <li>Score the model's own confidence: does it rank supported above unsupported (AUROC), and how much unsupported geometry passes a 90% filter (CUR)? Score the same pixels under clean input as a control.</li>
+  </ol>
+</section>
+<figure class="fig">
+  <img src="assets/fig2_pipeline.png" alt="Diagram of the benchmark pipeline with real thumbnails of a view, its hide mask, and the four fills">
+  <figcaption>The protocol, with real thumbnails from DTU scan 3. Masks are deterministic in scene, seed and radius; the code is 700 lines of Python with no training.</figcaption>
+</figure>
+
+<section class="measure">
+  <h2>Is it just the patch?</h2>
+  <p>The fair objection is that the model is reacting to a visible patch rather than to the absence of a surface. Four stress tests say otherwise. An inpainted fill, which leaves no seam, raises the leak for VGGT and Pi3X rather than lowering it. Dropping from ten views to three changes nothing, so having less evidence to cross-check does not make the models less sure. Under low parallax, Pi3X's imagined depth gets worse while its confidence stays put. Depth Anything 3 is the odd one out: a distractor image raises its leak and low parallax halves it, which suggests its confidence tracks something other than observation.</p>
+</section>
+<figure class="fig">
+  <img src="assets/fig6_stress.png" alt="Bar chart of CUR under each stress condition for VGGT, Pi3X and Depth Anything 3, with confidence intervals">
+  <figcaption>CUR under each stress condition against the reference, 18 scans, two seeds, 95% intervals. Asterisks mark paired sign-flip p below 0.05.</figcaption>
+</figure>
+
+<section class="measure">
+  <h2>Lab rig versus phone captures</h2>
+  <p>Everything in the protocol was frozen on DTU before CO3Dv2 was touched: the same radii, fills, thresholds and seeds. The ranking still changed. VGGT, joint best on DTU, leaks 65% of unseen geometry on everyday objects filmed with a phone and is almost blind under a noise fill. Pi3 transfers; the rest do not.</p>
+</section>
+<figure class="fig">
+  <img src="assets/fig4_dtu_vs_co3d.png" alt="Dumbbell chart of CUR and AUROC per model on DTU versus CO3Dv2 with confidence intervals">
+  <figcaption>Pooled blur-and-noise CUR and AUROC per model on both datasets, 95% cluster-bootstrap intervals over scenes.</figcaption>
+</figure>
+<figure class="fig">
+  <img src="assets/fig7_perscene.png" alt="Heatmaps of per-scene CUR for every model on the 18 DTU scans and 18 CO3Dv2 scenes">
+  <figcaption>Per-scene CUR. The leak is not driven by a few scenes; removing the one CO3Dv2 scene that narrowly missed a mask-consistency guard moves no pooled number by more than 0.013.</figcaption>
+</figure>
+
+<section class="measure">
+  <h2>The cheap fixes do not work</h2>
+  <p>The first thing anyone tries is to perturb the input a few times and take the variance. On both backbones we tested, that is much worse than the native confidence while costing four forward passes: the imagined geometry is stable under perturbation, so its variance looks like everyone else's. MapAnything's multi-view consistency confidence leaks more than its learned one. The disagreement has to come from somewhere other than the input.</p>
+</section>
+<figure class="fig">
+  <img src="assets/fig8_cheap_detectors.png" alt="Bar chart comparing native confidence with perturbation variance and multi-view consistency confidence on AUROC and CUR">
+  <figcaption>Two training-free detectors against native confidence. Perturbation variance, four photometric perturbations with median-scale alignment, on VGGT and Pi3X; MapAnything learned against multi-view confidence.</figcaption>
+</section>
+
+<section class="measure">
+  <h2>What we propose</h2>
+  <p>We do not want to stop these models from imagining; that is what makes them useful. We want them to say when they do. A frozen backbone feeds a small discrete diffusion head over quantized geometry tokens, trained by hiding regions of the backbone's own output and recovering them, with no hallucination labels. At test time the head draws several samples. Where the samples agree with the backbone, the geometry is <strong>observed</strong>. Where they agree with each other but with nothing observed, it is <strong>imagined</strong>. Everywhere else the model <strong>abstains</strong>. You see three colours instead of one confidence map.</p>
+  <p>Low-rank adapters with a small replay buffer let the head follow a stream of new sites without forgetting old ones.</p>
+  <p><span class="pending">pending</span> The method is specified and its pass condition is pre-registered: it must beat native confidence on AUROC and CUR at equal compute, paired test over scenes. Its numbers do not exist yet and nothing on this page pretends they do.</p>
+</section>
+<figure class="fig">
+  <img src="assets/fig9_method.png" alt="Design diagram of the proposed diffusion-head detector and continual adaptation loop, labelled as pending">
+  <figcaption>Design figure of the proposed detector. The backbone stays frozen; only the head is trained and adapted.</figcaption>
+</figure>
+
+<section class="measure" id="demo">
+  <h2>Demo</h2>
+  <p>The first part runs the masking protocol and consistency checks live on real DTU and CO3Dv2 data and prints the numbers the code returns. The second part replays the model outputs recorded on a single T4 and the matching rows of the result tables. Three minutes, no audio.</p>
+</section>
+<div class="video">
+  <video controls preload="metadata" playsinline>
+    <source src="assets/demo.mp4" type="video/mp4">
+    Your browser cannot play this video. <a href="assets/demo.mp4">Download it</a> instead.
+  </video>
+</div>
+
+<section class="measure" id="pending">
+  <h2>What is measured and what is not</h2>
+  <table>
+    <tr><th>Done, every number from a logged run</th><th>Not yet</th></tr>
+    <tr>
+      <td>Benchmark on DTU and CO3Dv2, five models, three fills plus inpaint, stress tests, two failing cheap baselines, intervals and paired tests for all of it. About eight GPU hours on one T4.</td>
+      <td>The diffusion head and its ablations, continual adaptation, the heritage photo study, VGGT-Omega (gated checkpoint), and a fuller perturbation baseline. These need a larger GPU and model access.</td>
+    </tr>
+  </table>
+  <p class="small">The full run log, including the runs that failed and every correction made to a reported number, ships with the code.</p>
+</section>
+
+<section class="measure">
+  <h2>Headline table</h2>
+  <table>
+    <tr><th>model</th><th class="n">AUROC DTU</th><th class="n">AUROC CO3Dv2</th><th class="n">CUR DTU</th><th class="n">CUR CO3Dv2</th></tr>
+    <tr><td>VGGT-1B</td><td class="n">0.903</td><td class="n">0.681</td><td class="n">0.242</td><td class="n">0.651</td></tr>
+    <tr><td>Pi3</td><td class="n">0.912</td><td class="n">0.891</td><td class="n">0.281</td><td class="n">0.272</td></tr>
+    <tr><td>Pi3X</td><td class="n">0.813</td><td class="n">0.732</td><td class="n">0.532</td><td class="n">0.570</td></tr>
+    <tr><td>MapAnything</td><td class="n">0.743</td><td class="n">0.576</td><td class="n">0.622</td><td class="n">0.810</td></tr>
+    <tr><td>Depth Anything 3</td><td class="n">0.711</td><td class="n">0.620</td><td class="n">0.701</td><td class="n">0.797</td></tr>
+  </table>
+  <p class="small">Pooled over blur and noise fills, 18 scenes per dataset, five seeds, two radii. Intervals and per-fill cells are in the paper.</p>
+
+  <h3>Cite</h3>
+<pre>@inproceedings{observeimagineabstain2027,
+  title     = {Observe, Imagine, Abstain: Hallucination-Aware 3D Reconstruction
+               with Discrete Diffusion and Continual Adaptation},
+  author    = {Anonymous},
+  booktitle = {CVPR submission},
+  year      = {2027}
+}</pre>
+</section>
+
+<footer>
+  Built from the released result files; no number on this page was typed by hand except the citation year. Figures and video are regenerated by the scripts in the repository.
+</footer>
+</main>
+
+<script>
+(function(){
+  var stage=document.getElementById('stage');
+  var imgs=stage.querySelectorAll('img');
+  var btns=document.querySelectorAll('.seg button');
+  function show(k){
+    imgs.forEach(function(i){i.classList.toggle('on',i.dataset.k===k)});
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===k))});
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.k)})});
+  var order=['input','depth','conf'],idx=0,touched=false,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  btns.forEach(function(b){b.addEventListener('click',function(){touched=true})});
+  if(!reduce){var t=setInterval(function(){if(touched){clearInterval(t);return}idx=(idx+1)%3;show(order[idx])},2600)}
+})();
+</script>
+</body>
+</html>
