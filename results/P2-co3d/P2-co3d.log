@@ -1,0 +1,87 @@
+== setup 2026-10-28 14:24:27
+torch 2.11.0+cu128 cuda True Tesla T4
+co3d root: /kaggle/input/datasets/popsensharma/co3d-hallubench 18 scenes: ['apple_110_13051_23361', 'apple_189_20393_38136', 'ball_123_14363_28981', 'ball_375_42693_85518', 'bench_415_57112_110099', 'bench_415_57121_110109', 'hydrant_167_18184_34441', 'hydrant_411_56064_108483', 'mouse_107_12753_23606', 'mouse_377_43416_86289', 'teddybear_187_20215_38541', 'teddybear_34_1479_4753', 'toytrain_240_25394_51994', 'toytrain_399_51323_100753', 'toytruck_190_20494_39385', 'toytruck_346_36113_66551', 'vase_374_41862_83720', 'vase_380_44863_89631']
+consistency apple_110_13051_23361 {'reproj_agree': 0.414, 'reproj_agree_3pct_vis': 0.973, 'U_transfer': 0.921, 'U_frac_ref': 0.02}
+consistency apple_189_20393_38136 {'reproj_agree': 0.619, 'reproj_agree_3pct_vis': 0.994, 'U_transfer': 0.975, 'U_frac_ref': 0.055}
+consistency ball_123_14363_28981 {'reproj_agree': 0.425, 'reproj_agree_3pct_vis': 0.995, 'U_transfer': 0.947, 'U_frac_ref': 0.156}
+consistency ball_375_42693_85518 {'reproj_agree': 0.5, 'reproj_agree_3pct_vis': 0.998, 'U_transfer': 0.906, 'U_frac_ref': 0.154}
+consistency bench_415_57112_110099 {'reproj_agree': 0.342, 'reproj_agree_3pct_vis': 0.993, 'U_transfer': 0.936, 'U_frac_ref': 0.109}
+consistency bench_415_57121_110109 {'reproj_agree': 0.508, 'reproj_agree_3pct_vis': 0.999, 'U_transfer': 0.909, 'U_frac_ref': 0.205}
+consistency hydrant_167_18184_34441 {'reproj_agree': 0.401, 'reproj_agree_3pct_vis': 0.985, 'U_transfer': 0.976, 'U_frac_ref': 0.168}
+consistency hydrant_411_56064_108483 {'reproj_agree': 0.472, 'reproj_agree_3pct_vis': 0.994, 'U_transfer': 0.973, 'U_frac_ref': 0.139}
+consistency mouse_107_12753_23606 {'reproj_agree': 0.447, 'reproj_agree_3pct_vis': 0.98, 'U_transfer': 0.969, 'U_frac_ref': 0.169}
+consistency mouse_377_43416_86289 {'reproj_agree': 0.366, 'reproj_agree_3pct_vis': 0.966, 'U_transfer': 0.969, 'U_frac_ref': 0.085}
+consistency teddybear_187_20215_38541 {'reproj_agree': 0.379, 'reproj_agree_3pct_vis': 0.985, 'U_transfer': 0.897, 'U_frac_ref': 0.101}
+consistency teddybear_34_1479_4753 {'reproj_agree': 0.392, 'reproj_agree_3pct_vis': 0.996, 'U_transfer': 0.975, 'U_frac_ref': 0.124}
+consistency toytrain_240_25394_51994 {'reproj_agree': 0.416, 'reproj_agree_3pct_vis': 0.991, 'U_transfer': 0.938, 'U_frac_ref': 0.18}
+consistency toytrain_399_51323_100753 {'reproj_agree': 0.457, 'reproj_agree_3pct_vis': 0.993, 'U_transfer': 0.94, 'U_frac_ref': 0.163}
+consistency toytruck_190_20494_39385 {'reproj_agree': 0.22, 'reproj_agree_3pct_vis': 0.919, 'U_transfer': 0.979, 'U_frac_ref': 0.247}
+consistency toytruck_346_36113_66551 {'reproj_agree': 0.446, 'reproj_agree_3pct_vis': 0.99, 'U_transfer': 0.972, 'U_frac_ref': 0.272}
+consistency vase_374_41862_83720 {'reproj_agree': 0.326, 'reproj_agree_3pct_vis': 0.992, 'U_transfer': 0.801, 'U_frac_ref': 0.025}
+consistency vase_380_44863_89631 {'reproj_agree': 0.314, 'reproj_agree_3pct_vis': 0.974, 'U_transfer': 0.968, 'U_frac_ref': 0.121}
+!! consistency gate FAILED on scenes ['vase_374_41862_83720'] - continuing so the run is diagnosable, but do not use their metrics
+== model vggt 14:25:11
+== model pi3x 14:54:58
+!! model pi3x failed:
+Traceback (most recent call last):
+  File "/kaggle/src/script.py", line 964, in <module>
+    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f"{OUT}/ex_{RUN_NAME}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/src/script.py", line 580, in run_benchmark
+    done = {_key(r) for r in prev.to_dict("records")}
+            ~~~~^^^
+  File "/kaggle/src/script.py", line 569, in _key
+    return (r["model"], int(r["scan"]), int(r["seed"]), float(r["radius_frac"]), r["fill"])
+                        ~~~^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'apple_110_13051_23361'
+
+== model pi3 14:54:58
+!! model pi3 failed:
+Traceback (most recent call last):
+  File "/kaggle/src/script.py", line 964, in <module>
+    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f"{OUT}/ex_{RUN_NAME}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/src/script.py", line 580, in run_benchmark
+    done = {_key(r) for r in prev.to_dict("records")}
+            ~~~~^^^
+  File "/kaggle/src/script.py", line 569, in _key
+    return (r["model"], int(r["scan"]), int(r["seed"]), float(r["radius_frac"]), r["fill"])
+                        ~~~^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'apple_110_13051_23361'
+
+== model da3 14:54:58
+!! model da3 failed:
+Traceback (most recent call last):
+  File "/kaggle/src/script.py", line 964, in <module>
+    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f"{OUT}/ex_{RUN_NAME}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/src/script.py", line 580, in run_benchmark
+    done = {_key(r) for r in prev.to_dict("records")}
+            ~~~~^^^
+  File "/kaggle/src/script.py", line 569, in _key
+    return (r["model"], int(r["scan"]), int(r["seed"]), float(r["radius_frac"]), r["fill"])
+                        ~~~^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'apple_110_13051_23361'
+
+== model mapanything 14:54:58
+!! model mapanything failed:
+Traceback (most recent call last):
+  File "/kaggle/src/script.py", line 964, in <module>
+    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f"{OUT}/ex_{RUN_NAME}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/src/script.py", line 580, in run_benchmark
+    done = {_key(r) for r in prev.to_dict("records")}
+            ~~~~^^^
+  File "/kaggle/src/script.py", line 569, in _key
+    return (r["model"], int(r["scan"]), int(r["seed"]), float(r["radius_frac"]), r["fill"])
+                        ~~~^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'apple_110_13051_23361'
+
+  model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  vggt         0.10   blur      90  0.753 [0.694, 0.811]  0.416 [0.375, 0.461]  0.560 [0.435, 0.681]  0.028 [0.002, 0.073]  0.029 [0.022, 0.036]  0.028 [0.020, 0.037]  0.027 [0.019, 0.037]  0.622 [0.517, 0.728]       18        0.000050
+1  vggt         0.10   gray      90  0.742 [0.683, 0.802]  0.416 [0.375, 0.461]  0.573 [0.449, 0.692]  0.028 [0.002, 0.073]  0.028 [0.022, 0.036]  0.028 [0.020, 0.038]  0.027 [0.019, 0.037]  0.644 [0.543, 0.742]       18        0.000050
+2  vggt         0.10  noise      90  0.605 [0.531, 0.675]  0.416 [0.375, 0.461]  0.751 [0.664, 0.834]  0.030 [0.002, 0.077]  0.028 [0.022, 0.036]  0.028 [0.020, 0.038]  0.027 [0.019, 0.037]  0.796 [0.711, 0.878]       18        0.014349
+3  vggt         0.18   blur      90  0.790 [0.736, 0.842]  0.423 [0.394, 0.454]  0.508 [0.389, 0.630]  0.039 [0.004, 0.082]  0.030 [0.022, 0.037]  0.035 [0.026, 0.045]  0.028 [0.020, 0.038]  0.585 [0.469, 0.705]       18        0.000050
+4  vggt         0.18   gray      90  0.753 [0.694, 0.809]  0.423 [0.394, 0.454]  0.557 [0.445, 0.668]  0.031 [0.005, 0.071]  0.029 [0.022, 0.037]  0.033 [0.025, 0.043]  0.028 [0.020, 0.038]  0.624 [0.520, 0.734]       18        0.000050
+5  vggt         0.18  noise      90  0.575 [0.499, 0.644]  0.423 [0.394, 0.454]  0.784 [0.715, 0.850]  0.028 [0.004, 0.067]  0.029 [0.022, 0.037]  0.030 [0.023, 0.039]  0.028 [0.020, 0.038]  0.813 [0.711, 0.914]       18        0.070696
+== done, total 1832s

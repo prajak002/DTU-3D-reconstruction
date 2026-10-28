@@ -1,0 +1,331 @@
+[{"stream_name":"stderr","time":11.620907791,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":11.62094087,"data":"mne 1.13.2 requires decorator\u003e=5.1, but you have decorator 4.4.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":18.213676267,"data":"ERROR: Package 'depth-anything-3' requires a different Python: 3.13.15 not in '\u003c=3.13,\u003e=3.9'\n"}
+,{"stream_name":"stdout","time":33.547289063,"data":"== setup 2026-10-28 08:07:28\n"}
+,{"stream_name":"stdout","time":39.32306125,"data":"torch 2.11.0+cu128 cuda True Tesla T4\n"}
+,{"stream_name":"stdout","time":84.165549323,"data":"dtu root: /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu setup 51s\n"}
+,{"stream_name":"stdout","time":91.111521904,"data":"consistency scan 3 {'reproj_agree': 0.7961077396917653, 'U_transfer': 0.9788418100312095, 'U_frac_ref': 0.13569718731298624}\n"}
+,{"stream_name":"stdout","time":97.132027247,"data":"consistency scan 5 {'reproj_agree': 0.8244974486520044, 'U_transfer': 0.9868481144098064, 'U_frac_ref': 0.1982447083118224}\n"}
+,{"stream_name":"stdout","time":97.132236756,"data":"!! consistency gate FAILED on scans [3] - continuing anyway so the run is diagnosable, but do not use metrics\n"}
+,{"stream_name":"stdout","time":97.132253809,"data":"== model da3 08:08:32\n"}
+,{"stream_name":"stderr","time":99.299620711,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/config_defaults.py:47: SyntaxWarning: invalid escape sequence '\\P'\n"}
+,{"stream_name":"stderr","time":99.299644645,"data":"  IMAGEMAGICK_BINARY = r\"C:\\Program Files\\ImageMagick-6.8.8-Q16\\magick.exe\"\n"}
+,{"stream_name":"stderr","time":99.407587686,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:294: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":99.407610512,"data":"  lines_video = [l for l in lines if ' Video: ' in l and re.search('\\d+x\\d+', l)]\n"}
+,{"stream_name":"stderr","time":99.407879522,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:367: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":99.407893515,"data":"  rotation_lines = [l for l in lines if 'rotate          :' in l and re.search('\\d+$', l)]\n"}
+,{"stream_name":"stderr","time":99.407898969,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:370: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":99.407904198,"data":"  match = re.search('\\d+$', rotation_line)\n"}
+,{"stream_name":"stderr","time":101.801037271,"data":"error: XDG_RUNTIME_DIR is invalid or not set in the environment.\n"}
+,{"stream_name":"stderr","time":101.867658169,"data":"ALSA lib confmisc.c:855:(parse_card) cannot find card '0'\n"}
+,{"stream_name":"stderr","time":101.867685396,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":101.867691446,"data":"ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings\n"}
+,{"stream_name":"stderr","time":101.867696374,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":101.867703444,"data":"ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name\n"}
+,{"stream_name":"stderr","time":101.867711618,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":101.867715167,"data":"ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory\n"}
+,{"stream_name":"stderr","time":101.867728465,"data":"ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default\n"}
+,{"stream_name":"stderr","time":101.975926615,"data":"ALSA lib confmisc.c:855:(parse_card) cannot find card '0'\n"}
+,{"stream_name":"stderr","time":101.975945482,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":101.975948735,"data":"ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings\n"}
+,{"stream_name":"stderr","time":101.975951335,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":101.975953908,"data":"ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name\n"}
+,{"stream_name":"stderr","time":101.975956355,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":101.975958839,"data":"ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory\n"}
+,{"stream_name":"stderr","time":101.975961339,"data":"ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default\n"}
+,{"stream_name":"stdout","time":102.209233427,"data":"\u001b[93m[WARN ] Dependency `gsplat` is required for rendering 3DGS. Install via: pip install git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70\u001b[0m\n"}
+,{"stream_name":"stderr","time":109.524084331,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":109.64135371,"data":"\u001b[97m[INFO ] using MLP layer as FFN\u001b[0m\n"}
+,{"stream_name":"stdout","time":124.687087786,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.11527156829833984 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":125.603226593,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":128.592600316,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.8957252502441406 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":128.609048281,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.016202688217163086 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":128.908653551,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07963919639587402 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":128.937174333,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":131.374661313,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.4595999717712402 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":131.379215003,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004546165466308594 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":132.420621886,"data":"[da3] scan   3  auroc=0.922  cur=0.264  absrel_U=0.017 (ctrl 0.010)  8s\n"}
+,{"stream_name":"stdout","time":132.64002305,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06874322891235352 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":132.667979418,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":135.114841941,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.468844413757324 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":135.126117901,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.011249542236328125 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":135.425923776,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.08274030685424805 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":135.453822155,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":137.926339073,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.4945216178894043 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":137.941132679,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.014795064926147461 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":138.546938973,"data":"[da3] scan   5  auroc=0.594  cur=0.764  absrel_U=0.017 (ctrl 0.012)  14s\n"}
+,{"stream_name":"stdout","time":144.071983827,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0673971176147461 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":144.125264712,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":146.657629548,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.579841136932373 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":146.662058448,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004348278045654297 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":146.930628558,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.060991525650024414 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":146.958378857,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":149.477809357,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.5412328243255615 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":149.482522592,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004697322845458984 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":150.097036456,"data":"[da3] scan  17  auroc=0.557  cur=0.846  absrel_U=0.021 (ctrl 0.019)  26s\n"}
+,{"stream_name":"stdout","time":155.799498853,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.061424970626831055 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":155.853145377,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":158.421726453,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.616130828857422 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":158.427728952,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.006018161773681641 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":158.707330737,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06303882598876953 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":158.740183896,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":161.282839849,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.5693416595458984 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":161.287396851,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004532337188720703 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":161.932345464,"data":"[da3] scan  21  auroc=0.919  cur=0.260  absrel_U=0.011 (ctrl 0.011)  38s\n"}
+,{"stream_name":"stdout","time":167.357580321,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06673431396484375 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":167.410977274,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":170.026804823,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.663302421569824 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":170.033549775,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.006795167922973633 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":170.325482532,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06957197189331055 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":170.353321626,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":172.950600242,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.618992328643799 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":172.955566324,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.005024433135986328 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":173.559413066,"data":"[da3] scan  28  auroc=0.762  cur=0.855  absrel_U=0.040 (ctrl 0.007)  49s\n"}
+,{"stream_name":"stdout","time":178.923984137,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06392049789428711 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":178.97797082,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":181.635195047,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.7048537731170654 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":181.650698312,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.015378713607788086 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":181.930798699,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06582236289978027 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":181.959579541,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":184.617681505,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.6809160709381104 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":184.622413591,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004764556884765625 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":185.245044475,"data":"[da3] scan  35  auroc=0.764  cur=0.899  absrel_U=0.010 (ctrl 0.014)  61s\n"}
+,{"stream_name":"stdout","time":190.54974611,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0646524429321289 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":190.60372677,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":193.351916773,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.7958273887634277 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":193.356260241,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.00433659553527832 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":193.642795115,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06975626945495605 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":193.671104935,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":196.426960644,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.777946949005127 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":196.431394121,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004416704177856445 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":197.039427299,"data":"[da3] scan  37  auroc=0.257  cur=1.000  absrel_U=0.022 (ctrl 0.012)  73s\n"}
+,{"stream_name":"stdout","time":202.856629454,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06138348579406738 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":202.910363558,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":205.73416096,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.8712961673736572 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":205.73987498,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.005715608596801758 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":206.026076537,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06697702407836914 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":206.053863059,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":208.925046528,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.8931057453155518 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":208.93103701,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.006020069122314453 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":209.556953142,"data":"[da3] scan  38  auroc=0.814  cur=0.848  absrel_U=0.018 (ctrl 0.009)  85s\n"}
+,{"stream_name":"stdout","time":215.043390929,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06466245651245117 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":215.097048137,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":217.994171613,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.9444594383239746 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":217.998583042,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004393100738525391 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":218.280261086,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06615805625915527 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":218.308109251,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":221.183045636,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.896850824356079 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":221.187406534,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004393815994262695 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":221.818657631,"data":"[da3] scan  40  auroc=0.615  cur=0.977  absrel_U=0.016 (ctrl 0.016)  97s\n"}
+,{"stream_name":"stdout","time":227.635547072,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06216001510620117 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":227.689038641,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":230.480632346,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.839031219482422 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":230.48778498,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.007065534591674805 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":230.78936086,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0729222297668457 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":230.817450701,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":233.567966279,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.77256441116333 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":233.577964833,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.009921073913574219 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":234.192717532,"data":"[da3] scan  43  auroc=0.449  cur=0.988  absrel_U=0.014 (ctrl 0.010)  110s\n"}
+,{"stream_name":"stdout","time":239.716647687,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06570100784301758 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":239.77046524,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":242.483360494,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.7603812217712402 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":242.489365654,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.006018161773681641 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":242.770553498,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06908822059631348 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":242.800842371,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":245.50304192,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.726280689239502 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":245.507390544,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004353046417236328 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":246.103526248,"data":"[da3] scan  56  auroc=0.766  cur=0.720  absrel_U=0.014 (ctrl 0.009)  122s\n"}
+,{"stream_name":"stdout","time":251.011485724,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06491851806640625 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":251.06477205,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":253.755985797,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.738600969314575 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":253.760274007,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004245758056640625 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":254.035684674,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07147717475891113 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":254.067406996,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":256.739995884,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.698305606842041 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":256.744380393,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004317045211791992 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":257.326876552,"data":"[da3] scan  59  auroc=0.536  cur=1.000  absrel_U=0.014 (ctrl 0.004)  133s\n"}
+,{"stream_name":"stdout","time":263.582102745,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06951570510864258 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":263.635475497,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":266.333272984,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.745271682739258 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":266.337733257,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004404306411743164 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":266.617496953,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07284021377563477 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":266.645534286,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":269.343414627,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.71986985206604 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":269.347985998,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.00444793701171875 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":269.944389728,"data":"[da3] scan  66  auroc=0.749  cur=0.666  absrel_U=0.016 (ctrl 0.011)  146s\n"}
+,{"stream_name":"stdout","time":275.453028031,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06417393684387207 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":275.506965943,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":278.27985292,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.8206119537353516 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":278.28570774,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.005804538726806641 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":278.576447966,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06953811645507812 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":278.604465494,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":281.400559623,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.817974805831909 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":281.405049231,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004495382308959961 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":281.996107084,"data":"[da3] scan  67  auroc=0.670  cur=0.916  absrel_U=0.008 (ctrl 0.006)  158s\n"}
+,{"stream_name":"stdout","time":286.640170228,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0685720443725586 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":286.693456995,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":289.566845147,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.920738935470581 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":289.571105371,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.00421142578125 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":289.839797621,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06101703643798828 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":289.867576049,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":292.736146317,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.890289783477783 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":292.740679186,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004400730133056641 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":293.32701508,"data":"[da3] scan  82  auroc=0.665  cur=0.998  absrel_U=0.013 (ctrl 0.014)  169s\n"}
+,{"stream_name":"stdout","time":298.764497495,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06689190864562988 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":298.818073968,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":301.622250817,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.851579427719116 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":301.62664022,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004426002502441406 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":301.909097426,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06343507766723633 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":301.936977001,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":304.714316801,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.7990291118621826 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":304.718707382,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004381418228149414 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":305.317529132,"data":"[da3] scan  86  auroc=0.306  cur=0.958  absrel_U=0.037 (ctrl 0.045)  181s\n"}
+,{"stream_name":"stdout","time":310.551684476,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06809258460998535 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":310.605711391,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":313.353972737,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.795658588409424 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":313.358359423,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004328250885009766 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":313.631789258,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06747245788574219 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":313.65965832,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":316.398793141,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.7608070373535156 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":316.403141478,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004370212554931641 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":317.304972099,"data":"[da3] scan 106  auroc=0.879  cur=0.584  absrel_U=0.010 (ctrl 0.003)  193s\n"}
+,{"stream_name":"stdout","time":322.786752615,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06682658195495605 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":322.840349674,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":325.562306065,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.7693731784820557 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":325.566637838,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004386186599731445 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":325.84152327,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06240344047546387 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":325.869379949,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":328.564612422,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.7170591354370117 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":328.56906397,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004489421844482422 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":329.181944235,"data":"[da3] scan 117  auroc=0.921  cur=0.357  absrel_U=0.012 (ctrl 0.004)  205s\n"}
+,{"stream_name":"stdout","time":329.372468017,"data":"== model mapanything 08:12:24\n"}
+,{"stream_name":"stdout","time":329.382293857,"data":"resuming: 18 rows already in /kaggle/working/out/P2-smoke-b.csv\n"}
+,{"stream_name":"stdout","time":332.012647284,"data":"Loading pretrained dinov2_vitg14 from torch hub\n"}
+,{"stream_name":"stdout","time":332.867903879,"data":"Downloading: \"https://github.com/facebookresearch/dinov2/zipball/main\" to /root/.cache/torch/hub/main.zip\n"}
+,{"stream_name":"stdout","time":388.940275524,"data":"[mapanything] scan   3  auroc=0.988  cur=0.032  absrel_U=0.247 (ctrl 0.127)  18s\n"}
+,{"stream_name":"stdout","time":397.253099852,"data":"[mapanything] scan   5  auroc=1.000  cur=0.000  absrel_U=0.460 (ctrl 0.078)  27s\n"}
+,{"stream_name":"stdout","time":405.774527684,"data":"[mapanything] scan  17  auroc=0.994  cur=0.004  absrel_U=0.406 (ctrl 0.132)  35s\n"}
+,{"stream_name":"stdout","time":413.903105661,"data":"[mapanything] scan  21  auroc=0.998  cur=0.002  absrel_U=0.396 (ctrl 0.114)  43s\n"}
+,{"stream_name":"stdout","time":421.702400041,"data":"[mapanything] scan  28  auroc=0.683  cur=0.594  absrel_U=0.113 (ctrl 0.106)  51s\n"}
+,{"stream_name":"stdout","time":429.294389495,"data":"[mapanything] scan  35  auroc=0.754  cur=0.703  absrel_U=0.233 (ctrl 0.319)  59s\n"}
+,{"stream_name":"stdout","time":436.806655938,"data":"[mapanything] scan  37  auroc=0.611  cur=0.935  absrel_U=0.062 (ctrl 0.068)  66s\n"}
+,{"stream_name":"stdout","time":444.338296053,"data":"[mapanything] scan  38  auroc=0.876  cur=0.444  absrel_U=0.091 (ctrl 0.082)  74s\n"}
+,{"stream_name":"stdout","time":452.114219236,"data":"[mapanything] scan  40  auroc=0.816  cur=0.490  absrel_U=0.128 (ctrl 0.161)  81s\n"}
+,{"stream_name":"stdout","time":459.721579041,"data":"[mapanything] scan  43  auroc=0.990  cur=0.029  absrel_U=0.170 (ctrl 0.131)  89s\n"}
+,{"stream_name":"stdout","time":467.418026015,"data":"[mapanything] scan  56  auroc=0.905  cur=0.319  absrel_U=0.713 (ctrl 0.039)  97s\n"}
+,{"stream_name":"stdout","time":475.240037192,"data":"[mapanything] scan  59  auroc=0.986  cur=0.035  absrel_U=0.367 (ctrl 0.072)  105s\n"}
+,{"stream_name":"stdout","time":483.17334707,"data":"[mapanything] scan  66  auroc=0.932  cur=0.284  absrel_U=0.061 (ctrl 0.055)  113s\n"}
+,{"stream_name":"stdout","time":491.037535926,"data":"[mapanything] scan  67  auroc=0.865  cur=0.331  absrel_U=0.230 (ctrl 0.033)  120s\n"}
+,{"stream_name":"stdout","time":498.864493903,"data":"[mapanything] scan  82  auroc=0.870  cur=0.679  absrel_U=0.330 (ctrl 0.251)  128s\n"}
+,{"stream_name":"stdout","time":506.63722537,"data":"[mapanything] scan  86  auroc=0.729  cur=0.500  absrel_U=0.274 (ctrl 0.135)  136s\n"}
+,{"stream_name":"stdout","time":514.463726442,"data":"[mapanything] scan 106  auroc=0.891  cur=0.456  absrel_U=0.238 (ctrl 0.211)  144s\n"}
+,{"stream_name":"stdout","time":522.211695082,"data":"[mapanything] scan 117  auroc=0.952  cur=0.078  absrel_U=0.165 (ctrl 0.121)  152s\n"}
+,{"stream_name":"stdout","time":522.510147519,"data":"== model mapanything_mv 08:15:37\n"}
+,{"stream_name":"stdout","time":522.514117126,"data":"resuming: 36 rows already in /kaggle/working/out/P2-smoke-b.csv\n"}
+,{"stream_name":"stdout","time":522.657785679,"data":"Loading pretrained dinov2_vitg14 from torch hub\n"}
+,{"stream_name":"stderr","time":522.758881258,"data":"Using cache found in /root/.cache/torch/hub/facebookresearch_dinov2_main\n"}
+,{"stream_name":"stderr","time":548.146485652,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 124.58it/s]\n"}
+,{"stream_name":"stderr","time":548.151788014,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 206.18it/s]\n"}
+,{"stream_name":"stderr","time":551.792586422,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 609.19it/s]\n"}
+,{"stream_name":"stderr","time":551.795089039,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 472.65it/s]\n"}
+,{"stream_name":"stdout","time":552.358651071,"data":"[mapanything_mv] scan   3  auroc=0.979  cur=0.013  absrel_U=0.247 (ctrl 0.127)  8s\n"}
+,{"stream_name":"stderr","time":555.98650506,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 621.38it/s]\n"}
+,{"stream_name":"stderr","time":555.988944557,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 475.11it/s]\n"}
+,{"stream_name":"stderr","time":559.759513983,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 637.82it/s]\n"}
+,{"stream_name":"stderr","time":559.761966828,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 481.83it/s]\n"}
+,{"stream_name":"stdout","time":560.308478344,"data":"[mapanything_mv] scan   5  auroc=0.986  cur=0.010  absrel_U=0.460 (ctrl 0.078)  16s\n"}
+,{"stream_name":"stderr","time":564.110154093,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 570.19it/s]\n"}
+,{"stream_name":"stderr","time":564.112605461,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 470.37it/s]\n"}
+,{"stream_name":"stderr","time":568.047865801,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 618.17it/s]\n"}
+,{"stream_name":"stderr","time":568.05034244,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 487.88it/s]\n"}
+,{"stream_name":"stdout","time":568.624860483,"data":"[mapanything_mv] scan  17  auroc=0.922  cur=1.000  absrel_U=0.406 (ctrl 0.132)  24s\n"}
+,{"stream_name":"stderr","time":572.569891285,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 611.59it/s]\n"}
+,{"stream_name":"stderr","time":572.572372015,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 480.94it/s]\n"}
+,{"stream_name":"stderr","time":576.571926951,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 586.04it/s]\n"}
+,{"stream_name":"stderr","time":576.574555157,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 474.74it/s]\n"}
+,{"stream_name":"stdout","time":577.163525927,"data":"[mapanything_mv] scan  21  auroc=0.970  cur=0.025  absrel_U=0.396 (ctrl 0.114)  33s\n"}
+,{"stream_name":"stderr","time":581.006553645,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 634.16it/s]\n"}
+,{"stream_name":"stderr","time":581.009097455,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 481.05it/s]\n"}
+,{"stream_name":"stderr","time":584.826129956,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 621.93it/s]\n"}
+,{"stream_name":"stderr","time":584.82883101,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 442.30it/s]\n"}
+,{"stream_name":"stdout","time":585.395581151,"data":"[mapanything_mv] scan  28  auroc=0.802  cur=1.000  absrel_U=0.113 (ctrl 0.106)  41s\n"}
+,{"stream_name":"stderr","time":589.089481844,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 649.57it/s]\n"}
+,{"stream_name":"stderr","time":589.092127624,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 443.37it/s]\n"}
+,{"stream_name":"stderr","time":592.818554388,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 606.90it/s]\n"}
+,{"stream_name":"stderr","time":592.821235863,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 466.60it/s]\n"}
+,{"stream_name":"stdout","time":593.387355477,"data":"[mapanything_mv] scan  35  auroc=0.582  cur=1.000  absrel_U=0.233 (ctrl 0.319)  49s\n"}
+,{"stream_name":"stderr","time":596.984928039,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 629.49it/s]\n"}
+,{"stream_name":"stderr","time":596.987464246,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 468.06it/s]\n"}
+,{"stream_name":"stderr","time":600.633910844,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 528.72it/s]\n"}
+,{"stream_name":"stderr","time":600.637724292,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 294.77it/s]\n"}
+,{"stream_name":"stdout","time":601.254269892,"data":"[mapanything_mv] scan  37  auroc=0.718  cur=1.000  absrel_U=0.062 (ctrl 0.068)  57s\n"}
+,{"stream_name":"stderr","time":604.795463345,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 631.48it/s]\n"}
+,{"stream_name":"stderr","time":604.798106527,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 452.07it/s]\n"}
+,{"stream_name":"stderr","time":608.384349644,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 475.11it/s]\n"}
+,{"stream_name":"stderr","time":608.386960218,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 466.29it/s]\n"}
+,{"stream_name":"stdout","time":608.956767407,"data":"[mapanything_mv] scan  38  auroc=0.940  cur=0.136  absrel_U=0.091 (ctrl 0.082)  64s\n"}
+,{"stream_name":"stderr","time":612.465123276,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 641.33it/s]\n"}
+,{"stream_name":"stderr","time":612.467693854,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 470.74it/s]\n"}
+,{"stream_name":"stderr","time":616.034251746,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 623.13it/s]\n"}
+,{"stream_name":"stderr","time":616.036893329,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 452.26it/s]\n"}
+,{"stream_name":"stdout","time":616.616435007,"data":"[mapanything_mv] scan  40  auroc=0.865  cur=1.000  absrel_U=0.128 (ctrl 0.161)  72s\n"}
+,{"stream_name":"stderr","time":620.118894863,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 649.07it/s]\n"}
+,{"stream_name":"stderr","time":620.121513905,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 466.55it/s]\n"}
+,{"stream_name":"stderr","time":623.699637654,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 611.33it/s]\n"}
+,{"stream_name":"stderr","time":623.702079065,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 478.09it/s]\n"}
+,{"stream_name":"stdout","time":624.258026665,"data":"[mapanything_mv] scan  43  auroc=0.916  cur=0.269  absrel_U=0.170 (ctrl 0.131)  80s\n"}
+,{"stream_name":"stderr","time":627.790310501,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 608.13it/s]\n"}
+,{"stream_name":"stderr","time":627.79287827,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 471.75it/s]\n"}
+,{"stream_name":"stderr","time":631.405384043,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 625.46it/s]\n"}
+,{"stream_name":"stderr","time":631.407814561,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 497.54it/s]\n"}
+,{"stream_name":"stdout","time":631.94311258,"data":"[mapanything_mv] scan  56  auroc=0.970  cur=0.010  absrel_U=0.713 (ctrl 0.039)  87s\n"}
+,{"stream_name":"stderr","time":635.498529666,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 650.89it/s]\n"}
+,{"stream_name":"stderr","time":635.500977832,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 490.79it/s]\n"}
+,{"stream_name":"stderr","time":639.151905903,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 625.64it/s]\n"}
+,{"stream_name":"stderr","time":639.154495777,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 477.06it/s]\n"}
+,{"stream_name":"stdout","time":639.681071586,"data":"[mapanything_mv] scan  59  auroc=0.956  cur=0.050  absrel_U=0.367 (ctrl 0.072)  95s\n"}
+,{"stream_name":"stderr","time":643.292993745,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 616.18it/s]\n"}
+,{"stream_name":"stderr","time":643.295603904,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 469.90it/s]\n"}
+,{"stream_name":"stderr","time":646.991794369,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 575.03it/s]\n"}
+,{"stream_name":"stderr","time":646.994310602,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 480.06it/s]\n"}
+,{"stream_name":"stdout","time":647.560099736,"data":"[mapanything_mv] scan  66  auroc=0.908  cur=0.336  absrel_U=0.061 (ctrl 0.055)  103s\n"}
+,{"stream_name":"stderr","time":651.206131784,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 634.06it/s]\n"}
+,{"stream_name":"stderr","time":651.208503429,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 490.56it/s]\n"}
+,{"stream_name":"stderr","time":654.943289732,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 625.08it/s]\n"}
+,{"stream_name":"stderr","time":654.945892789,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 469.84it/s]\n"}
+,{"stream_name":"stdout","time":655.501274105,"data":"[mapanything_mv] scan  67  auroc=0.882  cur=1.000  absrel_U=0.230 (ctrl 0.033)  111s\n"}
+,{"stream_name":"stderr","time":659.15366827,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 609.99it/s]\n"}
+,{"stream_name":"stderr","time":659.156124643,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 483.60it/s]\n"}
+,{"stream_name":"stderr","time":662.888626688,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 598.33it/s]\n"}
+,{"stream_name":"stderr","time":662.891108734,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 493.27it/s]\n"}
+,{"stream_name":"stdout","time":663.43344871,"data":"[mapanything_mv] scan  82  auroc=0.882  cur=1.000  absrel_U=0.330 (ctrl 0.251)  119s\n"}
+,{"stream_name":"stderr","time":667.118385569,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 589.50it/s]\n"}
+,{"stream_name":"stderr","time":667.121006298,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 457.99it/s]\n"}
+,{"stream_name":"stderr","time":670.876663081,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 548.06it/s]\n"}
+,{"stream_name":"stderr","time":670.880795782,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 271.25it/s]\n"}
+,{"stream_name":"stdout","time":671.466962609,"data":"[mapanything_mv] scan  86  auroc=0.722  cur=1.000  absrel_U=0.274 (ctrl 0.135)  127s\n"}
+,{"stream_name":"stderr","time":675.133269539,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 618.45it/s]\n"}
+,{"stream_name":"stderr","time":675.135945221,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 473.83it/s]\n"}
+,{"stream_name":"stderr","time":678.861853352,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 622.76it/s]\n"}
+,{"stream_name":"stderr","time":678.864761978,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 415.07it/s]\n"}
+,{"stream_name":"stdout","time":679.451607645,"data":"[mapanything_mv] scan 106  auroc=0.860  cur=0.188  absrel_U=0.238 (ctrl 0.211)  135s\n"}
+,{"stream_name":"stderr","time":683.08622744,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 548.71it/s]\n"}
+,{"stream_name":"stderr","time":683.089189509,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 418.72it/s]\n"}
+,{"stream_name":"stderr","time":686.785952483,"data":"\rChecking frustum containment:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking frustum containment: 100%|██████████| 1/1 [00:00\u003c00:00, 613.92it/s]\n"}
+,{"stream_name":"stderr","time":686.78852219,"data":"\rChecking triangle intersections:   0%|          | 0/1 [00:00\u003c?, ?it/s]\rChecking triangle intersections: 100%|██████████| 1/1 [00:00\u003c00:00, 477.06it/s]\n"}
+,{"stream_name":"stdout","time":687.377515641,"data":"[mapanything_mv] scan 117  auroc=0.896  cur=0.220  absrel_U=0.165 (ctrl 0.121)  143s\n"}
+,{"stream_name":"stdout","time":687.778522231,"data":"            model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":687.778589504,"data":"0             da3         0.15  gray      18  0.675 [0.581, 0.761]  0.450 [0.379, 0.523]  0.772 [0.651, 0.877]  0.002 [0.000, 0.005]  0.016 [0.013, 0.020]  0.017 [0.014, 0.021]  0.012 [0.009, 0.017]  0.747 [0.601, 0.927]       18         0.00260\n"}
+,{"stream_name":"stdout","time":687.778597223,"data":"1     mapanything         0.15  gray      18  0.880 [0.824, 0.930]  0.411 [0.329, 0.496]  0.329 [0.202, 0.459]  0.205 [0.111, 0.302]  0.103 [0.084, 0.127]  0.260 [0.192, 0.338]  0.124 [0.093, 0.161]  0.594 [0.445, 0.741]       18         0.00005\n"}
+,{"stream_name":"stdout","time":687.778603688,"data":"2  mapanything_mv         0.15  gray      18  0.875 [0.824, 0.920]  0.441 [0.362, 0.515]  0.514 [0.310, 0.717]  0.330 [0.181, 0.489]  0.103 [0.084, 0.127]  0.260 [0.192, 0.338]  0.124 [0.093, 0.161]  0.048 [0.001, 0.129]       18         0.00005\n"}
+,{"stream_name":"stdout","time":687.787973908,"data":"paired perm da3 vs mapanything auroc (-0.2051414101930796, 0.00024998750062496874)\n"}
+,{"stream_name":"stdout","time":687.794049117,"data":"paired perm da3 vs mapanything cur (0.443601191847978, 4.999750012499375e-05)\n"}
+,{"stream_name":"stdout","time":687.799522683,"data":"paired perm da3 vs mapanything cur_err (-0.20264557419013618, 0.00034998250087495624)\n"}
+,{"stream_name":"stdout","time":687.799535285,"data":"== done, total 654s\n"}
+,{"stream_name":"stderr","time":693.559748207,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":693.5597733,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":693.769039201,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":693.769068018,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":694.560973617,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":695.237333006,"data":"[NbConvertApp] Writing 474437 bytes to __results__.html\n"}
+]

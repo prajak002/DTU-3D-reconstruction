@@ -1,0 +1,17 @@
+== setup 2026-10-28 08:07:28
+torch 2.11.0+cu128 cuda True Tesla T4
+dtu root: /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu setup 51s
+consistency scan 3 {'reproj_agree': 0.7961077396917653, 'U_transfer': 0.9788418100312095, 'U_frac_ref': 0.13569718731298624}
+consistency scan 5 {'reproj_agree': 0.8244974486520044, 'U_transfer': 0.9868481144098064, 'U_frac_ref': 0.1982447083118224}
+!! consistency gate FAILED on scans [3] - continuing anyway so the run is diagnosable, but do not use metrics
+== model da3 08:08:32
+== model mapanything 08:12:24
+== model mapanything_mv 08:15:37
+            model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0             da3         0.15  gray      18  0.675 [0.581, 0.761]  0.450 [0.379, 0.523]  0.772 [0.651, 0.877]  0.002 [0.000, 0.005]  0.016 [0.013, 0.020]  0.017 [0.014, 0.021]  0.012 [0.009, 0.017]  0.747 [0.601, 0.927]       18         0.00260
+1     mapanything         0.15  gray      18  0.880 [0.824, 0.930]  0.411 [0.329, 0.496]  0.329 [0.202, 0.459]  0.205 [0.111, 0.302]  0.103 [0.084, 0.127]  0.260 [0.192, 0.338]  0.124 [0.093, 0.161]  0.594 [0.445, 0.741]       18         0.00005
+2  mapanything_mv         0.15  gray      18  0.875 [0.824, 0.920]  0.441 [0.362, 0.515]  0.514 [0.310, 0.717]  0.330 [0.181, 0.489]  0.103 [0.084, 0.127]  0.260 [0.192, 0.338]  0.124 [0.093, 0.161]  0.048 [0.001, 0.129]       18         0.00005
+paired perm da3 vs mapanything auroc (-0.2051414101930796, 0.00024998750062496874)
+paired perm da3 vs mapanything cur (0.443601191847978, 4.999750012499375e-05)
+paired perm da3 vs mapanything cur_err (-0.20264557419013618, 0.00034998250087495624)
+== done, total 654s

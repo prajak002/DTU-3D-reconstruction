@@ -1,0 +1,15 @@
+== setup 2026-10-28 07:25:49
+torch 2.11.0+cu128 cuda True Tesla T4
+dtu root: /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu setup 51s
+consistency scan 3 {'reproj_agree': 0.7961077396917653, 'U_transfer': 0.9788418100312095, 'U_frac_ref': 0.13569718731298624}
+consistency scan 5 {'reproj_agree': 0.8244974486520044, 'U_transfer': 0.9868481144098064, 'U_frac_ref': 0.1982447083118224}
+!! consistency gate FAILED on scans [3] - continuing anyway so the run is diagnosable, but do not use metrics
+== model vggt 07:26:52
+== model pi3x 07:31:52
+  model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  pi3x         0.15  gray      18  0.940 [0.902, 0.971]  0.477 [0.411, 0.545]  0.207 [0.089, 0.343]  0.001 [0.000, 0.002]  0.019 [0.016, 0.024]  0.024 [0.019, 0.030]  0.016 [0.012, 0.021]  0.272 [0.196, 0.351]       18         0.00005
+1  vggt         0.15  gray      18  0.991 [0.986, 0.995]  0.411 [0.356, 0.464]  0.019 [0.007, 0.036]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.021 [0.015, 0.026]  0.005 [0.005, 0.006]  0.011 [0.008, 0.017]       18         0.00005
+paired perm pi3x vs vggt auroc (-0.051128070248687464, 0.004499775011249437)
+paired perm pi3x vs vggt cur (0.1875105211457153, 0.006849657517124144)
+paired perm pi3x vs vggt cur_err (0.0006276037156489727, 0.01629918504074796)
+== done, total 555s

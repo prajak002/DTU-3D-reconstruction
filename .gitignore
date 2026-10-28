@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__/
+*.pyc
+paper/tex/*.aux
+paper/tex/*.log
+paper/tex/*.bbl
+paper/tex/*.blg
+paper/tex/*.xdv
+paper/tex/*.out
+.env*
+kaggle.json

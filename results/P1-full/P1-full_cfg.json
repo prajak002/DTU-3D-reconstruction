@@ -1,0 +1,50 @@
+{
+  "scans": [
+    3,
+    5,
+    17,
+    21,
+    28,
+    35,
+    37,
+    38,
+    40,
+    43,
+    56,
+    59,
+    66,
+    67,
+    82,
+    86,
+    106,
+    117
+  ],
+  "n_views": 10,
+  "light": 3,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "radius_fracs": [
+    0.1,
+    0.18
+  ],
+  "fills": [
+    "gray",
+    "blur",
+    "noise"
+  ],
+  "model_hw": [
+    420,
+    518
+  ],
+  "dilate_px": 6,
+  "min_U_frac": 0.02,
+  "max_U_frac": 0.35,
+  "max_tries": 50,
+  "tau_keep": 0.9,
+  "err_thresh": 0.1
+}

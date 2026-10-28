@@ -1,0 +1,163 @@
+== setup 2026-10-28 07:59:15
+torch 2.11.0+cu128 cuda True Tesla T4
+dtu root: /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu setup 50s
+consistency scan 3 {'reproj_agree': 0.7961077396917653, 'U_transfer': 0.9788418100312095, 'U_frac_ref': 0.13569718731298624}
+consistency scan 5 {'reproj_agree': 0.8244974486520044, 'U_transfer': 0.9868481144098064, 'U_frac_ref': 0.1982447083118224}
+!! consistency gate FAILED on scans [3] - continuing anyway so the run is diagnosable, but do not use metrics
+== model pi3 08:00:15
+== model da3 08:03:58
+!! model da3 failed:
+Traceback (most recent call last):
+  File "/kaggle/src/script.py", line 656, in <module>
+    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f"{OUT}/ex_{RUN_NAME}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/src/script.py", line 526, in run_benchmark
+    ctrl_d, ctrl_c = model.predict(data["imgs"], cfg["model_hw"], out_hw)
+                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/src/script.py", line 444, in predict
+    pred = self.model.inference(ims, process_res=int(max(model_hw)), process_res_method="upper_bound_resize")
+  File "/kaggle/tmp/da3/src/depth_anything_3/api.py", line 209, in inference
+    raw_output = self._run_model_forward(
+        imgs, ex_t_norm, in_t, export_feat_layers, infer_gs, use_ray_pose, ref_view_strategy
+    )
+  File "/kaggle/tmp/da3/src/depth_anything_3/api.py", line 384, in _run_model_forward
+    output = self.forward(imgs, ex_t, in_t, feat_layers, infer_gs, use_ray_pose, ref_view_strategy)
+  File "/usr/local/lib/python3.13/dist-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+  File "/kaggle/tmp/da3/src/depth_anything_3/api.py", line 129, in forward
+    return self.model(
+           ~~~~~~~~~~^
+        image, extrinsics, intrinsics, export_feat_layers, infer_gs, use_ray_pose, ref_view_strategy
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/kaggle/tmp/da3/src/depth_anything_3/model/da3.py", line 132, in forward
+    feats, aux_feats = self.backbone(
+                       ~~~~~~~~~~~~~^
+        x, cam_token=cam_token, export_feat_layers=export_feat_layers, ref_view_strategy=ref_view_strategy
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/dinov2.py", line 60, in forward
+    return self.pretrained.get_intermediate_layers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        x,
+        ^^
+        self.out_layers,
+        ^^^^^^^^^^^^^^^^
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/vision_transformer.py", line 379, in get_intermediate_layers
+    outputs, aux_outputs = self._get_intermediate_layers_not_chunked(
+                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        x, n, export_feat_layers=export_feat_layers, **kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/vision_transformer.py", line 334, in _get_intermediate_layers_not_chunked
+    x = self.process_attention(
+        x, blk, "global", pos=g_pos, attn_mask=kwargs.get("attn_mask", None)
+    )
+  File "/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/vision_transformer.py", line 364, in process_attention
+    x = block(x, pos=pos, attn_mask=attn_mask)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/layers/block.py", line 101, in forward
+    x = x + attn_residual_func(x, pos=pos, attn_mask=attn_mask)
+            ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/layers/block.py", line 79, in attn_residual_func
+    return self.ls1(self.attn(self.norm1(x), pos=pos, attn_mask=attn_mask))
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/layers/attention.py", line 60, in forward
+    x = F.scaled_dot_product_attention(
+        q,
+    ...<7 lines>...
+        ),
+    )
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.36 GiB. GPU 0 has a total capacity of 14.56 GiB of which 4.97 GiB is free. Including non-PyTorch memory, this process has 9.59 GiB memory in use. Of the allocated memory 9.38 GiB is allocated by PyTorch, and 43.38 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+== model mapanything 08:04:25
+!! model mapanything failed:
+Traceback (most recent call last):
+  File "/kaggle/src/script.py", line 656, in <module>
+    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f"{OUT}/ex_{RUN_NAME}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/src/script.py", line 518, in run_benchmark
+    model = model_factory(mname)
+  File "/kaggle/src/script.py", line 503, in <lambda>
+    model_factory = model_factory or (lambda n: MODEL_REGISTRY[n]())
+                                                ~~~~~~~~~~~~~~~~~^^
+  File "/kaggle/src/script.py", line 465, in __init__
+    from mapanything.models import MapAnything
+  File "/kaggle/tmp/mapanything/mapanything/models/__init__.py", line 22, in <module>
+    from mapanything.models.mapanything import (
+    ...<3 lines>...
+    )
+  File "/kaggle/tmp/mapanything/mapanything/models/mapanything/__init__.py", line 6, in <module>
+    from mapanything.models.mapanything.ablations import MapAnythingAblations
+  File "/kaggle/tmp/mapanything/mapanything/models/mapanything/ablations.py", line 23, in <module>
+    from uniception.models.encoders import (
+    ...<4 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/uniception/models/encoders/__init__.py", line 7, in <module>
+    from uniception.models.encoders.base import (
+    ...<7 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/uniception/models/encoders/base.py", line 9, in <module>
+    from jaxtyping import Float
+ModuleNotFoundError: No module named 'jaxtyping'
+
+== model mapanything_mv 08:04:25
+!! model mapanything_mv failed:
+Traceback (most recent call last):
+  File "/kaggle/src/script.py", line 656, in <module>
+    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f"{OUT}/ex_{RUN_NAME}")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/src/script.py", line 518, in run_benchmark
+    model = model_factory(mname)
+  File "/kaggle/src/script.py", line 503, in <lambda>
+    model_factory = model_factory or (lambda n: MODEL_REGISTRY[n]())
+                                                ~~~~~~~~~~~~~~~~~^^
+  File "/kaggle/src/script.py", line 465, in __init__
+    from mapanything.models import MapAnything
+  File "/kaggle/tmp/mapanything/mapanything/models/__init__.py", line 22, in <module>
+    from mapanything.models.mapanything import (
+    ...<3 lines>...
+    )
+  File "/kaggle/tmp/mapanything/mapanything/models/mapanything/__init__.py", line 6, in <module>
+    from mapanything.models.mapanything.ablations import MapAnythingAblations
+  File "/kaggle/tmp/mapanything/mapanything/models/mapanything/ablations.py", line 23, in <module>
+    from uniception.models.encoders import (
+    ...<4 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/uniception/models/encoders/__init__.py", line 7, in <module>
+    from uniception.models.encoders.base import (
+    ...<7 lines>...
+    )
+  File "/usr/local/lib/python3.13/dist-packages/uniception/models/encoders/base.py", line 9, in <module>
+    from jaxtyping import Float
+ModuleNotFoundError: No module named 'jaxtyping'
+
+  model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0   pi3         0.15  gray      18  0.984 [0.973, 0.993]  0.528 [0.434, 0.618]  0.046 [0.015, 0.084]  0.000 [0.000, 0.001]  0.016 [0.013, 0.019]  0.022 [0.018, 0.026]  0.014 [0.010, 0.018]  0.024 [0.009, 0.046]       18         0.00005
+== done, total 310s

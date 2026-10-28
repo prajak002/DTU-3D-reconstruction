@@ -1,0 +1,75 @@
+[{"stream_name":"stdout","time":15.524963788,"data":"== setup 2026-10-28 07:38:24\n"}
+,{"stream_name":"stdout","time":23.825802191,"data":"torch 2.11.0+cu128 cuda True Tesla T4\n"}
+,{"stream_name":"stdout","time":37.112483359,"data":"dtu root: /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu setup 22s\n"}
+,{"stream_name":"stdout","time":39.250406428,"data":"consistency scan 3 {'reproj_agree': 0.7961077396917653, 'U_transfer': 0.9788418100312095, 'U_frac_ref': 0.13569718731298624}\n"}
+,{"stream_name":"stdout","time":40.681810696,"data":"consistency scan 5 {'reproj_agree': 0.8244974486520044, 'U_transfer': 0.9868481144098064, 'U_frac_ref': 0.1982447083118224}\n"}
+,{"stream_name":"stdout","time":40.682202235,"data":"!! consistency gate FAILED on scans [3] - continuing anyway so the run is diagnosable, but do not use metrics\n"}
+,{"stream_name":"stdout","time":40.6822187,"data":"== model vggt 07:38:50\n"}
+,{"stream_name":"stderr","time":43.312463847,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":91.251305361,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":91.251337445,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stderr","time":103.274322817,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":103.274359982,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":245.150731422,"data":"[vggt] scan   3  auroc=0.993  cur=0.010  absrel_U=0.025 (ctrl 0.005)  158s\n"}
+,{"stream_name":"stdout","time":407.5028957,"data":"[vggt] scan   5  auroc=0.996  cur=0.002  absrel_U=0.013 (ctrl 0.004)  321s\n"}
+,{"stream_name":"stdout","time":571.533896557,"data":"[vggt] scan  17  auroc=0.920  cur=0.233  absrel_U=0.012 (ctrl 0.005)  485s\n"}
+,{"stream_name":"stdout","time":735.517969096,"data":"[vggt] scan  21  auroc=0.976  cur=0.040  absrel_U=0.031 (ctrl 0.007)  649s\n"}
+,{"stream_name":"stdout","time":900.321637885,"data":"[vggt] scan  28  auroc=0.936  cur=0.136  absrel_U=0.013 (ctrl 0.003)  813s\n"}
+,{"stream_name":"stdout","time":1064.6446032,"data":"[vggt] scan  35  auroc=0.970  cur=0.098  absrel_U=0.013 (ctrl 0.005)  978s\n"}
+,{"stream_name":"stdout","time":1228.423437892,"data":"[vggt] scan  37  auroc=0.993  cur=0.014  absrel_U=0.038 (ctrl 0.007)  1142s\n"}
+,{"stream_name":"stdout","time":1392.372894077,"data":"[vggt] scan  38  auroc=0.997  cur=0.005  absrel_U=0.019 (ctrl 0.005)  1306s\n"}
+,{"stream_name":"stdout","time":1556.843615243,"data":"[vggt] scan  40  auroc=0.966  cur=0.139  absrel_U=0.024 (ctrl 0.005)  1470s\n"}
+,{"stream_name":"stdout","time":1719.522807262,"data":"[vggt] scan  43  auroc=0.853  cur=0.332  absrel_U=0.011 (ctrl 0.003)  1633s\n"}
+,{"stream_name":"stdout","time":1883.755482871,"data":"[vggt] scan  56  auroc=0.994  cur=0.005  absrel_U=0.015 (ctrl 0.004)  1797s\n"}
+,{"stream_name":"stdout","time":2046.465285741,"data":"[vggt] scan  59  auroc=0.984  cur=0.053  absrel_U=0.017 (ctrl 0.003)  1960s\n"}
+,{"stream_name":"stdout","time":2209.73657607,"data":"[vggt] scan  66  auroc=0.997  cur=0.003  absrel_U=0.013 (ctrl 0.005)  2123s\n"}
+,{"stream_name":"stdout","time":2372.271026995,"data":"[vggt] scan  67  auroc=0.986  cur=0.027  absrel_U=0.017 (ctrl 0.014)  2285s\n"}
+,{"stream_name":"stdout","time":2535.354365459,"data":"[vggt] scan  82  auroc=0.981  cur=0.046  absrel_U=0.024 (ctrl 0.005)  2449s\n"}
+,{"stream_name":"stdout","time":2698.723107202,"data":"[vggt] scan  86  auroc=0.992  cur=0.019  absrel_U=0.017 (ctrl 0.010)  2612s\n"}
+,{"stream_name":"stdout","time":2862.229720502,"data":"[vggt] scan 106  auroc=0.989  cur=0.039  absrel_U=0.014 (ctrl 0.005)  2775s\n"}
+,{"stream_name":"stdout","time":3025.00622983,"data":"[vggt] scan 117  auroc=0.996  cur=0.005  absrel_U=0.015 (ctrl 0.005)  2938s\n"}
+,{"stream_name":"stdout","time":3025.231757327,"data":"== model pi3x 08:28:34\n"}
+,{"stream_name":"stdout","time":3025.253338298,"data":"resuming: 540 rows already in /kaggle/working/out/P1-full.csv\n"}
+,{"stream_name":"stdout","time":3025.296456122,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stdout","time":3211.045907751,"data":"[pi3x] scan   3  auroc=0.986  cur=0.006  absrel_U=0.015 (ctrl 0.009)  148s\n"}
+,{"stream_name":"stdout","time":3347.572369747,"data":"[pi3x] scan   5  auroc=0.987  cur=0.004  absrel_U=0.012 (ctrl 0.006)  285s\n"}
+,{"stream_name":"stdout","time":3485.35490521,"data":"[pi3x] scan  17  auroc=0.978  cur=0.033  absrel_U=0.018 (ctrl 0.010)  422s\n"}
+,{"stream_name":"stdout","time":3622.574392402,"data":"[pi3x] scan  21  auroc=0.986  cur=0.008  absrel_U=0.028 (ctrl 0.029)  560s\n"}
+,{"stream_name":"stdout","time":3760.963314419,"data":"[pi3x] scan  28  auroc=0.878  cur=0.531  absrel_U=0.013 (ctrl 0.006)  698s\n"}
+,{"stream_name":"stdout","time":3898.795196814,"data":"[pi3x] scan  35  auroc=0.950  cur=0.104  absrel_U=0.027 (ctrl 0.021)  836s\n"}
+,{"stream_name":"stdout","time":4036.018822127,"data":"[pi3x] scan  37  auroc=0.738  cur=0.918  absrel_U=0.022 (ctrl 0.013)  973s\n"}
+,{"stream_name":"stdout","time":4174.131515557,"data":"[pi3x] scan  38  auroc=0.956  cur=0.075  absrel_U=0.016 (ctrl 0.010)  1111s\n"}
+,{"stream_name":"stdout","time":4312.626094148,"data":"[pi3x] scan  40  auroc=0.927  cur=0.345  absrel_U=0.024 (ctrl 0.011)  1250s\n"}
+,{"stream_name":"stdout","time":4449.379168011,"data":"[pi3x] scan  43  auroc=0.929  cur=0.324  absrel_U=0.012 (ctrl 0.005)  1386s\n"}
+,{"stream_name":"stdout","time":4587.091931975,"data":"[pi3x] scan  56  auroc=0.991  cur=0.016  absrel_U=0.016 (ctrl 0.012)  1524s\n"}
+,{"stream_name":"stdout","time":4723.471478469,"data":"[pi3x] scan  59  auroc=0.890  cur=0.425  absrel_U=0.012 (ctrl 0.009)  1661s\n"}
+,{"stream_name":"stdout","time":4860.607438999,"data":"[pi3x] scan  66  auroc=0.982  cur=0.041  absrel_U=0.028 (ctrl 0.026)  1798s\n"}
+,{"stream_name":"stdout","time":4997.446871337,"data":"[pi3x] scan  67  auroc=0.976  cur=0.058  absrel_U=0.056 (ctrl 0.055)  1935s\n"}
+,{"stream_name":"stdout","time":5135.505346404,"data":"[pi3x] scan  82  auroc=0.774  cur=0.732  absrel_U=0.017 (ctrl 0.010)  2073s\n"}
+,{"stream_name":"stdout","time":5273.880308709,"data":"[pi3x] scan  86  auroc=0.995  cur=0.013  absrel_U=0.025 (ctrl 0.027)  2211s\n"}
+,{"stream_name":"stdout","time":5412.380713273,"data":"[pi3x] scan 106  auroc=0.997  cur=0.005  absrel_U=0.024 (ctrl 0.022)  2349s\n"}
+,{"stream_name":"stdout","time":5549.879387228,"data":"[pi3x] scan 117  auroc=0.999  cur=0.000  absrel_U=0.023 (ctrl 0.020)  2487s\n"}
+,{"stream_name":"stdout","time":5550.417002047,"data":"   model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":5550.417044832,"data":"0   pi3x         0.10   blur      90  0.822 [0.770, 0.869]  0.534 [0.486, 0.582]  0.515 [0.395, 0.638]  0.002 [0.000, 0.004]  0.018 [0.014, 0.023]  0.019 [0.014, 0.025]  0.017 [0.012, 0.023]  0.781 [0.746, 0.815]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417071282,"data":"1   pi3x         0.10   gray      90  0.934 [0.890, 0.970]  0.534 [0.486, 0.582]  0.220 [0.088, 0.370]  0.001 [0.000, 0.003]  0.018 [0.014, 0.023]  0.021 [0.016, 0.027]  0.017 [0.012, 0.023]  0.389 [0.269, 0.522]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417075775,"data":"2   pi3x         0.10  noise      90  0.785 [0.701, 0.861]  0.534 [0.486, 0.582]  0.539 [0.367, 0.710]  0.003 [0.000, 0.007]  0.018 [0.014, 0.023]  0.021 [0.016, 0.027]  0.017 [0.012, 0.023]  1.174 [0.815, 1.665]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417079669,"data":"3   pi3x         0.18   blur      90  0.829 [0.785, 0.869]  0.500 [0.453, 0.547]  0.509 [0.391, 0.630]  0.002 [0.001, 0.004]  0.020 [0.016, 0.025]  0.022 [0.017, 0.028]  0.017 [0.012, 0.022]  0.697 [0.650, 0.743]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417083509,"data":"4   pi3x         0.18   gray      90  0.946 [0.914, 0.973]  0.500 [0.453, 0.547]  0.185 [0.081, 0.306]  0.002 [0.000, 0.004]  0.020 [0.016, 0.025]  0.022 [0.019, 0.027]  0.017 [0.012, 0.022]  0.282 [0.213, 0.354]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417089081,"data":"5   pi3x         0.18  noise      90  0.817 [0.761, 0.870]  0.500 [0.453, 0.547]  0.564 [0.404, 0.721]  0.005 [0.002, 0.010]  0.019 [0.016, 0.024]  0.024 [0.020, 0.028]  0.017 [0.012, 0.022]  1.007 [0.691, 1.490]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417096986,"data":"6   vggt         0.10   blur      90  0.886 [0.834, 0.928]  0.453 [0.392, 0.516]  0.261 [0.194, 0.329]  0.000 [0.000, 0.000]  0.007 [0.006, 0.008]  0.011 [0.008, 0.016]  0.006 [0.004, 0.007]  0.260 [0.199, 0.323]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417101572,"data":"7   vggt         0.10   gray      90  0.967 [0.947, 0.984]  0.453 [0.392, 0.516]  0.086 [0.039, 0.139]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.013 [0.010, 0.016]  0.006 [0.004, 0.007]  0.071 [0.032, 0.117]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417104126,"data":"8   vggt         0.10  noise      90  0.900 [0.861, 0.936]  0.453 [0.392, 0.516]  0.283 [0.176, 0.394]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.011 [0.009, 0.014]  0.006 [0.004, 0.007]  0.242 [0.185, 0.300]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417106968,"data":"9   vggt         0.18   blur      90  0.886 [0.850, 0.919]  0.421 [0.376, 0.467]  0.264 [0.198, 0.333]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.011 [0.008, 0.014]  0.005 [0.004, 0.007]  0.222 [0.167, 0.285]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417109457,"data":"10  vggt         0.18   gray      90  0.979 [0.960, 0.991]  0.421 [0.376, 0.467]  0.048 [0.018, 0.094]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.024 [0.020, 0.029]  0.005 [0.004, 0.007]  0.032 [0.013, 0.062]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.417112001,"data":"11  vggt         0.18  noise      90  0.938 [0.919, 0.957]  0.421 [0.376, 0.467]  0.161 [0.098, 0.229]  0.000 [0.000, 0.000]  0.008 [0.006, 0.009]  0.017 [0.015, 0.020]  0.005 [0.004, 0.007]  0.143 [0.109, 0.181]       18         0.00005\n"}
+,{"stream_name":"stdout","time":5550.432496985,"data":"paired perm pi3x vs vggt auroc (-0.07087186018989944, 0.001799910004499775)\n"}
+,{"stream_name":"stdout","time":5550.439353902,"data":"paired perm pi3x vs vggt cur (0.2379974725067043, 0.00039998000099995)\n"}
+,{"stream_name":"stdout","time":5550.444960714,"data":"paired perm pi3x vs vggt cur_err (0.002434707403935652, 4.999750012499375e-05)\n"}
+,{"stream_name":"stdout","time":5550.444975293,"data":"== done, total 5535s\n"}
+,{"stream_name":"stderr","time":5558.370953147,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":5558.370990961,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":5558.745081456,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":5558.745111178,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":5559.610384959,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":5560.833845317,"data":"[NbConvertApp] Writing 439465 bytes to __results__.html\n"}
+]

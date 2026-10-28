@@ -1,0 +1,225 @@
+[{"stream_name":"stderr","time":14.721763246,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":14.721809717,"data":"mne 1.13.2 requires decorator\u003e=5.1, but you have decorator 4.4.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":21.390481926,"data":"ERROR: Package 'depth-anything-3' requires a different Python: 3.13.15 not in '\u003c=3.13,\u003e=3.9'\n"}
+,{"stream_name":"stdout","time":30.300636511,"data":"== setup 2026-10-28 07:59:15\n"}
+,{"stream_name":"stdout","time":36.920655755,"data":"torch 2.11.0+cu128 cuda True Tesla T4\n"}
+,{"stream_name":"stdout","time":79.918670762,"data":"dtu root: /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu setup 50s\n"}
+,{"stream_name":"stdout","time":85.789425179,"data":"consistency scan 3 {'reproj_agree': 0.7961077396917653, 'U_transfer': 0.9788418100312095, 'U_frac_ref': 0.13569718731298624}\n"}
+,{"stream_name":"stdout","time":90.610615618,"data":"consistency scan 5 {'reproj_agree': 0.8244974486520044, 'U_transfer': 0.9868481144098064, 'U_frac_ref': 0.1982447083118224}\n"}
+,{"stream_name":"stdout","time":90.610784554,"data":"!! consistency gate FAILED on scans [3] - continuing anyway so the run is diagnosable, but do not use metrics\n"}
+,{"stream_name":"stdout","time":90.610807917,"data":"== model pi3 08:00:15\n"}
+,{"stream_name":"stdout","time":92.763117808,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":101.59477184,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":136.204174153,"data":"[pi3] scan   3  auroc=0.992  cur=0.001  absrel_U=0.025 (ctrl 0.012)  11s\n"}
+,{"stream_name":"stdout","time":141.753540727,"data":"[pi3] scan   5  auroc=0.997  cur=0.004  absrel_U=0.019 (ctrl 0.004)  16s\n"}
+,{"stream_name":"stdout","time":152.452842017,"data":"[pi3] scan  17  auroc=0.991  cur=0.012  absrel_U=0.032 (ctrl 0.013)  27s\n"}
+,{"stream_name":"stdout","time":163.177441116,"data":"[pi3] scan  21  auroc=0.999  cur=0.002  absrel_U=0.021 (ctrl 0.012)  38s\n"}
+,{"stream_name":"stdout","time":173.643860403,"data":"[pi3] scan  28  auroc=0.921  cur=0.262  absrel_U=0.019 (ctrl 0.012)  48s\n"}
+,{"stream_name":"stdout","time":184.011685051,"data":"[pi3] scan  35  auroc=0.990  cur=0.026  absrel_U=0.020 (ctrl 0.009)  58s\n"}
+,{"stream_name":"stdout","time":194.642947261,"data":"[pi3] scan  37  auroc=0.965  cur=0.110  absrel_U=0.019 (ctrl 0.011)  69s\n"}
+,{"stream_name":"stdout","time":204.910877672,"data":"[pi3] scan  38  auroc=0.992  cur=0.024  absrel_U=0.025 (ctrl 0.006)  79s\n"}
+,{"stream_name":"stdout","time":215.737258558,"data":"[pi3] scan  40  auroc=0.995  cur=0.011  absrel_U=0.031 (ctrl 0.012)  90s\n"}
+,{"stream_name":"stdout","time":226.329471208,"data":"[pi3] scan  43  auroc=0.992  cur=0.025  absrel_U=0.025 (ctrl 0.009)  101s\n"}
+,{"stream_name":"stdout","time":237.438389944,"data":"[pi3] scan  56  auroc=0.998  cur=0.001  absrel_U=0.013 (ctrl 0.010)  112s\n"}
+,{"stream_name":"stdout","time":247.933702291,"data":"[pi3] scan  59  auroc=0.974  cur=0.084  absrel_U=0.029 (ctrl 0.013)  122s\n"}
+,{"stream_name":"stdout","time":258.664953885,"data":"[pi3] scan  66  auroc=1.000  cur=0.000  absrel_U=0.013 (ctrl 0.011)  133s\n"}
+,{"stream_name":"stdout","time":269.764845062,"data":"[pi3] scan  67  auroc=0.997  cur=0.005  absrel_U=0.011 (ctrl 0.009)  144s\n"}
+,{"stream_name":"stdout","time":280.252044984,"data":"[pi3] scan  82  auroc=0.936  cur=0.228  absrel_U=0.009 (ctrl 0.009)  155s\n"}
+,{"stream_name":"stdout","time":291.018839267,"data":"[pi3] scan  86  auroc=0.994  cur=0.014  absrel_U=0.021 (ctrl 0.031)  165s\n"}
+,{"stream_name":"stdout","time":301.778511318,"data":"[pi3] scan 106  auroc=0.994  cur=0.003  absrel_U=0.047 (ctrl 0.041)  176s\n"}
+,{"stream_name":"stdout","time":313.454727564,"data":"[pi3] scan 117  auroc=0.991  cur=0.014  absrel_U=0.019 (ctrl 0.017)  188s\n"}
+,{"stream_name":"stdout","time":313.612386934,"data":"== model da3 08:03:58\n"}
+,{"stream_name":"stdout","time":313.623681883,"data":"resuming: 18 rows already in /kaggle/working/out/P2-smoke.csv\n"}
+,{"stream_name":"stderr","time":313.930358835,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/config_defaults.py:47: SyntaxWarning: invalid escape sequence '\\P'\n"}
+,{"stream_name":"stderr","time":313.93038552,"data":"  IMAGEMAGICK_BINARY = r\"C:\\Program Files\\ImageMagick-6.8.8-Q16\\magick.exe\"\n"}
+,{"stream_name":"stderr","time":314.08506318,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:294: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":314.085089146,"data":"  lines_video = [l for l in lines if ' Video: ' in l and re.search('\\d+x\\d+', l)]\n"}
+,{"stream_name":"stderr","time":314.08530283,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:367: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":314.085314242,"data":"  rotation_lines = [l for l in lines if 'rotate          :' in l and re.search('\\d+$', l)]\n"}
+,{"stream_name":"stderr","time":314.085320126,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:370: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":314.085325277,"data":"  match = re.search('\\d+$', rotation_line)\n"}
+,{"stream_name":"stderr","time":315.877544987,"data":"error: XDG_RUNTIME_DIR is invalid or not set in the environment.\n"}
+,{"stream_name":"stderr","time":315.972424389,"data":"ALSA lib confmisc.c:855:(parse_card) cannot find card '0'\n"}
+,{"stream_name":"stderr","time":315.972452313,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":315.972460508,"data":"ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings\n"}
+,{"stream_name":"stderr","time":315.972468909,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":315.972472277,"data":"ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name\n"}
+,{"stream_name":"stderr","time":315.972475352,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":315.972478443,"data":"ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory\n"}
+,{"stream_name":"stderr","time":315.972481786,"data":"ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default\n"}
+,{"stream_name":"stderr","time":316.081064528,"data":"ALSA lib confmisc.c:855:(parse_card) cannot find card '0'\n"}
+,{"stream_name":"stderr","time":316.081088211,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":316.081099962,"data":"ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings\n"}
+,{"stream_name":"stderr","time":316.081104024,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":316.081107229,"data":"ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name\n"}
+,{"stream_name":"stderr","time":316.081117805,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":316.081120467,"data":"ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory\n"}
+,{"stream_name":"stderr","time":316.081122991,"data":"ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default\n"}
+,{"stream_name":"stdout","time":316.26513353,"data":"\u001b[93m[WARN ] Dependency `gsplat` is required for rendering 3DGS. Install via: pip install git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70\u001b[0m\n"}
+,{"stream_name":"stdout","time":323.990068002,"data":"\u001b[97m[INFO ] using MLP layer as FFN\u001b[0m\n"}
+,{"stream_name":"stdout","time":337.911100981,"data":"\u001b[97m[INFO ] Processed Images Done taking 6.383885622024536 seconds. Shape:  torch.Size([10, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":338.073546782,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":339.835545952,"data":"!! model da3 failed:\n"}
+,{"stream_name":"stdout","time":339.835579938,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":339.8355855,"data":"  File \"/kaggle/src/script.py\", line 656, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.835589448,"data":"    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f\"{OUT}/ex_{RUN_NAME}\")\n"}
+,{"stream_name":"stdout","time":339.835592795,"data":"    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835596007,"data":"  File \"/kaggle/src/script.py\", line 526, in run_benchmark\n"}
+,{"stream_name":"stdout","time":339.83559913,"data":"    ctrl_d, ctrl_c = model.predict(data[\"imgs\"], cfg[\"model_hw\"], out_hw)\n"}
+,{"stream_name":"stdout","time":339.835602423,"data":"                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835605448,"data":"  File \"/kaggle/src/script.py\", line 444, in predict\n"}
+,{"stream_name":"stdout","time":339.83560849,"data":"    pred = self.model.inference(ims, process_res=int(max(model_hw)), process_res_method=\"upper_bound_resize\")\n"}
+,{"stream_name":"stdout","time":339.835611719,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/api.py\", line 209, in inference\n"}
+,{"stream_name":"stdout","time":339.835614808,"data":"    raw_output = self._run_model_forward(\n"}
+,{"stream_name":"stdout","time":339.835617844,"data":"        imgs, ex_t_norm, in_t, export_feat_layers, infer_gs, use_ray_pose, ref_view_strategy\n"}
+,{"stream_name":"stdout","time":339.835620866,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.835623922,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/api.py\", line 384, in _run_model_forward\n"}
+,{"stream_name":"stdout","time":339.835627029,"data":"    output = self.forward(imgs, ex_t, in_t, feat_layers, infer_gs, use_ray_pose, ref_view_strategy)\n"}
+,{"stream_name":"stdout","time":339.835630056,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/utils/_contextlib.py\", line 124, in decorate_context\n"}
+,{"stream_name":"stdout","time":339.835633215,"data":"    return func(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.835636211,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/api.py\", line 129, in forward\n"}
+,{"stream_name":"stdout","time":339.835639254,"data":"    return self.model(\n"}
+,{"stream_name":"stdout","time":339.835642216,"data":"           ~~~~~~~~~~^\n"}
+,{"stream_name":"stdout","time":339.83565369,"data":"        image, extrinsics, intrinsics, export_feat_layers, infer_gs, use_ray_pose, ref_view_strategy\n"}
+,{"stream_name":"stdout","time":339.835656384,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835658866,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.83566117,"data":"    ^\n"}
+,{"stream_name":"stdout","time":339.83566342,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":339.835665958,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.835668334,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835670668,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n"}
+,{"stream_name":"stdout","time":339.835673211,"data":"    return forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.835675575,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/model/da3.py\", line 132, in forward\n"}
+,{"stream_name":"stdout","time":339.835678052,"data":"    feats, aux_feats = self.backbone(\n"}
+,{"stream_name":"stdout","time":339.835682026,"data":"                       ~~~~~~~~~~~~~^\n"}
+,{"stream_name":"stdout","time":339.835684542,"data":"        x, cam_token=cam_token, export_feat_layers=export_feat_layers, ref_view_strategy=ref_view_strategy\n"}
+,{"stream_name":"stdout","time":339.835687126,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835689607,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.835691954,"data":"    ^\n"}
+,{"stream_name":"stdout","time":339.83569428,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":339.835696808,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.835699153,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835701486,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n"}
+,{"stream_name":"stdout","time":339.835704136,"data":"    return forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.835706501,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/dinov2.py\", line 60, in forward\n"}
+,{"stream_name":"stdout","time":339.83570908,"data":"    return self.pretrained.get_intermediate_layers(\n"}
+,{"stream_name":"stdout","time":339.835711464,"data":"           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n"}
+,{"stream_name":"stdout","time":339.835713852,"data":"        x,\n"}
+,{"stream_name":"stdout","time":339.835716154,"data":"        ^^\n"}
+,{"stream_name":"stdout","time":339.835718534,"data":"        self.out_layers,\n"}
+,{"stream_name":"stdout","time":339.835720884,"data":"        ^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835723187,"data":"        **kwargs,\n"}
+,{"stream_name":"stdout","time":339.835725474,"data":"        ^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835727756,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.83573003,"data":"    ^\n"}
+,{"stream_name":"stdout","time":339.83573231,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/vision_transformer.py\", line 379, in get_intermediate_layers\n"}
+,{"stream_name":"stdout","time":339.835734934,"data":"    outputs, aux_outputs = self._get_intermediate_layers_not_chunked(\n"}
+,{"stream_name":"stdout","time":339.835739918,"data":"                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n"}
+,{"stream_name":"stdout","time":339.835742377,"data":"        x, n, export_feat_layers=export_feat_layers, **kwargs\n"}
+,{"stream_name":"stdout","time":339.835744751,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835747202,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.835749475,"data":"    ^\n"}
+,{"stream_name":"stdout","time":339.835751752,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/vision_transformer.py\", line 334, in _get_intermediate_layers_not_chunked\n"}
+,{"stream_name":"stdout","time":339.835754333,"data":"    x = self.process_attention(\n"}
+,{"stream_name":"stdout","time":339.83575669,"data":"        x, blk, \"global\", pos=g_pos, attn_mask=kwargs.get(\"attn_mask\", None)\n"}
+,{"stream_name":"stdout","time":339.83575928,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.835761534,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/vision_transformer.py\", line 364, in process_attention\n"}
+,{"stream_name":"stdout","time":339.835764116,"data":"    x = block(x, pos=pos, attn_mask=attn_mask)\n"}
+,{"stream_name":"stdout","time":339.835766491,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":339.835769031,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.835771365,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835773696,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n"}
+,{"stream_name":"stdout","time":339.835776225,"data":"    return forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.83577917,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/layers/block.py\", line 101, in forward\n"}
+,{"stream_name":"stdout","time":339.83578178,"data":"    x = x + attn_residual_func(x, pos=pos, attn_mask=attn_mask)\n"}
+,{"stream_name":"stdout","time":339.835784195,"data":"            ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835786573,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/layers/block.py\", line 79, in attn_residual_func\n"}
+,{"stream_name":"stdout","time":339.835789114,"data":"    return self.ls1(self.attn(self.norm1(x), pos=pos, attn_mask=attn_mask))\n"}
+,{"stream_name":"stdout","time":339.835791529,"data":"                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835793932,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":339.835796486,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.835798867,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.835801198,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n"}
+,{"stream_name":"stdout","time":339.835803706,"data":"    return forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":339.835806044,"data":"  File \"/kaggle/tmp/da3/src/depth_anything_3/model/dinov2/layers/attention.py\", line 60, in forward\n"}
+,{"stream_name":"stdout","time":339.835808577,"data":"    x = F.scaled_dot_product_attention(\n"}
+,{"stream_name":"stdout","time":339.835810946,"data":"        q,\n"}
+,{"stream_name":"stdout","time":339.83581534,"data":"    ...\u003c7 lines\u003e...\n"}
+,{"stream_name":"stdout","time":339.835817817,"data":"        ),\n"}
+,{"stream_name":"stdout","time":339.835820113,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.835823878,"data":"torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 7.36 GiB. GPU 0 has a total capacity of 14.56 GiB of which 4.97 GiB is free. Including non-PyTorch memory, this process has 9.59 GiB memory in use. Of the allocated memory 9.38 GiB is allocated by PyTorch, and 43.38 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)\n"}
+,{"stream_name":"stdout","time":339.835829537,"data":"\n"}
+,{"stream_name":"stdout","time":339.838002701,"data":"== model mapanything 08:04:25\n"}
+,{"stream_name":"stdout","time":339.842297851,"data":"resuming: 18 rows already in /kaggle/working/out/P2-smoke.csv\n"}
+,{"stream_name":"stdout","time":339.931916299,"data":"!! model mapanything failed:\n"}
+,{"stream_name":"stdout","time":339.931938315,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":339.931942979,"data":"  File \"/kaggle/src/script.py\", line 656, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.931947545,"data":"    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f\"{OUT}/ex_{RUN_NAME}\")\n"}
+,{"stream_name":"stdout","time":339.931951339,"data":"    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.931955006,"data":"  File \"/kaggle/src/script.py\", line 518, in run_benchmark\n"}
+,{"stream_name":"stdout","time":339.931958527,"data":"    model = model_factory(mname)\n"}
+,{"stream_name":"stdout","time":339.931961816,"data":"  File \"/kaggle/src/script.py\", line 503, in \u003clambda\u003e\n"}
+,{"stream_name":"stdout","time":339.931965443,"data":"    model_factory = model_factory or (lambda n: MODEL_REGISTRY[n]())\n"}
+,{"stream_name":"stdout","time":339.931968799,"data":"                                                ~~~~~~~~~~~~~~~~~^^\n"}
+,{"stream_name":"stdout","time":339.931972606,"data":"  File \"/kaggle/src/script.py\", line 465, in __init__\n"}
+,{"stream_name":"stdout","time":339.931976043,"data":"    from mapanything.models import MapAnything\n"}
+,{"stream_name":"stdout","time":339.93197935,"data":"  File \"/kaggle/tmp/mapanything/mapanything/models/__init__.py\", line 22, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.931983566,"data":"    from mapanything.models.mapanything import (\n"}
+,{"stream_name":"stdout","time":339.931987375,"data":"    ...\u003c3 lines\u003e...\n"}
+,{"stream_name":"stdout","time":339.931991291,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.931994173,"data":"  File \"/kaggle/tmp/mapanything/mapanything/models/mapanything/__init__.py\", line 6, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.931997913,"data":"    from mapanything.models.mapanything.ablations import MapAnythingAblations\n"}
+,{"stream_name":"stdout","time":339.932002443,"data":"  File \"/kaggle/tmp/mapanything/mapanything/models/mapanything/ablations.py\", line 23, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.932006101,"data":"    from uniception.models.encoders import (\n"}
+,{"stream_name":"stdout","time":339.932009738,"data":"    ...\u003c4 lines\u003e...\n"}
+,{"stream_name":"stdout","time":339.932013772,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.932017296,"data":"  File \"/usr/local/lib/python3.13/dist-packages/uniception/models/encoders/__init__.py\", line 7, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.932031243,"data":"    from uniception.models.encoders.base import (\n"}
+,{"stream_name":"stdout","time":339.932051477,"data":"    ...\u003c7 lines\u003e...\n"}
+,{"stream_name":"stdout","time":339.932056362,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.932059965,"data":"  File \"/usr/local/lib/python3.13/dist-packages/uniception/models/encoders/base.py\", line 9, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.932064153,"data":"    from jaxtyping import Float\n"}
+,{"stream_name":"stdout","time":339.932067731,"data":"ModuleNotFoundError: No module named 'jaxtyping'\n"}
+,{"stream_name":"stdout","time":339.932071207,"data":"\n"}
+,{"stream_name":"stdout","time":339.932078796,"data":"== model mapanything_mv 08:04:25\n"}
+,{"stream_name":"stdout","time":339.935406199,"data":"resuming: 18 rows already in /kaggle/working/out/P2-smoke.csv\n"}
+,{"stream_name":"stdout","time":339.939150054,"data":"!! model mapanything_mv failed:\n"}
+,{"stream_name":"stdout","time":339.939167886,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":339.93917111,"data":"  File \"/kaggle/src/script.py\", line 656, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.939173924,"data":"    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f\"{OUT}/ex_{RUN_NAME}\")\n"}
+,{"stream_name":"stdout","time":339.939176792,"data":"    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":339.939179367,"data":"  File \"/kaggle/src/script.py\", line 518, in run_benchmark\n"}
+,{"stream_name":"stdout","time":339.939181949,"data":"    model = model_factory(mname)\n"}
+,{"stream_name":"stdout","time":339.939184328,"data":"  File \"/kaggle/src/script.py\", line 503, in \u003clambda\u003e\n"}
+,{"stream_name":"stdout","time":339.93918695,"data":"    model_factory = model_factory or (lambda n: MODEL_REGISTRY[n]())\n"}
+,{"stream_name":"stdout","time":339.939203075,"data":"                                                ~~~~~~~~~~~~~~~~~^^\n"}
+,{"stream_name":"stdout","time":339.939207395,"data":"  File \"/kaggle/src/script.py\", line 465, in __init__\n"}
+,{"stream_name":"stdout","time":339.939211762,"data":"    from mapanything.models import MapAnything\n"}
+,{"stream_name":"stdout","time":339.939216063,"data":"  File \"/kaggle/tmp/mapanything/mapanything/models/__init__.py\", line 22, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.939220766,"data":"    from mapanything.models.mapanything import (\n"}
+,{"stream_name":"stdout","time":339.93922463,"data":"    ...\u003c3 lines\u003e...\n"}
+,{"stream_name":"stdout","time":339.939228756,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.939232311,"data":"  File \"/kaggle/tmp/mapanything/mapanything/models/mapanything/__init__.py\", line 6, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.939236325,"data":"    from mapanything.models.mapanything.ablations import MapAnythingAblations\n"}
+,{"stream_name":"stdout","time":339.939240283,"data":"  File \"/kaggle/tmp/mapanything/mapanything/models/mapanything/ablations.py\", line 23, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.93924427,"data":"    from uniception.models.encoders import (\n"}
+,{"stream_name":"stdout","time":339.939247912,"data":"    ...\u003c4 lines\u003e...\n"}
+,{"stream_name":"stdout","time":339.93925148,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.939260632,"data":"  File \"/usr/local/lib/python3.13/dist-packages/uniception/models/encoders/__init__.py\", line 7, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.939270583,"data":"    from uniception.models.encoders.base import (\n"}
+,{"stream_name":"stdout","time":339.93927312,"data":"    ...\u003c7 lines\u003e...\n"}
+,{"stream_name":"stdout","time":339.939275472,"data":"    )\n"}
+,{"stream_name":"stdout","time":339.939277706,"data":"  File \"/usr/local/lib/python3.13/dist-packages/uniception/models/encoders/base.py\", line 9, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":339.939280342,"data":"    from jaxtyping import Float\n"}
+,{"stream_name":"stdout","time":339.939283156,"data":"ModuleNotFoundError: No module named 'jaxtyping'\n"}
+,{"stream_name":"stdout","time":339.939285694,"data":"\n"}
+,{"stream_name":"stdout","time":339.987779782,"data":"  model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":339.987818045,"data":"0   pi3         0.15  gray      18  0.984 [0.973, 0.993]  0.528 [0.434, 0.618]  0.046 [0.015, 0.084]  0.000 [0.000, 0.001]  0.016 [0.013, 0.019]  0.022 [0.018, 0.026]  0.014 [0.010, 0.018]  0.024 [0.009, 0.046]       18         0.00005\n"}
+,{"stream_name":"stdout","time":339.990306067,"data":"== done, total 310s\n"}
+,{"stream_name":"stderr","time":346.311324845,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":346.311350287,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":346.562171378,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":346.562198333,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":347.375106286,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":348.054335304,"data":"[NbConvertApp] Writing 461222 bytes to __results__.html\n"}
+]

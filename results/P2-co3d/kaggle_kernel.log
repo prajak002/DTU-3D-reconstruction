@@ -1,0 +1,120 @@
+[{"stream_name":"stderr","time":20.806083359,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":20.806118422,"data":"mne 1.13.2 requires decorator\u003e=5.1, but you have decorator 4.4.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":27.04019349,"data":"ERROR: Package 'depth-anything-3' requires a different Python: 3.13.15 not in '\u003c=3.13,\u003e=3.9'\n"}
+,{"stream_name":"stdout","time":42.157643736,"data":"== setup 2026-10-28 14:24:27\n"}
+,{"stream_name":"stdout","time":48.052875169,"data":"torch 2.11.0+cu128 cuda True Tesla T4\n"}
+,{"stream_name":"stdout","time":51.945035461,"data":"co3d root: /kaggle/input/datasets/popsensharma/co3d-hallubench 18 scenes: ['apple_110_13051_23361', 'apple_189_20393_38136', 'ball_123_14363_28981', 'ball_375_42693_85518', 'bench_415_57112_110099', 'bench_415_57121_110109', 'hydrant_167_18184_34441', 'hydrant_411_56064_108483', 'mouse_107_12753_23606', 'mouse_377_43416_86289', 'teddybear_187_20215_38541', 'teddybear_34_1479_4753', 'toytrain_240_25394_51994', 'toytrain_399_51323_100753', 'toytruck_190_20494_39385', 'toytruck_346_36113_66551', 'vase_374_41862_83720', 'vase_380_44863_89631']\n"}
+,{"stream_name":"stdout","time":54.404647927,"data":"consistency apple_110_13051_23361 {'reproj_agree': 0.414, 'reproj_agree_3pct_vis': 0.973, 'U_transfer': 0.921, 'U_frac_ref': 0.02}\n"}
+,{"stream_name":"stdout","time":56.24523911,"data":"consistency apple_189_20393_38136 {'reproj_agree': 0.619, 'reproj_agree_3pct_vis': 0.994, 'U_transfer': 0.975, 'U_frac_ref': 0.055}\n"}
+,{"stream_name":"stdout","time":58.10535911,"data":"consistency ball_123_14363_28981 {'reproj_agree': 0.425, 'reproj_agree_3pct_vis': 0.995, 'U_transfer': 0.947, 'U_frac_ref': 0.156}\n"}
+,{"stream_name":"stdout","time":60.111338782,"data":"consistency ball_375_42693_85518 {'reproj_agree': 0.5, 'reproj_agree_3pct_vis': 0.998, 'U_transfer': 0.906, 'U_frac_ref': 0.154}\n"}
+,{"stream_name":"stdout","time":62.034852583,"data":"consistency bench_415_57112_110099 {'reproj_agree': 0.342, 'reproj_agree_3pct_vis': 0.993, 'U_transfer': 0.936, 'U_frac_ref': 0.109}\n"}
+,{"stream_name":"stdout","time":63.91243498,"data":"consistency bench_415_57121_110109 {'reproj_agree': 0.508, 'reproj_agree_3pct_vis': 0.999, 'U_transfer': 0.909, 'U_frac_ref': 0.205}\n"}
+,{"stream_name":"stdout","time":65.83977868,"data":"consistency hydrant_167_18184_34441 {'reproj_agree': 0.401, 'reproj_agree_3pct_vis': 0.985, 'U_transfer': 0.976, 'U_frac_ref': 0.168}\n"}
+,{"stream_name":"stdout","time":67.707079515,"data":"consistency hydrant_411_56064_108483 {'reproj_agree': 0.472, 'reproj_agree_3pct_vis': 0.994, 'U_transfer': 0.973, 'U_frac_ref': 0.139}\n"}
+,{"stream_name":"stdout","time":69.629022898,"data":"consistency mouse_107_12753_23606 {'reproj_agree': 0.447, 'reproj_agree_3pct_vis': 0.98, 'U_transfer': 0.969, 'U_frac_ref': 0.169}\n"}
+,{"stream_name":"stdout","time":71.338568487,"data":"consistency mouse_377_43416_86289 {'reproj_agree': 0.366, 'reproj_agree_3pct_vis': 0.966, 'U_transfer': 0.969, 'U_frac_ref': 0.085}\n"}
+,{"stream_name":"stdout","time":73.201125169,"data":"consistency teddybear_187_20215_38541 {'reproj_agree': 0.379, 'reproj_agree_3pct_vis': 0.985, 'U_transfer': 0.897, 'U_frac_ref': 0.101}\n"}
+,{"stream_name":"stdout","time":75.111741924,"data":"consistency teddybear_34_1479_4753 {'reproj_agree': 0.392, 'reproj_agree_3pct_vis': 0.996, 'U_transfer': 0.975, 'U_frac_ref': 0.124}\n"}
+,{"stream_name":"stdout","time":76.953726786,"data":"consistency toytrain_240_25394_51994 {'reproj_agree': 0.416, 'reproj_agree_3pct_vis': 0.991, 'U_transfer': 0.938, 'U_frac_ref': 0.18}\n"}
+,{"stream_name":"stdout","time":78.830396232,"data":"consistency toytrain_399_51323_100753 {'reproj_agree': 0.457, 'reproj_agree_3pct_vis': 0.993, 'U_transfer': 0.94, 'U_frac_ref': 0.163}\n"}
+,{"stream_name":"stdout","time":80.750189169,"data":"consistency toytruck_190_20494_39385 {'reproj_agree': 0.22, 'reproj_agree_3pct_vis': 0.919, 'U_transfer': 0.979, 'U_frac_ref': 0.247}\n"}
+,{"stream_name":"stdout","time":82.671718827,"data":"consistency toytruck_346_36113_66551 {'reproj_agree': 0.446, 'reproj_agree_3pct_vis': 0.99, 'U_transfer': 0.972, 'U_frac_ref': 0.272}\n"}
+,{"stream_name":"stdout","time":84.763940695,"data":"consistency vase_374_41862_83720 {'reproj_agree': 0.326, 'reproj_agree_3pct_vis': 0.992, 'U_transfer': 0.801, 'U_frac_ref': 0.025}\n"}
+,{"stream_name":"stdout","time":86.931557496,"data":"consistency vase_380_44863_89631 {'reproj_agree': 0.314, 'reproj_agree_3pct_vis': 0.974, 'U_transfer': 0.968, 'U_frac_ref': 0.121}\n"}
+,{"stream_name":"stdout","time":86.932128032,"data":"!! consistency gate FAILED on scenes ['vase_374_41862_83720'] - continuing so the run is diagnosable, but do not use their metrics\n"}
+,{"stream_name":"stdout","time":86.932143994,"data":"== model vggt 14:25:11\n"}
+,{"stream_name":"stderr","time":89.022026199,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":135.339822426,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":135.339881454,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stderr","time":143.725644809,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":143.725682434,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":229.869036273,"data":"[vggt] scan apple_110_13051_23361  auroc=0.732  cur=0.654  absrel_U=0.071 (ctrl 0.064)  97s\n"}
+,{"stream_name":"stdout","time":327.067257316,"data":"[vggt] scan apple_189_20393_38136  auroc=0.805  cur=0.375  absrel_U=0.009 (ctrl 0.008)  195s\n"}
+,{"stream_name":"stdout","time":423.352665381,"data":"[vggt] scan ball_123_14363_28981  auroc=0.831  cur=0.506  absrel_U=0.034 (ctrl 0.014)  291s\n"}
+,{"stream_name":"stdout","time":519.833906907,"data":"[vggt] scan ball_375_42693_85518  auroc=0.939  cur=0.087  absrel_U=0.027 (ctrl 0.020)  387s\n"}
+,{"stream_name":"stdout","time":617.057150649,"data":"[vggt] scan bench_415_57112_110099  auroc=0.866  cur=0.421  absrel_U=0.013 (ctrl 0.009)  485s\n"}
+,{"stream_name":"stdout","time":714.37972636,"data":"[vggt] scan bench_415_57121_110109  auroc=0.944  cur=0.167  absrel_U=0.009 (ctrl 0.007)  582s\n"}
+,{"stream_name":"stdout","time":811.038422312,"data":"[vggt] scan hydrant_167_18184_34441  auroc=0.787  cur=0.541  absrel_U=0.036 (ctrl 0.034)  679s\n"}
+,{"stream_name":"stdout","time":907.572149159,"data":"[vggt] scan hydrant_411_56064_108483  auroc=0.730  cur=0.667  absrel_U=0.030 (ctrl 0.031)  775s\n"}
+,{"stream_name":"stdout","time":1003.950114676,"data":"[vggt] scan mouse_107_12753_23606  auroc=0.605  cur=0.740  absrel_U=0.031 (ctrl 0.031)  871s\n"}
+,{"stream_name":"stdout","time":1100.026302147,"data":"[vggt] scan mouse_377_43416_86289  auroc=0.666  cur=0.623  absrel_U=0.035 (ctrl 0.035)  968s\n"}
+,{"stream_name":"stdout","time":1197.061414659,"data":"[vggt] scan teddybear_187_20215_38541  auroc=0.880  cur=0.284  absrel_U=0.016 (ctrl 0.015)  1065s\n"}
+,{"stream_name":"stdout","time":1293.616978937,"data":"[vggt] scan teddybear_34_1479_4753  auroc=0.808  cur=0.434  absrel_U=0.029 (ctrl 0.026)  1161s\n"}
+,{"stream_name":"stdout","time":1390.367383651,"data":"[vggt] scan toytrain_240_25394_51994  auroc=0.673  cur=0.678  absrel_U=0.035 (ctrl 0.036)  1258s\n"}
+,{"stream_name":"stdout","time":1487.363074508,"data":"[vggt] scan toytrain_399_51323_100753  auroc=0.558  cur=1.000  absrel_U=0.012 (ctrl 0.011)  1355s\n"}
+,{"stream_name":"stdout","time":1583.943769196,"data":"[vggt] scan toytruck_190_20494_39385  auroc=0.708  cur=0.806  absrel_U=0.024 (ctrl 0.019)  1451s\n"}
+,{"stream_name":"stdout","time":1680.542940548,"data":"[vggt] scan toytruck_346_36113_66551  auroc=0.795  cur=0.423  absrel_U=0.022 (ctrl 0.019)  1548s\n"}
+,{"stream_name":"stdout","time":1777.100166588,"data":"[vggt] scan vase_374_41862_83720  auroc=0.575  cur=0.934  absrel_U=0.033 (ctrl 0.029)  1645s\n"}
+,{"stream_name":"stdout","time":1873.342929596,"data":"[vggt] scan vase_380_44863_89631  auroc=0.553  cur=0.827  absrel_U=0.085 (ctrl 0.083)  1741s\n"}
+,{"stream_name":"stdout","time":1873.612172638,"data":"== model pi3x 14:54:58\n"}
+,{"stream_name":"stdout","time":1873.628725747,"data":"!! model pi3x failed:\n"}
+,{"stream_name":"stdout","time":1873.628751309,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":1873.628755316,"data":"  File \"/kaggle/src/script.py\", line 964, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":1873.628759013,"data":"    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f\"{OUT}/ex_{RUN_NAME}\")\n"}
+,{"stream_name":"stdout","time":1873.628762219,"data":"    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":1873.628765135,"data":"  File \"/kaggle/src/script.py\", line 580, in run_benchmark\n"}
+,{"stream_name":"stdout","time":1873.628768022,"data":"    done = {_key(r) for r in prev.to_dict(\"records\")}\n"}
+,{"stream_name":"stdout","time":1873.62877091,"data":"            ~~~~^^^\n"}
+,{"stream_name":"stdout","time":1873.628773593,"data":"  File \"/kaggle/src/script.py\", line 569, in _key\n"}
+,{"stream_name":"stdout","time":1873.628776425,"data":"    return (r[\"model\"], int(r[\"scan\"]), int(r[\"seed\"]), float(r[\"radius_frac\"]), r[\"fill\"])\n"}
+,{"stream_name":"stdout","time":1873.628779626,"data":"                        ~~~^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":1873.628783688,"data":"ValueError: invalid literal for int() with base 10: 'apple_110_13051_23361'\n"}
+,{"stream_name":"stdout","time":1873.628798512,"data":"\n"}
+,{"stream_name":"stdout","time":1873.628813388,"data":"== model pi3 14:54:58\n"}
+,{"stream_name":"stdout","time":1873.63714851,"data":"!! model pi3 failed:\n"}
+,{"stream_name":"stdout","time":1873.637166881,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":1873.637172295,"data":"  File \"/kaggle/src/script.py\", line 964, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":1873.637177755,"data":"    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f\"{OUT}/ex_{RUN_NAME}\")\n"}
+,{"stream_name":"stdout","time":1873.637184058,"data":"    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":1873.637189853,"data":"  File \"/kaggle/src/script.py\", line 580, in run_benchmark\n"}
+,{"stream_name":"stdout","time":1873.6371955,"data":"    done = {_key(r) for r in prev.to_dict(\"records\")}\n"}
+,{"stream_name":"stdout","time":1873.637200919,"data":"            ~~~~^^^\n"}
+,{"stream_name":"stdout","time":1873.637206148,"data":"  File \"/kaggle/src/script.py\", line 569, in _key\n"}
+,{"stream_name":"stdout","time":1873.637211725,"data":"    return (r[\"model\"], int(r[\"scan\"]), int(r[\"seed\"]), float(r[\"radius_frac\"]), r[\"fill\"])\n"}
+,{"stream_name":"stdout","time":1873.637231499,"data":"                        ~~~^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":1873.637235958,"data":"ValueError: invalid literal for int() with base 10: 'apple_110_13051_23361'\n"}
+,{"stream_name":"stdout","time":1873.637239997,"data":"\n"}
+,{"stream_name":"stdout","time":1873.637245655,"data":"== model da3 14:54:58\n"}
+,{"stream_name":"stdout","time":1873.645387126,"data":"!! model da3 failed:\n"}
+,{"stream_name":"stdout","time":1873.645404486,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":1873.645408726,"data":"  File \"/kaggle/src/script.py\", line 964, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":1873.645413269,"data":"    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f\"{OUT}/ex_{RUN_NAME}\")\n"}
+,{"stream_name":"stdout","time":1873.645417337,"data":"    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":1873.645422091,"data":"  File \"/kaggle/src/script.py\", line 580, in run_benchmark\n"}
+,{"stream_name":"stdout","time":1873.645425768,"data":"    done = {_key(r) for r in prev.to_dict(\"records\")}\n"}
+,{"stream_name":"stdout","time":1873.645429949,"data":"            ~~~~^^^\n"}
+,{"stream_name":"stdout","time":1873.645433364,"data":"  File \"/kaggle/src/script.py\", line 569, in _key\n"}
+,{"stream_name":"stdout","time":1873.645436774,"data":"    return (r[\"model\"], int(r[\"scan\"]), int(r[\"seed\"]), float(r[\"radius_frac\"]), r[\"fill\"])\n"}
+,{"stream_name":"stdout","time":1873.645440624,"data":"                        ~~~^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":1873.645444059,"data":"ValueError: invalid literal for int() with base 10: 'apple_110_13051_23361'\n"}
+,{"stream_name":"stdout","time":1873.645451983,"data":"\n"}
+,{"stream_name":"stdout","time":1873.645454554,"data":"== model mapanything 14:54:58\n"}
+,{"stream_name":"stdout","time":1873.654084999,"data":"!! model mapanything failed:\n"}
+,{"stream_name":"stdout","time":1873.654099665,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":1873.654104387,"data":"  File \"/kaggle/src/script.py\", line 964, in \u003cmodule\u003e\n"}
+,{"stream_name":"stdout","time":1873.654108741,"data":"    run_benchmark(root, [mname], cfg=CFG, out_csv=csv, save_examples_dir=f\"{OUT}/ex_{RUN_NAME}\")\n"}
+,{"stream_name":"stdout","time":1873.654113231,"data":"    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":1873.654116801,"data":"  File \"/kaggle/src/script.py\", line 580, in run_benchmark\n"}
+,{"stream_name":"stdout","time":1873.654120371,"data":"    done = {_key(r) for r in prev.to_dict(\"records\")}\n"}
+,{"stream_name":"stdout","time":1873.654123995,"data":"            ~~~~^^^\n"}
+,{"stream_name":"stdout","time":1873.654130856,"data":"  File \"/kaggle/src/script.py\", line 569, in _key\n"}
+,{"stream_name":"stdout","time":1873.654134069,"data":"    return (r[\"model\"], int(r[\"scan\"]), int(r[\"seed\"]), float(r[\"radius_frac\"]), r[\"fill\"])\n"}
+,{"stream_name":"stdout","time":1873.6541369,"data":"                        ~~~^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":1873.654139422,"data":"ValueError: invalid literal for int() with base 10: 'apple_110_13051_23361'\n"}
+,{"stream_name":"stdout","time":1873.654141881,"data":"\n"}
+,{"stream_name":"stdout","time":1873.827742793,"data":"  model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":1873.827777761,"data":"0  vggt         0.10   blur      90  0.753 [0.694, 0.811]  0.416 [0.375, 0.461]  0.560 [0.435, 0.681]  0.028 [0.002, 0.073]  0.029 [0.022, 0.036]  0.028 [0.020, 0.037]  0.027 [0.019, 0.037]  0.622 [0.517, 0.728]       18        0.000050\n"}
+,{"stream_name":"stdout","time":1873.827783044,"data":"1  vggt         0.10   gray      90  0.742 [0.683, 0.802]  0.416 [0.375, 0.461]  0.573 [0.449, 0.692]  0.028 [0.002, 0.073]  0.028 [0.022, 0.036]  0.028 [0.020, 0.038]  0.027 [0.019, 0.037]  0.644 [0.543, 0.742]       18        0.000050\n"}
+,{"stream_name":"stdout","time":1873.82778762,"data":"2  vggt         0.10  noise      90  0.605 [0.531, 0.675]  0.416 [0.375, 0.461]  0.751 [0.664, 0.834]  0.030 [0.002, 0.077]  0.028 [0.022, 0.036]  0.028 [0.020, 0.038]  0.027 [0.019, 0.037]  0.796 [0.711, 0.878]       18        0.014349\n"}
+,{"stream_name":"stdout","time":1873.82779509,"data":"3  vggt         0.18   blur      90  0.790 [0.736, 0.842]  0.423 [0.394, 0.454]  0.508 [0.389, 0.630]  0.039 [0.004, 0.082]  0.030 [0.022, 0.037]  0.035 [0.026, 0.045]  0.028 [0.020, 0.038]  0.585 [0.469, 0.705]       18        0.000050\n"}
+,{"stream_name":"stdout","time":1873.827797773,"data":"4  vggt         0.18   gray      90  0.753 [0.694, 0.809]  0.423 [0.394, 0.454]  0.557 [0.445, 0.668]  0.031 [0.005, 0.071]  0.029 [0.022, 0.037]  0.033 [0.025, 0.043]  0.028 [0.020, 0.038]  0.624 [0.520, 0.734]       18        0.000050\n"}
+,{"stream_name":"stdout","time":1873.827800291,"data":"5  vggt         0.18  noise      90  0.575 [0.499, 0.644]  0.423 [0.394, 0.454]  0.784 [0.715, 0.850]  0.028 [0.004, 0.067]  0.029 [0.022, 0.037]  0.030 [0.023, 0.039]  0.028 [0.020, 0.038]  0.813 [0.711, 0.914]       18        0.070696\n"}
+,{"stream_name":"stdout","time":1873.828556361,"data":"== done, total 1832s\n"}
+,{"stream_name":"stderr","time":1879.432710667,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1879.432735855,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1879.676511358,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1879.676536714,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1880.481209113,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1881.66886487,"data":"[NbConvertApp] Writing 550259 bytes to __results__.html\n"}
+]

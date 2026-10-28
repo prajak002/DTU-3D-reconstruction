@@ -1,0 +1,10 @@
+== setup 2026-10-28 08:22:28
+torch 2.11.0+cu128 cuda True Tesla T4
+dtu root: /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu setup 49s
+consistency scan 3 {'reproj_agree': 0.7961077396917653, 'U_transfer': 0.9788418100312095, 'U_frac_ref': 0.13569718731298624}
+consistency scan 5 {'reproj_agree': 0.8244974486520044, 'U_transfer': 0.9868481144098064, 'U_frac_ref': 0.1982447083118224}
+!! consistency gate FAILED on scans [3] - continuing anyway so the run is diagnosable, but do not use metrics
+== model mapanything 08:23:28
+         model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  mapanything         0.15  gray      18  0.875 [0.817, 0.929]  0.402 [0.321, 0.488]  0.343 [0.211, 0.480]  0.194 [0.107, 0.284]  0.095 [0.077, 0.117]  0.230 [0.169, 0.305]  0.115 [0.085, 0.150]  0.564 [0.412, 0.714]       18         0.00005
+== done, total 324s
