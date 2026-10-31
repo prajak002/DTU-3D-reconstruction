@@ -3,7 +3,7 @@
 Hallucination-aware 3D reconstruction. This repository holds **HalluBench-3D**, a benchmark that measures how confidently feed-forward 3D models report geometry that no camera saw, the logged results for five models on two datasets, the CVPR 2027 paper build, a demo video and the project website.
 
 Project page: https://prajak002.github.io/DTU-3D-reconstruction/
-Paper (PDF): `paper/observe_imagine_abstain_cvpr27.pdf`
+Paper (PDF): `paper/observe_imagine_abstain_cvpr27.pdf` (supplementary as a separate PDF: `paper/observe_imagine_abstain_cvpr27_supp.pdf`)
 Demo video: `paper/demo/demo.mp4`
 
 ---
@@ -61,6 +61,8 @@ Full tables with intervals and the per-fill cells are in the paper (Tables 1 to 
 **Done, every number from a logged run** (about 8 GPU hours on one Kaggle T4):
 benchmark on DTU and CO3Dv2, five models, three fills plus an inpainted fill, stress tests (view dropping, low parallax, distractor image), two failing training-free baselines, intervals and paired tests for all of it.
 
+**Written but not yet run** (needs a GPU session): the reprojection-consistency detector (`<model>_reproj`, issue #2).
+
 **Not done** (tracked as GitHub issues, see below): the proposed detector (a discrete diffusion head over quantized geometry tokens whose K-sample disagreement labels pixels observed / imagined / abstain), its ablations, continual adaptation with LoRA and replay, the heritage photo study, and VGGT-Omega (gated checkpoint). The paper marks every one of these as `pending`; no number is estimated.
 
 ## 5. Repository layout
@@ -77,6 +79,10 @@ scripts/
   test_co3d.py           CPU test of the CO3D path and consistency checks
   make_figures.py        every paper figure from the CSVs in results/
   make_demo.py           the demo video
+  make_site.py           docs/explorer.html (per-scene explorer) + docs/assets/hallubench3d_results.zip,
+                         and a check that the numbers on the site equal the CSVs
+  make_supp_archive.py   anonymised code + results archive for the supplementary
+requirements.txt         CPU dependencies (numpy, opencv, scipy, pandas, matplotlib, pillow)
 results/
   P1-full/ P2-full/      DTU, five models, full configuration
   P2-stress/             inpaint fill, 5 and 3 views, low parallax, distractor
@@ -88,13 +94,17 @@ paper/
   tex/                   LaTeX source (CVPR 2027 author kit)   figures/   fig1 to fig9
   observe_imagine_abstain_cvpr27.pdf                            demo/      demo.mp4 + README
   draft.md               working draft and number ledger
-docs/                    project website (GitHub Pages)
+docs/                    project website (GitHub Pages): index.html, explorer.html (generated), assets/
 EXPERIMENTS.md           run registry, gates, how to push a Kaggle kernel
 LOG.md                   dated log of every run, failure, fix and correction
 SKILL.md                 the project brief and the rules the work followed
 ```
 
 ## 6. Reproduce
+
+```
+pip install -r requirements.txt            # CPU side; model runs additionally need torch and the model repos
+```
 
 **Benchmark on real data (GPU).** Runs were done on Kaggle. Build a single-file kernel and push it:
 
@@ -116,19 +126,26 @@ H.run_benchmark(root, ["vggt", "pi3x"], cfg={"seeds": [0], "fills": ["blur"]}, o
 print(H.summarize("out.csv"))
 ```
 
+Model names: `vggt`, `pi3`, `pi3x`, `da3`, `mapanything`, `mapanything_mv` (multi-view consistency confidence), `<model>_pv<K>` (perturbation variance over K forwards), `<model>_reproj` (reprojection-consistency confidence from the model's own cameras; VGGT, Pi3, Pi3X; code written, not yet run on a GPU).
+
 **CPU-only checks** (no model needed):
 
 ```
-python scripts/test_synthetic.py            # oracle must score AUROC 1 / CUR 0, blind 0.5 / 0.9
+python scripts/test_synthetic.py            # exit 0 iff oracle scores AUROC 1 / CUR 0, blind 0.5 / 0.9, masks are
+                                            # deterministic and disjoint, and the reprojection score behaves
 python scripts/test_co3d.py <co3d_prep> <out>
 ```
 
-**Paper, figures, video:**
+**Paper, figures, video, site:**
 
 ```
-python scripts/make_figures.py              # writes paper/figures/
-python scripts/make_demo.py                 # writes paper/demo/demo.mp4
-cd paper/tex && tectonic main.tex           # or pdflatex
+python scripts/make_figures.py --dtu <dir with DTU> --co3d <co3d_prep>   # writes paper/figures/; without the data
+                                                                          # flags, figs 3 to 9 (CSV-only) are still built
+python scripts/make_demo.py --dtu <dir with DTU> --co3d <co3d_prep>      # writes paper/demo/demo.mp4 (needs ffmpeg)
+python scripts/make_site.py                 # docs/explorer.html + docs/assets/hallubench3d_results.zip, checks index.html
+python scripts/make_supp_archive.py         # supp/hallubench3d_supp_<date>.zip, anonymised (fails if a name survives)
+cd paper/tex && tectonic main.tex           # paper + supplementary in one PDF (or pdflatex + bibtex)
+cd paper/tex && tectonic supp.tex           # supplementary alone; both share preamble.tex and supp_body.tex
 ```
 
 ## 7. Rules the work followed
@@ -159,4 +176,4 @@ Anonymous CVPR 2027 submission. If you use the benchmark before publication, ple
 
 ## 10. Disclosure
 
-Experiments, code and drafting were done with assistance from Claude (Anthropic). Claude is not an author. The disclosure required by the CVPR 2027 guidelines will be added to the submission.
+Experiments, code and drafting were done with assistance from Claude (Anthropic). Claude is not an author. A disclosure paragraph is in the paper source (`paper/tex/main.tex`, before the references); its wording should be checked against the CVPR 2027 author guidelines before submission.
