@@ -24,7 +24,7 @@ Metrics (per model, scan, seed, radius, fill):
 Nothing here touches GT inside U when aligning scale. Scale uses S only.
 """
 
-import os, re, glob, json, math, hashlib, time
+import os, re, glob, json, hashlib, time
 import numpy as np
 import cv2
 
@@ -121,7 +121,10 @@ def load_scan(root, scan, views, light=3):
         ip = os.path.join(root, "Rectified", f"scan{scan}_train", f"rect_{v + 1:03d}_{light}_r5000.png")
         dp = os.path.join(root, "Depths", f"scan{scan}_train", f"depth_map_{v:04d}.pfm")
         cp = os.path.join(root, "Cameras", "train", f"{v:08d}_cam.txt")
-        img = cv2.cvtColor(cv2.imread(ip, cv2.IMREAD_COLOR), cv2.COLOR_BGR2RGB).astype(np.float32) / 255.0
+        raw = cv2.imread(ip, cv2.IMREAD_COLOR)
+        if raw is None:
+            raise FileNotFoundError(f"scan {scan}: cannot read image {ip}")
+        img = cv2.cvtColor(raw, cv2.COLOR_BGR2RGB).astype(np.float32) / 255.0
         if img.shape[:2] != DTU_IMG_HW:
             raise ValueError(f"Unexpected image size {img.shape} at {ip}")
         dep = read_pfm(dp)
@@ -386,8 +389,43 @@ class VGGTWrap(ModelWrap):
                 out = self.model(x)
         return out["depth"][0, ..., 0], out["depth_conf"][0]
 
+    def _forward_cams(self, x, dtype):
+        """Depth plus the model's own cameras (vggt.utils.pose_enc.pose_encoding_to_extri_intri: OpenCV
+        world->camera extrinsics (N,3,4) with the first camera as world, intrinsics (N,3,3) in pixels)."""
+        torch = self.torch
+        from vggt.utils.pose_enc import pose_encoding_to_extri_intri
+        if dtype is None:
+            out = self.model(x)
+        else:
+            with torch.amp.autocast("cuda", dtype=dtype):
+                out = self.model(x)
+        extr, intr = pose_encoding_to_extri_intri(out["pose_enc"].float(), x.shape[-2:])
+        E = torch.eye(4, device=x.device).repeat(extr.shape[1], 1, 1)
+        E[:, :3, :4] = extr[0].float()
+        return out["depth"][0, ..., 0].float(), intr[0].float(), E
 
-class Pi3XWrap(ModelWrap):
+
+class _Pi3CamsMixin:
+    """Pi3 and Pi3X output camera_poses (N,4,4, camera->world) and local_points (N,H,W,3, camera frame);
+    intrinsics are not output and are fitted per view from local_points (pinhole least squares)."""
+
+    def _forward_cams(self, x, dtype):
+        torch = self.torch
+        kw = {"with_prior": False} if self.name == "pi3x" else {}
+        if dtype is None:
+            out = self.model(x[None], **kw)
+        else:
+            with torch.amp.autocast("cuda", dtype=dtype):
+                out = self.model(x[None], **kw)
+        lp = out["local_points"][0].float()
+        c2w = out["camera_poses"][0].float()
+        E = torch.linalg.inv(c2w)
+        lp_np = lp.cpu().numpy()
+        K = torch.from_numpy(np.stack([_fit_intrinsics(lp_np[i], lp_np.shape[1:3]) for i in range(len(lp_np))]))
+        return lp[..., 2], K.float().to(x.device), E
+
+
+class Pi3XWrap(_Pi3CamsMixin, ModelWrap):
     name = "pi3x"
 
     def __init__(self, device="cuda"):
@@ -405,7 +443,7 @@ class Pi3XWrap(ModelWrap):
         return out["local_points"][0, ..., 2], torch.sigmoid(out["conf"][0, ..., 0])
 
 
-class Pi3Wrap(ModelWrap):
+class Pi3Wrap(_Pi3CamsMixin, ModelWrap):
     name = "pi3"
 
     def __init__(self, device="cuda"):
@@ -529,11 +567,97 @@ class PerturbWrap:
         self.base.free()
 
 
+def reproj_support_score(depths, K, E, tol=0.03):
+    """Training-free support score from cross-view reprojection agreement of a multi-view depth prediction
+    (P3-reproj). depths (N,h,w) predicted depth of every view in one common frame (0 = invalid), K (N,3,3)
+    intrinsics at that resolution, E (N,4,4) world -> camera.
+
+    For each pixel of view i the predicted point is back-projected and projected into every other view j.
+    View j *sees* the point when it lands in frame in front of the camera and is not behind view j's own
+    predicted surface (points farther than view j's depth by more than tol are occluded and do not count).
+    View j *explains* the point when |z_ij - d_j| / d_j < tol. The score is explains / sees, or 0 when no
+    other view sees the point. A point the model places on a surface that its own other views do not contain
+    gets a low score; a coherent imagination gets a high one, which is exactly what this baseline is meant
+    to test. One forward pass, no learning."""
+    depths = np.asarray(depths, np.float64)
+    N, h, w = depths.shape
+    hits = np.zeros((N, h, w), np.float64)
+    seen = np.zeros((N, h, w), np.float64)
+    for i in range(N):
+        Pw = backproject(depths[i], K[i], E[i])
+        valid_i = depths[i] > 0
+        for j in range(N):
+            if i == j:
+                continue
+            u, v, z = project(Pw, K[j], E[j])
+            ui, vi = np.round(u).astype(int), np.round(v).astype(int)
+            ok = valid_i & (z > 0) & (ui >= 0) & (ui < w) & (vi >= 0) & (vi < h)
+            dj = np.zeros((h, w))
+            dj[ok] = depths[j][vi[ok], ui[ok]]
+            ok &= dj > 0
+            rel = (dj - z) / np.maximum(dj, 1e-9)          # < 0: point behind view j's surface (occluded)
+            sees = ok & (rel > -tol)
+            seen[i] += sees
+            hits[i] += sees & (np.abs(rel) < tol)
+    return np.where(seen > 0, hits / np.maximum(seen, 1), 0.0).astype(np.float32)
+
+
+def _fit_intrinsics(local_points, hw):
+    """Pinhole intrinsics from camera-frame points (h,w,3) by least squares: u = fx * x/z + cx, v = fy * y/z + cy."""
+    h, w = hw
+    x, y, z = local_points[..., 0], local_points[..., 1], local_points[..., 2]
+    ok = z > 1e-6
+    u, v = np.meshgrid(np.arange(w, dtype=np.float64), np.arange(h, dtype=np.float64))
+    A = np.stack([(x / np.maximum(z, 1e-6))[ok], np.ones(ok.sum())], 1)
+    fx, cx = np.linalg.lstsq(A, u[ok], rcond=None)[0]
+    B = np.stack([(y / np.maximum(z, 1e-6))[ok], np.ones(ok.sum())], 1)
+    fy, cy = np.linalg.lstsq(B, v[ok], rcond=None)[0]
+    return np.array([[fx, 0, cx], [0, fy, cy], [0, 0, 1]], np.float64)
+
+
+class ReprojWrap:
+    """Training-free detector (P3-reproj): confidence = cross-view reprojection agreement of the model's own
+    multi-view prediction under the model's own predicted cameras (reproj_support_score). One backbone forward,
+    no learning. The depth is the base model's depth; only the confidence changes. Needs a base wrapper with
+    `_forward_cams(x, dtype) -> depth (N,h,w), K (N,3,3), E (N,4,4)` at model resolution (VGGT, Pi3, Pi3X).
+    Written against the public model APIs; not yet run on a GPU (see EXPERIMENTS.md, P3-reproj)."""
+
+    def __init__(self, base, tol=0.03):
+        if not hasattr(base, "_forward_cams"):
+            raise ValueError(f"{base.name} does not expose predicted cameras; reprojection detector unavailable")
+        self.base, self.tol = base, tol
+        self.name = f"{base.name}_reproj"
+
+    def predict(self, imgs, model_hw, out_hw):
+        torch = self.base.torch
+        x = self.base._prep(imgs, model_hw)
+        with torch.no_grad():
+            d, K, E = self.base._forward_cams(x, self.base.dtype)
+            if not torch.isfinite(d).all():
+                print(f"[{self.name}] non-finite depth in {self.base.dtype}, retrying fp32")
+                d, K, E = self.base._forward_cams(x, None)
+        d = d.float().cpu().numpy().astype(np.float32)
+        K = np.asarray(K.float().cpu().numpy(), np.float64).copy()
+        E = np.asarray(E.float().cpu().numpy(), np.float64)
+        # score at the label resolution: cheaper, and the metrics live there anyway
+        d_s = np.stack([cv2.resize(x_, (out_hw[1], out_hw[0]), interpolation=cv2.INTER_AREA) for x_ in d])
+        K[:, 0] *= out_hw[1] / model_hw[1]
+        K[:, 1] *= out_hw[0] / model_hw[0]
+        conf = reproj_support_score(d_s, K, E, self.tol)
+        return d_s.astype(np.float32), conf.astype(np.float32)
+
+    def free(self):
+        self.base.free()
+
+
 def make_model(name):
-    """'vggt' -> VGGTWrap(); 'vggt_pv4' -> PerturbWrap(VGGTWrap(), K=4)."""
+    """'vggt' -> VGGTWrap(); 'vggt_pv4' -> PerturbWrap(VGGTWrap(), K=4); 'vggt_reproj' -> ReprojWrap(VGGTWrap())."""
     m = re.fullmatch(r"(.+)_pv(\d+)", name)
     if m:
         return PerturbWrap(MODEL_REGISTRY[m.group(1)](), K=int(m.group(2)))
+    m = re.fullmatch(r"(.+)_reproj", name)
+    if m:
+        return ReprojWrap(MODEL_REGISTRY[m.group(1)]())
     return MODEL_REGISTRY[name]()
 
 

@@ -3,11 +3,13 @@ Two fake models:
   oracle : correct depth (x2 scale), conf drops where input pixels are hidden  -> auroc ~1, cur ~0
   blind  : correct depth on visible, smooth guess in hidden, constant-ish conf -> auroc ~0.5, cur ~0.9
 """
-import os, sys, shutil, numpy as np, cv2
-sys.path.insert(0, os.path.dirname(__file__))
+import os, sys, shutil, tempfile, numpy as np, cv2
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import hallu3d as H
 
-ROOT = "/tmp/claude-0/fake_dtu"
+# scratch location: $HALLU3D_TMP if set, else a fresh system temp dir (works on Linux, macOS and Windows)
+WORK = os.environ.get("HALLU3D_TMP") or tempfile.mkdtemp(prefix="hallu3d_synth_")
+ROOT = os.path.join(WORK, "fake_dtu")
 shutil.rmtree(ROOT, ignore_errors=True)
 scan, light = 3, 3
 for d in ["Cameras/train", f"Rectified/scan{scan}_train", f"Depths/scan{scan}_train"]:
@@ -90,12 +92,43 @@ class Fake:
             c = 5.0 + rng.random(d.shape) * 0.01
         return d.astype(np.float32), c.astype(np.float32)
 
-csv = "/tmp/claude-0/fake_results.csv"
+csv = os.path.join(WORK, "fake_results.csv")
 if os.path.exists(csv): os.remove(csv)
 H.run_benchmark(root, ["oracle", "blind"], cfg, out_csv=csv, model_factory=Fake,
-                save_examples_dir="/tmp/claude-0/fake_examples")
+                save_examples_dir=os.path.join(WORK, "fake_examples"))
 import pandas as pd
 df = pd.read_csv(csv)
 print(df.groupby("model")[["auroc", "cur", "cur_err", "absrel_S", "absrel_U", "absrel_U_ctrl", "scale"]].mean().round(3))
 print(H.summarize(csv).to_string())
-print("perm oracle vs blind auroc:", H.paired_permutation(df, "auroc", "oracle", "blind"))
+print("perm oracle vs blind auroc:", H.paired_permutation(df, "auroc", "oracle", "blind"),
+      "(nan with a single scan: the sign-flip test needs at least two)")
+
+# -------- reprojection-consistency detector (P3-reproj), scored with the ground-truth cameras on this scene
+# oracle-like prediction: the GT depth itself -> every S pixel is explained by the other views
+score_gt = H.reproj_support_score(data["depths"], data["K_dep"], data["E"])
+# blind-like prediction: smooth guess inside the hidden region (same construction as the blind fake above)
+hid_dep = masks["hide"].reshape(len(data["imgs"]), h, 4, w, 4).mean((2, 4)) > 0.5
+guess = cv2.GaussianBlur(np.where(data["depths"] > 0, data["depths"], 3.0).transpose(1, 2, 0), (0, 0), 6).transpose(2, 0, 1)
+blind_dep = np.where(hid_dep, guess * 1.15, data["depths"]).astype(np.float32)
+score_blind = H.reproj_support_score(blind_dep, data["K_dep"], data["E"])
+reproj_S = float(score_gt[masks["S"]].mean())
+reproj_auroc = H.auroc(score_blind[masks["S"]], score_blind[masks["U"]])
+print(f"reproj score: mean on S (GT depth) = {reproj_S:.3f}; AUROC S vs U on blind-guess depth = {reproj_auroc:.3f}")
+
+# -------- pass / fail (the README promises these numbers; make the script say so with its exit code)
+mean = df.groupby("model")[["auroc", "cur", "absrel_S"]].mean()
+checks = {
+    "reproj score ~1 on S for consistent depth": reproj_S >= 0.9,
+    "reproj score flags an inconsistent guess (AUROC > 0.5)": reproj_auroc > 0.5,
+    "U and S disjoint": int((masks["U"] & masks["S"]).sum()) == 0,
+    "masks deterministic": np.array_equal(masks["U"], m2["U"]),
+    "oracle auroc >= 0.99": mean.loc["oracle", "auroc"] >= 0.99,
+    "oracle cur <= 0.01": mean.loc["oracle", "cur"] <= 0.01,
+    "blind auroc in [0.45, 0.55]": 0.45 <= mean.loc["blind", "auroc"] <= 0.55,
+    "blind cur >= 0.85": mean.loc["blind", "cur"] >= 0.85,
+    "absrel_S ~ 0 after scaling": (mean["absrel_S"] < 1e-3).all(),
+}
+failed = [k for k, ok in checks.items() if not ok]
+print("checks:", "all passed" if not failed else "FAILED " + ", ".join(failed))
+print("scratch dir:", WORK)
+sys.exit(1 if failed else 0)
