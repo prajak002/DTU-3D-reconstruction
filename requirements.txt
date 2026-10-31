@@ -1,0 +1,8 @@
+# CPU side of HalluBench-3D: loaders, masking, metrics, statistics, figures, tests.
+# Model wrappers additionally need torch + the model repos; see scripts/kaggle_prelude.py.
+numpy>=1.26
+opencv-python>=4.8
+scipy>=1.10
+pandas>=2.0
+matplotlib>=3.7
+pillow>=10.0

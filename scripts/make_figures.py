@@ -1,6 +1,11 @@
 """Paper figures, all from logged results. Run from the project root:
-  .venv/bin/python scripts/make_figures.py
-Writes paper/figures/figN_*.pdf and .png. No model is run; model panels come from saved composites."""
+  python scripts/make_figures.py [--dtu <dir searched for a DTU root>] [--co3d <preprocessed CO3D root>]
+Writes paper/figures/figN_*.pdf and .png. No model is run; model panels come from saved composites.
+
+Figures 1 and 2 need the raw DTU scan 3 and the preprocessed CO3D toytrain scene to render the real thumbnails;
+pass --dtu / --co3d (or set HALLU3D_DTU / HALLU3D_CO3D). Without them those two figures are skipped and
+the seven figures that come purely from results/*.csv are still written."""
+import argparse
 import os
 import sys
 
@@ -16,9 +21,16 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__)))
 import hallu3d as H
 import co3d
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+os.chdir(ROOT)                               # results/ and paper/figures are addressed relative to the project root
 OUT = "paper/figures"
 os.makedirs(OUT, exist_ok=True)
-SCR = "/private/tmp/claude-502/-Users-prajaksen-Desktop-cvpr/01a3d1e9-f90c-4716-bf61-f00f183c7737/scratchpad"
+
+_ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+_ap.add_argument("--dtu", default=os.environ.get("HALLU3D_DTU"), help="directory searched for a DTU root (Cameras/train, Rectified, Depths)")
+_ap.add_argument("--co3d", default=os.environ.get("HALLU3D_CO3D"), help="preprocessed CO3D root (folders with meta.npz)")
+_ap.add_argument("--only", default=None, help="comma-separated figure numbers to build, e.g. 3,4,7")
+ARGS = _ap.parse_args() if __name__ == "__main__" else _ap.parse_args([])
 
 # palette (validated with the dataviz skill validator, light surface)
 C = {"vggt": "#2a78d6", "pi3": "#1baf7a", "pi3x": "#6250d6", "mapanything": "#eb6834", "da3": "#e87ba4"}
@@ -57,17 +69,30 @@ def ci(df, col):
 # ----------------------------------------------------------------------------- data
 t1 = pd.read_csv("results/table1_all_models.csv")
 t3 = pd.read_csv("results/table3_all_models.csv")
-dtu_root = H.find_dtu_root([os.path.join(SCR, "dtu_probe")])
-co3d_root = os.path.join(SCR, "co3d_prep")
+
+
+def _find_dtu():
+    try:
+        return H.find_dtu_root([ARGS.dtu]) if ARGS.dtu else None
+    except FileNotFoundError:
+        return None
+
+
+dtu_root = _find_dtu()
+co3d_root = ARGS.co3d if ARGS.co3d and os.path.isdir(ARGS.co3d) else None
 
 
 def dtu_example(scan=3, seed=0, rf=0.18):
+    if dtu_root is None:
+        raise FileNotFoundError("DTU data not found: pass --dtu or set HALLU3D_DTU")
     d = H.load_scan(dtu_root, scan, H.select_views(10), 3)
     m = H.build_masks(d, seed, rf, H.DEFAULT_CFG)
     return d, m
 
 
 def co3d_example(scene="toytrain_399_51323_100753", seed=0, rf=0.18):
+    if co3d_root is None:
+        raise FileNotFoundError("CO3D data not found: pass --co3d or set HALLU3D_CO3D")
     d = co3d.load_co3d_scene(co3d_root, scene, H.select_views(10, total=co3d.n_frames(co3d_root, scene)))
     m = H.build_masks(d, seed, rf, H.DEFAULT_CFG)
     return d, m
@@ -359,11 +384,21 @@ def fig9():
 
 
 if __name__ == "__main__":
-    fig1(); fig2(); fig3()
-    n4 = fig4(); fig5(); n6 = fig6(); fig7(); fig8(); fig9()
-    print("\nfig4 numbers (DTU mean [lo, hi] -> CO3D mean [lo, hi]):")
-    for k, v in n4.items():
-        print(k, "DTU %.3f [%.3f, %.3f]  CO3D %.3f [%.3f, %.3f]" % v)
-    print("\nfig6 numbers (CUR mean [lo, hi], diff vs ref):")
-    for k, v in n6.items():
-        print(k, v)
+    FIGS = {1: fig1, 2: fig2, 3: fig3, 4: fig4, 5: fig5, 6: fig6, 7: fig7, 8: fig8, 9: fig9}
+    wanted = [int(x) for x in ARGS.only.split(",")] if ARGS.only else sorted(FIGS)
+    nums, skipped = {}, []
+    for k in wanted:
+        if k in (1, 2) and (dtu_root is None or (k == 1 and co3d_root is None)):
+            skipped.append(k); continue
+        nums[k] = FIGS[k]()
+    if 4 in nums:
+        print("\nfig4 numbers (DTU mean [lo, hi] -> CO3D mean [lo, hi]):")
+        for k, v in nums[4].items():
+            print(k, "DTU %.3f [%.3f, %.3f]  CO3D %.3f [%.3f, %.3f]" % v)
+    if 6 in nums:
+        print("\nfig6 numbers (CUR mean [lo, hi], diff vs ref):")
+        for k, v in nums[6].items():
+            print(k, v)
+    if skipped:
+        print(f"\nskipped fig{skipped}: raw DTU / CO3D data not found (pass --dtu / --co3d). "
+              "The committed paper/figures versions of those files are left untouched.")

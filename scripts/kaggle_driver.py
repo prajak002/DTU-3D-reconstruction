@@ -1,6 +1,11 @@
 # ---------------------------------------------------------------- kaggle driver (appended after hallu3d.py)
 # RUN_NAME and CFG are the only knobs. Output lands in /kaggle/working/out/.
-import subprocess, sys, os, json, traceback, time
+import os, json, traceback, time
+# When run as a separate file (not concatenated after hallu3d.py), pull the benchmark names from the module.
+try:
+    from hallu3d import *          # noqa: F401,F403
+except ImportError:
+    pass                           # single-file Kaggle build: hallu3d.py is concatenated above this line
 RUN_NAME = os.environ.get("RUN_NAME", "P1-smoke")
 MODELS = os.environ.get("MODELS", "vggt,pi3x").split(",")
 CFG = json.loads(os.environ.get("CFG", '{"seeds":[0],"fills":["gray"],"radius_fracs":[0.15]}'))

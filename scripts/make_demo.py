@@ -10,18 +10,16 @@ Frames are rendered with matplotlib at 1920x1080 into a scratch directory and as
 (concat demuxer, per-frame durations, encoded at 30 fps H.264).
 """
 import argparse
-import glob
 import os
+import shutil
 import subprocess
 import sys
-import textwrap
 
 import numpy as np
 import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
 from PIL import Image
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -30,7 +28,7 @@ import co3d
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(ROOT, "results")
-FFMPEG = "/opt/homebrew/bin/ffmpeg"
+FFMPEG = os.environ.get("FFMPEG") or shutil.which("ffmpeg") or "/opt/homebrew/bin/ffmpeg"
 
 BG, FG, MUTED, ACC, ACC2 = "#101418", "#f2f4f7", "#9aa4b2", "#4cc9f0", "#f4a261"
 MODEL_LABEL = {"vggt": "VGGT-1B", "pi3": "Pi3", "pi3x": "Pi3X", "mapanything": "MapAnything", "da3": "Depth Anything 3"}
@@ -40,7 +38,8 @@ REPLAY_TAG = "model outputs recorded on Kaggle T4, 2026-10-28"
 plt.rcParams.update({
     "figure.facecolor": BG, "axes.facecolor": BG, "savefig.facecolor": BG,
     "text.color": FG, "axes.edgecolor": MUTED, "axes.labelcolor": FG,
-    "xtick.color": FG, "ytick.color": FG, "font.family": "Helvetica",
+    "xtick.color": FG, "ytick.color": FG, "font.family": "sans-serif",
+    "font.sans-serif": ["Helvetica", "Arial", "Liberation Sans", "DejaVu Sans"],
     "font.size": 22, "axes.titlesize": 26, "axes.titleweight": "bold",
 })
 
@@ -112,7 +111,6 @@ def views_grid(reel, data, title, sub, seconds, hide=None, highlight=None):
     header(fig, title, sub)
     N = len(data["imgs"])
     cols = 5
-    rows = int(np.ceil(N / cols))
     for i in range(N):
         ax = fig.add_axes([0.04 + (i % cols) * 0.187, 0.50 - (i // cols) * 0.41, 0.175, 0.36])
         img = data["imgs"][i].copy()

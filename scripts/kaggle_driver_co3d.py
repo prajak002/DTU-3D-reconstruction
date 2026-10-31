@@ -1,6 +1,12 @@
 # ---------------------------------------------------------------- kaggle driver, CO3D (appended after hallu3d.py + co3d.py)
 # Runs Table 3: HalluBench-3D on the preprocessed CO3Dv2 single-sequence subset (dataset popsensharma/co3d-hallubench).
-import sys, os, json, traceback, time
+import os, json, traceback, time
+# When run as a separate file (not concatenated after hallu3d.py), pull the benchmark names from the module.
+try:
+    from hallu3d import *          # noqa: F401,F403
+    from co3d import *             # noqa: F401,F403
+except ImportError:
+    pass                           # single-file Kaggle build: hallu3d.py is concatenated above this line
 RUN_NAME = os.environ.get("RUN_NAME", "P2-co3d")
 MODELS = os.environ.get("MODELS", "vggt,pi3x").split(",")
 CFG = json.loads(os.environ.get("CFG", '{"seeds":[0],"fills":["gray"],"radius_fracs":[0.18]}'))
@@ -40,7 +46,6 @@ for mname in MODELS:
     except Exception:
         P("!! model", mname, "failed:\n" + traceback.format_exc())
 if os.path.exists(csv):
-    import pandas as pd
     s = summarize(csv)
     P(s.to_string())
     s.to_csv(f"{OUT}/{RUN_NAME}_summary.csv", index=False)

@@ -9,3 +9,10 @@ paper/tex/*.xdv
 paper/tex/*.out
 .env*
 kaggle.json
+# local build / scratch outputs
+paper/demo/_frames/
+kernel/
+.venv/
+venv/
+*.egg-info/
+supp/

@@ -1,7 +1,12 @@
 # ---------------------------------------------------------------- kaggle stress-test driver (appended after hallu3d.py)
 # Each test is a cfg override run with the same models; one CSV per test in /kaggle/working/out/.
 # Reference rows (10 spread views, blur, r 0.18, seeds 0 and 1) already exist in P1-full / P2-full.
-import sys, os, json, traceback, time
+import os, traceback, time
+# When run as a separate file (not concatenated after hallu3d.py), pull the benchmark names from the module.
+try:
+    from hallu3d import *          # noqa: F401,F403
+except ImportError:
+    pass                           # single-file Kaggle build: hallu3d.py is concatenated above this line
 RUN_NAME = os.environ.get("RUN_NAME", "P2-stress")
 MODELS = os.environ.get("MODELS", "vggt,pi3x,da3").split(",")
 COMMON = {"seeds": [0, 1], "radius_fracs": [0.18], "keep_model": True}
@@ -34,7 +39,6 @@ for mname in MODELS:
         except Exception:
             P("!! model", mname, "test", tname, "failed:\n" + traceback.format_exc())
     model.free()
-import pandas as pd
 for tname in TESTS:
     f = f"{OUT}/{RUN_NAME}_{tname}.csv"
     if os.path.exists(f):
