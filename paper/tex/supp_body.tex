@@ -1,0 +1,21 @@
+% Supplementary material body. Input by main.tex (appended after the references) and by supp.tex (standalone PDF).
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig3_metrics}
+\caption{\textbf{Per-run spread on DTU.} \auroc{} and \cur{} for every (scan, seed, radius) run under blur and noise fills, with pooled means and intervals. The spread across scans is wide for every model; the intervals in the main tables come from resampling scans.}
+\label{fig:metrics}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig5_fills}
+\caption{\textbf{Fill ablation.} \cur{} per model and fill on DTU and CO3Dv2 (five seeds) and for the inpainted fill on DTU (two seeds, three models). A visible gray patch gives the lowest leakage; natural-statistics and inpainted fills give more.}
+\label{fig:fills}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig7_perscene}
+\caption{\textbf{Per-scene \cur{}} (blur fill, radius 0.18, mean over seeds) for every model on DTU scans and CO3Dv2 scenes. Rows are scenes, columns are models.}
+\label{fig:perscene}
+\end{figure}
+
+\paragraph{Run registry.} Every table cell maps to a run id (P1-full, P2-full, P2-stress, P2-co3d, P2-co3d-b, P3-pv-smoke, P2-smoke-b) whose CSV, configuration JSON and kernel log are released with the code, together with the dated log of every failed run and every correction.

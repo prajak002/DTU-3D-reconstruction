@@ -1,37 +1,5 @@
-% CVPR 2027 submission. Build: tectonic main.tex (from paper/tex)
-\documentclass[10pt,twocolumn,letterpaper]{article}
-
-\usepackage[review]{cvpr}
-\usepackage[T1]{fontenc}
-\usepackage{times}
-\usepackage{graphicx}
-\usepackage{amsmath,amssymb}
-\usepackage{booktabs}
-\usepackage{multirow}
-\usepackage{xcolor}
-\definecolor{cvprblue}{rgb}{0.21,0.49,0.74}
-\usepackage{colortbl}
-\usepackage{enumitem}
-\usepackage{microtype}
-\renewcommand{\arraystretch}{0.93}
-\setlength{\textfloatsep}{8pt}
-\setlength{\abovecaptionskip}{4pt}
-\usepackage[pagebackref,breaklinks,colorlinks,citecolor=cvprblue,linkcolor=cvprblue,urlcolor=cvprblue]{hyperref}
-
-\def\confName{CVPR}
-\def\confYear{2027}
-\def\paperID{XXXX}
-
-\graphicspath{{../figures/}}
-\definecolor{tbd}{RGB}{176,96,0}
-\definecolor{tbdbg}{RGB}{255,246,230}
-\newcommand{\tbd}[1]{\colorbox{tbdbg}{\textcolor{tbd}{\footnotesize pending: #1}}}
-\newcommand{\cur}{\textsc{cur}}
-\newcommand{\curerr}{\textsc{cur-err}}
-\newcommand{\auroc}{\textsc{auroc}}
-\newcommand{\absrel}{\textsc{AbsRel}}
-\newcommand{\bench}{HalluBench-3D}
-\newcommand{\ci}[3]{#1\,{\scriptsize[#2,\,#3]}}
+% CVPR 2027 submission. Build: tectonic main.tex (from paper/tex); supplementary alone: tectonic supp.tex
+\input{preamble}
 
 \title{Observe, Imagine, Abstain:\\Hallucination-Aware 3D Reconstruction with Discrete Diffusion and Continual Adaptation}
 
@@ -376,6 +344,9 @@ We asked a simple question of five 3D foundation models: when you have not seen 
 \paragraph{Reproducibility.}
 Every number in this paper maps to a CSV and a configuration file in the released log; the benchmark code is 700 lines of Python with no training; all model runs fit on a single 16 GB GPU in about eight hours total.
 
+\paragraph{Disclosure of AI assistance.}
+An AI assistant (Claude, Anthropic) was used under the authors' direction for writing code, orchestrating experiment runs and drafting text. The authors designed the study, chose and froze every hyperparameter, ran and checked every experiment, verified every number against its logged run, and are responsible for all content. The assistant is not an author.
+
 {\small
 \bibliographystyle{ieeenat_fullname}
 \bibliography{refs}
@@ -385,25 +356,6 @@ Every number in this paper maps to a CSV and a configuration file in the release
 \clearpage
 \onecolumn
 \section*{Supplementary material}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.95\textwidth]{fig3_metrics}
-\caption{\textbf{Per-run spread on DTU.} \auroc{} and \cur{} for every (scan, seed, radius) run under blur and noise fills, with pooled means and intervals. The spread across scans is wide for every model; the intervals in the main tables come from resampling scans.}
-\label{fig:metrics}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.95\textwidth]{fig5_fills}
-\caption{\textbf{Fill ablation.} \cur{} per model and fill on DTU and CO3Dv2 (five seeds) and for the inpainted fill on DTU (two seeds, three models). A visible gray patch gives the lowest leakage; natural-statistics and inpainted fills give more.}
-\label{fig:fills}
-\end{figure}
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.95\textwidth]{fig7_perscene}
-\caption{\textbf{Per-scene \cur{}} (blur fill, radius 0.18, mean over seeds) for every model on DTU scans and CO3Dv2 scenes. Rows are scenes, columns are models.}
-\label{fig:perscene}
-\end{figure}
-
-\paragraph{Run registry.} Every table cell maps to a run id (P1-full, P2-full, P2-stress, P2-co3d, P2-co3d-b, P3-pv-smoke, P2-smoke-b) whose CSV, configuration JSON and kernel log are released with the code, together with the dated log of every failed run and every correction.
+\input{supp_body}
 
 \end{document}
