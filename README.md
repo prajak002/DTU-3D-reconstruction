@@ -4,7 +4,7 @@ Hallucination-aware 3D reconstruction. This repository holds **HalluBench-3D**, 
 
 Project page: https://prajak002.github.io/DTU-3D-reconstruction/
 Paper (PDF): `paper/observe_imagine_abstain_cvpr27.pdf` (supplementary as a separate PDF: `paper/observe_imagine_abstain_cvpr27_supp.pdf`)
-Demo video: `paper/demo/demo.mp4`
+Demo video: `paper/demo/demo.mp4` (protocol on real data + replay, 3 min). End-to-end walkthrough: `paper/demo/walkthrough.mp4` (protocol, models, metrics, runs, paper, artefacts, 5 min, chaptered)
 
 ---
 
@@ -61,7 +61,7 @@ Full tables with intervals and the per-fill cells are in the paper (Tables 1 to 
 **Done, every number from a logged run** (about 8 GPU hours on one Kaggle T4):
 benchmark on DTU and CO3Dv2, five models, three fills plus an inpainted fill, stress tests (view dropping, low parallax, distractor image), two failing training-free baselines, intervals and paired tests for all of it.
 
-**Written but not yet run** (needs a GPU session): the reprojection-consistency detector (`<model>_reproj`, issue #2).
+**Written but not yet run** (needs a GPU session): the reprojection-consistency detector (`<model>_reproj`, issue #2) and the support head (`<model>_oia`, `scripts/oia_head.py`; plan in `scripts/run_h100.py`, pass condition in the paper).
 
 **Not done** (tracked as GitHub issues, see below): the proposed detector (a discrete diffusion head over quantized geometry tokens whose K-sample disagreement labels pixels observed / imagined / abstain), its ablations, continual adaptation with LoRA and replay, the heritage photo study, and VGGT-Omega (gated checkpoint). The paper marks every one of these as `pending`; no number is estimated.
 
@@ -76,9 +76,13 @@ scripts/
   kaggle_driver.py       DTU runs            kaggle_driver_stress.py   stress tests
   kaggle_driver_co3d.py  CO3Dv2 runs
   test_synthetic.py      CPU test with oracle / blind fake models on a synthetic scene
+  oia_head.py            the support head (P3-oia): label-free training on frozen backbone features, <model>_oia wrappers
+  run_h100.py            the GPU plan for P3: check, train, dtu, co3d, stress, baselines, ablate, stats
+  test_oia.py            CPU test of the support head with a fake backbone (plumbing, not the real hooks)
   test_co3d.py           CPU test of the CO3D path and consistency checks
   make_figures.py        every paper figure from the CSVs in results/
-  make_demo.py           the demo video
+  make_demo.py           the demo video (needs the raw DTU / CO3D data)
+  make_walkthrough.py    the end-to-end walkthrough video (needs no data: runs test_synthetic.py live, replays results/)
   make_site.py           docs/explorer.html (per-scene explorer) + docs/assets/hallubench3d_results.zip,
                          and a check that the numbers on the site equal the CSVs
   make_supp_archive.py   anonymised code + results archive for the supplementary
@@ -92,7 +96,7 @@ results/
   (each run folder: CSV, config JSON, run log, Kaggle kernel log, example figures)
 paper/
   tex/                   LaTeX source (CVPR 2027 author kit)   figures/   fig1 to fig9
-  observe_imagine_abstain_cvpr27.pdf                            demo/      demo.mp4 + README
+  observe_imagine_abstain_cvpr27.pdf                            demo/      demo.mp4, walkthrough.mp4 + README
   draft.md               working draft and number ledger
 docs/                    project website (GitHub Pages): index.html, explorer.html (generated), assets/
 EXPERIMENTS.md           run registry, gates, how to push a Kaggle kernel
@@ -133,6 +137,9 @@ Model names: `vggt`, `pi3`, `pi3x`, `da3`, `mapanything`, `mapanything_mv` (mult
 ```
 python scripts/test_synthetic.py            # exit 0 iff oracle scores AUROC 1 / CUR 0, blind 0.5 / 0.9, masks are
                                             # deterministic and disjoint, and the reprojection score behaves
+python scripts/test_oia.py                  # exit 0 iff the support-head plumbing works end to end (fake backbone, CPU)
+python scripts/run_h100.py all --dtu <dir with DTU incl. training scans> --co3d <co3d_prep>
+                                            # H100 plan: trains the heads, evaluates them and every baseline, writes results/P3-*/
 python scripts/test_co3d.py <co3d_prep> <out>
 ```
 
@@ -142,6 +149,7 @@ python scripts/test_co3d.py <co3d_prep> <out>
 python scripts/make_figures.py --dtu <dir with DTU> --co3d <co3d_prep>   # writes paper/figures/; without the data
                                                                           # flags, figs 3 to 9 (CSV-only) are still built
 python scripts/make_demo.py --dtu <dir with DTU> --co3d <co3d_prep>      # writes paper/demo/demo.mp4 (needs ffmpeg)
+python scripts/make_walkthrough.py          # writes paper/demo/walkthrough.mp4 (needs ffmpeg, no data; about 5 min to render)
 python scripts/make_site.py                 # docs/explorer.html + docs/assets/hallubench3d_results.zip, checks index.html
 python scripts/make_supp_archive.py         # supp/hallubench3d_supp_<date>.zip, anonymised (fails if a name survives)
 cd paper/tex && tectonic main.tex           # paper + supplementary in one PDF (or pdflatex + bibtex)
@@ -176,4 +184,4 @@ Anonymous CVPR 2027 submission. If you use the benchmark before publication, ple
 
 ## 10. Disclosure
 
-Experiments, code and drafting were done with assistance from Claude (Anthropic). Claude is not an author. A disclosure paragraph is in the paper source (`paper/tex/main.tex`, before the references); its wording should be checked against the CVPR 2027 author guidelines before submission.
+Experiments, code and drafting were done with assistance from Claude (Anthropic). Claude is not an author. A one-sentence disclosure is in the paper body (`paper/tex/main.tex`, before the references) and the full paragraph plus the reproducibility statement open the supplementary (`paper/tex/supp_body.tex`); the wording should be checked against the CVPR 2027 author guidelines before submission.
