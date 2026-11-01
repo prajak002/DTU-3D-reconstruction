@@ -1,4 +1,10 @@
 % Supplementary material body. Input by main.tex (appended after the references) and by supp.tex (standalone PDF).
+\paragraph{Reproducibility.}
+Every number in the paper maps to a CSV and a configuration file in the released log; the benchmark is 700 lines of Python with no training, and all its model runs fit on one 16 GB GPU in about eight hours. The support head trains in about 25 minutes on one GPU from the released configuration; its runs are logged under the P3 run ids.
+
+\paragraph{Disclosure of AI assistance.}
+An AI assistant (Claude, Anthropic) was used under the authors' direction for writing code, orchestrating experiment runs and drafting text. The authors designed the study, chose and froze every hyperparameter, ran and checked every experiment, verified every number against its logged run, and are responsible for all content. The assistant is not an author.
+
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.95\textwidth]{fig3_metrics}

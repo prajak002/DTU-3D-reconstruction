@@ -359,27 +359,30 @@ def fig8():
 
 # ----------------------------------------------------------------------------- fig 9 method (proposed)
 def fig9():
-    fig = plt.figure(figsize=(PAGEW, 2.5))
-    ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, 10); ax.set_ylim(0, 3.6); ax.axis("off")
-    y, h = 2.0, 1.0
-    box(ax, 0.15, y, 1.5, h, "unposed photos\n(N views)")
-    box(ax, 1.95, y, 1.6, h, "frozen 3D backbone\n(VGGT / Pi3 / ...)\ntokens, depth, conf", fc="#e3edfa", ec=BLUE, fs=6.5)
-    box(ax, 3.85, y, 2.0, h, "discrete diffusion head over\nquantized scene tokens (trained\nby masking + corrupting\nclean outputs)", fc="#eceafa", ec=C["pi3x"], fs=6.5)
-    box(ax, 6.15, y, 1.1, h, "K samples of\nthe recon-\nstruction")
-    box(ax, 7.55, y, 1.2, h, "disagreement\nmap (per pixel)", fc="#fff5ee", ec=ORANGE)
-    box(ax, 9.0, y, 0.9, h, "abstain /\nkeep", fc="#fff5ee", ec=ORANGE)
-    for x0, x1 in [(1.65, 1.95), (3.55, 3.85), (5.85, 6.15), (7.25, 7.55), (8.75, 9.0)]:
+    fig = plt.figure(figsize=(PAGEW, 2.6))
+    ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, 10); ax.set_ylim(0, 3.7); ax.axis("off")
+    y, h = 2.05, 1.0
+    box(ax, 0.15, y, 1.4, h, "unposed photos\n(N views)")
+    box(ax, 1.85, y, 1.9, h, "frozen 3D backbone\n(VGGT / Pi3X)\ndepth, conf, multi-view tokens", fc="#e3edfa", ec=BLUE, fs=6.5)
+    box(ax, 4.05, y, 2.1, h, "support head\nLayerNorm + 1x1 per layer, sum,\n2 x (3x3 conv) at patch res,\na few M params, one pass", fc="#eceafa", ec=C["pi3x"], fs=6.5)
+    box(ax, 6.45, y, 1.4, h, "P(imagined)\nper pixel", fc="#fff5ee", ec=ORANGE)
+    box(ax, 8.15, y, 1.7, h, "observed  (score >= 0.7)\nabstain    (0.3 .. 0.7)\nimagined  (score <= 0.3)", fc="#fff5ee", ec=ORANGE, fs=6.5)
+    for x0, x1 in [(1.55, 1.85), (3.75, 4.05), (6.15, 6.45), (7.85, 8.15)]:
         arrow(ax, x0, y + h / 2, x1, y + h / 2)
-    ax.text(4.75, y + h + 0.18, "observed tokens are kept fixed; only unobserved regions are sampled", ha="center", fontsize=6.5, color=INK2)
-    ax.text(8.1, y - 0.25, "samples agree: observed\nsamples disagree: imagined", ha="center", va="top", fontsize=6.5, color=INK2)
-    # continual loop
-    box(ax, 1.95, 0.25, 3.7, 0.95, "continual adaptation on a site stream (proposed)\nLoRA on the head + replay buffer of past sites;\nthe backbone stays frozen", fc="#f3f2ee")
-    arrow(ax, 1.0, 0.72, 1.95, 0.72)
-    ax.text(0.15, 0.72, "new site\nphotos", fontsize=6.5, color=INK2, va="center")
-    arrow(ax, 4.75, 1.2, 4.75, y)
-    ax.text(4.85, 1.55, "updates the head only", fontsize=6.5, color=INK2)
-    ax.text(0.15, 3.35, "Proposed detector (design figure; numbers TBD until the head is trained)", fontsize=7, color=INK, fontweight="bold")
-    ax.text(0.15, 1.75, "no hallucination labels\nare used in training", fontsize=6.5, color=INK2, va="center")
+    ax.text(5.1, y + h + 0.18, "inference: one backbone forward, the head adds under 1% of the FLOPs; score = 1 - P(imagined)",
+            ha="center", fontsize=6.5, color=INK2)
+    # self-supervised training loop
+    box(ax, 1.85, 0.2, 8.0, 1.05,
+        "label-free training, scenes disjoint from the benchmark: run the backbone on clean views, place a sphere on its own\n"
+        "predicted surface, hide it in every view with the predicted depth and cameras (gray / blur / noise fill),\n"
+        "run the backbone again, train the head to find the hidden pixels; 15% clean samples, all-observed target",
+        fc="#f3f2ee", fs=6.2)
+    arrow(ax, 5.1, 1.25, 5.1, y)
+    ax.text(5.2, 1.6, "gradients reach the head only", fontsize=6.5, color=INK2)
+    ax.text(0.15, 0.72, "DTU training\nscans (79),\nno ground truth", fontsize=6.5, color=INK2, va="center")
+    arrow(ax, 1.35, 0.72, 1.85, 0.72)
+    ax.text(0.15, 3.42, "Proposed detector: the support head (design figure; numbers pending until run P3-oia)", fontsize=7, color=INK, fontweight="bold")
+    ax.text(6.5, y - 0.22, "controls: per-image-feature head, linear probe, inpainted fill (held out), zero-shot CO3Dv2", ha="left", va="top", fontsize=6.3, color=INK2)
     save(fig, "fig9_method")
 
 

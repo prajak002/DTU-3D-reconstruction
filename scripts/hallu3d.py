@@ -658,6 +658,14 @@ def make_model(name):
     m = re.fullmatch(r"(.+)_reproj", name)
     if m:
         return ReprojWrap(MODEL_REGISTRY[m.group(1)]())
+    if re.fullmatch(r".+_oia\w*", name):          # support head variants (scripts/oia_head.py)
+        try:
+            from oia_head import make_oia
+        except ImportError:                        # single-file build: oia_head.py is concatenated below
+            make_oia = globals()["make_oia"]
+        w = make_oia(name, MODEL_REGISTRY)
+        if w is not None:
+            return w
     return MODEL_REGISTRY[name]()
 
 
