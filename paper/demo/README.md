@@ -46,3 +46,40 @@ python scripts/make_demo.py --dtu <dir containing a DTU root> --co3d <preprocess
 The DTU root is found by `hallu3d.find_dtu_root` (needs `Cameras/train`, `Rectified`, `Depths`).
 The CO3D root is the output of `co3d.preprocess_co3d` (folders with `meta.npz`). Rendering takes
 about two minutes on a laptop.
+
+---
+
+# End-to-end walkthrough (`walkthrough.mp4`)
+
+`walkthrough.mp4`: 1920x1080, 30 fps, H.264, 5:10, no audio, MP4 chapter markers. Built by
+`scripts/make_walkthrough.py`, which needs **no DTU or CO3D data**: it runs `scripts/test_synthetic.py` as a
+subprocess and loads the synthetic DTU-format scan that the test writes, so Stages 1 and 2 are the real
+benchmark code running at build time, on a synthetic scene (every such frame is tagged
+"computed now, on this machine" or "live, synthetic scene"). Stages 3 and 4 replay the Kaggle runs under
+`results/` (tagged "model outputs recorded on Kaggle T4, 2026-10-28"); the charts recompute the cluster
+bootstrap intervals from the CSVs. Stage 6 lists the artefacts actually present on disk when the video was
+built, with the git commit.
+
+| time | chapter | what is on screen |
+|---|---|---|
+| 0:00 | title | plan of the video |
+| 0:09 | the problem | paper figure 1, the definition, AUROC and CUR |
+| 0:28 | protocol, live | `test_synthetic.py` output; views, sphere, hidden region, fills, labels, `consistency_check` |
+| 1:15 | models and metrics, live | oracle and blind reference models through `run_benchmark`, `summarize` table, `reproj_support_score` |
+| 1:57 | recorded runs, DTU | paper figure 2; five models, scans 17 and 106, with CSV rows |
+| 2:45 | recorded runs, inpainted fill | VGGT, Pi3X, DA3 on scan 17 |
+| 2:55 | recorded runs, CO3Dv2 | five models, toytrain and apple |
+| 3:27 | the numbers | CUR and AUROC DTU vs CO3Dv2, stress tests, training-free detectors vs native confidence |
+| 3:58 | paper and method | figures 4, 8, 9; measured vs pending |
+| 4:32 | artefacts | command chain, the nine figures, files present on disk, where to look |
+
+## Regenerate
+
+From the project root, with the requirements installed and ffmpeg on PATH (or `$FFMPEG`):
+
+```
+python scripts/make_walkthrough.py [--out paper/demo/walkthrough.mp4] [--frames <scratch dir>]
+```
+
+Rendering takes a few minutes on a laptop (the bootstrap intervals dominate). Frames go to a fresh temp
+directory unless `--frames` is given.

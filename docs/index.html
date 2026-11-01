@@ -87,6 +87,7 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
   <div class="meta">
     <a href="assets/paper.pdf">Paper (PDF)</a>
     <a href="#demo">Demo video</a>
+    <a href="#walkthrough">Walkthrough</a>
     <a href="https://github.com/prajak002/DTU-3D-reconstruction">Code and results</a>
     <a href="explorer.html">Per-scene explorer</a>
     <a href="assets/hallubench3d_results.zip">Results (CSV bundle)</a>
@@ -194,6 +195,17 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
   <video controls preload="metadata" playsinline>
     <source src="assets/demo.mp4" type="video/mp4">
     Your browser cannot play this video. <a href="assets/demo.mp4">Download it</a> instead.
+  </video>
+</div>
+
+<section class="measure" id="walkthrough">
+  <h2>End-to-end walkthrough</h2>
+  <p>A second video follows the whole pipeline in order, and needs no dataset to rebuild: the benchmark's own CPU self-test runs live (synthetic scan: views, sphere, fills, labels, consistency check, two reference models through the metric code, the reprojection detector), then the recorded runs of the five real models are replayed with their CSV rows, the charts are recomputed from the CSVs, and the video ends with the paper figures, the proposed method and the artefacts present in the repository at build time. Five minutes, chaptered, no audio. Live frames and replayed frames are tagged as such.</p>
+</section>
+<div class="video">
+  <video controls preload="metadata" playsinline>
+    <source src="assets/walkthrough.mp4" type="video/mp4">
+    Your browser cannot play this video. <a href="assets/walkthrough.mp4">Download it</a> instead.
   </video>
 </div>
 
