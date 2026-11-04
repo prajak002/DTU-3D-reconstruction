@@ -100,7 +100,7 @@ Before any model is scored we check that ground-truth depth reprojects consisten
 On a synthetic DTU-format scene, an oracle that knows what is hidden scores \auroc{} 1.000 and \cur{} 0.000, and a blind guesser with flat confidence scores \auroc{} 0.500 and \cur{} 0.90 (the 10\% of supported pixels dropped by $\tau$ is the expected floor). These numbers validate the code, not any model.
 
 \paragraph{Models.}
-VGGT-1B~\cite{vggt} (depth and depth confidence), Pi3 and Pi3X~\cite{pi3} (local point $z$ and sigmoid confidence), MapAnything~\cite{mapanything} (image-only metric mode), and Depth Anything 3~\cite{da3} (Large 1.1). Same views, resolution and fp16 budget for all, on a single T4. VGGT-Omega is gated and not yet run.
+VGGT-1B~\cite{vggt} (depth and depth confidence), Pi3 and Pi3X~\cite{pi3} (local point $z$ and sigmoid confidence), MapAnything~\cite{mapanything} (image-only metric mode), and Depth Anything 3~\cite{da3} (Large 1.1), all pointmap or depth transformers; and AnySplat~\cite{anysplat}, a feed-forward Gaussian-splatting model from unposed views, scored on the depth of each pixel's Gaussian with its opacity as confidence (	bd{P3-gs}), to ask whether the representation changes the answer. Same views and resolution for all; the first five ran in fp16 on a single T4, AnySplat in bf16 on an L4. VGGT-Omega is gated and not yet run.
 
 \paragraph{Statistics.}
 Means carry 95\% cluster-bootstrap intervals over scenes (10,000 resamples; each scene contributes its mean over seeds). Pairwise comparisons use a paired sign-flip permutation test on per-scene means (20,000 permutations), Holm-corrected within each family of pairs.
