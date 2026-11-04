@@ -179,21 +179,29 @@ def load_co3d_scene(root, scene, views):
     if max(views) >= len(fn):
         raise IndexError(f"{scene}: view index {max(views)} >= {len(fn)} frames")
     imgs = []
+    div = int(m["depth_div"]) if "depth_div" in m.files else DEPTH_DIV
+    h_img, w_img = m["depth"].shape[1] * div, m["depth"].shape[2] * div     # frames with an odd size lose a row/column
     for v in views:
         ip = os.path.join(root, scene, "images", f"{fn[v]:06d}.jpg")
         img = cv2.cvtColor(cv2.imread(ip, cv2.IMREAD_COLOR), cv2.COLOR_BGR2RGB).astype(np.float32) / 255.0
-        imgs.append(img)
+        imgs.append(img[:h_img, :w_img])
     return dict(imgs=np.stack(imgs), depths=m["depth"][views], K_img=m["K_img"][views], K_dep=m["K_dep"][views],
                 E=m["E"][views], views=views, scan=scene, center_mask=m["fg"][views],
                 model_hw=(tuple(int(x) for x in m["model_hw"]) if "model_hw" in m.files else
                           (MODEL_HW if m["img_hw"][0] >= m["img_hw"][1] else MODEL_HW[::-1])))
 
 
+def _crop_hw(m):
+    div = int(m["depth_div"]) if "depth_div" in m.files else DEPTH_DIV
+    return m["depth"].shape[1] * div, m["depth"].shape[2] * div
+
+
 def scene_hw(root, scene):
-    return tuple(int(v) for v in np.load(os.path.join(root, scene, "meta.npz"))["img_hw"])
+    return _crop_hw(np.load(os.path.join(root, scene, "meta.npz")))
 
 
 def load_any_image(root, scene, view):
-    fn = np.load(os.path.join(root, scene, "meta.npz"))["frame_numbers"]
-    ip = os.path.join(root, scene, "images", f"{fn[view]:06d}.jpg")
-    return cv2.cvtColor(cv2.imread(ip, cv2.IMREAD_COLOR), cv2.COLOR_BGR2RGB).astype(np.float32) / 255.0
+    m = np.load(os.path.join(root, scene, "meta.npz"))
+    h, w = _crop_hw(m)
+    ip = os.path.join(root, scene, "images", f"{m['frame_numbers'][view]:06d}.jpg")
+    return cv2.cvtColor(cv2.imread(ip, cv2.IMREAD_COLOR), cv2.COLOR_BGR2RGB).astype(np.float32)[:h, :w] / 255.0

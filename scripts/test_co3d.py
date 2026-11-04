@@ -11,14 +11,16 @@ import hallu3d as H
 import co3d
 
 root, out = sys.argv[1], sys.argv[2]
+view_mode = sys.argv[3] if len(sys.argv) > 3 else "spread"        # "adjacent" for ETH3D (frames in co-visibility order)
 os.makedirs(out, exist_ok=True)
 scenes = co3d.list_co3d_scenes(root)
-cfg = {**H.DEFAULT_CFG, "dataset": "co3d", "scans": scenes, "seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray"]}
+cfg = {**H.DEFAULT_CFG, "dataset": "co3d", "scans": scenes, "seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray"],
+       "view_mode": view_mode}
 
 print("consistency check (reproj_agree should be high, U_transfer should be high):")
 checks = {}
 for sc in scenes:
-    d = co3d.load_co3d_scene(root, sc, H.select_views(10, total=co3d.n_frames(root, sc)))
+    d = co3d.load_co3d_scene(root, sc, H.select_views(10, total=co3d.n_frames(root, sc), mode=view_mode))
     m = H.build_masks(d, 0, 0.18, cfg)
     checks[sc] = H.consistency_check(d, m)
     print(f"  {sc:30s} {checks[sc]}  U={m['U'].mean():.4f} S={m['S'].mean():.4f}")

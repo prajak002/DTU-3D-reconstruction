@@ -208,15 +208,23 @@ def stage_dtuext(args):
     run(args, "P3-dtuext", models, cfg, args.dtu_root)
 
 
+# ETH3D scenes that pass the CO3D consistency gate (reproj_agree_3pct_vis > 0.9 and U_transfer > 0.85 on the ten
+# co-visible views, results/P3-eth3d-check/consistency_co3d.json, 2026-11-04). Excluded: pipes (U_transfer 0.58),
+# playground (0.75), delivery_area (too few hidden pixels, U_transfer undefined), office (a depth file was truncated
+# during download and the raw archive was gone before it was noticed).
+ETH3D_SCENES = ["courtyard", "electro", "facade", "kicker", "meadow", "relief", "relief_2", "terrace", "terrains"]
+
+
 def stage_eth3d(args):
-    """Third dataset: the 13 ETH3D DSLR training scenes (scripts/eth3d.py), building scale, laser ground truth.
+    """Third dataset: ETH3D DSLR training scenes (scripts/eth3d.py), building scale, laser ground truth.
     Native models plus the head and its per-image control, full configuration, cfg dataset = co3d (same loader)."""
     _ckpt_env(args)
     if not args.eth3d_root:
         print("[skip] eth3d: no --eth3d root"); return
-    scenes = co3d.list_co3d_scenes(args.eth3d_root)
+    scenes = [s for s in ETH3D_SCENES if s in co3d.list_co3d_scenes(args.eth3d_root)]
     models = list(args.ext_bases) + [m for m in ("vggt_oia", "vggt_oiapatch") if _have(args, m)]
-    run(args, "P3-eth3d", models, {**FULL, "dataset": "co3d", "scans": scenes}, args.eth3d_root)
+    # frames are stored in co-visibility order (eth3d.py --reorder); "adjacent" takes the reference + 9 most overlapping
+    run(args, "P3-eth3d", models, {**FULL, "dataset": "co3d", "scans": scenes, "view_mode": "adjacent"}, args.eth3d_root)
 
 
 def stage_ablate(args):

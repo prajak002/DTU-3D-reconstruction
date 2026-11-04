@@ -16,6 +16,7 @@ with depth at half resolution, fg = valid depth, K_img, K_dep, E world -> camera
 img_hw, model_hw), so the CO3D code path of the benchmark (cfg["dataset"] = "co3d") runs unchanged on it.
 """
 import os
+import sys
 
 import cv2
 import numpy as np
@@ -193,11 +194,71 @@ def preprocess_eth3d(raw_root, out_root, scenes=None, img_w=IMG_W, depth_div=DEP
     return done
 
 
+def covisibility(depth, K, E, tol=0.03):
+    """overlap[i, j] = share of valid pixels of frame i whose point lands inside frame j, in front of it, and within
+    tol of frame j's own depth (occlusion-aware). Uses hallu3d.backproject / project on the stored depth grid."""
+    import hallu3d as H
+    N, h, w = depth.shape
+    ov = np.zeros((N, N))
+    for i in range(N):
+        Pw = H.backproject(depth[i], K[i], E[i])
+        vi = depth[i] > 0
+        if vi.sum() == 0:
+            continue
+        for j in range(N):
+            if i == j:
+                continue
+            u, v, z = H.project(Pw, K[j], E[j])
+            ui, vj = np.round(u).astype(int), np.round(v).astype(int)
+            ok = vi & (z > 0) & (ui >= 0) & (ui < w) & (vj >= 0) & (vj < h)
+            dj = np.zeros((h, w)); dj[ok] = depth[j][vj[ok], ui[ok]]
+            ok &= dj > 0
+            ov[i, j] = (ok & (np.abs(dj - z) / np.maximum(dj, 1e-9) < tol)).sum() / vi.sum()
+    return ov
+
+
+def reorder_by_covisibility(prep_root, n_views=10, scenes=None, verbose=True):
+    """Store the frames of every scene so that the first n_views are a reference frame and the frames that overlap
+    with it most; the benchmark then takes them with view_mode "adjacent". ETH3D captures walk around large scenes, so
+    frames spread evenly over the capture share little surface and a hidden region would be seen by one or two of
+    them only. The reference is the frame whose top n_views-1 overlaps sum highest. The images on disk keep their
+    names; only the per-frame arrays in meta.npz are permuted. Idempotent (stores covis_order)."""
+    out = {}
+    for scene in scenes or sorted(os.listdir(prep_root)):
+        mp = os.path.join(prep_root, scene, "meta.npz")
+        if not os.path.exists(mp):
+            continue
+        m = dict(np.load(mp))
+        if "covis_order" in m:
+            out[scene] = m["covis_order"].tolist(); continue
+        ov = covisibility(m["depth"], m["K_dep"], m["E"])
+        sym = 0.5 * (ov + ov.T)
+        score = np.sort(sym, axis=1)[:, ::-1][:, : n_views - 1].sum(1)
+        ref = int(np.argmax(score))
+        order = [ref] + [int(j) for j in np.argsort(-sym[ref]) if j != ref]
+        for k in ("depth", "fg", "K_img", "K_dep", "E", "frame_numbers", "src_paths"):
+            m[k] = m[k][order]
+        m["covis_order"] = np.array(order)
+        m["covis_top"] = sym[ref][order[1:n_views]]
+        np.savez_compressed(mp, **m)
+        out[scene] = order
+        if verbose:
+            print(f"[eth3d] {scene}: reference frame {ref}, overlap of the next {n_views - 1} frames "
+                  f"{np.round(sym[ref][order[1:n_views]], 2).tolist()}", flush=True)
+    return out
+
+
 if __name__ == "__main__":
     import argparse
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("raw_root")
-    ap.add_argument("out_root")
+    ap.add_argument("raw_root", help="raw ETH3D root, or the preprocessed root with --reorder")
+    ap.add_argument("out_root", nargs="?", default=None)
     ap.add_argument("--scenes", default=None)
+    ap.add_argument("--reorder", action="store_true", help="order the frames of each preprocessed scene by co-visibility")
     a = ap.parse_args()
-    print(preprocess_eth3d(a.raw_root, a.out_root, a.scenes.split(",") if a.scenes else None))
+    sc = a.scenes.split(",") if a.scenes else None
+    if a.reorder:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        reorder_by_covisibility(a.raw_root, scenes=sc)
+    else:
+        print(preprocess_eth3d(a.raw_root, a.out_root, sc))

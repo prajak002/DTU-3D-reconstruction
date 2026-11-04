@@ -1,0 +1,62 @@
+{
+ "courtyard": {
+  "reproj_agree": 0.5488896009763727,
+  "reproj_agree_3pct_vis": 0.9999262763614208,
+  "U_transfer": 0.9337843992696733
+ },
+ "delivery_area": {
+  "reproj_agree": 0.1940685877681871,
+  "reproj_agree_3pct_vis": 0.9975667377812528,
+  "U_transfer": NaN
+ },
+ "electro": {
+  "reproj_agree": 0.6546291880919881,
+  "reproj_agree_3pct_vis": 0.9995202649088493,
+  "U_transfer": 0.954623162740375
+ },
+ "facade": {
+  "reproj_agree": 0.36611291626337583,
+  "reproj_agree_3pct_vis": 0.9955842410981691,
+  "U_transfer": 0.928196950171731
+ },
+ "kicker": {
+  "reproj_agree": 0.6301575297643163,
+  "reproj_agree_3pct_vis": 0.999777721447229,
+  "U_transfer": 0.9930868174956009
+ },
+ "meadow": {
+  "reproj_agree": 0.6727927335535536,
+  "reproj_agree_3pct_vis": 0.9992228005242726,
+  "U_transfer": 0.8833899580119843
+ },
+ "pipes": {
+  "reproj_agree": 0.12589336596879014,
+  "reproj_agree_3pct_vis": 0.9997830185484827,
+  "U_transfer": 0.5756021903968849
+ },
+ "playground": {
+  "reproj_agree": 0.38904919972096635,
+  "reproj_agree_3pct_vis": 0.9998886441134137,
+  "U_transfer": 0.747029591767242
+ },
+ "relief": {
+  "reproj_agree": 0.7700250626782158,
+  "reproj_agree_3pct_vis": 0.9999453681877488,
+  "U_transfer": 0.9661310260857253
+ },
+ "relief_2": {
+  "reproj_agree": 0.509936336149879,
+  "reproj_agree_3pct_vis": 0.9998357970037464,
+  "U_transfer": 0.8528597083619159
+ },
+ "terrace": {
+  "reproj_agree": 0.7480102201364527,
+  "reproj_agree_3pct_vis": 0.999309165530632,
+  "U_transfer": 0.9842811138131441
+ },
+ "terrains": {
+  "reproj_agree": 0.4211470572429585,
+  "reproj_agree_3pct_vis": 0.9961786672322149,
+  "U_transfer": 0.8892078737852126
+ }
+}
