@@ -23,6 +23,8 @@ Each run has an id. A number enters the paper only when the run's CSV and `_cfg.
 | run-id | what | config | where | started | notes |
 |---|---|---|---|---|---|
 | P3 (all) | `scripts/box/p3_all.sh`: finish the VGGT heads (resume from step 1000), VGGT evaluations (baselines, dtu, stress, ablate, co3d, dtuext, eth3d) in the background while the Pi3X heads train and evaluate, then `gs` (AnySplat), `pvfull`, compute accounting, `stats`, the three-way figure | box offline since 2026-11-04 10:05 UTC; relaunch on 2026-11-05 22:00 IST with `tmux new -d -s p3 "~/p3_all.sh > ~/logs/p3_all.out 2>&1"` | AWS g6.xlarge, one L4 24 GB, bf16, shared with another user's 1.7 GB job | training step 1075 of 1500 reached, checkpoints at step 1000 on the box | about 12 h of GPU time in total; results are copied into `results/P3-*/` as stages finish. |
+| P3 on Kaggle (vggt) | `scripts/kaggle_p3_stages.py` (clones commit 74a13c7): train vggt_oia, vggt_oialin, vggt_oiapatch + seeds 1, 2 (no oiaattn on 16 GB), then baselines, dtu, stress, ablate, co3d, dtuext; stops starting stages after 11.2 h so the output is saved | kernel `popsensharma/hallu3d-p3-vggt` v1 | Kaggle T4, fp16 | 2026-11-04 12:45 UTC | about 10.7 s per training step; the stages that do not fit run in a follow-up kernel that lists this one's output under kernel_sources. Whichever of Kaggle or the L4 finishes a stage first is used; both resume from CSVs. |
+| P3 on Kaggle (pi3x) | same script with BASES pi3x: train pi3x_oia + pi3x_oiapatch, then baselines, dtu, stress, ablate, co3d | kernel `popsensharma/hallu3d-p3-pi3x` v1 | Kaggle T4, fp16 | 2026-11-04 12:45 UTC | runs concurrently with the vggt kernel. |
 
 ## Queued (Kaggle T4/P100, fp16, 10 views, 420x518)
 
