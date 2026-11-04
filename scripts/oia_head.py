@@ -294,13 +294,16 @@ def train(base, dtu_root, variant="oia", out=None, steps=None, seed=0, device="c
 
 
 def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wrap=None, forward_feats=None,
-                model_hw=None, **over):
+                model_hw=None, resume=False, **over):
     """Train several support heads at once on the same stream of backbone forwards. specs: list of
     (variant, init_seed, out_path). All heads see the same samples (scenes, views, lights, masks, fills, drawn
     with the seed of the first spec); they differ in architecture, in the feature group they read, and in the
     initialisation seed. The backbone forward is the whole cost of a step, so this trains the main head, the
     linear probe, the per-image control and the transformer head for the price of one. Heads with labels "gt"
-    (oiagt) need a different masked input and must be trained in a run of their own."""
+    (oiagt) need a different masked input and must be trained in a run of their own.
+    resume=True continues from the checkpoints at the out paths (head weights and step; the optimiser state is not
+    stored, so AdamW restarts at the schedule's learning rate for that step, and the data stream is re-seeded with
+    data_seed + step so the samples after the resume differ from the ones before it)."""
     import torch
     tc = {**TRAIN_DEFAULTS, **over}
     if steps:
@@ -310,8 +313,20 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
     assert len(labels) == 1, f"heads with different label sources cannot share a run: {labels}"
     labels = labels.pop()
     data_seed = specs[0][1]
-    torch.manual_seed(data_seed)
-    rng = np.random.default_rng(data_seed)
+    start = 0
+    if resume:
+        saved = [torch.load(o, map_location="cpu", weights_only=False) for _, _, o in specs if os.path.exists(o)]
+        if len(saved) == len(specs):
+            start = min(int(ck.get("step", 0)) for ck in saved)
+            if start >= (steps or TRAIN_DEFAULTS["steps"]):
+                print(f"[oia] resume: every checkpoint is at step {start} >= {steps}; nothing to do", flush=True)
+                return [o for _, _, o in specs]
+            print(f"[oia] resume from step {start} ({len(saved)} checkpoints)", flush=True)
+        else:
+            print(f"[oia] resume requested but only {len(saved)} of {len(specs)} checkpoints exist; training from scratch", flush=True)
+            start = 0
+    torch.manual_seed(data_seed + start)
+    rng = np.random.default_rng(data_seed + start)
     wrap = wrap or H.MODEL_REGISTRY[base](device)
     ff = forward_feats or FORWARD_FEATS[base]
     model_hw = tuple(model_hw or H.DEFAULT_CFG["model_hw"])
@@ -361,6 +376,12 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         hd["opt"] = torch.optim.AdamW(hd["head"].parameters(), lr=tc["lr"], weight_decay=tc["wd"])
         lam = lambda s: min(1.0, (s + 1) / tc["warmup"]) * 0.5 * (1 + np.cos(np.pi * min(s, tc["steps"]) / tc["steps"]))
         hd["sched"] = torch.optim.lr_scheduler.LambdaLR(hd["opt"], lam)
+        if start > 0:
+            ck = torch.load(hd["out"], map_location=device, weights_only=False)
+            hd["head"].load_state_dict(ck["state"])
+            hd["best"] = float(ck.get("val_auroc", -1.0)) if np.isfinite(ck.get("val_auroc", float("nan"))) else -1.0
+            for _ in range(start):
+                hd["sched"].step()
         print(f"[oia] {hd['variant']} head params: {sum(p.numel() for p in hd['head'].parameters()) / 1e6:.2f} M, "
               f"feature dims {[f.shape[1] for f in F]}", flush=True)
 
@@ -410,7 +431,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             hd["best"] = va
             torch.save(ck, hd["out"].replace(".pt", "_best.pt"))
 
-    s = 0
+    s = start
     while s < tc["steps"]:
         scan = int(rng.choice(train_scans))
         views = sorted(rng.choice(49, tc["n_views"], replace=False).tolist())
@@ -527,6 +548,7 @@ def main():
                         "(e.g. oia,oialin,oiapatch,oiaattn); oiagt must run alone")
     t.add_argument("--extra-seeds", default="", help="extra initialisation seeds for the first variant, e.g. 1,2 "
                                                      "(saved as <base>_<variant>_s<seed>.pt)")
+    t.add_argument("--resume", action="store_true", help="continue from the checkpoints at the output paths")
     t.add_argument("--dtu", required=True, help="DTU root (Cameras/train, Rectified, Depths) holding the training scans")
     t.add_argument("--out", default=None, help="checkpoint path (one variant) or directory (several)")
     t.add_argument("--steps", type=int, default=None)
@@ -550,12 +572,13 @@ def main():
     for v in variants:
         assert v in VARIANTS and v != "oiafuse", v
     if len(variants) == 1 and not extra:
-        train(a.base, root, variants[0], a.out, a.steps, a.seed, scans=scans, **over)
+        out = a.out or os.path.join("checkpoints", f"{a.base}_{variants[0]}.pt")
+        train_multi(a.base, root, [(variants[0], a.seed, out)], a.steps, scans=scans, resume=a.resume, **over)
         return
     d = a.out or "checkpoints"
     specs = [(v, a.seed, os.path.join(d, f"{a.base}_{v}.pt")) for v in variants]
     specs += [(variants[0], sd, os.path.join(d, f"{a.base}_{variants[0]}_s{sd}.pt")) for sd in extra]
-    train_multi(a.base, root, specs, a.steps, scans=scans, **over)
+    train_multi(a.base, root, specs, a.steps, scans=scans, resume=a.resume, **over)
 
 
 if __name__ == "__main__":

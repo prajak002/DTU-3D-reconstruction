@@ -46,6 +46,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import hallu3d as H
 import co3d
 import oia_head as O
+try:                                   # feed-forward Gaussian splatting backbone (scripts/anysplat_wrap.py), optional
+    import anysplat_wrap
+    anysplat_wrap.register(H.MODEL_REGISTRY)
+except Exception as _e:                # noqa: BLE001
+    anysplat_wrap = None
+    print(f"[run] anysplat backbone unavailable: {type(_e).__name__}: {_e}")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 T4_KEYS = {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
@@ -138,8 +144,13 @@ def stage_train(args):
         if b != "vggt":
             jobs.append((b, "oia,oiapatch", [], f"{b}_oia.pt"))
     for base, variants, seeds, marker in jobs:
-        if os.path.exists(os.path.join(args.ckpt, marker)) and not args.retrain:
-            print(f"[train] {marker} exists, skipping {base} {variants}"); continue
+        mp = os.path.join(args.ckpt, marker)
+        if os.path.exists(mp) and not args.retrain:
+            import torch
+            st = int(torch.load(mp, map_location="cpu", weights_only=False).get("step", 0))
+            if st >= args.steps:
+                print(f"[train] {marker} exists at step {st}, skipping {base} {variants}"); continue
+            print(f"[train] {marker} exists at step {st} < {args.steps}: resuming {base} {variants}")
         # one subprocess per job so that GPU memory is released between backbones
         cmd = [sys.executable, os.path.join(ROOT, "scripts", "oia_head.py"), "train", "--base", base,
                "--variant", variants, "--dtu", args.dtu_root, "--out", args.ckpt, "--steps", str(args.steps), "--seed", "0"]
@@ -147,6 +158,8 @@ def stage_train(args):
             cmd[cmd.index("--out") + 1] = os.path.join(args.ckpt, marker)
         if seeds:
             cmd += ["--extra-seeds", ",".join(str(x) for x in seeds)]
+        if os.path.exists(mp) and not args.retrain:
+            cmd.append("--resume")
         print("[train]", " ".join(cmd), flush=True)
         subprocess.run(cmd, check=False)
 
@@ -227,6 +240,19 @@ def stage_eth3d(args):
     run(args, "P3-eth3d", models, {**FULL, "dataset": "co3d", "scans": scenes, "view_mode": "adjacent"}, args.eth3d_root)
 
 
+def stage_gs(args):
+    """Sixth backbone: AnySplat, feed-forward 3D Gaussian splatting from unposed views (P3-gs). 'anysplat' scores the
+    opacity of the pixel-aligned Gaussian as confidence; 'anysplat_render' (needs gsplat) scores the rendered
+    accumulated alpha. Full DTU configuration, then CO3Dv2 and the Table-4 keys with the reprojection detector."""
+    if anysplat_wrap is None:
+        print("[skip] gs: anysplat_wrap could not be imported"); return
+    models = ["anysplat"] + (["anysplat_render"] if args.gs_render else [])
+    run(args, "P3-gs", models, FULL, args.dtu_root)
+    run(args, "P3-gs-t4", ["anysplat_reproj"], T4_KEYS, args.dtu_root)
+    if args.co3d_root:
+        run(args, "P3-gs-co3d", models, co3d_cfg(args, FULL), args.co3d_root)
+
+
 def stage_ablate(args):
     _ckpt_env(args)
     models = [m for m in ("vggt_oialin", "vggt_oiapatch", "vggt_oiaattn", "vggt_oiagt", "pi3x_oiapatch") if _have(args, m)]
@@ -258,7 +284,7 @@ def holm(pvals):
 def stage_stats(args):
     import pandas as pd
     frames = []
-    for run_name in ["P3-oia-dtu", "P3-reproj", "P3-pv", "P3-pv-full", "P3-native", "P3-oia-abl", "P3-dtuext"] + [f"P3-oia-abl-seed{s}" for s in args.seeds[1:]]:
+    for run_name in ["P3-oia-dtu", "P3-reproj", "P3-pv", "P3-pv-full", "P3-native", "P3-oia-abl", "P3-dtuext", "P3-gs", "P3-gs-t4"] + [f"P3-oia-abl-seed{s}" for s in args.seeds[1:]]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         if os.path.exists(p):
             frames.append(pd.read_csv(p))
@@ -343,7 +369,8 @@ def stage_stats(args):
                       + ("PASS" if ok else "FAIL")]
     # full configuration, pooled blur + noise, DTU and CO3D
     for run_name, title in [("P3-oia-dtu", "DTU"), ("P3-oia-co3d", "CO3Dv2 (head never saw it)"), ("P3-eth3d", "ETH3D"),
-                            ("P3-dtuext", "DTU extension scans (seed 0, radius 0.18)")]:
+                            ("P3-dtuext", "DTU extension scans (seed 0, radius 0.18)"), ("P3-gs", "DTU, Gaussian-splatting backbone"),
+                            ("P3-gs-co3d", "CO3Dv2, Gaussian-splatting backbone")]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         ref = os.path.join(ROOT, "results", {"DTU": "table1_all_models.csv", "CO3Dv2 (head never saw it)": "table3_all_models.csv"}.get(title, "none"))
         if not os.path.exists(p):
@@ -363,7 +390,7 @@ def stage_stats(args):
 
 STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": stage_co3d, "stress": stage_stress,
           "baselines": stage_baselines, "pvfull": stage_pvfull, "ablate": stage_ablate, "dtuext": stage_dtuext,
-          "eth3d": stage_eth3d, "stats": stage_stats}
+          "eth3d": stage_eth3d, "gs": stage_gs, "stats": stage_stats}
 
 
 def main():
@@ -380,6 +407,7 @@ def main():
     ap.add_argument("--pv-bases", default="vggt,pi3x,pi3,da3,mapanything", help="backbones for the pvfull stage")
     ap.add_argument("--ext-bases", default="vggt,pi3x,pi3,da3,mapanything", help="native models for the dtuext stage")
     ap.add_argument("--skip-gt", action="store_true", help="do not train the GT-placed variant (oiagt)")
+    ap.add_argument("--gs-render", action="store_true", help="gs stage: also run anysplat_render (needs gsplat)")
     ap.add_argument("--retrain", action="store_true")
     a = ap.parse_args()
     a.seeds = [int(s) for s in a.seeds.split(",")]
@@ -389,7 +417,7 @@ def main():
     a.dtu_root = None
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
-    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check") else None
+    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs") else None
     a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]
     for s in stages:
