@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HalluBench-3D Explorer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a lab notebook. One input strip per section on the left edge, outputs read like instrument readouts. */
+:root {
+  --bg: #f6f4ef; --panel: #ffffff; --ink: #1d2126; --ink-2: #5a6270; --line: #d9d4ca; --line-2: #ebe7df;
+  --accent: #b86a12; --accent-ink: #ffffff; --cyan: #0a8aa8;
+  --obs: #2f8f4e; --abs: #d19a2a; --img: #c43d3a; --pending-bg: #fff4e3; --pending-ink: #9a5200;
+  --bar-a: #2d5f8f; --bar-b: #c43d3a;
+  --display: "Bricolage Grotesque", "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15181c; --panel: #1e2228; --ink: #e8e6e0; --ink-2: #a3a9b3; --line: #3a4049; --line-2: #2a2f36;
+  --accent: #e39a3f; --accent-ink: #1a1206; --cyan: #41c1dc; --obs: #5fc27f; --abs: #e4b65b; --img: #ec6b66;
+  --pending-bg: #3a2a12; --pending-ink: #f0c080; --bar-a: #6fa3d8; --bar-b: #ec6b66; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15181c; --panel: #1e2228; --ink: #e8e6e0; --ink-2: #a3a9b3; --line: #3a4049; --line-2: #2a2f36;
+  --accent: #e39a3f; --accent-ink: #1a1206; --cyan: #41c1dc; --obs: #5fc27f; --abs: #e4b65b; --img: #ec6b66;
+  --pending-bg: #3a2a12; --pending-ink: #f0c080; --bar-a: #6fa3d8; --bar-b: #ec6b66; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 48px; }
+.wrap { max-width: 1180px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 700; line-height: 1.05; letter-spacing: -0.01em; }
+h2 { font-size: 22px; font-weight: 700; }
+h3 { font-size: 15px; font-weight: 700; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--accent); }
+header { padding-block: 36px 20px; border-bottom: 1px solid var(--line); display: grid; gap: 10px; }
+.eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+.lede { font-size: 17px; color: var(--ink-2); max-width: 62ch; }
+section { padding-block: 28px; border-bottom: 1px solid var(--line); display: grid; gap: 16px; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px; }
+.sec-head p { color: var(--ink-2); }
+.io { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 20px; }
+@media (max-width: 820px) { .io { grid-template-columns: 1fr; } }
+.inputs { display: grid; gap: 14px; align-content: start; }
+.field { display: grid; gap: 6px; }
+.field label, .field .lab { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); }
+.seg { display: flex; flex-wrap: wrap; gap: 4px; }
+.seg button { font: 500 13px var(--body); padding: 6px 10px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 4px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.seg button:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+select { font: 500 14px var(--body); padding: 7px 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--panel); color: var(--ink); max-width: 100%; }
+.case { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); border-left: 3px solid var(--accent); padding-left: 10px; line-height: 1.45; }
+.outputs { display: grid; gap: 16px; min-width: 0; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; min-width: 0; }
+.panel h3 { margin-bottom: 8px; }
+.verdict { font-family: var(--display); font-size: clamp(18px, 2.4vw, 24px); font-weight: 500; line-height: 1.25; }
+.verdict b { color: var(--accent); font-weight: 700; }
+.metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px 14px; margin-top: 12px; }
+.m { border-top: 1px solid var(--line-2); padding-top: 6px; }
+.m .k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-2); }
+.m .v { font-family: var(--mono); font-size: 20px; font-variant-numeric: tabular-nums; }
+.m .d { font-size: 12px; color: var(--ink-2); }
+.fig img { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--line-2); }
+.fig figcaption { font-size: 13px; color: var(--ink-2); margin-top: 8px; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; }
+.pill.pending { background: var(--pending-bg); color: var(--pending-ink); }
+.pill.ok { background: color-mix(in srgb, var(--obs) 18%, transparent); color: var(--obs); }
+.pill.cyan { background: color-mix(in srgb, var(--cyan) 16%, transparent); color: var(--cyan); }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .ax { font-family: var(--mono); font-size: 11px; fill: var(--ink-2); }
+.chart .lbl { font-family: var(--body); font-size: 12.5px; fill: var(--ink); }
+.chart .val { font-family: var(--mono); font-size: 11.5px; fill: var(--ink); }
+.chart .grid { stroke: var(--line-2); stroke-width: 1; }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12.5px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line-2); vertical-align: top; }
+th { font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-2); font-weight: 500; }
+td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.tbl { overflow-x: auto; }
+.howto { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+.howto .panel { display: grid; gap: 6px; }
+.howto .n { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.06em; }
+.three { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; }
+.three span i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.muted { color: var(--ink-2); font-size: 13px; }
+.status { font-family: var(--mono); font-size: 12.5px; color: var(--ink-2); }
+footer { padding-block: 24px; font-size: 13px; color: var(--ink-2); display: grid; gap: 6px; }
+@media (prefers-reduced-motion: no-preference) { .seg button, .m .v { transition: background .15s, color .15s; } }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">HalluBench-3D · Observe, Imagine, Abstain · every number below comes from a logged run</div>
+  <h1>When a 3D model has not seen a surface, does it say so?</h1>
+  <p class="lede">Pick an input case: a dataset, a scene, a model, how the hidden region is filled, how large it is, and which placement. The page shows what the model returned, how much of the invented geometry passed its own confidence filter, and how the other models did on the identical input.</p>
+  <div class="howto">
+    <div class="panel"><span class="n">INPUT</span><h3>Ten photos with one 3D region hidden</h3><p class="muted">A sphere is placed on the ground-truth surface; every pixel in every view whose true 3D point lies inside it is hidden and filled (gray, blur, noise or an inpainting). The model never sees that surface.</p></div>
+    <div class="panel"><span class="n">OUTPUT</span><h3>Depth and confidence at every pixel</h3><p class="muted">Pixels inside the sphere are <em>unsupported</em> (U): no camera saw them. Pixels well outside are <em>supported</em> (S). We score the model's own confidence on U against S.</p></div>
+    <div class="panel"><span class="n">READING</span><h3>CUR is the number to watch</h3><p class="muted">Keep the confidence threshold that retains 90% of supported pixels. CUR is the share of unsupported pixels that also pass. 0 is ideal; 0.9 is a blind guesser. AUROC 1 means confidence separates the two perfectly; 0.5 means it carries no information.</p></div>
+  </div>
+</header>
+
+<section id="case">
+  <div class="sec-head"><h2>1 · Input case → model output</h2><p>Composites were recorded for placement seed 0 with the gray fill; the metrics follow every control.</p></div>
+  <div class="io">
+    <div class="inputs">
+      <div class="field"><span class="lab">Dataset</span><div class="seg" id="in-ds"></div></div>
+      <div class="field"><label for="in-scan">Scene</label><select id="in-scan"></select></div>
+      <div class="field"><span class="lab">Model</span><div class="seg" id="in-model"></div></div>
+      <div class="field"><span class="lab">Fill of the hidden region</span><div class="seg" id="in-fill"></div></div>
+      <div class="field"><span class="lab">Sphere radius (fraction of object diagonal)</span><div class="seg" id="in-r"></div></div>
+      <div class="field"><span class="lab">Placement seed</span><div class="seg" id="in-seed"></div></div>
+      <div class="case" id="case-desc"></div>
+    </div>
+    <div class="outputs">
+      <div class="panel">
+        <div class="verdict" id="verdict">Loading the logged results…</div>
+        <div class="metrics" id="metrics"></div>
+      </div>
+      <figure class="panel fig" id="fig-case" style="margin:0">
+        <img id="fig-img" alt="Recorded composite: masked input, ground-truth depth, predicted depth, log confidence" hidden>
+        <figcaption id="fig-cap"></figcaption>
+      </figure>
+      <div class="panel chart">
+        <h3>Same input, every model</h3>
+        <div class="legend"><span><i style="background:var(--bar-b)"></i>CUR, share of unsupported pixels that pass (lower is better)</span><span><i style="background:var(--bar-a)"></i>AUROC (higher is better)</span></div>
+        <div id="chart-models"></div>
+      </div>
+      <div class="panel tbl">
+        <h3>This scene over all five placements</h3>
+        <table id="tbl-scene"></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stress">
+  <div class="sec-head"><h2>2 · Stress the same input</h2><p>DTU, blur fill, radius 0.18, placements 0 and 1. The reference rows are the same keys from the full run.</p></div>
+  <div class="io">
+    <div class="inputs">
+      <div class="field"><span class="lab">Model</span><div class="seg" id="st-model"></div></div>
+      <div class="field"><span class="lab">What changes in the input</span><div class="seg" id="st-test"></div></div>
+      <div class="field"><label for="st-scan">Scene (or all 18)</label><select id="st-scan"></select></div>
+      <div class="case" id="st-desc"></div>
+    </div>
+    <div class="outputs">
+      <div class="panel"><div class="verdict" id="st-verdict"></div><div class="metrics" id="st-metrics"></div></div>
+      <div class="panel chart"><h3>CUR under every stress condition, this model</h3><div id="chart-stress"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="detect">
+  <div class="sec-head"><h2>3 · Detectors on identical rows</h2><p>DTU, placement 0, blur, radius 0.18: native confidence against the training-free alternatives and the label-free support head.</p></div>
+  <div class="io">
+    <div class="inputs">
+      <div class="field"><label for="dt-scan">Scene</label><select id="dt-scan"></select></div>
+      <div class="case" id="dt-desc"></div>
+      <div class="three"><span><i style="background:var(--obs)"></i>observed</span><span><i style="background:var(--abs)"></i>abstain</span><span><i style="background:var(--img)"></i>imagined</span></div>
+      <p class="muted">The support head outputs one of these three labels per pixel. Its full runs (18 scans, every fill, CO3Dv2, ETH3D, the per-image control) are queued on the GPU; rows that do not exist yet are marked pending, never estimated.</p>
+    </div>
+    <div class="outputs">
+      <div class="panel tbl"><table id="tbl-det"></table></div>
+    </div>
+  </div>
+</section>
+
+<section id="board">
+  <div class="sec-head"><h2>4 · Leaderboard</h2><p>Pooled over blur and noise fills, both radii, five placements; mean over scenes with a 95% bootstrap interval over scenes (1,000 resamples, computed in this page).</p></div>
+  <div class="panel tbl"><table id="tbl-board"></table></div>
+</section>
+
+<footer>
+  <div>Runs: P1-full, P2-full (DTU, five models), P2-co3d and P2-co3d-b (CO3Dv2), P2-stress, P3-pv-smoke, P2-smoke-b, P3-check (support-head smoke). CSVs, configs and kernel logs ship with the code.</div>
+  <div>Code, results and paper build: <a href="https://github.com/prajak002/DTU-3D-reconstruction">github.com/prajak002/DTU-3D-reconstruction</a> · project page: <a href="https://prajak002.github.io/DTU-3D-reconstruction/">prajak002.github.io/DTU-3D-reconstruction</a></div>
+  <div class="status" id="status"></div>
+</footer>
+</div>
+
+<script>
+(function () {
+  const MODELS = [["vggt", "VGGT-1B"], ["pi3", "Pi3"], ["pi3x", "Pi3X"], ["mapanything", "MapAnything"], ["da3", "Depth Anything 3"]];
+  const MNAME = Object.fromEntries(MODELS);
+  MNAME.vggt_pv4 = "VGGT · perturbation variance K=4"; MNAME.pi3x_pv4 = "Pi3X · perturbation variance K=4";
+  MNAME.mapanything_mv = "MapAnything · multi-view consistency conf."; MNAME.vggt_oia = "VGGT · support head (200-step smoke)";
+  MNAME.vggt_oiafuse = "VGGT · support head fused with native (smoke)";
+  const DS = [["dtu", "DTU (lab rig)"], ["co3d", "CO3Dv2 (phone)"]];
+  const FILLS = [["gray", "gray"], ["blur", "blur"], ["noise", "noise"]];
+  const TESTS = [["ref", "reference (10 views)"], ["inpaint10", "inpainted fill"], ["blur5", "5 views"], ["blur3", "3 views"], ["adjacent10", "low parallax (adjacent cameras)"], ["distractor10", "+ distractor image"]];
+  const TDESC = { ref: "ten views spread over the rig, blur fill", inpaint10: "the hole is inpainted from its surround, so no seam remains", blur5: "only five of the ten views are given", blur3: "only three views are given", adjacent10: "ten adjacent cameras: little parallax to cross-check", distractor10: "an image from a different scene is appended to the input" };
+  const state = { ds: "dtu", scan: "3", model: "vggt", fill: "blur", r: 0.18, seed: 0, stModel: "vggt", stTest: "inpaint10", stScan: "all", dtScan: "3" };
+  let D = null;
+  const $ = (id) => document.getElementById(id);
+  const f3 = (v) => v == null ? "–" : v.toFixed(3);
+  const pct = (v) => v == null ? "–" : Math.round(v * 100) + "%";
+  const mean = (a) => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
+
+  function seg(id, items, key, onChange) {
+    const el = $(id); el.innerHTML = "";
+    items.forEach(([v, label]) => {
+      const b = document.createElement("button"); b.type = "button"; b.textContent = label; b.id = id + "-" + v;
+      b.setAttribute("aria-pressed", String(state[key] == v));
+      b.addEventListener("click", () => { state[key] = typeof v === "number" ? v : (isNaN(+v) || key === "scan" ? v : v); onChange(v); });
+      el.appendChild(b);
+    });
+  }
+  function pressed(id, key) { [...$(id).children].forEach((b) => b.setAttribute("aria-pressed", String(b.id === id + "-" + state[key]))); }
+  function scansOf(ds) { return [...new Set(D.main.filter((r) => r.ds === ds).map((r) => r.scan))].sort((a, b) => (isNaN(+a) ? a.localeCompare(b) : +a - +b)); }
+  function scanLabel(ds, s) { return ds === "dtu" ? "scan " + s : s.replace(/_\d+_\d+_\d+$/, (m) => " " + m.slice(1).split("_")[0]); }
+  function fillSelect(id, scans, ds, current, allOption) {
+    const sel = $(id); sel.innerHTML = "";
+    if (allOption) { const o = document.createElement("option"); o.value = "all"; o.textContent = "all 18 scans"; sel.appendChild(o); }
+    scans.forEach((s) => { const o = document.createElement("option"); o.value = s; o.textContent = scanLabel(ds, s); sel.appendChild(o); });
+    sel.value = scans.includes(current) || current === "all" ? current : (allOption ? "all" : scans[0]);
+    return sel.value;
+  }
+  function row(ds, model, scan, seed, r, fill) { return D.main.find((x) => x.ds === ds && x.model === model && x.scan === scan && x.seed === seed && x.r === r && x.fill === fill); }
+  function metricsHtml(x, ctrl) {
+    if (!x) return '<div class="m"><div class="d">No row for this combination.</div></div>';
+    const items = [
+      ["CUR", f3(x.cur), "unsupported pixels passing the 90%-of-supported threshold"],
+      ["AUROC", f3(x.auroc), "P(supported outranks unsupported)"],
+      ["CUR-err", f3(x.cur_err), "passing and wrong by more than 10% depth"],
+      ["AbsRel U", f3(x.absrel_U), "depth error inside the hidden region"],
+      ["AbsRel S", f3(x.absrel_S), "depth error on supported pixels"],
+      ["conf ratio", f3(x.conf_ratio_U), "median confidence in U over its clean value"],
+    ];
+    if (ctrl) items.push(["AUROC clean", f3(x.auroc_ctrl), "same pixels, nothing hidden (control)"]);
+    return items.map(([k, v, d]) => `<div class="m"><div class="k">${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+  }
+  function barChart(container, rows, opts) {
+    // rows: [{label, a, b}] a = CUR (0..1), b = AUROC (0..1)
+    const W = 640, rowH = 34, left = 170, right = 56, top = 22, H = top + rows.length * rowH + 20;
+    const x = (v) => left + v * (W - left - right);
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${opts.aria}">`;
+    [0, 0.25, 0.5, 0.75, 1].forEach((t) => { s += `<line class="grid" x1="${x(t)}" y1="${top - 6}" x2="${x(t)}" y2="${H - 16}"/><text class="ax" x="${x(t)}" y="${top - 10}" text-anchor="middle">${t}</text>`; });
+    rows.forEach((r, i) => {
+      const y = top + i * rowH;
+      s += `<text class="lbl" x="${left - 10}" y="${y + 20}" text-anchor="end">${r.label}</text>`;
+      if (r.a != null) s += `<rect x="${x(0)}" y="${y + 4}" width="${Math.max(0, x(r.a) - x(0))}" height="11" fill="var(--bar-b)" rx="1"/><text class="val" x="${x(r.a) + 4}" y="${y + 13}">${f3(r.a)}</text>`;
+      if (r.b != null) s += `<rect x="${x(0)}" y="${y + 17}" width="${Math.max(0, x(r.b) - x(0))}" height="11" fill="var(--bar-a)" rx="1"/><text class="val" x="${x(r.b) + 4}" y="${y + 26}">${f3(r.b)}</text>`;
+      if (r.a == null && r.b == null) s += `<text class="val" x="${x(0) + 4}" y="${y + 20}">no run</text>`;
+    });
+    s += "</svg>"; container.innerHTML = s;
+  }
+
+  function renderCase() {
+    const scans = scansOf(state.ds);
+    state.scan = fillSelect("in-scan", scans, state.ds, state.scan);
+    pressed("in-ds", "ds"); pressed("in-model", "model"); pressed("in-fill", "fill"); pressed("in-r", "r"); pressed("in-seed", "seed");
+    const x = row(state.ds, state.model, state.scan, state.seed, state.r, state.fill);
+    const name = MNAME[state.model];
+    $("case-desc").textContent = `${DS.find((d) => d[0] === state.ds)[1]} · ${scanLabel(state.ds, state.scan)} · ${name} · ${state.fill} fill · radius ${state.r} · seed ${state.seed}` + (x ? ` · ${x.n_U} unsupported / ${x.n_S} supported pixels` : "");
+    if (x) {
+      $("verdict").innerHTML = `At a threshold that keeps 90% of what ${name} observed, <b>${pct(x.cur)}</b> of the hidden region still passed as confident geometry${x.absrel_U != null && x.absrel_S != null ? (x.absrel_U <= x.absrel_S + 0.01 ? ", and the invented depth was about as accurate as the observed depth" : ", and the invented depth was worse than the observed depth") : ""}.`;
+    } else {
+      $("verdict").textContent = "No logged row for this combination.";
+    }
+    $("metrics").innerHTML = metricsHtml(x, true);
+    const key = `${state.ds}|${state.model}|${state.scan}|${state.r}`;
+    const img = D.images[key];
+    const im = $("fig-img");
+    if (img) { im.src = img; im.hidden = false; $("fig-cap").textContent = `Recorded output of ${name} on ${scanLabel(state.ds, state.scan)}, radius ${state.r}, placement 0, gray fill. Left to right: the masked input view, ground-truth depth, the model's depth, its log confidence. The cyan contour is the unsupported region: no camera saw it, and the model filled it in.`; }
+    else { im.hidden = true; im.removeAttribute("src"); $("fig-cap").textContent = "No composite was recorded for this combination."; }
+    const rows = MODELS.map(([m, label]) => { const y = row(state.ds, m, state.scan, state.seed, state.r, state.fill); return { label, a: y ? y.cur : null, b: y ? y.auroc : null }; });
+    barChart($("chart-models"), rows, { aria: "CUR and AUROC of the five models on the same input" });
+    let t = `<tr><th>model</th><th class="num">CUR mean</th><th class="num">CUR min</th><th class="num">CUR max</th><th class="num">AUROC mean</th><th class="num">AbsRel U</th><th class="num">AbsRel S</th></tr>`;
+    MODELS.forEach(([m, label]) => {
+      const rs = D.main.filter((y) => y.ds === state.ds && y.model === m && y.scan === state.scan && y.r === state.r && y.fill === state.fill && y.cur != null);
+      if (!rs.length) return;
+      const c = rs.map((y) => y.cur);
+      t += `<tr${m === state.model ? ' style="font-weight:600"' : ""}><td>${label}</td><td class="num">${f3(mean(c))}</td><td class="num">${f3(Math.min(...c))}</td><td class="num">${f3(Math.max(...c))}</td><td class="num">${f3(mean(rs.map((y) => y.auroc)))}</td><td class="num">${f3(mean(rs.map((y) => y.absrel_U)))}</td><td class="num">${f3(mean(rs.map((y) => y.absrel_S)))}</td></tr>`;
+    });
+    $("tbl-scene").innerHTML = t;
+  }
+
+  function stressRows(model, test, scan) {
+    const src = test === "ref" ? D.main.filter((y) => y.ds === "dtu" && y.fill === "blur" && y.r === 0.18 && y.seed <= 1) : D.stress.filter((y) => y.test === test);
+    return src.filter((y) => y.model === model && (scan === "all" || y.scan === scan));
+  }
+  function renderStress() {
+    pressed("st-model", "stModel"); pressed("st-test", "stTest");
+    const scans = scansOf("dtu");
+    state.stScan = fillSelect("st-scan", scans, "dtu", state.stScan, true);
+    const rs = stressRows(state.stModel, state.stTest, state.stScan);
+    const ref = stressRows(state.stModel, "ref", state.stScan);
+    const name = MNAME[state.stModel];
+    const cur = mean(rs.map((y) => y.cur)), curRef = mean(ref.map((y) => y.cur));
+    $("st-desc").textContent = `${name} · ${TESTS.find((t) => t[0] === state.stTest)[1]} · ${state.stScan === "all" ? "18 scans" : scanLabel("dtu", state.stScan)} · ${TDESC[state.stTest]}`;
+    if (!rs.length) { $("st-verdict").textContent = "No logged rows."; $("st-metrics").innerHTML = ""; }
+    else {
+      const d = cur != null && curRef != null ? cur - curRef : null;
+      $("st-verdict").innerHTML = state.stTest === "ref" ? `Reference: <b>${pct(cur)}</b> of the hidden region passes for ${name}.` : `With ${TESTS.find((t) => t[0] === state.stTest)[1]}, <b>${pct(cur)}</b> passes, against ${pct(curRef)} in the reference: ${d == null ? "" : (Math.abs(d) < 0.03 ? "no real change." : d > 0 ? "more leakage." : "less leakage.")}`;
+      const agg = { cur, auroc: mean(rs.map((y) => y.auroc)), cur_err: mean(rs.map((y) => y.cur_err)), absrel_U: mean(rs.map((y) => y.absrel_U)), absrel_S: mean(rs.map((y) => y.absrel_S)), conf_ratio_U: mean(rs.map((y) => y.conf_ratio_U)) };
+      $("st-metrics").innerHTML = metricsHtml(agg, false) + `<div class="m"><div class="k">rows</div><div class="v">${rs.length}</div><div class="d">(scene, placement) pairs averaged</div></div>`;
+    }
+    const rows = TESTS.map(([t, label]) => { const q = stressRows(state.stModel, t, state.stScan); return { label, a: q.length ? mean(q.map((y) => y.cur)) : null, b: q.length ? mean(q.map((y) => y.auroc)) : null }; });
+    barChart($("chart-stress"), rows, { aria: "CUR and AUROC under each stress condition" });
+  }
+
+  function renderDetect() {
+    const scans = scansOf("dtu");
+    state.dtScan = fillSelect("dt-scan", scans, "dtu", state.dtScan);
+    $("dt-desc").textContent = `DTU · ${scanLabel("dtu", state.dtScan)} · blur fill · radius 0.18 · placement 0`;
+    const native = (m) => row("dtu", m, state.dtScan, 0, 0.18, "blur");
+    const det = (m) => D.detectors.find((y) => y.model === m && y.scan === state.dtScan && y.seed === 0 && y.r === 0.18 && y.fill === "blur");
+    const smokeGray = (m) => D.detectors.find((y) => y.model === m && y.scan === state.dtScan && y.fill === "gray");
+    const lines = [
+      ["VGGT-1B", "native confidence", 1, native("vggt"), "ok"],
+      ["VGGT-1B", "perturbation variance, K=4", 4, det("vggt_pv4"), "ok"],
+      ["VGGT-1B", "reprojection consistency", 1, null, "pending"],
+      ["VGGT-1B", "per-image feature head (control)", 1, null, "pending"],
+      ["VGGT-1B", "support head, 200-step smoke on 4 training scans", 1, det("vggt_oia"), det("vggt_oia") ? "smoke" : "pending"],
+      ["VGGT-1B", "support head fused with native (smoke)", 1, det("vggt_oiafuse"), det("vggt_oiafuse") ? "smoke" : "pending"],
+      ["Pi3X", "native confidence", 1, native("pi3x"), "ok"],
+      ["Pi3X", "perturbation variance, K=4", 4, det("pi3x_pv4"), "ok"],
+      ["Pi3X", "support head", 1, null, "pending"],
+      ["MapAnything", "native confidence (gray smoke, r 0.15)", 1, smokeGray("mapanything"), smokeGray("mapanything") ? "smoke" : "pending"],
+      ["MapAnything", "multi-view consistency confidence (gray smoke, r 0.15)", 1, smokeGray("mapanything_mv"), smokeGray("mapanything_mv") ? "smoke" : "pending"],
+    ];
+    let t = `<tr><th>backbone</th><th>detector</th><th class="num">forwards</th><th class="num">AUROC</th><th class="num">CUR</th><th class="num">CUR-err</th><th>status</th></tr>`;
+    lines.forEach(([b, d, k, x, st]) => {
+      const pill = st === "ok" ? '<span class="pill ok">logged</span>' : st === "smoke" ? '<span class="pill cyan">smoke run</span>' : '<span class="pill pending">pending · GPU run queued</span>';
+      t += `<tr><td>${b}</td><td>${d}</td><td class="num">${k}</td><td class="num">${x ? f3(x.auroc) : "–"}</td><td class="num">${x ? f3(x.cur) : "–"}</td><td class="num">${x ? f3(x.cur_err) : "–"}</td><td>${pill}</td></tr>`;
+    });
+    $("tbl-det").innerHTML = t;
+  }
+
+  function bootstrap(perScene, n = 1000) {
+    const k = perScene.length; if (!k) return [null, null, null];
+    let seed = 12345; const rnd = () => { seed = (seed * 1664525 + 1013904223) % 4294967296; return seed / 4294967296; };
+    const ms = [];
+    for (let i = 0; i < n; i++) { let s = 0; for (let j = 0; j < k; j++) s += perScene[Math.floor(rnd() * k)]; ms.push(s / k); }
+    ms.sort((a, b) => a - b);
+    return [mean(perScene), ms[Math.floor(0.025 * n)], ms[Math.ceil(0.975 * n) - 1]];
+  }
+  function renderBoard() {
+    let t = `<tr><th>model</th><th>dataset</th><th class="num">CUR [95% CI]</th><th class="num">AUROC [95% CI]</th><th class="num">CUR-err</th><th class="num">AbsRel U</th><th class="num">AbsRel S</th><th class="num">scenes</th></tr>`;
+    DS.forEach(([ds, dl]) => {
+      const entries = MODELS.map(([m, label]) => {
+        const rs = D.main.filter((y) => y.ds === ds && y.model === m && (y.fill === "blur" || y.fill === "noise") && y.cur != null);
+        const scenes = [...new Set(rs.map((y) => y.scan))];
+        const per = (key) => scenes.map((s) => mean(rs.filter((y) => y.scan === s).map((y) => y[key])));
+        const [c, cl, ch] = bootstrap(per("cur")), [a, al, ah] = bootstrap(per("auroc"));
+        return { label, c, cl, ch, a, al, ah, ce: mean(rs.map((y) => y.cur_err)), u: mean(rs.map((y) => y.absrel_U)), s: mean(rs.map((y) => y.absrel_S)), n: scenes.length };
+      }).sort((p, q) => p.c - q.c);
+      entries.forEach((e) => { t += `<tr><td>${e.label}</td><td>${dl}</td><td class="num">${f3(e.c)} [${f3(e.cl)}, ${f3(e.ch)}]</td><td class="num">${f3(e.a)} [${f3(e.al)}, ${f3(e.ah)}]</td><td class="num">${f3(e.ce)}</td><td class="num">${f3(e.u)}</td><td class="num">${f3(e.s)}</td><td class="num">${e.n}</td></tr>`; });
+    });
+    $("tbl-board").innerHTML = t;
+  }
+
+  function init() {
+    seg("in-ds", DS, "ds", () => { state.scan = scansOf(state.ds)[0]; renderCase(); });
+    seg("in-model", MODELS, "model", renderCase);
+    seg("in-fill", FILLS, "fill", renderCase);
+    seg("in-r", [[0.1, "0.10"], [0.18, "0.18"]], "r", renderCase);
+    seg("in-seed", [[0, "0"], [1, "1"], [2, "2"], [3, "3"], [4, "4"]], "seed", renderCase);
+    $("in-scan").addEventListener("change", (e) => { state.scan = e.target.value; renderCase(); });
+    seg("st-model", [["vggt", "VGGT-1B"], ["pi3x", "Pi3X"], ["da3", "Depth Anything 3"]], "stModel", renderStress);
+    seg("st-test", TESTS, "stTest", renderStress);
+    $("st-scan").addEventListener("change", (e) => { state.stScan = e.target.value; renderStress(); });
+    $("dt-scan").addEventListener("change", (e) => { state.dtScan = e.target.value; renderDetect(); });
+    renderCase(); renderStress(); renderDetect(); renderBoard();
+    $("status").textContent = `${D.main.length} benchmark rows, ${D.stress.length} stress rows, ${D.detectors.length} detector rows, ${Object.keys(D.images).length} recorded composites.`;
+  }
+  fetch("assets/explorer_data.json").then((r) => r.json()).then((d) => { D = d; init(); }).catch((e) => { $("verdict").textContent = "The results file could not be loaded: " + e; });
+})();
+</script>
+
+</body>
+</html>
