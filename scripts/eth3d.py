@@ -5,8 +5,11 @@ Raw data: https://www.eth3d.net/datasets, archive multi_view_training_dslr_undis
 courtyard, delivery_area, electro, facade, kicker, meadow, office, pipes, playground, relief, relief_2, terrace,
 terrains. Layout per scene: images/dslr_images_undistorted/*.JPG (undistorted DSLR frames, about 6000 x 4000),
 dslr_calibration_undistorted/{cameras.txt, images.txt} (COLMAP text format, PINHOLE cameras, world -> camera
-pose as quaternion + translation), ground_truth_depth/dslr_images_undistorted/<same name> (raw float32 depth,
-row-major, one value per pixel of the undistorted image, infinity or 0 where the laser scan gives no depth).
+pose as quaternion + translation), ground_truth_depth/dslr_images/<same name> (per-scene archives <scene>_dslr_depth.7z: raw float32 depth,
+row-major, one value per pixel of the ORIGINAL distorted frame, infinity or 0 where the laser scan gives no depth)
+and dslr_calibration_jpg/ (from multi_view_training_dslr_jpg.7z: the THIN_PRISM_FISHEYE calibration of those
+frames). The depth maps are resampled onto the undistorted pinhole frame with COLMAP's camera model
+(undistort_depth), so every scene is pinhole afterwards.
 
 preprocess_eth3d() writes the same folder format as co3d.preprocess_co3d (images/*.jpg at IMG_W width, meta.npz
 with depth at half resolution, fg = valid depth, K_img, K_dep, E world -> camera OpenCV, frame_numbers,
@@ -60,6 +63,58 @@ def read_colmap_text(calib_dir):
     return cams, images
 
 
+def read_jpg_cameras(calib_dir):
+    """The calibration of the original (distorted) DSLR frames: COLMAP THIN_PRISM_FISHEYE cameras
+    (fx, fy, cx, cy, k1, k2, p1, p2, k3, k4, sx1, sy1). The ground-truth depth maps are stored at this resolution."""
+    cams = {}
+    for line in open(os.path.join(calib_dir, "cameras.txt")):
+        if line.startswith("#") or not line.strip():
+            continue
+        t = line.split()
+        cams[int(t[0])] = dict(model=t[1], w=int(t[2]), h=int(t[3]), p=np.array([float(x) for x in t[4:]]))
+    names = {}
+    lines = [l for l in open(os.path.join(calib_dir, "images.txt")) if not l.startswith("#") and l.strip()]
+    for i in range(0, len(lines), 2):
+        t = lines[i].split()
+        names[os.path.basename(t[9])] = dict(cam=int(t[8]), q=[float(x) for x in t[1:5]])
+    return cams, names
+
+
+def thin_prism_fisheye_project(xn, yn, p):
+    """COLMAP ThinPrismFisheyeCameraModel.ImgFromCam for normalised coordinates (x/z, y/z) -> pixels."""
+    fx, fy, cx, cy, k1, k2, p1, p2, k3, k4, sx1, sy1 = p[:12]
+    r = np.sqrt(xn * xn + yn * yn)
+    theta = np.arctan(r)
+    s = np.where(r > 1e-8, theta / np.maximum(r, 1e-12), 1.0)
+    u, v = xn * s, yn * s
+    u2, v2, uv = u * u, v * v, u * v
+    r2 = u2 + v2
+    radial = k1 * r2 + k2 * r2 ** 2 + k3 * r2 ** 3 + k4 * r2 ** 4
+    du = u * radial + 2 * p1 * uv + p2 * (r2 + 2 * u2) + sx1 * r2
+    dv = v * radial + 2 * p2 * uv + p1 * (r2 + 2 * v2) + sy1 * r2
+    return fx * (u + du) + cx, fy * (v + dv) + cy
+
+
+def undistort_depth(dep_d, cam_d, K_u, hw_u):
+    """Resample a depth map given at the distorted frame (camera cam_d) onto the undistorted pinhole frame
+    (intrinsics K_u, size hw_u). Depth is the z coordinate in the camera frame, which the undistortion does not
+    change, so a nearest-neighbour remap of the values is exact up to sampling."""
+    H, W = hw_u
+    us, vs = np.meshgrid(np.arange(W, dtype=np.float64), np.arange(H, dtype=np.float64))
+    xn = (us - K_u[0, 2]) / K_u[0, 0]
+    yn = (vs - K_u[1, 2]) / K_u[1, 1]
+    if cam_d["model"] == "THIN_PRISM_FISHEYE":
+        xd, yd = thin_prism_fisheye_project(xn, yn, cam_d["p"])
+    elif cam_d["model"] == "PINHOLE":
+        fx, fy, cx, cy = cam_d["p"][:4]
+        xd, yd = fx * xn + cx, fy * yn + cy
+    else:
+        raise ValueError(cam_d["model"])
+    out = cv2.remap(dep_d, xd.astype(np.float32), yd.astype(np.float32), cv2.INTER_NEAREST,
+                    borderMode=cv2.BORDER_CONSTANT, borderValue=0.0)
+    return out.astype(np.float32)
+
+
 def read_depth(path, hw):
     d = np.fromfile(path, dtype=np.float32)
     if d.size != hw[0] * hw[1]:
@@ -91,29 +146,29 @@ def preprocess_eth3d(raw_root, out_root, scenes=None, img_w=IMG_W, depth_div=DEP
         if os.path.exists(os.path.join(d_out, "meta.npz")):
             done.append(scene); continue
         cams, images = read_colmap_text(os.path.join(src, "dslr_calibration_undistorted"))
+        cams_d, names_d = read_jpg_cameras(os.path.join(src, "dslr_calibration_jpg"))
         os.makedirs(os.path.join(d_out, "images"), exist_ok=True)
         deps, fgs, Ki, Kd, Es, fnums, paths, hw_out = [], [], [], [], [], [], [], None
         for k, im in enumerate(images):
             ip = os.path.join(src, "images", im["name"])
-            dp = os.path.join(src, "ground_truth_depth", im["name"])
-            if not os.path.exists(dp):
+            base = os.path.basename(im["name"])
+            dp = os.path.join(src, "ground_truth_depth", "dslr_images", base)
+            if not os.path.exists(dp) or base not in names_d:
                 continue
             cam = cams[im["cam"]]
+            cam_d = cams_d[names_d[base]["cam"]]
             img = cv2.imread(ip, cv2.IMREAD_COLOR)
             if img is None:
                 raise FileNotFoundError(ip)
             h0, w0 = img.shape[:2]
             if (h0, w0) != (cam["h"], cam["w"]):
                 raise ValueError(f"{ip}: image {img.shape[:2]} vs camera {(cam['h'], cam['w'])}")
-            dep = read_depth(dp, (h0, w0))
+            dep = undistort_depth(read_depth(dp, (cam_d["h"], cam_d["w"])), cam_d, cam["K"], (h0, w0))
             if (dep > 0).mean() < 0.05:
                 continue
-            W = img_w
-            H = int(round(W * h0 / w0))
-            if hw_out is None:
-                hw_out = (H, W)
-            elif hw_out != (H, W):
-                raise ValueError(f"{scene}: mixed frame sizes {hw_out} vs {(H, W)}")
+            if hw_out is None:                       # frame size fixed per scene from the first frame (undistorted
+                hw_out = (int(round(img_w * h0 / w0)), img_w)   # frames of one scene differ by a few pixels)
+            H, W = hw_out
             img_r = cv2.resize(img, (W, H), interpolation=cv2.INTER_AREA)
             cv2.imwrite(os.path.join(d_out, "images", f"{k:06d}.jpg"), img_r, [cv2.IMWRITE_JPEG_QUALITY, 95])
             sx, sy = W / w0, H / h0
