@@ -61,9 +61,9 @@ Full tables with intervals and the per-fill cells are in the paper (Tables 1 to 
 **Done, every number from a logged run** (about 8 GPU hours on one Kaggle T4):
 benchmark on DTU and CO3Dv2, five models, three fills plus an inpainted fill, stress tests (view dropping, low parallax, distractor image), two failing training-free baselines, intervals and paired tests for all of it.
 
-**Written but not yet run** (needs a GPU session): the reprojection-consistency detector (`<model>_reproj`, issue #2) and the support head (`<model>_oia`, `scripts/oia_head.py`; plan in `scripts/run_h100.py`, pass condition in the paper).
+**Running now** (one NVIDIA L4, November 2026; see `EXPERIMENTS.md`): the support head (`<model>_oia`, `scripts/oia_head.py`) and its controls (the per-image feature head, the linear probe, a cross-view transformer head, extra initialisation seeds), the reprojection-consistency detector, the fuller perturbation baseline, the 22 extension scans of DTU, and the stress and CO3Dv2 evaluations of the head. The plan is `scripts/run_h100.py` (written for an H100, run on an L4; every stage fits in 10 GB). The pass condition is pre-registered in the paper. A 200-step smoke of the head on four training scans (run P3-check, Kaggle T4) already separates hidden from observed pixels on three benchmark scans with AUROC above 0.999; the controls decide whether that is support or patch detection.
 
-**Not done** (tracked as GitHub issues, see below): the proposed detector (a discrete diffusion head over quantized geometry tokens whose K-sample disagreement labels pixels observed / imagined / abstain), its ablations, continual adaptation with LoRA and replay, the heritage photo study, and VGGT-Omega (gated checkpoint). The paper marks every one of these as `pending`; no number is estimated.
+**Not done** (tracked as GitHub issues, see below): the generative successor of the head (a discrete diffusion head whose K-sample disagreement marks imagined geometry, issue #1, now future work), continual adaptation with LoRA and replay (#5), the heritage photo study (#6), and a natural-occlusion validation of the masking proxy (#7). The paper marks every one of these as `pending` or future work; no number is estimated.
 
 ## 5. Repository layout
 
@@ -101,7 +101,7 @@ paper/
 docs/                    project website (GitHub Pages): index.html, explorer.html (generated), assets/
 EXPERIMENTS.md           run registry, gates, how to push a Kaggle kernel
 LOG.md                   dated log of every run, failure, fix and correction
-SKILL.md                 the project brief and the rules the work followed
+PLAN.md                  the project brief: idea, rules, deadlines, phases, statistics protocol
 ```
 
 ## 6. Reproduce
@@ -139,7 +139,7 @@ python scripts/test_synthetic.py            # exit 0 iff oracle scores AUROC 1 /
                                             # deterministic and disjoint, and the reprojection score behaves
 python scripts/test_oia.py                  # exit 0 iff the support-head plumbing works end to end (fake backbone, CPU)
 python scripts/run_h100.py all --dtu <dir with DTU incl. training scans> --co3d <co3d_prep>
-                                            # H100 plan: trains the heads, evaluates them and every baseline, writes results/P3-*/
+                                            # GPU plan (H100 or L4): trains the heads, evaluates them and every baseline, writes results/P3-*/
 python scripts/test_co3d.py <co3d_prep> <out>
 ```
 
@@ -166,7 +166,7 @@ cd paper/tex && tectonic supp.tex           # supplementary alone; both share pr
 
 ## 8. Open work
 
-See the issue tracker. The items that matter most, in order: train the diffusion head and run the pre-registered Gate 2 (#1); validate the masked-patch protocol against real held-out-view occlusion (#7); the heritage study (#6); the faithful perturbation baseline (#3); scale to more scenes and a scene-level dataset (#9).
+See the issue tracker. The items that matter most, in order: finish the support-head runs and decide Gate 2 (#15, #16); validate the masked-patch protocol against real occlusion (#7); a feed-forward Gaussian-splatting backbone on the benchmark and a third, building-scale dataset (#9); the heritage study (#6); the generative head (#1) and continual adaptation (#5) as future work.
 
 ## 9. Citation
 
@@ -174,14 +174,14 @@ Anonymous CVPR 2027 submission. If you use the benchmark before publication, ple
 
 ```
 @misc{hallubench3d2026,
-  title  = {Observe, Imagine, Abstain: Hallucination-Aware 3D Reconstruction
-            with Discrete Diffusion and Continual Adaptation},
+  title  = {Observe, Imagine, Abstain: Detecting Hallucinated Geometry
+            in Feed-Forward 3D Reconstruction},
   author = {Anonymous},
   year   = {2026},
   note   = {CVPR 2027 submission, code and results at this repository}
 }
 ```
 
-## 10. Disclosure
+## 10. LLM usage
 
-Experiments, code and drafting were done with assistance from Claude (Anthropic). Claude is not an author. A one-sentence disclosure is in the paper body (`paper/tex/main.tex`, before the references) and the full paragraph plus the reproducibility statement open the supplementary (`paper/tex/supp_body.tex`); the wording should be checked against the CVPR 2027 author guidelines before submission.
+CVPR 2027 requires an LLM Usage Statement in every submission. Ours is the last section of `paper/tex/main.tex`: a general-purpose LLM assistant was used for parts of the code, literature lookup and text editing; the study design, hyperparameters, experiments, number verification and conclusions are the authors' own. Nothing in `results/` was produced by a language model.

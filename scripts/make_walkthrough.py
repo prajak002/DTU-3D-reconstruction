@@ -334,7 +334,7 @@ def main():
         "   two training-free detectors: perturbation variance, multi-view consistency.",
         "",
         "Written and CPU-tested, not yet run on a GPU: the reprojection detector (<model>_reproj) and the support head (<model>_oia),",
-        "   with the H100 plan in scripts/run_h100.py (train, DTU, CO3Dv2 zero-shot, stress, baselines, ablations, stats).",
+        "   with the GPU plan in scripts/run_h100.py (train, DTU, CO3Dv2, stress, baselines, ablations, stats).",
         "",
         "Pending and marked so in the paper: every support-head cell; VGGT-Omega (gated checkpoint).",
         "Future work: a generative head whose sample disagreement marks imagined regions; continual adaptation."], 11.0, fs=25)

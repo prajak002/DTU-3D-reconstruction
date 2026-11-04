@@ -49,6 +49,9 @@ DEFAULT_CFG = dict(
 )
 
 DTU_IMG_HW = (512, 640)
+# MVSNet test split of DTU (22 scans). Disjoint from the 18 benchmark scans and from the 79 training scans of the
+# support head; used as the extension set (run family P3-dtuext).
+DTU_TEST_SCANS = [1, 4, 9, 10, 11, 12, 13, 15, 23, 24, 29, 32, 33, 34, 48, 49, 62, 75, 77, 110, 114, 118]
 
 
 # ----------------------------------------------------------------------------- io
@@ -567,6 +570,61 @@ class PerturbWrap:
         self.base.free()
 
 
+class PerturbFullWrap:
+    """Fuller training-free perturbation detector (P3-pv-full, closer to ReVar3R): K forwards of the base model
+    under photometric jitter, gaussian blur, a horizontal flip (undone on the output) and a random permutation of
+    the view order (undone on the output; it changes the reference frame of models that anchor the world to the
+    first view). Each sample is aligned to the first by a least-squares scale on the pixels valid in both (the
+    gauge of a depth map is its scale), then the per-pixel spread is the median absolute deviation across samples
+    divided by the median depth, confidence = 1 / (eps + spread). Costs K base forwards."""
+
+    def __init__(self, base, K=8, strength=0.15):
+        self.base, self.K, self.strength = base, K, strength
+        self.name = f"{base.name}_pvf{K}"
+
+    def predict(self, imgs, model_hw, out_hw):
+        rng = np.random.default_rng(_stable_seed("perturb-full", self.name))
+        N = len(imgs)
+        ds = []
+        for k in range(self.K):
+            x, order, flip = imgs, np.arange(N), False
+            if k > 0:
+                s = self.strength
+                gain = rng.uniform(1 - s, 1 + s, size=(1, 1, 1, 3)).astype(np.float32)
+                bias = rng.uniform(-s / 2, s / 2, size=(1, 1, 1, 3)).astype(np.float32)
+                gamma = float(rng.uniform(1 - s, 1 + s))
+                x = np.clip(np.clip(imgs * gain + bias, 0, 1) ** gamma, 0, 1).astype(np.float32)
+                if rng.random() < 0.5:
+                    sig = float(rng.uniform(0.5, 1.5))
+                    x = np.stack([cv2.GaussianBlur(im, (0, 0), sig) for im in x])
+                flip = bool(rng.random() < 0.5)
+                if flip:
+                    x = x[:, :, ::-1].copy()
+                order = rng.permutation(N)
+                x = x[order]
+            d, _ = self.base.predict(x, model_hw, out_hw)
+            inv = np.argsort(order)
+            d = d[inv]
+            if flip:
+                d = d[:, :, ::-1].copy()
+            ds.append(d.astype(np.float64))
+        ref = ds[0]
+        al = [ref]
+        for d in ds[1:]:
+            ok = (ref > 0) & (d > 0)
+            sc = float((ref[ok] * d[ok]).sum() / max((d[ok] ** 2).sum(), 1e-9)) if ok.any() else 1.0
+            al.append(d * sc)
+        al = np.stack(al)                      # K,N,h,w
+        med = np.median(al, 0)
+        mad = np.median(np.abs(al - med[None]), 0)
+        spread = mad / np.maximum(np.abs(med), 1e-6)
+        conf = 1.0 / (1e-3 + spread)
+        return med.astype(np.float32), conf.astype(np.float32)
+
+    def free(self):
+        self.base.free()
+
+
 def reproj_support_score(depths, K, E, tol=0.03):
     """Training-free support score from cross-view reprojection agreement of a multi-view depth prediction
     (P3-reproj). depths (N,h,w) predicted depth of every view in one common frame (0 = invalid), K (N,3,3)
@@ -652,6 +710,9 @@ class ReprojWrap:
 
 def make_model(name):
     """'vggt' -> VGGTWrap(); 'vggt_pv4' -> PerturbWrap(VGGTWrap(), K=4); 'vggt_reproj' -> ReprojWrap(VGGTWrap())."""
+    m = re.fullmatch(r"(.+)_pvf(\d+)", name)
+    if m:
+        return PerturbFullWrap(MODEL_REGISTRY[m.group(1)](), K=int(m.group(2)))
     m = re.fullmatch(r"(.+)_pv(\d+)", name)
     if m:
         return PerturbWrap(MODEL_REGISTRY[m.group(1)](), K=int(m.group(2)))

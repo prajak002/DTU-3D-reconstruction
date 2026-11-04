@@ -1,0 +1,9 @@
+13:10:58 torch 2.11.0+cu128 cuda Tesla T4
+13:11:52 vggt feats=agg: depth (10, 420, 518) conf (10, 420, 518) feature maps [(10, 2048, 30, 37), (10, 2048, 30, 37), (10, 2048, 30, 37), (10, 2048, 30, 37)] K[0] fx=1227.3 4.81s peak 7.7 GB
+13:11:56 vggt feats=patch: depth (10, 420, 518) conf (10, 420, 518) feature maps [(10, 1024, 30, 37)] K[0] fx=1227.3 3.72s peak 8.1 GB
+13:11:56 vggt self-consistency of predicted depth + cameras: {'reproj_agree': 0.699504847781663, 'reproj_agree_3pct_vis': 0.9439527341017013, 'U_transfer': 0.9857953757473713}  (U_transfer must be high, > 0.9)
+13:12:46 pi3x feats=agg: depth (10, 420, 518) conf (10, 420, 518) feature maps [(10, 2048, 30, 37)] K[0] fx=1156.2 18.33s peak 9.2 GB
+13:12:50 pi3x feats=patch: depth (10, 420, 518) conf (10, 420, 518) feature maps [(10, 1024, 30, 37)] K[0] fx=1156.2 3.42s peak 9.3 GB
+13:12:50 pi3x self-consistency of predicted depth + cameras: {'reproj_agree': 0.5578468376073279, 'reproj_agree_3pct_vis': 0.9412634120764003, 'U_transfer': 0.9805258948069356}  (U_transfer must be high, > 0.9)
+13:12:50 DTU training scans present: 79 of 79
+13:12:50 CO3D scenes: 18

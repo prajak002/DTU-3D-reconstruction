@@ -83,7 +83,7 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
 <header class="measure">
   <h1>Observe, Imagine, <em>Abstain</em></h1>
   <p class="lede">When a 3D model has not seen a surface, does it say so? We measured five of them. Mostly, no.</p>
-  <p class="sub">Hallucination-aware 3D reconstruction with discrete diffusion and continual adaptation. Anonymous submission to CVPR 2027.</p>
+  <p class="sub">Detecting hallucinated geometry in feed-forward 3D reconstruction. Anonymous submission to CVPR 2027.</p>
   <div class="meta">
     <a href="assets/paper.pdf">Paper (PDF)</a>
     <a href="#demo">Demo video</a>
@@ -179,11 +179,11 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
 <section class="measure">
   <h2>What we propose</h2>
   <p>We do not want to stop these models from imagining; that is what makes them useful. We want them to say when they do. A frozen backbone feeds a small discrete diffusion head over quantized geometry tokens, trained by hiding regions of the backbone's own output and recovering them, with no hallucination labels. At test time the head draws several samples. Where the samples agree with the backbone, the geometry is <strong>observed</strong>. Where they agree with each other but with nothing observed, it is <strong>imagined</strong>. Everywhere else the model <strong>abstains</strong>. You see three colours instead of one confidence map.</p>
-  <p>Low-rank adapters with a small replay buffer let the head follow a stream of new sites without forgetting old ones.</p>
+  <p>The head is a few million parameters and adds one head forward to one backbone forward. A per-image control head, a linear probe, a cross-view transformer head and the inpainted fill the head never saw decide whether it finds missing support or merely the patch.</p>
   <p><span class="pending">pending</span> The method is specified and its pass condition is pre-registered: it must beat native confidence on AUROC and CUR at equal compute, paired test over scenes. Its numbers do not exist yet and nothing on this page pretends they do.</p>
 </section>
 <figure class="fig">
-  <img src="assets/fig9_method.png" alt="Design diagram of the proposed diffusion-head detector and continual adaptation loop, labelled as pending">
+  <img src="assets/fig9_method.png" alt="Design diagram of the support head: frozen backbone, label-free masking of its own prediction, per-pixel observed / abstain / imagined output">
   <figcaption>Design figure of the proposed detector. The backbone stays frozen; only the head is trained and adapted.</figcaption>
 </figure>
 
@@ -215,7 +215,7 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
     <tr><th>Done, every number from a logged run</th><th>Not yet</th></tr>
     <tr>
       <td>Benchmark on DTU and CO3Dv2, five models, three fills plus inpaint, stress tests, two failing cheap baselines, intervals and paired tests for all of it. About eight GPU hours on one T4.</td>
-      <td>The diffusion head and its ablations, continual adaptation, the heritage photo study, VGGT-Omega (gated checkpoint), and a fuller perturbation baseline. These need a larger GPU and model access.</td>
+      <td>The support head and its controls, the reprojection and fuller perturbation baselines, the 22 extension scans and the CO3Dv2 and stress evaluations of the head are running on one L4 GPU (November 2026). The generative head, continual adaptation and the heritage study are future work.</td>
     </tr>
   </table>
   <p class="small">The full run log, including the runs that failed and every correction made to a reported number, ships with the code.</p>
@@ -235,8 +235,8 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
 
   <h3>Cite</h3>
 <pre>@inproceedings{observeimagineabstain2027,
-  title     = {Observe, Imagine, Abstain: Hallucination-Aware 3D Reconstruction
-               with Discrete Diffusion and Continual Adaptation},
+  title     = {Observe, Imagine, Abstain: Detecting Hallucinated Geometry
+               in Feed-Forward 3D Reconstruction},
   author    = {Anonymous},
   booktitle = {CVPR submission},
   year      = {2027}

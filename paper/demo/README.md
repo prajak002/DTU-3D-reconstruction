@@ -17,7 +17,7 @@ from the logged CSVs (`results/table1_all_models.csv`, `results/table3_all_model
 replayed frame carries the tag "model outputs recorded on Kaggle T4, 2026-10-28". The bar charts
 recompute the cluster bootstrap CIs from the CSVs at build time.
 
-The closing card lists what has not been run (diffusion head, continual adaptation, heritage study,
+The closing card lists what had not been run when the video was made (support head, continual adaptation, heritage study,
 VGGT-Omega).
 
 ## Segments

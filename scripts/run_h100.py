@@ -1,23 +1,33 @@
-"""H100 plan for the P3 runs: the support head (scripts/oia_head.py) against every baseline, on the benchmark.
+"""GPU plan for the P3 runs: the support head (scripts/oia_head.py) against every baseline, on the benchmark.
+Written for one H100; run on one L4 (24 GB) in November 2026, where every stage fits in memory (peak 9 GB).
 
 Every stage is resumable (run_benchmark skips rows already in the CSV) and writes the same layout as the Kaggle
 runs: results/<RUN>/<RUN>.csv, _cfg.json, _summary.csv, ex_<RUN>/ composites, <RUN>.log. Stages:
 
   check      import the backbones, one forward per backbone with the feature hooks, shapes and timing
-  train      support heads: vggt_oia (3 training seeds), vggt_oialin, vggt_oiapatch, vggt_oiagt, pi3x_oia
-  dtu        P3-oia-dtu     full DTU configuration (18 scans x 5 seeds x 2 radii x 3 fills) for vggt_oia, vggt_oiafuse, pi3x_oia
-  co3d       P3-oia-co3d    full CO3Dv2 configuration, zero-shot (the heads never saw CO3D)
-  stress     P3-oia-stress  inpaint10, blur5, blur3, adjacent10, distractor10 (same configs as P2-stress)
+  train      support heads. One joint run per backbone trains, on the same backbone forwards, the main conv head
+             (vggt_oia), the linear probe (oialin), the per-image control (oiapatch), the cross-view transformer
+             head (oiaattn) and two extra initialisation seeds of the main head (oia_s1, oia_s2); oiagt (masks
+             placed with ground-truth depth) runs alone because its masked input differs; pi3x: oia + oiapatch
+  dtu        P3-oia-dtu     full DTU configuration (18 scans x 5 seeds x 2 radii x 3 fills) for vggt_oia, vggt_oiafuse,
+             vggt_oiapatch (the per-image control, paired on every row) and pi3x_oia
+  co3d       P3-oia-co3d    full CO3Dv2 configuration; the heads never saw CO3D (the backbones did, see paper)
+  stress     P3-oia-stress  inpaint10, blur5, blur3, adjacent10, distractor10 (same configs as P2-stress), with the
+             per-image control on every row: inpaint is the fill the heads never saw and the decisive control
   baselines  P3-reproj (vggt_reproj, pi3x_reproj), P3-pv (vggt_pv4, pi3x_pv4), P3-native (vggt, pi3x rerun on this
              GPU) on the Table-4 keys (seed 0, blur, radius 0.18) so every detector is paired on identical rows
-  ablate     P3-oia-abl     oialin, oiapatch, oiagt and the two extra head seeds on the Table-4 keys + gray and noise
-  stats      paired sign-flip tests of every detector against native confidence and against each other, Holm
-             correction, and the markdown rows for Table 4 / Table 5 (results/P3-stats.md)
+  pvfull     P3-pv-full     the fuller perturbation baseline (<base>_pvf8: photometric + blur + flip + view
+             permutation, least-squares scale alignment, MAD spread) on the Table-4 keys plus noise, all bases
+  ablate     P3-oia-abl     oialin, oiapatch, oiaattn, oiagt and the two extra head seeds on seed 0, radius 0.18, 3 fills
+  dtuext     P3-dtuext      the 22 MVSNet test scans (never used anywhere else): native models, vggt_oia and the
+             per-image control, seed 0, radius 0.18, 3 fills (the benchmark grows from 18 to 40 DTU scenes)
+  stats      paired sign-flip tests of every detector against native confidence and of the head against its
+             per-image control, Holm correction, pass condition, stress and CO3D tables (results/P3-stats.md)
 
 Usage:
   python scripts/run_h100.py all   --dtu <dir with a DTU root incl. the 79 training scans> --co3d <preprocessed CO3D root>
   python scripts/run_h100.py train --dtu ...                 # or any single stage
-Options: --out results  --ckpt checkpoints  --steps 3000  --seeds 0,1,2  --bases vggt,pi3x
+Options: --out results  --ckpt checkpoints  --steps 1500  --seeds 0,1,2  --bases vggt,pi3x  --skip-gt
 Estimated H100 time: check 2 min, train 25 min per head (7 heads, 3 h), dtu 30 min, co3d 30 min, stress 20 min,
 baselines 25 min, ablate 20 min. The whole plan fits in one working day; 'dtu' alone answers the pass condition.
 
@@ -118,17 +128,25 @@ def stage_check(args):
 
 
 def stage_train(args):
-    jobs = [("vggt", "oia", s) for s in args.seeds] + [("vggt", "oialin", 0), ("vggt", "oiapatch", 0), ("vggt", "oiagt", 0)]
-    if "pi3x" in args.bases:
-        jobs.append(("pi3x", "oia", 0))
-    jobs = [j for j in jobs if j[0] in args.bases]
-    for base, var, seed in jobs:
-        out = os.path.join(args.ckpt, f"{base}_{var}.pt" if seed == 0 else f"{base}_{var}_s{seed}.pt")
-        if os.path.exists(out) and not args.retrain:
-            print(f"[train] {out} exists, skipping"); continue
-        # one subprocess per head so that GPU memory is released between backbones
-        cmd = [sys.executable, os.path.join(ROOT, "scripts", "oia_head.py"), "train", "--base", base, "--variant", var,
-               "--dtu", args.dtu_root, "--out", out, "--steps", str(args.steps), "--seed", str(seed)]
+    extra = [s for s in args.seeds if s != 0]
+    jobs = []            # (base, variants, extra seeds, first checkpoint that marks the job done)
+    if "vggt" in args.bases:
+        jobs.append(("vggt", "oia,oialin,oiapatch,oiaattn", extra, "vggt_oia.pt"))
+        if not args.skip_gt:
+            jobs.append(("vggt", "oiagt", [], "vggt_oiagt.pt"))
+    for b in args.bases:
+        if b != "vggt":
+            jobs.append((b, "oia,oiapatch", [], f"{b}_oia.pt"))
+    for base, variants, seeds, marker in jobs:
+        if os.path.exists(os.path.join(args.ckpt, marker)) and not args.retrain:
+            print(f"[train] {marker} exists, skipping {base} {variants}"); continue
+        # one subprocess per job so that GPU memory is released between backbones
+        cmd = [sys.executable, os.path.join(ROOT, "scripts", "oia_head.py"), "train", "--base", base,
+               "--variant", variants, "--dtu", args.dtu_root, "--out", args.ckpt, "--steps", str(args.steps), "--seed", "0"]
+        if "," not in variants:
+            cmd[cmd.index("--out") + 1] = os.path.join(args.ckpt, marker)
+        if seeds:
+            cmd += ["--extra-seeds", ",".join(str(x) for x in seeds)]
         print("[train]", " ".join(cmd), flush=True)
         subprocess.run(cmd, check=False)
 
@@ -137,21 +155,36 @@ def _ckpt_env(args):
     os.environ["OIA_CKPT_DIR"] = args.ckpt
 
 
+def _have(args, name):
+    return os.path.exists(os.path.join(args.ckpt, f"{name}.pt"))
+
+
+def _head_models(args, with_fuse=True):
+    """The head models that have a checkpoint: <base>_oia, vggt_oiafuse, and the per-image control <base>_oiapatch."""
+    ms = []
+    for b in args.bases:
+        if _have(args, f"{b}_oia"):
+            ms.append(f"{b}_oia")
+            if b == "vggt" and with_fuse:
+                ms.append("vggt_oiafuse")
+        if _have(args, f"{b}_oiapatch"):
+            ms.append(f"{b}_oiapatch")
+    return ms
+
+
 def stage_dtu(args):
     _ckpt_env(args)
-    models = [m for b in args.bases for m in ([f"{b}_oia", f"{b}_oiafuse"] if b == "vggt" else [f"{b}_oia"])]
-    run(args, "P3-oia-dtu", models, FULL, args.dtu_root)
+    run(args, "P3-oia-dtu", _head_models(args), FULL, args.dtu_root)
 
 
 def stage_co3d(args):
     _ckpt_env(args)
-    models = [f"{b}_oia" for b in args.bases] + (["vggt_oiafuse"] if "vggt" in args.bases else [])
-    run(args, "P3-oia-co3d", models, co3d_cfg(args, FULL), args.co3d_root)
+    run(args, "P3-oia-co3d", _head_models(args), co3d_cfg(args, FULL), args.co3d_root)
 
 
 def stage_stress(args):
     _ckpt_env(args)
-    models = [f"{b}_oia" for b in args.bases]
+    models = _head_models(args, with_fuse=False)
     for test, extra in STRESS.items():
         run(args, f"P3-oia-stress_{test}", models, {**extra, "keep_model": True}, args.dtu_root)
 
@@ -163,17 +196,30 @@ def stage_baselines(args):
     run(args, "P3-native", list(args.bases), T4_KEYS, args.dtu_root)
 
 
+def stage_pvfull(args):
+    cfg = {"seeds": [0], "fills": ["blur", "noise"], "radius_fracs": [0.18]}
+    run(args, "P3-pv-full", [f"{b}_pvf8" for b in args.pv_bases], cfg, args.dtu_root)
+
+
+def stage_dtuext(args):
+    _ckpt_env(args)
+    cfg = {"seeds": [0], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.18], "scans": H.DTU_TEST_SCANS}
+    models = list(args.ext_bases) + [m for m in ("vggt_oia", "vggt_oiapatch") if _have(args, m)]
+    run(args, "P3-dtuext", models, cfg, args.dtu_root)
+
+
 def stage_ablate(args):
     _ckpt_env(args)
-    models = ["vggt_oialin", "vggt_oiapatch", "vggt_oiagt"]
-    for s in args.seeds[1:]:
-        os.environ[f"OIA_CKPT_VGGT_OIA_S{s}"] = os.path.join(args.ckpt, f"vggt_oia_s{s}.pt")
+    models = [m for m in ("vggt_oialin", "vggt_oiapatch", "vggt_oiaattn", "vggt_oiagt", "pi3x_oiapatch") if _have(args, m)]
     cfg = {"seeds": [0], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.18]}
     run(args, "P3-oia-abl", models, cfg, args.dtu_root)
-    # extra head seeds: evaluated through the same wrapper by pointing the checkpoint env at each seed in turn
+    # extra initialisation seeds of the main head: evaluated through the same wrapper, rows renamed vggt_oia_s<seed>
     for s in args.seeds[1:]:
-        os.environ["OIA_CKPT_VGGT_OIA"] = os.path.join(args.ckpt, f"vggt_oia_s{s}.pt")
-        csv = run(args, f"P3-oia-abl-seed{s}", ["vggt_oia"], T4_KEYS, args.dtu_root)
+        ck = os.path.join(args.ckpt, f"vggt_oia_s{s}.pt")
+        if not os.path.exists(ck):
+            continue
+        os.environ["OIA_CKPT_VGGT_OIA"] = ck
+        csv = run(args, f"P3-oia-abl-seed{s}", ["vggt_oia"], cfg, args.dtu_root)
         if os.path.exists(csv):
             import pandas as pd
             df = pd.read_csv(csv); df["model"] = f"vggt_oia_s{s}"; df.to_csv(csv, index=False)
@@ -193,7 +239,7 @@ def holm(pvals):
 def stage_stats(args):
     import pandas as pd
     frames = []
-    for run_name in ["P3-oia-dtu", "P3-reproj", "P3-pv", "P3-native", "P3-oia-abl"] + [f"P3-oia-abl-seed{s}" for s in args.seeds[1:]]:
+    for run_name in ["P3-oia-dtu", "P3-reproj", "P3-pv", "P3-pv-full", "P3-native", "P3-oia-abl", "P3-dtuext"] + [f"P3-oia-abl-seed{s}" for s in args.seeds[1:]]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         if os.path.exists(p):
             frames.append(pd.read_csv(p))
@@ -227,6 +273,46 @@ def stage_stats(args):
         adj = holm(pv)
         lines += ["", "Holm-adjusted p-values over all detector-vs-native tests: " +
                   ", ".join(f"{k} {v:.4g}" for k, v in sorted(adj.items()))]
+    # the head against its per-image control, per fill and on the stress tests (inpaint is the unseen fill)
+    frames_s = []
+    for test in STRESS:
+        p = os.path.join(args.out, f"P3-oia-stress_{test}", f"P3-oia-stress_{test}.csv")
+        if os.path.exists(p):
+            x = pd.read_csv(p); x["test"] = test; frames_s.append(x)
+    ref = os.path.join(ROOT, "results", "P2-stress", "P2-stress.csv")
+    if os.path.exists(ref) and frames_s:
+        x = pd.read_csv(ref)
+        if "test" not in x.columns:
+            x["test"] = "?"
+        frames_s.append(x)
+    for base in args.bases:
+        head, ctrl = f"{base}_oia", f"{base}_oiapatch"
+        for fill in ("gray", "blur", "noise"):
+            sub = df[(df.seed == 0) & (df.fill == fill) & (df.radius_frac == 0.18)]
+            if head in sub.model.values and ctrl in sub.model.values:
+                da = H.paired_permutation(sub, "auroc", head, ctrl)
+                dc = H.paired_permutation(sub, "cur", head, ctrl)
+                lines += ["", f"{head} vs per-image control {ctrl}, {fill}: dAUROC {da[0]:+.3f} (p {da[1]:.4g}), "
+                          f"dCUR {dc[0]:+.3f} (p {dc[1]:.4g})"]
+    if frames_s:
+        ds = pd.concat(frames_s, ignore_index=True)
+        lines += ["", "## Stress tests (seeds 0, 1; radius 0.18): head, per-image control and native", "",
+                  "| test | model | n scans | AUROC | CUR | CUR-err |", "|---|---|---|---|---|---|"]
+        for test in STRESS:
+            dt = ds[ds.test == test]
+            for m in sorted(dt.model.unique()):
+                d = dt[dt.model == m]
+                ci = {c: H.cluster_bootstrap_ci(d, c, n_boot=10000) for c in ("auroc", "cur", "cur_err")}
+                f = lambda c: f"{ci[c][0]:.3f} [{ci[c][1]:.3f}, {ci[c][2]:.3f}]"
+                lines.append(f"| {test} | {m} | {d.scan.nunique()} | {f('auroc')} | {f('cur')} | {f('cur_err')} |")
+            for base in args.bases:
+                head, ctrl = f"{base}_oia", f"{base}_oiapatch"
+                if head in dt.model.values and ctrl in dt.model.values:
+                    da = H.paired_permutation(dt, "auroc", head, ctrl); dc = H.paired_permutation(dt, "cur", head, ctrl)
+                    lines.append(f"| {test} | {head} vs {ctrl} | | dAUROC {da[0]:+.3f} (p {da[1]:.4g}) | dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) | |")
+                if head in dt.model.values and base in dt.model.values:
+                    da = H.paired_permutation(dt, "auroc", head, base); dc = H.paired_permutation(dt, "cur", head, base)
+                    lines.append(f"| {test} | {head} vs {base} | | dAUROC {da[0]:+.3f} (p {da[1]:.4g}) | dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) | |")
     # pass condition
     for base in args.bases:
         m = f"{base}_oia"
@@ -256,7 +342,8 @@ def stage_stats(args):
 
 
 STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": stage_co3d, "stress": stage_stress,
-          "baselines": stage_baselines, "ablate": stage_ablate, "stats": stage_stats}
+          "baselines": stage_baselines, "pvfull": stage_pvfull, "ablate": stage_ablate, "dtuext": stage_dtuext,
+          "stats": stage_stats}
 
 
 def main():
@@ -266,13 +353,18 @@ def main():
     ap.add_argument("--co3d", default=None, help="preprocessed CO3D root (folders with meta.npz)")
     ap.add_argument("--out", default=os.path.join(ROOT, "results"))
     ap.add_argument("--ckpt", default=os.path.join(ROOT, "checkpoints"))
-    ap.add_argument("--steps", type=int, default=3000)
-    ap.add_argument("--seeds", default="0,1,2")
+    ap.add_argument("--steps", type=int, default=1500)
+    ap.add_argument("--seeds", default="0,1,2", help="initialisation seeds of the main head (0 = the reported one)")
     ap.add_argument("--bases", default="vggt,pi3x")
+    ap.add_argument("--pv-bases", default="vggt,pi3x,pi3,da3,mapanything", help="backbones for the pvfull stage")
+    ap.add_argument("--ext-bases", default="vggt,pi3x,pi3,da3,mapanything", help="native models for the dtuext stage")
+    ap.add_argument("--skip-gt", action="store_true", help="do not train the GT-placed variant (oiagt)")
     ap.add_argument("--retrain", action="store_true")
     a = ap.parse_args()
     a.seeds = [int(s) for s in a.seeds.split(",")]
     a.bases = a.bases.split(",")
+    a.pv_bases = a.pv_bases.split(",")
+    a.ext_bases = a.ext_bases.split(",")
     a.dtu_root = None
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()

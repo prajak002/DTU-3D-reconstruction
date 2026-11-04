@@ -17,6 +17,8 @@ Variants (all share this file, selected by the model name passed to hallu3d.make
   <base>_oialin     linear probe on the same features                                               (ablation)
   <base>_oiapatch   conv head on the per-image encoder features only: a patch detector, no multi-view (control)
   <base>_oiagt      conv head trained with ground-truth depth for mask placement instead of self      (ablation)
+  <base>_oiaattn    two cross-view transformer blocks over the tokens of all views, same features       (ablation)
+Several self-labelled heads train jointly on the same backbone forwards (train_multi, --variant a,b,c).
 Checkpoints: $OIA_CKPT_<NAME> (e.g. OIA_CKPT_VGGT_OIA) or $OIA_CKPT_DIR/<name>.pt (default checkpoints/).
 Backbones with feature hooks: vggt (aggregator tokens, layers 4/11/17/23, 2048-d), pi3 and pi3x (decoder tokens
 fed to the confidence head, 2048-d). Written against the public model code; see scripts/test_oia.py for the
@@ -56,7 +58,9 @@ VARIANTS = {
     "oialin":  ("agg",   "linear", "self"),
     "oiapatch": ("patch", "conv",  "self"),
     "oiagt":   ("agg",   "conv",   "gt"),
+    "oiaattn": ("agg",   "attn",   "self"),    # two cross-view transformer blocks over the tokens of all views
 }
+SELF_VARIANTS = [v for v, (_, _, lab) in VARIANTS.items() if lab == "self" and v != "oiafuse"]
 TRAIN_DEFAULTS = dict(steps=3000, lr=1e-3, wd=1e-2, warmup=100, n_views=10, radius_range=(0.08, 0.24),
                       fills=["gray", "blur", "noise"], p_clean=0.15, width=256, conf_floor_q=0.2,
                       val_every=250, log_every=25, val_scans=[2, 6], val_seeds=[0, 1], random_light=True)
@@ -86,19 +90,20 @@ def vggt_forward_feats(wrap, x, dtype, feats="agg", layers=(4, 11, 17, 23)):
     extr, intr = pose_encoding_to_extri_intri(pose_enc.float(), x.shape[-2:])
     E = torch.eye(4, device=x.device).repeat(N, 1, 1)
     E[:, :3, :4] = extr[0].float()
-    if feats == "agg":
-        F = [_grid(tokens[l][0][:, ps:], N, ph, pw) for l in layers]
-    elif feats == "patch":           # per-image DINOv2 tokens before any cross-view attention (the frame-only control)
+    F = {}
+    if feats in ("agg", "both"):
+        F["agg"] = [_grid(tokens[l][0][:, ps:], N, ph, pw) for l in layers]
+    if feats in ("patch", "both"):   # per-image DINOv2 tokens before any cross-view attention (the frame-only control)
         agg = model.aggregator
         xn = (x - agg._resnet_mean.reshape(1, 3, 1, 1)) / agg._resnet_std.reshape(1, 3, 1, 1)
         with _autocast(torch, dtype):
             pt = agg.patch_embed(xn)
         if isinstance(pt, dict):
             pt = pt["x_norm_patchtokens"]
-        F = [_grid(pt[:, -ph * pw:], N, ph, pw)]
-    else:
+        F["patch"] = [_grid(pt[:, -ph * pw:], N, ph, pw)]
+    if not F:
         raise ValueError(feats)
-    return depth[0, ..., 0].float(), conf[0].float(), F, intr[0].float(), E
+    return depth[0, ..., 0].float(), conf[0].float(), (F if feats == "both" else F[feats]), intr[0].float(), E
 
 
 def _find_module(model, name):
@@ -118,7 +123,7 @@ def pi3_forward_feats(wrap, x, dtype, feats="agg"):
     kw = {"with_prior": False} if wrap.name == "pi3x" else {}
     cap, hooks = {}, []
     hooks.append(_find_module(model, "conf_decoder").register_forward_pre_hook(lambda m, a: cap.__setitem__("hidden", a[0])))
-    if feats == "patch":
+    if feats in ("patch", "both"):
         hooks.append(_find_module(model, "encoder").register_forward_hook(
             lambda m, a, o: cap.__setitem__("enc", o["x_norm_patchtokens"] if isinstance(o, dict) else o)))
     try:
@@ -127,12 +132,14 @@ def pi3_forward_feats(wrap, x, dtype, feats="agg"):
     finally:
         for h in hooks:
             h.remove()
-    if feats == "agg":
-        F = [_grid(cap["hidden"][:, -ph * pw:], N, ph, pw)]
-    elif feats == "patch":
-        F = [_grid(cap["enc"][:, -ph * pw:], N, ph, pw)]
-    else:
+    F = {}
+    if feats in ("agg", "both"):
+        F["agg"] = [_grid(cap["hidden"][:, -ph * pw:], N, ph, pw)]
+    if feats in ("patch", "both"):
+        F["patch"] = [_grid(cap["enc"][:, -ph * pw:], N, ph, pw)]
+    if not F:
         raise ValueError(feats)
+    F = F if feats == "both" else F[feats]
     lp = out["local_points"][0].float()
     depth, conf = lp[..., 2], torch.sigmoid(out["conf"][0, ..., 0]).float()
     E = torch.linalg.inv(out["camera_poses"][0].float())
@@ -167,6 +174,8 @@ def build_head(torch, in_dims, arch="conv", width=256):
             elif arch == "conv":
                 self.body = nn.Sequential(nn.GELU(), nn.Conv2d(width, width, 3, padding=1), nn.GELU(),
                                           nn.Conv2d(width, width, 3, padding=1), nn.GELU())
+            elif arch == "attn":
+                self.body = CrossViewBlocks(width, depth=2, heads=4)
             else:
                 raise ValueError(arch)
             self.out = nn.Conv2d(width, 1, 1)
@@ -174,6 +183,45 @@ def build_head(torch, in_dims, arch="conv", width=256):
         def forward(self, F):
             h = sum(p(f) for p, f in zip(self.proj, F))
             return self.out(self.body(h))[:, 0]
+
+    class CrossViewBlocks(nn.Module):
+        """Transformer blocks with global attention over the tokens of every view (pre-LN, SDPA). Each token
+        carries a 2D sinusoidal position and a learned view embedding, so the head can relate a patch to the
+        same surface seen from the other cameras. Input / output (N, C, ph, pw)."""
+
+        def __init__(self, c, depth=2, heads=4, max_views=64):
+            super().__init__()
+            self.view_emb = nn.Embedding(max_views, c)
+            self.blocks = nn.ModuleList([nn.ModuleDict(dict(
+                ln1=nn.LayerNorm(c), qkv=nn.Linear(c, 3 * c), proj=nn.Linear(c, c),
+                ln2=nn.LayerNorm(c), mlp=nn.Sequential(nn.Linear(c, 4 * c), nn.GELU(), nn.Linear(4 * c, c))))
+                for _ in range(depth)])
+            self.heads, self.c = heads, c
+
+        @staticmethod
+        def _pos2d(c, ph, pw, device):
+            import math
+            q = c // 4
+            om = torch.exp(-math.log(1e4) * torch.arange(q, device=device) / q)
+            ys = torch.arange(ph, device=device)[:, None] * om[None]
+            xs = torch.arange(pw, device=device)[:, None] * om[None]
+            py = torch.cat([ys.sin(), ys.cos()], 1)            # ph, c/2
+            px = torch.cat([xs.sin(), xs.cos()], 1)            # pw, c/2
+            pos = torch.cat([py[:, None].expand(ph, pw, c // 2), px[None].expand(ph, pw, c // 2)], -1)
+            return pos.reshape(ph * pw, c)
+
+        def forward(self, h):
+            N, C, ph, pw = h.shape
+            x = h.flatten(2).transpose(1, 2)                                       # N, L, C
+            x = x + self._pos2d(C, ph, pw, h.device)[None] + self.view_emb(torch.arange(N, device=h.device))[:, None]
+            x = x.reshape(1, N * ph * pw, C)
+            for b in self.blocks:
+                y = b["ln1"](x)
+                q, k, v = b["qkv"](y).reshape(1, -1, 3, self.heads, C // self.heads).permute(2, 0, 3, 1, 4)
+                y = torch.nn.functional.scaled_dot_product_attention(q, k, v)
+                x = x + b["proj"](y.transpose(1, 2).reshape(1, -1, C))
+                x = x + b["mlp"](b["ln2"](x))
+            return x.reshape(N, ph * pw, C).transpose(1, 2).reshape(N, C, ph, pw)
 
     return SupportHead()
 
@@ -239,13 +287,31 @@ def _dtu_lights(root, scan):
 # ----------------------------------------------------------------------------- training
 def train(base, dtu_root, variant="oia", out=None, steps=None, seed=0, device="cuda", scans=None, wrap=None,
           forward_feats=None, model_hw=None, **over):
+    """One head. See train_multi for several heads on the same backbone forwards."""
+    out = out or os.path.join("checkpoints", f"{base}_{variant}.pt")
+    return train_multi(base, dtu_root, [(variant, seed, out)], steps, device, scans, wrap, forward_feats, model_hw,
+                       **over)[0]
+
+
+def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wrap=None, forward_feats=None,
+                model_hw=None, **over):
+    """Train several support heads at once on the same stream of backbone forwards. specs: list of
+    (variant, init_seed, out_path). All heads see the same samples (scenes, views, lights, masks, fills, drawn
+    with the seed of the first spec); they differ in architecture, in the feature group they read, and in the
+    initialisation seed. The backbone forward is the whole cost of a step, so this trains the main head, the
+    linear probe, the per-image control and the transformer head for the price of one. Heads with labels "gt"
+    (oiagt) need a different masked input and must be trained in a run of their own."""
     import torch
-    feats, arch, labels = VARIANTS[variant]
     tc = {**TRAIN_DEFAULTS, **over}
     if steps:
         tc["steps"] = steps
-    torch.manual_seed(seed)
-    rng = np.random.default_rng(seed)
+    specs = [(v, int(sd), o) for v, sd, o in specs]
+    labels = {VARIANTS[v][2] for v, _, _ in specs}
+    assert len(labels) == 1, f"heads with different label sources cannot share a run: {labels}"
+    labels = labels.pop()
+    data_seed = specs[0][1]
+    torch.manual_seed(data_seed)
+    rng = np.random.default_rng(data_seed)
     wrap = wrap or H.MODEL_REGISTRY[base](device)
     ff = forward_feats or FORWARD_FEATS[base]
     model_hw = tuple(model_hw or H.DEFAULT_CFG["model_hw"])
@@ -256,39 +322,52 @@ def train(base, dtu_root, variant="oia", out=None, steps=None, seed=0, device="c
         raise FileNotFoundError(f"no training scans under {dtu_root}")
     val_scans = [s for s in tc["val_scans"] if s in scans][:2]
     train_scans = [s for s in scans if s not in val_scans] or scans
-    out = out or os.path.join("checkpoints", f"{base}_{variant}.pt")
-    os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
-    print(f"[oia] base={base} variant={variant} feats={feats} arch={arch} labels={labels} "
-          f"train scans={len(train_scans)} val scans={val_scans} steps={tc['steps']} -> {out}", flush=True)
+    need = sorted({VARIANTS[v][0] for v, _, _ in specs})
+    feats_mode = need[0] if len(need) == 1 else "both"
+    for v, sd, o in specs:
+        os.makedirs(os.path.dirname(o) or ".", exist_ok=True)
+        print(f"[oia] base={base} variant={v} feats={VARIANTS[v][0]} arch={VARIANTS[v][1]} labels={labels} seed={sd} "
+              f"train scans={len(train_scans)} val scans={val_scans} steps={tc['steps']} -> {o}", flush=True)
 
-    def forward(imgs_np):
+    def forward(imgs_np, mode):
         x = wrap._prep(imgs_np, model_hw)
         with torch.no_grad():
-            d, c, F, K, E = ff(wrap, x, wrap.dtype, feats)
-        return d, c, [f.detach() for f in F], K, E
+            d, c, F, K, E = ff(wrap, x, wrap.dtype, mode)
+            if mode == "both" and not isinstance(F, dict):      # hook without a joint mode: one call per group
+                F = {m: ff(wrap, x, wrap.dtype, m)[2] for m in need}
+        if isinstance(F, dict):
+            F = {k: [f.detach() for f in v] for k, v in F.items()}
+        else:
+            F = {mode: [f.detach() for f in F]}
+        return d, c, F, K, E
 
     def scene(scan, views, light):
         data = H.load_scan(dtu_root, scan, views, light)
         pred = None
         if labels == "self":
-            d, c, _, K, E = forward(data["imgs"])
+            d, c, _, K, E = forward(data["imgs"], "agg")
             pred = (d.cpu().numpy(), c.cpu().numpy(), K.cpu().numpy(), E.cpu().numpy())
         return model_res_data(data, model_hw, pred, tc["conf_floor_q"])
 
-    head, opt, sched = None, None, None
     hw_lab = (model_hw[0] // 2, model_hw[1] // 2)
     bce = torch.nn.BCEWithLogitsLoss(reduction="none")
-    hist, best, t0 = [], -1.0, time.time()
+    heads = [dict(variant=v, seed=sd, out=o, feats=VARIANTS[v][0], arch=VARIANTS[v][1], head=None, opt=None,
+                  sched=None, hist=[], best=-1.0) for v, sd, o in specs]
+    t0 = time.time()
 
-    def step_loss(F, U, S):
-        nonlocal head, opt, sched
-        if head is None:
-            head = build_head(torch, [f.shape[1] for f in F], arch, tc["width"]).to(device)
-            opt = torch.optim.AdamW(head.parameters(), lr=tc["lr"], weight_decay=tc["wd"])
-            lam = lambda s: min(1.0, (s + 1) / tc["warmup"]) * 0.5 * (1 + np.cos(np.pi * min(s, tc["steps"]) / tc["steps"]))
-            sched = torch.optim.lr_scheduler.LambdaLR(opt, lam)
-            print(f"[oia] head params: {sum(p.numel() for p in head.parameters()) / 1e6:.2f} M, feature dims {[f.shape[1] for f in F]}", flush=True)
-        logit = upsample_logit(torch, head(F), hw_lab)
+    def build(hd, F):
+        torch.manual_seed(hd["seed"])
+        hd["head"] = build_head(torch, [f.shape[1] for f in F], hd["arch"], tc["width"]).to(device)
+        hd["opt"] = torch.optim.AdamW(hd["head"].parameters(), lr=tc["lr"], weight_decay=tc["wd"])
+        lam = lambda s: min(1.0, (s + 1) / tc["warmup"]) * 0.5 * (1 + np.cos(np.pi * min(s, tc["steps"]) / tc["steps"]))
+        hd["sched"] = torch.optim.lr_scheduler.LambdaLR(hd["opt"], lam)
+        print(f"[oia] {hd['variant']} head params: {sum(p.numel() for p in hd['head'].parameters()) / 1e6:.2f} M, "
+              f"feature dims {[f.shape[1] for f in F]}", flush=True)
+
+    def step_loss(hd, F, U, S):
+        if hd["head"] is None:
+            build(hd, F)
+        logit = upsample_logit(torch, hd["head"](F), hw_lab)
         U_t, S_t = torch.from_numpy(U).to(device), torch.from_numpy(S).to(device)
         tgt = U_t.float()
         w = torch.zeros_like(tgt)
@@ -299,9 +378,10 @@ def train(base, dtu_root, variant="oia", out=None, steps=None, seed=0, device="c
 
     def val_auroc():
         if not val_scans:
-            return float("nan")
-        head.eval()
-        aucs = []
+            return {hd["out"]: float("nan") for hd in heads}
+        for hd in heads:
+            hd["head"].eval()
+        aucs = {hd["out"]: [] for hd in heads}
         with torch.no_grad():
             for s in val_scans:
                 md = scene(s, H.select_views(tc["n_views"]), 3)
@@ -310,11 +390,25 @@ def train(base, dtu_root, variant="oia", out=None, steps=None, seed=0, device="c
                         imgs_in, m = make_sample(md, 1000 + sd, 0.18, "blur", cfg)
                     except RuntimeError:
                         continue
-                    _, _, F, _, _ = forward(imgs_in)
-                    lg = upsample_logit(torch, head(F), hw_lab).cpu().numpy()
-                    aucs.append(H.auroc(-lg[m["S"]], -lg[m["U"]]))
-        head.train()
-        return float(np.mean(aucs)) if aucs else float("nan")
+                    _, _, F, _, _ = forward(imgs_in, feats_mode)
+                    for hd in heads:
+                        lg = upsample_logit(torch, hd["head"](F[hd["feats"]]), hw_lab).cpu().numpy()
+                        aucs[hd["out"]].append(H.auroc(-lg[m["S"]], -lg[m["U"]]))
+        for hd in heads:
+            hd["head"].train()
+        return {hd["out"]: (float(np.mean(aucs[hd["out"]])) if aucs[hd["out"]] else float("nan")) for hd in heads}
+
+    def save(hd, s, va, F):
+        ck = dict(state=hd["head"].state_dict(), in_dims=[f.shape[1] for f in F], arch=hd["arch"], feats=hd["feats"],
+                  labels=labels, width=tc["width"], base=base, variant=hd["variant"], model_hw=list(model_hw), step=s,
+                  val_auroc=va, seed=hd["seed"], data_seed=data_seed,
+                  train_cfg={k: (list(v) if isinstance(v, tuple) else v) for k, v in tc.items()},
+                  train_scans=train_scans, val_scans=val_scans, joint_with=[h["variant"] for h in heads],
+                  time=time.strftime("%Y-%m-%d %H:%M:%S"))
+        torch.save(ck, hd["out"])
+        if va >= hd["best"]:
+            hd["best"] = va
+            torch.save(ck, hd["out"].replace(".pt", "_best.pt"))
 
     s = 0
     while s < tc["steps"]:
@@ -338,33 +432,30 @@ def train(base, dtu_root, variant="oia", out=None, steps=None, seed=0, device="c
                 print(f"[oia] skip sample: {e}", flush=True)
                 continue
             U, S = m["U"], m["S"]
-        _, _, F, _, _ = forward(imgs_in)
-        loss, logit = step_loss(F, U, S)
-        opt.zero_grad(set_to_none=True)
-        loss.backward()
-        torch.nn.utils.clip_grad_norm_(head.parameters(), 1.0)
-        opt.step(); sched.step()
+        _, _, F, _, _ = forward(imgs_in, feats_mode)
         s += 1
-        if s % tc["log_every"] == 0 or s == 1:
-            lg = logit.detach().cpu().numpy()
-            a = H.auroc(-lg[S], -lg[U]) if U.any() else float("nan")
-            print(f"[oia] step {s:5d} loss {loss.item():.4f} train-auroc {a:.3f} lr {sched.get_last_lr()[0]:.2e} {time.time() - t0:.0f}s", flush=True)
-            hist.append(dict(step=s, loss=float(loss.item()), auroc=a))
+        for hd in heads:
+            loss, logit = step_loss(hd, F[hd["feats"]], U, S)
+            hd["opt"].zero_grad(set_to_none=True)
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(hd["head"].parameters(), 1.0)
+            hd["opt"].step(); hd["sched"].step()
+            if s % tc["log_every"] == 0 or s == 1:
+                lg = logit.detach().cpu().numpy()
+                a = H.auroc(-lg[S], -lg[U]) if U.any() else float("nan")
+                print(f"[oia] step {s:5d} {hd['variant']:8s} loss {loss.item():.4f} train-auroc {a:.3f} "
+                      f"lr {hd['sched'].get_last_lr()[0]:.2e} {time.time() - t0:.0f}s", flush=True)
+                hd["hist"].append(dict(step=s, loss=float(loss.item()), auroc=a))
         if s % tc["val_every"] == 0 or s == tc["steps"]:
             va = val_auroc()
-            print(f"[oia] step {s:5d} val-auroc {va:.3f}", flush=True)
-            hist.append(dict(step=s, val_auroc=va))
-            ck = dict(state=head.state_dict(), in_dims=[f.shape[1] for f in F], arch=arch, feats=feats, labels=labels,
-                      width=tc["width"], base=base, variant=variant, model_hw=list(model_hw), step=s, val_auroc=va,
-                      seed=seed, train_cfg={k: (list(v) if isinstance(v, tuple) else v) for k, v in tc.items()},
-                      train_scans=train_scans, val_scans=val_scans, time=time.strftime("%Y-%m-%d %H:%M:%S"))
-            torch.save(ck, out)
-            if va >= best:
-                best = va
-                torch.save(ck, out.replace(".pt", "_best.pt"))
-    json.dump(hist, open(out.replace(".pt", "_hist.json"), "w"), indent=1)
-    print(f"[oia] done: {out} (last), best val-auroc {best:.3f}, {time.time() - t0:.0f}s", flush=True)
-    return out
+            for hd in heads:
+                print(f"[oia] step {s:5d} {hd['variant']:8s} val-auroc {va[hd['out']]:.3f}", flush=True)
+                hd["hist"].append(dict(step=s, val_auroc=va[hd["out"]]))
+                save(hd, s, va[hd["out"]], F[hd["feats"]])
+    for hd in heads:
+        json.dump(hd["hist"], open(hd["out"].replace(".pt", "_hist.json"), "w"), indent=1)
+        print(f"[oia] done: {hd['out']} (last), best val-auroc {hd['best']:.3f}, {time.time() - t0:.0f}s", flush=True)
+    return [hd["out"] for hd in heads]
 
 
 # ----------------------------------------------------------------------------- evaluation wrapper
@@ -431,9 +522,13 @@ def main():
     sub = ap.add_subparsers(dest="cmd", required=True)
     t = sub.add_parser("train")
     t.add_argument("--base", default="vggt", choices=sorted(FORWARD_FEATS))
-    t.add_argument("--variant", default="oia", choices=[v for v in VARIANTS if v != "oiafuse"])
+    t.add_argument("--variant", default="oia",
+                   help="one variant, or a comma list of self-labelled variants trained jointly on the same forwards "
+                        "(e.g. oia,oialin,oiapatch,oiaattn); oiagt must run alone")
+    t.add_argument("--extra-seeds", default="", help="extra initialisation seeds for the first variant, e.g. 1,2 "
+                                                     "(saved as <base>_<variant>_s<seed>.pt)")
     t.add_argument("--dtu", required=True, help="DTU root (Cameras/train, Rectified, Depths) holding the training scans")
-    t.add_argument("--out", default=None)
+    t.add_argument("--out", default=None, help="checkpoint path (one variant) or directory (several)")
     t.add_argument("--steps", type=int, default=None)
     t.add_argument("--seed", type=int, default=0)
     t.add_argument("--lr", type=float, default=None)
@@ -450,7 +545,17 @@ def main():
     over = {k: v for k, v in dict(lr=a.lr).items() if v is not None}
     root = H.find_dtu_root((a.dtu,)) if os.path.isdir(a.dtu) else a.dtu
     scans = [int(s) for s in a.scans.split(",")] if a.scans else None
-    train(a.base, root, a.variant, a.out, a.steps, a.seed, scans=scans, **over)
+    variants = [v for v in a.variant.split(",") if v]
+    extra = [int(x) for x in a.extra_seeds.split(",") if x]
+    for v in variants:
+        assert v in VARIANTS and v != "oiafuse", v
+    if len(variants) == 1 and not extra:
+        train(a.base, root, variants[0], a.out, a.steps, a.seed, scans=scans, **over)
+        return
+    d = a.out or "checkpoints"
+    specs = [(v, a.seed, os.path.join(d, f"{a.base}_{v}.pt")) for v in variants]
+    specs += [(variants[0], sd, os.path.join(d, f"{a.base}_{variants[0]}_s{sd}.pt")) for sd in extra]
+    train_multi(a.base, root, specs, a.steps, scans=scans, **over)
 
 
 if __name__ == "__main__":

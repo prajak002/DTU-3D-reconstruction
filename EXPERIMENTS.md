@@ -16,10 +16,13 @@ Each run has an id. A number enters the paper only when the run's CSV and `_cfg.
 | P3-pv-smoke | vggt_pv4 + pi3x_pv4 | blur, r 0.18, seed 0 | `results/P3-pv-smoke/` | 24 min | perturbation variance worse than native: AUROC 0.66 / 0.55 vs 0.92 / 0.83. |
 | P2-stress | inpaint fill, 5/3 views, adjacent cams, distractor; vggt, pi3x, da3 | seeds 0,1; r 0.18 | `results/P2-stress/` | 53 min | Table 2. Inpaint raises CUR (VGGT +0.09, Pi3X +0.07); view count no effect; DA3 reacts to parallax and distractor. |
 | P2-co3d, P2-co3d-b | five models on the CO3Dv2 subset (18 scenes = 9 categories x 2 dev sequences) | DEFAULT_CFG, 10 spread views, 518x294 | `results/P2-co3d*/`, merged `results/table3_all_models.csv` | 31 + 99 min | Table 3. Pooled blur+noise CUR: Pi3 0.272, Pi3X 0.570, VGGT 0.651, DA3 0.797, MapAnything 0.810. vase_374 misses the U_transfer gate (0.80), kept and flagged. |
+| P3-check | feature hooks on the real backbones (`run_h100.py check`), 200-step `vggt_oia` smoke on training scans 7, 8, 14, 16, evaluation on scans 3, 5, 17 | Kaggle T4, kernel `hallu3d-p3-check` v1 (commit ca2977b) | `results/P3-check/` | 43 min (training 36 min = 10.7 s/step on T4) | **Smoke only, nothing enters the paper.** Hooks give the documented shapes (VGGT 4 x 2048-d maps at 30 x 37, Pi3X 1 x 2048-d; peak 7.7 / 9.2 GB). Self-consistency of predicted depth + cameras: U_transfer 0.986 (VGGT), 0.981 (Pi3X). 200-step head, Table-4 keys: vggt AUROC 0.954 / 0.930 / 0.982, CUR 0.112 / 0.282 / 0.001 on scans 3 / 5 / 17; vggt_oia 0.9999 / 1.0000 / 0.9999, CUR 0.000 on all three; vggt_oiafuse 0.996 / 1.000 / 1.000. The kernel's own per-scan print showed NaN because it filtered the gray fill, which this run did not use; the CSV is complete. The per-image control and the inpainted fill decide whether this is support detection or patch detection. |
 
 ## Running
 
-(none)
+| run-id | what | config | where | started | notes |
+|---|---|---|---|---|---|
+| P3 pipeline A (vggt) | `run_h100.py check` (passed on this box: same shapes as Kaggle, VGGT forward 2.5 s, Pi3X 6.0 s), then `train --bases vggt --skip-gt --steps 1500` (joint: vggt_oia, vggt_oialin, vggt_oiapatch, vggt_oiaattn, vggt_oia_s1, vggt_oia_s2 on the same forwards), then `baselines`, `dtu`, `stress`, `ablate`, `co3d`, `stats` for vggt | `~/p3a.sh` on the AWS box, tmux session `p3`, logs in `~/logs/` | AWS g6.xlarge, one L4 24 GB, bf16 | 2026-11-04 08:16 UTC | 5.5 s per training step (two VGGT forwards), 12.5 GB; training about 2.3 h, evaluations about 4 h. Results are copied into `results/P3-*/` when a stage finishes. |
 
 ## Queued (Kaggle T4/P100, fp16, 10 views, 420x518)
 
@@ -27,15 +30,29 @@ Each run has an id. A number enters the paper only when the run's CSV and `_cfg.
 |---|---|---|---|---|
 | P2-omega | VGGT-Omega (gated; needs HF access) | same as P1-full | ~1 h | Table 1 last row. |
 | P3-pv-full | fuller perturbation baseline: geometric aug, K=8, similarity alignment; all 5 models, blur+noise | Kaggle, ~8x base cost | ~2 h per model | Table 4 ablation. |
-| P3-reproj | reprojection-consistency detector (no learning). **Code written 2026-10-31**: model names `vggt_reproj`, `pi3x_reproj`, `pi3_reproj` (`hallu3d.ReprojWrap` + `reproj_support_score`, cameras from the model: VGGT `pose_enc`, Pi3 `camera_poses` + fitted intrinsics). Scoring verified on the synthetic scene with GT cameras; the model-camera hooks are written against the public APIs and not yet run on a GPU. | Kaggle T4, `MODELS=vggt_reproj,pi3x_reproj`, `CFG={"seeds":[0],"fills":["blur"],"radius_fracs":[0.18]}` | ~10 min | Table 4 row (same keys as the native rows). |
-| P3-oia (main) | **support head** (`scripts/oia_head.py`): conv head on frozen VGGT / Pi3X features, self-supervised from the backbone's own clean prediction (sphere hidden in every view, no GT), trained on the 79 DTU *training* scans, CO3D zero-shot. Model names `vggt_oia`, `vggt_oiafuse`, `pi3x_oia`. **Code written 2026-11-01, CPU-tested with a fake backbone (`scripts/test_oia.py`); real feature hooks untested until the GPU.** | H100: `python scripts/run_h100.py all --dtu <root> --co3d <root>` (stages check, train, dtu, co3d, stress, baselines, ablate, stats) | train 25 min per head, evals about 2 h | Table 4 (+ Table 1/3 rows), Table 5; **Gate 2**: pass condition in the paper, decided by `results/P3-stats.md`. |
-| P3-oia-abl | linear probe (`vggt_oialin`), per-image-feature control (`vggt_oiapatch`), GT-placed masks (`vggt_oiagt`), 3 head seeds, fusion with native | same script, stage `ablate` | 20 min | Table 5. |
-| P3-main (stretch) | discrete diffusion head, K-sample disagreement; only if P3-oia is done and time remains before Nov 10 | H100; 3 training seeds | 1 to 2 days | Table 4 extra row; otherwise moved to future work. |
+| P3-reproj | reprojection-consistency detector (no learning): `vggt_reproj`, `pi3x_reproj` (`hallu3d.ReprojWrap` + `reproj_support_score`, cameras from the model). | L4, stage `baselines` (pipeline A for vggt, B for pi3x), Table-4 keys | ~10 min | Table 4 row (same keys as the native rows). |
+| P3-oia (main) | **support head** (`scripts/oia_head.py`): conv head on frozen VGGT / Pi3X features, label-free from the backbone's own clean prediction, 79 DTU training scans; the head never sees CO3Dv2 (the backbones did, see paper). Model names `vggt_oia`, `vggt_oiafuse`, `pi3x_oia`, control `<base>_oiapatch` on every row (issue #16). | L4, stages `train`, `dtu`, `co3d`, `stress` | train 2.3 h per backbone (all heads jointly), evals about 4 h | Table 4 (+ Table 1/3 rows), Table 5; **Gate 2**: pass condition in the paper, decided by `results/P3-stats.md`. |
+| P3-oia-abl | linear probe (`vggt_oialin`), per-image control (`vggt_oiapatch`), cross-view transformer head (`vggt_oiaattn`), extra initialisation seeds (`vggt_oia_s1`, `_s2`; same data stream, different init), GT-placed masks (`vggt_oiagt`, separate run, if time), `pi3x_oiapatch` | stage `ablate`, seed 0, radius 0.18, gray / blur / noise | 30 min | Table 5. |
+| P3 pipeline B (pi3x) | `train --bases pi3x` (pi3x_oia + pi3x_oiapatch jointly), `baselines`, `dtu`, `stress`, `co3d` for pi3x; then `pvfull` (all five backbones, `<base>_pvf8`, issue #3) and `dtuext` (22 MVSNet test scans, issue #9) | `~/p3b.sh`, started when pipeline A's training has released its memory | about 6 h | Table 4, Table 5, extension rows. |
+| P3-gs | feed-forward Gaussian-splatting backbone (AnySplat, `scripts/anysplat_wrap.py`): opacity as confidence, rendered alpha as a second confidence; full DTU configuration if the wrapper passes the consistency check | L4 | ~1 h | Table 1 row (sixth model) and a paragraph on representation. |
+| P3-main (future work) | discrete diffusion head, K-sample disagreement | not before the deadline | | moved to future work (issue #1). |
 | P3-compute | wall-clock and FLOPs per detector | | | Section 5 compute. |
 | P4-cont | LoRA + replay on a site stream | | | Table 6. |
 | P4-heritage | heritage photos, language-query figure | | | Figure 5. |
 
+## How to run on the AWS L4 box
+
+The box (`g6.xlarge`, eu-central-1, one L4) has the repository at `~/hallu`, the DTU training set at `~/data/dtu` (Cameras, Depths and lights 1, 3, 5 of every scan; the zip was deleted to make room) and the preprocessed CO3Dv2 subset at `~/data/co3d`. `source ~/env.sh` sets PATH (`/opt/pytorch` venv, torch 2.12 cu130), PYTHONPATH (Pi3 clone + `~/hallu/scripts`) and the HF token. Stages are launched from a driver script in tmux (`~/p3a.sh`, `~/p3b.sh`); each writes `results/<RUN>/` on the box, which is copied back into this repository with scp. The box costs about $1/h while running; stop it when idle.
+
+```
+ssh ocr-rnd   # see the instance notes; then:
+source ~/env.sh && python scripts/run_h100.py <stage> --dtu $DTU --co3d $CO3D --bases vggt,pi3x
+```
+
 ## How to run on Kaggle from this machine
+
+Authentication: a Kaggle access token in `~/.kaggle/access_token` (the CLI reads `KAGGLE_API_TOKEN`). On the Windows machine the antivirus re-signs TLS and the CLI's `requests` does not trust the Windows store, so run the CLI through a wrapper that calls `truststore.inject_into_ssl()` first (`pip install kaggle truststore`). The P3 kernels clone the public repository at a pinned commit instead of concatenating files: see `scripts/kaggle_p3_check.py` and its `kernel-metadata.json` next to it.
+
 
 ```
 cat scripts/kaggle_prelude.py scripts/hallu3d.py scripts/kaggle_driver.py > <dir>/hallu3d_kaggle.py

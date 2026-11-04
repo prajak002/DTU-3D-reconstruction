@@ -1,0 +1,123 @@
+[{"stream_name":"stdout","time":1.108104137,"data":"\n"}
+,{"stream_name":"stdout","time":1.108149339,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1.108154273,"data":"== clone  [0s]\n"}
+,{"stream_name":"stdout","time":1.108157005,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":9.654476604,"data":"commit ca2977b\n"}
+,{"stream_name":"stdout","time":9.654502874,"data":"\n"}
+,{"stream_name":"stdout","time":9.654507955,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":9.654511957,"data":"== install backbones (kaggle_prelude.py)  [9s]\n"}
+,{"stream_name":"stdout","time":9.654515455,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":23.234830907,"data":"\n"}
+,{"stream_name":"stdout","time":23.234858617,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":23.234863972,"data":"== stage check: hook shapes, timing, self-consistency of predicted depth + cameras  [22s]\n"}
+,{"stream_name":"stdout","time":23.234867935,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":23.234871831,"data":"\n"}
+,{"stream_name":"stdout","time":23.234875424,"data":"$ /usr/bin/python3 scripts/run_h100.py check --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt,pi3x\n"}
+,{"stream_name":"stdout","time":89.399078713,"data":"\n"}
+,{"stream_name":"stdout","time":89.39913008,"data":"##### stage check 2026-11-01 13:10:50\n"}
+,{"stream_name":"stdout","time":97.358456066,"data":"torch 2.11.0+cu128 cuda Tesla T4\n"}
+,{"stream_name":"stderr","time":105.710245922,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":151.255120854,"data":"vggt feats=agg: depth (10, 420, 518) conf (10, 420, 518) feature maps [(10, 2048, 30, 37), (10, 2048, 30, 37), (10, 2048, 30, 37), (10, 2048, 30, 37)] K[0] fx=1227.3 4.81s peak 7.7 GB\n"}
+,{"stream_name":"stdout","time":154.97189925200001,"data":"vggt feats=patch: depth (10, 420, 518) conf (10, 420, 518) feature maps [(10, 1024, 30, 37)] K[0] fx=1227.3 3.72s peak 8.1 GB\n"}
+,{"stream_name":"stdout","time":155.356583344,"data":"vggt self-consistency of predicted depth + cameras: {'reproj_agree': 0.699504847781663, 'reproj_agree_3pct_vis': 0.9439527341017013, 'U_transfer': 0.9857953757473713}  (U_transfer must be high, \u003e 0.9)\n"}
+,{"stream_name":"stdout","time":205.158356716,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stdout","time":205.158397683,"data":"pi3x feats=agg: depth (10, 420, 518) conf (10, 420, 518) feature maps [(10, 2048, 30, 37)] K[0] fx=1156.2 18.33s peak 9.2 GB\n"}
+,{"stream_name":"stdout","time":208.58241022,"data":"pi3x feats=patch: depth (10, 420, 518) conf (10, 420, 518) feature maps [(10, 1024, 30, 37)] K[0] fx=1156.2 3.42s peak 9.3 GB\n"}
+,{"stream_name":"stdout","time":208.881268161,"data":"pi3x self-consistency of predicted depth + cameras: {'reproj_agree': 0.5578468376073279, 'reproj_agree_3pct_vis': 0.9412634120764003, 'U_transfer': 0.9805258948069356}  (U_transfer must be high, \u003e 0.9)\n"}
+,{"stream_name":"stdout","time":209.153168045,"data":"DTU training scans present: 79 of 79\n"}
+,{"stream_name":"stdout","time":209.15711238,"data":"CO3D scenes: 18\n"}
+,{"stream_name":"stdout","time":213.26870591,"data":"[exit 0, 212s]\n"}
+,{"stream_name":"stdout","time":213.268739505,"data":"\n"}
+,{"stream_name":"stdout","time":213.268742917,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":213.268745755,"data":"== training smoke: vggt_oia, 200 steps, training scans 7,8,14,16 (2 and 6 are the validation scans)  [212s]\n"}
+,{"stream_name":"stdout","time":213.268748336,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":213.906507636,"data":"dtu root: /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu\n"}
+,{"stream_name":"stdout","time":213.906535269,"data":"\n"}
+,{"stream_name":"stdout","time":213.906539521,"data":"$ /usr/bin/python3 scripts/oia_head.py train --base vggt --dtu /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu --steps 200 --out /kaggle/working/checkpoints/vggt_oia.pt --scans 2,6,7,8,14,16\n"}
+,{"stream_name":"stderr","time":217.461812485,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":231.736395262,"data":"[oia] base=vggt variant=oia feats=agg arch=conv labels=self train scans=4 val scans=[2, 6] steps=200 -\u003e /kaggle/working/checkpoints/vggt_oia.pt\n"}
+,{"stream_name":"stdout","time":247.446246469,"data":"[oia] head params: 3.29 M, feature dims [2048, 2048, 2048, 2048]\n"}
+,{"stream_name":"stdout","time":247.816482809,"data":"[oia] step     1 loss 0.3455 train-auroc nan lr 2.00e-05 16s\n"}
+,{"stream_name":"stdout","time":548.552100176,"data":"[oia] step    25 loss 0.0345 train-auroc 1.000 lr 2.50e-04 317s\n"}
+,{"stream_name":"stdout","time":844.651308655,"data":"[oia] step    50 loss 0.0688 train-auroc 0.999 lr 4.35e-04 613s\n"}
+,{"stream_name":"stdout","time":1126.241578848,"data":"[oia] step    75 loss 0.1758 train-auroc 0.999 lr 5.25e-04 895s\n"}
+,{"stream_name":"stdout","time":1380.620577467,"data":"[oia] step   100 loss 0.0370 train-auroc 1.000 lr 5.00e-04 1149s\n"}
+,{"stream_name":"stdout","time":1640.048529121,"data":"[oia] step   125 loss 0.0151 train-auroc 1.000 lr 3.09e-04 1408s\n"}
+,{"stream_name":"stdout","time":1884.43277745,"data":"[oia] step   150 loss 0.0097 train-auroc 1.000 lr 1.46e-04 1653s\n"}
+,{"stream_name":"stdout","time":2124.773645235,"data":"[oia] step   175 loss 0.0082 train-auroc 1.000 lr 3.81e-05 1893s\n"}
+,{"stream_name":"stdout","time":2366.411398445,"data":"[oia] step   200 loss 0.0004 train-auroc nan lr 0.00e+00 2135s\n"}
+,{"stream_name":"stdout","time":2404.108199086,"data":"[oia] step   200 val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":2404.15713267,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oia.pt (last), best val-auroc 1.000, 2172s\n"}
+,{"stream_name":"stdout","time":2405.202313281,"data":"[exit 0, 2404s]\n"}
+,{"stream_name":"stdout","time":2405.202459838,"data":"\n"}
+,{"stream_name":"stdout","time":2405.202481617,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2405.202489056,"data":"== evaluation smoke: vggt vs vggt_oia vs vggt_oiafuse, 3 benchmark scans, Table-4 keys (seed 0, blur, r 0.18)  [2404s]\n"}
+,{"stream_name":"stdout","time":2405.202495817,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2405.20250283,"data":"\n"}
+,{"stream_name":"stdout","time":2405.202522444,"data":"$ /usr/bin/python3 -c \n"}
+,{"stream_name":"stdout","time":2405.202527808,"data":"import os, hallu3d as H, pandas as pd\n"}
+,{"stream_name":"stdout","time":2405.202532898,"data":"root = H.find_dtu_root()\n"}
+,{"stream_name":"stdout","time":2405.202538243,"data":"cfg = {\"seeds\": [0], \"fills\": [\"blur\"], \"radius_fracs\": [0.18], \"scans\": H.DEFAULT_CFG[\"scans\"][:3]}\n"}
+,{"stream_name":"stdout","time":2405.202543419,"data":"d = \"/kaggle/working/results/P3-smoke\"; os.makedirs(d, exist_ok=True); csv = d + \"/P3-smoke.csv\"\n"}
+,{"stream_name":"stdout","time":2405.202548755,"data":"for m in [\"vggt\", \"vggt_oia\", \"vggt_oiafuse\"]:\n"}
+,{"stream_name":"stdout","time":2405.20255398,"data":"    try:\n"}
+,{"stream_name":"stdout","time":2405.202559266,"data":"        H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=d + \"/ex_P3-smoke\")\n"}
+,{"stream_name":"stdout","time":2405.202564473,"data":"    except Exception as e:\n"}
+,{"stream_name":"stdout","time":2405.202569855,"data":"        import traceback; print(\"!!\", m, \"failed:\"); traceback.print_exc()\n"}
+,{"stream_name":"stdout","time":2405.20257362,"data":"if os.path.exists(csv):\n"}
+,{"stream_name":"stdout","time":2405.202577275,"data":"    s = H.summarize(csv); s.to_csv(d + \"/P3-smoke_summary.csv\", index=False); print(s.to_string())\n"}
+,{"stream_name":"stdout","time":2405.202581608,"data":"    df = pd.read_csv(csv)\n"}
+,{"stream_name":"stdout","time":2405.202586932,"data":"    print(df[[\"model\", \"scan\", \"auroc\", \"cur\", \"absrel_U\"]].to_string())\n"}
+,{"stream_name":"stdout","time":2405.202592121,"data":"\n"}
+,{"stream_name":"stderr","time":2409.107228071,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":2431.542400496,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":2431.542428462,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stderr","time":2447.734586208,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":2447.73462798,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":2553.311175087,"data":"[vggt] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  16s\n"}
+,{"stream_name":"stdout","time":2553.311206974,"data":"[vggt] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  32s\n"}
+,{"stream_name":"stdout","time":2553.311212549,"data":"[vggt] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  48s\n"}
+,{"stream_name":"stdout","time":2553.311217623,"data":"resuming: 3 rows already in /kaggle/working/results/P3-smoke/P3-smoke.csv\n"}
+,{"stream_name":"stdout","time":2553.311222605,"data":"[vggt_oia] head from /kaggle/working/checkpoints/vggt_oia.pt (step 200, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":2553.311227684,"data":"[vggt_oia] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  9s\n"}
+,{"stream_name":"stdout","time":2553.311232232,"data":"[vggt_oia] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  19s\n"}
+,{"stream_name":"stdout","time":2553.311236968,"data":"[vggt_oia] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  29s\n"}
+,{"stream_name":"stdout","time":2553.311241787,"data":"resuming: 6 rows already in /kaggle/working/results/P3-smoke/P3-smoke.csv\n"}
+,{"stream_name":"stdout","time":2553.311246711,"data":"[vggt_oiafuse] head from /kaggle/working/checkpoints/vggt_oia.pt (step 200, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":2553.31126189,"data":"[vggt_oiafuse] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  9s\n"}
+,{"stream_name":"stdout","time":2553.311265713,"data":"[vggt_oiafuse] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  18s\n"}
+,{"stream_name":"stdout","time":2553.311269654,"data":"[vggt_oiafuse] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  28s\n"}
+,{"stream_name":"stdout","time":2553.311273645,"data":"          model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":2553.311278307,"data":"0          vggt         0.18  blur       3  0.955 [0.930, 0.982]  0.415 [0.329, 0.476]  0.132 [0.001, 0.282]  0.000 [0.000, 0.000]  0.006 [0.004, 0.007]  0.008 [0.005, 0.010]  0.004 [0.003, 0.005]  0.111 [0.034, 0.228]        3        0.246988\n"}
+,{"stream_name":"stdout","time":2553.311282377,"data":"1      vggt_oia         0.18  blur       3  1.000 [1.000, 1.000]  0.461 [0.370, 0.525]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.006 [0.004, 0.007]  0.008 [0.005, 0.010]  0.004 [0.003, 0.005]  0.000 [0.000, 0.000]        3        0.246988\n"}
+,{"stream_name":"stdout","time":2553.31128693,"data":"2  vggt_oiafuse         0.18  blur       3  0.999 [0.996, 1.000]  0.414 [0.329, 0.476]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.006 [0.004, 0.007]  0.008 [0.005, 0.010]  0.004 [0.003, 0.005]  0.003 [0.000, 0.005]        3        0.246988\n"}
+,{"stream_name":"stdout","time":2553.311291491,"data":"          model  scan     auroc       cur  absrel_U\n"}
+,{"stream_name":"stdout","time":2553.311295405,"data":"0          vggt     3  0.953514  0.111890  0.010282\n"}
+,{"stream_name":"stdout","time":2553.311300439,"data":"1          vggt     5  0.930469  0.282463  0.004964\n"}
+,{"stream_name":"stdout","time":2553.311303773,"data":"2          vggt    17  0.981772  0.000840  0.010245\n"}
+,{"stream_name":"stdout","time":2553.311307869,"data":"3      vggt_oia     3  0.999916  0.000158  0.010282\n"}
+,{"stream_name":"stdout","time":2553.311312004,"data":"4      vggt_oia     5  0.999996  0.000000  0.004964\n"}
+,{"stream_name":"stdout","time":2553.311315956,"data":"5      vggt_oia    17  0.999954  0.000000  0.010245\n"}
+,{"stream_name":"stdout","time":2553.31133792,"data":"6  vggt_oiafuse     3  0.996165  0.000973  0.010282\n"}
+,{"stream_name":"stdout","time":2553.311342502,"data":"7  vggt_oiafuse     5  0.999969  0.000000  0.004964\n"}
+,{"stream_name":"stdout","time":2553.311346047,"data":"8  vggt_oiafuse    17  0.999541  0.000000  0.010245\n"}
+,{"stream_name":"stdout","time":2554.405457542,"data":"[exit 0, 2553s]\n"}
+,{"stream_name":"stdout","time":2554.405489366,"data":"\n"}
+,{"stream_name":"stdout","time":2554.405493798,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2554.405497701,"data":"== done  [2553s]\n"}
+,{"stream_name":"stdout","time":2554.405501144,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2554.405853381,"data":"  13,188,937  /kaggle/working/checkpoints/vggt_oia_best.pt\n"}
+,{"stream_name":"stdout","time":2554.405861435,"data":"         772  /kaggle/working/checkpoints/vggt_oia_hist.json\n"}
+,{"stream_name":"stdout","time":2554.405865307,"data":"  13,188,797  /kaggle/working/checkpoints/vggt_oia.pt\n"}
+,{"stream_name":"stdout","time":2554.406007073,"data":"       1,131  /kaggle/working/results/P3-check/P3-check.log\n"}
+,{"stream_name":"stdout","time":2554.406030772,"data":"       2,656  /kaggle/working/results/P3-smoke/P3-smoke.csv\n"}
+,{"stream_name":"stdout","time":2554.40604496,"data":"         808  /kaggle/working/results/P3-smoke/P3-smoke_summary.csv\n"}
+,{"stream_name":"stdout","time":2554.406056955,"data":"         410  /kaggle/working/results/P3-smoke/P3-smoke_cfg.json\n"}
+,{"stream_name":"stdout","time":2554.406067865,"data":"total 2553s\n"}
+,{"stream_name":"stderr","time":2556.606580275,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":2556.606606399,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":2556.910407914,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":2556.910433634,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":2557.759019352,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":2558.794009598,"data":"[NbConvertApp] Writing 289950 bytes to __results__.html\n"}
+]
