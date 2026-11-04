@@ -358,15 +358,56 @@ def stage_stats(args):
                 if head in dt.model.values and base in dt.model.values:
                     da = H.paired_permutation(dt, "auroc", head, base); dc = H.paired_permutation(dt, "cur", head, base)
                     lines.append(f"| {test} | {head} vs {base} | | dAUROC {da[0]:+.3f} (p {da[1]:.4g}) | dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) | |")
-    # pass condition
+    # pass condition, pre-registered in the paper
+    # part 1: the head beats native confidence on AUROC and CUR (paired sign-flip p < 0.05, Table 4 keys)
+    # part 2: the per-image control does not explain the gain on the inpainted fill (stress inpaint10) or on
+    #         CO3Dv2: the head beats the control on AUROC at p < 0.05, or the control's AUROC gain over native
+    #         confidence is under half of the head's
+    def _ctrl_check(dt, head, ctrl, base):
+        if not all(m in dt.model.values for m in (head, ctrl, base)):
+            return None
+        hb = H.paired_permutation(dt, "auroc", head, base)
+        cb = H.paired_permutation(dt, "auroc", ctrl, base)
+        hc = H.paired_permutation(dt, "auroc", head, ctrl)
+        ok = (hc[0] > 0 and hc[1] < 0.05) or (cb[0] < 0.5 * hb[0])
+        return ok, hb, cb, hc
+
+    co3d_df = None
+    p = os.path.join(args.out, "P3-oia-co3d", "P3-oia-co3d.csv")
+    ref3 = os.path.join(ROOT, "results", "table3_all_models.csv")
+    if os.path.exists(p):
+        co3d_df = pd.concat([pd.read_csv(p)] + ([pd.read_csv(ref3)] if os.path.exists(ref3) else []), ignore_index=True)
+        co3d_df = co3d_df[co3d_df.fill.isin(["blur", "noise"])]
     for base in args.bases:
-        m = f"{base}_oia"
+        m, ctrl = f"{base}_oia", f"{base}_oiapatch"
         if m in t4.model.values and base in t4.model.values:
             da = H.paired_permutation(t4, "auroc", m, base)
             dc = H.paired_permutation(t4, "cur", m, base)
             ok = da[0] > 0 and da[1] < 0.05 and dc[0] < 0 and dc[1] < 0.05
-            lines += ["", f"**Pass condition for {m}**: dAUROC {da[0]:+.3f} (p {da[1]:.4g}), dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) -> "
-                      + ("PASS" if ok else "FAIL")]
+            lines += ["", f"**Pass condition for {m}, part 1 (head vs native, Table 4 keys)**: dAUROC {da[0]:+.3f} "
+                      f"(p {da[1]:.4g}), dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) -> " + ("PASS" if ok else "FAIL")]
+            checks = {}
+            if frames_s:
+                checks["inpainted fill (stress inpaint10)"] = _ctrl_check(ds[ds.test == "inpaint10"], m, ctrl, base)
+            if co3d_df is not None:
+                checks["CO3Dv2 (blur and noise fills)"] = _ctrl_check(co3d_df, m, ctrl, base)
+            for name, r in checks.items():
+                if r is None:
+                    lines.append(f"part 2, {name}: head, control or native rows missing")
+                    continue
+                ok2, hb, cb, hc = r
+                lines.append(f"part 2, {name}: head-native dAUROC {hb[0]:+.3f}, control-native {cb[0]:+.3f}, "
+                             f"head-control {hc[0]:+.3f} (p {hc[1]:.4g}) -> "
+                             + ("control does not explain the gain" if ok2 else "control explains the gain"))
+            have2 = [r for r in checks.values() if r is not None]
+            if have2:
+                ok_all = ok and all(r[0] for r in have2)
+                lines.append(f"**Gate 2 for {m}**: " + ("PASS" if ok_all else "FAIL")
+                             + f" (part 1 {'ok' if ok else 'fail'}; part 2 {sum(int(r[0]) for r in have2)}/{len(have2)}"
+                             " tests; criterion: head beats control at p<0.05 or the control's AUROC gain over native"
+                             " is under half the head's, on inpaint and CO3Dv2)")
+            else:
+                lines.append(f"**Gate 2 for {m}**: part 2 not yet run (needs the stress inpaint10 and co3d stages)")
     # full configuration, pooled blur + noise, DTU and CO3D
     for run_name, title in [("P3-oia-dtu", "DTU"), ("P3-oia-co3d", "CO3Dv2 (head never saw it)"), ("P3-eth3d", "ETH3D"),
                             ("P3-dtuext", "DTU extension scans (seed 0, radius 0.18)"), ("P3-gs", "DTU, Gaussian-splatting backbone"),

@@ -323,7 +323,7 @@ Pi3X & \textbf{support head (ours)} & 1 & \tbd{P3-oia} & \\
 \end{table}
 
 \paragraph{What is measured and what is pending.}
-Table~\ref{tab:detectors} holds the rows that exist. Pre-registered pass condition: the support head beats native confidence on \auroc{} and \cur{} with a paired sign-flip $p<0.05$ over the 18 scans at one backbone forward, and the per-image feature head does not explain the gain on the inpainted fill or on CO3Dv2. If it fails, this is a benchmark paper with the best training-free detector, and we will say so. The full DTU, CO3Dv2 and ETH3D configurations, the stress battery and the controls are \tbd{P3-oia, P3-oia-abl, P3-eth3d}.
+Table~\ref{tab:detectors} holds the rows that exist. Pre-registered pass condition: the support head beats native confidence on \auroc{} and \cur{} with a paired sign-flip $p<0.05$ over the 18 scans at one backbone forward, and the per-image feature head does not explain the gain on the inpainted fill or on CO3Dv2 (its \auroc{} gain over native is under half the head's, or the head beats it at $p<0.05$). If it fails, this is a benchmark paper with the best training-free detector, and we will say so. The full DTU, CO3Dv2 and ETH3D configurations, the stress battery and the controls are \tbd{P3-oia, P3-oia-abl, P3-eth3d}.
 
 \paragraph{Fill ablation on the benchmark.}
 Figure~S2 in the supplementary collects the fill effects across both datasets, including the inpainted fill on DTU. It is the single figure we would point a sceptical reviewer to: the leak is largest when the patch is least visible.
@@ -333,13 +333,13 @@ Figure~S2 in the supplementary collects the fill effects across both datasets, i
 \section{Limitations}
 \label{sec:limits}
 
-Static scenes only. The benchmark labels are a proxy for real occlusion: a real unobserved region is not surrounded by a filled patch, and the stress tests bound but do not remove that gap. CO3Dv2 ground truth is COLMAP depth with 1 to 3\% noise, so \absrel{} below about 0.03 reads as equal. The support head's results are pending, and all findings depend on the released checkpoints.
+Static scenes only. The benchmark labels are a proxy for real occlusion: a real unobserved region is not surrounded by a filled patch, and the stress tests bound but do not remove that gap. CO3Dv2 ground truth is COLMAP depth with 1 to 3\% noise, so \absrel{} below about 0.03 reads as equal, and three backbones saw CO3Dv2 in training, which can flatter their imagination there, not the leak. The support head's results are pending, and all findings depend on the released checkpoints.
 
 %------------------------------------------------------------------------
 \section{Conclusion}
 \label{sec:conclusion}
 
-When a feed-forward 3D model has not seen a surface, it mostly does not say so: a quarter to four fifths of the geometry it invents passes a confidence filter tuned to keep 90\% of what it observed, and the leak grows when the occluder looks natural. The answer is not to stop the models from imagining but to make them say when they do; we have laid out a label-free support head and a pre-registered test for it.
+When a feed-forward 3D model has not seen a surface, it mostly does not say so: a quarter to four fifths of the geometry it invents passes a confidence filter tuned to keep 90\% of what it observed, and the leak grows when the occluder looks natural. The answer is not to stop the models from imagining but to make them say when they do: a label-free support head with a pre-registered test.
 
 %------------------------------------------------------------------------
 \section*{LLM Usage Statement}
