@@ -137,7 +137,7 @@ def stage_train(args):
     extra = [s for s in args.seeds if s != 0]
     jobs = []            # (base, variants, extra seeds, first checkpoint that marks the job done)
     if "vggt" in args.bases:
-        jobs.append(("vggt", "oia,oialin,oiapatch,oiaattn", extra, "vggt_oia.pt"))
+        jobs.append(("vggt", args.variants, extra, "vggt_oia.pt"))
         if not args.skip_gt:
             jobs.append(("vggt", "oiagt", [], "vggt_oiagt.pt"))
     for b in args.bases:
@@ -407,6 +407,8 @@ def main():
     ap.add_argument("--pv-bases", default="vggt,pi3x,pi3,da3,mapanything", help="backbones for the pvfull stage")
     ap.add_argument("--ext-bases", default="vggt,pi3x,pi3,da3,mapanything", help="native models for the dtuext stage")
     ap.add_argument("--skip-gt", action="store_true", help="do not train the GT-placed variant (oiagt)")
+    ap.add_argument("--variants", default="oia,oialin,oiapatch,oiaattn",
+                    help="self-labelled VGGT heads trained jointly (drop oiaattn on a 16 GB GPU)")
     ap.add_argument("--gs-render", action="store_true", help="gs stage: also run anysplat_render (needs gsplat)")
     ap.add_argument("--retrain", action="store_true")
     a = ap.parse_args()
