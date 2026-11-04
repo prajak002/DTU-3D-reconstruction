@@ -179,14 +179,22 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
 
 <section class="measure">
   <h2>What we propose</h2>
-  <p>We do not want to stop these models from imagining; that is what makes them useful. We want them to say when they do. A frozen backbone feeds a small discrete diffusion head over quantized geometry tokens, trained by hiding regions of the backbone's own output and recovering them, with no hallucination labels. At test time the head draws several samples. Where the samples agree with the backbone, the geometry is <strong>observed</strong>. Where they agree with each other but with nothing observed, it is <strong>imagined</strong>. Everywhere else the model <strong>abstains</strong>. You see three colours instead of one confidence map.</p>
-  <p>The head is a few million parameters and adds one head forward to one backbone forward. A per-image control head, a linear probe, a cross-view transformer head and the inpainted fill the head never saw decide whether it finds missing support or merely the patch.</p>
-  <p><span class="pending">pending</span> The method is specified and its pass condition is pre-registered: it must beat native confidence on AUROC and CUR at equal compute, paired test over scenes. Its numbers do not exist yet and nothing on this page pretends they do.</p>
+  <p>We do not want to stop these models from imagining; that is what makes them useful. We want them to say when they do. A small <strong>support head</strong> sits on the frozen multi-view features of the backbone and predicts, per pixel, whether the geometry there was observed or imagined, with an abstain band in between. It is trained without any hallucination labels: the benchmark's own masking is applied to the backbone's <em>own</em> clean prediction on training scenes that never appear in the benchmark, and the head learns to find the hidden pixels again. One backbone forward, one head forward.</p>
+  <p>A head trained on hidden regions could learn to see the patch instead of the missing support. Four controls separate the two: a head of the same size on per-image features only, which can see nothing but the patch; the inpainted fill, which the head never sees in training; CO3Dv2, which the head never sees at all; and a linear probe on the same features. A cross-view transformer head, two attention blocks over the tokens of all views, tests whether attention inside the detector adds anything. The head, the probe, the control and the transformer head are trained jointly on the same stream of backbone forwards, so the comparison holds the data fixed.</p>
+  <p>A 200-step smoke run of the head on four training scans already separates hidden from observed pixels on three benchmark scans with AUROC above 0.999 against 0.93 to 0.98 for native confidence. That is exactly the number the controls exist to test, so it is reported as a smoke run and nothing more.</p>
+  <p><span class="pending">running</span> The pass condition is pre-registered: the head must beat native confidence on AUROC and CUR with a paired test over the 18 scans at one backbone forward, and the per-image control must not explain the gain on the inpainted fill or on CO3Dv2. The runs that decide it are in progress on two Kaggle T4s and one L4 (November 4 to 6, 2026). Numbers appear here only from their logged CSVs.</p>
 </section>
 <figure class="fig">
   <img src="assets/fig9_method.png" alt="Design diagram of the support head: frozen backbone, label-free masking of its own prediction, per-pixel observed / abstain / imagined output">
-  <figcaption>Design figure of the proposed detector. The backbone stays frozen; only the head is trained and adapted.</figcaption>
+  <figcaption>Design figure of the support head. The backbone stays frozen; only the head is trained, on the backbone's own predictions, with no labels.</figcaption>
 </figure>
+
+<section class="measure">
+  <h2>Three datasets, six models</h2>
+  <p>DTU is a lab rig with 49 cameras; CO3Dv2 is phone video of everyday objects; ETH3D is nine building-scale scenes (a courtyard, a facade, a stone relief, terraces) with laser-scanner ground truth, added to answer the objection that neither of the first two has long-range structure. Twenty-two further DTU scans extend the lab set from 18 to 40 scenes. The sixth model is AnySplat, a feed-forward Gaussian-splatting transformer from unposed views, scored with the opacity of each pixel's Gaussian as its confidence: it asks whether the representation changes the answer, or only the training objective does.</p>
+  <p>Training-data overlap, from the papers: VGGT, Pi3 and Depth Anything 3 trained on CO3Dv2; MapAnything did not; none trained on DTU or ETH3D. The leak is largest on the dataset three of the models were trained on.</p>
+  <p>Every logged row is browsable in the <a href="explorer_io.html">input → output explorer</a>: choose a dataset, scene, model, fill, radius and placement, and see what the model returned, how much passed its own filter, and how the other models did on the identical input.</p>
+</section>
 
 <section class="measure" id="demo">
   <h2>Demo</h2>
@@ -216,7 +224,7 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
     <tr><th>Done, every number from a logged run</th><th>Not yet</th></tr>
     <tr>
       <td>Benchmark on DTU and CO3Dv2, five models, three fills plus inpaint, stress tests, two failing cheap baselines, intervals and paired tests for all of it. About eight GPU hours on one T4.</td>
-      <td>The support head and its controls, the reprojection and fuller perturbation baselines, the 22 extension scans and the CO3Dv2 and stress evaluations of the head are running on one L4 GPU (November 2026). The generative head, continual adaptation and the heritage study are future work.</td>
+      <td>In progress on two Kaggle T4s and one L4 (November 4 to 6, 2026): the support head and its controls on DTU, CO3Dv2 and ETH3D, the inpainted-fill and other stress tests of the head, the reprojection and fuller perturbation baselines, the 22 extension scans, the Gaussian-splatting backbone, compute accounting. Future work: the generative head, continual adaptation, the heritage photo study, dynamic scenes.</td>
     </tr>
   </table>
   <p class="small">The full run log, including the runs that failed and every correction made to a reported number, ships with the code.</p>
