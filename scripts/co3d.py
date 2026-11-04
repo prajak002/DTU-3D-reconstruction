@@ -185,7 +185,8 @@ def load_co3d_scene(root, scene, views):
         imgs.append(img)
     return dict(imgs=np.stack(imgs), depths=m["depth"][views], K_img=m["K_img"][views], K_dep=m["K_dep"][views],
                 E=m["E"][views], views=views, scan=scene, center_mask=m["fg"][views],
-                model_hw=MODEL_HW if m["img_hw"][0] >= m["img_hw"][1] else MODEL_HW[::-1])
+                model_hw=(tuple(int(x) for x in m["model_hw"]) if "model_hw" in m.files else
+                          (MODEL_HW if m["img_hw"][0] >= m["img_hw"][1] else MODEL_HW[::-1])))
 
 
 def scene_hw(root, scene):

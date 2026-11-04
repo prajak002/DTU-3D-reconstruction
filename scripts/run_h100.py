@@ -208,6 +208,17 @@ def stage_dtuext(args):
     run(args, "P3-dtuext", models, cfg, args.dtu_root)
 
 
+def stage_eth3d(args):
+    """Third dataset: the 13 ETH3D DSLR training scenes (scripts/eth3d.py), building scale, laser ground truth.
+    Native models plus the head and its per-image control, full configuration, cfg dataset = co3d (same loader)."""
+    _ckpt_env(args)
+    if not args.eth3d_root:
+        print("[skip] eth3d: no --eth3d root"); return
+    scenes = co3d.list_co3d_scenes(args.eth3d_root)
+    models = list(args.ext_bases) + [m for m in ("vggt_oia", "vggt_oiapatch") if _have(args, m)]
+    run(args, "P3-eth3d", models, {**FULL, "dataset": "co3d", "scans": scenes}, args.eth3d_root)
+
+
 def stage_ablate(args):
     _ckpt_env(args)
     models = [m for m in ("vggt_oialin", "vggt_oiapatch", "vggt_oiaattn", "vggt_oiagt", "pi3x_oiapatch") if _have(args, m)]
@@ -323,9 +334,10 @@ def stage_stats(args):
             lines += ["", f"**Pass condition for {m}**: dAUROC {da[0]:+.3f} (p {da[1]:.4g}), dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) -> "
                       + ("PASS" if ok else "FAIL")]
     # full configuration, pooled blur + noise, DTU and CO3D
-    for run_name, title in [("P3-oia-dtu", "DTU"), ("P3-oia-co3d", "CO3Dv2 (zero-shot)")]:
+    for run_name, title in [("P3-oia-dtu", "DTU"), ("P3-oia-co3d", "CO3Dv2 (head never saw it)"), ("P3-eth3d", "ETH3D"),
+                            ("P3-dtuext", "DTU extension scans (seed 0, radius 0.18)")]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
-        ref = os.path.join(ROOT, "results", "table1_all_models.csv" if title == "DTU" else "table3_all_models.csv")
+        ref = os.path.join(ROOT, "results", {"DTU": "table1_all_models.csv", "CO3Dv2 (head never saw it)": "table3_all_models.csv"}.get(title, "none"))
         if not os.path.exists(p):
             continue
         dd = pd.concat([pd.read_csv(p)] + ([pd.read_csv(ref)] if os.path.exists(ref) else []), ignore_index=True)
@@ -343,7 +355,7 @@ def stage_stats(args):
 
 STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": stage_co3d, "stress": stage_stress,
           "baselines": stage_baselines, "pvfull": stage_pvfull, "ablate": stage_ablate, "dtuext": stage_dtuext,
-          "stats": stage_stats}
+          "eth3d": stage_eth3d, "stats": stage_stats}
 
 
 def main():
@@ -351,6 +363,7 @@ def main():
     ap.add_argument("stage", choices=list(STAGES) + ["all"])
     ap.add_argument("--dtu", default=None, help="directory searched for a DTU root")
     ap.add_argument("--co3d", default=None, help="preprocessed CO3D root (folders with meta.npz)")
+    ap.add_argument("--eth3d", default=None, help="preprocessed ETH3D root (scripts/eth3d.py; same folder format)")
     ap.add_argument("--out", default=os.path.join(ROOT, "results"))
     ap.add_argument("--ckpt", default=os.path.join(ROOT, "checkpoints"))
     ap.add_argument("--steps", type=int, default=1500)
@@ -369,10 +382,13 @@ def main():
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
     a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check") else None
+    a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]
     for s in stages:
         if s == "co3d" and not a.co3d_root:
             print("[skip] co3d: no --co3d root"); continue
+        if s == "eth3d" and not a.eth3d_root:
+            print("[skip] eth3d: no --eth3d root"); continue
         print(f"\n##### stage {s} {time.strftime('%Y-%m-%d %H:%M:%S')}", flush=True)
         STAGES[s](a)
 
