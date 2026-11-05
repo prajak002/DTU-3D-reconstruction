@@ -1,0 +1,12 @@
+12:05:55 == P3-oia-stress_blur3: models ['vggt_oia', 'vggt_oiapatch'], cfg {"seeds": [0, 1], "fills": ["blur"], "radius_fracs": [0.18], "n_views": 3, "keep_model": true}
+12:07:17    vggt_oia: 82s
+12:08:13    vggt_oiapatch: 56s
+12:08:13            model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0       vggt_oia         0.18  blur      36  0.998 [0.993, 1.000]  0.487 [0.453, 0.520]  0.010 [0.000, 0.029]  0.000 [0.000, 0.000]  0.009 [0.007, 0.011]  0.015 [0.010, 0.022]  0.007 [0.005, 0.009]  0.028 [0.000, 0.083]       18         0.00005
+1  vggt_oiapatch         0.18  blur      36  0.999 [0.998, 1.000]  0.505 [0.467, 0.546]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.009 [0.007, 0.011]  0.015 [0.010, 0.022]  0.007 [0.005, 0.009]  0.028 [0.000, 0.083]       18         0.00005
+11:19:41 == P3-oia-stress_blur3: models ['vggt_oia', 'vggt_oiapatch'], cfg {"seeds": [0, 1], "fills": ["blur"], "radius_fracs": [0.18], "n_views": 3, "keep_model": true}
+11:19:41    vggt_oia: 0s
+11:19:41    vggt_oiapatch: 0s
+11:19:41            model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0       vggt_oia         0.18  blur      36  0.998 [0.993, 1.000]  0.487 [0.453, 0.520]  0.010 [0.000, 0.029]  0.000 [0.000, 0.000]  0.009 [0.007, 0.011]  0.015 [0.010, 0.022]  0.007 [0.005, 0.009]  0.028 [0.000, 0.083]       18         0.00005
+1  vggt_oiapatch         0.18  blur      36  0.999 [0.998, 1.000]  0.505 [0.467, 0.546]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.009 [0.007, 0.011]  0.015 [0.010, 0.022]  0.007 [0.005, 0.009]  0.028 [0.000, 0.083]       18         0.00005

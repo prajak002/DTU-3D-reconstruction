@@ -1,0 +1,8 @@
+10:37:48 == P3-native: models ['vggt'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+10:39:51    vggt: 123s
+10:39:51   model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  vggt         0.18  blur      18  0.915 [0.883, 0.943]  0.447 [0.376, 0.521]  0.255 [0.157, 0.364]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  0.196 [0.128, 0.271]       18         0.00005
+11:19:38 == P3-native: models ['vggt'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+11:19:38    vggt: 0s
+11:19:38   model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  vggt         0.18  blur      18  0.915 [0.883, 0.943]  0.447 [0.376, 0.521]  0.255 [0.157, 0.364]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  0.196 [0.128, 0.271]       18         0.00005

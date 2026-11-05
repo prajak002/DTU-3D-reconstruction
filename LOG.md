@@ -1,5 +1,16 @@
 # LOG
 
+## 2026-11-05
+
+### Box back on; the 2026-11-04 run went further than logged; P3 relaunched as one memory-gated run
+
+- **Correction to the 2026-11-04 entry.** The box ran until about 12:30 UTC, not 10:05; only the SSH session had dropped. Pipeline A finished the six VGGT heads (step 1500, 7651 s, validation AUROC 1.000 for all six), `baselines` (`P3-native`, `P3-reproj`, `P3-pv`), `dtu` (`P3-oia-dtu`, 1620 rows) and the five `stress` tests (72 rows each), and was 117 rows into `ablate` when the box stopped. Those folders are copied into `results/` (the ablation follows when complete).
+- **First full-configuration numbers (DTU, seeds 0-4, radii 0.10 and 0.18, 18 scans).** `vggt_oia` AUROC 0.995 to 1.000, CUR 0.000 to 0.018 (blur r 0.10 is the worst cell); `vggt_oiapatch`, the per-image control, 0.996 to 1.000 and 0.000 to 0.013; `vggt_oiafuse` 0.952 to 1.000. Table-4 keys (blur, r 0.18, seed 0): native 0.915 / 0.255, `vggt_reproj` 0.488 / 0.931, `vggt_pv4` 0.666 / 0.627. Stress tests on the same keys, both seeds: held-out inpaint fill `vggt_oia` 1.000, `vggt_oiapatch` 0.999; blur5, blur3, adjacent10 and distractor10 between 0.997 and 1.000 for both. **Observation, not a conclusion:** on every DTU row the per-image control matches the support head, including the fill the heads never saw. The numeric control criterion of the stats stage (commit 11bb351) decides Gate 2 part 2 when the CO3Dv2 and ETH3D rows exist; if it fails, the paper has to say that the synthetic fills are detectable from one image and that the head's gain over native confidence is patch detection.
+- **Box synced** to 11bb351. Its uncommitted 2026-11-04 edits were an older state of what the later commits contain (checked file by file) and are stashed on the box as a backup.
+- **Relaunch, first attempt 11:19 UTC** with `scripts/box/p3_all.sh`: the Pi3X trainer was killed after 45 s by the kernel's OOM killer (host RAM 15 GB; the trainer had 7.3 GB resident next to the resumed ablation stage and the other user's three jobs). The stage returned 0, so the script went on to the Pi3X evaluations without a head; stopped by hand.
+- **Second attempt 11:25 UTC**, same script revised: a 12 GB swap file (swappiness 10); head training runs alone before the two evaluation pipelines and is called twice (the second call resumes or is a no-op); every stage waits for enough free GPU memory before it starts (`wait_free`, the card is shared); after both pipelines a sweep re-runs training and every evaluation stage sequentially (no-ops where rows exist, fills gaps left by any OOM stop), then compute accounting, `stats` and the three-way figure. Pi3X training 4.2 s per step, 9.8 GB (about 1.75 h); other user at 2 to 6 GB.
+- The Kaggle P3 kernels were not checked today (no Kaggle CLI on this machine). The box run supersedes the vggt kernel; for pi3x whichever finishes first is used, rows are merged by key.
+
 ## 2026-11-04
 
 ### P3-check read, AWS L4 box set up, joint head training launched, paper made CVPR-2027 compliant (no reported number changed)
