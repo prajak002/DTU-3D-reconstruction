@@ -51,8 +51,8 @@ echo "== start $(date -u), ${TOTAL} MiB card, $(nvidia-smi --query-gpu=memory.us
 ) > ~/logs/p3a.out 2>&1 &
 A_PID=$!
 
-# 2. VGGT heads (complete at step 1500 on 2026-11-04; the stage checks the checkpoint and is a no-op when complete)
-run train_vggt 14 python scripts/run_h100.py train --dtu $DTU --bases vggt --skip-gt --steps 1500
+# 2. VGGT heads (complete at step 1500 on 2026-11-04; the stage checks the checkpoint and is a no-op when complete, so no gate)
+run train_vggt 1 python scripts/run_h100.py train --dtu $DTU --bases vggt --skip-gt --steps 1500
 
 # 3. Pi3X heads (9.8 GB of GPU memory measured on 2026-11-05, 7.5 GB of host RAM; checkpoint at step 750 of 1500); a second
 #    call resumes if the first was interrupted and is a no-op once the checkpoint is at 1500 steps
