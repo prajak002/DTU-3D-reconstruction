@@ -250,6 +250,82 @@ def stage_eth3d(args):
     run(args, "P3-eth3d", models, {**FULL, "dataset": "co3d", "scans": scenes, "view_mode": "adjacent"}, args.eth3d_root)
 
 
+# ----------------------------------------------------------------------------- P4-vis: true-visibility protocol
+VIS_CFG = {"vis_views": [3, 5, 10], "seeds": [0, 1, 2]}
+
+
+def _vis_models(args, extra_native=()):
+    """Every detector on the vis protocol: native confidence, reprojection, the fill-trained head and its control
+    (do they transfer?), the visibility-trained head, its per-image control and the linear probe."""
+    ms = []
+    for b in args.bases:
+        ms += [b] + ([f"{b}_reproj"] if b in ("vggt", "pi3x", "pi3") else [])
+        ms += [f"{b}_{v}" for v in ("oia", "oiapatch", "oiavis", "oiavispatch", "oiavislin") if _have(args, f"{b}_{v}")]
+    return ms + [m for m in extra_native if m not in ms]
+
+
+def stage_trainvis(args):
+    """Heads trained on true-visibility labels (oiavis, oiavispatch, oiavislin jointly), one subprocess per backbone."""
+    for base in args.bases:
+        mp = os.path.join(args.ckpt, f"{base}_oiavis.pt")
+        if os.path.exists(mp) and not args.retrain:
+            import torch
+            st = int(torch.load(mp, map_location="cpu", weights_only=False).get("step", 0))
+            if st >= args.steps:
+                print(f"[trainvis] {base}_oiavis.pt exists at step {st}, skipping"); continue
+            print(f"[trainvis] {base}_oiavis.pt exists at step {st} < {args.steps}: resuming")
+        cmd = [sys.executable, os.path.join(ROOT, "scripts", "oia_head.py"), "train", "--base", base,
+               "--variant", "oiavis,oiavispatch,oiavislin", "--dtu", args.dtu_root, "--out", args.ckpt,
+               "--steps", str(args.steps), "--seed", "0"]
+        if os.path.exists(mp) and not args.retrain:
+            cmd.append("--resume")
+        print("[trainvis]", " ".join(cmd), flush=True)
+        subprocess.run(cmd, check=False)
+
+
+def _run_vis(args, run_name, models, cfg, root):
+    d = os.path.join(args.out, run_name)
+    os.makedirs(d, exist_ok=True)
+    log = Log(os.path.join(d, f"{run_name}.log"))
+    csv = os.path.join(d, f"{run_name}.csv")
+    log(f"== {run_name}: models {models}, cfg {json.dumps({k: v for k, v in cfg.items() if k != 'scans'})}")
+    for m in models:
+        try:
+            t0 = time.time()
+            H.run_vis(root, [m], cfg=cfg, out_csv=csv)
+            log(f"   {m}: {time.time() - t0:.0f}s")
+        except Exception:
+            log(f"!! {m} failed:\n{traceback.format_exc()}")
+    if os.path.exists(csv):
+        import pandas as pd
+        x = pd.read_csv(csv)
+        x = x[~x.get("skipped", False).astype(bool)] if "skipped" in x else x
+        tmp = csv.replace(".csv", "_rows.csv"); x.to_csv(tmp, index=False)
+        H.summarize(tmp).to_csv(os.path.join(d, f"{run_name}_summary.csv"), index=False)
+        os.remove(tmp)
+    return csv
+
+
+def stage_vis(args):
+    """P4-vis on the 18 DTU benchmark scans: every detector, 3 / 5 / 10 clean views, three view-set rotations."""
+    _ckpt_env(args)
+    _run_vis(args, "P4-vis", _vis_models(args, args.ext_bases), VIS_CFG, args.dtu_root)
+
+
+def stage_vis_co3d(args):
+    _ckpt_env(args)
+    _run_vis(args, "P4-vis-co3d", _vis_models(args), co3d_cfg(args, VIS_CFG), args.co3d_root)
+
+
+def stage_vis_eth3d(args):
+    _ckpt_env(args)
+    if not args.eth3d_root:
+        print("[skip] vis_eth3d: no --eth3d root"); return
+    scenes = [s for s in ETH3D_SCENES if s in co3d.list_co3d_scenes(args.eth3d_root)]
+    _run_vis(args, "P4-vis-eth3d", _vis_models(args), {**VIS_CFG, "dataset": "co3d", "scans": scenes,
+                                                        "view_mode": "adjacent"}, args.eth3d_root)
+
+
 def stage_gs(args):
     """Sixth backbone: AnySplat, feed-forward 3D Gaussian splatting from unposed views (P3-gs). 'anysplat' scores the
     opacity of the pixel-aligned Gaussian as confidence; 'anysplat_render' (needs gsplat) scores the rendered
@@ -440,6 +516,37 @@ def stage_stats(args):
             ci = {c: H.cluster_bootstrap_ci(d, c, n_boot=10000) for c in ("auroc", "cur", "cur_err")}
             f = lambda c: f"{ci[c][0]:.3f} [{ci[c][1]:.3f}, {ci[c][2]:.3f}]"
             lines.append(f"| {m} | {f('auroc')} | {f('cur')} | {f('cur_err')} |")
+    # P4-vis: natural occlusion, no patch. The visibility-trained head against its per-image control and native
+    # confidence, per number of input views; the fill-trained head shows whether patch detection transfers.
+    for run_name, title in [("P4-vis", "DTU"), ("P4-vis-co3d", "CO3Dv2"), ("P4-vis-eth3d", "ETH3D")]:
+        p = os.path.join(args.out, run_name, f"{run_name}.csv")
+        if not os.path.exists(p):
+            continue
+        dv = pd.read_csv(p)
+        if "skipped" in dv:
+            dv = dv[~dv.skipped.astype(bool)]
+        lines += ["", f"## True-visibility protocol, {title} (clean views; U = pixels no other view sees, S = seen by two or more)", "",
+                  "| views | detector | n scenes | AUROC | CUR | CUR-err | AbsRel S | AbsRel U |", "|---|---|---|---|---|---|---|---|"]
+        for fill in sorted(dv.fill.unique(), key=lambda f: int(f[3:])):
+            dt = dv[dv.fill == fill]
+            for m in sorted(dt.model.unique()):
+                d = dt[dt.model == m]
+                ci = {c: H.cluster_bootstrap_ci(d, c, n_boot=10000) for c in ("auroc", "cur", "cur_err")}
+                f = lambda c: f"{ci[c][0]:.3f} [{ci[c][1]:.3f}, {ci[c][2]:.3f}]"
+                lines.append(f"| {fill[3:]} | {m} | {d.scan.nunique()} | {f('auroc')} | {f('cur')} | {f('cur_err')} | "
+                             f"{d.absrel_S.mean():.3f} | {d.absrel_U.mean():.3f} |")
+            for base in args.bases:
+                head, ctrl, fill_head = f"{base}_oiavis", f"{base}_oiavispatch", f"{base}_oia"
+                for a, b in ((head, ctrl), (head, base), (head, fill_head), (fill_head, base)):
+                    if a in dt.model.values and b in dt.model.values:
+                        da = H.paired_permutation(dt, "auroc", a, b); dc = H.paired_permutation(dt, "cur", a, b)
+                        lines.append(f"| {fill[3:]} | {a} vs {b} | | dAUROC {da[0]:+.3f} (p {da[1]:.4g}) | dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) | | | |")
+                if head in dt.model.values and ctrl in dt.model.values and base in dt.model.values:
+                    r = _ctrl_check(dt, head, ctrl, base)
+                    ok2, hb, cb, hc = r
+                    lines.append(f"| {fill[3:]} | **{head} gate** | | head-native {hb[0]:+.3f}, control-native {cb[0]:+.3f}, "
+                                 f"head-control {hc[0]:+.3f} (p {hc[1]:.4g}) | "
+                                 + ("control does not explain the gain" if ok2 else "control explains the gain") + " | | | |")
     out = os.path.join(args.out, "P3-stats.md")
     open(out, "w", encoding="utf-8").write("\n".join(lines) + "\n")
     print("\n".join(lines)); print(f"-> {out}")
@@ -447,7 +554,8 @@ def stage_stats(args):
 
 STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": stage_co3d, "stress": stage_stress,
           "baselines": stage_baselines, "pvfull": stage_pvfull, "ablate": stage_ablate, "dtuext": stage_dtuext,
-          "eth3d": stage_eth3d, "gs": stage_gs, "stats": stage_stats}
+          "eth3d": stage_eth3d, "gs": stage_gs, "stats": stage_stats,
+          "trainvis": stage_trainvis, "vis": stage_vis, "vis_co3d": stage_vis_co3d, "vis_eth3d": stage_vis_eth3d}
 
 
 def main():

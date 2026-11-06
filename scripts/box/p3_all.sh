@@ -95,7 +95,16 @@ run sweep_vggt 10 python scripts/run_h100.py eth3d --dtu $DTU --eth3d $ETH --bas
 run sweep_gs 8 python scripts/run_h100.py gs --dtu $DTU --co3d $CO3D $GSR
 run sweep_pvfull 10 python scripts/run_h100.py pvfull --dtu $DTU
 
-# 6. accounting, statistics, qualitative figure
+# 6. P4-vis, the true-visibility protocol (2026-11-06): heads trained on ground-truth multi-view support (no patch),
+#    then every detector on clean 3 / 5 / 10-view inputs of DTU, CO3Dv2 and ETH3D. Pre-registered criterion in
+#    EXPERIMENTS.md (Gates). Training about 2.5 h per backbone on the L4.
+run trainvis 12 python scripts/run_h100.py trainvis --dtu $DTU --bases vggt,pi3x --steps 1500
+run trainvis 12 python scripts/run_h100.py trainvis --dtu $DTU --bases vggt,pi3x --steps 1500
+run vis 10 python scripts/run_h100.py vis --dtu $DTU --bases vggt,pi3x
+run vis_co3d 10 python scripts/run_h100.py vis_co3d --dtu $DTU --co3d $CO3D --bases vggt,pi3x
+run vis_eth3d 10 python scripts/run_h100.py vis_eth3d --dtu $DTU --eth3d $ETH --bases vggt,pi3x
+
+# 7. accounting, statistics, qualitative figure
 run compute 8 python scripts/compute_cost.py --dtu $DTU
 run stats 1 python scripts/run_h100.py stats --bases vggt,pi3x
 run fig_threeway 8 python scripts/make_fig_threeway.py --dtu $DTU --eth3d $ETH

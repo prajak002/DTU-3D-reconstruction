@@ -660,6 +660,131 @@ def reproj_support_score(depths, K, E, tol=0.03):
     return np.where(seen > 0, hits / np.maximum(seen, 1), 0.0).astype(np.float32)
 
 
+# ----------------------------------------------------------------------------- true-visibility support (P4-vis)
+def support_count(depths, K, E, tol=0.03):
+    """Ground-truth multi-view support of every pixel, the natural-occlusion counterpart of the filled patch.
+    depths (N,h,w) ground-truth depth (0 = unknown), K (N,3,3) at that resolution, E (N,4,4) world -> camera.
+
+    For each pixel of view i with known depth, its ground-truth 3D point is projected into every other input view j:
+    j *sees* it when it lands in frame in front of camera j on a known depth d_j with |z - d_j| / d_j < tol (j's
+    own surface is this point); the test is *unknown* when it lands on an unknown depth of view j (hole in the
+    ground truth); otherwise j does not see it (out of frame, behind the camera, occluded by a nearer surface of j,
+    or in front of j's surface, which is ground-truth noise). Returns seen (N,h,w) and unknown (N,h,w), int counts
+    over the other N-1 views. A pixel seen by no other view has no parallax in the input: its geometry can only come
+    from the single-image prior, which is what the benchmark's masking imitates with a patch. No patch is involved."""
+    depths = np.asarray(depths, np.float64)
+    N, h, w = depths.shape
+    seen = np.zeros((N, h, w), np.int32)
+    unknown = np.zeros((N, h, w), np.int32)
+    for i in range(N):
+        valid_i = depths[i] > 0
+        Pw = backproject(depths[i], K[i], E[i])
+        for j in range(N):
+            if i == j:
+                continue
+            u, v, z = project(Pw, K[j], E[j])
+            ui, vi = np.round(u).astype(int), np.round(v).astype(int)
+            inside = valid_i & (z > 0) & (ui >= 0) & (ui < w) & (vi >= 0) & (vi < h)
+            dj = np.zeros((h, w))
+            dj[inside] = depths[j][vi[inside], ui[inside]]
+            known = inside & (dj > 0)
+            unknown[i] += inside & ~known
+            seen[i] += known & (np.abs(dj - z) / np.maximum(dj, 1e-9) < tol)
+    return seen, unknown
+
+
+def vis_labels(data, cfg=None):
+    """U = pixels with known depth that no other input view sees and no other view leaves unknown (strict: every
+    other view either looks away from the point or is occluded from it); S = pixels seen by at least vis_min_seen
+    other views, outside a dilation of U. Labels at depth resolution, same shapes and meaning as build_masks."""
+    cfg = {**DEFAULT_CFG, **(cfg or {})}
+    depths, Kd, E = data["depths"], data["K_dep"], data["E"]
+    seen, unknown = support_count(depths, Kd, E, cfg.get("vis_tol", 0.03))
+    valid = depths > 0
+    U = valid & (seen == 0) & (unknown == 0)
+    S = valid & (seen >= cfg.get("vis_min_seen", 2))
+    k = max(1, int(cfg.get("vis_dilate_px", 3))) * 2 + 1
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k))
+    for i in range(len(U)):
+        S[i] &= ~(cv2.dilate(U[i].astype(np.uint8), kernel) > 0)
+    return dict(U=U, S=S, seen=seen, unknown=unknown)
+
+
+def vis_views(n_views, seed, total=49, mode="spread"):
+    """The view set of a vis row: the spread selection rotated by the seed, so that seeds give different camera
+    subsets and no fixed image region is always the single-view one."""
+    base = select_views(n_views, total=total, mode=mode)
+    return sorted((v + 7 * int(seed)) % total for v in base)
+
+
+def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factory=None, verbose=True):
+    """Natural-occlusion protocol (run family P4-vis): clean images, no fill, no patch. For each scan, each number
+    of input views in cfg["vis_views"] and each seed (view-set rotation), the model runs once and every detector's
+    score is tested on separating S (multi-view-supported pixels) from U (pixels no other view sees), with the same
+    metrics as the masking benchmark (AUROC, CUR at 90% kept S, CUR-err, AbsRel on S and U). Rows are keyed like
+    benchmark rows with radius_frac 0 and fill "vis<n_views>", so summarize / stats work unchanged."""
+    import pandas as pd
+    cfg = {**DEFAULT_CFG, "vis_views": [3, 5, 10], "seeds": [0, 1, 2], **(cfg or {})}
+    model_factory = model_factory or make_model
+    done = set()
+    if os.path.exists(out_csv):
+        prev = pd.read_csv(out_csv)
+        done = {_key(r) for r in prev.to_dict("records")}
+        print(f"resuming: {len(done)} rows already in {out_csv}")
+    json.dump({k: v for k, v in cfg.items()}, open(os.path.splitext(out_csv)[0] + "_cfg.json", "w"), indent=2)
+    is_co3d = cfg.get("dataset", "dtu") == "co3d"
+    if is_co3d:
+        try:
+            import co3d
+        except ImportError:
+            import sys
+            co3d = sys.modules[__name__]
+
+    def _load(scan, n, seed):
+        if is_co3d:
+            views = vis_views(n, seed, total=co3d.n_frames(root, scan), mode=cfg.get("view_mode", "spread"))
+            return co3d.load_co3d_scene(root, scan, views)
+        return load_scan(root, scan, vis_views(n, seed, mode=cfg.get("view_mode", "spread")), cfg["light"])
+
+    for mname in model_names:
+        todo = [(sc, sd, n) for sc in cfg["scans"] for sd in cfg["seeds"] for n in cfg["vis_views"]
+                if (mname, sc, sd, 0.0, f"vis{n}") not in done]
+        if not todo:
+            print(f"[{mname}] all done"); continue
+        model = model_factory(mname)
+        t0 = time.time()
+        for scan in cfg["scans"]:
+            rows = []
+            for (_, seed, n) in [t for t in todo if t[0] == scan]:
+                data = _load(scan, n, seed)
+                lab = vis_labels(data, cfg)
+                U, S = lab["U"], lab["S"]
+                nU, nS = int(U.sum()), int(S.sum())
+                if nU < cfg.get("vis_min_pixels", 50) or nS < cfg.get("vis_min_pixels", 50):
+                    rows.append(dict(model=mname, scan=scan, seed=seed, radius_frac=0.0, fill=f"vis{n}", n_views=n,
+                                     n_U=nU, n_S=nS, skipped=True))
+                    continue
+                out_hw = data["depths"].shape[1:]
+                model_hw = tuple(data.get("model_hw", cfg["model_hw"]))
+                d, c = model.predict(data["imgs"], model_hw, out_hw)
+                m = compute_metrics(d, c, data["depths"], U, S, cfg)
+                valid = int((data["depths"] > 0).sum())
+                rows.append(dict(model=mname, scan=scan, seed=seed, radius_frac=0.0, fill=f"vis{n}", n_views=n,
+                                 frac_U=nU / max(valid, 1), frac_S=nS / max(valid, 1), skipped=False, **m))
+            if not rows:
+                continue
+            df = pd.DataFrame(rows)
+            df.to_csv(out_csv, mode="a", header=not os.path.exists(out_csv), index=False)
+            if verbose:
+                g = df[~df.skipped.astype(bool)]
+                print(f"[{mname}] scan {scan}  auroc={g.auroc.mean():.3f}  cur={g.cur.mean():.3f}  "
+                      f"absrel_U={g.absrel_U.mean():.3f} (S {g.absrel_S.mean():.3f})  fracU={g.frac_U.mean():.3f}  "
+                      f"{time.time() - t0:.0f}s" if len(g) else f"[{mname}] scan {scan}: too few U or S pixels")
+        if hasattr(model, "free") and not cfg.get("keep_model", False):
+            model.free()
+    return out_csv
+
+
 def _fit_intrinsics(local_points, hw):
     """Pinhole intrinsics from camera-frame points (h,w,3) by least squares: u = fx * x/z + cx, v = fy * y/z + cy."""
     h, w = hw

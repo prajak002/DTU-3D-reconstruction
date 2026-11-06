@@ -59,11 +59,19 @@ VARIANTS = {
     "oiapatch": ("patch", "conv",  "self"),
     "oiagt":   ("agg",   "conv",   "gt"),
     "oiaattn": ("agg",   "attn",   "self"),    # two cross-view transformer blocks over the tokens of all views
+    # true-visibility labels (P4-vis): clean images, U = pixels no other input view sees (ground-truth support count
+    # 0, hallu3d.vis_labels), S = pixels seen by at least two other views. No patch, no fill: the head has to learn
+    # which pixels have parallax in the input. The same per-image control and linear probe are trained alongside.
+    "oiavis":      ("agg",   "conv",   "vis"),
+    "oiavispatch": ("patch", "conv",   "vis"),
+    "oiavislin":   ("agg",   "linear", "vis"),
 }
 SELF_VARIANTS = [v for v, (_, _, lab) in VARIANTS.items() if lab == "self" and v != "oiafuse"]
+VIS_VARIANTS = [v for v, (_, _, lab) in VARIANTS.items() if lab == "vis"]
 TRAIN_DEFAULTS = dict(steps=3000, lr=1e-3, wd=1e-2, warmup=100, n_views=10, radius_range=(0.08, 0.24),
                       fills=["gray", "blur", "noise"], p_clean=0.15, width=256, conf_floor_q=0.2,
-                      val_every=250, log_every=25, val_scans=[2, 6], val_seeds=[0, 1], random_light=True)
+                      val_every=250, log_every=25, val_scans=[2, 6], val_seeds=[0, 1], random_light=True,
+                      vis_views=(3, 5, 10), vis_tol=0.03, vis_min_seen=2, vis_min_pixels=50)
 
 
 # ----------------------------------------------------------------------------- feature hooks per backbone
@@ -359,12 +367,13 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
     def scene(scan, views, light):
         data = H.load_scan(dtu_root, scan, views, light)
         pred = None
-        if labels == "self":
+        if labels == "self":            # "gt" and "vis" place / label from the ground truth
             d, c, _, K, E = forward(data["imgs"], "agg")
             pred = (d.cpu().numpy(), c.cpu().numpy(), K.cpu().numpy(), E.cpu().numpy())
         return model_res_data(data, model_hw, pred, tc["conf_floor_q"])
 
     hw_lab = (model_hw[0] // 2, model_hw[1] // 2)
+    vis_cfg = {"vis_tol": tc["vis_tol"], "vis_min_seen": tc["vis_min_seen"], "vis_dilate_px": 3}
     bce = torch.nn.BCEWithLogitsLoss(reduction="none")
     heads = [dict(variant=v, seed=sd, out=o, feats=VARIANTS[v][0], arch=VARIANTS[v][1], head=None, opt=None,
                   sched=None, hist=[], best=-1.0) for v, sd, o in specs]
@@ -405,6 +414,17 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         aucs = {hd["out"]: [] for hd in heads}
         with torch.no_grad():
             for s in val_scans:
+                if labels == "vis":     # five views, view set rotated by the seed, clean images
+                    for sd in tc["val_seeds"]:
+                        md = scene(s, H.vis_views(5, sd), 3)
+                        m = H.vis_labels(md, vis_cfg)
+                        if m["U"].sum() < tc["vis_min_pixels"] or m["S"].sum() < tc["vis_min_pixels"]:
+                            continue
+                        _, _, F, _, _ = forward(md["imgs"], feats_mode)
+                        for hd in heads:
+                            lg = upsample_logit(torch, hd["head"](F[hd["feats"]]), hw_lab).cpu().numpy()
+                            aucs[hd["out"]].append(H.auroc(-lg[m["S"]], -lg[m["U"]]))
+                    continue
                 md = scene(s, H.select_views(tc["n_views"]), 3)
                 for sd in tc["val_seeds"]:
                     try:
@@ -434,7 +454,8 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
     s = start
     while s < tc["steps"]:
         scan = int(rng.choice(train_scans))
-        views = sorted(rng.choice(49, tc["n_views"], replace=False).tolist())
+        n_views = int(rng.choice(tc["vis_views"])) if labels == "vis" else tc["n_views"]
+        views = sorted(rng.choice(49, n_views, replace=False).tolist())
         light = int(rng.choice(_dtu_lights(dtu_root, scan))) if tc["random_light"] else 3
         try:
             md = scene(scan, views, light)
@@ -442,7 +463,13 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             print(f"[oia] skip scan {scan}: {e}", flush=True)
             train_scans = [t for t in train_scans if t != scan] or train_scans
             continue
-        if rng.random() < tc["p_clean"]:
+        if labels == "vis":               # clean images, labels from the ground-truth support count
+            imgs_in = md["imgs"]
+            m = H.vis_labels(md, vis_cfg)
+            U, S = m["U"], m["S"]
+            if U.sum() < tc["vis_min_pixels"] or S.sum() < tc["vis_min_pixels"]:
+                continue
+        elif rng.random() < tc["p_clean"]:
             imgs_in = md["imgs"]
             U = np.zeros(md["depths"].shape, bool)
             S = md["depths"] > 0
@@ -544,8 +571,8 @@ def main():
     t = sub.add_parser("train")
     t.add_argument("--base", default="vggt", choices=sorted(FORWARD_FEATS))
     t.add_argument("--variant", default="oia",
-                   help="one variant, or a comma list of self-labelled variants trained jointly on the same forwards "
-                        "(e.g. oia,oialin,oiapatch,oiaattn); oiagt must run alone")
+                   help="one variant, or a comma list of variants with the same label source trained jointly on the "
+                        "same forwards (e.g. oia,oialin,oiapatch,oiaattn or oiavis,oiavispatch,oiavislin)")
     t.add_argument("--extra-seeds", default="", help="extra initialisation seeds for the first variant, e.g. 1,2 "
                                                      "(saved as <base>_<variant>_s<seed>.pt)")
     t.add_argument("--resume", action="store_true", help="continue from the checkpoints at the output paths")
