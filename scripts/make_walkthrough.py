@@ -10,7 +10,7 @@ requirements and ffmpeg. It follows the whole pipeline in order:
   3. the recorded runs: composites and rows from the Kaggle runs under results/ (tagged as replay);
   4. the numbers: CUR / AUROC charts with cluster-bootstrap intervals recomputed from the CSVs, the stress
      tests and the training-free detectors;
-  5. the paper figures, the proposed method and what is still pending;
+  5. the paper figures, the proposed method and what the pre-registered test says;
   6. the artefacts the repository produces (PDFs, site, archive), read from disk at build time.
 
 Usage (from the project root):
@@ -145,7 +145,7 @@ def main():
           "   2. models and metrics, run live on two reference models",
           "   3. the recorded runs of five real models (replayed, tagged)",
           "   4. the numbers, recomputed from the logged CSVs",
-          "   5. the paper, the method and what is still pending",
+          "   5. the paper, the method and what the pre-registered test says",
           "Every number on screen is read from the code or from a logged run."], 9.0, fs=28)
 
     # ------------------------------------------------------------------ 1. problem
@@ -326,18 +326,20 @@ def main():
     figure_frame(reel, os.path.join(FIG, "fig8_cheap_detectors.png"), "The paper: cheap detectors", "figure 8: native confidence against perturbation variance and consistency confidence", 6.0)
     figure_frame(reel, os.path.join(FIG, "fig9_method.png"), "Proposed method: observe, imagine, abstain",
                  "a small support head on the frozen multi-view features predicts P(imagined) per pixel; trained label-free on the backbone's own prediction", 10.0,
-                 caption="design figure; its numbers are pending (run P3-oia, scripts/run_h100.py) and the pre-registered pass condition is in the paper")
-    card(reel, "What is measured, and what is not yet", [
+                 caption="design figure; the pre-registered test is decided in runs P3-oia-dtu, P3-oia-abl, P3-oia-stress (results/P3-stats.md), see the next card")
+    card(reel, "What is measured, and what the pre-registered test says", [
         "Measured (logged runs, CSV + config in results/):",
         "   five models x DTU (18 scans) x CO3Dv2 (18 scenes), three fills, 5 seeds, 2 radii;",
         "   stress tests: inpainted fill, 5 and 3 views, low parallax, distractor image;",
-        "   two training-free detectors: perturbation variance, multi-view consistency.",
+        "   training-free detectors: perturbation variance, consistency confidence, reprojection consistency (at chance).",
         "",
-        "Written and CPU-tested, not yet run on a GPU: the reprojection detector (<model>_reproj) and the support head (<model>_oia),",
-        "   with the GPU plan in scripts/run_h100.py (train, DTU, CO3Dv2, stress, baselines, ablations, stats).",
+        "Support head (runs P3-oia-dtu, P3-oia-stress, P3-oia-abl; VGGT heads on an L4, Pi3X heads on a Kaggle T4):",
+        "   part 1 PASS: AUROC 1.000 / 0.999 against native 0.915 / 0.832 on the Table-4 keys, p = 0.00005;",
+        "   part 2 FAIL: the per-image control, which can only see the patch, scores the same on every cell,",
+        "   including the held-out inpainted fill (1.000 vs 0.999; 0.994 vs 0.994). The head learned the fill, not the support.",
         "",
-        "Pending and marked so in the paper: every support-head cell; VGGT-Omega (gated checkpoint).",
-        "Future work: a generative head whose sample disagreement marks imagined regions; continual adaptation."], 11.0, fs=25)
+        "Pending and marked so in the paper: CO3Dv2 and ETH3D rows of the reported heads (a replicate gives head 0.992, control 0.990),",
+        "   the Gaussian-splatting backbone, the fuller perturbation baseline. Future work: generative head, continual adaptation."], 13.0, fs=24)
 
     # ------------------------------------------------------------------ 7. artefacts
     reel.mark("artefacts")
