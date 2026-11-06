@@ -38,7 +38,8 @@ run() {
   echo "== $name start $(date -u)"
   ( "$@" 2>&1 | tee -a ~/logs/$name.log; exit ${PIPESTATUS[0]} ) &
   pid=$!
-  sleep 120; flock -u 9
+  for _ in $(seq 120); do sleep 1; kill -0 $pid 2>/dev/null || break; done   # a no-op stage releases the lock at once
+  flock -u 9
   wait $pid; rc=$?
   echo "== $name end $(date -u) rc $rc"
 }
