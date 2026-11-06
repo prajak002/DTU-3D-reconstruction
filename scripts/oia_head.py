@@ -18,7 +18,10 @@ Variants (all share this file, selected by the model name passed to hallu3d.make
   <base>_oiapatch   conv head on the per-image encoder features only: a patch detector, no multi-view (control)
   <base>_oiagt      conv head trained with ground-truth depth for mask placement instead of self      (ablation)
   <base>_oiaattn    two cross-view transformer blocks over the tokens of all views, same features       (ablation)
-Several self-labelled heads train jointly on the same backbone forwards (train_multi, --variant a,b,c).
+  <base>_oiavis     conv head trained on TRUE visibility labels (ground-truth multi-view support, no patch)  (P4-vis)
+  <base>_oiavisself the same head trained on the backbone's OWN predicted support: no ground truth anywhere  (P5)
+  <base>_oiavislin<L> linear probe on one aggregator layer, true-visibility labels (where visibility lives)
+Several heads with the same label source train jointly on the same backbone forwards (train_multi, --variant a,b,c).
 Checkpoints: $OIA_CKPT_<NAME> (e.g. OIA_CKPT_VGGT_OIA) or $OIA_CKPT_DIR/<name>.pt (default checkpoints/).
 Backbones with feature hooks: vggt (aggregator tokens, layers 4/11/17/23, 2048-d), pi3 and pi3x (decoder tokens
 fed to the confidence head, 2048-d). Written against the public model code; see scripts/test_oia.py for the
@@ -65,7 +68,32 @@ VARIANTS = {
     "oiavis":      ("agg",   "conv",   "vis"),
     "oiavispatch": ("patch", "conv",   "vis"),
     "oiavislin":   ("agg",   "linear", "vis"),
+    # label-free visibility (P5-visself): the same clean-image protocol, but the labels come from the backbone's OWN
+    # predicted depth and cameras (hallu3d.support_count on the prediction, the quantity reproj_support_score tests
+    # at evaluation time). No ground truth at any point: the head distils the cross-view reprojection test into one
+    # forward on the frozen features. Its per-image control and linear probe train alongside.
+    "oiavisself":      ("agg",   "conv",   "visself"),
+    "oiavisselfpatch": ("patch", "conv",   "visself"),
+    "oiavisselflin":   ("agg",   "linear", "visself"),
+    # where visibility lives (mechanism): a linear probe on ONE aggregator layer each (VGGT layers 4 / 11 / 17 / 23,
+    # LAYER_PICK indexes the hook's layer list) and on the per-image encoder tokens, true-visibility labels.
+    "oiavislin4":     ("agg",   "linear", "vis"),
+    "oiavislin11":    ("agg",   "linear", "vis"),
+    "oiavislin17":    ("agg",   "linear", "vis"),
+    "oiavislin23":    ("agg",   "linear", "vis"),
+    "oiavispatchlin": ("patch", "linear", "vis"),
 }
+LAYER_PICK = {"oiavislin4": 0, "oiavislin11": 1, "oiavislin17": 2, "oiavislin23": 3}
+
+
+def _pick(variant, F):
+    """The feature maps a variant reads: all hooked layers, or one of them for the per-layer probes."""
+    i = LAYER_PICK.get(variant)
+    if i is None:
+        return F
+    if i >= len(F):
+        raise ValueError(f"{variant} needs hooked layer index {i}, the backbone exposes {len(F)} feature map(s)")
+    return [F[i]]
 SELF_VARIANTS = [v for v, (_, _, lab) in VARIANTS.items() if lab == "self" and v != "oiafuse"]
 VIS_VARIANTS = [v for v, (_, _, lab) in VARIANTS.items() if lab == "vis"]
 TRAIN_DEFAULTS = dict(steps=3000, lr=1e-3, wd=1e-2, warmup=100, n_views=10, radius_range=(0.08, 0.24),
@@ -364,13 +392,19 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             F = {mode: [f.detach() for f in F]}
         return d, c, F, K, E
 
-    def scene(scan, views, light):
+    def scene(scan, views, light, gt=False):
+        """Scene dict at model resolution. Labels "gt" and "vis" place / label from the ground truth; "self" and
+        "visself" from the backbone's clean prediction (gt=True forces the ground truth, for validation). For
+        "visself" the clean forward is also the training forward, so its features ride along under "_F"."""
         data = H.load_scan(dtu_root, scan, views, light)
-        pred = None
-        if labels == "self":            # "gt" and "vis" place / label from the ground truth
-            d, c, _, K, E = forward(data["imgs"], "agg")
+        pred, F = None, None
+        if labels in ("self", "visself") and not gt:
+            d, c, F, K, E = forward(data["imgs"], feats_mode if labels == "visself" else "agg")
             pred = (d.cpu().numpy(), c.cpu().numpy(), K.cpu().numpy(), E.cpu().numpy())
-        return model_res_data(data, model_hw, pred, tc["conf_floor_q"])
+        md = model_res_data(data, model_hw, pred, tc["conf_floor_q"])
+        if labels == "visself" and F is not None:
+            md["_F"] = F
+        return md
 
     hw_lab = (model_hw[0] // 2, model_hw[1] // 2)
     vis_cfg = {"vis_tol": tc["vis_tol"], "vis_min_seen": tc["vis_min_seen"], "vis_dilate_px": 3}
@@ -380,6 +414,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
     t0 = time.time()
 
     def build(hd, F):
+        F = _pick(hd["variant"], F)
         torch.manual_seed(hd["seed"])
         hd["head"] = build_head(torch, [f.shape[1] for f in F], hd["arch"], tc["width"]).to(device)
         hd["opt"] = torch.optim.AdamW(hd["head"].parameters(), lr=tc["lr"], weight_decay=tc["wd"])
@@ -397,7 +432,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
     def step_loss(hd, F, U, S):
         if hd["head"] is None:
             build(hd, F)
-        logit = upsample_logit(torch, hd["head"](F), hw_lab)
+        logit = upsample_logit(torch, hd["head"](_pick(hd["variant"], F)), hw_lab)
         U_t, S_t = torch.from_numpy(U).to(device), torch.from_numpy(S).to(device)
         tgt = U_t.float()
         w = torch.zeros_like(tgt)
@@ -414,15 +449,15 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         aucs = {hd["out"]: [] for hd in heads}
         with torch.no_grad():
             for s in val_scans:
-                if labels == "vis":     # five views, view set rotated by the seed, clean images
-                    for sd in tc["val_seeds"]:
-                        md = scene(s, H.vis_views(5, sd), 3)
+                if labels in ("vis", "visself"):     # five views, view set rotated by the seed, clean images;
+                    for sd in tc["val_seeds"]:         # validated on ground-truth labels for both label sources
+                        md = scene(s, H.vis_views(5, sd), 3, gt=True)
                         m = H.vis_labels(md, vis_cfg)
                         if m["U"].sum() < tc["vis_min_pixels"] or m["S"].sum() < tc["vis_min_pixels"]:
                             continue
                         _, _, F, _, _ = forward(md["imgs"], feats_mode)
                         for hd in heads:
-                            lg = upsample_logit(torch, hd["head"](F[hd["feats"]]), hw_lab).cpu().numpy()
+                            lg = upsample_logit(torch, hd["head"](_pick(hd["variant"], F[hd["feats"]])), hw_lab).cpu().numpy()
                             aucs[hd["out"]].append(H.auroc(-lg[m["S"]], -lg[m["U"]]))
                     continue
                 md = scene(s, H.select_views(tc["n_views"]), 3)
@@ -433,14 +468,15 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
                         continue
                     _, _, F, _, _ = forward(imgs_in, feats_mode)
                     for hd in heads:
-                        lg = upsample_logit(torch, hd["head"](F[hd["feats"]]), hw_lab).cpu().numpy()
+                        lg = upsample_logit(torch, hd["head"](_pick(hd["variant"], F[hd["feats"]])), hw_lab).cpu().numpy()
                         aucs[hd["out"]].append(H.auroc(-lg[m["S"]], -lg[m["U"]]))
         for hd in heads:
             hd["head"].train()
         return {hd["out"]: (float(np.mean(aucs[hd["out"]])) if aucs[hd["out"]] else float("nan")) for hd in heads}
 
     def save(hd, s, va, F):
-        ck = dict(state=hd["head"].state_dict(), in_dims=[f.shape[1] for f in F], arch=hd["arch"], feats=hd["feats"],
+        ck = dict(state=hd["head"].state_dict(), in_dims=[f.shape[1] for f in _pick(hd["variant"], F)], arch=hd["arch"],
+                  feats=hd["feats"], layer_pick=LAYER_PICK.get(hd["variant"]),
                   labels=labels, width=tc["width"], base=base, variant=hd["variant"], model_hw=list(model_hw), step=s,
                   val_auroc=va, seed=hd["seed"], data_seed=data_seed,
                   train_cfg={k: (list(v) if isinstance(v, tuple) else v) for k, v in tc.items()},
@@ -454,7 +490,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
     s = start
     while s < tc["steps"]:
         scan = int(rng.choice(train_scans))
-        n_views = int(rng.choice(tc["vis_views"])) if labels == "vis" else tc["n_views"]
+        n_views = int(rng.choice(tc["vis_views"])) if labels in ("vis", "visself") else tc["n_views"]
         views = sorted(rng.choice(49, n_views, replace=False).tolist())
         light = int(rng.choice(_dtu_lights(dtu_root, scan))) if tc["random_light"] else 3
         try:
@@ -463,8 +499,8 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             print(f"[oia] skip scan {scan}: {e}", flush=True)
             train_scans = [t for t in train_scans if t != scan] or train_scans
             continue
-        if labels == "vis":               # clean images, labels from the ground-truth support count
-            imgs_in = md["imgs"]
+        if labels in ("vis", "visself"):  # clean images; labels from the ground-truth support count (vis) or from
+            imgs_in = md["imgs"]          # the support count of the backbone's own prediction (visself, no GT)
             m = H.vis_labels(md, vis_cfg)
             U, S = m["U"], m["S"]
             if U.sum() < tc["vis_min_pixels"] or S.sum() < tc["vis_min_pixels"]:
@@ -480,7 +516,9 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
                 print(f"[oia] skip sample: {e}", flush=True)
                 continue
             U, S = m["U"], m["S"]
-        _, _, F, _, _ = forward(imgs_in, feats_mode)
+        F = md.pop("_F", None)            # visself: the labelling forward already produced the features
+        if F is None:
+            _, _, F, _, _ = forward(imgs_in, feats_mode)
         s += 1
         for hd in heads:
             loss, logit = step_loss(hd, F[hd["feats"]], U, S)
@@ -522,14 +560,14 @@ class OIAWrap:
 
     def __init__(self, base, variant="oia", ckpt=None, forward_feats=None):
         torch = base.torch
-        self.base, self.variant = base, variant
+        self.base, self.variant = base, variant          # variant may carry an extra-seed suffix, e.g. oiavis_s1
         self.name = f"{base.name}_{variant}"
         self.fuse = variant == "oiafuse"
         path = ckpt or resolve_ckpt(self.name)
         if not os.path.exists(path):
             raise FileNotFoundError(f"{self.name}: checkpoint {path} not found (train with scripts/oia_head.py train)")
         ck = torch.load(path, map_location=base.device, weights_only=False)
-        self.feats, self.ckpt = ck["feats"], path
+        self.feats, self.ckpt, self.pick = ck["feats"], path, ck.get("layer_pick")
         self.head = build_head(torch, ck["in_dims"], ck["arch"], ck["width"]).to(base.device).eval()
         self.head.load_state_dict(ck["state"])
         self.ff = forward_feats or FORWARD_FEATS[base.name]
@@ -542,7 +580,10 @@ class OIAWrap:
             d, c, F, _, _ = self.ff(self.base, x, self.base.dtype, self.feats)
             if not torch.isfinite(d).all():
                 d, c, F, _, _ = self.ff(self.base, x, None, self.feats)
-            logit = upsample_logit(torch, self.head([f.float() for f in F]), out_hw)
+            F = [f.float() for f in F]
+            if self.pick is not None:
+                F = [F[self.pick]]
+            logit = upsample_logit(torch, self.head(F), out_hw)
             score = 1.0 - torch.sigmoid(logit.float())
             d = H._resize_t(d[:, None].float(), out_hw, "area")[:, 0]
             if self.fuse:
@@ -556,8 +597,9 @@ class OIAWrap:
 
 
 def make_oia(name, registry=None):
-    """'vggt_oia' -> OIAWrap(VGGTWrap(), 'oia'); used by hallu3d.make_model."""
-    m = re.fullmatch(r"(.+?)_(" + "|".join(VARIANTS) + r")", name)
+    """'vggt_oia' -> OIAWrap(VGGTWrap(), 'oia'); 'vggt_oiavis_s1' -> the extra-seed checkpoint of the same variant
+    (checkpoints/vggt_oiavis_s1.pt). Used by hallu3d.make_model."""
+    m = re.fullmatch(r"(.+?)_((?:" + "|".join(VARIANTS) + r")(?:_s\d+)?)", name)
     if not m:
         return None
     registry = registry or H.MODEL_REGISTRY
@@ -575,6 +617,8 @@ def main():
                         "same forwards (e.g. oia,oialin,oiapatch,oiaattn or oiavis,oiavispatch,oiavislin)")
     t.add_argument("--extra-seeds", default="", help="extra initialisation seeds for the first variant, e.g. 1,2 "
                                                      "(saved as <base>_<variant>_s<seed>.pt)")
+    t.add_argument("--extra-seeds-of", default=None, help="the variant the extra seeds belong to (default: the first "
+                                                          "of --variant; it may be a variant that is not otherwise trained)")
     t.add_argument("--resume", action="store_true", help="continue from the checkpoints at the output paths")
     t.add_argument("--dtu", required=True, help="DTU root (Cameras/train, Rectified, Depths) holding the training scans")
     t.add_argument("--out", default=None, help="checkpoint path (one variant) or directory (several)")
@@ -596,7 +640,8 @@ def main():
     scans = [int(s) for s in a.scans.split(",")] if a.scans else None
     variants = [v for v in a.variant.split(",") if v]
     extra = [int(x) for x in a.extra_seeds.split(",") if x]
-    for v in variants:
+    esv = a.extra_seeds_of or variants[0]
+    for v in variants + [esv]:
         assert v in VARIANTS and v != "oiafuse", v
     if len(variants) == 1 and not extra:
         out = a.out or os.path.join("checkpoints", f"{a.base}_{variants[0]}.pt")
@@ -604,7 +649,7 @@ def main():
         return
     d = a.out or "checkpoints"
     specs = [(v, a.seed, os.path.join(d, f"{a.base}_{v}.pt")) for v in variants]
-    specs += [(variants[0], sd, os.path.join(d, f"{a.base}_{variants[0]}_s{sd}.pt")) for sd in extra]
+    specs += [(esv, sd, os.path.join(d, f"{a.base}_{esv}_s{sd}.pt")) for sd in extra]
     train_multi(a.base, root, specs, a.steps, scans=scans, resume=a.resume, **over)
 
 

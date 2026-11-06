@@ -260,8 +260,55 @@ def _vis_models(args, extra_native=()):
     ms = []
     for b in args.bases:
         ms += [b] + ([f"{b}_reproj"] if b in ("vggt", "pi3x", "pi3") else [])
-        ms += [f"{b}_{v}" for v in ("oia", "oiapatch", "oiavis", "oiavispatch", "oiavislin") if _have(args, f"{b}_{v}")]
+        ms += [f"{b}_{v}" for v in VIS_DETECTORS if _have(args, f"{b}_{v}")]
     return ms + [m for m in extra_native if m not in ms]
+
+
+# every head variant scored on the vis protocol when its checkpoint is complete: the fill-trained head and control
+# (transfer), the visibility-trained head, control and probe with two extra seeds of the head, the label-free
+# visibility head with its control and probe, and the per-layer probes (mechanism)
+VIS_DETECTORS = ("oia", "oiapatch", "oiavis", "oiavispatch", "oiavislin", "oiavis_s1", "oiavis_s2",
+                 "oiavisself", "oiavisselfpatch", "oiavisselflin",
+                 "oiavislin4", "oiavislin11", "oiavislin17", "oiavislin23", "oiavispatchlin")
+
+
+def _train_heads(args, base, variants, marker, extra_seeds=(), extra_of=None):
+    """One joint training run (one subprocess) of several heads with the same label source; `marker` is the variant
+    whose checkpoint decides skip / resume."""
+    mp = os.path.join(args.ckpt, f"{base}_{marker}.pt")
+    if os.path.exists(mp) and not args.retrain:
+        import torch
+        st = int(torch.load(mp, map_location="cpu", weights_only=False).get("step", 0))
+        if st >= args.steps:
+            print(f"[train] {base}_{marker}.pt exists at step {st}, skipping {variants}"); return
+        print(f"[train] {base}_{marker}.pt exists at step {st} < {args.steps}: resuming {variants}")
+    cmd = [sys.executable, os.path.join(ROOT, "scripts", "oia_head.py"), "train", "--base", base,
+           "--variant", ",".join(variants), "--dtu", args.dtu_root, "--out", args.ckpt,
+           "--steps", str(args.steps), "--seed", "0"]
+    if extra_seeds:
+        cmd += ["--extra-seeds", ",".join(str(x) for x in extra_seeds)]
+        if extra_of:
+            cmd += ["--extra-seeds-of", extra_of]
+    if os.path.exists(mp) and not args.retrain:
+        cmd.append("--resume")
+    print("[train]", " ".join(cmd), flush=True)
+    subprocess.run(cmd, check=False)
+
+
+def stage_trainvisself(args):
+    """Label-free visibility heads (P5-visself): oiavisself, oiavisselfpatch, oiavisselflin jointly, labels from the
+    support count of the backbone's own prediction. Same cost as trainvis (one forward per step)."""
+    for base in args.bases:
+        _train_heads(args, base, ["oiavisself", "oiavisselfpatch", "oiavisselflin"], "oiavisself")
+
+
+def stage_trainvisprobe(args):
+    """Mechanism and seeds: per-layer linear probes with true-visibility labels (VGGT: aggregator layers 4/11/17/23;
+    every backbone: the per-image encoder probe) plus two extra initialisation seeds of the visibility head, all in
+    one run per backbone."""
+    for base in args.bases:
+        probes = (["oiavislin4", "oiavislin11", "oiavislin17", "oiavislin23"] if base == "vggt" else []) + ["oiavispatchlin"]
+        _train_heads(args, base, probes, probes[0], extra_seeds=(1, 2), extra_of="oiavis")
 
 
 def stage_trainvis(args):
@@ -537,16 +584,18 @@ def stage_stats(args):
                              f"{d.absrel_S.mean():.3f} | {d.absrel_U.mean():.3f} |")
             for base in args.bases:
                 head, ctrl, fill_head = f"{base}_oiavis", f"{base}_oiavispatch", f"{base}_oia"
-                for a, b in ((head, ctrl), (head, base), (head, fill_head), (fill_head, base)):
+                sh, sctrl, rp = f"{base}_oiavisself", f"{base}_oiavisselfpatch", f"{base}_reproj"
+                for a, b in ((head, ctrl), (head, base), (head, fill_head), (fill_head, base), (head, rp),
+                             (sh, sctrl), (sh, base), (sh, rp), (sh, head), (head, f"{head}_s1"), (head, f"{head}_s2")):
                     if a in dt.model.values and b in dt.model.values:
                         da = H.paired_permutation(dt, "auroc", a, b); dc = H.paired_permutation(dt, "cur", a, b)
                         lines.append(f"| {fill[3:]} | {a} vs {b} | | dAUROC {da[0]:+.3f} (p {da[1]:.4g}) | dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) | | | |")
-                if head in dt.model.values and ctrl in dt.model.values and base in dt.model.values:
-                    r = _ctrl_check(dt, head, ctrl, base)
-                    ok2, hb, cb, hc = r
-                    lines.append(f"| {fill[3:]} | **{head} gate** | | head-native {hb[0]:+.3f}, control-native {cb[0]:+.3f}, "
-                                 f"head-control {hc[0]:+.3f} (p {hc[1]:.4g}) | "
-                                 + ("control does not explain the gain" if ok2 else "control explains the gain") + " | | | |")
+                for hh, cc in ((head, ctrl), (sh, sctrl)):
+                    if hh in dt.model.values and cc in dt.model.values and base in dt.model.values:
+                        ok2, hb, cb, hc = _ctrl_check(dt, hh, cc, base)
+                        lines.append(f"| {fill[3:]} | **{hh} gate** | | head-native {hb[0]:+.3f}, control-native {cb[0]:+.3f}, "
+                                     f"head-control {hc[0]:+.3f} (p {hc[1]:.4g}) | "
+                                     + ("control does not explain the gain" if ok2 else "control explains the gain") + " | | | |")
     out = os.path.join(args.out, "P3-stats.md")
     open(out, "w", encoding="utf-8").write("\n".join(lines) + "\n")
     print("\n".join(lines)); print(f"-> {out}")
@@ -555,7 +604,8 @@ def stage_stats(args):
 STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": stage_co3d, "stress": stage_stress,
           "baselines": stage_baselines, "pvfull": stage_pvfull, "ablate": stage_ablate, "dtuext": stage_dtuext,
           "eth3d": stage_eth3d, "gs": stage_gs, "stats": stage_stats,
-          "trainvis": stage_trainvis, "vis": stage_vis, "vis_co3d": stage_vis_co3d, "vis_eth3d": stage_vis_eth3d}
+          "trainvis": stage_trainvis, "vis": stage_vis, "vis_co3d": stage_vis_co3d, "vis_eth3d": stage_vis_eth3d,
+          "trainvisself": stage_trainvisself, "trainvisprobe": stage_trainvisprobe}
 
 
 def main():

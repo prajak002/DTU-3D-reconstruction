@@ -132,6 +132,47 @@ H.run_vis(root, ["fake_oiavis"], {"scans": [3], "vis_views": [3, 5], "seeds": [0
 dv = pd.read_csv(vcsv)
 print(dv[["model", "fill", "n_U", "n_S", "auroc", "cur", "absrel_S", "absrel_U"]].to_string())
 mv = O.make_oia("fake_oiavispatch")
+
+# ---------------------------------------------------------------- label-free visibility heads and per-layer probes
+# visself: labels from the backbone's own prediction (the fake backbone predicts the ground-truth depth and cameras,
+# so its self labels equal the true-visibility labels; the test covers the code path, not the label quality)
+cks_self = O.train_multi("fake", root, [("oiavisself", 0, os.path.join(WORK, "ckpt", "fake_oiavisself.pt")),
+                                        ("oiavisselfpatch", 0, os.path.join(WORK, "ckpt", "fake_oiavisselfpatch.pt"))],
+                         steps=20, device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, lr=2e-3, warmup=5,
+                         log_every=10, val_every=10, val_scans=[3], val_seeds=[0], random_light=False, vis_views=(3, 5))
+# per-layer probes (the fake aggregated features have two maps, so picks 0 and 1 are valid) and extra seeds of oiavis
+cks_probe = O.train_multi("fake", root, [("oiavislin4", 0, os.path.join(WORK, "ckpt", "fake_oiavislin4.pt")),
+                                         ("oiavislin11", 0, os.path.join(WORK, "ckpt", "fake_oiavislin11.pt")),
+                                         ("oiavispatchlin", 0, os.path.join(WORK, "ckpt", "fake_oiavispatchlin.pt")),
+                                         ("oiavis", 1, os.path.join(WORK, "ckpt", "fake_oiavis_s1.pt"))],
+                          steps=20, device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, lr=2e-3, warmup=5,
+                          log_every=10, val_every=10, val_scans=[], random_light=False, vis_views=(3, 5))
+bad_pick = False
+try:
+    O.train_multi("fake", root, [("oiavislin17", 0, os.path.join(WORK, "ckpt", "fake_oiavislin17.pt"))], steps=2,
+                  device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, warmup=1, log_every=1, val_every=2,
+                  val_scans=[], random_light=False, vis_views=(3,))
+except ValueError:
+    bad_pick = True
+for n_, c_ in (("FAKE_OIAVISSELF", cks_self[0]), ("FAKE_OIAVISSELFPATCH", cks_self[1]), ("FAKE_OIAVISLIN4", cks_probe[0]),
+               ("FAKE_OIAVISLIN11", cks_probe[1]), ("FAKE_OIAVISPATCHLIN", cks_probe[2]), ("FAKE_OIAVIS_S1", cks_probe[3])):
+    os.environ["OIA_CKPT_" + n_] = c_
+H.run_vis(root, ["fake_oiavisself", "fake_oiavislin11", "fake_oiavis_s1"],
+          {"scans": [3], "vis_views": [3], "seeds": [0], "model_hw": MODEL_HW}, out_csv=vcsv)
+dv2 = pd.read_csv(vcsv)
+print(dv2[["model", "fill", "n_U", "n_S", "auroc", "cur"]].to_string())
+ck11 = torch.load(cks_probe[1], map_location="cpu", weights_only=False)
+m11 = O.make_oia("fake_oiavislin11")
+checks.update({
+    "visself heads train on self labels and checkpoint": all(os.path.exists(c) for c in cks_self)
+        and torch.load(cks_self[0], map_location="cpu", weights_only=False)["labels"] == "visself",
+    "per-layer probe stores its layer and one input dim": ck11.get("layer_pick") == 1 and len(ck11["in_dims"]) == 1,
+    "per-layer probe beyond the hooked layers is refused": bad_pick,
+    "extra seed of oiavis trained in a probe run": os.path.exists(cks_probe[3]),
+    "make_model routes per-layer probe and applies the pick": isinstance(m11, O.OIAWrap) and m11.pick == 1,
+    "run_vis scores visself, probe and extra-seed heads": set(["fake_oiavisself", "fake_oiavislin11", "fake_oiavis_s1"]) <= set(dv2.model)
+        and dv2.auroc.notna().all(),
+})
 checks.update({
     "support_count: duplicated view sees every known pixel once": bool((seen_dup[0][valid0] == 1).all()) and int(unk_dup.sum()) == 0,
     "vis labels: U and S disjoint, both non-empty with 3 views": bool(lab3["U"].sum() > 0 and lab3["S"].sum() > 0 and not (lab3["U"] & lab3["S"]).any()),
