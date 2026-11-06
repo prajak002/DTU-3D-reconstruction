@@ -169,7 +169,17 @@ def _ckpt_env(args):
 
 
 def _have(args, name):
-    return os.path.exists(os.path.join(args.ckpt, f"{name}.pt"))
+    """True when the head checkpoint exists and its training is complete (step >= --steps). A head that is still
+    training (the Pi3X control was at step 750 when the 2026-11-06 ablation stage picked it up) is not evaluated."""
+    p = os.path.join(args.ckpt, f"{name}.pt")
+    if not os.path.exists(p):
+        return False
+    import torch
+    st = int(torch.load(p, map_location="cpu", weights_only=False).get("step", 0))
+    if st < args.steps:
+        print(f"[skip] {name}.pt is at step {st} < {args.steps}; not evaluated until its training is complete", flush=True)
+        return False
+    return True
 
 
 def _head_models(args, with_fuse=True):
