@@ -54,10 +54,11 @@ A_PID=$!
 # 2. VGGT heads (complete at step 1500 on 2026-11-04; the stage checks the checkpoint and is a no-op when complete, so no gate)
 run train_vggt 1 python scripts/run_h100.py train --dtu $DTU --bases vggt --skip-gt --steps 1500
 
-# 3. Pi3X heads (9.8 GB of GPU memory measured on 2026-11-05, 7.5 GB of host RAM; checkpoint at step 750 of 1500); a second
+# 3. Pi3X heads (9.8 GB of GPU memory measured on 2026-11-05, 7.5 GB of host RAM). Since 2026-11-06 the Kaggle heads (step 1500,
+#    kernel hallu3d-p3-pi3x, adopted with adopt_kaggle_pi3x.sh) are in place and the stage is a no-op; otherwise a second
 #    call resumes if the first was interrupted and is a no-op once the checkpoint is at 1500 steps
-run train_pi3x 12 python scripts/run_h100.py train --dtu $DTU --bases pi3x --skip-gt --steps 1500
-run train_pi3x 12 python scripts/run_h100.py train --dtu $DTU --bases pi3x --skip-gt --steps 1500
+run train_pi3x 10 python scripts/run_h100.py train --dtu $DTU --bases pi3x --skip-gt --steps 1500
+run train_pi3x 10 python scripts/run_h100.py train --dtu $DTU --bases pi3x --skip-gt --steps 1500
 
 # 4. pipeline B: Pi3X evaluations (about 10 GB), the splatting backbone, the perturbation baseline
 run baselines_pi3x 10 python scripts/run_h100.py baselines --dtu $DTU --bases pi3x
@@ -69,13 +70,13 @@ wait_free 8
 python ~/ext/verify_anysplat.py anysplat_render 2>&1 | tail -20 | tee -a ~/logs/anysplat_render_check.log
 if grep -q "AbsRel" ~/logs/anysplat_render_check.log 2>/dev/null; then GSR="--gs-render"; else GSR=""; fi
 run gs 8 python scripts/run_h100.py gs --dtu $DTU --co3d $CO3D $GSR
-run pvfull 12 python scripts/run_h100.py pvfull --dtu $DTU
+run pvfull 10 python scripts/run_h100.py pvfull --dtu $DTU
 echo PIPELINE_B_DONE
 wait $A_PID
 
 # 5. sweep: training once more (a no-op when both checkpoints are at 1500 steps), then every evaluation stage once more,
 #    sequentially; a no-op where the rows exist, fills any gap left by an out-of-memory stop while the pipelines overlapped
-run sweep_train 12 python scripts/run_h100.py train --dtu $DTU --bases vggt,pi3x --skip-gt --steps 1500
+run sweep_train 10 python scripts/run_h100.py train --dtu $DTU --bases vggt,pi3x --skip-gt --steps 1500
 for b in vggt pi3x; do
   run sweep_$b 10 python scripts/run_h100.py baselines --dtu $DTU --bases $b
   run sweep_$b 10 python scripts/run_h100.py dtu --dtu $DTU --bases $b
