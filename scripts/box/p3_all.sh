@@ -4,17 +4,20 @@
 #   tmux new -d -s p3 "~/p3_all.sh > ~/logs/p3_all.out 2>&1"
 # The card is shared with another user's jobs (2 to 6 GB, variable), so every stage waits until enough memory is free
 # before it starts; the two evaluation pipelines therefore overlap when the card allows it and serialise when it does not.
-# Head training runs alone: the host has 15 GB of RAM and the trainer (about 7.5 GB resident) was killed by the kernel's
-# OOM killer on 2026-11-05 when it ran next to an evaluation stage. A swap file is added as a safety net.
+# Head training ran alone on 2026-11-05 because the trainer (about 7.5 GB resident) had been killed by the kernel's OOM
+# killer next to an evaluation stage on a 15 GB host; since then a 12 GB swap file is enabled before launch (the script
+# does it), so from 2026-11-06 the VGGT evaluation pipeline starts at once and the Pi3X trainer only waits for GPU memory.
+# A stage never starts into insufficient memory: the wait has no practical cap (15 h), the sweep fills any gap.
 source /home/ubuntu/env.sh
 export PATH=/opt/pytorch/cuda/bin:$PATH CUDA_HOME=/opt/pytorch/cuda TORCH_CUDA_ARCH_LIST="8.9"
 mkdir -p ~/logs
+sudo -n swapon /swapfile 2>/dev/null; swapon --show | grep -q swapfile || echo "WARNING: swap file not active"
 ETH=/home/ubuntu/data/eth3d
 TOTAL=$(nvidia-smi --query-gpu=memory.total --format=csv,noheader,nounits | head -1)
 
-# wait_free GB [max_minutes]: block until that much GPU memory is free; give up waiting after max_minutes (default 150)
+# wait_free GB [max_minutes]: block until that much GPU memory is free; give up waiting after max_minutes (default 900)
 wait_free() {
-  local need=$1 max=${2:-150} n=0 used free
+  local need=$1 max=${2:-900} n=0 used free
   while :; do
     used=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | head -1)
     free=$(( (TOTAL - used) / 1024 ))
@@ -34,15 +37,8 @@ run() {
 }
 echo "== start $(date -u), ${TOTAL} MiB card, $(nvidia-smi --query-gpu=memory.used --format=csv,noheader) used by others"
 
-# 1. VGGT heads (complete at step 1500 on 2026-11-04; the stage checks the checkpoint and is a no-op when complete)
-run train_vggt 14 python scripts/run_h100.py train --dtu $DTU --bases vggt --skip-gt --steps 1500
-
-# 2. Pi3X heads, alone on the box (about 14 GB of GPU memory, 7.5 GB of host RAM); a second call resumes if the first
-#    was interrupted and is a no-op once the checkpoint is at 1500 steps
-run train_pi3x 14 python scripts/run_h100.py train --dtu $DTU --bases pi3x --skip-gt --steps 1500
-run train_pi3x 14 python scripts/run_h100.py train --dtu $DTU --bases pi3x --skip-gt --steps 1500
-
-# 3. pipeline A, VGGT evaluations, in the background (about 8 GB each; baselines, dtu and stress finished on 2026-11-04)
+# 1. pipeline A, VGGT evaluations, in the background (about 8 GB each; baselines, dtu and stress finished on 2026-11-04,
+#    ablate was 162 rows in when the box stopped on 2026-11-05)
 (
   run baselines_vggt 9 python scripts/run_h100.py baselines --dtu $DTU --bases vggt
   run dtu_vggt 9 python scripts/run_h100.py dtu --dtu $DTU --bases vggt
@@ -54,6 +50,14 @@ run train_pi3x 14 python scripts/run_h100.py train --dtu $DTU --bases pi3x --ski
   echo PIPELINE_A_DONE
 ) > ~/logs/p3a.out 2>&1 &
 A_PID=$!
+
+# 2. VGGT heads (complete at step 1500 on 2026-11-04; the stage checks the checkpoint and is a no-op when complete)
+run train_vggt 14 python scripts/run_h100.py train --dtu $DTU --bases vggt --skip-gt --steps 1500
+
+# 3. Pi3X heads (9.8 GB of GPU memory measured on 2026-11-05, 7.5 GB of host RAM; checkpoint at step 750 of 1500); a second
+#    call resumes if the first was interrupted and is a no-op once the checkpoint is at 1500 steps
+run train_pi3x 12 python scripts/run_h100.py train --dtu $DTU --bases pi3x --skip-gt --steps 1500
+run train_pi3x 12 python scripts/run_h100.py train --dtu $DTU --bases pi3x --skip-gt --steps 1500
 
 # 4. pipeline B: Pi3X evaluations (about 10 GB), the splatting backbone, the perturbation baseline
 run baselines_pi3x 10 python scripts/run_h100.py baselines --dtu $DTU --bases pi3x
@@ -71,7 +75,7 @@ wait $A_PID
 
 # 5. sweep: training once more (a no-op when both checkpoints are at 1500 steps), then every evaluation stage once more,
 #    sequentially; a no-op where the rows exist, fills any gap left by an out-of-memory stop while the pipelines overlapped
-run sweep_train 14 python scripts/run_h100.py train --dtu $DTU --bases vggt,pi3x --skip-gt --steps 1500
+run sweep_train 12 python scripts/run_h100.py train --dtu $DTU --bases vggt,pi3x --skip-gt --steps 1500
 for b in vggt pi3x; do
   run sweep_$b 10 python scripts/run_h100.py baselines --dtu $DTU --bases $b
   run sweep_$b 10 python scripts/run_h100.py dtu --dtu $DTU --bases $b
