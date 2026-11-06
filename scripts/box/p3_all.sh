@@ -76,6 +76,7 @@ wait $A_PID
 
 # 5. sweep: training once more (a no-op when both checkpoints are at 1500 steps), then every evaluation stage once more,
 #    sequentially; a no-op where the rows exist, fills any gap left by an out-of-memory stop while the pipelines overlapped
+#    (gs and pvfull included since 2026-11-06: the AnySplat run lost 36 rows to an OOM when the other user's job restarted)
 run sweep_train 10 python scripts/run_h100.py train --dtu $DTU --bases vggt,pi3x --skip-gt --steps 1500
 for b in vggt pi3x; do
   run sweep_$b 10 python scripts/run_h100.py baselines --dtu $DTU --bases $b
@@ -86,6 +87,8 @@ for b in vggt pi3x; do
 done
 run sweep_vggt 10 python scripts/run_h100.py dtuext --dtu $DTU --bases vggt
 run sweep_vggt 10 python scripts/run_h100.py eth3d --dtu $DTU --eth3d $ETH --bases vggt
+run sweep_gs 8 python scripts/run_h100.py gs --dtu $DTU --co3d $CO3D $GSR
+run sweep_pvfull 10 python scripts/run_h100.py pvfull --dtu $DTU
 
 # 6. accounting, statistics, qualitative figure
 run compute 8 python scripts/compute_cost.py --dtu $DTU
