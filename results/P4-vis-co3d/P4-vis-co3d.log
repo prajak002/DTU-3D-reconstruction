@@ -1,0 +1,5 @@
+14:42:54 == P4-vis-co3d: models ['vggt', 'vggt_reproj', 'pi3x', 'pi3x_reproj'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "dataset": "co3d"}
+14:48:47    vggt: 353s
+14:52:46    vggt_reproj: 239s
+14:56:47    pi3x: 241s
+15:00:19    pi3x_reproj: 212s
