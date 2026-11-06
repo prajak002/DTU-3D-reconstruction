@@ -584,8 +584,8 @@ def main():
     a.dtu_root = None
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
-    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs") else None
-    a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d")) else None
+    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d") else None
+    a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]
     for s in stages:
         if s == "co3d" and not a.co3d_root:
