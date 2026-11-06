@@ -45,19 +45,17 @@ run() {
 }
 echo "== start $(date -u), ${TOTAL} MiB card, $(nvidia-smi --query-gpu=memory.used --format=csv,noheader) used by others"
 
-# 1. pipeline A, VGGT evaluations, in the background (about 8 GB each; baselines, dtu and stress finished on 2026-11-04,
-#    ablate was 162 rows in when the box stopped on 2026-11-05)
-(
-  run baselines_vggt 9 python scripts/run_h100.py baselines --dtu $DTU --bases vggt
-  run dtu_vggt 9 python scripts/run_h100.py dtu --dtu $DTU --bases vggt
-  run stress_vggt 9 python scripts/run_h100.py stress --dtu $DTU --bases vggt
-  run ablate_vggt 9 python scripts/run_h100.py ablate --dtu $DTU --bases vggt
-  run co3d_vggt 9 python scripts/run_h100.py co3d --dtu $DTU --co3d $CO3D --bases vggt
-  run dtuext 10 python scripts/run_h100.py dtuext --dtu $DTU --bases vggt
-  run eth3d 9 python scripts/run_h100.py eth3d --dtu $DTU --eth3d $ETH --bases vggt
-  echo PIPELINE_A_DONE
-) > ~/logs/p3a.out 2>&1 &
-A_PID=$!
+# 1. pipeline A, VGGT evaluations (about 8 GB each; baselines, dtu, stress, ablate and co3d finished by 2026-11-06).
+#    Since 2026-11-06 evening the pipelines run one after another: with 15 GB of host RAM and four cores shared with
+#    another user, two concurrent stages swapped the host into a 12-minute SSH blackout and ran five times slower each.
+run baselines_vggt 9 python scripts/run_h100.py baselines --dtu $DTU --bases vggt
+run dtu_vggt 9 python scripts/run_h100.py dtu --dtu $DTU --bases vggt
+run stress_vggt 9 python scripts/run_h100.py stress --dtu $DTU --bases vggt
+run ablate_vggt 9 python scripts/run_h100.py ablate --dtu $DTU --bases vggt
+run co3d_vggt 9 python scripts/run_h100.py co3d --dtu $DTU --co3d $CO3D --bases vggt
+run dtuext 10 python scripts/run_h100.py dtuext --dtu $DTU --bases vggt
+run eth3d 9 python scripts/run_h100.py eth3d --dtu $DTU --eth3d $ETH --bases vggt
+echo PIPELINE_A_DONE
 
 # 2. VGGT heads (complete at step 1500 on 2026-11-04; the stage checks the checkpoint and is a no-op when complete, so no gate)
 run train_vggt 1 python scripts/run_h100.py train --dtu $DTU --bases vggt --skip-gt --steps 1500
@@ -80,7 +78,6 @@ if grep -q "AbsRel" ~/logs/anysplat_render_check.log 2>/dev/null; then GSR="--gs
 run gs 8 python scripts/run_h100.py gs --dtu $DTU --co3d $CO3D $GSR
 run pvfull 10 python scripts/run_h100.py pvfull --dtu $DTU
 echo PIPELINE_B_DONE
-wait $A_PID
 
 # 5. sweep: training once more (a no-op when both checkpoints are at 1500 steps), then every evaluation stage once more,
 #    sequentially; a no-op where the rows exist, fills any gap left by an out-of-memory stop while the pipelines overlapped
