@@ -27,13 +27,20 @@ wait_free() {
     sleep 60; n=$((n + 1))
   done
 }
-# run NAME GB CMD...: wait for GB free, run CMD, append its output to ~/logs/NAME.log
+# run NAME GB CMD...: wait for GB free, run CMD, append its output to ~/logs/NAME.log. Stage starts are serialised with a
+# lock held for two minutes after each start, so that a stage has allocated its model before the other pipeline measures
+# free memory (on 2026-11-06 both pipelines passed the gate in the same minute several times and failed on model load).
 run() {
-  local name=$1 need=$2; shift 2
+  local name=$1 need=$2 pid rc; shift 2
+  exec 9>>/tmp/p3_start.lock
+  flock 9
   wait_free "$need"
   echo "== $name start $(date -u)"
-  "$@" 2>&1 | tee -a ~/logs/$name.log
-  echo "== $name end $(date -u) rc ${PIPESTATUS[0]}"
+  ( "$@" 2>&1 | tee -a ~/logs/$name.log; exit ${PIPESTATUS[0]} ) &
+  pid=$!
+  sleep 120; flock -u 9
+  wait $pid; rc=$?
+  echo "== $name end $(date -u) rc $rc"
 }
 echo "== start $(date -u), ${TOTAL} MiB card, $(nvidia-smi --query-gpu=memory.used --format=csv,noheader) used by others"
 
