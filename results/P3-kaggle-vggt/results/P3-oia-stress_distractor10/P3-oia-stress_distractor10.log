@@ -1,0 +1,6 @@
+21:47:21 == P3-oia-stress_distractor10: models ['vggt_oia', 'vggt_oiapatch'], cfg {"seeds": [0, 1], "fills": ["blur"], "radius_fracs": [0.18], "distractor": true, "keep_model": true}
+21:52:47    vggt_oia: 326s
+21:58:48    vggt_oiapatch: 361s
+21:58:48            model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0       vggt_oia         0.18  blur      36  0.997 [0.992, 1.000]  0.523 [0.473, 0.575]  0.009 [0.000, 0.028]  0.000 [0.000, 0.000]  0.008 [0.006, 0.010]  0.011 [0.008, 0.014]  0.006 [0.005, 0.007]  0.028 [0.000, 0.083]       18         0.00005
+1  vggt_oiapatch         0.18  blur      36  0.999 [0.998, 1.000]  0.514 [0.447, 0.583]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.008 [0.006, 0.010]  0.011 [0.008, 0.014]  0.006 [0.005, 0.007]  0.028 [0.000, 0.083]       18         0.00005

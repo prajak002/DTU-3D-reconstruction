@@ -1,0 +1,6 @@
+20:58:05 == P3-oia-stress_distractor10: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {"seeds": [0, 1], "fills": ["blur"], "radius_fracs": [0.18], "distractor": true, "keep_model": true}
+21:03:10    pi3x_oia: 306s
+21:08:16    pi3x_oiapatch: 305s
+21:08:16            model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0       pi3x_oia         0.18  blur      36  0.997 [0.993, 1.000]  0.495 [0.443, 0.546]  0.008 [0.000, 0.023]  0.000 [0.000, 0.000]  0.020 [0.017, 0.025]  0.024 [0.018, 0.033]  0.017 [0.012, 0.022]  0.028 [0.000, 0.083]       18         0.00005
+1  pi3x_oiapatch         0.18  blur      36  0.996 [0.989, 1.000]  0.498 [0.453, 0.543]  0.016 [0.000, 0.049]  0.000 [0.000, 0.000]  0.020 [0.017, 0.025]  0.024 [0.018, 0.033]  0.017 [0.012, 0.022]  0.028 [0.000, 0.083]       18         0.00005

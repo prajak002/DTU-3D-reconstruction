@@ -1,0 +1,6 @@
+21:28:19 == P3-oia-stress_blur5: models ['vggt_oia', 'vggt_oiapatch'], cfg {"seeds": [0, 1], "fills": ["blur"], "radius_fracs": [0.18], "n_views": 5, "keep_model": true}
+21:30:48    vggt_oia: 150s
+21:33:25    vggt_oiapatch: 156s
+21:33:25            model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0       vggt_oia         0.18  blur      36  0.997 [0.993, 1.000]  0.491 [0.444, 0.540]  0.009 [0.000, 0.026]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.011 [0.009, 0.013]  0.006 [0.005, 0.007]  0.028 [0.000, 0.083]       18         0.00005
+1  vggt_oiapatch         0.18  blur      36  0.999 [0.996, 1.000]  0.515 [0.451, 0.580]  0.002 [0.000, 0.007]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.011 [0.009, 0.013]  0.006 [0.005, 0.007]  0.028 [0.000, 0.083]       18         0.00005

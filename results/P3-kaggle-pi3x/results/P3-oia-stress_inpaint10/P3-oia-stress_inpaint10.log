@@ -1,0 +1,6 @@
+20:28:26 == P3-oia-stress_inpaint10: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {"seeds": [0, 1], "fills": ["inpaint"], "radius_fracs": [0.18], "keep_model": true}
+20:33:40    pi3x_oia: 314s
+20:38:47    pi3x_oiapatch: 307s
+20:38:47            model  radius_frac     fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0       pi3x_oia         0.18  inpaint      36  0.994 [0.989, 0.998]  0.495 [0.438, 0.549]  0.015 [0.004, 0.032]  0.000 [0.000, 0.001]  0.021 [0.017, 0.026]  0.022 [0.018, 0.028]  0.016 [0.011, 0.022]  0.051 [0.001, 0.118]       18         0.00005
+1  pi3x_oiapatch         0.18  inpaint      36  0.994 [0.987, 0.999]  0.498 [0.453, 0.543]  0.021 [0.002, 0.055]  0.000 [0.000, 0.000]  0.021 [0.017, 0.026]  0.022 [0.018, 0.028]  0.016 [0.011, 0.022]  0.033 [0.000, 0.093]       18         0.00005

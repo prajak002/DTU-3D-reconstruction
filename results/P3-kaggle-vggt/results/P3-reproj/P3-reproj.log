@@ -1,0 +1,4 @@
+18:25:44 == P3-reproj: models ['vggt_reproj'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+18:30:27    vggt_reproj: 283s
+18:30:27          model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  vggt_reproj         0.18  blur      18  0.487 [0.471, 0.504]  0.485 [0.464, 0.507]  0.932 [0.904, 0.955]  0.004 [0.001, 0.007]  0.007 [0.006, 0.008]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  1.000 [1.000, 1.000]       18        0.152292

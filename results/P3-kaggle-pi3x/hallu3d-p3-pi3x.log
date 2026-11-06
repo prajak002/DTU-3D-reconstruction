@@ -1,0 +1,788 @@
+[{"stream_name":"stdout","time":1.0567296,"data":"\n"}
+,{"stream_name":"stdout","time":1.056765053,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1.056771535,"data":"== clone  [0s]\n"}
+,{"stream_name":"stdout","time":1.056776265,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":10.450662446,"data":"commit 74a13c7\n"}
+,{"stream_name":"stdout","time":10.450689711,"data":"\n"}
+,{"stream_name":"stdout","time":10.450692929,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":10.450695389,"data":"== install backbones (kaggle_prelude.py)  [9s]\n"}
+,{"stream_name":"stdout","time":10.450698721,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":16.687228133,"data":"\n"}
+,{"stream_name":"stdout","time":16.68725387,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":16.687258782,"data":"== stage train  [16s]\n"}
+,{"stream_name":"stdout","time":16.687262602,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":16.687271858,"data":"\n"}
+,{"stream_name":"stdout","time":16.687274974,"data":"$ /usr/bin/python3 scripts/run_h100.py train --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases pi3x --steps 1500 --skip-gt --variants oia,oialin,oiapatch\n"}
+,{"stream_name":"stdout","time":71.308808889,"data":"\n"}
+,{"stream_name":"stdout","time":71.308841692,"data":"##### stage train 2026-11-04 13:34:00\n"}
+,{"stream_name":"stdout","time":71.3091176,"data":"[train] /usr/bin/python3 /kaggle/tmp/repo/scripts/oia_head.py train --base pi3x --variant oia,oiapatch --dtu /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu --out /kaggle/working/checkpoints --steps 1500 --seed 0\n"}
+,{"stream_name":"stdout","time":80.493593618,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":80.670434785,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":122.818739778,"data":"[oia] base=pi3x variant=oia feats=agg arch=conv labels=self seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/pi3x_oia.pt\n"}
+,{"stream_name":"stdout","time":122.81877643,"data":"[oia] base=pi3x variant=oiapatch feats=patch arch=conv labels=self seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/pi3x_oiapatch.pt\n"}
+,{"stream_name":"stdout","time":148.429214234,"data":"[oia] oia head params: 1.71 M, feature dims [2048]\n"}
+,{"stream_name":"stdout","time":148.758469105,"data":"[oia] step     1 oia      loss 0.3650 train-auroc nan lr 2.00e-05 26s\n"}
+,{"stream_name":"stdout","time":148.773303788,"data":"[oia] oiapatch head params: 1.44 M, feature dims [1024]\n"}
+,{"stream_name":"stdout","time":148.806843236,"data":"[oia] step     1 oiapatch loss 0.3354 train-auroc nan lr 2.00e-05 26s\n"}
+,{"stream_name":"stdout","time":476.724825006,"data":"[oia] step    25 oia      loss 0.5474 train-auroc 0.799 lr 2.60e-04 354s\n"}
+,{"stream_name":"stdout","time":476.808040831,"data":"[oia] step    25 oiapatch loss 0.3204 train-auroc 0.996 lr 2.60e-04 354s\n"}
+,{"stream_name":"stdout","time":820.162925133,"data":"[oia] step    50 oia      loss 0.0878 train-auroc 1.000 lr 5.09e-04 697s\n"}
+,{"stream_name":"stdout","time":820.250644867,"data":"[oia] step    50 oiapatch loss 0.0854 train-auroc 1.000 lr 5.09e-04 697s\n"}
+,{"stream_name":"stdout","time":1159.078173362,"data":"[oia] step    75 oia      loss 0.1673 train-auroc 0.999 lr 7.55e-04 1036s\n"}
+,{"stream_name":"stdout","time":1159.16643031,"data":"[oia] step    75 oiapatch loss 0.0106 train-auroc 1.000 lr 7.55e-04 1036s\n"}
+,{"stream_name":"stdout","time":1486.551109279,"data":"[oia] step   100 oia      loss 0.0137 train-auroc 1.000 lr 9.89e-04 1364s\n"}
+,{"stream_name":"stdout","time":1486.634569991,"data":"[oia] step   100 oiapatch loss 0.0327 train-auroc 1.000 lr 9.89e-04 1364s\n"}
+,{"stream_name":"stdout","time":1817.624986316,"data":"[oia] step   125 oia      loss 0.0404 train-auroc 1.000 lr 9.83e-04 1695s\n"}
+,{"stream_name":"stdout","time":1817.708418028,"data":"[oia] step   125 oiapatch loss 0.0238 train-auroc 1.000 lr 9.83e-04 1695s\n"}
+,{"stream_name":"stdout","time":2140.13384881,"data":"[oia] step   150 oia      loss 0.1423 train-auroc 0.998 lr 9.76e-04 2017s\n"}
+,{"stream_name":"stdout","time":2140.224456071,"data":"[oia] step   150 oiapatch loss 0.0259 train-auroc 1.000 lr 9.76e-04 2017s\n"}
+,{"stream_name":"stdout","time":2487.437799228,"data":"[oia] step   175 oia      loss 0.0095 train-auroc 1.000 lr 9.67e-04 2365s\n"}
+,{"stream_name":"stdout","time":2487.526946158,"data":"[oia] step   175 oiapatch loss 0.0476 train-auroc 1.000 lr 9.67e-04 2365s\n"}
+,{"stream_name":"stdout","time":2824.043956341,"data":"[oia] step   200 oia      loss 0.0040 train-auroc nan lr 9.57e-04 2701s\n"}
+,{"stream_name":"stdout","time":2824.084674428,"data":"[oia] step   200 oiapatch loss 0.0001 train-auroc nan lr 9.57e-04 2701s\n"}
+,{"stream_name":"stdout","time":3151.104185187,"data":"[oia] step   225 oia      loss 0.0245 train-auroc 1.000 lr 9.46e-04 3028s\n"}
+,{"stream_name":"stdout","time":3151.20307505,"data":"[oia] step   225 oiapatch loss 0.0177 train-auroc 1.000 lr 9.46e-04 3028s\n"}
+,{"stream_name":"stdout","time":3494.479877274,"data":"[oia] step   250 oia      loss 0.0004 train-auroc nan lr 9.33e-04 3372s\n"}
+,{"stream_name":"stdout","time":3494.524149381,"data":"[oia] step   250 oiapatch loss 0.0001 train-auroc nan lr 9.33e-04 3372s\n"}
+,{"stream_name":"stdout","time":3532.964892697,"data":"[oia] step   250 oia      val-auroc 0.999\n"}
+,{"stream_name":"stdout","time":3532.998886925,"data":"[oia] step   250 oiapatch val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":3861.213365768,"data":"[oia] step   275 oia      loss 0.0265 train-auroc 1.000 lr 9.19e-04 3738s\n"}
+,{"stream_name":"stdout","time":3861.304286958,"data":"[oia] step   275 oiapatch loss 0.0304 train-auroc 1.000 lr 9.19e-04 3738s\n"}
+,{"stream_name":"stdout","time":4180.518192103,"data":"[oia] step   300 oia      loss 0.0054 train-auroc nan lr 9.05e-04 4058s\n"}
+,{"stream_name":"stdout","time":4180.562710702,"data":"[oia] step   300 oiapatch loss 0.0007 train-auroc nan lr 9.05e-04 4058s\n"}
+,{"stream_name":"stdout","time":4508.373028811,"data":"[oia] step   325 oia      loss 0.0015 train-auroc nan lr 8.89e-04 4386s\n"}
+,{"stream_name":"stdout","time":4508.416456378,"data":"[oia] step   325 oiapatch loss 0.0003 train-auroc nan lr 8.89e-04 4386s\n"}
+,{"stream_name":"stdout","time":4829.450055356,"data":"[oia] step   350 oia      loss 0.1323 train-auroc 0.997 lr 8.72e-04 4707s\n"}
+,{"stream_name":"stdout","time":4829.545546073,"data":"[oia] step   350 oiapatch loss 0.0090 train-auroc 1.000 lr 8.72e-04 4707s\n"}
+,{"stream_name":"stdout","time":5143.147622166,"data":"[oia] step   375 oia      loss 0.0227 train-auroc 1.000 lr 8.54e-04 5020s\n"}
+,{"stream_name":"stdout","time":5143.235195939,"data":"[oia] step   375 oiapatch loss 0.0038 train-auroc 1.000 lr 8.54e-04 5020s\n"}
+,{"stream_name":"stdout","time":5449.09205966,"data":"[oia] step   400 oia      loss 0.0490 train-auroc 0.999 lr 8.35e-04 5326s\n"}
+,{"stream_name":"stdout","time":5449.181693406,"data":"[oia] step   400 oiapatch loss 0.1407 train-auroc 0.999 lr 8.35e-04 5326s\n"}
+,{"stream_name":"stdout","time":5756.512876562,"data":"[oia] step   425 oia      loss 0.0114 train-auroc 1.000 lr 8.15e-04 5634s\n"}
+,{"stream_name":"stdout","time":5756.601498249,"data":"[oia] step   425 oiapatch loss 0.0066 train-auroc 1.000 lr 8.15e-04 5634s\n"}
+,{"stream_name":"stdout","time":6067.497595283,"data":"[oia] step   450 oia      loss 0.0042 train-auroc 1.000 lr 7.94e-04 5945s\n"}
+,{"stream_name":"stdout","time":6067.587514291,"data":"[oia] step   450 oiapatch loss 0.0034 train-auroc 1.000 lr 7.94e-04 5945s\n"}
+,{"stream_name":"stdout","time":6370.827529123,"data":"[oia] step   475 oia      loss 0.0107 train-auroc 1.000 lr 7.72e-04 6248s\n"}
+,{"stream_name":"stdout","time":6370.918332918,"data":"[oia] step   475 oiapatch loss 0.0090 train-auroc 1.000 lr 7.72e-04 6248s\n"}
+,{"stream_name":"stdout","time":6675.554155466,"data":"[oia] step   500 oia      loss 0.0020 train-auroc nan lr 7.50e-04 6553s\n"}
+,{"stream_name":"stdout","time":6675.595549312,"data":"[oia] step   500 oiapatch loss 0.0001 train-auroc nan lr 7.50e-04 6553s\n"}
+,{"stream_name":"stdout","time":6704.632788032,"data":"[oia] step   500 oia      val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":6704.650354179,"data":"[oia] step   500 oiapatch val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":7013.206784945,"data":"[oia] step   525 oia      loss 0.0001 train-auroc nan lr 7.27e-04 6890s\n"}
+,{"stream_name":"stdout","time":7013.249316007,"data":"[oia] step   525 oiapatch loss 0.0000 train-auroc nan lr 7.27e-04 6890s\n"}
+,{"stream_name":"stdout","time":7324.552029719,"data":"[oia] step   550 oia      loss 0.0114 train-auroc 1.000 lr 7.03e-04 7202s\n"}
+,{"stream_name":"stdout","time":7324.642180919,"data":"[oia] step   550 oiapatch loss 0.0174 train-auroc 1.000 lr 7.03e-04 7202s\n"}
+,{"stream_name":"stdout","time":7632.834148975,"data":"[oia] step   575 oia      loss 0.0031 train-auroc 1.000 lr 6.79e-04 7510s\n"}
+,{"stream_name":"stdout","time":7632.928245085,"data":"[oia] step   575 oiapatch loss 0.0056 train-auroc 1.000 lr 6.79e-04 7510s\n"}
+,{"stream_name":"stdout","time":7931.827905428,"data":"[oia] step   600 oia      loss 0.0070 train-auroc 1.000 lr 6.55e-04 7809s\n"}
+,{"stream_name":"stdout","time":7931.921351909,"data":"[oia] step   600 oiapatch loss 0.0050 train-auroc 1.000 lr 6.55e-04 7809s\n"}
+,{"stream_name":"stdout","time":8229.608835702,"data":"[oia] step   625 oia      loss 0.0127 train-auroc 1.000 lr 6.29e-04 8107s\n"}
+,{"stream_name":"stdout","time":8229.699835295,"data":"[oia] step   625 oiapatch loss 0.0090 train-auroc 1.000 lr 6.29e-04 8107s\n"}
+,{"stream_name":"stdout","time":8526.892218985,"data":"[oia] step   650 oia      loss 0.0086 train-auroc 1.000 lr 6.04e-04 8404s\n"}
+,{"stream_name":"stdout","time":8526.983697329,"data":"[oia] step   650 oiapatch loss 0.0082 train-auroc 1.000 lr 6.04e-04 8404s\n"}
+,{"stream_name":"stdout","time":8819.750206197,"data":"[oia] step   675 oia      loss 0.0031 train-auroc 1.000 lr 5.78e-04 8697s\n"}
+,{"stream_name":"stdout","time":8819.839482416,"data":"[oia] step   675 oiapatch loss 0.0038 train-auroc 1.000 lr 5.78e-04 8697s\n"}
+,{"stream_name":"stdout","time":9116.740685625,"data":"[oia] step   700 oia      loss 0.0091 train-auroc 1.000 lr 5.52e-04 8994s\n"}
+,{"stream_name":"stdout","time":9116.836713378,"data":"[oia] step   700 oiapatch loss 0.0034 train-auroc 1.000 lr 5.52e-04 8994s\n"}
+,{"stream_name":"stdout","time":9409.670757659,"data":"[oia] step   725 oia      loss 0.0004 train-auroc nan lr 5.26e-04 9287s\n"}
+,{"stream_name":"stdout","time":9409.71013487,"data":"[oia] step   725 oiapatch loss 0.0001 train-auroc nan lr 5.26e-04 9287s\n"}
+,{"stream_name":"stdout","time":9726.498606283,"data":"[oia] step   750 oia      loss 0.0039 train-auroc 1.000 lr 5.00e-04 9604s\n"}
+,{"stream_name":"stdout","time":9726.598118497,"data":"[oia] step   750 oiapatch loss 0.0024 train-auroc 1.000 lr 5.00e-04 9604s\n"}
+,{"stream_name":"stdout","time":9755.82188431,"data":"[oia] step   750 oia      val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":9755.838500218,"data":"[oia] step   750 oiapatch val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":10062.50033484,"data":"[oia] step   775 oia      loss 0.0051 train-auroc 1.000 lr 4.74e-04 9940s\n"}
+,{"stream_name":"stdout","time":10062.598178084,"data":"[oia] step   775 oiapatch loss 0.0075 train-auroc 1.000 lr 4.74e-04 9940s\n"}
+,{"stream_name":"stdout","time":10350.694100146,"data":"[oia] step   800 oia      loss 0.0045 train-auroc 1.000 lr 4.48e-04 10228s\n"}
+,{"stream_name":"stdout","time":10350.802240526,"data":"[oia] step   800 oiapatch loss 0.0011 train-auroc 1.000 lr 4.48e-04 10228s\n"}
+,{"stream_name":"stdout","time":10635.049218716,"data":"[oia] step   825 oia      loss 0.0103 train-auroc nan lr 4.22e-04 10512s\n"}
+,{"stream_name":"stdout","time":10635.091965314,"data":"[oia] step   825 oiapatch loss 0.0001 train-auroc nan lr 4.22e-04 10512s\n"}
+,{"stream_name":"stdout","time":10931.683537305,"data":"[oia] step   850 oia      loss 0.0001 train-auroc nan lr 3.96e-04 10809s\n"}
+,{"stream_name":"stdout","time":10931.725930805,"data":"[oia] step   850 oiapatch loss 0.0000 train-auroc nan lr 3.96e-04 10809s\n"}
+,{"stream_name":"stdout","time":11231.215628292,"data":"[oia] step   875 oia      loss 0.0047 train-auroc 1.000 lr 3.71e-04 11108s\n"}
+,{"stream_name":"stdout","time":11231.312427785,"data":"[oia] step   875 oiapatch loss 0.0022 train-auroc 1.000 lr 3.71e-04 11108s\n"}
+,{"stream_name":"stdout","time":11519.285708141,"data":"[oia] step   900 oia      loss 0.0070 train-auroc 1.000 lr 3.45e-04 11396s\n"}
+,{"stream_name":"stdout","time":11519.379308228,"data":"[oia] step   900 oiapatch loss 0.0034 train-auroc 1.000 lr 3.45e-04 11397s\n"}
+,{"stream_name":"stdout","time":11810.591511822,"data":"[oia] step   925 oia      loss 0.0100 train-auroc 1.000 lr 3.21e-04 11688s\n"}
+,{"stream_name":"stdout","time":11810.689675133,"data":"[oia] step   925 oiapatch loss 0.0100 train-auroc 1.000 lr 3.21e-04 11688s\n"}
+,{"stream_name":"stdout","time":12109.817853764,"data":"[oia] step   950 oia      loss 0.0034 train-auroc 1.000 lr 2.97e-04 11987s\n"}
+,{"stream_name":"stdout","time":12109.915881791,"data":"[oia] step   950 oiapatch loss 0.0032 train-auroc 1.000 lr 2.97e-04 11987s\n"}
+,{"stream_name":"stdout","time":12405.400171834,"data":"[oia] step   975 oia      loss 0.0023 train-auroc 1.000 lr 2.73e-04 12283s\n"}
+,{"stream_name":"stdout","time":12405.501003159,"data":"[oia] step   975 oiapatch loss 0.0020 train-auroc 1.000 lr 2.73e-04 12283s\n"}
+,{"stream_name":"stdout","time":12690.613175245,"data":"[oia] step  1000 oia      loss 0.0380 train-auroc 1.000 lr 2.50e-04 12568s\n"}
+,{"stream_name":"stdout","time":12690.709435552,"data":"[oia] step  1000 oiapatch loss 0.0352 train-auroc 1.000 lr 2.50e-04 12568s\n"}
+,{"stream_name":"stdout","time":12720.035951282,"data":"[oia] step  1000 oia      val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":12720.046324879,"data":"[oia] step  1000 oiapatch val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":13001.953031092,"data":"[oia] step  1025 oia      loss 0.0073 train-auroc 1.000 lr 2.28e-04 12879s\n"}
+,{"stream_name":"stdout","time":13002.061822998,"data":"[oia] step  1025 oiapatch loss 0.0056 train-auroc 1.000 lr 2.28e-04 12879s\n"}
+,{"stream_name":"stdout","time":13291.509452228,"data":"[oia] step  1050 oia      loss 0.0128 train-auroc 1.000 lr 2.06e-04 13169s\n"}
+,{"stream_name":"stdout","time":13291.608956318,"data":"[oia] step  1050 oiapatch loss 0.0108 train-auroc 1.000 lr 2.06e-04 13169s\n"}
+,{"stream_name":"stdout","time":13578.117346192,"data":"[oia] step  1075 oia      loss 0.0041 train-auroc 1.000 lr 1.85e-04 13455s\n"}
+,{"stream_name":"stdout","time":13578.220018495,"data":"[oia] step  1075 oiapatch loss 0.0029 train-auroc 1.000 lr 1.85e-04 13455s\n"}
+,{"stream_name":"stdout","time":13882.155478908,"data":"[oia] step  1100 oia      loss 0.0031 train-auroc 1.000 lr 1.65e-04 13759s\n"}
+,{"stream_name":"stdout","time":13882.260479581,"data":"[oia] step  1100 oiapatch loss 0.0028 train-auroc 1.000 lr 1.65e-04 13759s\n"}
+,{"stream_name":"stdout","time":14185.12745241,"data":"[oia] step  1125 oia      loss 0.0049 train-auroc 1.000 lr 1.46e-04 14062s\n"}
+,{"stream_name":"stdout","time":14185.250414123,"data":"[oia] step  1125 oiapatch loss 0.0030 train-auroc 1.000 lr 1.46e-04 14062s\n"}
+,{"stream_name":"stdout","time":14491.01495539,"data":"[oia] step  1150 oia      loss 0.0041 train-auroc 1.000 lr 1.28e-04 14368s\n"}
+,{"stream_name":"stdout","time":14491.126489288,"data":"[oia] step  1150 oiapatch loss 0.0016 train-auroc 1.000 lr 1.28e-04 14368s\n"}
+,{"stream_name":"stdout","time":14781.907631202,"data":"[oia] step  1175 oia      loss 0.0067 train-auroc 1.000 lr 1.11e-04 14659s\n"}
+,{"stream_name":"stdout","time":14782.001891402,"data":"[oia] step  1175 oiapatch loss 0.0030 train-auroc 1.000 lr 1.11e-04 14659s\n"}
+,{"stream_name":"stdout","time":15067.043397771,"data":"[oia] step  1200 oia      loss 0.0183 train-auroc 1.000 lr 9.55e-05 14944s\n"}
+,{"stream_name":"stdout","time":15067.128151701,"data":"[oia] step  1200 oiapatch loss 0.0141 train-auroc 1.000 lr 9.55e-05 14944s\n"}
+,{"stream_name":"stdout","time":15343.383313145,"data":"[oia] step  1225 oia      loss 0.0021 train-auroc 1.000 lr 8.07e-05 15221s\n"}
+,{"stream_name":"stdout","time":15343.471744005,"data":"[oia] step  1225 oiapatch loss 0.0018 train-auroc 1.000 lr 8.07e-05 15221s\n"}
+,{"stream_name":"stdout","time":15630.995840359,"data":"[oia] step  1250 oia      loss 0.0018 train-auroc 1.000 lr 6.70e-05 15508s\n"}
+,{"stream_name":"stdout","time":15631.084038446,"data":"[oia] step  1250 oiapatch loss 0.0013 train-auroc 1.000 lr 6.70e-05 15508s\n"}
+,{"stream_name":"stdout","time":15659.724524317,"data":"[oia] step  1250 oia      val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":15659.742055757,"data":"[oia] step  1250 oiapatch val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":15937.063756973,"data":"[oia] step  1275 oia      loss 0.0059 train-auroc 1.000 lr 5.45e-05 15814s\n"}
+,{"stream_name":"stdout","time":15937.149522183,"data":"[oia] step  1275 oiapatch loss 0.0043 train-auroc 1.000 lr 5.45e-05 15814s\n"}
+,{"stream_name":"stdout","time":16219.119665247,"data":"[oia] step  1300 oia      loss 0.0055 train-auroc 1.000 lr 4.32e-05 16096s\n"}
+,{"stream_name":"stdout","time":16219.208054981,"data":"[oia] step  1300 oiapatch loss 0.0040 train-auroc 1.000 lr 4.32e-05 16096s\n"}
+,{"stream_name":"stdout","time":16502.891702391,"data":"[oia] step  1325 oia      loss 0.0282 train-auroc 1.000 lr 3.32e-05 16380s\n"}
+,{"stream_name":"stdout","time":16502.982685547,"data":"[oia] step  1325 oiapatch loss 0.0311 train-auroc 0.999 lr 3.32e-05 16380s\n"}
+,{"stream_name":"stdout","time":16790.008525153,"data":"[oia] step  1350 oia      loss 0.0052 train-auroc 1.000 lr 2.45e-05 16667s\n"}
+,{"stream_name":"stdout","time":16790.0953294,"data":"[oia] step  1350 oiapatch loss 0.0040 train-auroc 1.000 lr 2.45e-05 16667s\n"}
+,{"stream_name":"stdout","time":17080.438985112,"data":"[oia] step  1375 oia      loss 0.1414 train-auroc 0.995 lr 1.70e-05 16958s\n"}
+,{"stream_name":"stdout","time":17080.529837784,"data":"[oia] step  1375 oiapatch loss 0.1546 train-auroc 0.995 lr 1.70e-05 16958s\n"}
+,{"stream_name":"stdout","time":17373.978019962,"data":"[oia] step  1400 oia      loss 0.0054 train-auroc 1.000 lr 1.09e-05 17251s\n"}
+,{"stream_name":"stdout","time":17374.072795991,"data":"[oia] step  1400 oiapatch loss 0.0025 train-auroc 1.000 lr 1.09e-05 17251s\n"}
+,{"stream_name":"stdout","time":17649.771288704,"data":"[oia] step  1425 oia      loss 0.0034 train-auroc 1.000 lr 6.16e-06 17527s\n"}
+,{"stream_name":"stdout","time":17649.860519364,"data":"[oia] step  1425 oiapatch loss 0.0015 train-auroc 1.000 lr 6.16e-06 17527s\n"}
+,{"stream_name":"stdout","time":17932.90157435,"data":"[oia] step  1450 oia      loss 0.0052 train-auroc 1.000 lr 2.74e-06 17810s\n"}
+,{"stream_name":"stdout","time":17932.999132036,"data":"[oia] step  1450 oiapatch loss 0.0049 train-auroc 1.000 lr 2.74e-06 17810s\n"}
+,{"stream_name":"stdout","time":18206.38290572,"data":"[oia] step  1475 oia      loss 0.0026 train-auroc 1.000 lr 6.85e-07 18084s\n"}
+,{"stream_name":"stdout","time":18206.473620459,"data":"[oia] step  1475 oiapatch loss 0.0022 train-auroc 1.000 lr 6.85e-07 18084s\n"}
+,{"stream_name":"stdout","time":18481.634782157,"data":"[oia] step  1500 oia      loss 0.0032 train-auroc 1.000 lr 0.00e+00 18359s\n"}
+,{"stream_name":"stdout","time":18481.720571573,"data":"[oia] step  1500 oiapatch loss 0.0030 train-auroc 1.000 lr 0.00e+00 18359s\n"}
+,{"stream_name":"stdout","time":18510.518329226,"data":"[oia] step  1500 oia      val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":18510.527516778,"data":"[oia] step  1500 oiapatch val-auroc 1.000\n"}
+,{"stream_name":"stdout","time":18510.536232664,"data":"[oia] done: /kaggle/working/checkpoints/pi3x_oia.pt (last), best val-auroc 1.000, 18388s\n"}
+,{"stream_name":"stdout","time":18510.536888832,"data":"[oia] done: /kaggle/working/checkpoints/pi3x_oiapatch.pt (last), best val-auroc 1.000, 18388s\n"}
+,{"stream_name":"stdout","time":18516.75694756,"data":"[exit 0, 18516s]\n"}
+,{"stream_name":"stdout","time":18516.757001629,"data":"\n"}
+,{"stream_name":"stdout","time":18516.757008849,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":18516.75701402,"data":"== stage baselines  [18516s]\n"}
+,{"stream_name":"stdout","time":18516.757018991,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":18516.75702869,"data":"\n"}
+,{"stream_name":"stdout","time":18516.75703297,"data":"$ /usr/bin/python3 scripts/run_h100.py baselines --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases pi3x --steps 1500 --skip-gt --variants oia,oialin,oiapatch\n"}
+,{"stream_name":"stdout","time":18517.24632041,"data":"\n"}
+,{"stream_name":"stdout","time":18517.246352904,"data":"##### stage baselines 2026-11-04 18:41:26\n"}
+,{"stream_name":"stdout","time":18517.246583506,"data":"== P3-reproj: models ['pi3x_reproj'], cfg {\"seeds\": [0], \"fills\": [\"blur\"], \"radius_fracs\": [0.18]}\n"}
+,{"stream_name":"stdout","time":18520.688113866,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":18520.829896599,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":18551.270040603,"data":"[pi3x_reproj] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  17s\n"}
+,{"stream_name":"stdout","time":18566.27627148,"data":"[pi3x_reproj] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  32s\n"}
+,{"stream_name":"stdout","time":18581.56420458,"data":"[pi3x_reproj] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  47s\n"}
+,{"stream_name":"stdout","time":18596.615185854,"data":"[pi3x_reproj] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  62s\n"}
+,{"stream_name":"stdout","time":18612.079392366,"data":"[pi3x_reproj] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  78s\n"}
+,{"stream_name":"stdout","time":18626.886146419,"data":"[pi3x_reproj] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  93s\n"}
+,{"stream_name":"stdout","time":18641.374896109,"data":"[pi3x_reproj] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  107s\n"}
+,{"stream_name":"stdout","time":18656.290755301,"data":"[pi3x_reproj] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  122s\n"}
+,{"stream_name":"stdout","time":18671.598670095,"data":"[pi3x_reproj] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  137s\n"}
+,{"stream_name":"stdout","time":18686.479142653,"data":"[pi3x_reproj] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  152s\n"}
+,{"stream_name":"stdout","time":18701.596816342,"data":"[pi3x_reproj] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  167s\n"}
+,{"stream_name":"stdout","time":18716.385303522,"data":"[pi3x_reproj] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  182s\n"}
+,{"stream_name":"stdout","time":18731.639263132,"data":"[pi3x_reproj] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  197s\n"}
+,{"stream_name":"stdout","time":18746.074922415,"data":"[pi3x_reproj] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  212s\n"}
+,{"stream_name":"stdout","time":18761.269669548,"data":"[pi3x_reproj] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  227s\n"}
+,{"stream_name":"stdout","time":18776.638437277,"data":"[pi3x_reproj] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  242s\n"}
+,{"stream_name":"stdout","time":18791.552277983,"data":"[pi3x_reproj] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  257s\n"}
+,{"stream_name":"stdout","time":18806.805016522,"data":"[pi3x_reproj] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  273s\n"}
+,{"stream_name":"stdout","time":18807.105893425,"data":"   pi3x_reproj: 290s\n"}
+,{"stream_name":"stdout","time":18807.164611027,"data":"         model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":18807.164639084,"data":"0  pi3x_reproj         0.18  blur      18  0.477 [0.435, 0.518]  0.467 [0.429, 0.500]  0.929 [0.899, 0.955]  0.005 [0.002, 0.008]  0.021 [0.017, 0.026]  0.022 [0.018, 0.028]  0.017 [0.012, 0.023]  0.985 [0.966, 1.000]       18        0.321784\n"}
+,{"stream_name":"stdout","time":18807.164997725,"data":"== P3-pv: models ['pi3x_pv4'], cfg {\"seeds\": [0], \"fills\": [\"blur\"], \"radius_fracs\": [0.18]}\n"}
+,{"stream_name":"stdout","time":18855.852034828,"data":"[pi3x_pv4] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  36s\n"}
+,{"stream_name":"stdout","time":18890.444168341,"data":"[pi3x_pv4] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  71s\n"}
+,{"stream_name":"stdout","time":18925.113162127,"data":"[pi3x_pv4] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  105s\n"}
+,{"stream_name":"stdout","time":18959.824604811,"data":"[pi3x_pv4] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  140s\n"}
+,{"stream_name":"stdout","time":18994.508996911,"data":"[pi3x_pv4] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  175s\n"}
+,{"stream_name":"stdout","time":19029.120493964,"data":"[pi3x_pv4] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  209s\n"}
+,{"stream_name":"stdout","time":19063.71196432,"data":"[pi3x_pv4] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  244s\n"}
+,{"stream_name":"stdout","time":19098.521114449,"data":"[pi3x_pv4] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  279s\n"}
+,{"stream_name":"stdout","time":19133.453019554,"data":"[pi3x_pv4] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  314s\n"}
+,{"stream_name":"stdout","time":19168.122472543,"data":"[pi3x_pv4] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  348s\n"}
+,{"stream_name":"stdout","time":19203.046699623,"data":"[pi3x_pv4] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  383s\n"}
+,{"stream_name":"stdout","time":19237.911675639,"data":"[pi3x_pv4] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  418s\n"}
+,{"stream_name":"stdout","time":19272.897242613,"data":"[pi3x_pv4] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  453s\n"}
+,{"stream_name":"stdout","time":19307.796704455,"data":"[pi3x_pv4] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  488s\n"}
+,{"stream_name":"stdout","time":19342.595983348,"data":"[pi3x_pv4] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  523s\n"}
+,{"stream_name":"stdout","time":19377.47197353,"data":"[pi3x_pv4] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  558s\n"}
+,{"stream_name":"stdout","time":19412.428775569,"data":"[pi3x_pv4] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  593s\n"}
+,{"stream_name":"stdout","time":19447.400919012,"data":"[pi3x_pv4] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  628s\n"}
+,{"stream_name":"stdout","time":19447.699183585,"data":"   pi3x_pv4: 641s\n"}
+,{"stream_name":"stdout","time":19447.734729553,"data":"      model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":19447.734760472,"data":"0  pi3x_pv4         0.18  blur      18  0.550 [0.491, 0.608]  0.487 [0.444, 0.528]  0.824 [0.754, 0.886]  0.003 [0.001, 0.006]  0.022 [0.018, 0.026]  0.022 [0.017, 0.029]  0.017 [0.012, 0.023]  0.904 [0.800, 1.018]       18        0.121294\n"}
+,{"stream_name":"stdout","time":19447.735168742,"data":"== P3-native: models ['pi3x'], cfg {\"seeds\": [0], \"fills\": [\"blur\"], \"radius_fracs\": [0.18]}\n"}
+,{"stream_name":"stdout","time":19467.108220095,"data":"[pi3x] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  9s\n"}
+,{"stream_name":"stdout","time":19476.498639906,"data":"[pi3x] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  19s\n"}
+,{"stream_name":"stdout","time":19486.234420439,"data":"[pi3x] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  28s\n"}
+,{"stream_name":"stdout","time":19495.70729525,"data":"[pi3x] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  38s\n"}
+,{"stream_name":"stdout","time":19505.233997633,"data":"[pi3x] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  47s\n"}
+,{"stream_name":"stdout","time":19514.561920694,"data":"[pi3x] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  57s\n"}
+,{"stream_name":"stdout","time":19523.711666391,"data":"[pi3x] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  66s\n"}
+,{"stream_name":"stdout","time":19532.895135991,"data":"[pi3x] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  75s\n"}
+,{"stream_name":"stdout","time":19542.043881194,"data":"[pi3x] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  84s\n"}
+,{"stream_name":"stdout","time":19550.975183622,"data":"[pi3x] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  93s\n"}
+,{"stream_name":"stdout","time":19560.235327901,"data":"[pi3x] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  102s\n"}
+,{"stream_name":"stdout","time":19569.514296863,"data":"[pi3x] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  112s\n"}
+,{"stream_name":"stdout","time":19578.832190258,"data":"[pi3x] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  121s\n"}
+,{"stream_name":"stdout","time":19588.057598519,"data":"[pi3x] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  130s\n"}
+,{"stream_name":"stdout","time":19597.384253483,"data":"[pi3x] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  139s\n"}
+,{"stream_name":"stdout","time":19606.7038816,"data":"[pi3x] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  149s\n"}
+,{"stream_name":"stdout","time":19615.991777293,"data":"[pi3x] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  158s\n"}
+,{"stream_name":"stdout","time":19625.285859226,"data":"[pi3x] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  167s\n"}
+,{"stream_name":"stdout","time":19625.586164435,"data":"   pi3x: 178s\n"}
+,{"stream_name":"stdout","time":19625.61968242,"data":"  model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":19625.619719222,"data":"0  pi3x         0.18  blur      18  0.832 [0.782, 0.879]  0.489 [0.416, 0.570]  0.502 [0.362, 0.642]  0.003 [0.000, 0.006]  0.021 [0.018, 0.026]  0.022 [0.018, 0.028]  0.017 [0.012, 0.023]  0.700 [0.637, 0.770]       18         0.00005\n"}
+,{"stream_name":"stdout","time":19627.160312504,"data":"[exit 0, 19626s]\n"}
+,{"stream_name":"stdout","time":19627.160364635,"data":"\n"}
+,{"stream_name":"stdout","time":19627.160371064,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":19627.160376028,"data":"== stage dtu  [19626s]\n"}
+,{"stream_name":"stdout","time":19627.160380838,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":19627.16038529,"data":"\n"}
+,{"stream_name":"stdout","time":19627.160389853,"data":"$ /usr/bin/python3 scripts/run_h100.py dtu --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases pi3x --steps 1500 --skip-gt --variants oia,oialin,oiapatch\n"}
+,{"stream_name":"stdout","time":19627.649390759,"data":"\n"}
+,{"stream_name":"stdout","time":19627.649420875,"data":"##### stage dtu 2026-11-04 18:59:57\n"}
+,{"stream_name":"stdout","time":19627.649784317,"data":"== P3-oia-dtu: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {\"seeds\": [0, 1, 2, 3, 4], \"fills\": [\"gray\", \"blur\", \"noise\"], \"radius_fracs\": [0.1, 0.18]}\n"}
+,{"stream_name":"stdout","time":19629.910873863,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":19630.053939524,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":19643.368957361,"data":"[pi3x_oia] head from /kaggle/working/checkpoints/pi3x_oia.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":19794.610614846,"data":"[pi3x_oia] scan 3  auroc=1.000  cur=0.000  absrel_U=0.015 (ctrl 0.008)  151s\n"}
+,{"stream_name":"stdout","time":19940.886364929,"data":"[pi3x_oia] scan 5  auroc=1.000  cur=0.000  absrel_U=0.012 (ctrl 0.006)  298s\n"}
+,{"stream_name":"stdout","time":20087.564248715,"data":"[pi3x_oia] scan 17  auroc=1.000  cur=0.000  absrel_U=0.018 (ctrl 0.010)  444s\n"}
+,{"stream_name":"stdout","time":20234.078818875,"data":"[pi3x_oia] scan 21  auroc=1.000  cur=0.000  absrel_U=0.028 (ctrl 0.029)  591s\n"}
+,{"stream_name":"stdout","time":20381.430456929,"data":"[pi3x_oia] scan 28  auroc=1.000  cur=0.000  absrel_U=0.013 (ctrl 0.006)  738s\n"}
+,{"stream_name":"stdout","time":20528.722275389,"data":"[pi3x_oia] scan 35  auroc=1.000  cur=0.000  absrel_U=0.027 (ctrl 0.021)  885s\n"}
+,{"stream_name":"stdout","time":20675.936088716,"data":"[pi3x_oia] scan 37  auroc=0.999  cur=0.003  absrel_U=0.022 (ctrl 0.013)  1033s\n"}
+,{"stream_name":"stdout","time":20822.982188082,"data":"[pi3x_oia] scan 38  auroc=1.000  cur=0.000  absrel_U=0.016 (ctrl 0.010)  1180s\n"}
+,{"stream_name":"stdout","time":20970.874460819,"data":"[pi3x_oia] scan 40  auroc=1.000  cur=0.000  absrel_U=0.024 (ctrl 0.011)  1328s\n"}
+,{"stream_name":"stdout","time":21116.883531173,"data":"[pi3x_oia] scan 43  auroc=1.000  cur=0.000  absrel_U=0.012 (ctrl 0.005)  1474s\n"}
+,{"stream_name":"stdout","time":21263.410280096,"data":"[pi3x_oia] scan 56  auroc=1.000  cur=0.000  absrel_U=0.016 (ctrl 0.012)  1620s\n"}
+,{"stream_name":"stdout","time":21408.742616193,"data":"[pi3x_oia] scan 59  auroc=1.000  cur=0.000  absrel_U=0.012 (ctrl 0.009)  1765s\n"}
+,{"stream_name":"stdout","time":21555.324913352,"data":"[pi3x_oia] scan 66  auroc=1.000  cur=0.000  absrel_U=0.028 (ctrl 0.026)  1912s\n"}
+,{"stream_name":"stdout","time":21700.913507455,"data":"[pi3x_oia] scan 67  auroc=1.000  cur=0.000  absrel_U=0.056 (ctrl 0.055)  2058s\n"}
+,{"stream_name":"stdout","time":21847.231905626,"data":"[pi3x_oia] scan 82  auroc=1.000  cur=0.000  absrel_U=0.017 (ctrl 0.010)  2204s\n"}
+,{"stream_name":"stdout","time":21994.137045675,"data":"[pi3x_oia] scan 86  auroc=1.000  cur=0.000  absrel_U=0.025 (ctrl 0.027)  2351s\n"}
+,{"stream_name":"stdout","time":22140.981427284,"data":"[pi3x_oia] scan 106  auroc=1.000  cur=0.000  absrel_U=0.024 (ctrl 0.022)  2498s\n"}
+,{"stream_name":"stdout","time":22287.269466723,"data":"[pi3x_oia] scan 117  auroc=1.000  cur=0.000  absrel_U=0.023 (ctrl 0.020)  2644s\n"}
+,{"stream_name":"stdout","time":22287.574412329,"data":"   pi3x_oia: 2660s\n"}
+,{"stream_name":"stdout","time":22287.590614057,"data":"resuming: 540 rows already in /kaggle/working/results/P3-oia-dtu/P3-oia-dtu.csv\n"}
+,{"stream_name":"stdout","time":22300.376056164,"data":"[pi3x_oiapatch] head from /kaggle/working/checkpoints/pi3x_oiapatch.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":22448.01306118,"data":"[pi3x_oiapatch] scan 3  auroc=1.000  cur=0.000  absrel_U=0.015 (ctrl 0.008)  148s\n"}
+,{"stream_name":"stdout","time":22593.215918886,"data":"[pi3x_oiapatch] scan 5  auroc=1.000  cur=0.000  absrel_U=0.012 (ctrl 0.006)  293s\n"}
+,{"stream_name":"stdout","time":22739.278344936,"data":"[pi3x_oiapatch] scan 17  auroc=1.000  cur=0.000  absrel_U=0.018 (ctrl 0.010)  439s\n"}
+,{"stream_name":"stdout","time":22885.495510817,"data":"[pi3x_oiapatch] scan 21  auroc=1.000  cur=0.000  absrel_U=0.028 (ctrl 0.029)  585s\n"}
+,{"stream_name":"stdout","time":23032.001750924,"data":"[pi3x_oiapatch] scan 28  auroc=1.000  cur=0.000  absrel_U=0.013 (ctrl 0.006)  732s\n"}
+,{"stream_name":"stdout","time":23178.948196094,"data":"[pi3x_oiapatch] scan 35  auroc=1.000  cur=0.000  absrel_U=0.027 (ctrl 0.021)  879s\n"}
+,{"stream_name":"stdout","time":23325.255941806,"data":"[pi3x_oiapatch] scan 37  auroc=1.000  cur=0.000  absrel_U=0.022 (ctrl 0.013)  1025s\n"}
+,{"stream_name":"stdout","time":23471.817314305,"data":"[pi3x_oiapatch] scan 38  auroc=1.000  cur=0.000  absrel_U=0.016 (ctrl 0.010)  1171s\n"}
+,{"stream_name":"stdout","time":23619.2548047,"data":"[pi3x_oiapatch] scan 40  auroc=1.000  cur=0.000  absrel_U=0.024 (ctrl 0.011)  1319s\n"}
+,{"stream_name":"stdout","time":23764.751886893,"data":"[pi3x_oiapatch] scan 43  auroc=1.000  cur=0.000  absrel_U=0.012 (ctrl 0.005)  1464s\n"}
+,{"stream_name":"stdout","time":23911.456436869,"data":"[pi3x_oiapatch] scan 56  auroc=1.000  cur=0.000  absrel_U=0.016 (ctrl 0.012)  1611s\n"}
+,{"stream_name":"stdout","time":24056.358949853,"data":"[pi3x_oiapatch] scan 59  auroc=1.000  cur=0.000  absrel_U=0.012 (ctrl 0.009)  1756s\n"}
+,{"stream_name":"stdout","time":24202.737354857,"data":"[pi3x_oiapatch] scan 66  auroc=1.000  cur=0.000  absrel_U=0.028 (ctrl 0.026)  1902s\n"}
+,{"stream_name":"stdout","time":24347.897544781,"data":"[pi3x_oiapatch] scan 67  auroc=1.000  cur=0.000  absrel_U=0.056 (ctrl 0.055)  2048s\n"}
+,{"stream_name":"stdout","time":24494.750498706,"data":"[pi3x_oiapatch] scan 82  auroc=1.000  cur=0.000  absrel_U=0.017 (ctrl 0.010)  2194s\n"}
+,{"stream_name":"stdout","time":24641.597627497,"data":"[pi3x_oiapatch] scan 86  auroc=1.000  cur=0.000  absrel_U=0.025 (ctrl 0.027)  2341s\n"}
+,{"stream_name":"stdout","time":24788.304821652,"data":"[pi3x_oiapatch] scan 106  auroc=1.000  cur=0.000  absrel_U=0.024 (ctrl 0.022)  2488s\n"}
+,{"stream_name":"stdout","time":24934.846334809,"data":"[pi3x_oiapatch] scan 117  auroc=1.000  cur=0.000  absrel_U=0.023 (ctrl 0.020)  2634s\n"}
+,{"stream_name":"stdout","time":24935.142970941,"data":"   pi3x_oiapatch: 2648s\n"}
+,{"stream_name":"stdout","time":24935.449210689,"data":"            model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":24935.449239286,"data":"0        pi3x_oia         0.10   blur      90  0.990 [0.979, 1.000]  0.516 [0.467, 0.572]  0.034 [0.000, 0.073]  0.000 [0.000, 0.000]  0.018 [0.014, 0.023]  0.019 [0.014, 0.025]  0.017 [0.012, 0.023]  0.056 [0.001, 0.123]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.44924587,"data":"1        pi3x_oia         0.10   gray      90  1.000 [1.000, 1.000]  0.516 [0.467, 0.572]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.018 [0.014, 0.023]  0.021 [0.016, 0.027]  0.017 [0.012, 0.023]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449251662,"data":"2        pi3x_oia         0.10  noise      90  1.000 [0.999, 1.000]  0.516 [0.467, 0.572]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.018 [0.014, 0.023]  0.021 [0.016, 0.027]  0.017 [0.012, 0.023]  0.011 [0.000, 0.031]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449257283,"data":"3        pi3x_oia         0.18   blur      90  0.998 [0.995, 1.000]  0.503 [0.461, 0.545]  0.006 [0.000, 0.015]  0.000 [0.000, 0.000]  0.020 [0.016, 0.025]  0.022 [0.017, 0.028]  0.017 [0.012, 0.022]  0.041 [0.000, 0.096]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449263087,"data":"4        pi3x_oia         0.18   gray      90  1.000 [1.000, 1.000]  0.503 [0.461, 0.545]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.020 [0.016, 0.025]  0.022 [0.019, 0.027]  0.017 [0.012, 0.022]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449268384,"data":"5        pi3x_oia         0.18  noise      90  1.000 [1.000, 1.000]  0.503 [0.461, 0.545]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.019 [0.016, 0.024]  0.024 [0.020, 0.028]  0.017 [0.012, 0.022]  0.002 [0.000, 0.005]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449273495,"data":"6   pi3x_oiapatch         0.10   blur      90  0.992 [0.983, 1.000]  0.529 [0.488, 0.573]  0.034 [0.000, 0.073]  0.000 [0.000, 0.000]  0.018 [0.014, 0.023]  0.019 [0.014, 0.025]  0.017 [0.012, 0.023]  0.056 [0.000, 0.122]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449280009,"data":"7   pi3x_oiapatch         0.10   gray      90  1.000 [1.000, 1.000]  0.529 [0.488, 0.573]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.018 [0.014, 0.023]  0.021 [0.016, 0.027]  0.017 [0.012, 0.023]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449299039,"data":"8   pi3x_oiapatch         0.10  noise      90  1.000 [1.000, 1.000]  0.529 [0.488, 0.573]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.018 [0.014, 0.023]  0.021 [0.016, 0.027]  0.017 [0.012, 0.023]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449303714,"data":"9   pi3x_oiapatch         0.18   blur      90  0.996 [0.990, 1.000]  0.510 [0.470, 0.550]  0.016 [0.000, 0.040]  0.000 [0.000, 0.000]  0.020 [0.016, 0.025]  0.022 [0.017, 0.028]  0.017 [0.012, 0.022]  0.044 [0.000, 0.100]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.44930801,"data":"10  pi3x_oiapatch         0.18   gray      90  1.000 [1.000, 1.000]  0.510 [0.470, 0.550]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.020 [0.016, 0.025]  0.022 [0.019, 0.027]  0.017 [0.012, 0.022]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24935.449312659,"data":"11  pi3x_oiapatch         0.18  noise      90  1.000 [1.000, 1.000]  0.510 [0.470, 0.550]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.019 [0.016, 0.024]  0.024 [0.020, 0.028]  0.017 [0.012, 0.022]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":24936.746958508,"data":"[exit 0, 24936s]\n"}
+,{"stream_name":"stdout","time":24936.746994582,"data":"\n"}
+,{"stream_name":"stdout","time":24936.746999346,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":24936.747006295,"data":"== stage stress  [24936s]\n"}
+,{"stream_name":"stdout","time":24936.747009569,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":24936.747012197,"data":"\n"}
+,{"stream_name":"stdout","time":24936.747014378,"data":"$ /usr/bin/python3 scripts/run_h100.py stress --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases pi3x --steps 1500 --skip-gt --variants oia,oialin,oiapatch\n"}
+,{"stream_name":"stdout","time":24937.22595502,"data":"\n"}
+,{"stream_name":"stdout","time":24937.225985016,"data":"##### stage stress 2026-11-04 20:28:26\n"}
+,{"stream_name":"stdout","time":24937.226293532,"data":"== P3-oia-stress_inpaint10: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {\"seeds\": [0, 1], \"fills\": [\"inpaint\"], \"radius_fracs\": [0.18], \"keep_model\": true}\n"}
+,{"stream_name":"stdout","time":24939.480586905,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":24939.634997588,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":24952.918134691,"data":"[pi3x_oia] head from /kaggle/working/checkpoints/pi3x_oia.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":24972.833870096,"data":"[pi3x_oia] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  20s\n"}
+,{"stream_name":"stdout","time":24988.96403423,"data":"[pi3x_oia] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  36s\n"}
+,{"stream_name":"stdout","time":25006.201017591,"data":"[pi3x_oia] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  53s\n"}
+,{"stream_name":"stdout","time":25022.502923317,"data":"[pi3x_oia] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  70s\n"}
+,{"stream_name":"stdout","time":25038.371145256,"data":"[pi3x_oia] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  85s\n"}
+,{"stream_name":"stdout","time":25055.568104387,"data":"[pi3x_oia] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  103s\n"}
+,{"stream_name":"stdout","time":25070.646933001,"data":"[pi3x_oia] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  118s\n"}
+,{"stream_name":"stdout","time":25089.284896325,"data":"[pi3x_oia] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  136s\n"}
+,{"stream_name":"stdout","time":25105.272415343,"data":"[pi3x_oia] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  152s\n"}
+,{"stream_name":"stdout","time":25121.083962817,"data":"[pi3x_oia] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  168s\n"}
+,{"stream_name":"stdout","time":25137.335669074,"data":"[pi3x_oia] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  184s\n"}
+,{"stream_name":"stdout","time":25152.749157644,"data":"[pi3x_oia] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  200s\n"}
+,{"stream_name":"stdout","time":25170.650725097,"data":"[pi3x_oia] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  218s\n"}
+,{"stream_name":"stdout","time":25185.52131404,"data":"[pi3x_oia] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  233s\n"}
+,{"stream_name":"stdout","time":25201.229449805,"data":"[pi3x_oia] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  248s\n"}
+,{"stream_name":"stdout","time":25218.097920261,"data":"[pi3x_oia] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  265s\n"}
+,{"stream_name":"stdout","time":25234.878356232,"data":"[pi3x_oia] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  282s\n"}
+,{"stream_name":"stdout","time":25250.788618653,"data":"[pi3x_oia] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  298s\n"}
+,{"stream_name":"stdout","time":25250.799798098,"data":"   pi3x_oia: 314s\n"}
+,{"stream_name":"stdout","time":25250.804524912,"data":"resuming: 36 rows already in /kaggle/working/results/P3-oia-stress_inpaint10/P3-oia-stress_inpaint10.csv\n"}
+,{"stream_name":"stdout","time":25263.371148328,"data":"[pi3x_oiapatch] head from /kaggle/working/checkpoints/pi3x_oiapatch.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":25280.741774763,"data":"[pi3x_oiapatch] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  17s\n"}
+,{"stream_name":"stdout","time":25297.277966883,"data":"[pi3x_oiapatch] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  34s\n"}
+,{"stream_name":"stdout","time":25314.345102194,"data":"[pi3x_oiapatch] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  51s\n"}
+,{"stream_name":"stdout","time":25330.360935815,"data":"[pi3x_oiapatch] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  67s\n"}
+,{"stream_name":"stdout","time":25345.867504779,"data":"[pi3x_oiapatch] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  82s\n"}
+,{"stream_name":"stdout","time":25362.996743846,"data":"[pi3x_oiapatch] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  100s\n"}
+,{"stream_name":"stdout","time":25378.176564868,"data":"[pi3x_oiapatch] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  115s\n"}
+,{"stream_name":"stdout","time":25396.742164154,"data":"[pi3x_oiapatch] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  133s\n"}
+,{"stream_name":"stdout","time":25412.756095381,"data":"[pi3x_oiapatch] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  149s\n"}
+,{"stream_name":"stdout","time":25428.567903967,"data":"[pi3x_oiapatch] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  165s\n"}
+,{"stream_name":"stdout","time":25445.155322081,"data":"[pi3x_oiapatch] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  182s\n"}
+,{"stream_name":"stdout","time":25460.628745923,"data":"[pi3x_oiapatch] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  197s\n"}
+,{"stream_name":"stdout","time":25478.430764591,"data":"[pi3x_oiapatch] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  215s\n"}
+,{"stream_name":"stdout","time":25493.172339526,"data":"[pi3x_oiapatch] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  230s\n"}
+,{"stream_name":"stdout","time":25508.796728362,"data":"[pi3x_oiapatch] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  245s\n"}
+,{"stream_name":"stdout","time":25525.622115483,"data":"[pi3x_oiapatch] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  262s\n"}
+,{"stream_name":"stdout","time":25542.372133815,"data":"[pi3x_oiapatch] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  279s\n"}
+,{"stream_name":"stdout","time":25558.137545367,"data":"[pi3x_oiapatch] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  295s\n"}
+,{"stream_name":"stdout","time":25558.144596819,"data":"   pi3x_oiapatch: 307s\n"}
+,{"stream_name":"stdout","time":25558.20114352,"data":"           model  radius_frac     fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":25558.201171576,"data":"0       pi3x_oia         0.18  inpaint      36  0.994 [0.989, 0.998]  0.495 [0.438, 0.549]  0.015 [0.004, 0.032]  0.000 [0.000, 0.001]  0.021 [0.017, 0.026]  0.022 [0.018, 0.028]  0.016 [0.011, 0.022]  0.051 [0.001, 0.118]       18         0.00005\n"}
+,{"stream_name":"stdout","time":25558.201176198,"data":"1  pi3x_oiapatch         0.18  inpaint      36  0.994 [0.987, 0.999]  0.498 [0.453, 0.543]  0.021 [0.002, 0.055]  0.000 [0.000, 0.000]  0.021 [0.017, 0.026]  0.022 [0.018, 0.028]  0.016 [0.011, 0.022]  0.033 [0.000, 0.093]       18         0.00005\n"}
+,{"stream_name":"stdout","time":25558.201507004,"data":"== P3-oia-stress_blur5: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {\"seeds\": [0, 1], \"fills\": [\"blur\"], \"radius_fracs\": [0.18], \"n_views\": 5, \"keep_model\": true}\n"}
+,{"stream_name":"stdout","time":25568.069503796,"data":"[pi3x_oia] head from /kaggle/working/checkpoints/pi3x_oia.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":25577.891273621,"data":"[pi3x_oia] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  10s\n"}
+,{"stream_name":"stdout","time":25587.939778679,"data":"[pi3x_oia] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  20s\n"}
+,{"stream_name":"stdout","time":25598.118952564,"data":"[pi3x_oia] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  30s\n"}
+,{"stream_name":"stdout","time":25607.935237707,"data":"[pi3x_oia] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  40s\n"}
+,{"stream_name":"stdout","time":25617.964536592,"data":"[pi3x_oia] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  50s\n"}
+,{"stream_name":"stdout","time":25627.930289245,"data":"[pi3x_oia] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  60s\n"}
+,{"stream_name":"stdout","time":25637.455378856,"data":"[pi3x_oia] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  69s\n"}
+,{"stream_name":"stdout","time":25646.949296256,"data":"[pi3x_oia] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  79s\n"}
+,{"stream_name":"stdout","time":25656.271683636,"data":"[pi3x_oia] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  88s\n"}
+,{"stream_name":"stdout","time":25665.577012427,"data":"[pi3x_oia] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  98s\n"}
+,{"stream_name":"stdout","time":25675.386731267,"data":"[pi3x_oia] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  107s\n"}
+,{"stream_name":"stdout","time":25685.0262689,"data":"[pi3x_oia] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  117s\n"}
+,{"stream_name":"stdout","time":25694.657743743,"data":"[pi3x_oia] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  127s\n"}
+,{"stream_name":"stdout","time":25704.03419336,"data":"[pi3x_oia] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  136s\n"}
+,{"stream_name":"stdout","time":25713.922046411,"data":"[pi3x_oia] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  146s\n"}
+,{"stream_name":"stdout","time":25723.815597546,"data":"[pi3x_oia] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  156s\n"}
+,{"stream_name":"stdout","time":25733.475448435,"data":"[pi3x_oia] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  165s\n"}
+,{"stream_name":"stdout","time":25743.315755846,"data":"[pi3x_oia] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  175s\n"}
+,{"stream_name":"stdout","time":25743.322582533,"data":"   pi3x_oia: 185s\n"}
+,{"stream_name":"stdout","time":25743.326782062,"data":"resuming: 36 rows already in /kaggle/working/results/P3-oia-stress_blur5/P3-oia-stress_blur5.csv\n"}
+,{"stream_name":"stdout","time":25753.276580822,"data":"[pi3x_oiapatch] head from /kaggle/working/checkpoints/pi3x_oiapatch.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":25761.069396406,"data":"[pi3x_oiapatch] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  8s\n"}
+,{"stream_name":"stdout","time":25769.026742395,"data":"[pi3x_oiapatch] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  16s\n"}
+,{"stream_name":"stdout","time":25777.204390591,"data":"[pi3x_oiapatch] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  24s\n"}
+,{"stream_name":"stdout","time":25785.256827639,"data":"[pi3x_oiapatch] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  32s\n"}
+,{"stream_name":"stdout","time":25793.25231987,"data":"[pi3x_oiapatch] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  40s\n"}
+,{"stream_name":"stdout","time":25801.137065014,"data":"[pi3x_oiapatch] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  48s\n"}
+,{"stream_name":"stdout","time":25808.935375129,"data":"[pi3x_oiapatch] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  56s\n"}
+,{"stream_name":"stdout","time":25816.694444047,"data":"[pi3x_oiapatch] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  63s\n"}
+,{"stream_name":"stdout","time":25824.429620844,"data":"[pi3x_oiapatch] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  71s\n"}
+,{"stream_name":"stdout","time":25832.098502895,"data":"[pi3x_oiapatch] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  79s\n"}
+,{"stream_name":"stdout","time":25839.701793009,"data":"[pi3x_oiapatch] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  86s\n"}
+,{"stream_name":"stdout","time":25847.392729256,"data":"[pi3x_oiapatch] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  94s\n"}
+,{"stream_name":"stdout","time":25855.278847808,"data":"[pi3x_oiapatch] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  102s\n"}
+,{"stream_name":"stdout","time":25863.103889133,"data":"[pi3x_oiapatch] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  110s\n"}
+,{"stream_name":"stdout","time":25870.949070545,"data":"[pi3x_oiapatch] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  118s\n"}
+,{"stream_name":"stdout","time":25878.831609456,"data":"[pi3x_oiapatch] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  126s\n"}
+,{"stream_name":"stdout","time":25886.716774509,"data":"[pi3x_oiapatch] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  133s\n"}
+,{"stream_name":"stdout","time":25894.536457437,"data":"[pi3x_oiapatch] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  141s\n"}
+,{"stream_name":"stdout","time":25894.543377786,"data":"   pi3x_oiapatch: 151s\n"}
+,{"stream_name":"stdout","time":25894.600323055,"data":"           model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":25894.600346005,"data":"0       pi3x_oia         0.18  blur      36  0.997 [0.993, 1.000]  0.491 [0.441, 0.540]  0.007 [0.000, 0.019]  0.000 [0.000, 0.000]  0.021 [0.017, 0.027]  0.024 [0.018, 0.033]  0.018 [0.013, 0.026]  0.028 [0.000, 0.083]       18         0.00005\n"}
+,{"stream_name":"stdout","time":25894.600365635,"data":"1  pi3x_oiapatch         0.18  blur      36  0.995 [0.987, 1.000]  0.492 [0.447, 0.536]  0.018 [0.000, 0.055]  0.000 [0.000, 0.000]  0.021 [0.017, 0.027]  0.024 [0.018, 0.033]  0.018 [0.013, 0.026]  0.028 [0.000, 0.083]       18         0.00005\n"}
+,{"stream_name":"stdout","time":25894.600688081,"data":"== P3-oia-stress_blur3: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {\"seeds\": [0, 1], \"fills\": [\"blur\"], \"radius_fracs\": [0.18], \"n_views\": 3, \"keep_model\": true}\n"}
+,{"stream_name":"stdout","time":25904.642738998,"data":"[pi3x_oia] head from /kaggle/working/checkpoints/pi3x_oia.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":25909.236806601,"data":"[pi3x_oia] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  5s\n"}
+,{"stream_name":"stdout","time":25913.809357687,"data":"[pi3x_oia] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  9s\n"}
+,{"stream_name":"stdout","time":25918.437712159,"data":"[pi3x_oia] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  14s\n"}
+,{"stream_name":"stdout","time":25923.056108474,"data":"[pi3x_oia] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  18s\n"}
+,{"stream_name":"stdout","time":25927.801329801,"data":"[pi3x_oia] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  23s\n"}
+,{"stream_name":"stdout","time":25932.611841363,"data":"[pi3x_oia] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  28s\n"}
+,{"stream_name":"stdout","time":25937.396731276,"data":"[pi3x_oia] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  33s\n"}
+,{"stream_name":"stdout","time":25942.18560164,"data":"[pi3x_oia] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  38s\n"}
+,{"stream_name":"stdout","time":25946.904002992,"data":"[pi3x_oia] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  42s\n"}
+,{"stream_name":"stdout","time":25951.538172045,"data":"[pi3x_oia] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  47s\n"}
+,{"stream_name":"stdout","time":25956.185377595,"data":"[pi3x_oia] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  52s\n"}
+,{"stream_name":"stdout","time":25960.745132791,"data":"[pi3x_oia] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  56s\n"}
+,{"stream_name":"stdout","time":25965.375212596,"data":"[pi3x_oia] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  61s\n"}
+,{"stream_name":"stdout","time":25969.977057296,"data":"[pi3x_oia] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  65s\n"}
+,{"stream_name":"stdout","time":25974.559392477,"data":"[pi3x_oia] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  70s\n"}
+,{"stream_name":"stdout","time":25979.16285414,"data":"[pi3x_oia] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  75s\n"}
+,{"stream_name":"stdout","time":25983.778708295,"data":"[pi3x_oia] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  79s\n"}
+,{"stream_name":"stdout","time":25988.385354277,"data":"[pi3x_oia] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  84s\n"}
+,{"stream_name":"stdout","time":25988.392538281,"data":"   pi3x_oia: 94s\n"}
+,{"stream_name":"stdout","time":25988.396682433,"data":"resuming: 36 rows already in /kaggle/working/results/P3-oia-stress_blur3/P3-oia-stress_blur3.csv\n"}
+,{"stream_name":"stdout","time":25998.45892787,"data":"[pi3x_oiapatch] head from /kaggle/working/checkpoints/pi3x_oiapatch.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":26003.023815258,"data":"[pi3x_oiapatch] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  5s\n"}
+,{"stream_name":"stdout","time":26007.597198048,"data":"[pi3x_oiapatch] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  9s\n"}
+,{"stream_name":"stdout","time":26012.282794387,"data":"[pi3x_oiapatch] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  14s\n"}
+,{"stream_name":"stdout","time":26016.919892953,"data":"[pi3x_oiapatch] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  18s\n"}
+,{"stream_name":"stdout","time":26021.608591422,"data":"[pi3x_oiapatch] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  23s\n"}
+,{"stream_name":"stdout","time":26026.448175398,"data":"[pi3x_oiapatch] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  28s\n"}
+,{"stream_name":"stdout","time":26031.237075861,"data":"[pi3x_oiapatch] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  33s\n"}
+,{"stream_name":"stdout","time":26036.097504348,"data":"[pi3x_oiapatch] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  38s\n"}
+,{"stream_name":"stdout","time":26040.907114057,"data":"[pi3x_oiapatch] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  42s\n"}
+,{"stream_name":"stdout","time":26045.568484511,"data":"[pi3x_oiapatch] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  47s\n"}
+,{"stream_name":"stdout","time":26050.197730448,"data":"[pi3x_oiapatch] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  52s\n"}
+,{"stream_name":"stdout","time":26054.759863199,"data":"[pi3x_oiapatch] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  56s\n"}
+,{"stream_name":"stdout","time":26059.386435161,"data":"[pi3x_oiapatch] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  61s\n"}
+,{"stream_name":"stdout","time":26063.990441691,"data":"[pi3x_oiapatch] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  66s\n"}
+,{"stream_name":"stdout","time":26068.552549115,"data":"[pi3x_oiapatch] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  70s\n"}
+,{"stream_name":"stdout","time":26073.103313518,"data":"[pi3x_oiapatch] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  75s\n"}
+,{"stream_name":"stdout","time":26077.705129592,"data":"[pi3x_oiapatch] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  79s\n"}
+,{"stream_name":"stdout","time":26082.277712589,"data":"[pi3x_oiapatch] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  84s\n"}
+,{"stream_name":"stdout","time":26082.28450142,"data":"   pi3x_oiapatch: 94s\n"}
+,{"stream_name":"stdout","time":26082.340915097,"data":"           model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":26082.340941957,"data":"0       pi3x_oia         0.18  blur      36  0.998 [0.994, 1.000]  0.488 [0.440, 0.537]  0.006 [0.000, 0.017]  0.000 [0.000, 0.000]  0.029 [0.023, 0.035]  0.051 [0.030, 0.077]  0.029 [0.020, 0.041]  0.028 [0.000, 0.084]       18         0.00005\n"}
+,{"stream_name":"stdout","time":26082.340948566,"data":"1  pi3x_oiapatch         0.18  blur      36  0.995 [0.985, 1.000]  0.488 [0.446, 0.528]  0.019 [0.000, 0.057]  0.000 [0.000, 0.000]  0.029 [0.023, 0.035]  0.051 [0.030, 0.077]  0.029 [0.020, 0.041]  0.028 [0.000, 0.083]       18         0.00005\n"}
+,{"stream_name":"stdout","time":26082.341257982,"data":"== P3-oia-stress_adjacent10: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {\"seeds\": [0, 1], \"fills\": [\"blur\"], \"radius_fracs\": [0.18], \"view_mode\": \"adjacent\", \"keep_model\": true}\n"}
+,{"stream_name":"stdout","time":26092.347837789,"data":"[pi3x_oia] head from /kaggle/working/checkpoints/pi3x_oia.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":26111.409045157,"data":"[pi3x_oia] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  19s\n"}
+,{"stream_name":"stdout","time":26131.457522487,"data":"[pi3x_oia] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  39s\n"}
+,{"stream_name":"stdout","time":26151.412473415,"data":"[pi3x_oia] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  59s\n"}
+,{"stream_name":"stdout","time":26170.099179912,"data":"[pi3x_oia] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  78s\n"}
+,{"stream_name":"stdout","time":26189.024363555,"data":"[pi3x_oia] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  97s\n"}
+,{"stream_name":"stdout","time":26208.622685835,"data":"[pi3x_oia] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  116s\n"}
+,{"stream_name":"stdout","time":26227.940456142,"data":"[pi3x_oia] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  136s\n"}
+,{"stream_name":"stdout","time":26247.171461966,"data":"[pi3x_oia] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  155s\n"}
+,{"stream_name":"stdout","time":26266.580355015,"data":"[pi3x_oia] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  174s\n"}
+,{"stream_name":"stdout","time":26285.769170187,"data":"[pi3x_oia] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  193s\n"}
+,{"stream_name":"stdout","time":26305.294156212,"data":"[pi3x_oia] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  213s\n"}
+,{"stream_name":"stdout","time":26323.488175173,"data":"[pi3x_oia] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  231s\n"}
+,{"stream_name":"stdout","time":26343.004930097,"data":"[pi3x_oia] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  251s\n"}
+,{"stream_name":"stdout","time":26361.932321477,"data":"[pi3x_oia] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  270s\n"}
+,{"stream_name":"stdout","time":26380.805801785,"data":"[pi3x_oia] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  288s\n"}
+,{"stream_name":"stdout","time":26400.195832201,"data":"[pi3x_oia] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  308s\n"}
+,{"stream_name":"stdout","time":26419.317384676,"data":"[pi3x_oia] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  327s\n"}
+,{"stream_name":"stdout","time":26438.283973972,"data":"[pi3x_oia] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  346s\n"}
+,{"stream_name":"stdout","time":26438.290720509,"data":"   pi3x_oia: 356s\n"}
+,{"stream_name":"stdout","time":26438.294771352,"data":"resuming: 36 rows already in /kaggle/working/results/P3-oia-stress_adjacent10/P3-oia-stress_adjacent10.csv\n"}
+,{"stream_name":"stdout","time":26448.384269972,"data":"[pi3x_oiapatch] head from /kaggle/working/checkpoints/pi3x_oiapatch.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":26463.327975688,"data":"[pi3x_oiapatch] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  15s\n"}
+,{"stream_name":"stdout","time":26478.816331546,"data":"[pi3x_oiapatch] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  30s\n"}
+,{"stream_name":"stdout","time":26493.795439836,"data":"[pi3x_oiapatch] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  45s\n"}
+,{"stream_name":"stdout","time":26508.456981774,"data":"[pi3x_oiapatch] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  60s\n"}
+,{"stream_name":"stdout","time":26523.095141309,"data":"[pi3x_oiapatch] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  75s\n"}
+,{"stream_name":"stdout","time":26537.92084129,"data":"[pi3x_oiapatch] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  90s\n"}
+,{"stream_name":"stdout","time":26552.807427361,"data":"[pi3x_oiapatch] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  104s\n"}
+,{"stream_name":"stdout","time":26567.69772915,"data":"[pi3x_oiapatch] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  119s\n"}
+,{"stream_name":"stdout","time":26582.528599686,"data":"[pi3x_oiapatch] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  134s\n"}
+,{"stream_name":"stdout","time":26597.38602857,"data":"[pi3x_oiapatch] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  149s\n"}
+,{"stream_name":"stdout","time":26612.244214737,"data":"[pi3x_oiapatch] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  164s\n"}
+,{"stream_name":"stdout","time":26626.640488456,"data":"[pi3x_oiapatch] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  178s\n"}
+,{"stream_name":"stdout","time":26641.593567554,"data":"[pi3x_oiapatch] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  193s\n"}
+,{"stream_name":"stdout","time":26656.415688701,"data":"[pi3x_oiapatch] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  208s\n"}
+,{"stream_name":"stdout","time":26671.252243516,"data":"[pi3x_oiapatch] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  223s\n"}
+,{"stream_name":"stdout","time":26686.068909715,"data":"[pi3x_oiapatch] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  238s\n"}
+,{"stream_name":"stdout","time":26700.947709566,"data":"[pi3x_oiapatch] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  253s\n"}
+,{"stream_name":"stdout","time":26715.809335373,"data":"[pi3x_oiapatch] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  267s\n"}
+,{"stream_name":"stdout","time":26715.816348209,"data":"   pi3x_oiapatch: 278s\n"}
+,{"stream_name":"stdout","time":26715.874633276,"data":"           model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":26715.874656471,"data":"0       pi3x_oia         0.18  blur      36  0.996 [0.990, 1.000]  0.481 [0.438, 0.527]  0.015 [0.000, 0.043]  0.000 [0.000, 0.001]  0.033 [0.027, 0.040]  0.050 [0.037, 0.064]  0.034 [0.023, 0.046]  0.028 [0.000, 0.083]       18         0.00005\n"}
+,{"stream_name":"stdout","time":26715.874663296,"data":"1  pi3x_oiapatch         0.18  blur      36  0.996 [0.987, 1.000]  0.468 [0.434, 0.500]  0.021 [0.000, 0.062]  0.000 [0.000, 0.000]  0.033 [0.027, 0.040]  0.050 [0.037, 0.064]  0.034 [0.023, 0.046]  0.028 [0.000, 0.083]       18         0.00005\n"}
+,{"stream_name":"stdout","time":26715.874894016,"data":"== P3-oia-stress_distractor10: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {\"seeds\": [0, 1], \"fills\": [\"blur\"], \"radius_fracs\": [0.18], \"distractor\": true, \"keep_model\": true}\n"}
+,{"stream_name":"stdout","time":26726.005700493,"data":"[pi3x_oia] head from /kaggle/working/checkpoints/pi3x_oia.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":26742.499965319,"data":"[pi3x_oia] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  16s\n"}
+,{"stream_name":"stdout","time":26759.687984436,"data":"[pi3x_oia] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  34s\n"}
+,{"stream_name":"stdout","time":26776.42882675,"data":"[pi3x_oia] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  50s\n"}
+,{"stream_name":"stdout","time":26792.496471713,"data":"[pi3x_oia] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  66s\n"}
+,{"stream_name":"stdout","time":26808.858737795,"data":"[pi3x_oia] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  83s\n"}
+,{"stream_name":"stdout","time":26825.213240554,"data":"[pi3x_oia] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  99s\n"}
+,{"stream_name":"stdout","time":26841.675941888,"data":"[pi3x_oia] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  116s\n"}
+,{"stream_name":"stdout","time":26858.162199125,"data":"[pi3x_oia] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  132s\n"}
+,{"stream_name":"stdout","time":26874.590193776,"data":"[pi3x_oia] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  149s\n"}
+,{"stream_name":"stdout","time":26890.710541903,"data":"[pi3x_oia] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  165s\n"}
+,{"stream_name":"stdout","time":26906.78314315,"data":"[pi3x_oia] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  181s\n"}
+,{"stream_name":"stdout","time":26922.79297081,"data":"[pi3x_oia] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  197s\n"}
+,{"stream_name":"stdout","time":26939.287496129,"data":"[pi3x_oia] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  213s\n"}
+,{"stream_name":"stdout","time":26955.646946953,"data":"[pi3x_oia] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  230s\n"}
+,{"stream_name":"stdout","time":26972.092194817,"data":"[pi3x_oia] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  246s\n"}
+,{"stream_name":"stdout","time":26988.576662262,"data":"[pi3x_oia] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  263s\n"}
+,{"stream_name":"stdout","time":27005.037589,"data":"[pi3x_oia] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  279s\n"}
+,{"stream_name":"stdout","time":27021.495225906,"data":"[pi3x_oia] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  295s\n"}
+,{"stream_name":"stdout","time":27021.50234173,"data":"   pi3x_oia: 306s\n"}
+,{"stream_name":"stdout","time":27021.506228452,"data":"resuming: 36 rows already in /kaggle/working/results/P3-oia-stress_distractor10/P3-oia-stress_distractor10.csv\n"}
+,{"stream_name":"stdout","time":27031.406801135,"data":"[pi3x_oiapatch] head from /kaggle/working/checkpoints/pi3x_oiapatch.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":27047.826164882,"data":"[pi3x_oiapatch] scan 3  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  16s\n"}
+,{"stream_name":"stdout","time":27064.854438511,"data":"[pi3x_oiapatch] scan 5  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  33s\n"}
+,{"stream_name":"stdout","time":27081.558891674,"data":"[pi3x_oiapatch] scan 17  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  50s\n"}
+,{"stream_name":"stdout","time":27097.604425664,"data":"[pi3x_oiapatch] scan 21  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  66s\n"}
+,{"stream_name":"stdout","time":27113.979612569,"data":"[pi3x_oiapatch] scan 28  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  83s\n"}
+,{"stream_name":"stdout","time":27130.37366502,"data":"[pi3x_oiapatch] scan 35  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  99s\n"}
+,{"stream_name":"stdout","time":27146.851878721,"data":"[pi3x_oiapatch] scan 37  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  115s\n"}
+,{"stream_name":"stdout","time":27163.304961506,"data":"[pi3x_oiapatch] scan 38  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  132s\n"}
+,{"stream_name":"stdout","time":27179.749653394,"data":"[pi3x_oiapatch] scan 40  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  148s\n"}
+,{"stream_name":"stdout","time":27195.920126309,"data":"[pi3x_oiapatch] scan 43  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  165s\n"}
+,{"stream_name":"stdout","time":27212.031326389,"data":"[pi3x_oiapatch] scan 56  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  181s\n"}
+,{"stream_name":"stdout","time":27228.073045778,"data":"[pi3x_oiapatch] scan 59  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  197s\n"}
+,{"stream_name":"stdout","time":27244.544958833,"data":"[pi3x_oiapatch] scan 66  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  213s\n"}
+,{"stream_name":"stdout","time":27260.919854809,"data":"[pi3x_oiapatch] scan 67  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  230s\n"}
+,{"stream_name":"stdout","time":27277.401800074,"data":"[pi3x_oiapatch] scan 82  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  246s\n"}
+,{"stream_name":"stdout","time":27293.863816602,"data":"[pi3x_oiapatch] scan 86  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  262s\n"}
+,{"stream_name":"stdout","time":27310.310431449,"data":"[pi3x_oiapatch] scan 106  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  279s\n"}
+,{"stream_name":"stdout","time":27326.78028046,"data":"[pi3x_oiapatch] scan 117  auroc=nan  cur=nan  absrel_U=nan (ctrl nan)  295s\n"}
+,{"stream_name":"stdout","time":27326.787676129,"data":"   pi3x_oiapatch: 305s\n"}
+,{"stream_name":"stdout","time":27326.845419978,"data":"           model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":27326.845459236,"data":"0       pi3x_oia         0.18  blur      36  0.997 [0.993, 1.000]  0.495 [0.443, 0.546]  0.008 [0.000, 0.023]  0.000 [0.000, 0.000]  0.020 [0.017, 0.025]  0.024 [0.018, 0.033]  0.017 [0.012, 0.022]  0.028 [0.000, 0.083]       18         0.00005\n"}
+,{"stream_name":"stdout","time":27326.845466827,"data":"1  pi3x_oiapatch         0.18  blur      36  0.996 [0.989, 1.000]  0.498 [0.453, 0.543]  0.016 [0.000, 0.049]  0.000 [0.000, 0.000]  0.020 [0.017, 0.025]  0.024 [0.018, 0.033]  0.017 [0.012, 0.022]  0.028 [0.000, 0.083]       18         0.00005\n"}
+,{"stream_name":"stdout","time":27328.423854984,"data":"[exit 0, 27327s]\n"}
+,{"stream_name":"stdout","time":27328.423887409,"data":"\n"}
+,{"stream_name":"stdout","time":27328.423893201,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":27328.423897827,"data":"== stage ablate  [27327s]\n"}
+,{"stream_name":"stdout","time":27328.423901462,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":27328.423909117,"data":"\n"}
+,{"stream_name":"stdout","time":27328.423912556,"data":"$ /usr/bin/python3 scripts/run_h100.py ablate --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases pi3x --steps 1500 --skip-gt --variants oia,oialin,oiapatch\n"}
+,{"stream_name":"stdout","time":27328.933858252,"data":"\n"}
+,{"stream_name":"stdout","time":27328.933913433,"data":"##### stage ablate 2026-11-04 21:08:18\n"}
+,{"stream_name":"stdout","time":27328.934249659,"data":"== P3-oia-abl: models ['pi3x_oiapatch'], cfg {\"seeds\": [0], \"fills\": [\"gray\", \"blur\", \"noise\"], \"radius_fracs\": [0.18]}\n"}
+,{"stream_name":"stdout","time":27331.27417653,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":27331.420068612,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":27344.821915379,"data":"[pi3x_oiapatch] head from /kaggle/working/checkpoints/pi3x_oiapatch.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":27366.663623296,"data":"[pi3x_oiapatch] scan 3  auroc=1.000  cur=0.000  absrel_U=0.019 (ctrl 0.008)  22s\n"}
+,{"stream_name":"stdout","time":27386.728419121,"data":"[pi3x_oiapatch] scan 5  auroc=1.000  cur=0.000  absrel_U=0.015 (ctrl 0.008)  42s\n"}
+,{"stream_name":"stdout","time":27406.528920911,"data":"[pi3x_oiapatch] scan 17  auroc=1.000  cur=0.000  absrel_U=0.028 (ctrl 0.018)  62s\n"}
+,{"stream_name":"stdout","time":27425.207110926,"data":"[pi3x_oiapatch] scan 21  auroc=1.000  cur=0.001  absrel_U=0.024 (ctrl 0.023)  80s\n"}
+,{"stream_name":"stdout","time":27444.215997918,"data":"[pi3x_oiapatch] scan 28  auroc=1.000  cur=0.000  absrel_U=0.018 (ctrl 0.008)  99s\n"}
+,{"stream_name":"stdout","time":27463.417272789,"data":"[pi3x_oiapatch] scan 35  auroc=1.000  cur=0.000  absrel_U=0.023 (ctrl 0.021)  119s\n"}
+,{"stream_name":"stdout","time":27482.706218094,"data":"[pi3x_oiapatch] scan 37  auroc=1.000  cur=0.000  absrel_U=0.027 (ctrl 0.016)  138s\n"}
+,{"stream_name":"stdout","time":27501.890749047,"data":"[pi3x_oiapatch] scan 38  auroc=1.000  cur=0.000  absrel_U=0.015 (ctrl 0.008)  157s\n"}
+,{"stream_name":"stdout","time":27521.048330539,"data":"[pi3x_oiapatch] scan 40  auroc=1.000  cur=0.000  absrel_U=0.020 (ctrl 0.006)  176s\n"}
+,{"stream_name":"stdout","time":27539.930031947,"data":"[pi3x_oiapatch] scan 43  auroc=1.000  cur=0.000  absrel_U=0.009 (ctrl 0.004)  195s\n"}
+,{"stream_name":"stdout","time":27559.087309514,"data":"[pi3x_oiapatch] scan 56  auroc=1.000  cur=0.000  absrel_U=0.016 (ctrl 0.013)  214s\n"}
+,{"stream_name":"stdout","time":27578.257694775,"data":"[pi3x_oiapatch] scan 59  auroc=1.000  cur=0.000  absrel_U=0.015 (ctrl 0.008)  233s\n"}
+,{"stream_name":"stdout","time":27597.554647391,"data":"[pi3x_oiapatch] scan 66  auroc=1.000  cur=0.000  absrel_U=0.017 (ctrl 0.018)  253s\n"}
+,{"stream_name":"stdout","time":27616.683262862,"data":"[pi3x_oiapatch] scan 67  auroc=1.000  cur=0.000  absrel_U=0.055 (ctrl 0.056)  272s\n"}
+,{"stream_name":"stdout","time":27635.9035442,"data":"[pi3x_oiapatch] scan 82  auroc=1.000  cur=0.000  absrel_U=0.026 (ctrl 0.014)  291s\n"}
+,{"stream_name":"stdout","time":27655.204141901,"data":"[pi3x_oiapatch] scan 86  auroc=1.000  cur=0.000  absrel_U=0.026 (ctrl 0.024)  310s\n"}
+,{"stream_name":"stdout","time":27674.473854013,"data":"[pi3x_oiapatch] scan 106  auroc=1.000  cur=0.000  absrel_U=0.024 (ctrl 0.022)  330s\n"}
+,{"stream_name":"stdout","time":27693.643565321,"data":"[pi3x_oiapatch] scan 117  auroc=1.000  cur=0.000  absrel_U=0.030 (ctrl 0.028)  349s\n"}
+,{"stream_name":"stdout","time":27693.948048316,"data":"   pi3x_oiapatch: 365s\n"}
+,{"stream_name":"stdout","time":27694.032384879,"data":"           model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":27694.032411887,"data":"0  pi3x_oiapatch         0.18   blur      18  1.000 [0.999, 1.000]  0.488 [0.431, 0.547]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.021 [0.018, 0.026]  0.022 [0.018, 0.028]  0.017 [0.012, 0.023]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":27694.032418509,"data":"1  pi3x_oiapatch         0.18   gray      18  1.000 [1.000, 1.000]  0.488 [0.431, 0.547]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.021 [0.017, 0.026]  0.023 [0.019, 0.028]  0.017 [0.012, 0.023]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":27694.032424214,"data":"2  pi3x_oiapatch         0.18  noise      18  1.000 [1.000, 1.000]  0.488 [0.431, 0.547]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.020 [0.016, 0.025]  0.024 [0.019, 0.030]  0.017 [0.012, 0.023]  0.000 [0.000, 0.000]       18         0.00005\n"}
+,{"stream_name":"stdout","time":27695.253400405,"data":"[exit 0, 27694s]\n"}
+,{"stream_name":"stdout","time":27695.253437183,"data":"\n"}
+,{"stream_name":"stdout","time":27695.253442339,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":27695.253459796,"data":"== stage co3d  [27694s]\n"}
+,{"stream_name":"stdout","time":27695.253464716,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":27695.253469554,"data":"\n"}
+,{"stream_name":"stdout","time":27695.253474592,"data":"$ /usr/bin/python3 scripts/run_h100.py co3d --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases pi3x --steps 1500 --skip-gt --variants oia,oialin,oiapatch\n"}
+,{"stream_name":"stdout","time":27718.538035006,"data":"\n"}
+,{"stream_name":"stdout","time":27718.538097723,"data":"##### stage co3d 2026-11-04 21:14:47\n"}
+,{"stream_name":"stdout","time":27718.543004742,"data":"== P3-oia-co3d: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {\"seeds\": [0, 1, 2, 3, 4], \"fills\": [\"gray\", \"blur\", \"noise\"], \"radius_fracs\": [0.1, 0.18], \"dataset\": \"co3d\"}\n"}
+,{"stream_name":"stdout","time":27720.918046703,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":27721.088504031,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":27734.398132576,"data":"[pi3x_oia] head from /kaggle/working/checkpoints/pi3x_oia.pt (step 1500, val-auroc 1.000)\n"}
+,{"stream_name":"stdout","time":27839.748823448,"data":"[pi3x_oia] scan apple_110_13051_23361  auroc=0.999  cur=0.002  absrel_U=0.063 (ctrl 0.043)  105s\n"}
+,{"stream_name":"stdout","time":27943.162702889,"data":"[pi3x_oia] scan apple_189_20393_38136  auroc=1.000  cur=0.000  absrel_U=0.015 (ctrl 0.011)  209s\n"}
+,{"stream_name":"stdout","time":28045.387812363,"data":"[pi3x_oia] scan ball_123_14363_28981  auroc=0.996  cur=0.008  absrel_U=0.035 (ctrl 0.011)  311s\n"}
+,{"stream_name":"stdout","time":28148.037115712,"data":"[pi3x_oia] scan ball_375_42693_85518  auroc=0.999  cur=0.002  absrel_U=0.039 (ctrl 0.011)  414s\n"}
+,{"stream_name":"stdout","time":28251.032420922,"data":"[pi3x_oia] scan bench_415_57112_110099  auroc=1.000  cur=0.000  absrel_U=0.014 (ctrl 0.010)  517s\n"}
+,{"stream_name":"stdout","time":28353.360466866,"data":"[pi3x_oia] scan bench_415_57121_110109  auroc=0.999  cur=0.001  absrel_U=0.013 (ctrl 0.007)  619s\n"}
+,{"stream_name":"stdout","time":28455.874433976,"data":"[pi3x_oia] scan hydrant_167_18184_34441  auroc=0.999  cur=0.001  absrel_U=0.018 (ctrl 0.012)  721s\n"}
+,{"stream_name":"stdout","time":28557.172399707,"data":"[pi3x_oia] scan hydrant_411_56064_108483  auroc=1.000  cur=0.001  absrel_U=0.018 (ctrl 0.011)  823s\n"}
+,{"stream_name":"stdout","time":28658.443445392,"data":"[pi3x_oia] scan mouse_107_12753_23606  auroc=0.954  cur=0.120  absrel_U=0.021 (ctrl 0.019)  924s\n"}
+,{"stream_name":"stdout","time":28759.905522468,"data":"[pi3x_oia] scan mouse_377_43416_86289  auroc=0.983  cur=0.042  absrel_U=0.019 (ctrl 0.015)  1026s\n"}
+,{"stream_name":"stdout","time":28862.368190665,"data":"[pi3x_oia] scan teddybear_187_20215_38541  auroc=0.999  cur=0.002  absrel_U=0.025 (ctrl 0.025)  1128s\n"}
+,{"stream_name":"stdout","time":28964.205581512,"data":"[pi3x_oia] scan teddybear_34_1479_4753  auroc=0.998  cur=0.001  absrel_U=0.012 (ctrl 0.006)  1230s\n"}
+,{"stream_name":"stdout","time":29066.661637752,"data":"[pi3x_oia] scan toytrain_240_25394_51994  auroc=0.995  cur=0.019  absrel_U=0.014 (ctrl 0.010)  1332s\n"}
+,{"stream_name":"stdout","time":29168.496818666,"data":"[pi3x_oia] scan toytrain_399_51323_100753  auroc=0.999  cur=0.002  absrel_U=0.013 (ctrl 0.009)  1434s\n"}
+,{"stream_name":"stdout","time":29270.303279729,"data":"[pi3x_oia] scan toytruck_190_20494_39385  auroc=0.998  cur=0.003  absrel_U=0.023 (ctrl 0.016)  1536s\n"}
+,{"stream_name":"stdout","time":29367.602209756,"data":"!! pi3x_oia failed:\n"}
+,{"stream_name":"stdout","time":29367.602244256,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":29367.602250958,"data":"  File \"/kaggle/tmp/repo/scripts/run_h100.py\", line 88, in run\n"}
+,{"stream_name":"stdout","time":29367.602256556,"data":"    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f\"ex_{run_name}\"))\n"}
+,{"stream_name":"stdout","time":29367.602262557,"data":"    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602267562,"data":"  File \"/kaggle/tmp/repo/scripts/hallu3d.py\", line 808, in run_benchmark\n"}
+,{"stream_name":"stdout","time":29367.602273237,"data":"    d, c = _predict(model, imgs_m, out_hw, extra, model_hw)\n"}
+,{"stream_name":"stdout","time":29367.602278212,"data":"           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602291685,"data":"  File \"/kaggle/tmp/repo/scripts/hallu3d.py\", line 783, in _predict\n"}
+,{"stream_name":"stdout","time":29367.602295805,"data":"    return model.predict(imgs, model_hw, out_hw)\n"}
+,{"stream_name":"stdout","time":29367.6022996,"data":"           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602303403,"data":"  File \"/kaggle/tmp/repo/scripts/oia_head.py\", line 515, in predict\n"}
+,{"stream_name":"stdout","time":29367.602306944,"data":"    d, c, F, _, _ = self.ff(self.base, x, self.base.dtype, self.feats)\n"}
+,{"stream_name":"stdout","time":29367.602310716,"data":"                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602314766,"data":"  File \"/kaggle/tmp/repo/scripts/oia_head.py\", line 131, in pi3_forward_feats\n"}
+,{"stream_name":"stdout","time":29367.60231855,"data":"    out = model(x[None], **kw)\n"}
+,{"stream_name":"stdout","time":29367.602322313,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":29367.602326605,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602330648,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602334347,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n"}
+,{"stream_name":"stdout","time":29367.602338776,"data":"    return forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602342731,"data":"  File \"/kaggle/tmp/Pi3/pi3/models/pi3x.py\", line 270, in forward\n"}
+,{"stream_name":"stdout","time":29367.602346391,"data":"    outputs = self.forward_head(hidden, pos, B, N, H, W, patch_h, patch_w)\n"}
+,{"stream_name":"stdout","time":29367.602350157,"data":"  File \"/kaggle/tmp/Pi3/pi3/models/pi3x.py\", line 411, in forward_head\n"}
+,{"stream_name":"stdout","time":29367.602354806,"data":"    ret_conf = self.conf_decoder(hidden, xpos=pos)\n"}
+,{"stream_name":"stdout","time":29367.602358955,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":29367.60236323,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602367287,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602371375,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1885, in _call_impl\n"}
+,{"stream_name":"stdout","time":29367.602375595,"data":"    return inner()\n"}
+,{"stream_name":"stdout","time":29367.602380341,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1833, in inner\n"}
+,{"stream_name":"stdout","time":29367.602385614,"data":"    result = forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602389245,"data":"  File \"/kaggle/tmp/Pi3/pi3/models/layers/transformer_head.py\", line 54, in forward\n"}
+,{"stream_name":"stdout","time":29367.60239391,"data":"    hidden = blk(hidden, xpos=xpos)\n"}
+,{"stream_name":"stdout","time":29367.602398129,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":29367.602402552,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602406432,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602409883,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n"}
+,{"stream_name":"stdout","time":29367.602419293,"data":"    return forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602423197,"data":"  File \"/kaggle/tmp/Pi3/pi3/models/layers/block.py\", line 333, in forward\n"}
+,{"stream_name":"stdout","time":29367.602426757,"data":"    x = x + attn_residual_func(x)\n"}
+,{"stream_name":"stdout","time":29367.602430193,"data":"            ~~~~~~~~~~~~~~~~~~^^^\n"}
+,{"stream_name":"stdout","time":29367.602433516,"data":"  File \"/kaggle/tmp/Pi3/pi3/models/layers/block.py\", line 312, in attn_residual_func\n"}
+,{"stream_name":"stdout","time":29367.602437443,"data":"    return self.ls1(self.attn(self.norm1(x), xpos=xpos))\n"}
+,{"stream_name":"stdout","time":29367.602441294,"data":"                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.60244511,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":29367.602449079,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602452914,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602456751,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n"}
+,{"stream_name":"stdout","time":29367.602460758,"data":"    return forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602464279,"data":"  File \"/kaggle/tmp/Pi3/pi3/models/layers/attention.py\", line 334, in forward\n"}
+,{"stream_name":"stdout","time":29367.602468037,"data":"    q = self.rope(q, xpos)\n"}
+,{"stream_name":"stdout","time":29367.602471614,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1779, in _wrapped_call_impl\n"}
+,{"stream_name":"stdout","time":29367.602475426,"data":"    return self._call_impl(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602479147,"data":"           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602482616,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1790, in _call_impl\n"}
+,{"stream_name":"stdout","time":29367.602486937,"data":"    return forward_call(*args, **kwargs)\n"}
+,{"stream_name":"stdout","time":29367.602490636,"data":"  File \"/kaggle/tmp/Pi3/pi3/models/layers/pos_embed.py\", line 153, in forward\n"}
+,{"stream_name":"stdout","time":29367.602494313,"data":"    cos, sin = self.get_cos_sin(D, int(positions.max())+1, tokens.device, tokens.dtype)\n"}
+,{"stream_name":"stdout","time":29367.602498353,"data":"                                   ~~~^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29367.602502032,"data":"torch.AcceleratorError: CUDA error: unknown error\n"}
+,{"stream_name":"stdout","time":29367.602505967,"data":"Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\n"}
+,{"stream_name":"stdout","time":29367.602510748,"data":"CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\n"}
+,{"stream_name":"stdout","time":29367.602514504,"data":"For debugging consider passing CUDA_LAUNCH_BLOCKING=1\n"}
+,{"stream_name":"stdout","time":29367.60252041,"data":"Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n"}
+,{"stream_name":"stdout","time":29367.602524274,"data":"\n"}
+,{"stream_name":"stdout","time":29367.60252778,"data":"\n"}
+,{"stream_name":"stdout","time":29367.678446357,"data":"resuming: 450 rows already in /kaggle/working/results/P3-oia-co3d/P3-oia-co3d.csv\n"}
+,{"stream_name":"stdout","time":29379.793606986,"data":"!! pi3x_oiapatch failed:\n"}
+,{"stream_name":"stdout","time":29379.793646384,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":29379.793652009,"data":"  File \"/kaggle/tmp/repo/scripts/run_h100.py\", line 88, in run\n"}
+,{"stream_name":"stdout","time":29379.793656873,"data":"    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f\"ex_{run_name}\"))\n"}
+,{"stream_name":"stdout","time":29379.793661448,"data":"    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29379.793666101,"data":"  File \"/kaggle/tmp/repo/scripts/hallu3d.py\", line 793, in run_benchmark\n"}
+,{"stream_name":"stdout","time":29379.79367053,"data":"    model = model_factory(mname)\n"}
+,{"stream_name":"stdout","time":29379.79367416,"data":"  File \"/kaggle/tmp/repo/scripts/hallu3d.py\", line 727, in make_model\n"}
+,{"stream_name":"stdout","time":29379.793677742,"data":"    w = make_oia(name, MODEL_REGISTRY)\n"}
+,{"stream_name":"stdout","time":29379.793684558,"data":"  File \"/kaggle/tmp/repo/scripts/oia_head.py\", line 537, in make_oia\n"}
+,{"stream_name":"stdout","time":29379.793688251,"data":"    return OIAWrap(registry[m.group(1)](), m.group(2))\n"}
+,{"stream_name":"stdout","time":29379.793691838,"data":"                   ~~~~~~~~~~~~~~~~~~~~^^\n"}
+,{"stream_name":"stdout","time":29379.793701138,"data":"  File \"/kaggle/tmp/repo/scripts/hallu3d.py\", line 437, in __init__\n"}
+,{"stream_name":"stdout","time":29379.793704238,"data":"    self.model = Pi3X.from_pretrained(\"yyfz233/Pi3X\").to(device).eval()\n"}
+,{"stream_name":"stdout","time":29379.793706852,"data":"                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29379.793709265,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1384, in to\n"}
+,{"stream_name":"stdout","time":29379.793711872,"data":"    return self._apply(convert)\n"}
+,{"stream_name":"stdout","time":29379.793714191,"data":"           ~~~~~~~~~~~^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29379.793716554,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 934, in _apply\n"}
+,{"stream_name":"stdout","time":29379.793719056,"data":"    module._apply(fn)\n"}
+,{"stream_name":"stdout","time":29379.79372136,"data":"    ~~~~~~~~~~~~~^^^^\n"}
+,{"stream_name":"stdout","time":29379.793723706,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 934, in _apply\n"}
+,{"stream_name":"stdout","time":29379.793726298,"data":"    module._apply(fn)\n"}
+,{"stream_name":"stdout","time":29379.793729575,"data":"    ~~~~~~~~~~~~~^^^^\n"}
+,{"stream_name":"stdout","time":29379.793733834,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 934, in _apply\n"}
+,{"stream_name":"stdout","time":29379.793748838,"data":"    module._apply(fn)\n"}
+,{"stream_name":"stdout","time":29379.793752696,"data":"    ~~~~~~~~~~~~~^^^^\n"}
+,{"stream_name":"stdout","time":29379.793757043,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 965, in _apply\n"}
+,{"stream_name":"stdout","time":29379.793760869,"data":"    param_applied = fn(param)\n"}
+,{"stream_name":"stdout","time":29379.793765202,"data":"  File \"/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py\", line 1370, in convert\n"}
+,{"stream_name":"stdout","time":29379.793769094,"data":"    return t.to(\n"}
+,{"stream_name":"stdout","time":29379.793772536,"data":"           ~~~~^\n"}
+,{"stream_name":"stdout","time":29379.793775882,"data":"        device,\n"}
+,{"stream_name":"stdout","time":29379.793793761,"data":"        ^^^^^^^\n"}
+,{"stream_name":"stdout","time":29379.793797278,"data":"        dtype if t.is_floating_point() or t.is_complex() else None,\n"}
+,{"stream_name":"stdout","time":29379.793800912,"data":"        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29379.793804526,"data":"        non_blocking,\n"}
+,{"stream_name":"stdout","time":29379.793807875,"data":"        ^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":29379.793813325,"data":"    )\n"}
+,{"stream_name":"stdout","time":29379.79381979,"data":"    ^\n"}
+,{"stream_name":"stdout","time":29379.793822404,"data":"torch.AcceleratorError: CUDA error: unknown error\n"}
+,{"stream_name":"stdout","time":29379.79382605,"data":"Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.\n"}
+,{"stream_name":"stdout","time":29379.793828639,"data":"CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.\n"}
+,{"stream_name":"stdout","time":29379.793831654,"data":"For debugging consider passing CUDA_LAUNCH_BLOCKING=1\n"}
+,{"stream_name":"stdout","time":29379.793847138,"data":"Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.\n"}
+,{"stream_name":"stdout","time":29379.793851777,"data":"\n"}
+,{"stream_name":"stdout","time":29379.793855577,"data":"\n"}
+,{"stream_name":"stdout","time":29379.986369107,"data":"      model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5\n"}
+,{"stream_name":"stdout","time":29379.98640785,"data":"0  pi3x_oia         0.10   blur      75  0.950 [0.901, 0.986]  0.501 [0.464, 0.536]  0.138 [0.043, 0.266]  0.001 [0.000, 0.002]  0.017 [0.013, 0.022]  0.017 [0.013, 0.022]  0.014 [0.010, 0.019]  0.204 [0.096, 0.341]       15         0.00005\n"}
+,{"stream_name":"stdout","time":29379.986412469,"data":"1  pi3x_oia         0.10   gray      75  0.991 [0.980, 0.998]  0.501 [0.464, 0.536]  0.021 [0.003, 0.051]  0.000 [0.000, 0.000]  0.017 [0.013, 0.022]  0.021 [0.014, 0.029]  0.014 [0.010, 0.019]  0.069 [0.014, 0.141]       15         0.00005\n"}
+,{"stream_name":"stdout","time":29379.98641577,"data":"2  pi3x_oia         0.10  noise      75  0.979 [0.945, 0.998]  0.501 [0.464, 0.536]  0.060 [0.004, 0.158]  0.000 [0.000, 0.000]  0.017 [0.013, 0.022]  0.017 [0.011, 0.025]  0.014 [0.010, 0.019]  0.109 [0.048, 0.190]       15         0.00005\n"}
+,{"stream_name":"stdout","time":29379.986419471,"data":"3  pi3x_oia         0.18   blur      75  0.977 [0.955, 0.994]  0.509 [0.462, 0.558]  0.077 [0.017, 0.157]  0.004 [0.000, 0.012]  0.017 [0.013, 0.022]  0.020 [0.016, 0.026]  0.015 [0.011, 0.020]  0.130 [0.035, 0.268]       15         0.00005\n"}
+,{"stream_name":"stdout","time":29379.986438158,"data":"4  pi3x_oia         0.18   gray      75  0.998 [0.995, 0.999]  0.509 [0.462, 0.558]  0.006 [0.001, 0.013]  0.000 [0.000, 0.001]  0.017 [0.013, 0.023]  0.025 [0.020, 0.032]  0.015 [0.011, 0.020]  0.000 [0.000, 0.001]       15         0.00005\n"}
+,{"stream_name":"stdout","time":29379.986443733,"data":"5  pi3x_oia         0.18  noise      75  0.992 [0.978, 0.999]  0.509 [0.462, 0.558]  0.024 [0.000, 0.071]  0.000 [0.000, 0.000]  0.017 [0.013, 0.023]  0.022 [0.016, 0.030]  0.015 [0.011, 0.020]  0.012 [0.000, 0.034]       15         0.00005\n"}
+,{"stream_name":"stdout","time":29391.241923269,"data":"[exit 0, 29390s]\n"}
+,{"stream_name":"stdout","time":29391.242176979,"data":"\n"}
+,{"stream_name":"stdout","time":29391.242192551,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":29391.242222721,"data":"== done  [29390s]\n"}
+,{"stream_name":"stdout","time":29391.242350263,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":29391.243424086,"data":"       8,601  /kaggle/working/results/P3-oia-co3d/P3-oia-co3d.log\n"}
+,{"stream_name":"stdout","time":29391.243902282,"data":"       1,512  /kaggle/working/results/P3-oia-co3d/P3-oia-co3d_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.244287873,"data":"     128,915  /kaggle/working/results/P3-oia-co3d/P3-oia-co3d.csv\n"}
+,{"stream_name":"stdout","time":29391.244562997,"data":"         994  /kaggle/working/results/P3-oia-co3d/P3-oia-co3d_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.24556014,"data":"      20,570  /kaggle/working/results/P3-oia-stress_inpaint10/P3-oia-stress_inpaint10.csv\n"}
+,{"stream_name":"stdout","time":29391.245924179,"data":"         600  /kaggle/working/results/P3-oia-stress_inpaint10/P3-oia-stress_inpaint10_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.248697557,"data":"         975  /kaggle/working/results/P3-oia-stress_inpaint10/P3-oia-stress_inpaint10.log\n"}
+,{"stream_name":"stdout","time":29391.248716227,"data":"         564  /kaggle/working/results/P3-oia-stress_inpaint10/P3-oia-stress_inpaint10_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.248721311,"data":"       5,120  /kaggle/working/results/P3-reproj/P3-reproj.csv\n"}
+,{"stream_name":"stdout","time":29391.248725698,"data":"         532  /kaggle/working/results/P3-reproj/P3-reproj_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.248729776,"data":"         634  /kaggle/working/results/P3-reproj/P3-reproj.log\n"}
+,{"stream_name":"stdout","time":29391.248733988,"data":"         358  /kaggle/working/results/P3-reproj/P3-reproj_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.248737985,"data":"         618  /kaggle/working/results/P3-pv/P3-pv.log\n"}
+,{"stream_name":"stdout","time":29391.248742004,"data":"         356  /kaggle/working/results/P3-pv/P3-pv_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.248746223,"data":"         532  /kaggle/working/results/P3-pv/P3-pv_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.24875023,"data":"       5,276  /kaggle/working/results/P3-pv/P3-pv.csv\n"}
+,{"stream_name":"stdout","time":29391.24875446,"data":"       2,927  /kaggle/working/results/P3-oia-dtu/P3-oia-dtu_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.248758882,"data":"       3,439  /kaggle/working/results/P3-oia-dtu/P3-oia-dtu.log\n"}
+,{"stream_name":"stdout","time":29391.248762814,"data":"     278,585  /kaggle/working/results/P3-oia-dtu/P3-oia-dtu.csv\n"}
+,{"stream_name":"stdout","time":29391.248766727,"data":"         594  /kaggle/working/results/P3-oia-dtu/P3-oia-dtu_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.248770901,"data":"         594  /kaggle/working/results/P3-oia-stress_blur3/P3-oia-stress_blur3_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.248775116,"data":"         560  /kaggle/working/results/P3-oia-stress_blur3/P3-oia-stress_blur3_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.24877921,"data":"         971  /kaggle/working/results/P3-oia-stress_blur3/P3-oia-stress_blur3.log\n"}
+,{"stream_name":"stdout","time":29391.248783352,"data":"      19,163  /kaggle/working/results/P3-oia-stress_blur3/P3-oia-stress_blur3.csv\n"}
+,{"stream_name":"stdout","time":29391.248787284,"data":"         532  /kaggle/working/results/P3-native/P3-native_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.248791305,"data":"         354  /kaggle/working/results/P3-native/P3-native_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.248795545,"data":"       5,187  /kaggle/working/results/P3-native/P3-native.csv\n"}
+,{"stream_name":"stdout","time":29391.248810046,"data":"         606  /kaggle/working/results/P3-native/P3-native.log\n"}
+,{"stream_name":"stdout","time":29391.248943269,"data":"         563  /kaggle/working/results/P3-oia-stress_adjacent10/P3-oia-stress_adjacent10_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.249234796,"data":"      19,005  /kaggle/working/results/P3-oia-stress_adjacent10/P3-oia-stress_adjacent10.csv\n"}
+,{"stream_name":"stdout","time":29391.249248524,"data":"         989  /kaggle/working/results/P3-oia-stress_adjacent10/P3-oia-stress_adjacent10.log\n"}
+,{"stream_name":"stdout","time":29391.249278974,"data":"         594  /kaggle/working/results/P3-oia-stress_adjacent10/P3-oia-stress_adjacent10_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.251499915,"data":"      19,047  /kaggle/working/results/P3-oia-stress_blur5/P3-oia-stress_blur5.csv\n"}
+,{"stream_name":"stdout","time":29391.251514662,"data":"         594  /kaggle/working/results/P3-oia-stress_blur5/P3-oia-stress_blur5_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.251519106,"data":"         560  /kaggle/working/results/P3-oia-stress_blur5/P3-oia-stress_blur5_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.251523248,"data":"         973  /kaggle/working/results/P3-oia-stress_blur5/P3-oia-stress_blur5.log\n"}
+,{"stream_name":"stdout","time":29391.251527338,"data":"         836  /kaggle/working/results/P3-oia-abl/P3-oia-abl_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.25153133,"data":"       1,154  /kaggle/working/results/P3-oia-abl/P3-oia-abl.log\n"}
+,{"stream_name":"stdout","time":29391.251535312,"data":"         557  /kaggle/working/results/P3-oia-abl/P3-oia-abl_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.251539214,"data":"      14,672  /kaggle/working/results/P3-oia-abl/P3-oia-abl.csv\n"}
+,{"stream_name":"stdout","time":29391.251543195,"data":"      19,293  /kaggle/working/results/P3-oia-stress_distractor10/P3-oia-stress_distractor10.csv\n"}
+,{"stream_name":"stdout","time":29391.251547173,"data":"         594  /kaggle/working/results/P3-oia-stress_distractor10/P3-oia-stress_distractor10_summary.csv\n"}
+,{"stream_name":"stdout","time":29391.251576405,"data":"         986  /kaggle/working/results/P3-oia-stress_distractor10/P3-oia-stress_distractor10.log\n"}
+,{"stream_name":"stdout","time":29391.251580875,"data":"         560  /kaggle/working/results/P3-oia-stress_distractor10/P3-oia-stress_distractor10_cfg.json\n"}
+,{"stream_name":"stdout","time":29391.251916074,"data":"   5,784,949  /kaggle/working/checkpoints/pi3x_oiapatch_best.pt\n"}
+,{"stream_name":"stdout","time":29391.251926233,"data":"       5,319  /kaggle/working/checkpoints/pi3x_oia_hist.json\n"}
+,{"stream_name":"stdout","time":29391.251930354,"data":"   5,784,869  /kaggle/working/checkpoints/pi3x_oiapatch.pt\n"}
+,{"stream_name":"stdout","time":29391.251934094,"data":"   6,841,557  /kaggle/working/checkpoints/pi3x_oia.pt\n"}
+,{"stream_name":"stdout","time":29391.251937582,"data":"   6,841,637  /kaggle/working/checkpoints/pi3x_oia_best.pt\n"}
+,{"stream_name":"stdout","time":29391.251941424,"data":"       5,338  /kaggle/working/checkpoints/pi3x_oiapatch_hist.json\n"}
+,{"stream_name":"stdout","time":29391.251945248,"data":"total 29390s\n"}
+,{"stream_name":"stderr","time":29393.598517108,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":29393.598547939,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":29393.901343263,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":29393.901387317,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":29394.810571408,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":29395.923398013,"data":"[NbConvertApp] Writing 293434 bytes to __results__.html\n"}
+]

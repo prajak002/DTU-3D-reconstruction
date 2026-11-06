@@ -1,0 +1,2 @@
+model,radius_frac,fill,n_runs,auroc,auroc_ctrl,cur,cur_err,absrel_S,absrel_U,absrel_U_ctrl,conf_ratio_U,n_scans,p_auroc_vs_0.5
+pi3x_reproj,0.18,blur,18,"0.477 [0.435, 0.518]","0.467 [0.429, 0.500]","0.929 [0.899, 0.955]","0.005 [0.002, 0.008]","0.021 [0.017, 0.026]","0.022 [0.018, 0.028]","0.017 [0.012, 0.023]","0.985 [0.966, 1.000]",18,0.3217839108044598

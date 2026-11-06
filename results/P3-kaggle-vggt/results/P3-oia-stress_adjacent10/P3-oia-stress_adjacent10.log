@@ -1,0 +1,6 @@
+21:36:31 == P3-oia-stress_adjacent10: models ['vggt_oia', 'vggt_oiapatch'], cfg {"seeds": [0, 1], "fills": ["blur"], "radius_fracs": [0.18], "view_mode": "adjacent", "keep_model": true}
+21:41:53    vggt_oia: 323s
+21:47:21    vggt_oiapatch: 328s
+21:47:21            model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0       vggt_oia         0.18  blur      36  0.999 [0.997, 1.000]  0.515 [0.469, 0.561]  0.002 [0.000, 0.005]  0.000 [0.000, 0.000]  0.008 [0.006, 0.010]  0.020 [0.013, 0.029]  0.006 [0.004, 0.008]  0.028 [0.000, 0.083]       18         0.00005
+1  vggt_oiapatch         0.18  blur      36  0.999 [0.999, 1.000]  0.493 [0.433, 0.556]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.008 [0.006, 0.010]  0.020 [0.013, 0.029]  0.006 [0.004, 0.008]  0.028 [0.000, 0.083]       18         0.00005

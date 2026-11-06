@@ -1,0 +1,6 @@
+21:16:52 == P3-oia-stress_inpaint10: models ['vggt_oia', 'vggt_oiapatch'], cfg {"seeds": [0, 1], "fills": ["inpaint"], "radius_fracs": [0.18], "keep_model": true}
+21:22:21    vggt_oia: 329s
+21:28:19    vggt_oiapatch: 358s
+21:28:19            model  radius_frac     fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0       vggt_oia         0.18  inpaint      36  1.000 [1.000, 1.000]  0.522 [0.471, 0.576]  0.001 [0.000, 0.001]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.018 [0.014, 0.022]  0.005 [0.004, 0.006]  0.000 [0.000, 0.001]       18         0.00005
+1  vggt_oiapatch         0.18  inpaint      36  0.999 [0.999, 1.000]  0.514 [0.447, 0.583]  0.001 [0.001, 0.002]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.018 [0.014, 0.022]  0.005 [0.004, 0.006]  0.000 [0.000, 0.000]       18         0.00005

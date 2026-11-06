@@ -7,3 +7,23 @@
 11:19:38          model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
 0  vggt_reproj         0.18  blur      18  0.488 [0.473, 0.506]  0.485 [0.464, 0.507]  0.931 [0.903, 0.954]  0.004 [0.002, 0.007]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  1.000 [1.000, 1.000]       18         0.20069
 11:20:22 == P3-reproj: models ['pi3x_reproj'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+08:11:48 == P3-reproj: models ['vggt_reproj'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+08:11:48    vggt_reproj: 0s
+08:11:48          model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  pi3x_reproj         0.18  blur      14  0.470 [0.420, 0.519]  0.457 [0.413, 0.497]  0.925 [0.887, 0.956]  0.004 [0.001, 0.008]  0.018 [0.015, 0.020]  0.021 [0.016, 0.029]  0.015 [0.010, 0.022]  0.983 [0.958, 1.000]       14        0.275436
+1  vggt_reproj         0.18  blur      18  0.488 [0.473, 0.506]  0.485 [0.464, 0.507]  0.931 [0.903, 0.954]  0.004 [0.002, 0.007]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  1.000 [1.000, 1.000]       18        0.200690
+08:13:50 == P3-reproj: models ['vggt_reproj'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+08:13:51    vggt_reproj: 0s
+08:13:51          model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  pi3x_reproj         0.18  blur      14  0.470 [0.420, 0.519]  0.457 [0.413, 0.497]  0.925 [0.887, 0.956]  0.004 [0.001, 0.008]  0.018 [0.015, 0.020]  0.021 [0.016, 0.029]  0.015 [0.010, 0.022]  0.983 [0.958, 1.000]       14        0.275436
+1  vggt_reproj         0.18  blur      18  0.488 [0.473, 0.506]  0.485 [0.464, 0.507]  0.931 [0.903, 0.954]  0.004 [0.002, 0.007]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  1.000 [1.000, 1.000]       18        0.200690
+08:36:03 == P3-reproj: models ['vggt_reproj'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+08:36:03    vggt_reproj: 0s
+08:36:03          model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  pi3x_reproj         0.18  blur      18  0.478 [0.435, 0.518]  0.466 [0.428, 0.500]  0.929 [0.899, 0.955]  0.005 [0.002, 0.008]  0.021 [0.017, 0.026]  0.022 [0.018, 0.028]  0.017 [0.012, 0.023]  0.978 [0.958, 0.996]       18        0.328684
+1  vggt_reproj         0.18  blur      18  0.488 [0.473, 0.506]  0.485 [0.464, 0.507]  0.931 [0.903, 0.954]  0.004 [0.002, 0.007]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  1.000 [1.000, 1.000]       18        0.200690
+08:36:09 == P3-reproj: models ['pi3x_reproj'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+08:36:09    pi3x_reproj: 0s
+08:36:09          model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  pi3x_reproj         0.18  blur      18  0.478 [0.435, 0.518]  0.466 [0.428, 0.500]  0.929 [0.899, 0.955]  0.005 [0.002, 0.008]  0.021 [0.017, 0.026]  0.022 [0.018, 0.028]  0.017 [0.012, 0.023]  0.978 [0.958, 0.996]       18        0.328684
+1  vggt_reproj         0.18  blur      18  0.488 [0.473, 0.506]  0.485 [0.464, 0.507]  0.931 [0.903, 0.954]  0.004 [0.002, 0.007]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  1.000 [1.000, 1.000]       18        0.200690

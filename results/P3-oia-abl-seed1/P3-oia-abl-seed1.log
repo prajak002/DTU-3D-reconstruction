@@ -1,0 +1,74 @@
+11:24:05 == P3-oia-abl-seed1: models ['vggt_oia'], cfg {"seeds": [0], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.18]}
+08:18:43 == P3-oia-abl-seed1: models ['vggt_oia'], cfg {"seeds": [0], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.18]}
+08:24:58    vggt_oia: 374s
+08:24:58       model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  vggt_oia         0.18   blur      18  1.000 [1.000, 1.000]  0.510 [0.454, 0.570]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  0.000 [0.000, 0.000]       18         0.00005
+1  vggt_oia         0.18   gray      18  1.000 [1.000, 1.000]  0.510 [0.454, 0.570]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.024 [0.018, 0.031]  0.006 [0.004, 0.008]  0.000 [0.000, 0.000]       18         0.00005
+2  vggt_oia         0.18  noise      18  1.000 [1.000, 1.000]  0.510 [0.454, 0.570]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.018 [0.014, 0.022]  0.006 [0.004, 0.008]  0.000 [0.000, 0.000]       18         0.00005
+08:36:13 == P3-oia-abl-seed1: models ['vggt_oia'], cfg {"seeds": [0], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.18]}
+08:40:29 !! vggt_oia failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 808, in run_benchmark
+    d, c = _predict(model, imgs_m, out_hw, extra, model_hw)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 783, in _predict
+    return model.predict(imgs, model_hw, out_hw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/oia_head.py", line 515, in predict
+    d, c, F, _, _ = self.ff(self.base, x, self.base.dtype, self.feats)
+                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/oia_head.py", line 86, in vggt_forward_feats
+    tokens, ps = model.aggregator(x[None])
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/pytorch/lib/python3.13/site-packages/vggt/models/aggregator.py", line 244, in forward
+    tokens, frame_idx, frame_intermediates = self._process_frame_attention(
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        tokens, B, S, P, C, frame_idx, pos=pos
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/pytorch/lib/python3.13/site-packages/vggt/models/aggregator.py", line 285, in _process_frame_attention
+    tokens = self.frame_blocks[frame_idx](tokens, pos=pos)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/pytorch/lib/python3.13/site-packages/vggt/layers/block.py", line 96, in forward
+    x = x + attn_residual_func(x, pos=pos)
+            ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/vggt/layers/block.py", line 79, in attn_residual_func
+    return self.ls1(self.attn(self.norm1(x), pos=pos))
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/pytorch/lib/python3.13/site-packages/vggt/layers/attention.py", line 58, in forward
+    k = self.rope(k, pos)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/pytorch/lib/python3.13/site-packages/vggt/layers/rope.py", line 188, in forward
+    return torch.cat((vertical_features, horizontal_features), dim=-1)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 44.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 37.69 MiB is free. Process 10168 has 12.01 GiB memory in use. Including non-PyTorch memory, this process has 7.39 GiB memory in use. Process 12863 has 1008.00 MiB memory in use. Process 13060 has 1.58 GiB memory in use. Of the allocated memory 7.02 GiB is allocated by PyTorch, and 149.82 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+08:40:29          model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0     vggt_oia         0.18   blur       2  1.000 [1.000, 1.000]  0.551 [0.377, 0.726]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.005 [0.004, 0.006]  0.008 [0.005, 0.010]  0.004 [0.003, 0.005]  0.000 [0.000, 0.000]        2        0.492375
+1     vggt_oia         0.18   gray       2  1.000 [1.000, 1.000]  0.551 [0.377, 0.726]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.005 [0.005, 0.006]  0.039 [0.015, 0.063]  0.004 [0.003, 0.005]  0.000 [0.000, 0.000]        2        0.492375
+2     vggt_oia         0.18  noise       2  1.000 [1.000, 1.000]  0.551 [0.377, 0.726]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.005 [0.004, 0.006]  0.011 [0.008, 0.015]  0.004 [0.003, 0.005]  0.000 [0.000, 0.000]        2        0.492375
+3  vggt_oia_s1         0.18   blur      18  1.000 [1.000, 1.000]  0.510 [0.454, 0.570]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.010 [0.008, 0.012]  0.006 [0.004, 0.008]  0.000 [0.000, 0.000]       18        0.000050
+4  vggt_oia_s1         0.18   gray      18  1.000 [1.000, 1.000]  0.510 [0.454, 0.570]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.024 [0.018, 0.031]  0.006 [0.004, 0.008]  0.000 [0.000, 0.000]       18        0.000050
+5  vggt_oia_s1         0.18  noise      18  1.000 [1.000, 1.000]  0.510 [0.454, 0.570]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.007 [0.006, 0.009]  0.018 [0.014, 0.022]  0.006 [0.004, 0.008]  0.000 [0.000, 0.000]       18        0.000050
