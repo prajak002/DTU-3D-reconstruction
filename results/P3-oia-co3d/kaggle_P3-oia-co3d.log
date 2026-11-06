@@ -1,0 +1,122 @@
+21:14:47 == P3-oia-co3d: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {"seeds": [0, 1, 2, 3, 4], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.1, 0.18], "dataset": "co3d"}
+21:42:16 !! pi3x_oia failed:
+Traceback (most recent call last):
+  File "/kaggle/tmp/repo/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/tmp/repo/scripts/hallu3d.py", line 808, in run_benchmark
+    d, c = _predict(model, imgs_m, out_hw, extra, model_hw)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/tmp/repo/scripts/hallu3d.py", line 783, in _predict
+    return model.predict(imgs, model_hw, out_hw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/tmp/repo/scripts/oia_head.py", line 515, in predict
+    d, c, F, _, _ = self.ff(self.base, x, self.base.dtype, self.feats)
+                    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/tmp/repo/scripts/oia_head.py", line 131, in pi3_forward_feats
+    out = model(x[None], **kw)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/kaggle/tmp/Pi3/pi3/models/pi3x.py", line 270, in forward
+    outputs = self.forward_head(hidden, pos, B, N, H, W, patch_h, patch_w)
+  File "/kaggle/tmp/Pi3/pi3/models/pi3x.py", line 411, in forward_head
+    ret_conf = self.conf_decoder(hidden, xpos=pos)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1885, in _call_impl
+    return inner()
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1833, in inner
+    result = forward_call(*args, **kwargs)
+  File "/kaggle/tmp/Pi3/pi3/models/layers/transformer_head.py", line 54, in forward
+    hidden = blk(hidden, xpos=xpos)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/kaggle/tmp/Pi3/pi3/models/layers/block.py", line 333, in forward
+    x = x + attn_residual_func(x)
+            ~~~~~~~~~~~~~~~~~~^^^
+  File "/kaggle/tmp/Pi3/pi3/models/layers/block.py", line 312, in attn_residual_func
+    return self.ls1(self.attn(self.norm1(x), xpos=xpos))
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/kaggle/tmp/Pi3/pi3/models/layers/attention.py", line 334, in forward
+    q = self.rope(q, xpos)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/kaggle/tmp/Pi3/pi3/models/layers/pos_embed.py", line 153, in forward
+    cos, sin = self.get_cos_sin(D, int(positions.max())+1, tokens.device, tokens.dtype)
+                                   ~~~^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: unknown error
+Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+21:42:29 !! pi3x_oiapatch failed:
+Traceback (most recent call last):
+  File "/kaggle/tmp/repo/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/tmp/repo/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/kaggle/tmp/repo/scripts/hallu3d.py", line 727, in make_model
+    w = make_oia(name, MODEL_REGISTRY)
+  File "/kaggle/tmp/repo/scripts/oia_head.py", line 537, in make_oia
+    return OIAWrap(registry[m.group(1)](), m.group(2))
+                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/kaggle/tmp/repo/scripts/hallu3d.py", line 437, in __init__
+    self.model = Pi3X.from_pretrained("yyfz233/Pi3X").to(device).eval()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1384, in to
+    return self._apply(convert)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 965, in _apply
+    param_applied = fn(param)
+  File "/usr/local/lib/python3.13/dist-packages/torch/nn/modules/module.py", line 1370, in convert
+    return t.to(
+           ~~~~^
+        device,
+        ^^^^^^^
+        dtype if t.is_floating_point() or t.is_complex() else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        non_blocking,
+        ^^^^^^^^^^^^^
+    )
+    ^
+torch.AcceleratorError: CUDA error: unknown error
+Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+
+21:42:29       model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  pi3x_oia         0.10   blur      75  0.950 [0.901, 0.986]  0.501 [0.464, 0.536]  0.138 [0.043, 0.266]  0.001 [0.000, 0.002]  0.017 [0.013, 0.022]  0.017 [0.013, 0.022]  0.014 [0.010, 0.019]  0.204 [0.096, 0.341]       15         0.00005
+1  pi3x_oia         0.10   gray      75  0.991 [0.980, 0.998]  0.501 [0.464, 0.536]  0.021 [0.003, 0.051]  0.000 [0.000, 0.000]  0.017 [0.013, 0.022]  0.021 [0.014, 0.029]  0.014 [0.010, 0.019]  0.069 [0.014, 0.141]       15         0.00005
+2  pi3x_oia         0.10  noise      75  0.979 [0.945, 0.998]  0.501 [0.464, 0.536]  0.060 [0.004, 0.158]  0.000 [0.000, 0.000]  0.017 [0.013, 0.022]  0.017 [0.011, 0.025]  0.014 [0.010, 0.019]  0.109 [0.048, 0.190]       15         0.00005
+3  pi3x_oia         0.18   blur      75  0.977 [0.955, 0.994]  0.509 [0.462, 0.558]  0.077 [0.017, 0.157]  0.004 [0.000, 0.012]  0.017 [0.013, 0.022]  0.020 [0.016, 0.026]  0.015 [0.011, 0.020]  0.130 [0.035, 0.268]       15         0.00005
+4  pi3x_oia         0.18   gray      75  0.998 [0.995, 0.999]  0.509 [0.462, 0.558]  0.006 [0.001, 0.013]  0.000 [0.000, 0.001]  0.017 [0.013, 0.023]  0.025 [0.020, 0.032]  0.015 [0.011, 0.020]  0.000 [0.000, 0.001]       15         0.00005
+5  pi3x_oia         0.18  noise      75  0.992 [0.978, 0.999]  0.509 [0.462, 0.558]  0.024 [0.000, 0.071]  0.000 [0.000, 0.000]  0.017 [0.013, 0.023]  0.022 [0.016, 0.030]  0.015 [0.011, 0.020]  0.012 [0.000, 0.034]       15         0.00005

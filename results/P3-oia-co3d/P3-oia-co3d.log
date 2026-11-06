@@ -1,0 +1,130 @@
+08:29:59 == P3-oia-co3d: models ['vggt_oia', 'vggt_oiafuse', 'vggt_oiapatch'], cfg {"seeds": [0, 1, 2, 3, 4], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.1, 0.18], "dataset": "co3d"}
+08:36:18 == P3-oia-co3d: models ['pi3x_oia', 'pi3x_oiapatch'], cfg {"seeds": [0, 1, 2, 3, 4], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.1, 0.18], "dataset": "co3d"}
+08:39:42 !! pi3x_oia failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 727, in make_model
+    w = make_oia(name, MODEL_REGISTRY)
+  File "/home/ubuntu/hallu/scripts/oia_head.py", line 537, in make_oia
+    return OIAWrap(registry[m.group(1)](), m.group(2))
+                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 437, in __init__
+    self.model = Pi3X.from_pretrained("yyfz233/Pi3X").to(device).eval()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  [Previous line repeated 2 more times]
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ~~~~^
+        device,
+        ^^^^^^^
+        dtype if t.is_floating_point() or t.is_complex() else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        non_blocking,
+        ^^^^^^^^^^^^^
+    )
+    ^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 13.69 MiB is free. Process 10168 has 12.01 GiB memory in use. Process 12826 has 7.77 GiB memory in use. Including non-PyTorch memory, this process has 668.00 MiB memory in use. Process 13036 has 1.57 GiB memory in use. Of the allocated memory 466.88 MiB is allocated by PyTorch, and 15.12 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+08:40:28 !! pi3x_oiapatch failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 727, in make_model
+    w = make_oia(name, MODEL_REGISTRY)
+  File "/home/ubuntu/hallu/scripts/oia_head.py", line 537, in make_oia
+    return OIAWrap(registry[m.group(1)](), m.group(2))
+                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 437, in __init__
+    self.model = Pi3X.from_pretrained("yyfz233/Pi3X").to(device).eval()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  [Previous line repeated 2 more times]
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ~~~~^
+        device,
+        ^^^^^^^
+        dtype if t.is_floating_point() or t.is_complex() else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        non_blocking,
+        ^^^^^^^^^^^^^
+    )
+    ^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 12.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 19.69 MiB is free. Process 10168 has 12.01 GiB memory in use. Process 12826 has 7.42 GiB memory in use. Including non-PyTorch memory, this process has 1008.00 MiB memory in use. Process 13060 has 1.58 GiB memory in use. Of the allocated memory 819.30 MiB is allocated by PyTorch, and 2.70 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+08:40:30        model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0   pi3x_oia         0.10   blur      75  0.950 [0.901, 0.986]  0.501 [0.464, 0.536]  0.138 [0.043, 0.266]  0.001 [0.000, 0.002]  0.017 [0.013, 0.022]  0.017 [0.013, 0.022]  0.014 [0.010, 0.019]  0.204 [0.096, 0.341]       15        0.000050
+1   pi3x_oia         0.10   gray      75  0.991 [0.980, 0.998]  0.501 [0.464, 0.536]  0.021 [0.003, 0.051]  0.000 [0.000, 0.000]  0.017 [0.013, 0.022]  0.021 [0.014, 0.029]  0.014 [0.010, 0.019]  0.069 [0.014, 0.141]       15        0.000050
+2   pi3x_oia         0.10  noise      75  0.979 [0.945, 0.998]  0.501 [0.464, 0.536]  0.060 [0.004, 0.158]  0.000 [0.000, 0.000]  0.017 [0.013, 0.022]  0.017 [0.011, 0.025]  0.014 [0.010, 0.019]  0.109 [0.048, 0.190]       15        0.000050
+3   pi3x_oia         0.18   blur      75  0.977 [0.955, 0.994]  0.509 [0.462, 0.558]  0.077 [0.017, 0.157]  0.004 [0.000, 0.012]  0.017 [0.013, 0.022]  0.020 [0.016, 0.026]  0.015 [0.011, 0.020]  0.130 [0.035, 0.268]       15        0.000050
+4   pi3x_oia         0.18   gray      75  0.998 [0.995, 0.999]  0.509 [0.462, 0.558]  0.006 [0.001, 0.013]  0.000 [0.000, 0.001]  0.017 [0.013, 0.023]  0.025 [0.020, 0.032]  0.015 [0.011, 0.020]  0.000 [0.000, 0.001]       15        0.000050
+5   pi3x_oia         0.18  noise      75  0.992 [0.978, 0.999]  0.509 [0.462, 0.558]  0.024 [0.000, 0.071]  0.000 [0.000, 0.000]  0.017 [0.013, 0.023]  0.022 [0.016, 0.030]  0.015 [0.011, 0.020]  0.012 [0.000, 0.034]       15        0.000050
+6   vggt_oia         0.10   blur      15  0.971 [0.920, 0.997]  0.442 [0.377, 0.534]  0.070 [0.006, 0.190]  0.009 [0.000, 0.027]  0.027 [0.008, 0.058]  0.030 [0.010, 0.065]  0.030 [0.009, 0.066]  0.088 [0.000, 0.258]        3        0.246988
+7   vggt_oia         0.10   gray      15  1.000 [0.999, 1.000]  0.442 [0.377, 0.534]  0.001 [0.000, 0.003]  0.000 [0.000, 0.000]  0.026 [0.007, 0.056]  0.031 [0.007, 0.069]  0.030 [0.009, 0.066]  0.000 [0.000, 0.000]        3        0.246988
+8   vggt_oia         0.10  noise      15  1.000 [0.999, 1.000]  0.442 [0.377, 0.534]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.027 [0.008, 0.057]  0.030 [0.008, 0.068]  0.030 [0.009, 0.066]  0.006 [0.000, 0.017]        3        0.246988
+9   vggt_oia         0.18   blur      15  0.975 [0.928, 0.999]  0.429 [0.341, 0.493]  0.078 [0.002, 0.231]  0.006 [0.000, 0.019]  0.028 [0.008, 0.058]  0.052 [0.012, 0.080]  0.028 [0.009, 0.062]  0.135 [0.000, 0.405]        3        0.246988
+10  vggt_oia         0.18   gray      15  1.000 [1.000, 1.000]  0.429 [0.341, 0.493]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.027 [0.007, 0.057]  0.045 [0.011, 0.071]  0.028 [0.009, 0.062]  0.001 [0.000, 0.002]        3        0.246988
+11  vggt_oia         0.18  noise      15  1.000 [1.000, 1.000]  0.429 [0.341, 0.493]  0.000 [0.000, 0.000]  0.000 [0.000, 0.000]  0.027 [0.008, 0.057]  0.032 [0.011, 0.064]  0.028 [0.009, 0.062]  0.001 [0.000, 0.002]        3        0.246988
+08:46:06 == P3-oia-co3d: models ['vggt_oia', 'vggt_oiafuse', 'vggt_oiapatch'], cfg {"seeds": [0, 1, 2, 3, 4], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.1, 0.18], "dataset": "co3d"}
+09:04:31    vggt_oia: 1106s
+09:30:03    vggt_oiafuse: 1531s
+10:01:17    vggt_oiapatch: 1874s
+10:01:19             model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0        pi3x_oia         0.10   blur      75  0.950 [0.901, 0.986]  0.501 [0.464, 0.536]  0.138 [0.043, 0.266]  0.001 [0.000, 0.002]  0.017 [0.013, 0.022]  0.017 [0.013, 0.022]  0.014 [0.010, 0.019]  0.204 [0.096, 0.341]       15         0.00005
+1        pi3x_oia         0.10   gray      75  0.991 [0.980, 0.998]  0.501 [0.464, 0.536]  0.021 [0.003, 0.051]  0.000 [0.000, 0.000]  0.017 [0.013, 0.022]  0.021 [0.014, 0.029]  0.014 [0.010, 0.019]  0.069 [0.014, 0.141]       15         0.00005
+2        pi3x_oia         0.10  noise      75  0.979 [0.945, 0.998]  0.501 [0.464, 0.536]  0.060 [0.004, 0.158]  0.000 [0.000, 0.000]  0.017 [0.013, 0.022]  0.017 [0.011, 0.025]  0.014 [0.010, 0.019]  0.109 [0.048, 0.190]       15         0.00005
+3        pi3x_oia         0.18   blur      75  0.977 [0.955, 0.994]  0.509 [0.462, 0.558]  0.077 [0.017, 0.157]  0.004 [0.000, 0.012]  0.017 [0.013, 0.022]  0.020 [0.016, 0.026]  0.015 [0.011, 0.020]  0.130 [0.035, 0.268]       15         0.00005
+4        pi3x_oia         0.18   gray      75  0.998 [0.995, 0.999]  0.509 [0.462, 0.558]  0.006 [0.001, 0.013]  0.000 [0.000, 0.001]  0.017 [0.013, 0.023]  0.025 [0.020, 0.032]  0.015 [0.011, 0.020]  0.000 [0.000, 0.001]       15         0.00005
+5        pi3x_oia         0.18  noise      75  0.992 [0.978, 0.999]  0.509 [0.462, 0.558]  0.024 [0.000, 0.071]  0.000 [0.000, 0.000]  0.017 [0.013, 0.023]  0.022 [0.016, 0.030]  0.015 [0.011, 0.020]  0.012 [0.000, 0.034]       15         0.00005
+6        vggt_oia         0.10   blur      90  0.980 [0.969, 0.990]  0.466 [0.433, 0.499]  0.051 [0.027, 0.078]  0.002 [0.000, 0.005]  0.029 [0.022, 0.036]  0.028 [0.020, 0.037]  0.027 [0.019, 0.036]  0.060 [0.023, 0.102]       18         0.00005
+7        vggt_oia         0.10   gray      90  0.998 [0.996, 0.999]  0.466 [0.433, 0.499]  0.007 [0.002, 0.014]  0.000 [0.000, 0.001]  0.028 [0.022, 0.036]  0.028 [0.020, 0.038]  0.027 [0.019, 0.036]  0.012 [0.000, 0.032]       18         0.00005
+8        vggt_oia         0.10  noise      90  0.997 [0.993, 0.999]  0.466 [0.433, 0.499]  0.009 [0.001, 0.025]  0.000 [0.000, 0.000]  0.028 [0.022, 0.036]  0.028 [0.019, 0.038]  0.027 [0.019, 0.036]  0.014 [0.001, 0.037]       18         0.00005
+9        vggt_oia         0.18   blur      90  0.991 [0.983, 0.997]  0.500 [0.466, 0.532]  0.026 [0.008, 0.054]  0.002 [0.000, 0.004]  0.029 [0.022, 0.037]  0.035 [0.026, 0.045]  0.027 [0.019, 0.037]  0.040 [0.001, 0.095]       18         0.00005
+10       vggt_oia         0.18   gray      90  0.999 [0.999, 1.000]  0.500 [0.466, 0.532]  0.001 [0.001, 0.002]  0.000 [0.000, 0.000]  0.029 [0.022, 0.037]  0.033 [0.025, 0.042]  0.027 [0.019, 0.037]  0.000 [0.000, 0.001]       18         0.00005
+11       vggt_oia         0.18  noise      90  0.999 [0.999, 1.000]  0.500 [0.466, 0.532]  0.001 [0.000, 0.001]  0.000 [0.000, 0.000]  0.029 [0.022, 0.037]  0.030 [0.023, 0.039]  0.027 [0.019, 0.037]  0.000 [0.000, 0.001]       18         0.00005
+12   vggt_oiafuse         0.10   blur      90  0.942 [0.919, 0.963]  0.415 [0.376, 0.460]  0.145 [0.087, 0.210]  0.012 [0.000, 0.032]  0.029 [0.022, 0.036]  0.028 [0.020, 0.037]  0.027 [0.019, 0.036]  0.058 [0.025, 0.096]       18         0.00005
+13   vggt_oiafuse         0.10   gray      90  0.979 [0.969, 0.988]  0.415 [0.376, 0.460]  0.062 [0.023, 0.119]  0.002 [0.000, 0.006]  0.028 [0.022, 0.036]  0.028 [0.020, 0.038]  0.027 [0.019, 0.036]  0.012 [0.004, 0.024]       18         0.00005
+14   vggt_oiafuse         0.10  noise      90  0.964 [0.944, 0.978]  0.415 [0.376, 0.460]  0.095 [0.044, 0.164]  0.003 [0.000, 0.007]  0.028 [0.022, 0.036]  0.028 [0.019, 0.038]  0.027 [0.019, 0.036]  0.031 [0.011, 0.062]       18         0.00005
+15   vggt_oiafuse         0.18   blur      90  0.961 [0.930, 0.983]  0.423 [0.394, 0.452]  0.097 [0.043, 0.168]  0.007 [0.001, 0.015]  0.029 [0.022, 0.037]  0.035 [0.026, 0.045]  0.027 [0.019, 0.037]  0.050 [0.007, 0.113]       18         0.00005
+16   vggt_oiafuse         0.18   gray      90  0.984 [0.976, 0.991]  0.423 [0.394, 0.452]  0.045 [0.015, 0.086]  0.003 [0.000, 0.007]  0.029 [0.022, 0.037]  0.033 [0.025, 0.042]  0.027 [0.019, 0.037]  0.005 [0.002, 0.010]       18         0.00005
+17   vggt_oiafuse         0.18  noise      90  0.978 [0.966, 0.987]  0.423 [0.394, 0.452]  0.066 [0.024, 0.121]  0.003 [0.000, 0.007]  0.029 [0.022, 0.037]  0.030 [0.023, 0.039]  0.027 [0.019, 0.037]  0.008 [0.004, 0.012]       18         0.00005
+18  vggt_oiapatch         0.10   blur      90  0.972 [0.962, 0.982]  0.462 [0.427, 0.497]  0.076 [0.049, 0.104]  0.002 [0.000, 0.006]  0.029 [0.022, 0.036]  0.028 [0.020, 0.037]  0.027 [0.019, 0.036]  0.097 [0.046, 0.153]       18         0.00005
+19  vggt_oiapatch         0.10   gray      90  0.997 [0.995, 0.999]  0.462 [0.427, 0.497]  0.009 [0.002, 0.019]  0.000 [0.000, 0.001]  0.028 [0.022, 0.036]  0.028 [0.020, 0.038]  0.027 [0.019, 0.036]  0.022 [0.000, 0.055]       18         0.00005
+20  vggt_oiapatch         0.10  noise      90  0.998 [0.996, 1.000]  0.462 [0.427, 0.497]  0.006 [0.000, 0.016]  0.000 [0.000, 0.000]  0.028 [0.022, 0.036]  0.028 [0.019, 0.038]  0.027 [0.019, 0.036]  0.027 [0.003, 0.057]       18         0.00005
+21  vggt_oiapatch         0.18   blur      90  0.987 [0.979, 0.994]  0.482 [0.450, 0.511]  0.036 [0.015, 0.063]  0.002 [0.000, 0.004]  0.029 [0.022, 0.037]  0.035 [0.026, 0.045]  0.027 [0.019, 0.037]  0.063 [0.002, 0.149]       18         0.00005
+22  vggt_oiapatch         0.18   gray      90  0.999 [0.998, 1.000]  0.482 [0.450, 0.511]  0.002 [0.001, 0.004]  0.000 [0.000, 0.000]  0.029 [0.022, 0.037]  0.033 [0.025, 0.042]  0.027 [0.019, 0.037]  0.000 [0.000, 0.001]       18         0.00005
+23  vggt_oiapatch         0.18  noise      90  1.000 [1.000, 1.000]  0.482 [0.450, 0.511]  0.000 [0.000, 0.001]  0.000 [0.000, 0.000]  0.029 [0.022, 0.037]  0.030 [0.023, 0.039]  0.027 [0.019, 0.037]  0.000 [0.000, 0.000]       18         0.00005

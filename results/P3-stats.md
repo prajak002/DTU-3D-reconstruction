@@ -96,10 +96,12 @@ pi3x_oia vs per-image control pi3x_oiapatch, noise: dAUROC -0.000 (p 0.0028), dC
 
 **Pass condition for vggt_oia, part 1 (head vs native, Table 4 keys)**: dAUROC +0.085 (p 5e-05), dCUR -0.255 (p 5e-05) -> PASS
 part 2, inpainted fill (stress inpaint10): head-native dAUROC +0.132, control-native +0.132, head-control +0.000 (p 0.0174) -> control does not explain the gain
-**Gate 2 for vggt_oia**: PASS (part 1 ok; part 2 1/1 tests; criterion: head beats control at p<0.05 or the control's AUROC gain over native is under half the head's, on inpaint and CO3Dv2)
+part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.311, control-native +0.308, head-control +0.003 (p 0.0311) -> control does not explain the gain
+**Gate 2 for vggt_oia**: PASS (part 1 ok; part 2 2/2 tests; criterion: head beats control at p<0.05 or the control's AUROC gain over native is under half the head's, on inpaint and CO3Dv2)
 
 **Pass condition for pi3x_oia, part 1 (head vs native, Table 4 keys)**: dAUROC +0.167 (p 5e-05), dCUR -0.501 (p 5e-05) -> PASS
 part 2, inpainted fill (stress inpaint10): head-native dAUROC +0.208, control-native +0.208, head-control -0.000 (p 0.8802) -> control explains the gain
+part 2, CO3Dv2 (blur and noise fills): head, control or native rows missing
 **Gate 2 for pi3x_oia**: FAIL (part 1 ok; part 2 0/1 tests; criterion: head beats control at p<0.05 or the control's AUROC gain over native is under half the head's, on inpaint and CO3Dv2)
 
 ## Full configuration, DTU, pooled over blur and noise fills
@@ -116,3 +118,24 @@ part 2, inpainted fill (stress inpaint10): head-native dAUROC +0.208, control-na
 | vggt_oia | 0.998 [0.997, 1.000] | 0.006 [0.000, 0.013] | 0.000 [0.000, 0.000] |
 | vggt_oiafuse | 0.982 [0.961, 0.999] | 0.022 [0.000, 0.049] | 0.000 [0.000, 0.000] |
 | vggt_oiapatch | 0.999 [0.998, 1.000] | 0.004 [0.000, 0.008] | 0.000 [0.000, 0.000] |
+
+## Full configuration, CO3Dv2 (head never saw it), pooled over blur and noise fills
+
+| model | AUROC | CUR | CUR-err |
+|---|---|---|---|
+| da3 | 0.620 [0.567, 0.670] | 0.797 [0.728, 0.861] | 0.000 [0.000, 0.001] |
+| mapanything | 0.576 [0.521, 0.632] | 0.810 [0.756, 0.863] | 0.007 [0.001, 0.017] |
+| pi3 | 0.891 [0.845, 0.930] | 0.272 [0.190, 0.360] | 0.002 [0.000, 0.006] |
+| pi3x | 0.732 [0.680, 0.779] | 0.570 [0.500, 0.641] | 0.001 [0.000, 0.004] |
+| pi3x_oia | 0.975 [0.948, 0.993] | 0.075 [0.020, 0.155] | 0.001 [0.000, 0.003] |
+| vggt | 0.681 [0.632, 0.729] | 0.651 [0.566, 0.734] | 0.031 [0.004, 0.073] |
+| vggt_oia | 0.992 [0.987, 0.996] | 0.022 [0.011, 0.035] | 0.001 [0.000, 0.002] |
+| vggt_oiafuse | 0.961 [0.945, 0.974] | 0.101 [0.057, 0.154] | 0.006 [0.001, 0.014] |
+| vggt_oiapatch | 0.989 [0.985, 0.993] | 0.030 [0.018, 0.042] | 0.001 [0.000, 0.003] |
+
+## Full configuration, DTU, Gaussian-splatting backbone, pooled over blur and noise fills
+
+| model | AUROC | CUR | CUR-err |
+|---|---|---|---|
+| anysplat | 0.583 [0.548, 0.634] | 0.718 [0.672, 0.748] | 0.021 [0.011, 0.031] |
+| anysplat_render | 0.632 [0.603, 0.658] | 0.745 [0.724, 0.765] | 0.060 [0.038, 0.085] |

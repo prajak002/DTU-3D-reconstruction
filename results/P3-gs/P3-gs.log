@@ -1,0 +1,110 @@
+09:09:39 == P3-gs: models ['anysplat', 'anysplat_render'], cfg {"seeds": [0, 1, 2, 3, 4], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.1, 0.18]}
+09:22:11 !! anysplat failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 808, in run_benchmark
+    d, c = _predict(model, imgs_m, out_hw, extra, model_hw)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 783, in _predict
+    return model.predict(imgs, model_hw, out_hw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 365, in predict
+    d, c = self._forward(x, self.dtype)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/anysplat_wrap.py", line 203, in _forward
+    out = self._encode(x, dtype)
+  File "/home/ubuntu/hallu/scripts/anysplat_wrap.py", line 185, in _encode
+    out = self.model.encoder(x[None], global_step=0)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/anysplat.py", line 424, in forward
+    depth_map, depth_conf = self.depth_head(
+                            ~~~~~~~~~~~~~~~^
+        aggregated_tokens_list,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+        images=image,
+        ^^^^^^^^^^^^^
+        patch_start_idx=patch_start_idx,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/vggt/heads/dpt_head.py", line 173, in forward
+    chunk_preds, chunk_conf = self._forward_impl(
+                              ~~~~~~~~~~~~~~~~~~^
+        aggregated_tokens_list, images, patch_start_idx, frames_start_idx, frames_end_idx
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/vggt/heads/dpt_head.py", line 255, in _forward_impl
+    out = self._apply_pos_embed(out, W, H)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/vggt/heads/dpt_head.py", line 277, in _apply_pos_embed
+    return x + pos_embed
+           ~~^~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 850.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 837.69 MiB is free. Process 13322 has 7.73 GiB memory in use. Including non-PyTorch memory, this process has 5.28 GiB memory in use. Process 15879 has 840.00 MiB memory in use. Process 15900 has 7.37 GiB memory in use. Of the allocated memory 4.84 GiB is allocated by PyTorch, and 212.34 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+10:02:41 !! anysplat_render failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 808, in run_benchmark
+    d, c = _predict(model, imgs_m, out_hw, extra, model_hw)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 783, in _predict
+    return model.predict(imgs, model_hw, out_hw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 365, in predict
+    d, c = self._forward(x, self.dtype)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/anysplat_wrap.py", line 241, in _forward
+    out = self._encode(x, dtype)
+  File "/home/ubuntu/hallu/scripts/anysplat_wrap.py", line 185, in _encode
+    out = self.model.encoder(x[None], global_step=0)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/anysplat.py", line 444, in forward
+    out = self.gaussian_param_head(
+        aggregated_tokens_list,
+    ...<3 lines>...
+        image_size=(h, w),
+    )
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/heads/vggt_dpt_gs_head.py", line 85, in forward
+    chunk_output = self._forward_impl(
+        encoder_tokens, imgs, patch_start_idx, frames_start_idx, frames_end_idx
+    )
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/heads/vggt_dpt_gs_head.py", line 134, in _forward_impl
+    out = out + direct_img_feat
+          ~~~~^~~~~~~~~~~~~~~~~
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 850.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 535.69 MiB is free. Including non-PyTorch memory, this process has 5.10 GiB memory in use. Process 17311 has 3.10 GiB memory in use. Process 17298 has 10.39 GiB memory in use. Process 17330 has 2.91 GiB memory in use. Of the allocated memory 4.69 GiB is allocated by PyTorch, and 158.37 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+10:02:41               model  radius_frac   fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0          anysplat         0.10   blur      20  0.781 [0.721, 0.841]  0.423 [0.368, 0.478]  0.521 [0.438, 0.602]  0.018 [0.005, 0.034]  0.016 [0.011, 0.022]  0.029 [0.019, 0.038]  0.037 [0.019, 0.051]  0.147 [0.108, 0.184]        4        0.124794
+1          anysplat         0.10   gray      20  0.762 [0.661, 0.864]  0.423 [0.368, 0.478]  0.513 [0.352, 0.649]  0.010 [0.001, 0.021]  0.016 [0.011, 0.022]  0.028 [0.019, 0.039]  0.037 [0.019, 0.051]  0.190 [0.089, 0.292]        4        0.124794
+2          anysplat         0.10  noise      20  0.352 [0.284, 0.429]  0.423 [0.368, 0.478]  0.948 [0.919, 0.968]  0.034 [0.001, 0.072]  0.016 [0.011, 0.022]  0.025 [0.013, 0.036]  0.037 [0.019, 0.051]  1.488 [1.403, 1.559]        4        0.124794
+3          anysplat         0.18   blur      20  0.823 [0.791, 0.855]  0.478 [0.449, 0.506]  0.452 [0.384, 0.529]  0.009 [0.004, 0.018]  0.017 [0.011, 0.023]  0.022 [0.019, 0.025]  0.018 [0.012, 0.024]  0.092 [0.083, 0.109]        4        0.124794
+4          anysplat         0.18   gray      20  0.868 [0.830, 0.904]  0.478 [0.449, 0.506]  0.319 [0.248, 0.375]  0.006 [0.003, 0.010]  0.017 [0.011, 0.023]  0.029 [0.028, 0.031]  0.018 [0.012, 0.024]  0.076 [0.052, 0.100]        4        0.124794
+5          anysplat         0.18  noise      20  0.377 [0.337, 0.421]  0.478 [0.449, 0.506]  0.951 [0.940, 0.962]  0.022 [0.007, 0.037]  0.017 [0.011, 0.023]  0.025 [0.020, 0.030]  0.018 [0.012, 0.024]  1.643 [1.481, 1.806]        4        0.124794
+6   anysplat_render         0.10   blur      75  0.549 [0.497, 0.598]  0.531 [0.496, 0.570]  0.838 [0.799, 0.877]  0.078 [0.034, 0.134]  0.030 [0.024, 0.035]  0.037 [0.029, 0.045]  0.044 [0.035, 0.054]  0.995 [0.989, 0.999]       15        0.087196
+7   anysplat_render         0.10   gray      75  0.523 [0.471, 0.575]  0.531 [0.496, 0.570]  0.852 [0.810, 0.891]  0.030 [0.018, 0.043]  0.030 [0.024, 0.035]  0.026 [0.022, 0.030]  0.044 [0.035, 0.054]  0.998 [0.994, 1.001]       15        0.405780
+8   anysplat_render         0.10  noise      75  0.679 [0.641, 0.715]  0.531 [0.496, 0.570]  0.698 [0.644, 0.749]  0.034 [0.022, 0.045]  0.029 [0.024, 0.035]  0.030 [0.026, 0.034]  0.044 [0.035, 0.054]  0.989 [0.985, 0.993]       15        0.000050
+9   anysplat_render         0.18   blur      75  0.574 [0.528, 0.616]  0.546 [0.513, 0.577]  0.826 [0.788, 0.866]  0.098 [0.052, 0.152]  0.030 [0.024, 0.035]  0.039 [0.030, 0.050]  0.045 [0.031, 0.059]  0.997 [0.995, 0.999]       15        0.008350
+10  anysplat_render         0.18   gray      75  0.590 [0.549, 0.631]  0.546 [0.513, 0.577]  0.788 [0.737, 0.835]  0.046 [0.032, 0.060]  0.029 [0.024, 0.034]  0.037 [0.032, 0.041]  0.045 [0.031, 0.059]  0.996 [0.993, 0.999]       15        0.000850
+11  anysplat_render         0.18  noise      75  0.727 [0.707, 0.747]  0.546 [0.513, 0.577]  0.616 [0.575, 0.656]  0.031 [0.020, 0.045]  0.029 [0.024, 0.033]  0.037 [0.031, 0.045]  0.045 [0.031, 0.059]  0.985 [0.982, 0.988]       15        0.000050
