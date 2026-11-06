@@ -1,0 +1,23 @@
+13:23:23 == P4-vis: models ['vggt', 'vggt_reproj', 'vggt_oiavis', 'vggt_oiavispatch', 'vggt_oiavislin', 'pi3x', 'pi3', 'da3', 'mapanything'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2]}
+13:34:54    vggt: 691s
+13:44:10    vggt_reproj: 556s
+13:51:29    vggt_oiavis: 439s
+13:59:41    vggt_oiavispatch: 492s
+14:06:58    vggt_oiavislin: 437s
+14:15:10    pi3x: 492s
+14:20:38    pi3: 328s
+14:20:38 !! da3 failed:
+Traceback (most recent call last):
+  File "/kaggle/tmp/repo/scripts/run_h100.py", line 295, in _run_vis
+    H.run_vis(root, [m], cfg=cfg, out_csv=csv)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/kaggle/tmp/repo/scripts/hallu3d.py", line 754, in run_vis
+    model = model_factory(mname)
+  File "/kaggle/tmp/repo/scripts/hallu3d.py", line 855, in make_model
+    return MODEL_REGISTRY[name]()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/kaggle/tmp/repo/scripts/hallu3d.py", line 476, in __init__
+    from depth_anything_3.api import DepthAnything3
+ModuleNotFoundError: No module named 'depth_anything_3'
+
+14:28:08    mapanything: 450s

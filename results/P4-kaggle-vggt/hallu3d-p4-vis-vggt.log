@@ -1,0 +1,549 @@
+[{"stream_name":"stdout","time":0.632710356,"data":"\n"}
+,{"stream_name":"stdout","time":0.632748066,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":0.632753376,"data":"== clone  [0s]\n"}
+,{"stream_name":"stdout","time":0.63275691,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":13.317606068,"data":"commit 4132d11\n"}
+,{"stream_name":"stdout","time":13.317637567,"data":"\n"}
+,{"stream_name":"stdout","time":13.317648962,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":13.317669603,"data":"== install backbones (kaggle_prelude.py)  [13s]\n"}
+,{"stream_name":"stdout","time":13.317675372,"data":"====================================================================================================\n"}
+,{"stream_name":"stderr","time":29.957822171,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":29.957846738,"data":"mne 1.13.2 requires decorator\u003e=5.1, but you have decorator 4.4.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":36.293991699,"data":"ERROR: Package 'depth-anything-3' requires a different Python: 3.13.16 not in '\u003c=3.13,\u003e=3.9'\n"}
+,{"stream_name":"stdout","time":55.31475421,"data":"\n"}
+,{"stream_name":"stdout","time":55.314791036,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":55.314800145,"data":"== stage trainvis  [55s]\n"}
+,{"stream_name":"stdout","time":55.31480331,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":55.314806452,"data":"\n"}
+,{"stream_name":"stdout","time":55.314810257,"data":"$ /usr/bin/python3 scripts/run_h100.py trainvis --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt --steps 1500 --skip-gt --variants oia,oialin,oiapatch --ext-bases vggt,pi3x,pi3,da3,mapanything\n"}
+,{"stream_name":"stdout","time":81.900350987,"data":"\n"}
+,{"stream_name":"stdout","time":81.900400903,"data":"##### stage trainvis 2026-11-06 11:42:27\n"}
+,{"stream_name":"stdout","time":81.900407581,"data":"[trainvis] /usr/bin/python3 /kaggle/tmp/repo/scripts/oia_head.py train --base vggt --variant oiavis,oiavispatch,oiavislin --dtu /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu --out /kaggle/working/checkpoints --steps 1500 --seed 0\n"}
+,{"stream_name":"stderr","time":88.846764365,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":130.617736341,"data":"[oia] base=vggt variant=oiavis feats=agg arch=conv labels=vis seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavis.pt\n"}
+,{"stream_name":"stdout","time":130.617789602,"data":"[oia] base=vggt variant=oiavispatch feats=patch arch=conv labels=vis seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavispatch.pt\n"}
+,{"stream_name":"stdout","time":130.617796655,"data":"[oia] base=vggt variant=oiavislin feats=agg arch=linear labels=vis seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavislin.pt\n"}
+,{"stream_name":"stdout","time":143.343338672,"data":"[oia] oiavis head params: 3.29 M, feature dims [2048, 2048, 2048, 2048]\n"}
+,{"stream_name":"stdout","time":144.858346184,"data":"[oia] step     1 oiavis   loss 0.6974 train-auroc 0.275 lr 2.00e-05 14s\n"}
+,{"stream_name":"stdout","time":144.870457249,"data":"[oia] oiavispatch head params: 1.44 M, feature dims [1024]\n"}
+,{"stream_name":"stdout","time":144.922811321,"data":"[oia] step     1 oiavispatch loss 0.6913 train-auroc 0.743 lr 2.00e-05 14s\n"}
+,{"stream_name":"stdout","time":144.937428969,"data":"[oia] oiavislin head params: 2.11 M, feature dims [2048, 2048, 2048, 2048]\n"}
+,{"stream_name":"stdout","time":144.999478152,"data":"[oia] step     1 oiavislin loss 0.6915 train-auroc 0.565 lr 2.00e-05 14s\n"}
+,{"stream_name":"stdout","time":232.888799908,"data":"[oia] step    25 oiavis   loss 0.4895 train-auroc 0.938 lr 2.60e-04 102s\n"}
+,{"stream_name":"stdout","time":232.960426183,"data":"[oia] step    25 oiavispatch loss 0.5462 train-auroc 0.829 lr 2.60e-04 102s\n"}
+,{"stream_name":"stdout","time":233.053678272,"data":"[oia] step    25 oiavislin loss 0.3560 train-auroc 0.930 lr 2.60e-04 102s\n"}
+,{"stream_name":"stdout","time":340.607974123,"data":"[oia] step    50 oiavis   loss 0.2525 train-auroc 0.964 lr 5.09e-04 210s\n"}
+,{"stream_name":"stdout","time":340.631415517,"data":"[oia] step    50 oiavispatch loss 0.4824 train-auroc 0.879 lr 5.09e-04 210s\n"}
+,{"stream_name":"stdout","time":340.660425794,"data":"[oia] step    50 oiavislin loss 0.2071 train-auroc 0.978 lr 5.09e-04 210s\n"}
+,{"stream_name":"stdout","time":450.353903415,"data":"[oia] step    75 oiavis   loss 0.1903 train-auroc 0.986 lr 7.55e-04 320s\n"}
+,{"stream_name":"stdout","time":450.373821133,"data":"[oia] step    75 oiavispatch loss 0.4420 train-auroc 0.918 lr 7.55e-04 320s\n"}
+,{"stream_name":"stdout","time":450.398390753,"data":"[oia] step    75 oiavislin loss 0.1991 train-auroc 0.981 lr 7.55e-04 320s\n"}
+,{"stream_name":"stdout","time":548.834652851,"data":"[oia] step   100 oiavis   loss 0.2197 train-auroc 0.976 lr 9.89e-04 418s\n"}
+,{"stream_name":"stdout","time":548.872256369,"data":"[oia] step   100 oiavispatch loss 0.4864 train-auroc 0.876 lr 9.89e-04 418s\n"}
+,{"stream_name":"stdout","time":548.918825929,"data":"[oia] step   100 oiavislin loss 0.5046 train-auroc 0.980 lr 9.89e-04 418s\n"}
+,{"stream_name":"stdout","time":655.550765138,"data":"[oia] step   125 oiavis   loss 0.2079 train-auroc 0.989 lr 9.83e-04 525s\n"}
+,{"stream_name":"stdout","time":655.573205267,"data":"[oia] step   125 oiavispatch loss 0.5114 train-auroc 0.956 lr 9.83e-04 525s\n"}
+,{"stream_name":"stdout","time":655.60035309,"data":"[oia] step   125 oiavislin loss 0.2040 train-auroc 0.990 lr 9.83e-04 525s\n"}
+,{"stream_name":"stdout","time":759.486456911,"data":"[oia] step   150 oiavis   loss 0.2753 train-auroc 0.956 lr 9.76e-04 629s\n"}
+,{"stream_name":"stdout","time":759.509290264,"data":"[oia] step   150 oiavispatch loss 0.5024 train-auroc 0.841 lr 9.76e-04 629s\n"}
+,{"stream_name":"stdout","time":759.536089035,"data":"[oia] step   150 oiavislin loss 0.3782 train-auroc 0.963 lr 9.76e-04 629s\n"}
+,{"stream_name":"stdout","time":865.738973094,"data":"[oia] step   175 oiavis   loss 0.4737 train-auroc 0.927 lr 9.67e-04 735s\n"}
+,{"stream_name":"stdout","time":865.80040476,"data":"[oia] step   175 oiavispatch loss 0.8278 train-auroc 0.848 lr 9.67e-04 735s\n"}
+,{"stream_name":"stdout","time":865.883858766,"data":"[oia] step   175 oiavislin loss 0.7114 train-auroc 0.918 lr 9.67e-04 735s\n"}
+,{"stream_name":"stdout","time":955.458846003,"data":"[oia] step   200 oiavis   loss 0.3152 train-auroc 0.966 lr 9.57e-04 825s\n"}
+,{"stream_name":"stdout","time":955.481477459,"data":"[oia] step   200 oiavispatch loss 0.3512 train-auroc 0.918 lr 9.57e-04 825s\n"}
+,{"stream_name":"stdout","time":955.508229291,"data":"[oia] step   200 oiavislin loss 0.2657 train-auroc 0.968 lr 9.57e-04 825s\n"}
+,{"stream_name":"stdout","time":1053.298570003,"data":"[oia] step   225 oiavis   loss 0.2576 train-auroc 0.971 lr 9.46e-04 923s\n"}
+,{"stream_name":"stdout","time":1053.371341834,"data":"[oia] step   225 oiavispatch loss 0.5364 train-auroc 0.804 lr 9.46e-04 923s\n"}
+,{"stream_name":"stdout","time":1053.46303276,"data":"[oia] step   225 oiavislin loss 0.2804 train-auroc 0.956 lr 9.46e-04 923s\n"}
+,{"stream_name":"stdout","time":1160.918005679,"data":"[oia] step   250 oiavis   loss 0.1594 train-auroc 0.986 lr 9.33e-04 1030s\n"}
+,{"stream_name":"stdout","time":1160.952007872,"data":"[oia] step   250 oiavispatch loss 0.5418 train-auroc 0.828 lr 9.33e-04 1030s\n"}
+,{"stream_name":"stdout","time":1160.99229009,"data":"[oia] step   250 oiavislin loss 0.2034 train-auroc 0.981 lr 9.33e-04 1030s\n"}
+,{"stream_name":"stdout","time":1176.316639192,"data":"[oia] step   250 oiavis   val-auroc 0.992\n"}
+,{"stream_name":"stdout","time":1176.349115713,"data":"[oia] step   250 oiavispatch val-auroc 0.884\n"}
+,{"stream_name":"stdout","time":1176.360034035,"data":"[oia] step   250 oiavislin val-auroc 0.990\n"}
+,{"stream_name":"stdout","time":1278.037998013,"data":"[oia] step   275 oiavis   loss 0.3460 train-auroc 0.933 lr 9.19e-04 1147s\n"}
+,{"stream_name":"stdout","time":1278.056724449,"data":"[oia] step   275 oiavispatch loss 0.6504 train-auroc 0.760 lr 9.19e-04 1147s\n"}
+,{"stream_name":"stdout","time":1278.079711927,"data":"[oia] step   275 oiavislin loss 0.3889 train-auroc 0.928 lr 9.19e-04 1147s\n"}
+,{"stream_name":"stdout","time":1365.972529327,"data":"[oia] step   300 oiavis   loss 0.0900 train-auroc 0.995 lr 9.05e-04 1235s\n"}
+,{"stream_name":"stdout","time":1365.994988686,"data":"[oia] step   300 oiavispatch loss 0.3211 train-auroc 0.938 lr 9.05e-04 1235s\n"}
+,{"stream_name":"stdout","time":1366.022939199,"data":"[oia] step   300 oiavislin loss 0.1387 train-auroc 0.991 lr 9.05e-04 1235s\n"}
+,{"stream_name":"stdout","time":1459.81837777,"data":"[oia] step   325 oiavis   loss 0.1763 train-auroc 0.991 lr 8.89e-04 1329s\n"}
+,{"stream_name":"stdout","time":1459.891664625,"data":"[oia] step   325 oiavispatch loss 0.3116 train-auroc 0.952 lr 8.89e-04 1329s\n"}
+,{"stream_name":"stdout","time":1459.984214171,"data":"[oia] step   325 oiavislin loss 0.1759 train-auroc 0.989 lr 8.89e-04 1329s\n"}
+,{"stream_name":"stdout","time":1554.834678149,"data":"[oia] step   350 oiavis   loss 0.1372 train-auroc 0.993 lr 8.72e-04 1424s\n"}
+,{"stream_name":"stdout","time":1554.859719342,"data":"[oia] step   350 oiavispatch loss 0.5560 train-auroc 0.816 lr 8.72e-04 1424s\n"}
+,{"stream_name":"stdout","time":1554.886898281,"data":"[oia] step   350 oiavislin loss 0.1621 train-auroc 0.987 lr 8.72e-04 1424s\n"}
+,{"stream_name":"stdout","time":1655.666329709,"data":"[oia] step   375 oiavis   loss 0.1643 train-auroc 0.990 lr 8.54e-04 1525s\n"}
+,{"stream_name":"stdout","time":1655.739063774,"data":"[oia] step   375 oiavispatch loss 0.4811 train-auroc 0.845 lr 8.54e-04 1525s\n"}
+,{"stream_name":"stdout","time":1655.833508623,"data":"[oia] step   375 oiavislin loss 0.1877 train-auroc 0.984 lr 8.54e-04 1525s\n"}
+,{"stream_name":"stdout","time":1765.263071559,"data":"[oia] step   400 oiavis   loss 0.0733 train-auroc 0.998 lr 8.35e-04 1635s\n"}
+,{"stream_name":"stdout","time":1765.304510259,"data":"[oia] step   400 oiavispatch loss 0.2487 train-auroc 0.974 lr 8.35e-04 1635s\n"}
+,{"stream_name":"stdout","time":1765.352734491,"data":"[oia] step   400 oiavislin loss 0.0871 train-auroc 0.997 lr 8.35e-04 1635s\n"}
+,{"stream_name":"stdout","time":1870.232282848,"data":"[oia] step   425 oiavis   loss 0.1444 train-auroc 0.992 lr 8.15e-04 1740s\n"}
+,{"stream_name":"stdout","time":1870.307763055,"data":"[oia] step   425 oiavispatch loss 0.5076 train-auroc 0.898 lr 8.15e-04 1740s\n"}
+,{"stream_name":"stdout","time":1870.403017608,"data":"[oia] step   425 oiavislin loss 0.1839 train-auroc 0.984 lr 8.15e-04 1740s\n"}
+,{"stream_name":"stdout","time":1960.008137569,"data":"[oia] step   450 oiavis   loss 0.1344 train-auroc 0.998 lr 7.94e-04 1829s\n"}
+,{"stream_name":"stdout","time":1960.032706581,"data":"[oia] step   450 oiavispatch loss 0.4944 train-auroc 0.862 lr 7.94e-04 1829s\n"}
+,{"stream_name":"stdout","time":1960.061111193,"data":"[oia] step   450 oiavislin loss 0.1944 train-auroc 0.994 lr 7.94e-04 1829s\n"}
+,{"stream_name":"stdout","time":2069.641871294,"data":"[oia] step   475 oiavis   loss 0.1082 train-auroc 0.997 lr 7.72e-04 1939s\n"}
+,{"stream_name":"stdout","time":2069.679099017,"data":"[oia] step   475 oiavispatch loss 0.2572 train-auroc 0.968 lr 7.72e-04 1939s\n"}
+,{"stream_name":"stdout","time":2069.723972084,"data":"[oia] step   475 oiavislin loss 0.0807 train-auroc 0.996 lr 7.72e-04 1939s\n"}
+,{"stream_name":"stdout","time":2166.016150347,"data":"[oia] step   500 oiavis   loss 0.1863 train-auroc 0.983 lr 7.50e-04 2035s\n"}
+,{"stream_name":"stdout","time":2166.083822396,"data":"[oia] step   500 oiavispatch loss 0.3640 train-auroc 0.897 lr 7.50e-04 2035s\n"}
+,{"stream_name":"stdout","time":2166.171113255,"data":"[oia] step   500 oiavislin loss 0.1836 train-auroc 0.989 lr 7.50e-04 2036s\n"}
+,{"stream_name":"stdout","time":2176.080500262,"data":"[oia] step   500 oiavis   val-auroc 0.995\n"}
+,{"stream_name":"stdout","time":2176.1125993,"data":"[oia] step   500 oiavispatch val-auroc 0.906\n"}
+,{"stream_name":"stdout","time":2176.126018946,"data":"[oia] step   500 oiavislin val-auroc 0.991\n"}
+,{"stream_name":"stdout","time":2287.42183188,"data":"[oia] step   525 oiavis   loss 0.0936 train-auroc 0.998 lr 7.27e-04 2157s\n"}
+,{"stream_name":"stdout","time":2287.455232792,"data":"[oia] step   525 oiavispatch loss 0.3079 train-auroc 0.953 lr 7.27e-04 2157s\n"}
+,{"stream_name":"stdout","time":2287.496311256,"data":"[oia] step   525 oiavislin loss 0.1633 train-auroc 0.996 lr 7.27e-04 2157s\n"}
+,{"stream_name":"stdout","time":2381.517068415,"data":"[oia] step   550 oiavis   loss 0.1006 train-auroc 0.999 lr 7.03e-04 2251s\n"}
+,{"stream_name":"stdout","time":2381.538829207,"data":"[oia] step   550 oiavispatch loss 0.5610 train-auroc 0.796 lr 7.03e-04 2251s\n"}
+,{"stream_name":"stdout","time":2381.564785337,"data":"[oia] step   550 oiavislin loss 0.0871 train-auroc 0.996 lr 7.03e-04 2251s\n"}
+,{"stream_name":"stdout","time":2475.872838981,"data":"[oia] step   575 oiavis   loss 0.1267 train-auroc 0.996 lr 6.79e-04 2345s\n"}
+,{"stream_name":"stdout","time":2475.895849004,"data":"[oia] step   575 oiavispatch loss 0.5000 train-auroc 0.853 lr 6.79e-04 2345s\n"}
+,{"stream_name":"stdout","time":2475.923428218,"data":"[oia] step   575 oiavislin loss 0.1586 train-auroc 0.987 lr 6.79e-04 2345s\n"}
+,{"stream_name":"stdout","time":2565.269727667,"data":"[oia] step   600 oiavis   loss 0.2620 train-auroc 0.983 lr 6.55e-04 2435s\n"}
+,{"stream_name":"stdout","time":2565.308522583,"data":"[oia] step   600 oiavispatch loss 0.4661 train-auroc 0.881 lr 6.55e-04 2435s\n"}
+,{"stream_name":"stdout","time":2565.354668033,"data":"[oia] step   600 oiavislin loss 0.2576 train-auroc 0.982 lr 6.55e-04 2435s\n"}
+,{"stream_name":"stdout","time":2652.396352889,"data":"[oia] step   625 oiavis   loss 0.1494 train-auroc 0.988 lr 6.29e-04 2522s\n"}
+,{"stream_name":"stdout","time":2652.480436688,"data":"[oia] step   625 oiavispatch loss 0.7448 train-auroc 0.711 lr 6.29e-04 2522s\n"}
+,{"stream_name":"stdout","time":2652.579853945,"data":"[oia] step   625 oiavislin loss 0.1602 train-auroc 0.985 lr 6.29e-04 2522s\n"}
+,{"stream_name":"stdout","time":2755.574039874,"data":"[oia] step   650 oiavis   loss 0.1847 train-auroc 0.983 lr 6.04e-04 2625s\n"}
+,{"stream_name":"stdout","time":2755.645344422,"data":"[oia] step   650 oiavispatch loss 0.2877 train-auroc 0.942 lr 6.04e-04 2625s\n"}
+,{"stream_name":"stdout","time":2755.734705981,"data":"[oia] step   650 oiavislin loss 0.2536 train-auroc 0.979 lr 6.04e-04 2625s\n"}
+,{"stream_name":"stdout","time":2876.004633876,"data":"[oia] step   675 oiavis   loss 0.3393 train-auroc 0.939 lr 5.78e-04 2745s\n"}
+,{"stream_name":"stdout","time":2876.068449399,"data":"[oia] step   675 oiavispatch loss 0.5817 train-auroc 0.828 lr 5.78e-04 2745s\n"}
+,{"stream_name":"stdout","time":2876.151324595,"data":"[oia] step   675 oiavislin loss 0.4370 train-auroc 0.934 lr 5.78e-04 2746s\n"}
+,{"stream_name":"stdout","time":2980.031884321,"data":"[oia] step   700 oiavis   loss 0.0961 train-auroc 0.994 lr 5.52e-04 2849s\n"}
+,{"stream_name":"stdout","time":2980.106218262,"data":"[oia] step   700 oiavispatch loss 0.1769 train-auroc 0.983 lr 5.52e-04 2849s\n"}
+,{"stream_name":"stdout","time":2980.198568204,"data":"[oia] step   700 oiavislin loss 0.1205 train-auroc 0.989 lr 5.52e-04 2850s\n"}
+,{"stream_name":"stdout","time":3068.809819536,"data":"[oia] step   725 oiavis   loss 0.0798 train-auroc 0.996 lr 5.26e-04 2938s\n"}
+,{"stream_name":"stdout","time":3068.833909815,"data":"[oia] step   725 oiavispatch loss 0.3529 train-auroc 0.936 lr 5.26e-04 2938s\n"}
+,{"stream_name":"stdout","time":3068.863052123,"data":"[oia] step   725 oiavislin loss 0.1224 train-auroc 0.993 lr 5.26e-04 2938s\n"}
+,{"stream_name":"stdout","time":3157.807993138,"data":"[oia] step   750 oiavis   loss 0.1390 train-auroc 0.989 lr 5.00e-04 3027s\n"}
+,{"stream_name":"stdout","time":3157.846863415,"data":"[oia] step   750 oiavispatch loss 0.6161 train-auroc 0.847 lr 5.00e-04 3027s\n"}
+,{"stream_name":"stdout","time":3157.893660805,"data":"[oia] step   750 oiavislin loss 0.1680 train-auroc 0.986 lr 5.00e-04 3027s\n"}
+,{"stream_name":"stdout","time":3167.716287394,"data":"[oia] step   750 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":3167.748442561,"data":"[oia] step   750 oiavispatch val-auroc 0.920\n"}
+,{"stream_name":"stdout","time":3167.761925816,"data":"[oia] step   750 oiavislin val-auroc 0.994\n"}
+,{"stream_name":"stdout","time":3271.36807885,"data":"[oia] step   775 oiavis   loss 0.1021 train-auroc 0.994 lr 4.74e-04 3141s\n"}
+,{"stream_name":"stdout","time":3271.404508741,"data":"[oia] step   775 oiavispatch loss 0.4137 train-auroc 0.928 lr 4.74e-04 3141s\n"}
+,{"stream_name":"stdout","time":3271.448625435,"data":"[oia] step   775 oiavislin loss 0.1429 train-auroc 0.992 lr 4.74e-04 3141s\n"}
+,{"stream_name":"stdout","time":3396.362685367,"data":"[oia] step   800 oiavis   loss 0.0977 train-auroc 0.993 lr 4.48e-04 3266s\n"}
+,{"stream_name":"stdout","time":3396.383547243,"data":"[oia] step   800 oiavispatch loss 0.6497 train-auroc 0.851 lr 4.48e-04 3266s\n"}
+,{"stream_name":"stdout","time":3396.408685878,"data":"[oia] step   800 oiavislin loss 0.1237 train-auroc 0.990 lr 4.48e-04 3266s\n"}
+,{"stream_name":"stdout","time":3488.764701877,"data":"[oia] step   825 oiavis   loss 0.1536 train-auroc 0.986 lr 4.22e-04 3358s\n"}
+,{"stream_name":"stdout","time":3488.798368512,"data":"[oia] step   825 oiavispatch loss 0.3586 train-auroc 0.919 lr 4.22e-04 3358s\n"}
+,{"stream_name":"stdout","time":3488.838775117,"data":"[oia] step   825 oiavislin loss 0.1925 train-auroc 0.980 lr 4.22e-04 3358s\n"}
+,{"stream_name":"stdout","time":3593.777769041,"data":"[oia] step   850 oiavis   loss 0.0874 train-auroc 0.997 lr 3.96e-04 3463s\n"}
+,{"stream_name":"stdout","time":3593.811406648,"data":"[oia] step   850 oiavispatch loss 0.3942 train-auroc 0.916 lr 3.96e-04 3463s\n"}
+,{"stream_name":"stdout","time":3593.850999063,"data":"[oia] step   850 oiavislin loss 0.1166 train-auroc 0.993 lr 3.96e-04 3463s\n"}
+,{"stream_name":"stdout","time":3712.600563962,"data":"[oia] step   875 oiavis   loss 0.0928 train-auroc 0.995 lr 3.71e-04 3582s\n"}
+,{"stream_name":"stdout","time":3712.677199576,"data":"[oia] step   875 oiavispatch loss 0.1697 train-auroc 0.979 lr 3.71e-04 3582s\n"}
+,{"stream_name":"stdout","time":3712.775847101,"data":"[oia] step   875 oiavislin loss 0.1098 train-auroc 0.994 lr 3.71e-04 3582s\n"}
+,{"stream_name":"stdout","time":3792.76369055,"data":"[oia] step   900 oiavis   loss 0.2190 train-auroc 0.971 lr 3.45e-04 3662s\n"}
+,{"stream_name":"stdout","time":3792.805001584,"data":"[oia] step   900 oiavispatch loss 0.5874 train-auroc 0.784 lr 3.45e-04 3662s\n"}
+,{"stream_name":"stdout","time":3792.853416681,"data":"[oia] step   900 oiavislin loss 0.2615 train-auroc 0.959 lr 3.45e-04 3662s\n"}
+,{"stream_name":"stdout","time":3890.511753941,"data":"[oia] step   925 oiavis   loss 0.0942 train-auroc 0.995 lr 3.21e-04 3760s\n"}
+,{"stream_name":"stdout","time":3890.533773808,"data":"[oia] step   925 oiavispatch loss 0.4062 train-auroc 0.937 lr 3.21e-04 3760s\n"}
+,{"stream_name":"stdout","time":3890.560839119,"data":"[oia] step   925 oiavislin loss 0.0997 train-auroc 0.995 lr 3.21e-04 3760s\n"}
+,{"stream_name":"stdout","time":3984.020514803,"data":"[oia] step   950 oiavis   loss 0.1006 train-auroc 0.995 lr 2.97e-04 3853s\n"}
+,{"stream_name":"stdout","time":3984.041196402,"data":"[oia] step   950 oiavispatch loss 0.2083 train-auroc 0.982 lr 2.97e-04 3853s\n"}
+,{"stream_name":"stdout","time":3984.066580383,"data":"[oia] step   950 oiavislin loss 0.0954 train-auroc 0.995 lr 2.97e-04 3853s\n"}
+,{"stream_name":"stdout","time":4075.325560819,"data":"[oia] step   975 oiavis   loss 0.3097 train-auroc 0.968 lr 2.73e-04 3945s\n"}
+,{"stream_name":"stdout","time":4075.390252862,"data":"[oia] step   975 oiavispatch loss 0.3840 train-auroc 0.910 lr 2.73e-04 3945s\n"}
+,{"stream_name":"stdout","time":4075.474296483,"data":"[oia] step   975 oiavislin loss 0.3628 train-auroc 0.957 lr 2.73e-04 3945s\n"}
+,{"stream_name":"stdout","time":4197.94204944,"data":"[oia] step  1000 oiavis   loss 0.1825 train-auroc 0.980 lr 2.50e-04 4067s\n"}
+,{"stream_name":"stdout","time":4197.972660752,"data":"[oia] step  1000 oiavispatch loss 0.4668 train-auroc 0.851 lr 2.50e-04 4067s\n"}
+,{"stream_name":"stdout","time":4198.012009889,"data":"[oia] step  1000 oiavislin loss 0.2076 train-auroc 0.973 lr 2.50e-04 4067s\n"}
+,{"stream_name":"stdout","time":4207.842022658,"data":"[oia] step  1000 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":4207.873913348,"data":"[oia] step  1000 oiavispatch val-auroc 0.919\n"}
+,{"stream_name":"stdout","time":4207.880079239,"data":"[oia] step  1000 oiavislin val-auroc 0.996\n"}
+,{"stream_name":"stdout","time":4319.517072045,"data":"[oia] step  1025 oiavis   loss 0.1752 train-auroc 0.981 lr 2.28e-04 4189s\n"}
+,{"stream_name":"stdout","time":4319.588514999,"data":"[oia] step  1025 oiavispatch loss 0.3914 train-auroc 0.919 lr 2.28e-04 4189s\n"}
+,{"stream_name":"stdout","time":4319.67658787,"data":"[oia] step  1025 oiavislin loss 0.2438 train-auroc 0.970 lr 2.28e-04 4189s\n"}
+,{"stream_name":"stdout","time":4407.307450539,"data":"[oia] step  1050 oiavis   loss 0.0925 train-auroc 0.995 lr 2.06e-04 4277s\n"}
+,{"stream_name":"stdout","time":4407.383750122,"data":"[oia] step  1050 oiavispatch loss 0.3253 train-auroc 0.957 lr 2.06e-04 4277s\n"}
+,{"stream_name":"stdout","time":4407.478124437,"data":"[oia] step  1050 oiavislin loss 0.1092 train-auroc 0.993 lr 2.06e-04 4277s\n"}
+,{"stream_name":"stdout","time":4506.211073716,"data":"[oia] step  1075 oiavis   loss 0.0765 train-auroc 0.997 lr 1.85e-04 4376s\n"}
+,{"stream_name":"stdout","time":4506.250059283,"data":"[oia] step  1075 oiavispatch loss 0.4123 train-auroc 0.924 lr 1.85e-04 4376s\n"}
+,{"stream_name":"stdout","time":4506.292687511,"data":"[oia] step  1075 oiavislin loss 0.1042 train-auroc 0.994 lr 1.85e-04 4376s\n"}
+,{"stream_name":"stdout","time":4593.431806898,"data":"[oia] step  1100 oiavis   loss 0.0531 train-auroc 0.999 lr 1.65e-04 4463s\n"}
+,{"stream_name":"stdout","time":4593.495195019,"data":"[oia] step  1100 oiavispatch loss 0.4200 train-auroc 0.970 lr 1.65e-04 4463s\n"}
+,{"stream_name":"stdout","time":4593.575817443,"data":"[oia] step  1100 oiavislin loss 0.0712 train-auroc 0.998 lr 1.65e-04 4463s\n"}
+,{"stream_name":"stdout","time":4703.448534601,"data":"[oia] step  1125 oiavis   loss 0.0429 train-auroc 0.999 lr 1.46e-04 4573s\n"}
+,{"stream_name":"stdout","time":4703.472332176,"data":"[oia] step  1125 oiavispatch loss 0.2281 train-auroc 0.987 lr 1.46e-04 4573s\n"}
+,{"stream_name":"stdout","time":4703.499187488,"data":"[oia] step  1125 oiavislin loss 0.0505 train-auroc 0.999 lr 1.46e-04 4573s\n"}
+,{"stream_name":"stdout","time":4800.161159348,"data":"[oia] step  1150 oiavis   loss 0.0435 train-auroc 0.999 lr 1.28e-04 4670s\n"}
+,{"stream_name":"stdout","time":4800.198260134,"data":"[oia] step  1150 oiavispatch loss 0.1613 train-auroc 0.991 lr 1.28e-04 4670s\n"}
+,{"stream_name":"stdout","time":4800.245929557,"data":"[oia] step  1150 oiavislin loss 0.0600 train-auroc 0.998 lr 1.28e-04 4670s\n"}
+,{"stream_name":"stdout","time":4880.415219678,"data":"[oia] step  1175 oiavis   loss 0.2651 train-auroc 0.963 lr 1.11e-04 4750s\n"}
+,{"stream_name":"stdout","time":4880.435282926,"data":"[oia] step  1175 oiavispatch loss 0.3299 train-auroc 0.946 lr 1.11e-04 4750s\n"}
+,{"stream_name":"stdout","time":4880.459907414,"data":"[oia] step  1175 oiavislin loss 0.3111 train-auroc 0.953 lr 1.11e-04 4750s\n"}
+,{"stream_name":"stdout","time":4981.407182843,"data":"[oia] step  1200 oiavis   loss 0.1303 train-auroc 0.991 lr 9.55e-05 4851s\n"}
+,{"stream_name":"stdout","time":4981.485652708,"data":"[oia] step  1200 oiavispatch loss 0.3950 train-auroc 0.909 lr 9.55e-05 4851s\n"}
+,{"stream_name":"stdout","time":4981.5816864,"data":"[oia] step  1200 oiavislin loss 0.1911 train-auroc 0.984 lr 9.55e-05 4851s\n"}
+,{"stream_name":"stdout","time":5074.875654995,"data":"[oia] step  1225 oiavis   loss 0.2378 train-auroc 0.972 lr 8.07e-05 4944s\n"}
+,{"stream_name":"stdout","time":5074.895047932,"data":"[oia] step  1225 oiavispatch loss 0.6581 train-auroc 0.763 lr 8.07e-05 4944s\n"}
+,{"stream_name":"stdout","time":5074.918458062,"data":"[oia] step  1225 oiavislin loss 0.2642 train-auroc 0.961 lr 8.07e-05 4944s\n"}
+,{"stream_name":"stdout","time":5170.964456405,"data":"[oia] step  1250 oiavis   loss 0.1439 train-auroc 0.987 lr 6.70e-05 5040s\n"}
+,{"stream_name":"stdout","time":5170.993376823,"data":"[oia] step  1250 oiavispatch loss 0.4586 train-auroc 0.866 lr 6.70e-05 5040s\n"}
+,{"stream_name":"stdout","time":5171.028733034,"data":"[oia] step  1250 oiavislin loss 0.2263 train-auroc 0.971 lr 6.70e-05 5040s\n"}
+,{"stream_name":"stdout","time":5180.856753699,"data":"[oia] step  1250 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":5180.893657605,"data":"[oia] step  1250 oiavispatch val-auroc 0.922\n"}
+,{"stream_name":"stdout","time":5180.906860454,"data":"[oia] step  1250 oiavislin val-auroc 0.996\n"}
+,{"stream_name":"stdout","time":5273.687759661,"data":"[oia] step  1275 oiavis   loss 0.0804 train-auroc 0.996 lr 5.45e-05 5143s\n"}
+,{"stream_name":"stdout","time":5273.72221738,"data":"[oia] step  1275 oiavispatch loss 0.2614 train-auroc 0.955 lr 5.45e-05 5143s\n"}
+,{"stream_name":"stdout","time":5273.76405884,"data":"[oia] step  1275 oiavislin loss 0.1100 train-auroc 0.993 lr 5.45e-05 5143s\n"}
+,{"stream_name":"stdout","time":5357.417795039,"data":"[oia] step  1300 oiavis   loss 0.1119 train-auroc 0.992 lr 4.32e-05 5227s\n"}
+,{"stream_name":"stdout","time":5357.453491837,"data":"[oia] step  1300 oiavispatch loss 0.3812 train-auroc 0.908 lr 4.32e-05 5227s\n"}
+,{"stream_name":"stdout","time":5357.496278046,"data":"[oia] step  1300 oiavislin loss 0.1539 train-auroc 0.985 lr 4.32e-05 5227s\n"}
+,{"stream_name":"stdout","time":5466.84392659,"data":"[oia] step  1325 oiavis   loss 0.0987 train-auroc 0.994 lr 3.32e-05 5336s\n"}
+,{"stream_name":"stdout","time":5466.863931762,"data":"[oia] step  1325 oiavispatch loss 0.2332 train-auroc 0.971 lr 3.32e-05 5336s\n"}
+,{"stream_name":"stdout","time":5466.888096099,"data":"[oia] step  1325 oiavislin loss 0.1219 train-auroc 0.991 lr 3.32e-05 5336s\n"}
+,{"stream_name":"stdout","time":5564.299052866,"data":"[oia] step  1350 oiavis   loss 0.0509 train-auroc 0.999 lr 2.45e-05 5434s\n"}
+,{"stream_name":"stdout","time":5564.334277533,"data":"[oia] step  1350 oiavispatch loss 0.2197 train-auroc 0.975 lr 2.45e-05 5434s\n"}
+,{"stream_name":"stdout","time":5564.374127793,"data":"[oia] step  1350 oiavislin loss 0.0661 train-auroc 0.997 lr 2.45e-05 5434s\n"}
+,{"stream_name":"stdout","time":5654.699698027,"data":"[oia] step  1375 oiavis   loss 0.2286 train-auroc 0.973 lr 1.70e-05 5524s\n"}
+,{"stream_name":"stdout","time":5654.736265734,"data":"[oia] step  1375 oiavispatch loss 0.7138 train-auroc 0.638 lr 1.70e-05 5524s\n"}
+,{"stream_name":"stdout","time":5654.780160098,"data":"[oia] step  1375 oiavislin loss 0.2353 train-auroc 0.965 lr 1.70e-05 5524s\n"}
+,{"stream_name":"stdout","time":5745.467400707,"data":"[oia] step  1400 oiavis   loss 0.0823 train-auroc 0.996 lr 1.09e-05 5615s\n"}
+,{"stream_name":"stdout","time":5745.486164515,"data":"[oia] step  1400 oiavispatch loss 0.3854 train-auroc 0.895 lr 1.09e-05 5615s\n"}
+,{"stream_name":"stdout","time":5745.509108944,"data":"[oia] step  1400 oiavislin loss 0.1504 train-auroc 0.987 lr 1.09e-05 5615s\n"}
+,{"stream_name":"stdout","time":5837.057008432,"data":"[oia] step  1425 oiavis   loss 0.0310 train-auroc 1.000 lr 6.16e-06 5706s\n"}
+,{"stream_name":"stdout","time":5837.081013723,"data":"[oia] step  1425 oiavispatch loss 0.1441 train-auroc 0.992 lr 6.16e-06 5706s\n"}
+,{"stream_name":"stdout","time":5837.10902309,"data":"[oia] step  1425 oiavislin loss 0.0491 train-auroc 0.999 lr 6.16e-06 5706s\n"}
+,{"stream_name":"stdout","time":5942.500238623,"data":"[oia] step  1450 oiavis   loss 0.0474 train-auroc 0.999 lr 2.74e-06 5812s\n"}
+,{"stream_name":"stdout","time":5942.580352357,"data":"[oia] step  1450 oiavispatch loss 0.1898 train-auroc 0.988 lr 2.74e-06 5812s\n"}
+,{"stream_name":"stdout","time":5942.681336127,"data":"[oia] step  1450 oiavislin loss 0.0688 train-auroc 0.997 lr 2.74e-06 5812s\n"}
+,{"stream_name":"stdout","time":6042.337691605,"data":"[oia] step  1475 oiavis   loss 0.0442 train-auroc 0.999 lr 6.85e-07 5912s\n"}
+,{"stream_name":"stdout","time":6042.38046103,"data":"[oia] step  1475 oiavispatch loss 0.2761 train-auroc 0.971 lr 6.85e-07 5912s\n"}
+,{"stream_name":"stdout","time":6042.436181652,"data":"[oia] step  1475 oiavislin loss 0.0639 train-auroc 0.998 lr 6.85e-07 5912s\n"}
+,{"stream_name":"stdout","time":6121.064675124,"data":"[oia] step  1500 oiavis   loss 0.2077 train-auroc 0.972 lr 0.00e+00 5990s\n"}
+,{"stream_name":"stdout","time":6121.083643786,"data":"[oia] step  1500 oiavispatch loss 0.3530 train-auroc 0.949 lr 0.00e+00 5990s\n"}
+,{"stream_name":"stdout","time":6121.107770431,"data":"[oia] step  1500 oiavislin loss 0.2808 train-auroc 0.963 lr 0.00e+00 5990s\n"}
+,{"stream_name":"stdout","time":6130.996961897,"data":"[oia] step  1500 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":6131.031405668,"data":"[oia] step  1500 oiavispatch val-auroc 0.922\n"}
+,{"stream_name":"stdout","time":6131.045031931,"data":"[oia] step  1500 oiavislin val-auroc 0.996\n"}
+,{"stream_name":"stdout","time":6131.066503592,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavis.pt (last), best val-auroc 0.998, 6000s\n"}
+,{"stream_name":"stdout","time":6131.067724676,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavispatch.pt (last), best val-auroc 0.922, 6000s\n"}
+,{"stream_name":"stdout","time":6131.068325156,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavislin.pt (last), best val-auroc 0.996, 6000s\n"}
+,{"stream_name":"stdout","time":6135.096899467,"data":"[exit 0, 6134s]\n"}
+,{"stream_name":"stdout","time":6135.096956267,"data":"\n"}
+,{"stream_name":"stdout","time":6135.096961832,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":6135.096966012,"data":"== stage vis  [6134s]\n"}
+,{"stream_name":"stdout","time":6135.096970588,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":6135.09697482,"data":"\n"}
+,{"stream_name":"stdout","time":6135.096978932,"data":"$ /usr/bin/python3 scripts/run_h100.py vis --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt --steps 1500 --skip-gt --variants oia,oialin,oiapatch --ext-bases vggt,pi3x,pi3,da3,mapanything\n"}
+,{"stream_name":"stdout","time":6135.580135107,"data":"\n"}
+,{"stream_name":"stdout","time":6135.580165107,"data":"##### stage vis 2026-11-06 13:23:21\n"}
+,{"stream_name":"stdout","time":6137.06745772,"data":"== P4-vis: models ['vggt', 'vggt_reproj', 'vggt_oiavis', 'vggt_oiavispatch', 'vggt_oiavislin', 'pi3x', 'pi3', 'da3', 'mapanything'], cfg {\"vis_views\": [3, 5, 10], \"seeds\": [0, 1, 2]}\n"}
+,{"stream_name":"stderr","time":6138.490850595,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":6154.455386892,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6154.455450754,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stderr","time":6157.735011999,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6157.735084219,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6191.683073501,"data":"[vggt] scan 3  auroc=0.892  cur=0.385  absrel_U=0.014 (S 0.005)  fracU=0.041  39s\n"}
+,{"stream_name":"stderr","time":6193.230423808,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6193.230462969,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6229.2354397,"data":"[vggt] scan 5  auroc=0.890  cur=0.416  absrel_U=0.008 (S 0.004)  fracU=0.034  77s\n"}
+,{"stream_name":"stderr","time":6230.606938236,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6230.606978221,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6266.547038029,"data":"[vggt] scan 17  auroc=0.694  cur=0.600  absrel_U=0.031 (S 0.006)  fracU=0.092  114s\n"}
+,{"stream_name":"stderr","time":6268.060441921,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6268.060482115,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6304.070399263,"data":"[vggt] scan 21  auroc=0.676  cur=0.650  absrel_U=0.023 (S 0.008)  fracU=0.099  152s\n"}
+,{"stream_name":"stderr","time":6305.626474001,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6305.626506003,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6341.628504035,"data":"[vggt] scan 28  auroc=0.715  cur=0.527  absrel_U=0.011 (S 0.005)  fracU=0.147  189s\n"}
+,{"stream_name":"stderr","time":6343.108069953,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6343.108109416,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6378.994267547,"data":"[vggt] scan 35  auroc=0.966  cur=0.075  absrel_U=0.010 (S 0.003)  fracU=0.055  227s\n"}
+,{"stream_name":"stderr","time":6380.359010264,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6380.359046915,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6416.139918243,"data":"[vggt] scan 37  auroc=0.722  cur=0.770  absrel_U=0.014 (S 0.007)  fracU=0.173  264s\n"}
+,{"stream_name":"stderr","time":6417.570729211,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6417.570767435,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6453.334490128,"data":"[vggt] scan 38  auroc=0.914  cur=0.300  absrel_U=0.011 (S 0.004)  fracU=0.088  301s\n"}
+,{"stream_name":"stderr","time":6454.761683133,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6454.761721448,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6490.606980591,"data":"[vggt] scan 40  auroc=0.870  cur=0.478  absrel_U=0.015 (S 0.006)  fracU=0.150  338s\n"}
+,{"stream_name":"stderr","time":6492.067879829,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6492.067929382,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6528.345713174,"data":"[vggt] scan 43  auroc=0.673  cur=0.693  absrel_U=0.008 (S 0.004)  fracU=0.089  376s\n"}
+,{"stream_name":"stderr","time":6530.961436185,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6530.961485034,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6567.189051944,"data":"[vggt] scan 56  auroc=0.758  cur=0.555  absrel_U=0.021 (S 0.005)  fracU=0.092  415s\n"}
+,{"stream_name":"stderr","time":6568.593672103,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6568.593710268,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6604.393129512,"data":"[vggt] scan 59  auroc=0.713  cur=0.570  absrel_U=0.006 (S 0.004)  fracU=0.109  452s\n"}
+,{"stream_name":"stderr","time":6605.869122942,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6605.869162104,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6642.11721176,"data":"[vggt] scan 66  auroc=0.724  cur=0.570  absrel_U=0.010 (S 0.005)  fracU=0.078  490s\n"}
+,{"stream_name":"stderr","time":6643.53589139,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6643.535942969,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6679.288570871,"data":"[vggt] scan 67  auroc=0.910  cur=0.294  absrel_U=0.020 (S 0.005)  fracU=0.092  527s\n"}
+,{"stream_name":"stderr","time":6680.583781591,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6680.583817136,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6716.193450112,"data":"[vggt] scan 82  auroc=0.600  cur=0.784  absrel_U=0.011 (S 0.006)  fracU=0.168  564s\n"}
+,{"stream_name":"stderr","time":6717.711157233,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6717.71119412,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6753.594872091,"data":"[vggt] scan 86  auroc=0.606  cur=0.857  absrel_U=0.022 (S 0.013)  fracU=0.081  601s\n"}
+,{"stream_name":"stderr","time":6755.05130667,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6755.051344584,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6791.03663505,"data":"[vggt] scan 106  auroc=0.741  cur=0.525  absrel_U=0.009 (S 0.005)  fracU=0.074  639s\n"}
+,{"stream_name":"stderr","time":6792.408963383,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6792.408999532,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6828.14409057,"data":"[vggt] scan 117  auroc=0.839  cur=0.487  absrel_U=0.011 (S 0.004)  fracU=0.084  676s\n"}
+,{"stream_name":"stdout","time":6828.426235977,"data":"   vggt: 691s\n"}
+,{"stream_name":"stdout","time":6828.437156146,"data":"resuming: 162 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stderr","time":6842.470722493,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6842.470758598,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6872.6344087,"data":"[vggt_reproj] scan 3  auroc=0.930  cur=0.124  absrel_U=0.014 (S 0.005)  fracU=0.041  31s\n"}
+,{"stream_name":"stderr","time":6873.477267774,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6873.477307295,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6902.92041702,"data":"[vggt_reproj] scan 5  auroc=0.963  cur=0.067  absrel_U=0.008 (S 0.004)  fracU=0.034  61s\n"}
+,{"stream_name":"stderr","time":6903.686625721,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6903.686655869,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6932.542285124,"data":"[vggt_reproj] scan 17  auroc=0.925  cur=0.137  absrel_U=0.031 (S 0.006)  fracU=0.092  91s\n"}
+,{"stream_name":"stderr","time":6933.342335402,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6933.342372985,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6963.228220443,"data":"[vggt_reproj] scan 21  auroc=0.920  cur=0.139  absrel_U=0.023 (S 0.007)  fracU=0.099  122s\n"}
+,{"stream_name":"stderr","time":6964.012736065,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6964.012770775,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":6993.094441452,"data":"[vggt_reproj] scan 28  auroc=0.966  cur=0.059  absrel_U=0.011 (S 0.005)  fracU=0.147  151s\n"}
+,{"stream_name":"stderr","time":6993.874161128,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":6993.874200881,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7023.255035577,"data":"[vggt_reproj] scan 35  auroc=0.979  cur=0.043  absrel_U=0.010 (S 0.003)  fracU=0.055  182s\n"}
+,{"stream_name":"stderr","time":7024.037046275,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7024.037092332,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7053.313750521,"data":"[vggt_reproj] scan 37  auroc=0.953  cur=0.076  absrel_U=0.014 (S 0.007)  fracU=0.173  212s\n"}
+,{"stream_name":"stderr","time":7054.101314837,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7054.101609066,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7083.313818919,"data":"[vggt_reproj] scan 38  auroc=0.967  cur=0.062  absrel_U=0.011 (S 0.004)  fracU=0.088  242s\n"}
+,{"stream_name":"stderr","time":7084.10528173,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7084.105310179,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7113.497974936,"data":"[vggt_reproj] scan 40  auroc=0.975  cur=0.044  absrel_U=0.015 (S 0.006)  fracU=0.150  272s\n"}
+,{"stream_name":"stderr","time":7114.283634785,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7114.283680286,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7143.73931756,"data":"[vggt_reproj] scan 43  auroc=0.972  cur=0.054  absrel_U=0.008 (S 0.004)  fracU=0.089  302s\n"}
+,{"stream_name":"stderr","time":7144.533864386,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7144.533908552,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7173.93948924,"data":"[vggt_reproj] scan 56  auroc=0.956  cur=0.078  absrel_U=0.021 (S 0.005)  fracU=0.092  332s\n"}
+,{"stream_name":"stderr","time":7174.722618002,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7174.72267646,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7203.915633826,"data":"[vggt_reproj] scan 59  auroc=0.978  cur=0.038  absrel_U=0.006 (S 0.004)  fracU=0.109  362s\n"}
+,{"stream_name":"stderr","time":7204.695243393,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7204.6952791,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7233.951063733,"data":"[vggt_reproj] scan 66  auroc=0.957  cur=0.080  absrel_U=0.010 (S 0.005)  fracU=0.078  392s\n"}
+,{"stream_name":"stderr","time":7234.735992831,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7234.736027585,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7263.971701572,"data":"[vggt_reproj] scan 67  auroc=0.958  cur=0.078  absrel_U=0.020 (S 0.005)  fracU=0.092  422s\n"}
+,{"stream_name":"stderr","time":7264.756107114,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7264.756141287,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7294.102714635,"data":"[vggt_reproj] scan 82  auroc=0.969  cur=0.051  absrel_U=0.011 (S 0.006)  fracU=0.168  452s\n"}
+,{"stream_name":"stderr","time":7294.892190643,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7294.892225612,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7324.273170062,"data":"[vggt_reproj] scan 86  auroc=0.927  cur=0.123  absrel_U=0.022 (S 0.013)  fracU=0.081  483s\n"}
+,{"stream_name":"stderr","time":7325.056936915,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7325.056966561,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7354.390794374,"data":"[vggt_reproj] scan 106  auroc=0.921  cur=0.134  absrel_U=0.009 (S 0.005)  fracU=0.074  513s\n"}
+,{"stream_name":"stderr","time":7355.178934069,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":7355.178966303,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":7384.541180332,"data":"[vggt_reproj] scan 117  auroc=0.950  cur=0.093  absrel_U=0.011 (S 0.004)  fracU=0.084  543s\n"}
+,{"stream_name":"stdout","time":7384.831225514,"data":"   vggt_reproj: 556s\n"}
+,{"stream_name":"stdout","time":7384.83694451,"data":"resuming: 324 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":7395.720750118,"data":"[vggt_oiavis] head from /kaggle/working/checkpoints/vggt_oiavis.pt (step 1500, val-auroc 0.998)\n"}
+,{"stream_name":"stdout","time":7419.564949712,"data":"[vggt_oiavis] scan 3  auroc=0.996  cur=0.005  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":7444.282946351,"data":"[vggt_oiavis] scan 5  auroc=0.997  cur=0.005  absrel_U=0.008 (S 0.004)  fracU=0.034  49s\n"}
+,{"stream_name":"stdout","time":7467.505747099,"data":"[vggt_oiavis] scan 17  auroc=0.985  cur=0.059  absrel_U=0.031 (S 0.006)  fracU=0.092  72s\n"}
+,{"stream_name":"stdout","time":7491.061846974,"data":"[vggt_oiavis] scan 21  auroc=0.990  cur=0.017  absrel_U=0.023 (S 0.008)  fracU=0.099  95s\n"}
+,{"stream_name":"stdout","time":7515.270398641,"data":"[vggt_oiavis] scan 28  auroc=0.995  cur=0.007  absrel_U=0.011 (S 0.005)  fracU=0.147  120s\n"}
+,{"stream_name":"stdout","time":7538.770692881,"data":"[vggt_oiavis] scan 35  auroc=0.999  cur=0.000  absrel_U=0.010 (S 0.003)  fracU=0.055  143s\n"}
+,{"stream_name":"stdout","time":7562.204025211,"data":"[vggt_oiavis] scan 37  auroc=0.984  cur=0.045  absrel_U=0.014 (S 0.007)  fracU=0.173  166s\n"}
+,{"stream_name":"stdout","time":7586.076277582,"data":"[vggt_oiavis] scan 38  auroc=0.998  cur=0.003  absrel_U=0.011 (S 0.004)  fracU=0.088  190s\n"}
+,{"stream_name":"stdout","time":7609.83279349,"data":"[vggt_oiavis] scan 40  auroc=0.995  cur=0.006  absrel_U=0.015 (S 0.006)  fracU=0.150  214s\n"}
+,{"stream_name":"stdout","time":7633.613817971,"data":"[vggt_oiavis] scan 43  auroc=0.996  cur=0.005  absrel_U=0.008 (S 0.004)  fracU=0.089  238s\n"}
+,{"stream_name":"stdout","time":7657.326642869,"data":"[vggt_oiavis] scan 56  auroc=0.995  cur=0.007  absrel_U=0.021 (S 0.005)  fracU=0.092  262s\n"}
+,{"stream_name":"stdout","time":7680.907140078,"data":"[vggt_oiavis] scan 59  auroc=0.998  cur=0.002  absrel_U=0.006 (S 0.004)  fracU=0.109  285s\n"}
+,{"stream_name":"stdout","time":7704.608735845,"data":"[vggt_oiavis] scan 66  auroc=0.994  cur=0.011  absrel_U=0.010 (S 0.005)  fracU=0.078  309s\n"}
+,{"stream_name":"stdout","time":7728.448994918,"data":"[vggt_oiavis] scan 67  auroc=0.995  cur=0.007  absrel_U=0.020 (S 0.005)  fracU=0.092  333s\n"}
+,{"stream_name":"stdout","time":7752.08216609,"data":"[vggt_oiavis] scan 82  auroc=0.988  cur=0.031  absrel_U=0.011 (S 0.006)  fracU=0.168  356s\n"}
+,{"stream_name":"stdout","time":7775.772513398,"data":"[vggt_oiavis] scan 86  auroc=0.978  cur=0.048  absrel_U=0.022 (S 0.013)  fracU=0.081  380s\n"}
+,{"stream_name":"stdout","time":7799.48223014,"data":"[vggt_oiavis] scan 106  auroc=0.995  cur=0.008  absrel_U=0.009 (S 0.005)  fracU=0.074  404s\n"}
+,{"stream_name":"stdout","time":7823.199921746,"data":"[vggt_oiavis] scan 117  auroc=0.997  cur=0.002  absrel_U=0.011 (S 0.004)  fracU=0.084  427s\n"}
+,{"stream_name":"stdout","time":7823.473162834,"data":"   vggt_oiavis: 439s\n"}
+,{"stream_name":"stdout","time":7823.480345494,"data":"resuming: 486 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":7834.083213359,"data":"[vggt_oiavispatch] head from /kaggle/working/checkpoints/vggt_oiavispatch.pt (step 1500, val-auroc 0.922)\n"}
+,{"stream_name":"stdout","time":7861.210144106,"data":"[vggt_oiavispatch] scan 3  auroc=0.921  cur=0.261  absrel_U=0.014 (S 0.005)  fracU=0.041  27s\n"}
+,{"stream_name":"stdout","time":7888.55684034,"data":"[vggt_oiavispatch] scan 5  auroc=0.918  cur=0.256  absrel_U=0.008 (S 0.004)  fracU=0.034  54s\n"}
+,{"stream_name":"stdout","time":7914.708917731,"data":"[vggt_oiavispatch] scan 17  auroc=0.802  cur=0.499  absrel_U=0.031 (S 0.006)  fracU=0.092  81s\n"}
+,{"stream_name":"stdout","time":7941.590000742,"data":"[vggt_oiavispatch] scan 21  auroc=0.877  cur=0.386  absrel_U=0.023 (S 0.008)  fracU=0.099  108s\n"}
+,{"stream_name":"stdout","time":7968.48949694,"data":"[vggt_oiavispatch] scan 28  auroc=0.795  cur=0.535  absrel_U=0.011 (S 0.005)  fracU=0.147  134s\n"}
+,{"stream_name":"stdout","time":7995.050173728,"data":"[vggt_oiavispatch] scan 35  auroc=0.792  cur=0.485  absrel_U=0.010 (S 0.003)  fracU=0.055  161s\n"}
+,{"stream_name":"stdout","time":8021.755966255,"data":"[vggt_oiavispatch] scan 37  auroc=0.880  cur=0.420  absrel_U=0.014 (S 0.007)  fracU=0.173  188s\n"}
+,{"stream_name":"stdout","time":8048.541153407,"data":"[vggt_oiavispatch] scan 38  auroc=0.917  cur=0.245  absrel_U=0.011 (S 0.004)  fracU=0.088  214s\n"}
+,{"stream_name":"stdout","time":8075.225242811,"data":"[vggt_oiavispatch] scan 40  auroc=0.919  cur=0.241  absrel_U=0.015 (S 0.006)  fracU=0.150  241s\n"}
+,{"stream_name":"stdout","time":8101.863507072,"data":"[vggt_oiavispatch] scan 43  auroc=0.954  cur=0.145  absrel_U=0.008 (S 0.004)  fracU=0.089  268s\n"}
+,{"stream_name":"stdout","time":8128.64802775,"data":"[vggt_oiavispatch] scan 56  auroc=0.915  cur=0.306  absrel_U=0.021 (S 0.005)  fracU=0.092  295s\n"}
+,{"stream_name":"stdout","time":8155.38427581,"data":"[vggt_oiavispatch] scan 59  auroc=0.919  cur=0.260  absrel_U=0.006 (S 0.004)  fracU=0.109  321s\n"}
+,{"stream_name":"stdout","time":8182.008736997,"data":"[vggt_oiavispatch] scan 66  auroc=0.911  cur=0.292  absrel_U=0.010 (S 0.005)  fracU=0.078  348s\n"}
+,{"stream_name":"stdout","time":8208.522789328,"data":"[vggt_oiavispatch] scan 67  auroc=0.898  cur=0.324  absrel_U=0.020 (S 0.005)  fracU=0.092  374s\n"}
+,{"stream_name":"stdout","time":8235.062352482,"data":"[vggt_oiavispatch] scan 82  auroc=0.908  cur=0.310  absrel_U=0.011 (S 0.006)  fracU=0.168  401s\n"}
+,{"stream_name":"stdout","time":8261.844896105,"data":"[vggt_oiavispatch] scan 86  auroc=0.677  cur=0.573  absrel_U=0.022 (S 0.013)  fracU=0.081  428s\n"}
+,{"stream_name":"stdout","time":8288.646045174,"data":"[vggt_oiavispatch] scan 106  auroc=0.905  cur=0.305  absrel_U=0.009 (S 0.005)  fracU=0.074  455s\n"}
+,{"stream_name":"stdout","time":8315.348263955,"data":"[vggt_oiavispatch] scan 117  auroc=0.901  cur=0.277  absrel_U=0.011 (S 0.004)  fracU=0.084  481s\n"}
+,{"stream_name":"stdout","time":8315.644361881,"data":"   vggt_oiavispatch: 492s\n"}
+,{"stream_name":"stdout","time":8315.652761206,"data":"resuming: 648 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":8326.538832146,"data":"[vggt_oiavislin] head from /kaggle/working/checkpoints/vggt_oiavislin.pt (step 1500, val-auroc 0.996)\n"}
+,{"stream_name":"stdout","time":8350.398665565,"data":"[vggt_oiavislin] scan 3  auroc=0.993  cur=0.012  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":8374.899731344,"data":"[vggt_oiavislin] scan 5  auroc=0.994  cur=0.017  absrel_U=0.008 (S 0.004)  fracU=0.034  48s\n"}
+,{"stream_name":"stdout","time":8398.097120543,"data":"[vggt_oiavislin] scan 17  auroc=0.978  cur=0.062  absrel_U=0.031 (S 0.006)  fracU=0.092  72s\n"}
+,{"stream_name":"stdout","time":8421.606206469,"data":"[vggt_oiavislin] scan 21  auroc=0.982  cur=0.042  absrel_U=0.023 (S 0.008)  fracU=0.099  95s\n"}
+,{"stream_name":"stdout","time":8445.635370903,"data":"[vggt_oiavislin] scan 28  auroc=0.992  cur=0.014  absrel_U=0.011 (S 0.005)  fracU=0.147  119s\n"}
+,{"stream_name":"stdout","time":8469.167795622,"data":"[vggt_oiavislin] scan 35  auroc=0.998  cur=0.001  absrel_U=0.010 (S 0.003)  fracU=0.055  143s\n"}
+,{"stream_name":"stdout","time":8492.510993458,"data":"[vggt_oiavislin] scan 37  auroc=0.976  cur=0.068  absrel_U=0.014 (S 0.007)  fracU=0.173  166s\n"}
+,{"stream_name":"stdout","time":8516.234560279,"data":"[vggt_oiavislin] scan 38  auroc=0.996  cur=0.006  absrel_U=0.011 (S 0.004)  fracU=0.088  190s\n"}
+,{"stream_name":"stdout","time":8539.882885462,"data":"[vggt_oiavislin] scan 40  auroc=0.992  cur=0.016  absrel_U=0.015 (S 0.006)  fracU=0.150  213s\n"}
+,{"stream_name":"stdout","time":8563.643640158,"data":"[vggt_oiavislin] scan 43  auroc=0.994  cur=0.010  absrel_U=0.008 (S 0.004)  fracU=0.089  237s\n"}
+,{"stream_name":"stdout","time":8587.362156765,"data":"[vggt_oiavislin] scan 56  auroc=0.990  cur=0.021  absrel_U=0.021 (S 0.005)  fracU=0.092  261s\n"}
+,{"stream_name":"stdout","time":8610.896272498,"data":"[vggt_oiavislin] scan 59  auroc=0.996  cur=0.006  absrel_U=0.006 (S 0.004)  fracU=0.109  284s\n"}
+,{"stream_name":"stdout","time":8634.470816558,"data":"[vggt_oiavislin] scan 66  auroc=0.990  cur=0.024  absrel_U=0.010 (S 0.005)  fracU=0.078  308s\n"}
+,{"stream_name":"stdout","time":8658.039903237,"data":"[vggt_oiavislin] scan 67  auroc=0.993  cur=0.012  absrel_U=0.020 (S 0.005)  fracU=0.092  332s\n"}
+,{"stream_name":"stdout","time":8681.561094487,"data":"[vggt_oiavislin] scan 82  auroc=0.982  cur=0.043  absrel_U=0.011 (S 0.006)  fracU=0.168  355s\n"}
+,{"stream_name":"stdout","time":8705.218905588,"data":"[vggt_oiavislin] scan 86  auroc=0.971  cur=0.067  absrel_U=0.022 (S 0.013)  fracU=0.081  379s\n"}
+,{"stream_name":"stdout","time":8728.913215443,"data":"[vggt_oiavislin] scan 106  auroc=0.992  cur=0.014  absrel_U=0.009 (S 0.005)  fracU=0.074  402s\n"}
+,{"stream_name":"stdout","time":8752.618313301,"data":"[vggt_oiavislin] scan 117  auroc=0.996  cur=0.004  absrel_U=0.011 (S 0.004)  fracU=0.084  426s\n"}
+,{"stream_name":"stdout","time":8752.908597737,"data":"   vggt_oiavislin: 437s\n"}
+,{"stream_name":"stdout","time":8752.918541942,"data":"resuming: 810 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":8752.959025935,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stdout","time":8845.58436155,"data":"[pi3x] scan 3  auroc=0.826  cur=0.459  absrel_U=0.030 (S 0.015)  fracU=0.041  27s\n"}
+,{"stream_name":"stdout","time":8869.862807978,"data":"[pi3x] scan 5  auroc=0.864  cur=0.389  absrel_U=0.014 (S 0.009)  fracU=0.034  51s\n"}
+,{"stream_name":"stdout","time":8892.756221226,"data":"[pi3x] scan 17  auroc=0.809  cur=0.521  absrel_U=0.058 (S 0.034)  fracU=0.092  74s\n"}
+,{"stream_name":"stdout","time":8916.026306065,"data":"[pi3x] scan 21  auroc=0.781  cur=0.501  absrel_U=0.036 (S 0.017)  fracU=0.099  97s\n"}
+,{"stream_name":"stdout","time":8939.947468905,"data":"[pi3x] scan 28  auroc=0.806  cur=0.502  absrel_U=0.018 (S 0.013)  fracU=0.147  121s\n"}
+,{"stream_name":"stdout","time":8963.199104708,"data":"[pi3x] scan 35  auroc=0.797  cur=0.583  absrel_U=0.034 (S 0.019)  fracU=0.055  144s\n"}
+,{"stream_name":"stdout","time":8986.37280521,"data":"[pi3x] scan 37  auroc=0.859  cur=0.412  absrel_U=0.035 (S 0.015)  fracU=0.173  167s\n"}
+,{"stream_name":"stdout","time":9009.928180317,"data":"[pi3x] scan 38  auroc=0.906  cur=0.330  absrel_U=0.024 (S 0.012)  fracU=0.088  191s\n"}
+,{"stream_name":"stdout","time":9033.357340997,"data":"[pi3x] scan 40  auroc=0.856  cur=0.335  absrel_U=0.026 (S 0.011)  fracU=0.150  214s\n"}
+,{"stream_name":"stdout","time":9056.694428576,"data":"[pi3x] scan 43  auroc=0.910  cur=0.253  absrel_U=0.013 (S 0.010)  fracU=0.089  238s\n"}
+,{"stream_name":"stdout","time":9080.110748508,"data":"[pi3x] scan 56  auroc=0.837  cur=0.500  absrel_U=0.039 (S 0.015)  fracU=0.092  261s\n"}
+,{"stream_name":"stdout","time":9103.541570078,"data":"[pi3x] scan 59  auroc=0.862  cur=0.463  absrel_U=0.016 (S 0.010)  fracU=0.109  285s\n"}
+,{"stream_name":"stdout","time":9126.930436432,"data":"[pi3x] scan 66  auroc=0.737  cur=0.667  absrel_U=0.033 (S 0.018)  fracU=0.078  308s\n"}
+,{"stream_name":"stdout","time":9150.333176439,"data":"[pi3x] scan 67  auroc=0.844  cur=0.509  absrel_U=0.069 (S 0.020)  fracU=0.092  331s\n"}
+,{"stream_name":"stdout","time":9173.698454038,"data":"[pi3x] scan 82  auroc=0.834  cur=0.442  absrel_U=0.042 (S 0.017)  fracU=0.168  355s\n"}
+,{"stream_name":"stdout","time":9197.189159115,"data":"[pi3x] scan 86  auroc=0.676  cur=0.782  absrel_U=0.078 (S 0.042)  fracU=0.081  378s\n"}
+,{"stream_name":"stdout","time":9220.692117969,"data":"[pi3x] scan 106  auroc=0.757  cur=0.653  absrel_U=0.039 (S 0.026)  fracU=0.074  402s\n"}
+,{"stream_name":"stdout","time":9244.119613747,"data":"[pi3x] scan 117  auroc=0.798  cur=0.565  absrel_U=0.044 (S 0.020)  fracU=0.084  425s\n"}
+,{"stream_name":"stdout","time":9244.415298185,"data":"   pi3x: 492s\n"}
+,{"stream_name":"stdout","time":9244.425973134,"data":"resuming: 972 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":9298.971279521,"data":"[pi3] scan 3  auroc=0.897  cur=0.289  absrel_U=0.044 (S 0.022)  fracU=0.041  16s\n"}
+,{"stream_name":"stdout","time":9315.917504312,"data":"[pi3] scan 5  auroc=0.811  cur=0.487  absrel_U=0.013 (S 0.008)  fracU=0.034  33s\n"}
+,{"stream_name":"stdout","time":9332.589184871,"data":"[pi3] scan 17  auroc=0.787  cur=0.641  absrel_U=0.052 (S 0.032)  fracU=0.092  49s\n"}
+,{"stream_name":"stdout","time":9348.323090941,"data":"[pi3] scan 21  auroc=0.790  cur=0.538  absrel_U=0.039 (S 0.017)  fracU=0.099  65s\n"}
+,{"stream_name":"stdout","time":9363.912552713,"data":"[pi3] scan 28  auroc=0.812  cur=0.536  absrel_U=0.016 (S 0.011)  fracU=0.147  81s\n"}
+,{"stream_name":"stdout","time":9379.785748278,"data":"[pi3] scan 35  auroc=0.853  cur=0.520  absrel_U=0.028 (S 0.015)  fracU=0.055  97s\n"}
+,{"stream_name":"stdout","time":9396.322841484,"data":"[pi3] scan 37  auroc=0.864  cur=0.459  absrel_U=0.029 (S 0.015)  fracU=0.173  113s\n"}
+,{"stream_name":"stdout","time":9412.463479716,"data":"[pi3] scan 38  auroc=0.873  cur=0.385  absrel_U=0.017 (S 0.013)  fracU=0.088  129s\n"}
+,{"stream_name":"stdout","time":9428.255188473,"data":"[pi3] scan 40  auroc=0.911  cur=0.222  absrel_U=0.027 (S 0.011)  fracU=0.150  145s\n"}
+,{"stream_name":"stdout","time":9444.109361375,"data":"[pi3] scan 43  auroc=0.892  cur=0.373  absrel_U=0.015 (S 0.012)  fracU=0.089  161s\n"}
+,{"stream_name":"stdout","time":9460.185372452,"data":"[pi3] scan 56  auroc=0.882  cur=0.443  absrel_U=0.030 (S 0.014)  fracU=0.092  177s\n"}
+,{"stream_name":"stdout","time":9476.33911406,"data":"[pi3] scan 59  auroc=0.829  cur=0.586  absrel_U=0.017 (S 0.015)  fracU=0.109  193s\n"}
+,{"stream_name":"stdout","time":9492.399085222,"data":"[pi3] scan 66  auroc=0.818  cur=0.714  absrel_U=0.018 (S 0.010)  fracU=0.078  209s\n"}
+,{"stream_name":"stdout","time":9508.307683135,"data":"[pi3] scan 67  auroc=0.850  cur=0.526  absrel_U=0.044 (S 0.016)  fracU=0.092  225s\n"}
+,{"stream_name":"stdout","time":9524.123483734,"data":"[pi3] scan 82  auroc=0.835  cur=0.522  absrel_U=0.030 (S 0.017)  fracU=0.168  241s\n"}
+,{"stream_name":"stdout","time":9540.142630913,"data":"[pi3] scan 86  auroc=0.684  cur=0.786  absrel_U=0.076 (S 0.041)  fracU=0.081  257s\n"}
+,{"stream_name":"stdout","time":9556.243718488,"data":"[pi3] scan 106  auroc=0.869  cur=0.436  absrel_U=0.027 (S 0.021)  fracU=0.074  273s\n"}
+,{"stream_name":"stdout","time":9572.246449187,"data":"[pi3] scan 117  auroc=0.886  cur=0.349  absrel_U=0.029 (S 0.015)  fracU=0.084  289s\n"}
+,{"stream_name":"stdout","time":9572.424524468,"data":"   pi3: 328s\n"}
+,{"stream_name":"stdout","time":9572.436121355,"data":"resuming: 1134 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":9572.438233536,"data":"!! da3 failed:\n"}
+,{"stream_name":"stdout","time":9572.438250637,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stdout","time":9572.438255094,"data":"  File \"/kaggle/tmp/repo/scripts/run_h100.py\", line 295, in _run_vis\n"}
+,{"stream_name":"stdout","time":9572.438259639,"data":"    H.run_vis(root, [m], cfg=cfg, out_csv=csv)\n"}
+,{"stream_name":"stdout","time":9572.438264086,"data":"    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stdout","time":9572.438268298,"data":"  File \"/kaggle/tmp/repo/scripts/hallu3d.py\", line 754, in run_vis\n"}
+,{"stream_name":"stdout","time":9572.438272614,"data":"    model = model_factory(mname)\n"}
+,{"stream_name":"stdout","time":9572.438276959,"data":"  File \"/kaggle/tmp/repo/scripts/hallu3d.py\", line 855, in make_model\n"}
+,{"stream_name":"stdout","time":9572.438281627,"data":"    return MODEL_REGISTRY[name]()\n"}
+,{"stream_name":"stdout","time":9572.438285591,"data":"           ~~~~~~~~~~~~~~~~~~~~^^\n"}
+,{"stream_name":"stdout","time":9572.438289889,"data":"  File \"/kaggle/tmp/repo/scripts/hallu3d.py\", line 476, in __init__\n"}
+,{"stream_name":"stdout","time":9572.438294231,"data":"    from depth_anything_3.api import DepthAnything3\n"}
+,{"stream_name":"stdout","time":9572.438298584,"data":"ModuleNotFoundError: No module named 'depth_anything_3'\n"}
+,{"stream_name":"stdout","time":9572.438302575,"data":"\n"}
+,{"stream_name":"stdout","time":9572.448817499,"data":"resuming: 1134 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":9576.184032698,"data":"Loading pretrained dinov2_vitg14 from torch hub\n"}
+,{"stream_name":"stdout","time":9576.813223525,"data":"Downloading: \"https://github.com/facebookresearch/dinov2/zipball/main\" to /root/.cache/torch/hub/main.zip\n"}
+,{"stream_name":"stdout","time":9656.268615797,"data":"[mapanything] scan 3  auroc=0.832  cur=0.449  absrel_U=0.139 (S 0.109)  fracU=0.041  22s\n"}
+,{"stream_name":"stdout","time":9678.998922313,"data":"[mapanything] scan 5  auroc=0.924  cur=0.200  absrel_U=0.060 (S 0.052)  fracU=0.034  45s\n"}
+,{"stream_name":"stdout","time":9700.139022489,"data":"[mapanything] scan 17  auroc=0.804  cur=0.590  absrel_U=0.139 (S 0.110)  fracU=0.092  66s\n"}
+,{"stream_name":"stdout","time":9721.1125708,"data":"[mapanything] scan 21  auroc=0.751  cur=0.573  absrel_U=0.124 (S 0.076)  fracU=0.099  87s\n"}
+,{"stream_name":"stdout","time":9743.054727631,"data":"[mapanything] scan 28  auroc=0.829  cur=0.459  absrel_U=0.096 (S 0.079)  fracU=0.147  109s\n"}
+,{"stream_name":"stdout","time":9764.783419263,"data":"[mapanything] scan 35  auroc=0.803  cur=0.529  absrel_U=0.561 (S 0.225)  fracU=0.055  131s\n"}
+,{"stream_name":"stdout","time":9785.870868638,"data":"[mapanything] scan 37  auroc=0.872  cur=0.410  absrel_U=0.067 (S 0.043)  fracU=0.173  152s\n"}
+,{"stream_name":"stdout","time":9807.264962469,"data":"[mapanything] scan 38  auroc=0.919  cur=0.268  absrel_U=0.103 (S 0.081)  fracU=0.088  173s\n"}
+,{"stream_name":"stdout","time":9828.993179848,"data":"[mapanything] scan 40  auroc=0.767  cur=0.622  absrel_U=0.190 (S 0.150)  fracU=0.150  195s\n"}
+,{"stream_name":"stdout","time":9850.601916165,"data":"[mapanything] scan 43  auroc=0.891  cur=0.332  absrel_U=0.164 (S 0.116)  fracU=0.089  217s\n"}
+,{"stream_name":"stdout","time":9872.082843052,"data":"[mapanything] scan 56  auroc=0.903  cur=0.332  absrel_U=0.166 (S 0.061)  fracU=0.092  238s\n"}
+,{"stream_name":"stdout","time":9893.40959137,"data":"[mapanything] scan 59  auroc=0.916  cur=0.251  absrel_U=0.084 (S 0.059)  fracU=0.109  260s\n"}
+,{"stream_name":"stdout","time":9914.887191779,"data":"[mapanything] scan 66  auroc=0.874  cur=0.359  absrel_U=0.154 (S 0.072)  fracU=0.078  281s\n"}
+,{"stream_name":"stdout","time":9936.441748591,"data":"[mapanything] scan 67  auroc=0.877  cur=0.378  absrel_U=0.176 (S 0.067)  fracU=0.092  303s\n"}
+,{"stream_name":"stdout","time":9957.876527159,"data":"[mapanything] scan 82  auroc=0.882  cur=0.373  absrel_U=0.283 (S 0.114)  fracU=0.168  324s\n"}
+,{"stream_name":"stdout","time":9979.448645815,"data":"[mapanything] scan 86  auroc=0.627  cur=0.736  absrel_U=0.168 (S 0.108)  fracU=0.081  346s\n"}
+,{"stream_name":"stdout","time":10000.982961842,"data":"[mapanything] scan 106  auroc=0.894  cur=0.376  absrel_U=0.141 (S 0.077)  fracU=0.074  367s\n"}
+,{"stream_name":"stdout","time":10022.501981791,"data":"[mapanything] scan 117  auroc=0.891  cur=0.364  absrel_U=0.144 (S 0.050)  fracU=0.084  389s\n"}
+,{"stream_name":"stdout","time":10022.827927892,"data":"   mapanything: 450s\n"}
+,{"stream_name":"stdout","time":10028.00197629,"data":"[exit 0, 10027s]\n"}
+,{"stream_name":"stdout","time":10028.002017276,"data":"\n"}
+,{"stream_name":"stdout","time":10028.002021491,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":10028.002024798,"data":"== stage vis_co3d  [10027s]\n"}
+,{"stream_name":"stdout","time":10028.002027944,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":10028.002047396,"data":"\n"}
+,{"stream_name":"stdout","time":10028.002075746,"data":"$ /usr/bin/python3 scripts/run_h100.py vis_co3d --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt --steps 1500 --skip-gt --variants oia,oialin,oiapatch --ext-bases vggt,pi3x,pi3,da3,mapanything\n"}
+,{"stream_name":"stdout","time":10040.263866172,"data":"\n"}
+,{"stream_name":"stdout","time":10040.263903693,"data":"##### stage vis_co3d 2026-11-06 14:28:26\n"}
+,{"stream_name":"stderr","time":10041.917799003,"data":"Traceback (most recent call last):\n"}
+,{"stream_name":"stderr","time":10041.918444488,"data":"  File \"/kaggle/tmp/repo/scripts/run_h100.py\", line 600, in \u003cmodule\u003e\n"}
+,{"stream_name":"stderr","time":10041.918458465,"data":"    main()\n"}
+,{"stream_name":"stderr","time":10041.918474221,"data":"    ~~~~^^\n"}
+,{"stream_name":"stderr","time":10041.918478164,"data":"  File \"/kaggle/tmp/repo/scripts/run_h100.py\", line 596, in main\n"}
+,{"stream_name":"stderr","time":10041.918482237,"data":"    STAGES[s](a)\n"}
+,{"stream_name":"stderr","time":10041.918485775,"data":"    ~~~~~~~~~^^^\n"}
+,{"stream_name":"stderr","time":10041.918489665,"data":"  File \"/kaggle/tmp/repo/scripts/run_h100.py\", line 317, in stage_vis_co3d\n"}
+,{"stream_name":"stderr","time":10041.918493612,"data":"    _run_vis(args, \"P4-vis-co3d\", _vis_models(args), co3d_cfg(args, VIS_CFG), args.co3d_root)\n"}
+,{"stream_name":"stderr","time":10041.918497912,"data":"                                                     ~~~~~~~~^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":10041.918501945,"data":"  File \"/kaggle/tmp/repo/scripts/run_h100.py\", line 100, in co3d_cfg\n"}
+,{"stream_name":"stderr","time":10041.918505548,"data":"    scenes = co3d.list_co3d_scenes(args.co3d_root)\n"}
+,{"stream_name":"stderr","time":10041.918508933,"data":"  File \"/kaggle/tmp/repo/scripts/co3d.py\", line 167, in list_co3d_scenes\n"}
+,{"stream_name":"stderr","time":10041.918512455,"data":"    return sorted(os.path.basename(os.path.dirname(f)) for f in glob.glob(os.path.join(root, \"*\", \"meta.npz\")))\n"}
+,{"stream_name":"stderr","time":10041.918516123,"data":"                                                                          ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n"}
+,{"stream_name":"stderr","time":10041.918519687,"data":"  File \"\u003cfrozen posixpath\u003e\", line 77, in join\n"}
+,{"stream_name":"stderr","time":10041.918523157,"data":"TypeError: expected str, bytes or os.PathLike object, not NoneType\n"}
+,{"stream_name":"stdout","time":10042.2742781,"data":"[exit 1, 10042s]\n"}
+,{"stream_name":"stdout","time":10042.274308656,"data":"\n"}
+,{"stream_name":"stdout","time":10042.274313231,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":10042.274316555,"data":"== done  [10042s]\n"}
+,{"stream_name":"stdout","time":10042.27432002,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":10042.279980731,"data":"       1,055  /kaggle/working/results/P4-vis/P4-vis.log\n"}
+,{"stream_name":"stdout","time":10042.279998876,"data":"     321,559  /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":10042.280003656,"data":"         623  /kaggle/working/results/P4-vis/P4-vis_cfg.json\n"}
+,{"stream_name":"stdout","time":10042.280007234,"data":"       3,991  /kaggle/working/results/P4-vis/P4-vis_summary.csv\n"}
+,{"stream_name":"stdout","time":10042.280632601,"data":"       5,370  /kaggle/working/checkpoints/vggt_oiavispatch_hist.json\n"}
+,{"stream_name":"stdout","time":10042.280645533,"data":"       5,384  /kaggle/working/checkpoints/vggt_oiavislin_hist.json\n"}
+,{"stream_name":"stdout","time":10042.280650116,"data":"  13,189,265  /kaggle/working/checkpoints/vggt_oiavis.pt\n"}
+,{"stream_name":"stdout","time":10042.280654914,"data":"   5,785,045  /kaggle/working/checkpoints/vggt_oiavispatch.pt\n"}
+,{"stream_name":"stdout","time":10042.280658683,"data":"       5,389  /kaggle/working/checkpoints/vggt_oiavis_hist.json\n"}
+,{"stream_name":"stdout","time":10042.280662094,"data":"  13,189,405  /kaggle/working/checkpoints/vggt_oiavis_best.pt\n"}
+,{"stream_name":"stdout","time":10042.280676499,"data":"   5,785,125  /kaggle/working/checkpoints/vggt_oiavispatch_best.pt\n"}
+,{"stream_name":"stdout","time":10042.280680929,"data":"   8,467,405  /kaggle/working/checkpoints/vggt_oiavislin_best.pt\n"}
+,{"stream_name":"stdout","time":10042.280684574,"data":"   8,467,285  /kaggle/working/checkpoints/vggt_oiavislin.pt\n"}
+,{"stream_name":"stdout","time":10042.280698213,"data":"total 10042s\n"}
+,{"stream_name":"stderr","time":10044.290878406,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":10044.290903607,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":10044.517738569,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":10044.517780531,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":10045.333282211,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":10046.21968131,"data":"[NbConvertApp] Writing 293481 bytes to __results__.html\n"}
+]

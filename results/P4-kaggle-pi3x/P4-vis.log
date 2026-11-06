@@ -1,0 +1,6 @@
+13:19:17 == P4-vis: models ['pi3x', 'pi3x_reproj', 'pi3x_oiavis', 'pi3x_oiavispatch', 'pi3x_oiavislin'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2]}
+13:29:18    pi3x: 601s
+13:37:27    pi3x_reproj: 489s
+13:45:26    pi3x_oiavis: 479s
+13:53:26    pi3x_oiavispatch: 480s
+14:01:25    pi3x_oiavislin: 479s
