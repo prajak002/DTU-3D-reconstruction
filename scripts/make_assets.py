@@ -143,6 +143,15 @@ def numbers():
             for m in d.model.unique():
                 g = d[d.model == m].groupby("scan")[["auroc_blur_noise", "auroc_gray_blur", "auroc_gray_noise", "spread_U", "spread_S", "auroc_native_blur"]].mean().mean()
                 N["refill"][key][m] = {"auroc": ci(d, m), "cur": ci(d, m, "cur"), **{k: round(float(v), 4) for k, v in g.items()}}
+        p = os.path.join(RES, "P9-refill", fn.replace("P9-refill", "P9-refill-single"))
+        if os.path.exists(p):
+            d = pd.read_csv(p)
+            N.setdefault("refill_single", {})[key] = {}
+            for m in d.model.unique():
+                cols = [c for c in d.columns if c.startswith(("cur_", "spread_", "auroc_native"))]
+                g = d[d.model == m].groupby("scan")[cols].mean().mean()
+                N["refill_single"][key][m] = {"auroc_own": ci(d, m, "auroc_own"), "auroc_cross": ci(d, m, "auroc_cross") if "auroc_cross" in d else None,
+                                              **{k: (None if pd.isna(v) else round(float(v), 4)) for k, v in g.items()}}
     # operating points
     for key, *_ in DATASETS:
         p = os.path.join(RES, "P6-dump", f"P6-dump-{key}_curves.csv")

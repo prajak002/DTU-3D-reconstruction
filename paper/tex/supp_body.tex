@@ -30,6 +30,66 @@ Before any model is scored we check that ground-truth depth reprojects consisten
 \paragraph{Pipeline validation.}
 On a synthetic DTU-format scene, an oracle that knows what is hidden scores \auroc{} 1.000 and \cur{} 0.000, and a blind guesser with flat confidence scores \auroc{} 0.500 and \cur{} 0.90 (the 10\% of supported pixels dropped by $\tau$ is the expected floor). These numbers validate the code, not any model.
 
+\paragraph{DTU and CO3Dv2, full configuration per fill.}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{DTU, five models, full configuration.} 18 scans $\times$ 5 mask seeds $\times$ 2 radii $\times$ 3 fills, pooled over radii; mean [95\% cluster-bootstrap CI over scans]. \emph{conf ratio} is the median confidence inside the hidden region divided by its value under clean input. Runs P1-full and P2-full, T4, fp16. The pooled numbers are in Table 1 of the main paper.}
+\label{tab:dtu_full}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccccc}
+\toprule
+model & fill & \auroc & \cur & \curerr & $\absrel_U$ & $\absrel_U$ ctrl & conf ratio \\
+\midrule
+VGGT-1B & gray  & \ci{0.973}{0.955}{0.987} & \ci{0.067}{0.031}{0.111} & 0.000 & 0.018 & 0.006 & 0.051 \\
+VGGT-1B & blur  & \ci{0.886}{0.843}{0.922} & \ci{0.263}{0.203}{0.324} & 0.000 & 0.011 & 0.006 & 0.241 \\
+VGGT-1B & noise & \ci{0.919}{0.892}{0.945} & \ci{0.222}{0.145}{0.304} & 0.000 & 0.014 & 0.006 & 0.192 \\
+Pi3 & gray  & \ci{0.981}{0.972}{0.988} & \ci{0.053}{0.025}{0.085} & 0.001 & 0.020 & 0.014 & 0.057 \\
+Pi3 & blur  & \ci{0.923}{0.895}{0.947} & \ci{0.236}{0.156}{0.326} & 0.001 & 0.018 & 0.014 & 0.261 \\
+Pi3 & noise & \ci{0.902}{0.865}{0.934} & \ci{0.325}{0.219}{0.438} & 0.002 & 0.020 & 0.014 & 0.411 \\
+Pi3X & gray  & \ci{0.940}{0.902}{0.971} & \ci{0.202}{0.085}{0.337} & 0.002 & 0.022 & 0.017 & 0.335 \\
+Pi3X & blur  & \ci{0.826}{0.782}{0.865} & \ci{0.512}{0.397}{0.630} & 0.002 & 0.020 & 0.017 & 0.739 \\
+Pi3X & noise & \ci{0.801}{0.734}{0.864} & \ci{0.551}{0.390}{0.711} & 0.004 & 0.022 & 0.017 & 1.091 \\
+MapAnything & gray  & \ci{0.861}{0.812}{0.905} & \ci{0.374}{0.272}{0.480} & \ci{0.195}{0.125}{0.269} & 0.222 & 0.111 & 0.650 \\
+MapAnything & blur  & \ci{0.773}{0.720}{0.825} & \ci{0.580}{0.482}{0.672} & \ci{0.277}{0.197}{0.361} & 0.135 & 0.111 & 0.677 \\
+MapAnything & noise & \ci{0.712}{0.645}{0.773} & \ci{0.664}{0.566}{0.758} & \ci{0.295}{0.211}{0.390} & 0.129 & 0.111 & 0.709 \\
+Depth Anything 3 & gray  & \ci{0.723}{0.664}{0.780} & \ci{0.703}{0.596}{0.804} & 0.003 & 0.017 & 0.013 & 0.804 \\
+Depth Anything 3 & blur  & \ci{0.682}{0.611}{0.744} & \ci{0.711}{0.619}{0.796} & 0.003 & 0.016 & 0.013 & 0.800 \\
+Depth Anything 3 & noise & \ci{0.740}{0.686}{0.793} & \ci{0.690}{0.578}{0.793} & 0.001 & 0.017 & 0.013 & 0.855 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{CO3Dv2, five models, full configuration.} 18 scenes $\times$ 5 seeds $\times$ 2 radii $\times$ 3 fills, pooled over radii; mean [95\% CI over scenes]. Runs P2-co3d and P2-co3d-b. The pooled numbers are quoted in Section 5.3 of the main paper.}
+\label{tab:co3d}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\begin{tabular}{llccccccc}
+\toprule
+model & fill & \auroc & \cur & \curerr & $\absrel_S$ & $\absrel_U$ & $\absrel_U$ ctrl & conf ratio \\
+\midrule
+VGGT-1B & gray  & \ci{0.747}{0.692}{0.802} & \ci{0.565}{0.453}{0.677} & 0.029 & 0.029 & 0.031 & 0.027 & 0.634 \\
+VGGT-1B & blur  & \ci{0.772}{0.717}{0.825} & \ci{0.534}{0.416}{0.652} & 0.034 & 0.029 & 0.031 & 0.027 & 0.603 \\
+VGGT-1B & noise & \ci{0.590}{0.517}{0.656} & \ci{0.767}{0.693}{0.839} & 0.029 & 0.029 & 0.029 & 0.027 & 0.805 \\
+Pi3 & gray  & \ci{0.930}{0.894}{0.958} & \ci{0.196}{0.118}{0.283} & 0.002 & 0.015 & 0.016 & 0.013 & 0.351 \\
+Pi3 & blur  & \ci{0.903}{0.860}{0.939} & \ci{0.251}{0.170}{0.334} & 0.002 & 0.015 & 0.016 & 0.013 & 0.389 \\
+Pi3 & noise & \ci{0.880}{0.813}{0.929} & \ci{0.293}{0.193}{0.405} & 0.002 & 0.015 & 0.015 & 0.013 & 0.472 \\
+Pi3X & gray  & \ci{0.863}{0.825}{0.899} & \ci{0.329}{0.248}{0.408} & 0.001 & 0.017 & 0.022 & 0.014 & 0.749 \\
+Pi3X & blur  & \ci{0.720}{0.661}{0.777} & \ci{0.584}{0.500}{0.668} & 0.002 & 0.017 & 0.018 & 0.014 & 0.877 \\
+Pi3X & noise & \ci{0.743}{0.680}{0.798} & \ci{0.556}{0.462}{0.650} & 0.001 & 0.017 & 0.019 & 0.014 & 0.867 \\
+MapAnything & gray  & \ci{0.609}{0.554}{0.665} & \ci{0.786}{0.721}{0.849} & 0.004 & 0.041 & 0.029 & 0.034 & 0.632 \\
+MapAnything & blur  & \ci{0.575}{0.514}{0.637} & \ci{0.801}{0.735}{0.863} & 0.008 & 0.042 & 0.028 & 0.034 & 0.674 \\
+MapAnything & noise & \ci{0.578}{0.524}{0.631} & \ci{0.819}{0.765}{0.870} & 0.007 & 0.041 & 0.033 & 0.034 & 0.690 \\
+Depth Anything 3 & gray  & \ci{0.619}{0.560}{0.674} & \ci{0.816}{0.751}{0.877} & 0.001 & 0.019 & 0.015 & 0.014 & 0.874 \\
+Depth Anything 3 & blur  & \ci{0.622}{0.574}{0.668} & \ci{0.813}{0.748}{0.872} & 0.001 & 0.018 & 0.015 & 0.014 & 0.853 \\
+Depth Anything 3 & noise & \ci{0.618}{0.553}{0.679} & \ci{0.780}{0.702}{0.854} & 0.000 & 0.019 & 0.016 & 0.014 & 0.901 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
 \paragraph{Lab rig versus phone captures, plotted.}
 
 \begin{figure}[h]
@@ -59,7 +119,7 @@ On a synthetic DTU-format scene, an oracle that knows what is hidden scores \aur
 \end{figure}
 
 \paragraph{Fused point clouds at matched coverage.}
-Each backbone's per-view depths are back-projected with its own predicted cameras into one cloud, aligned to the ground-truth frame by a similarity transform fitted on the camera centres, and compared with the ground-truth cloud of the same views at a tolerance of 1\% of the scene's median depth: accuracy is the fraction of predicted points within tolerance of a ground-truth point, completeness the converse. A detector keeps the given fraction of points with the highest score; random dropping and an oracle that drops single-view pixels first are the references. Table~\ref{tab:fuse}: 18 DTU scans and 9 ETH3D scenes, 5 and 10 views, two view sets, run P8-fuse. The absolute accuracies on ETH3D are low because the predicted cameras of a building scan align poorly to the laser frame; the comparison between detectors at matched coverage is what the table is for.
+Each backbone's per-view depths are back-projected with its own predicted cameras into one cloud, aligned to the ground-truth frame by a similarity transform fitted on the camera centres, and compared with the ground-truth cloud of the same views at a tolerance of 1\% of the scene's median depth: accuracy is the fraction of predicted points within tolerance of a ground-truth point, completeness the converse. A detector keeps the given fraction of points with the highest score; random dropping and an oracle that drops single-view pixels first are the references. Table~\ref{tab:fuse}: 18 DTU scans and 9 ETH3D scenes, 5 and 10 views, two view sets, run P8-fuse; the rows marked $\times$ are the label-free head multiplied by native confidence. The absolute accuracies on ETH3D are low because the predicted cameras of a building scan align poorly to the laser frame; the comparison between detectors at matched coverage is what the table is for.
 
 \begin{table}[h]
 \centering
@@ -178,6 +238,18 @@ Two backbones run on the same views; view by view the second depth is aligned to
 \footnotesize
 \setlength{\tabcolsep}{4pt}
 \resizebox{\textwidth}{!}{\input{tab_xmodel}}
+\end{table}
+
+\paragraph{Fill sensitivity of the invented surface.}
+If the surface a backbone returns inside the hidden region were fixed by the prior, changing the pixels the region is filled with would not move it. For every benchmark cell (seed 0, radius 0.18) the same hidden sphere is filled three ways (gray, blur, noise), the backbone runs on each, the three depths are aligned to the blur run by a per-view median ratio over the pixels outside the hidden region (the input mask, not a label), and every pixel's score is minus the relative spread of its depth over the three fills, so a pixel whose depth depends on the fill scores low. Table~\ref{tab:refill}: \auroc{} and \cur{} of that score on the cell's $U$ / $S$ labels, the same for the blur-noise pair alone, the median relative spread inside and outside the hidden region, native confidence on the blur run of the same cells, and the single-view variant (the region refilled in view 0 only, gray and noise against blur, scored on the pixels of that view and on those of the nine untouched views). Refilling the region in a single view moves the surface in that view (\auroc{} 0.93 to 0.97 on its pixels, median spread 0.7 to 5.4\%) and, an order of magnitude less, in the nine untouched views (0.73 to 0.88 on theirs, spread 0.1 to 0.7\%): the invented surface follows the pixels of the view it is drawn in, with a weaker pull from the other views. Run P9-refill, 18 DTU scans and 18 CO3Dv2 scenes, four backbones.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Fill sensitivity of the invented surface.} The depth spread over three fills of the same hidden sphere as a detector, against native confidence on the same cells; the last two columns of each block refill one view only. 95\% cluster-bootstrap intervals over scenes.}
+\label{tab:refill}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tab_refill}}
 \end{table}
 
 \paragraph{Twenty views.}

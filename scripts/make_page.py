@@ -186,6 +186,16 @@ def fused_par():
             f"""at a single-view rate of {pct('fuse/dtu/vggt_oiavisselffuse/0.8/single_view_kept')} of the kept points (native {pct('fuse/dtu/vggt/0.8/single_view_kept')}). Runs P4-vis, P7-vis-imc, P8-fuse (fused rows).</p>""")
 
 
+def single_sentence():
+    if v('refill_single/dtu/vggt/auroc_own') == "--":
+        return ""
+    models = [m for m in ("vggt", "pi3x", "pi3", "da3") if v(f'refill_single/dtu/{m}/auroc_own') != "--"]
+    own = rng([f'refill_single/dtu/{m}/auroc_own' for m in models]); cross = rng([f'refill_single/dtu/{m}/auroc_cross' for m in models])
+    so = rng([f'refill_single/dtu/{m}/spread_U_own' for m in models], 3); sc = rng([f'refill_single/dtu/{m}/spread_U_cross' for m in models], 3)
+    return (f""" Refilling the region in a single view moves the surface in that view (AUROC {own} on its pixels, median relative spread {so}) and, an order of magnitude less, in the nine untouched views (AUROC {cross}, spread {sc}): """
+            """the invented surface follows the pixels of the view it is drawn in, with a weaker pull from the other views.""")
+
+
 def refill_block():
     """Fill sensitivity of the invented surface, if run P9-refill exists."""
     if v('refill/dtu/vggt/auroc') == "--":
@@ -194,9 +204,10 @@ def refill_block():
     sp = rng([f'refill/dtu/{m}/auroc' for m in models]); nat = rng([f'refill/dtu/{m}/auroc_native_blur' for m in models])
     spc = rng([f'refill/co3d/{m}/auroc' for m in models])
     su = rng([f'refill/dtu/{m}/spread_U' for m in models], 3); ss = rng([f'refill/dtu/{m}/spread_S' for m in models], 3)
+    natc = rng([f'refill/co3d/{m}/auroc_native_blur' for m in models])
     return (f"""<section class="measure">
-  <p><strong>Nor do the pixels it was filled with.</strong> If the invented surface were read off the fill, changing the fill would move it. The same hidden sphere filled three ways (gray, blur, noise), the backbone run on each, the depths aligned outside the hidden region: the spread of the invented depth over the three fills scores AUROC {sp} on DTU and {spc} on CO3Dv2 against native confidence's {nat} on the same cells (run P9-refill). """
-            f"""The median relative spread is {su} inside the hidden region and {ss} outside it. The surface the model draws where it saw nothing is the same surface whichever pixels it was shown: a third sense in which the invention is consistent.</p>
+  <p><strong>But the pixels it was filled with do move it.</strong> If the invented surface were fixed by the prior, changing the fill would not move it. The same hidden sphere filled three ways (gray, blur, noise), the backbone run on each, the depths aligned outside the hidden region: the spread of the invented depth over the three fills separates the patch from supported geometry at AUROC {sp} on DTU and {spc} on CO3Dv2, against {nat} and {natc} for native confidence on the same cells (run P9-refill). """
+            f"""The median relative spread is {su} inside the hidden region and {ss} outside it, about the invented depth's own error.{single_sentence()} The invention is coherent across views, features and models because all of them read the same filled pixels; change the pixels and it moves. A real capture offers no second fill, so this is a diagnosis rather than a detector, but it says where the invented surface comes from: the model reads the hole and draws what its pixels suggest.</p>
 </section>
 <figure class="fig"><img src="assets/charts/refill_light.png" alt="Fill sensitivity: AUROC of the depth spread over three fills against native confidence"><figcaption>Run P9-refill: the depth spread over three fills of the same hidden sphere as a detector, against native confidence on the same cells.</figcaption></figure>""")
 
@@ -257,7 +268,7 @@ def page():
 
 <section class="measure">
   <h2><span class="num">ABSTRACT</span>In one paragraph</h2>
-  <p>Feed-forward 3D models (VGGT, Pi3, Pi3X, MapAnything, Depth Anything 3) reconstruct a scene from unposed photographs in one pass. Where no photograph shows a surface they fill the gap from learned priors, and they assign the invented geometry a confidence close to that of observed geometry. We define a predicted point as hallucinated when it lies on a surface no input view shows, and build a benchmark that labels such points for free by hiding a 3D region of the ground-truth surface in every view. Across five models and three datasets, native confidence lets {pct('leak/dtu/vggt/cur')} to {pct('leak/co3d/mapanything/cur')} of unsupported pixels through a filter that keeps 90% of observed ones. Cheap fixes (perturbation variance, reprojection consistency) do not help, and a head trained on the benchmark's own fills learns the fill. We then change what the detector must learn: a small <em>support head</em> on the frozen cross-view features predicts whether each pixel has multi-view support, with labels computed from the backbone's own prediction, so it needs no ground truth. On three backbones and four datasets it never saw it separates single-view from supported geometry at AUROC {rng(['vis/co3d/vggt_oiavisself/auroc', 'vis/dtu/vggt_oiavisself/auroc', 'vis/imc/pi3_oiavisself/auroc'])} against {rng(['vis/co3d/pi3/auroc', 'vis/eth3d/pi3x/auroc'])} for native confidence, matches a head trained on ground-truth visibility, and beats a per-image control that falls below chance off the lab rig. One limit, measured: a consistent invention that every view agrees on passes every test, this head included.</p>
+  <p>Feed-forward 3D models (VGGT, Pi3, Pi3X, MapAnything, Depth Anything 3) reconstruct a scene from unposed photographs in one pass. Where no photograph shows a surface they fill the gap from learned priors, and they assign the invented geometry a confidence close to that of observed geometry. We define a predicted point as hallucinated when it lies on a surface no input view shows, and build a benchmark that labels such points for free by hiding a 3D region of the ground-truth surface in every view. Across five models and three datasets, native confidence lets {pct('leak/dtu/vggt/cur')} to {pct('leak/co3d/mapanything/cur')} of unsupported pixels through a filter that keeps 90% of observed ones. Cheap fixes (perturbation variance, reprojection consistency) do not help, and a head trained on the benchmark's own fills learns the fill. We then change what the detector must learn: a small <em>support head</em> on the frozen cross-view features predicts whether each pixel has multi-view support, with labels computed from the backbone's own prediction, so it needs no ground truth. On three backbones and four datasets it never saw it separates single-view from supported geometry at AUROC {rng(['vis/co3d/vggt_oiavisself/auroc', 'vis/dtu/vggt_oiavisself/auroc', 'vis/imc/pi3_oiavisself/auroc'])} against {rng(['vis/co3d/pi3/auroc', 'vis/eth3d/pi3x/auroc'])} for native confidence, matches a head trained on ground-truth visibility, and beats a per-image control that falls below chance off the lab rig. One limit, measured: a consistent invention that every view agrees on passes every cross-view test, this head included; only changing the pixels it was drawn from moves it.</p>
 </section>
 
 <section class="measure" id="finding">

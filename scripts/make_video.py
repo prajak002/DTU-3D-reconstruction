@@ -224,9 +224,9 @@ def main():
               f"{g('xmodel/fill_co3d/vggt_xpi3x/auroc')} to {g('xmodel/fill_co3d/pi3x_xpi3/auroc')} on CO3Dv2. Five models of three families fill the hole with the same surface.",
               10, chapter="10 / THE LIMIT")
     if os.path.exists(os.path.join(CH, "refill_dark.png")):
-        chart(reel, os.path.join(CH, "refill_dark.png"), "Nor do the pixels it was filled with",
-              f"The same hidden sphere filled three ways, the backbone run on each: the spread of the invented depth over the fills scores AUROC {g('refill/dtu/vggt/auroc')} (VGGT) to {g('refill/dtu/pi3/auroc')} (Pi3) on DTU "
-              f"against {g('refill/dtu/vggt/auroc_native_blur')} to {g('refill/dtu/pi3/auroc_native_blur')} for native confidence. The model draws the same surface whichever pixels it is shown.",
+        chart(reel, os.path.join(CH, "refill_dark.png"), "But the pixels it was filled with move it",
+              f"The same hidden sphere filled three ways, the backbone run on each: the spread of the invented depth over the fills finds the patch at AUROC {g('refill/dtu/da3/auroc')} (DA3) to {g('refill/dtu/vggt/auroc')} (VGGT) on DTU, "
+              f"against {g('refill/dtu/da3/auroc_native_blur')} to {g('refill/dtu/pi3/auroc_native_blur')} for native confidence. The invention is consistent because every view and model reads the same pixels; change them and it moves. A diagnosis, not a detector: a real capture offers no second fill.",
               10, chapter="10 / THE LIMIT")
     if os.path.exists(os.path.join(CH, "fuse_dark.png")):
         chart(reel, os.path.join(CH, "fuse_dark.png"), "Downstream: the fused point cloud",

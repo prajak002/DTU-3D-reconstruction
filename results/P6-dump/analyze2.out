@@ -1,0 +1,40 @@
+[eth3d] pi3x_oiavisfuse              cells  75  AURC 0.126 (oracle 0.120)  AbsRel all 0.0146 / top-50% 0.0096  CUR own 0.063  loso 0.074 (keep 0.90)  frozen 0.017 (keep 0.74)
+[eth3d] pi3x_oiavispatch             cells  75  AURC 0.199 (oracle 0.120)  AbsRel all 0.0146 / top-50% 0.0121  CUR own 0.682  loso 0.751 (keep 0.90)  frozen 0.692 (keep 0.87)  ECE 0.300  bands 0.50/0.28/0.22  risk in observed 0.183
+[eth3d] pi3x_oiavisself              cells  75  AURC 0.129 (oracle 0.120)  AbsRel all 0.0146 / top-50% 0.0101  CUR own 0.102  loso 0.126 (keep 0.90)  frozen 0.049 (keep 0.79)  ECE 0.142  bands 0.60/0.11/0.29  risk in observed 0.052
+[eth3d] pi3x_oiavisselffuse          cells  75  AURC 0.128 (oracle 0.120)  AbsRel all 0.0146 / top-50% 0.0094  CUR own 0.090  loso 0.125 (keep 0.90)  frozen 0.058 (keep 0.82)
+[eth3d] pi3x_oiavisselfpatch         cells  75  AURC 0.221 (oracle 0.120)  AbsRel all 0.0146 / top-50% 0.0124  CUR own 0.773  loso 0.816 (keep 0.88)  frozen 0.670 (keep 0.77)  ECE 0.328  bands 0.54/0.21/0.25  risk in observed 0.204
+[eth3d] pi3x_reproj                  cells  75  AURC 0.124 (oracle 0.120)  AbsRel all 0.0146 / top-50% 0.0117  CUR own 0.054  loso 0.041 (keep 0.96)  frozen 0.041 (keep 0.98)
+[eth3d] vggt                         cells  75  AURC 0.196 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0156  CUR own 0.562  loso 0.680 (keep 0.89)  frozen 0.000 (keep 0.00)
+[eth3d] vggt_border                  cells  75  AURC 0.193 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0206  CUR own 0.628  loso 0.650 (keep 0.90)  frozen 0.699 (keep 0.92)
+[eth3d] vggt_dedge                   cells  75  AURC 0.224 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0171  CUR own 0.758  loso 0.839 (keep 0.90)  frozen 0.442 (keep 0.61)
+[eth3d] vggt_oiavis                  cells  75  AURC 0.123 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0169  CUR own 0.054  loso 0.078 (keep 0.91)  frozen 0.002 (keep 0.54)  ECE 0.241  bands 0.48/0.09/0.43  risk in observed 0.007
+[eth3d] vggt_oiavisfuse              cells  75  AURC 0.127 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0155  CUR own 0.129  loso 0.184 (keep 0.90)  frozen 0.004 (keep 0.59)
+[eth3d] vggt_oiavispatch             cells  75  AURC 0.192 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0175  CUR own 0.663  loso 0.714 (keep 0.90)  frozen 0.597 (keep 0.84)  ECE 0.309  bands 0.43/0.31/0.27  risk in observed 0.161
+[eth3d] vggt_oiavisself              cells  75  AURC 0.123 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0162  CUR own 0.050  loso 0.065 (keep 0.90)  frozen 0.006 (keep 0.62)  ECE 0.159  bands 0.57/0.07/0.36  risk in observed 0.008
+[eth3d] vggt_oiavisselffuse          cells  75  AURC 0.129 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0153  CUR own 0.148  loso 0.188 (keep 0.89)  frozen 0.016 (keep 0.66)
+[eth3d] vggt_oiavisselfpatch         cells  75  AURC 0.214 (oracle 0.120)  AbsRel all 0.0221 / top-50% 0.0186  CUR own 0.747  loso 0.779 (keep 0.87)  frozen 0.569 (keep 0.72)  ECE 0.312  bands 0.50/0.23/0.27  risk in observed 0.184
+[eth3d] vggt_reproj                  cells  75  AURC 0.125 (oracle 0.120)  AbsRel all 0.0220 / top-50% 0.0170  CUR own 0.069  loso 0.032 (keep 0.93)  frozen 0.032 (keep 0.93)
+-> results/P6-dump/P6-dump-eth3d_curves.csv, _rc.csv
+[imc] da3_oiavisselffuse           cells  81  AURC 0.014 (oracle 0.007)  AbsRel all 0.0471 / top-50% 0.0185  CUR own 0.206  loso 0.221 (keep 0.90)  frozen 0.142 (keep 0.81)
+[imc] pi3_oiavisselffuse           cells  81  AURC 0.013 (oracle 0.007)  AbsRel all 0.0415 / top-50% 0.0211  CUR own 0.197  loso 0.194 (keep 0.90)  frozen 0.193 (keep 0.90)
+[imc] pi3x                         cells  81  AURC 0.020 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0210  CUR own 0.450  loso 0.629 (keep 0.88)  frozen 0.401 (keep 0.71)
+[imc] pi3x_border                  cells  81  AURC 0.038 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0283  CUR own 0.649  loso 0.660 (keep 0.90)  frozen 0.812 (keep 0.96)
+[imc] pi3x_dedge                   cells  81  AURC 0.050 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0348  CUR own 0.699  loso 0.731 (keep 0.89)  frozen 0.758 (keep 0.91)
+[imc] pi3x_oiavis                  cells  81  AURC 0.011 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0233  CUR own 0.176  loso 0.174 (keep 0.90)  frozen 0.127 (keep 0.83)  ECE 0.090  bands 0.83/0.09/0.09  risk in observed 0.012
+[imc] pi3x_oiavisfuse              cells  81  AURC 0.012 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0210  CUR own 0.181  loso 0.165 (keep 0.90)  frozen 0.097 (keep 0.80)
+[imc] pi3x_oiavispatch             cells  81  AURC 0.032 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0274  CUR own 0.577  loso 0.642 (keep 0.89)  frozen 0.820 (keep 0.96)  ECE 0.200  bands 0.65/0.27/0.08  risk in observed 0.035
+[imc] pi3x_oiavisself              cells  81  AURC 0.011 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0225  CUR own 0.166  loso 0.168 (keep 0.90)  frozen 0.193 (keep 0.92)  ECE 0.061  bands 0.87/0.06/0.07  risk in observed 0.015
+[imc] pi3x_oiavisselffuse          cells  81  AURC 0.012 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0207  CUR own 0.185  loso 0.174 (keep 0.90)  frozen 0.153 (keep 0.87)
+[imc] pi3x_oiavisselfpatch         cells  81  AURC 0.041 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0307  CUR own 0.697  loso 0.739 (keep 0.89)  frozen 0.695 (keep 0.87)  ECE 0.257  bands 0.58/0.28/0.14  risk in observed 0.038
+[imc] pi3x_reproj                  cells  81  AURC 0.025 (oracle 0.007)  AbsRel all 0.0413 / top-50% 0.0313  CUR own 0.361  loso 0.315 (keep 0.90)  frozen 0.332 (keep 0.94)
+[imc] vggt                         cells  81  AURC 0.030 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0196  CUR own 0.451  loso 0.570 (keep 0.89)  frozen 0.003 (keep 0.02)
+[imc] vggt_border                  cells  81  AURC 0.038 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0287  CUR own 0.649  loso 0.660 (keep 0.90)  frozen 0.812 (keep 0.96)
+[imc] vggt_dedge                   cells  81  AURC 0.049 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0260  CUR own 0.619  loso 0.646 (keep 0.89)  frozen 0.620 (keep 0.88)
+[imc] vggt_oiavis                  cells  81  AURC 0.013 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0260  CUR own 0.258  loso 0.273 (keep 0.90)  frozen 0.055 (keep 0.59)  ECE 0.223  bands 0.67/0.11/0.22  risk in observed 0.007
+[imc] vggt_oiavisfuse              cells  81  AURC 0.012 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0205  CUR own 0.177  loso 0.204 (keep 0.89)  frozen 0.035 (keep 0.53)
+[imc] vggt_oiavispatch             cells  81  AURC 0.031 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0271  CUR own 0.530  loso 0.572 (keep 0.90)  frozen 0.734 (keep 0.96)  ECE 0.234  bands 0.59/0.33/0.09  risk in observed 0.029
+[imc] vggt_oiavisself              cells  81  AURC 0.012 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0233  CUR own 0.191  loso 0.204 (keep 0.90)  frozen 0.055 (keep 0.61)  ECE 0.177  bands 0.72/0.10/0.18  risk in observed 0.007
+[imc] vggt_oiavisselffuse          cells  81  AURC 0.012 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0198  CUR own 0.179  loso 0.199 (keep 0.89)  frozen 0.045 (keep 0.54)
+[imc] vggt_oiavisselfpatch         cells  81  AURC 0.037 (oracle 0.007)  AbsRel all 0.0391 / top-50% 0.0313  CUR own 0.681  loso 0.750 (keep 0.90)  frozen 0.773 (keep 0.91)  ECE 0.170  bands 0.73/0.19/0.08  risk in observed 0.046
+[imc] vggt_reproj                  cells  81  AURC 0.024 (oracle 0.007)  AbsRel all 0.0390 / top-50% 0.0251  CUR own 0.340  loso 0.299 (keep 0.91)  frozen 0.299 (keep 0.90)
+-> results/P6-dump/P6-dump-imc_curves.csv, _rc.csv
