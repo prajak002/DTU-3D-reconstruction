@@ -503,7 +503,7 @@ class DA3Wrap(ModelWrap):
         mean = torch.tensor([0.485, 0.456, 0.406], device=x.device).view(1, 3, 1, 1)
         std = torch.tensor([0.229, 0.224, 0.225], device=x.device).view(1, 3, 1, 1)
         with torch.no_grad():
-            return self.model(((x - mean) / std)[None])
+            return self.model(((x - mean) / std)[None], export_feat_layers=[])
 
     def _forward_cams(self, x, dtype):
         out = self._forward_raw(x)
