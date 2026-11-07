@@ -367,8 +367,18 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
     ff = forward_feats or FORWARD_FEATS[base]
     model_hw = tuple(model_hw or H.DEFAULT_CFG["model_hw"])
     cfg = {**H.DEFAULT_CFG, "dilate_px": 3}          # dilation in pixels at model res (half the 640x512 value)
-    scans = [s for s in (scans or DTU_TRAIN_SCANS)
-             if os.path.isdir(os.path.join(dtu_root, "Rectified", f"scan{s}_train"))]
+    # training root: a DTU root (Rectified/, 49 views per scan, lights) or a preprocessed CO3D-format root
+    # (<scene>/meta.npz, scripts/co3d.py and scripts/eth3d.py): label-free adaptation to a new capture domain
+    # (P6-adapt) trains "visself" heads on scenes of that domain without any ground truth
+    is_co3d = not os.path.isdir(os.path.join(dtu_root, "Rectified"))
+    if is_co3d:
+        import co3d as C
+        all_scenes = C.list_co3d_scenes(dtu_root)
+        scans = [s for s in (scans or all_scenes) if s in all_scenes]
+        assert labels == "visself" or labels == "vis", f"only visibility labels can be trained on a CO3D-format root ({labels})"
+    else:
+        scans = [s for s in (scans or DTU_TRAIN_SCANS)
+                 if os.path.isdir(os.path.join(dtu_root, "Rectified", f"scan{s}_train"))]
     if not scans:
         raise FileNotFoundError(f"no training scans under {dtu_root}")
     val_scans = [s for s in tc["val_scans"] if s in scans][:2]
@@ -380,8 +390,8 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         print(f"[oia] base={base} variant={v} feats={VARIANTS[v][0]} arch={VARIANTS[v][1]} labels={labels} seed={sd} "
               f"train scans={len(train_scans)} val scans={val_scans} steps={tc['steps']} -> {o}", flush=True)
 
-    def forward(imgs_np, mode):
-        x = wrap._prep(imgs_np, model_hw)
+    def forward(imgs_np, mode, hw=None):
+        x = wrap._prep(imgs_np, tuple(hw or model_hw))
         with torch.no_grad():
             d, c, F, K, E = ff(wrap, x, wrap.dtype, mode)
             if mode == "both" and not isinstance(F, dict):      # hook without a joint mode: one call per group
@@ -396,12 +406,14 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         """Scene dict at model resolution. Labels "gt" and "vis" place / label from the ground truth; "self" and
         "visself" from the backbone's clean prediction (gt=True forces the ground truth, for validation). For
         "visself" the clean forward is also the training forward, so its features ride along under "_F"."""
-        data = H.load_scan(dtu_root, scan, views, light)
+        data = C.load_co3d_scene(dtu_root, scan, views) if is_co3d else H.load_scan(dtu_root, scan, views, light)
+        hw = tuple(data.get("model_hw", model_hw))     # CO3D-format scenes carry their own (portrait / landscape)
         pred, F = None, None
         if labels in ("self", "visself") and not gt:
-            d, c, F, K, E = forward(data["imgs"], feats_mode if labels == "visself" else "agg")
+            d, c, F, K, E = forward(data["imgs"], feats_mode if labels == "visself" else "agg", hw)
             pred = (d.cpu().numpy(), c.cpu().numpy(), K.cpu().numpy(), E.cpu().numpy())
-        md = model_res_data(data, model_hw, pred, tc["conf_floor_q"])
+        md = model_res_data(data, hw, pred, tc["conf_floor_q"])
+        md["model_hw"] = hw
         if labels == "visself" and F is not None:
             md["_F"] = F
         return md
@@ -432,7 +444,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
     def step_loss(hd, F, U, S):
         if hd["head"] is None:
             build(hd, F)
-        logit = upsample_logit(torch, hd["head"](_pick(hd["variant"], F)), hw_lab)
+        logit = upsample_logit(torch, hd["head"](_pick(hd["variant"], F)), tuple(U.shape[1:]))
         U_t, S_t = torch.from_numpy(U).to(device), torch.from_numpy(S).to(device)
         tgt = U_t.float()
         w = torch.zeros_like(tgt)
@@ -451,13 +463,14 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             for s in val_scans:
                 if labels in ("vis", "visself"):     # five views, view set rotated by the seed, clean images;
                     for sd in tc["val_seeds"]:         # validated on ground-truth labels for both label sources
-                        md = scene(s, H.vis_views(5, sd), 3, gt=True)
+                        total = C.n_frames(dtu_root, s) if is_co3d else 49
+                        md = scene(s, H.vis_views(5, sd, total=total), 3, gt=True)
                         m = H.vis_labels(md, vis_cfg)
                         if m["U"].sum() < tc["vis_min_pixels"] or m["S"].sum() < tc["vis_min_pixels"]:
                             continue
-                        _, _, F, _, _ = forward(md["imgs"], feats_mode)
+                        _, _, F, _, _ = forward(md["imgs"], feats_mode, md["model_hw"])
                         for hd in heads:
-                            lg = upsample_logit(torch, hd["head"](_pick(hd["variant"], F[hd["feats"]])), hw_lab).cpu().numpy()
+                            lg = upsample_logit(torch, hd["head"](_pick(hd["variant"], F[hd["feats"]])), tuple(m["U"].shape[1:])).cpu().numpy()
                             aucs[hd["out"]].append(H.auroc(-lg[m["S"]], -lg[m["U"]]))
                     continue
                 md = scene(s, H.select_views(tc["n_views"]), 3)
@@ -468,7 +481,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
                         continue
                     _, _, F, _, _ = forward(imgs_in, feats_mode)
                     for hd in heads:
-                        lg = upsample_logit(torch, hd["head"](_pick(hd["variant"], F[hd["feats"]])), hw_lab).cpu().numpy()
+                        lg = upsample_logit(torch, hd["head"](_pick(hd["variant"], F[hd["feats"]])), tuple(m["U"].shape[1:])).cpu().numpy()
                         aucs[hd["out"]].append(H.auroc(-lg[m["S"]], -lg[m["U"]]))
         for hd in heads:
             hd["head"].train()
@@ -487,17 +500,22 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             hd["best"] = va
             torch.save(ck, hd["out"].replace(".pt", "_best.pt"))
 
-    s = start
+    s, fails = start, 0
     while s < tc["steps"]:
-        scan = int(rng.choice(train_scans))
+        scan = str(rng.choice(train_scans)) if is_co3d else int(rng.choice(train_scans))
         n_views = int(rng.choice(tc["vis_views"])) if labels in ("vis", "visself") else tc["n_views"]
-        views = sorted(rng.choice(49, n_views, replace=False).tolist())
-        light = int(rng.choice(_dtu_lights(dtu_root, scan))) if tc["random_light"] else 3
+        total = C.n_frames(dtu_root, scan) if is_co3d else 49
+        views = sorted(rng.choice(total, min(n_views, total), replace=False).tolist())
+        light = int(rng.choice(_dtu_lights(dtu_root, scan))) if tc["random_light"] and not is_co3d else 3
         try:
             md = scene(scan, views, light)
-        except Exception as e:            # unreadable scan: skip it
+            fails = 0
+        except Exception as e:            # unreadable scan: skip it (and stop when nothing can be read at all)
             print(f"[oia] skip scan {scan}: {e}", flush=True)
             train_scans = [t for t in train_scans if t != scan] or train_scans
+            fails += 1
+            if fails >= 20:
+                raise RuntimeError(f"20 consecutive scene failures, last: {e}")
             continue
         if labels in ("vis", "visself"):  # clean images; labels from the ground-truth support count (vis) or from
             imgs_in = md["imgs"]          # the support count of the backbone's own prediction (visself, no GT)
@@ -599,7 +617,9 @@ class OIAWrap:
 def make_oia(name, registry=None):
     """'vggt_oia' -> OIAWrap(VGGTWrap(), 'oia'); 'vggt_oiavis_s1' -> the extra-seed checkpoint of the same variant
     (checkpoints/vggt_oiavis_s1.pt). Used by hallu3d.make_model."""
-    m = re.fullmatch(r"(.+?)_((?:" + "|".join(VARIANTS) + r")(?:_s\d+)?)", name)
+    # <base>_<variant>[_s<seed>][_x<tag>]: _s is an extra initialisation seed, _x a head of the same variant trained on
+    # another root (label-free adaptation, e.g. vggt_oiavisself_xco3dA trained on CO3Dv2 fold A, scripts/run_h100.py)
+    m = re.fullmatch(r"(.+?)_((?:" + "|".join(VARIANTS) + r")(?:_s\d+)?(?:_x[A-Za-z0-9]+)?)", name)
     if not m:
         return None
     registry = registry or H.MODEL_REGISTRY
@@ -625,7 +645,10 @@ def main():
     t.add_argument("--steps", type=int, default=None)
     t.add_argument("--seed", type=int, default=0)
     t.add_argument("--lr", type=float, default=None)
-    t.add_argument("--scans", default=None, help="comma-separated subset of training scans (smoke tests)")
+    t.add_argument("--scans", default=None, help="comma-separated subset of training scans (DTU numbers or CO3D-format scene names)")
+    t.add_argument("--val-scans", default=None, help="comma-separated validation scans (default: DTU 2, 6; none on a CO3D-format root)")
+    t.add_argument("--tag", default=None, help="checkpoint name suffix _x<tag> for heads trained on another root "
+                                               "(label-free adaptation; the model name carries the same suffix)")
     lm = sub.add_parser("list-modules", help="print module names of a backbone (to adapt the feature hooks)")
     lm.add_argument("--base", default="pi3x")
     a = ap.parse_args()
@@ -636,20 +659,30 @@ def main():
                 print(n, type(m).__name__)
         return
     over = {k: v for k, v in dict(lr=a.lr).items() if v is not None}
-    root = H.find_dtu_root((a.dtu,)) if os.path.isdir(a.dtu) else a.dtu
-    scans = [int(s) for s in a.scans.split(",")] if a.scans else None
+    _scan = lambda s: int(s) if s.strip().lstrip("-").isdigit() else s.strip()
+    try:
+        root = H.find_dtu_root((a.dtu,)) if os.path.isdir(a.dtu) else a.dtu
+    except FileNotFoundError:
+        root = a.dtu                                   # a CO3D-format root (scenes with meta.npz)
+    co3d_root = not os.path.isdir(os.path.join(root, "Rectified"))
+    scans = [_scan(s) for s in a.scans.split(",")] if a.scans else None
+    if a.val_scans is not None:
+        over["val_scans"] = [_scan(s) for s in a.val_scans.split(",") if s.strip()]
+    elif co3d_root:
+        over["val_scans"] = []
     variants = [v for v in a.variant.split(",") if v]
     extra = [int(x) for x in a.extra_seeds.split(",") if x]
     esv = a.extra_seeds_of or variants[0]
     for v in variants + [esv]:
         assert v in VARIANTS and v != "oiafuse", v
+    tag = f"_x{a.tag}" if a.tag else ""
     if len(variants) == 1 and not extra:
-        out = a.out or os.path.join("checkpoints", f"{a.base}_{variants[0]}.pt")
+        out = a.out or os.path.join("checkpoints", f"{a.base}_{variants[0]}{tag}.pt")
         train_multi(a.base, root, [(variants[0], a.seed, out)], a.steps, scans=scans, resume=a.resume, **over)
         return
     d = a.out or "checkpoints"
-    specs = [(v, a.seed, os.path.join(d, f"{a.base}_{v}.pt")) for v in variants]
-    specs += [(esv, sd, os.path.join(d, f"{a.base}_{esv}_s{sd}.pt")) for sd in extra]
+    specs = [(v, a.seed, os.path.join(d, f"{a.base}_{v}{tag}.pt")) for v in variants]
+    specs += [(esv, sd, os.path.join(d, f"{a.base}_{esv}_s{sd}{tag}.pt")) for sd in extra]
     train_multi(a.base, root, specs, a.steps, scans=scans, resume=a.resume, **over)
 
 

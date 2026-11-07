@@ -1,0 +1,185 @@
+[{"stream_name":"stdout","time":2.268539935,"data":"restored checkpoints from /kaggle/input/hallu3d-p4-vis-heads\n"}
+,{"stream_name":"stdout","time":2.492542097,"data":"restored results from /kaggle/input/hallu3d-p4-vis-heads\n"}
+,{"stream_name":"stdout","time":2.552228136,"data":"inputs: {'datasets': ['popsensharma', 'tobyzhou'], 'hallu3d-p4-vis-heads': ['checkpoints', 'results']}\n"}
+,{"stream_name":"stdout","time":2.55236039,"data":"vis heads restored: ['vggt_oiavis.pt', 'vggt_oiavispatch.pt', 'vggt_oiavislin.pt', 'pi3x_oiavis.pt', 'pi3x_oiavispatch.pt', 'pi3x_oiavislin.pt']\n"}
+,{"stream_name":"stdout","time":2.553208191,"data":"\n"}
+,{"stream_name":"stdout","time":2.553236267,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2.553241293,"data":"== clone  [2s]\n"}
+,{"stream_name":"stdout","time":2.5532455880000002,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":17.96829989,"data":"commit 06844ac\n"}
+,{"stream_name":"stdout","time":17.968326495,"data":"\n"}
+,{"stream_name":"stdout","time":17.968329862,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":17.968332636,"data":"== install backbones (kaggle_prelude.py)  [17s]\n"}
+,{"stream_name":"stdout","time":17.968335384,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":30.06616791,"data":"\n"}
+,{"stream_name":"stdout","time":30.066196154,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":30.066203915,"data":"== stage vis_co3d  [29s]\n"}
+,{"stream_name":"stdout","time":30.066206464,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":30.066209025,"data":"\n"}
+,{"stream_name":"stdout","time":30.066211203,"data":"$ /usr/bin/python3 scripts/run_h100.py vis_co3d --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt,pi3x --steps 1500 --skip-gt --variants oia,oialin,oiapatch --ext-bases vggt,pi3x\n"}
+,{"stream_name":"stdout","time":55.003527704,"data":"\n"}
+,{"stream_name":"stdout","time":55.003569424,"data":"##### stage vis_co3d 2026-11-06 16:04:02\n"}
+,{"stream_name":"stdout","time":61.917156834,"data":"== P4-vis-co3d: models ['vggt', 'vggt_reproj', 'vggt_oiavis', 'vggt_oiavispatch', 'vggt_oiavislin', 'pi3x', 'pi3x_reproj', 'pi3x_oiavis', 'pi3x_oiavispatch', 'pi3x_oiavislin'], cfg {\"vis_views\": [3, 5, 10], \"seeds\": [0, 1, 2], \"dataset\": \"co3d\"}\n"}
+,{"stream_name":"stdout","time":63.135297593,"data":"resuming: 648 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":63.135783277,"data":"[vggt] all done\n"}
+,{"stream_name":"stdout","time":63.135929925,"data":"   vggt: 1s\n"}
+,{"stream_name":"stdout","time":63.144768703,"data":"resuming: 648 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":63.145208927,"data":"[vggt_reproj] all done\n"}
+,{"stream_name":"stdout","time":63.145342989,"data":"   vggt_reproj: 0s\n"}
+,{"stream_name":"stdout","time":63.155319438,"data":"resuming: 648 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stderr","time":64.373198419,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":107.540139802,"data":"[vggt_oiavis] head from /kaggle/working/checkpoints/vggt_oiavis.pt (step 1500, val-auroc 0.998)\n"}
+,{"stream_name":"stdout","time":126.87322868,"data":"[vggt_oiavis] scan apple_110_13051_23361  auroc=0.965  cur=0.107  absrel_U=0.039 (S 0.037)  fracU=0.038  19s\n"}
+,{"stream_name":"stdout","time":139.528316895,"data":"[vggt_oiavis] scan apple_189_20393_38136  auroc=0.990  cur=0.019  absrel_U=0.031 (S 0.011)  fracU=0.058  32s\n"}
+,{"stream_name":"stdout","time":152.75682746,"data":"[vggt_oiavis] scan ball_123_14363_28981  auroc=0.996  cur=0.009  absrel_U=0.035 (S 0.016)  fracU=0.044  45s\n"}
+,{"stream_name":"stdout","time":165.720802501,"data":"[vggt_oiavis] scan ball_375_42693_85518  auroc=0.998  cur=0.004  absrel_U=0.019 (S 0.019)  fracU=0.052  58s\n"}
+,{"stream_name":"stdout","time":178.721689252,"data":"[vggt_oiavis] scan bench_415_57112_110099  auroc=0.886  cur=0.348  absrel_U=0.017 (S 0.009)  fracU=0.083  71s\n"}
+,{"stream_name":"stdout","time":191.445856651,"data":"[vggt_oiavis] scan bench_415_57121_110109  auroc=0.908  cur=0.239  absrel_U=0.016 (S 0.010)  fracU=0.043  84s\n"}
+,{"stream_name":"stdout","time":204.874922583,"data":"[vggt_oiavis] scan hydrant_167_18184_34441  auroc=0.913  cur=0.255  absrel_U=0.019 (S 0.024)  fracU=0.129  97s\n"}
+,{"stream_name":"stdout","time":218.238580568,"data":"[vggt_oiavis] scan hydrant_411_56064_108483  auroc=0.893  cur=0.343  absrel_U=0.034 (S 0.037)  fracU=0.085  111s\n"}
+,{"stream_name":"stdout","time":231.499038725,"data":"[vggt_oiavis] scan mouse_107_12753_23606  auroc=0.938  cur=0.210  absrel_U=0.029 (S 0.021)  fracU=0.040  124s\n"}
+,{"stream_name":"stdout","time":241.971005879,"data":"[vggt_oiavis] scan mouse_377_43416_86289  auroc=0.960  cur=0.108  absrel_U=0.056 (S 0.037)  fracU=0.037  134s\n"}
+,{"stream_name":"stdout","time":252.650064533,"data":"[vggt_oiavis] scan teddybear_187_20215_38541  auroc=0.937  cur=0.181  absrel_U=0.061 (S 0.027)  fracU=0.032  145s\n"}
+,{"stream_name":"stdout","time":265.819185223,"data":"[vggt_oiavis] scan teddybear_34_1479_4753  auroc=0.877  cur=0.387  absrel_U=0.026 (S 0.023)  fracU=0.091  158s\n"}
+,{"stream_name":"stdout","time":279.344986395,"data":"[vggt_oiavis] scan toytrain_240_25394_51994  auroc=0.976  cur=0.070  absrel_U=0.049 (S 0.028)  fracU=0.077  172s\n"}
+,{"stream_name":"stdout","time":292.454386381,"data":"[vggt_oiavis] scan toytrain_399_51323_100753  auroc=0.949  cur=0.119  absrel_U=0.030 (S 0.019)  fracU=0.054  185s\n"}
+,{"stream_name":"stdout","time":308.509604917,"data":"[vggt_oiavis] scan toytruck_190_20494_39385  auroc=0.868  cur=0.326  absrel_U=0.032 (S 0.021)  fracU=0.095  201s\n"}
+,{"stream_name":"stdout","time":321.854282172,"data":"[vggt_oiavis] scan toytruck_346_36113_66551  auroc=0.968  cur=0.084  absrel_U=0.040 (S 0.024)  fracU=0.072  214s\n"}
+,{"stream_name":"stdout","time":332.387593438,"data":"[vggt_oiavis] scan vase_374_41862_83720  auroc=0.861  cur=0.330  absrel_U=0.081 (S 0.025)  fracU=0.020  225s\n"}
+,{"stream_name":"stdout","time":345.339555626,"data":"[vggt_oiavis] scan vase_380_44863_89631  auroc=0.808  cur=0.649  absrel_U=0.058 (S 0.052)  fracU=0.033  238s\n"}
+,{"stream_name":"stdout","time":345.555442707,"data":"   vggt_oiavis: 282s\n"}
+,{"stream_name":"stdout","time":345.566539892,"data":"resuming: 810 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":359.632617191,"data":"[vggt_oiavispatch] head from /kaggle/working/checkpoints/vggt_oiavispatch.pt (step 1500, val-auroc 0.922)\n"}
+,{"stream_name":"stdout","time":369.983413704,"data":"[vggt_oiavispatch] scan apple_110_13051_23361  auroc=0.604  cur=0.864  absrel_U=0.039 (S 0.037)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":380.235006371,"data":"[vggt_oiavispatch] scan apple_189_20393_38136  auroc=0.388  cur=0.967  absrel_U=0.031 (S 0.011)  fracU=0.058  21s\n"}
+,{"stream_name":"stdout","time":390.658887718,"data":"[vggt_oiavispatch] scan ball_123_14363_28981  auroc=0.411  cur=0.928  absrel_U=0.035 (S 0.016)  fracU=0.044  31s\n"}
+,{"stream_name":"stdout","time":401.129196317,"data":"[vggt_oiavispatch] scan ball_375_42693_85518  auroc=0.550  cur=0.932  absrel_U=0.019 (S 0.019)  fracU=0.052  41s\n"}
+,{"stream_name":"stdout","time":411.60812417,"data":"[vggt_oiavispatch] scan bench_415_57112_110099  auroc=0.332  cur=0.868  absrel_U=0.017 (S 0.009)  fracU=0.083  52s\n"}
+,{"stream_name":"stdout","time":421.79595815,"data":"[vggt_oiavispatch] scan bench_415_57121_110109  auroc=0.828  cur=0.597  absrel_U=0.016 (S 0.010)  fracU=0.043  62s\n"}
+,{"stream_name":"stdout","time":431.874128598,"data":"[vggt_oiavispatch] scan hydrant_167_18184_34441  auroc=0.396  cur=0.904  absrel_U=0.019 (S 0.024)  fracU=0.129  72s\n"}
+,{"stream_name":"stdout","time":441.893574504,"data":"[vggt_oiavispatch] scan hydrant_411_56064_108483  auroc=0.407  cur=0.948  absrel_U=0.034 (S 0.037)  fracU=0.085  82s\n"}
+,{"stream_name":"stdout","time":452.04770511,"data":"[vggt_oiavispatch] scan mouse_107_12753_23606  auroc=0.375  cur=0.969  absrel_U=0.029 (S 0.021)  fracU=0.040  92s\n"}
+,{"stream_name":"stdout","time":459.338395334,"data":"[vggt_oiavispatch] scan mouse_377_43416_86289  auroc=0.337  cur=0.970  absrel_U=0.056 (S 0.037)  fracU=0.037  100s\n"}
+,{"stream_name":"stdout","time":466.795186354,"data":"[vggt_oiavispatch] scan teddybear_187_20215_38541  auroc=0.222  cur=0.977  absrel_U=0.061 (S 0.027)  fracU=0.032  107s\n"}
+,{"stream_name":"stdout","time":477.20493917,"data":"[vggt_oiavispatch] scan teddybear_34_1479_4753  auroc=0.297  cur=0.977  absrel_U=0.026 (S 0.023)  fracU=0.091  118s\n"}
+,{"stream_name":"stdout","time":487.767935021,"data":"[vggt_oiavispatch] scan toytrain_240_25394_51994  auroc=0.480  cur=0.890  absrel_U=0.049 (S 0.028)  fracU=0.077  128s\n"}
+,{"stream_name":"stdout","time":497.945319317,"data":"[vggt_oiavispatch] scan toytrain_399_51323_100753  auroc=0.701  cur=0.674  absrel_U=0.030 (S 0.019)  fracU=0.054  138s\n"}
+,{"stream_name":"stdout","time":511.229085642,"data":"[vggt_oiavispatch] scan toytruck_190_20494_39385  auroc=0.390  cur=0.940  absrel_U=0.032 (S 0.021)  fracU=0.095  152s\n"}
+,{"stream_name":"stdout","time":521.691981563,"data":"[vggt_oiavispatch] scan toytruck_346_36113_66551  auroc=0.566  cur=0.862  absrel_U=0.040 (S 0.024)  fracU=0.072  162s\n"}
+,{"stream_name":"stdout","time":528.87327535,"data":"[vggt_oiavispatch] scan vase_374_41862_83720  auroc=0.743  cur=0.544  absrel_U=0.081 (S 0.025)  fracU=0.020  169s\n"}
+,{"stream_name":"stdout","time":539.019632939,"data":"[vggt_oiavispatch] scan vase_380_44863_89631  auroc=0.290  cur=0.997  absrel_U=0.058 (S 0.052)  fracU=0.033  179s\n"}
+,{"stream_name":"stdout","time":539.240915128,"data":"   vggt_oiavispatch: 194s\n"}
+,{"stream_name":"stdout","time":539.252256414,"data":"resuming: 972 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":552.098694977,"data":"[vggt_oiavislin] head from /kaggle/working/checkpoints/vggt_oiavislin.pt (step 1500, val-auroc 0.996)\n"}
+,{"stream_name":"stdout","time":561.594119086,"data":"[vggt_oiavislin] scan apple_110_13051_23361  auroc=0.951  cur=0.144  absrel_U=0.039 (S 0.037)  fracU=0.038  9s\n"}
+,{"stream_name":"stdout","time":570.859389671,"data":"[vggt_oiavislin] scan apple_189_20393_38136  auroc=0.986  cur=0.023  absrel_U=0.031 (S 0.011)  fracU=0.058  19s\n"}
+,{"stream_name":"stdout","time":580.334684725,"data":"[vggt_oiavislin] scan ball_123_14363_28981  auroc=0.994  cur=0.009  absrel_U=0.035 (S 0.016)  fracU=0.044  28s\n"}
+,{"stream_name":"stdout","time":590.029939558,"data":"[vggt_oiavislin] scan ball_375_42693_85518  auroc=0.996  cur=0.005  absrel_U=0.019 (S 0.019)  fracU=0.052  38s\n"}
+,{"stream_name":"stdout","time":599.716201003,"data":"[vggt_oiavislin] scan bench_415_57112_110099  auroc=0.808  cur=0.521  absrel_U=0.017 (S 0.009)  fracU=0.083  48s\n"}
+,{"stream_name":"stdout","time":609.134084203,"data":"[vggt_oiavislin] scan bench_415_57121_110109  auroc=0.940  cur=0.167  absrel_U=0.016 (S 0.010)  fracU=0.043  57s\n"}
+,{"stream_name":"stdout","time":618.433808859,"data":"[vggt_oiavislin] scan hydrant_167_18184_34441  auroc=0.844  cur=0.483  absrel_U=0.019 (S 0.024)  fracU=0.129  66s\n"}
+,{"stream_name":"stdout","time":627.649286436,"data":"[vggt_oiavislin] scan hydrant_411_56064_108483  auroc=0.855  cur=0.434  absrel_U=0.034 (S 0.037)  fracU=0.085  76s\n"}
+,{"stream_name":"stdout","time":636.970855539,"data":"[vggt_oiavislin] scan mouse_107_12753_23606  auroc=0.909  cur=0.249  absrel_U=0.029 (S 0.021)  fracU=0.040  85s\n"}
+,{"stream_name":"stdout","time":643.769376425,"data":"[vggt_oiavislin] scan mouse_377_43416_86289  auroc=0.966  cur=0.122  absrel_U=0.056 (S 0.037)  fracU=0.037  92s\n"}
+,{"stream_name":"stdout","time":650.61219546,"data":"[vggt_oiavislin] scan teddybear_187_20215_38541  auroc=0.945  cur=0.164  absrel_U=0.061 (S 0.027)  fracU=0.032  99s\n"}
+,{"stream_name":"stdout","time":660.144362193,"data":"[vggt_oiavislin] scan teddybear_34_1479_4753  auroc=0.868  cur=0.449  absrel_U=0.026 (S 0.023)  fracU=0.091  108s\n"}
+,{"stream_name":"stdout","time":669.893677573,"data":"[vggt_oiavislin] scan toytrain_240_25394_51994  auroc=0.964  cur=0.099  absrel_U=0.049 (S 0.028)  fracU=0.077  118s\n"}
+,{"stream_name":"stdout","time":679.266090684,"data":"[vggt_oiavislin] scan toytrain_399_51323_100753  auroc=0.957  cur=0.110  absrel_U=0.030 (S 0.019)  fracU=0.054  127s\n"}
+,{"stream_name":"stdout","time":691.370749076,"data":"[vggt_oiavislin] scan toytruck_190_20494_39385  auroc=0.832  cur=0.405  absrel_U=0.032 (S 0.021)  fracU=0.095  139s\n"}
+,{"stream_name":"stdout","time":701.00494717,"data":"[vggt_oiavislin] scan toytruck_346_36113_66551  auroc=0.965  cur=0.107  absrel_U=0.040 (S 0.024)  fracU=0.072  149s\n"}
+,{"stream_name":"stdout","time":707.715048222,"data":"[vggt_oiavislin] scan vase_374_41862_83720  auroc=0.868  cur=0.416  absrel_U=0.081 (S 0.025)  fracU=0.020  156s\n"}
+,{"stream_name":"stdout","time":716.895252022,"data":"[vggt_oiavislin] scan vase_380_44863_89631  auroc=0.787  cur=0.599  absrel_U=0.058 (S 0.052)  fracU=0.033  165s\n"}
+,{"stream_name":"stdout","time":717.111494246,"data":"   vggt_oiavislin: 178s\n"}
+,{"stream_name":"stdout","time":717.124508684,"data":"resuming: 1134 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":717.124959955,"data":"[pi3x] all done\n"}
+,{"stream_name":"stdout","time":717.125193296,"data":"   pi3x: 0s\n"}
+,{"stream_name":"stdout","time":717.136754739,"data":"resuming: 1134 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":717.137149121,"data":"[pi3x_reproj] all done\n"}
+,{"stream_name":"stdout","time":717.137261919,"data":"   pi3x_reproj: 0s\n"}
+,{"stream_name":"stdout","time":717.14919998,"data":"resuming: 1134 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":717.191554119,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stdout","time":779.077201399,"data":"[pi3x_oiavis] head from /kaggle/working/checkpoints/pi3x_oiavis.pt (step 1500, val-auroc 0.998)\n"}
+,{"stream_name":"stdout","time":796.881619688,"data":"[pi3x_oiavis] scan apple_110_13051_23361  auroc=0.960  cur=0.126  absrel_U=0.033 (S 0.025)  fracU=0.038  18s\n"}
+,{"stream_name":"stdout","time":807.000334743,"data":"[pi3x_oiavis] scan apple_189_20393_38136  auroc=0.991  cur=0.012  absrel_U=0.020 (S 0.010)  fracU=0.058  28s\n"}
+,{"stream_name":"stdout","time":817.424235953,"data":"[pi3x_oiavis] scan ball_123_14363_28981  auroc=0.981  cur=0.043  absrel_U=0.034 (S 0.011)  fracU=0.044  38s\n"}
+,{"stream_name":"stdout","time":827.829333259,"data":"[pi3x_oiavis] scan ball_375_42693_85518  auroc=0.999  cur=0.001  absrel_U=0.016 (S 0.011)  fracU=0.052  49s\n"}
+,{"stream_name":"stdout","time":838.199063592,"data":"[pi3x_oiavis] scan bench_415_57112_110099  auroc=0.860  cur=0.501  absrel_U=0.026 (S 0.010)  fracU=0.083  59s\n"}
+,{"stream_name":"stdout","time":848.332497967,"data":"[pi3x_oiavis] scan bench_415_57121_110109  auroc=0.878  cur=0.493  absrel_U=0.020 (S 0.011)  fracU=0.043  69s\n"}
+,{"stream_name":"stdout","time":858.5093224,"data":"[pi3x_oiavis] scan hydrant_167_18184_34441  auroc=0.921  cur=0.226  absrel_U=0.012 (S 0.016)  fracU=0.129  79s\n"}
+,{"stream_name":"stdout","time":868.42532583,"data":"[pi3x_oiavis] scan hydrant_411_56064_108483  auroc=0.911  cur=0.281  absrel_U=0.016 (S 0.019)  fracU=0.085  89s\n"}
+,{"stream_name":"stdout","time":878.491604712,"data":"[pi3x_oiavis] scan mouse_107_12753_23606  auroc=0.962  cur=0.088  absrel_U=0.053 (S 0.021)  fracU=0.040  99s\n"}
+,{"stream_name":"stdout","time":885.65788281,"data":"[pi3x_oiavis] scan mouse_377_43416_86289  auroc=0.974  cur=0.058  absrel_U=0.044 (S 0.014)  fracU=0.037  107s\n"}
+,{"stream_name":"stdout","time":892.945728847,"data":"[pi3x_oiavis] scan teddybear_187_20215_38541  auroc=0.955  cur=0.124  absrel_U=0.026 (S 0.015)  fracU=0.032  114s\n"}
+,{"stream_name":"stdout","time":903.300175584,"data":"[pi3x_oiavis] scan teddybear_34_1479_4753  auroc=0.871  cur=0.427  absrel_U=0.021 (S 0.009)  fracU=0.091  124s\n"}
+,{"stream_name":"stdout","time":913.695139854,"data":"[pi3x_oiavis] scan toytrain_240_25394_51994  auroc=0.971  cur=0.073  absrel_U=0.042 (S 0.016)  fracU=0.077  135s\n"}
+,{"stream_name":"stdout","time":923.608905457,"data":"[pi3x_oiavis] scan toytrain_399_51323_100753  auroc=0.969  cur=0.098  absrel_U=0.023 (S 0.017)  fracU=0.054  145s\n"}
+,{"stream_name":"stdout","time":936.178788406,"data":"[pi3x_oiavis] scan toytruck_190_20494_39385  auroc=0.869  cur=0.295  absrel_U=0.035 (S 0.022)  fracU=0.095  157s\n"}
+,{"stream_name":"stdout","time":946.525569244,"data":"[pi3x_oiavis] scan toytruck_346_36113_66551  auroc=0.970  cur=0.075  absrel_U=0.017 (S 0.011)  fracU=0.072  167s\n"}
+,{"stream_name":"stdout","time":953.669969989,"data":"[pi3x_oiavis] scan vase_374_41862_83720  auroc=0.862  cur=0.416  absrel_U=0.032 (S 0.013)  fracU=0.020  175s\n"}
+,{"stream_name":"stdout","time":963.637810461,"data":"[pi3x_oiavis] scan vase_380_44863_89631  auroc=0.839  cur=0.645  absrel_U=0.034 (S 0.023)  fracU=0.033  185s\n"}
+,{"stream_name":"stdout","time":963.903288034,"data":"   pi3x_oiavis: 247s\n"}
+,{"stream_name":"stdout","time":963.917609656,"data":"resuming: 1296 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":974.07224507,"data":"[pi3x_oiavispatch] head from /kaggle/working/checkpoints/pi3x_oiavispatch.pt (step 1500, val-auroc 0.913)\n"}
+,{"stream_name":"stdout","time":984.382745678,"data":"[pi3x_oiavispatch] scan apple_110_13051_23361  auroc=0.610  cur=0.863  absrel_U=0.033 (S 0.025)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":994.489585675,"data":"[pi3x_oiavispatch] scan apple_189_20393_38136  auroc=0.321  cur=0.970  absrel_U=0.020 (S 0.010)  fracU=0.058  20s\n"}
+,{"stream_name":"stdout","time":1004.886855134,"data":"[pi3x_oiavispatch] scan ball_123_14363_28981  auroc=0.333  cur=0.926  absrel_U=0.034 (S 0.011)  fracU=0.044  31s\n"}
+,{"stream_name":"stdout","time":1015.390222304,"data":"[pi3x_oiavispatch] scan ball_375_42693_85518  auroc=0.430  cur=0.960  absrel_U=0.016 (S 0.011)  fracU=0.052  41s\n"}
+,{"stream_name":"stdout","time":1025.671134087,"data":"[pi3x_oiavispatch] scan bench_415_57112_110099  auroc=0.336  cur=0.869  absrel_U=0.026 (S 0.010)  fracU=0.083  52s\n"}
+,{"stream_name":"stdout","time":1035.61072311,"data":"[pi3x_oiavispatch] scan bench_415_57121_110109  auroc=0.782  cur=0.697  absrel_U=0.020 (S 0.011)  fracU=0.043  62s\n"}
+,{"stream_name":"stdout","time":1045.812303699,"data":"[pi3x_oiavispatch] scan hydrant_167_18184_34441  auroc=0.406  cur=0.895  absrel_U=0.012 (S 0.016)  fracU=0.129  72s\n"}
+,{"stream_name":"stdout","time":1055.741634966,"data":"[pi3x_oiavispatch] scan hydrant_411_56064_108483  auroc=0.419  cur=0.942  absrel_U=0.016 (S 0.019)  fracU=0.085  82s\n"}
+,{"stream_name":"stdout","time":1065.763331706,"data":"[pi3x_oiavispatch] scan mouse_107_12753_23606  auroc=0.298  cur=0.980  absrel_U=0.053 (S 0.021)  fracU=0.040  92s\n"}
+,{"stream_name":"stdout","time":1072.881301902,"data":"[pi3x_oiavispatch] scan mouse_377_43416_86289  auroc=0.269  cur=0.984  absrel_U=0.044 (S 0.014)  fracU=0.037  99s\n"}
+,{"stream_name":"stdout","time":1080.047659784,"data":"[pi3x_oiavispatch] scan teddybear_187_20215_38541  auroc=0.217  cur=0.984  absrel_U=0.026 (S 0.015)  fracU=0.032  106s\n"}
+,{"stream_name":"stdout","time":1090.275284483,"data":"[pi3x_oiavispatch] scan teddybear_34_1479_4753  auroc=0.286  cur=0.980  absrel_U=0.021 (S 0.009)  fracU=0.091  116s\n"}
+,{"stream_name":"stdout","time":1100.571105061,"data":"[pi3x_oiavispatch] scan toytrain_240_25394_51994  auroc=0.430  cur=0.911  absrel_U=0.042 (S 0.016)  fracU=0.077  126s\n"}
+,{"stream_name":"stdout","time":1110.499034707,"data":"[pi3x_oiavispatch] scan toytrain_399_51323_100753  auroc=0.627  cur=0.728  absrel_U=0.023 (S 0.017)  fracU=0.054  136s\n"}
+,{"stream_name":"stdout","time":1123.08325302,"data":"[pi3x_oiavispatch] scan toytruck_190_20494_39385  auroc=0.369  cur=0.959  absrel_U=0.035 (S 0.022)  fracU=0.095  149s\n"}
+,{"stream_name":"stdout","time":1133.32968454,"data":"[pi3x_oiavispatch] scan toytruck_346_36113_66551  auroc=0.530  cur=0.897  absrel_U=0.017 (S 0.011)  fracU=0.072  159s\n"}
+,{"stream_name":"stdout","time":1140.410780785,"data":"[pi3x_oiavispatch] scan vase_374_41862_83720  auroc=0.764  cur=0.469  absrel_U=0.032 (S 0.013)  fracU=0.020  166s\n"}
+,{"stream_name":"stdout","time":1150.333590337,"data":"[pi3x_oiavispatch] scan vase_380_44863_89631  auroc=0.274  cur=0.990  absrel_U=0.034 (S 0.023)  fracU=0.033  176s\n"}
+,{"stream_name":"stdout","time":1150.611812266,"data":"   pi3x_oiavispatch: 187s\n"}
+,{"stream_name":"stdout","time":1150.627406299,"data":"resuming: 1458 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":1160.713970036,"data":"[pi3x_oiavislin] head from /kaggle/working/checkpoints/pi3x_oiavislin.pt (step 1500, val-auroc 0.995)\n"}
+,{"stream_name":"stdout","time":1170.85374095,"data":"[pi3x_oiavislin] scan apple_110_13051_23361  auroc=0.960  cur=0.131  absrel_U=0.033 (S 0.025)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":1180.845837225,"data":"[pi3x_oiavislin] scan apple_189_20393_38136  auroc=0.994  cur=0.015  absrel_U=0.020 (S 0.010)  fracU=0.058  20s\n"}
+,{"stream_name":"stdout","time":1191.166055193,"data":"[pi3x_oiavislin] scan ball_123_14363_28981  auroc=0.976  cur=0.062  absrel_U=0.034 (S 0.011)  fracU=0.044  30s\n"}
+,{"stream_name":"stdout","time":1201.570002872,"data":"[pi3x_oiavislin] scan ball_375_42693_85518  auroc=0.999  cur=0.000  absrel_U=0.016 (S 0.011)  fracU=0.052  41s\n"}
+,{"stream_name":"stdout","time":1211.825081197,"data":"[pi3x_oiavislin] scan bench_415_57112_110099  auroc=0.833  cur=0.528  absrel_U=0.026 (S 0.010)  fracU=0.083  51s\n"}
+,{"stream_name":"stdout","time":1221.814195039,"data":"[pi3x_oiavislin] scan bench_415_57121_110109  auroc=0.940  cur=0.209  absrel_U=0.020 (S 0.011)  fracU=0.043  61s\n"}
+,{"stream_name":"stdout","time":1231.807461581,"data":"[pi3x_oiavislin] scan hydrant_167_18184_34441  auroc=0.905  cur=0.268  absrel_U=0.012 (S 0.016)  fracU=0.129  71s\n"}
+,{"stream_name":"stdout","time":1241.654712303,"data":"[pi3x_oiavislin] scan hydrant_411_56064_108483  auroc=0.926  cur=0.222  absrel_U=0.016 (S 0.019)  fracU=0.085  81s\n"}
+,{"stream_name":"stdout","time":1251.642015194,"data":"[pi3x_oiavislin] scan mouse_107_12753_23606  auroc=0.952  cur=0.125  absrel_U=0.053 (S 0.021)  fracU=0.040  91s\n"}
+,{"stream_name":"stdout","time":1258.700812882,"data":"[pi3x_oiavislin] scan mouse_377_43416_86289  auroc=0.968  cur=0.073  absrel_U=0.044 (S 0.014)  fracU=0.037  98s\n"}
+,{"stream_name":"stdout","time":1265.811427774,"data":"[pi3x_oiavislin] scan teddybear_187_20215_38541  auroc=0.963  cur=0.106  absrel_U=0.026 (S 0.015)  fracU=0.032  105s\n"}
+,{"stream_name":"stdout","time":1275.943062662,"data":"[pi3x_oiavislin] scan teddybear_34_1479_4753  auroc=0.890  cur=0.362  absrel_U=0.021 (S 0.009)  fracU=0.091  115s\n"}
+,{"stream_name":"stdout","time":1286.233896357,"data":"[pi3x_oiavislin] scan toytrain_240_25394_51994  auroc=0.967  cur=0.102  absrel_U=0.042 (S 0.016)  fracU=0.077  126s\n"}
+,{"stream_name":"stdout","time":1296.130241113,"data":"[pi3x_oiavislin] scan toytrain_399_51323_100753  auroc=0.966  cur=0.095  absrel_U=0.023 (S 0.017)  fracU=0.054  135s\n"}
+,{"stream_name":"stdout","time":1308.71031367,"data":"[pi3x_oiavislin] scan toytruck_190_20494_39385  auroc=0.831  cur=0.411  absrel_U=0.035 (S 0.022)  fracU=0.095  148s\n"}
+,{"stream_name":"stdout","time":1318.900439046,"data":"[pi3x_oiavislin] scan toytruck_346_36113_66551  auroc=0.970  cur=0.074  absrel_U=0.017 (S 0.011)  fracU=0.072  158s\n"}
+,{"stream_name":"stdout","time":1325.972515803,"data":"[pi3x_oiavislin] scan vase_374_41862_83720  auroc=0.868  cur=0.389  absrel_U=0.032 (S 0.013)  fracU=0.020  165s\n"}
+,{"stream_name":"stdout","time":1335.875000893,"data":"[pi3x_oiavislin] scan vase_380_44863_89631  auroc=0.855  cur=0.485  absrel_U=0.034 (S 0.023)  fracU=0.033  175s\n"}
+,{"stream_name":"stdout","time":1336.165835317,"data":"   pi3x_oiavislin: 186s\n"}
+,{"stream_name":"stdout","time":1342.279505252,"data":"[exit 0, 1341s]\n"}
+,{"stream_name":"stdout","time":1342.279536497,"data":"\n"}
+,{"stream_name":"stdout","time":1342.279543721,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1342.279552448,"data":"== done  [1341s]\n"}
+,{"stream_name":"stdout","time":1342.279555811,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1342.279883434,"data":"   5,785,045  /kaggle/working/checkpoints/vggt_oiavispatch.pt\n"}
+,{"stream_name":"stdout","time":1342.279894072,"data":"   6,841,733  /kaggle/working/checkpoints/pi3x_oiavis.pt\n"}
+,{"stream_name":"stdout","time":1342.279899207,"data":"   5,785,045  /kaggle/working/checkpoints/pi3x_oiavispatch.pt\n"}
+,{"stream_name":"stdout","time":1342.279904148,"data":"   8,467,285  /kaggle/working/checkpoints/vggt_oiavislin.pt\n"}
+,{"stream_name":"stdout","time":1342.279908958,"data":"  13,189,265  /kaggle/working/checkpoints/vggt_oiavis.pt\n"}
+,{"stream_name":"stdout","time":1342.279913234,"data":"   2,119,849  /kaggle/working/checkpoints/pi3x_oiavislin.pt\n"}
+,{"stream_name":"stdout","time":1342.280041629,"data":"       4,813  /kaggle/working/results/P4-vis-co3d/P4-vis-co3d_summary.csv\n"}
+,{"stream_name":"stdout","time":1342.280052599,"data":"     303,465  /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":1342.280070763,"data":"       1,023  /kaggle/working/results/P4-vis-co3d/P4-vis-co3d_cfg.json\n"}
+,{"stream_name":"stdout","time":1342.280074379,"data":"         549  /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.log\n"}
+,{"stream_name":"stdout","time":1342.280103898,"data":"total 1341s\n"}
+,{"stream_name":"stderr","time":1344.506823462,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1344.506850879,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1344.825833758,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1344.825856877,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1345.65120207,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1346.691464505,"data":"[NbConvertApp] Writing 296604 bytes to __results__.html\n"}
+]

@@ -1,0 +1,75 @@
+10:07:41 == P3-gs-co3d: models ['anysplat', 'anysplat_render'], cfg {"seeds": [0, 1, 2, 3, 4], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.1, 0.18], "dataset": "co3d"}
+10:11:57 !! anysplat failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 808, in run_benchmark
+    d, c = _predict(model, imgs_m, out_hw, extra, model_hw)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 783, in _predict
+    return model.predict(imgs, model_hw, out_hw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 365, in predict
+    d, c = self._forward(x, self.dtype)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/anysplat_wrap.py", line 203, in _forward
+    out = self._encode(x, dtype)
+  File "/home/ubuntu/hallu/scripts/anysplat_wrap.py", line 185, in _encode
+    out = self.model.encoder(x[None], global_step=0)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/anysplat.py", line 424, in forward
+    depth_map, depth_conf = self.depth_head(
+                            ~~~~~~~~~~~~~~~^
+        aggregated_tokens_list,
+        ^^^^^^^^^^^^^^^^^^^^^^^
+        images=image,
+        ^^^^^^^^^^^^^
+        patch_start_idx=patch_start_idx,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/vggt/heads/dpt_head.py", line 173, in forward
+    chunk_preds, chunk_conf = self._forward_impl(
+                              ~~~~~~~~~~~~~~~~~~^
+        aggregated_tokens_list, images, patch_start_idx, frames_start_idx, frames_end_idx
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/vggt/heads/dpt_head.py", line 245, in _forward_impl
+    out = self.scratch_forward(out)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/vggt/heads/dpt_head.py", line 305, in scratch_forward
+    out = self.scratch.refinenet1(out, layer_1_rn)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/ext/AnySplat/src/model/encoder/vggt/heads/dpt_head.py", line 472, in forward
+    output = self.out_conv(output)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/conv.py", line 565, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/conv.py", line 560, in _conv_forward
+    return F.conv2d(
+           ~~~~~~~~^
+        input, weight, bias, self.stride, self.padding, self.dilation, self.groups
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 390.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 321.69 MiB is free. Including non-PyTorch memory, this process has 4.82 GiB memory in use. Process 17311 has 4.57 GiB memory in use. Process 17298 has 11.75 GiB memory in use. Process 17827 has 568.00 MiB memory in use. Of the allocated memory 4.39 GiB is allocated by PyTorch, and 192.11 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+

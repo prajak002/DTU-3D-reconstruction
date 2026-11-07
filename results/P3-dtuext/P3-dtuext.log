@@ -1,0 +1,291 @@
+10:01:39 == P3-dtuext: models ['vggt', 'pi3x', 'pi3', 'da3', 'mapanything', 'vggt_oia', 'vggt_oiapatch'], cfg {"seeds": [0], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.18]}
+10:02:39 !! vggt failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 730, in make_model
+    return MODEL_REGISTRY[name]()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 384, in __init__
+    self.model = VGGT.from_pretrained("facebook/VGGT-1B").to(device).eval()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  [Previous line repeated 2 more times]
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ~~~~^
+        device,
+        ^^^^^^^
+        dtype if t.is_floating_point() or t.is_complex() else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        non_blocking,
+        ^^^^^^^^^^^^^
+    )
+    ^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 7.69 MiB is free. Process 14885 has 5.62 GiB memory in use. Including non-PyTorch memory, this process has 3.10 GiB memory in use. Process 17298 has 10.39 GiB memory in use. Process 17330 has 2.89 GiB memory in use. Of the allocated memory 2.90 GiB is allocated by PyTorch, and 12.62 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+10:05:31 !! pi3x failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 730, in make_model
+    return MODEL_REGISTRY[name]()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 437, in __init__
+    self.model = Pi3X.from_pretrained("yyfz233/Pi3X").to(device).eval()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  [Previous line repeated 2 more times]
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ~~~~^
+        device,
+        ^^^^^^^
+        dtype if t.is_floating_point() or t.is_complex() else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        non_blocking,
+        ^^^^^^^^^^^^^
+    )
+    ^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 5.69 MiB is free. Process 14885 has 5.10 GiB memory in use. Including non-PyTorch memory, this process has 4.02 GiB memory in use. Process 17298 has 11.75 GiB memory in use. Process 17347 has 1.15 GiB memory in use. Of the allocated memory 3.82 GiB is allocated by PyTorch, and 9.47 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+10:08:02 !! pi3 failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 803, in run_benchmark
+    ctrl_d, ctrl_c = _predict(model, data["imgs"], out_hw, extra, model_hw)
+                     ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 783, in _predict
+    return model.predict(imgs, model_hw, out_hw)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 365, in predict
+    d, c = self._forward(x, self.dtype)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 463, in _forward
+    out = self.model(x[None])
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/Pi3/pi3/models/pi3.py", line 181, in forward
+    hidden = self.encoder(imgs, is_training=True)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/Pi3/pi3/models/dinov2/models/vision_transformer.py", line 333, in forward
+    ret = self.forward_features(*args, **kwargs)
+  File "/home/ubuntu/Pi3/pi3/models/dinov2/models/vision_transformer.py", line 269, in forward_features
+    x = blk(x)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/Pi3/pi3/models/dinov2/layers/block.py", line 253, in forward
+    return super().forward(x_or_x_list)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/ubuntu/Pi3/pi3/models/dinov2/layers/block.py", line 112, in forward
+    x = x + ffn_residual_func(x)
+            ~~~~~~~~~~~~~~~~~^^^
+  File "/home/ubuntu/Pi3/pi3/models/dinov2/layers/block.py", line 93, in ffn_residual_func
+    return self.ls2(self.mlp(self.norm2(x)))
+                    ~~~~~~~~^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ubuntu/Pi3/pi3/models/dinov2/layers/mlp.py", line 36, in forward
+    x = self.act(x)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1778, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1789, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/activation.py", line 816, in forward
+    return F.gelu(input, approximate=self.approximate)
+           ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 88.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 67.69 MiB is free. Process 14885 has 5.47 GiB memory in use. Including non-PyTorch memory, this process has 4.17 GiB memory in use. Process 17298 has 11.75 GiB memory in use. Process 17632 has 576.00 MiB memory in use. Of the allocated memory 3.90 GiB is allocated by PyTorch, and 35.93 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+10:08:02 !! da3 failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 730, in make_model
+    return MODEL_REGISTRY[name]()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 476, in __init__
+    from depth_anything_3.api import DepthAnything3
+ModuleNotFoundError: No module named 'depth_anything_3'
+
+10:08:02 !! mapanything failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 730, in make_model
+    return MODEL_REGISTRY[name]()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 509, in __init__
+    from mapanything.models import MapAnything
+ModuleNotFoundError: No module named 'mapanything'
+
+10:11:46 !! vggt_oia failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 727, in make_model
+    w = make_oia(name, MODEL_REGISTRY)
+  File "/home/ubuntu/hallu/scripts/oia_head.py", line 537, in make_oia
+    return OIAWrap(registry[m.group(1)](), m.group(2))
+                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 384, in __init__
+    self.model = VGGT.from_pretrained("facebook/VGGT-1B").to(device).eval()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ~~~~^
+        device,
+        ^^^^^^^
+        dtype if t.is_floating_point() or t.is_complex() else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        non_blocking,
+        ^^^^^^^^^^^^^
+    )
+    ^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 9.69 MiB is free. Process 14885 has 5.14 GiB memory in use. Including non-PyTorch memory, this process has 4.57 GiB memory in use. Process 17298 has 11.75 GiB memory in use. Process 17827 has 560.00 MiB memory in use. Of the allocated memory 4.34 GiB is allocated by PyTorch, and 8.61 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+10:12:05 !! vggt_oiapatch failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 727, in make_model
+    w = make_oia(name, MODEL_REGISTRY)
+  File "/home/ubuntu/hallu/scripts/oia_head.py", line 537, in make_oia
+    return OIAWrap(registry[m.group(1)](), m.group(2))
+                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 384, in __init__
+    self.model = VGGT.from_pretrained("facebook/VGGT-1B").to(device).eval()
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1383, in to
+    return self._apply(convert)
+           ~~~~~~~~~~~^^^^^^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 933, in _apply
+    module._apply(fn)
+    ~~~~~~~~~~~~~^^^^
+  [Previous line repeated 3 more times]
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 964, in _apply
+    param_applied = fn(param)
+  File "/opt/pytorch/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1369, in convert
+    return t.to(
+           ~~~~^
+        device,
+        ^^^^^^^
+        dtype if t.is_floating_point() or t.is_complex() else None,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        non_blocking,
+        ^^^^^^^^^^^^^
+    )
+    ^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 22.04 GiB of which 15.69 MiB is free. Process 14885 has 4.82 GiB memory in use. Including non-PyTorch memory, this process has 4.87 GiB memory in use. Process 17298 has 11.75 GiB memory in use. Process 17827 has 574.00 MiB memory in use. Of the allocated memory 4.64 GiB is allocated by PyTorch, and 285.00 KiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+
+10:18:07 == P3-dtuext: models ['vggt', 'pi3x', 'pi3', 'da3', 'mapanything', 'vggt_oia', 'vggt_oiapatch'], cfg {"seeds": [0], "fills": ["gray", "blur", "noise"], "radius_fracs": [0.18]}
+10:23:23    vggt: 317s
+10:31:11    pi3x: 467s
+10:55:01    pi3: 1430s
+10:55:01 !! da3 failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 730, in make_model
+    return MODEL_REGISTRY[name]()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 476, in __init__
+    from depth_anything_3.api import DepthAnything3
+ModuleNotFoundError: No module named 'depth_anything_3'
+
+10:55:01 !! mapanything failed:
+Traceback (most recent call last):
+  File "/home/ubuntu/hallu/scripts/run_h100.py", line 88, in run
+    H.run_benchmark(root, [m], cfg=cfg, out_csv=csv, save_examples_dir=os.path.join(d, f"ex_{run_name}"))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 793, in run_benchmark
+    model = model_factory(mname)
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 730, in make_model
+    return MODEL_REGISTRY[name]()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/ubuntu/hallu/scripts/hallu3d.py", line 509, in __init__
+    from mapanything.models import MapAnything
+ModuleNotFoundError: No module named 'mapanything'
+

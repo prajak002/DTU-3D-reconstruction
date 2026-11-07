@@ -255,13 +255,17 @@ VIS_CFG = {"vis_views": [3, 5, 10], "seeds": [0, 1, 2]}
 
 
 def _vis_models(args, extra_native=()):
-    """Every detector on the vis protocol: native confidence, reprojection, the fill-trained head and its control
-    (do they transfer?), the visibility-trained head, its per-image control and the linear probe."""
+    """Every detector on the vis protocol: native confidence, reprojection, the two hand-crafted controls (image
+    border, depth edges), the fill-trained head and its control (do they transfer?), the visibility-trained head,
+    its per-image control and the linear probe, the label-free head and the adapted heads."""
     ms = []
     for b in args.bases:
-        ms += [b] + ([f"{b}_reproj"] if b in ("vggt", "pi3x", "pi3") else [])
+        ms += [b] + ([f"{b}_reproj"] if b in ("vggt", "pi3x", "pi3") else []) + [f"{b}_{k}" for k in HEURISTICS]
         ms += [f"{b}_{v}" for v in VIS_DETECTORS if _have(args, f"{b}_{v}")]
     return ms + [m for m in extra_native if m not in ms]
+
+
+HEURISTICS = ("border", "dedge")      # hallu3d.HeuristicWrap: training-free controls on the base model's own output
 
 
 # every head variant scored on the vis protocol when its checkpoint is complete: the fill-trained head and control
@@ -272,19 +276,25 @@ VIS_DETECTORS = ("oia", "oiapatch", "oiavis", "oiavispatch", "oiavislin", "oiavi
                  "oiavislin4", "oiavislin11", "oiavislin17", "oiavislin23", "oiavispatchlin")
 
 
-def _train_heads(args, base, variants, marker, extra_seeds=(), extra_of=None):
+def _train_heads(args, base, variants, marker, extra_seeds=(), extra_of=None, root=None, scans=None, tag=None):
     """One joint training run (one subprocess) of several heads with the same label source; `marker` is the variant
-    whose checkpoint decides skip / resume."""
-    mp = os.path.join(args.ckpt, f"{base}_{marker}.pt")
+    whose checkpoint decides skip / resume. root / scans / tag: train on another root (a CO3D-format folder) on the
+    given scenes, saving <base>_<variant>_x<tag>.pt (label-free adaptation, stages adapt_co3d / adapt_eth3d)."""
+    suffix = f"_x{tag}" if tag else ""
+    mp = os.path.join(args.ckpt, f"{base}_{marker}{suffix}.pt")
     if os.path.exists(mp) and not args.retrain:
         import torch
         st = int(torch.load(mp, map_location="cpu", weights_only=False).get("step", 0))
         if st >= args.steps:
-            print(f"[train] {base}_{marker}.pt exists at step {st}, skipping {variants}"); return
-        print(f"[train] {base}_{marker}.pt exists at step {st} < {args.steps}: resuming {variants}")
+            print(f"[train] {base}_{marker}{suffix}.pt exists at step {st}, skipping {variants}"); return
+        print(f"[train] {base}_{marker}{suffix}.pt exists at step {st} < {args.steps}: resuming {variants}")
     cmd = [sys.executable, os.path.join(ROOT, "scripts", "oia_head.py"), "train", "--base", base,
-           "--variant", ",".join(variants), "--dtu", args.dtu_root, "--out", args.ckpt,
+           "--variant", ",".join(variants), "--dtu", root or args.dtu_root, "--out", args.ckpt,
            "--steps", str(args.steps), "--seed", "0"]
+    if scans:
+        cmd += ["--scans", ",".join(str(s) for s in scans)]
+    if tag:
+        cmd += ["--tag", tag]
     if extra_seeds:
         cmd += ["--extra-seeds", ",".join(str(x) for x in extra_seeds)]
         if extra_of:
@@ -361,16 +371,108 @@ def stage_vis(args):
 
 def stage_vis_co3d(args):
     _ckpt_env(args)
-    _run_vis(args, "P4-vis-co3d", _vis_models(args), co3d_cfg(args, VIS_CFG), args.co3d_root)
+    _run_vis(args, "P4-vis-co3d", _vis_models(args, [b for b in args.ext_bases if b not in args.bases]),
+             co3d_cfg(args, VIS_CFG), args.co3d_root)
+
+
+def _eth3d_cfg(args, extra):
+    scenes = [s for s in ETH3D_SCENES if s in co3d.list_co3d_scenes(args.eth3d_root)]
+    return {**extra, "dataset": "co3d", "scans": scenes, "view_mode": "adjacent"}
 
 
 def stage_vis_eth3d(args):
     _ckpt_env(args)
     if not args.eth3d_root:
         print("[skip] vis_eth3d: no --eth3d root"); return
-    scenes = [s for s in ETH3D_SCENES if s in co3d.list_co3d_scenes(args.eth3d_root)]
-    _run_vis(args, "P4-vis-eth3d", _vis_models(args), {**VIS_CFG, "dataset": "co3d", "scans": scenes,
-                                                        "view_mode": "adjacent"}, args.eth3d_root)
+    _run_vis(args, "P4-vis-eth3d", _vis_models(args, [b for b in args.ext_bases if b not in args.bases]),
+             _eth3d_cfg(args, VIS_CFG), args.eth3d_root)
+
+
+# ----------------------------------------------------------------------------- P6: what a reviewer would ask next
+def _co3d_folds(scenes):
+    """Two folds of the 18 CO3Dv2 scenes by sequence: A = the first sequence of every category, B = the second, so a
+    head trained on A has never seen a frame of any B scene (same categories, different objects and captures)."""
+    by_cat = {}
+    for s in sorted(scenes):
+        by_cat.setdefault(s.split("_")[0], []).append(s)
+    folds = {"co3dA": [], "co3dB": []}
+    for cat, seqs in by_cat.items():
+        folds["co3dA"].append(seqs[0])
+        folds["co3dB"] += seqs[1:2]
+    return folds
+
+
+ADAPT_VARIANTS = ["oiavisself", "oiavisselfpatch"]   # the label-free head and its per-image control
+
+
+def stage_adapt_co3d(args):
+    """Label-free adaptation to phone captures (P6-adapt-co3d). Per backbone and fold, the label-free visibility head
+    and its per-image control are trained on the 9 scenes of one CO3Dv2 fold with labels from the backbone's OWN
+    prediction (no ground truth, no DTU), then scored on the 9 scenes of the other fold on the vis protocol. The
+    rows carry the fold in the model name (<base>_oiavisself_xco3dA was trained on fold A and is scored on fold B);
+    stats pools the two as <base>_oiavisself_xco3d: every scene scored by a head that never saw it."""
+    _ckpt_env(args)
+    folds = _co3d_folds(co3d.list_co3d_scenes(args.co3d_root))
+    for base in args.bases:
+        for tag, train_scenes in folds.items():
+            _train_heads(args, base, ADAPT_VARIANTS, "oiavisself", root=args.co3d_root, scans=train_scenes, tag=tag)
+    for tag, test_tag in (("co3dA", "co3dB"), ("co3dB", "co3dA")):
+        models = [f"{b}_{v}_x{tag}" for b in args.bases for v in ADAPT_VARIANTS if _have(args, f"{b}_{v}_x{tag}")]
+        if models:
+            _run_vis(args, "P6-adapt-co3d", models, {**co3d_cfg(args, VIS_CFG), "scans": folds[test_tag]}, args.co3d_root)
+
+
+ETH3D_ADAPT_SCENES = ["delivery_area", "office", "pipes", "playground"]   # the four scenes outside the benchmark set
+
+
+def stage_adapt_eth3d(args):
+    """Label-free adaptation to building-scale scenes (P6-adapt-eth3d): heads trained, without ground truth, on the
+    four ETH3D scenes that are not in the benchmark set (they failed the consistency gate as evaluation scenes but
+    serve as unlabelled captures), scored on the nine benchmark scenes."""
+    _ckpt_env(args)
+    if not args.eth3d_root:
+        print("[skip] adapt_eth3d: no --eth3d root"); return
+    train_scenes = [s for s in ETH3D_ADAPT_SCENES if s in co3d.list_co3d_scenes(args.eth3d_root)]
+    if not train_scenes:
+        print("[skip] adapt_eth3d: none of the adaptation scenes is preprocessed"); return
+    for base in args.bases:
+        _train_heads(args, base, ADAPT_VARIANTS, "oiavisself", root=args.eth3d_root, scans=train_scenes, tag="eth3d")
+    models = [f"{b}_{v}_xeth3d" for b in args.bases for v in ADAPT_VARIANTS if _have(args, f"{b}_{v}_xeth3d")]
+    if models:
+        _run_vis(args, "P6-adapt-eth3d", models, _eth3d_cfg(args, VIS_CFG), args.eth3d_root)
+
+
+MAIN_DETECTORS = ("reproj", "border", "dedge", "oiavis", "oiavispatch", "oiavisself", "oiavisselfpatch")
+
+
+def _main_models(args):
+    ms = []
+    for b in args.bases:
+        ms += [b] + [f"{b}_{v}" for v in MAIN_DETECTORS if v in ("reproj", "border", "dedge") or _have(args, f"{b}_{v}")]
+    return ms
+
+
+def stage_vis_ext(args):
+    """View counts outside the training range (P4-vis-ext): 2 and 20 clean DTU views (the heads were trained on 3,
+    5 and 10). Native confidence, reprojection, the hand-crafted controls, the visibility heads and the controls."""
+    _ckpt_env(args)
+    _run_vis(args, "P4-vis-ext", _main_models(args), {"vis_views": [2, 20], "seeds": [0, 1, 2]}, args.dtu_root)
+
+
+def stage_dump(args):
+    """Per-pixel scores of the main detectors on the vis protocol (P6-dump): DTU, CO3Dv2 and ETH3D, written under
+    results/P6-dump/<dataset>/ for scripts/analyze_dumps.py (risk-coverage curves, calibration, precision at the
+    operating point). The rows duplicate P4-vis* and are kept apart."""
+    _ckpt_env(args)
+    models = _main_models(args)
+    jobs = [("dtu", VIS_CFG, args.dtu_root)]
+    if args.co3d_root:
+        jobs.append(("co3d", co3d_cfg(args, VIS_CFG), args.co3d_root))
+    if args.eth3d_root:
+        jobs.append(("eth3d", _eth3d_cfg(args, VIS_CFG), args.eth3d_root))
+    for name, cfg, root in jobs:
+        dd = os.path.join(args.out, "P6-dump", name)
+        _run_vis(args, f"P6-dump-{name}", models, {**cfg, "dump_dir": dd}, root)
 
 
 def stage_gs(args):
@@ -565,11 +667,20 @@ def stage_stats(args):
             lines.append(f"| {m} | {f('auroc')} | {f('cur')} | {f('cur_err')} |")
     # P4-vis: natural occlusion, no patch. The visibility-trained head against its per-image control and native
     # confidence, per number of input views; the fill-trained head shows whether patch detection transfers.
-    for run_name, title in [("P4-vis", "DTU"), ("P4-vis-co3d", "CO3Dv2"), ("P4-vis-eth3d", "ETH3D")]:
+    for run_name, title in [("P4-vis", "DTU"), ("P4-vis-co3d", "CO3Dv2"), ("P4-vis-eth3d", "ETH3D"),
+                            ("P4-vis-ext", "DTU, 2 and 20 views (outside the training range)"),
+                            ("P6-adapt-co3d", "CO3Dv2, heads adapted label-free on the other fold (pooled with P4-vis-co3d)"),
+                            ("P6-adapt-eth3d", "ETH3D, heads adapted label-free on the four non-benchmark scenes (pooled with P4-vis-eth3d)")]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         if not os.path.exists(p):
             continue
         dv = pd.read_csv(p)
+        if run_name.startswith("P6-adapt"):       # pool the two folds under one name and add the reference detectors
+            dv["model"] = dv.model.str.replace(r"_xco3d[AB]$", "_xco3d", regex=True)
+            ref = os.path.join(args.out, "P4-vis-co3d" if "co3d" in run_name else "P4-vis-eth3d",
+                               "P4-vis-co3d.csv" if "co3d" in run_name else "P4-vis-eth3d.csv")
+            if os.path.exists(ref):
+                dv = pd.concat([dv, pd.read_csv(ref)], ignore_index=True)
         if "skipped" in dv:
             dv = dv[~dv.skipped.astype(bool)]
         lines += ["", f"## True-visibility protocol, {title} (clean views; U = pixels no other view sees, S = seen by two or more)", "",
@@ -585,8 +696,13 @@ def stage_stats(args):
             for base in args.bases:
                 head, ctrl, fill_head = f"{base}_oiavis", f"{base}_oiavispatch", f"{base}_oia"
                 sh, sctrl, rp = f"{base}_oiavisself", f"{base}_oiavisselfpatch", f"{base}_reproj"
+                bd, de = f"{base}_border", f"{base}_dedge"
+                ad = [(f"{sh}_x{t}", f"{sctrl}_x{t}") for t in ("co3d", "eth3d")]            # adapted head vs its control
+                ad += [(f"{sh}_x{t}", m) for t in ("co3d", "eth3d") for m in (sh, head, base, rp)]  # vs DTU-trained, native, reproj
                 for a, b in ((head, ctrl), (head, base), (head, fill_head), (fill_head, base), (head, rp),
-                             (sh, sctrl), (sh, base), (sh, rp), (sh, head), (head, f"{head}_s1"), (head, f"{head}_s2")):
+                             (head, bd), (head, de), (rp, bd), (rp, de),
+                             (sh, sctrl), (sh, base), (sh, rp), (sh, head), (sh, bd), (sh, de),
+                             (head, f"{head}_s1"), (head, f"{head}_s2"), *ad):
                     if a in dt.model.values and b in dt.model.values:
                         da = H.paired_permutation(dt, "auroc", a, b); dc = H.paired_permutation(dt, "cur", a, b)
                         lines.append(f"| {fill[3:]} | {a} vs {b} | | dAUROC {da[0]:+.3f} (p {da[1]:.4g}) | dCUR {dc[0]:+.3f} (p {dc[1]:.4g}) | | | |")
@@ -605,7 +721,8 @@ STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": 
           "baselines": stage_baselines, "pvfull": stage_pvfull, "ablate": stage_ablate, "dtuext": stage_dtuext,
           "eth3d": stage_eth3d, "gs": stage_gs, "stats": stage_stats,
           "trainvis": stage_trainvis, "vis": stage_vis, "vis_co3d": stage_vis_co3d, "vis_eth3d": stage_vis_eth3d,
-          "trainvisself": stage_trainvisself, "trainvisprobe": stage_trainvisprobe}
+          "trainvisself": stage_trainvisself, "trainvisprobe": stage_trainvisprobe,
+          "adapt_co3d": stage_adapt_co3d, "adapt_eth3d": stage_adapt_eth3d, "vis_ext": stage_vis_ext, "dump": stage_dump}
 
 
 def main():
@@ -634,8 +751,8 @@ def main():
     a.dtu_root = None
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
-    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d") else None
-    a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d")) else None
+    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump") else None
+    a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d", "adapt_eth3d", "dump")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]
     for s in stages:
         if s == "co3d" and not a.co3d_root:

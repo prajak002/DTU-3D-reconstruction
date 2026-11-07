@@ -1,5 +1,11 @@
-14:42:54 == P4-vis-co3d: models ['vggt', 'vggt_reproj', 'pi3x', 'pi3x_reproj'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "dataset": "co3d"}
-14:48:47    vggt: 353s
-14:52:46    vggt_reproj: 239s
-14:56:47    pi3x: 241s
-15:00:19    pi3x_reproj: 212s
+16:04:09 == P4-vis-co3d: models ['vggt', 'vggt_reproj', 'vggt_oiavis', 'vggt_oiavispatch', 'vggt_oiavislin', 'pi3x', 'pi3x_reproj', 'pi3x_oiavis', 'pi3x_oiavispatch', 'pi3x_oiavislin'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "dataset": "co3d"}
+16:04:10    vggt: 1s
+16:04:10    vggt_reproj: 0s
+16:08:52    vggt_oiavis: 282s
+16:12:06    vggt_oiavispatch: 194s
+16:15:04    vggt_oiavislin: 178s
+16:15:04    pi3x: 0s
+16:15:04    pi3x_reproj: 0s
+16:19:11    pi3x_oiavis: 247s
+16:22:17    pi3x_oiavispatch: 187s
+16:25:23    pi3x_oiavislin: 186s

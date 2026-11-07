@@ -181,6 +181,71 @@ checks.update({
     "run_vis writes one row per (model, views) and resumes": len(dv) == 4 and dv.auroc.notna().all(),
     "make_model routes <base>_oiavispatch to the per-image features": isinstance(mv, O.OIAWrap) and mv.feats == "patch",
 })
+# ---------------------------------------------------------------- P6: hand-crafted controls, per-pixel dumps,
+# label-free adaptation on a CO3D-format root (the same synthetic scan written as one scene with meta.npz)
+import cv2
+
+
+def _fake_predict(self, imgs, model_hw, out_hw):
+    x = self._prep(imgs, model_hw)
+    d, c, _, _, _ = fake_forward_feats(self, x, None, "patch")
+    d = torch.nn.functional.interpolate(d[:, None], size=tuple(out_hw), mode="area")[:, 0]
+    return d.numpy().astype(np.float32), np.ones(d.shape, np.float32)
+
+
+FakeWrap.predict = _fake_predict
+os.environ["OIA_CKPT_DIR"] = os.path.join(WORK, "ckpt")
+for n in (3, 5):
+    GT_BY_N[n] = H.load_scan(root, 3, H.vis_views(n, 0))
+dump = os.path.join(WORK, "dump")
+hcsv = os.path.join(WORK, "heur.csv")
+H.run_vis(root, ["fake_border", "fake_dedge", "fake_oiavis"], {"scans": [3], "vis_views": [3, 5], "seeds": [0],
+                                                              "model_hw": MODEL_HW, "dump_dir": dump}, out_csv=hcsv)
+dh = pd.read_csv(hcsv)
+print(dh[["model", "fill", "auroc", "cur"]].to_string())
+dumped = sorted(os.listdir(dump))
+lab_files = sorted(os.listdir(os.path.join(dump, "labels")))
+rec = np.load(os.path.join(dump, "fake_oiavis", lab_files[0]))
+# a CO3D-format root from the synthetic scan: one scene, frames = the 49 DTU views (co3d.py layout)
+co3d_root = os.path.join(WORK, "fake_co3d")
+sc_dir = os.path.join(co3d_root, "scene_a", "images")
+os.makedirs(sc_dir, exist_ok=True)
+full = H.load_scan(root, 3, list(range(49)))
+Hh, Ww = full["imgs"].shape[1:3]
+div = 2
+deps = np.stack([cv2.resize(d, (Ww // div, Hh // div), interpolation=cv2.INTER_NEAREST) for d in full["depths"]])
+Kd = full["K_img"].copy(); Kd[:, :2] /= div
+for i in range(49):
+    cv2.imwrite(os.path.join(sc_dir, f"{i:06d}.jpg"), cv2.cvtColor((full["imgs"][i] * 255).astype(np.uint8), cv2.COLOR_RGB2BGR))
+np.savez_compressed(os.path.join(co3d_root, "scene_a", "meta.npz"), depth=deps.astype(np.float32), fg=deps > 0,
+                    K_img=full["K_img"], K_dep=Kd, E=full["E"], frame_numbers=np.arange(49),
+                    img_hw=np.array((Hh, Ww)), model_hw=np.array(MODEL_HW), depth_div=div)
+GT_BY_N.clear()
+import co3d as CO
+GT["depths"] = deps                   # the fake backbone "predicts" the scene's depth at whatever view count
+_orig_load = CO.load_co3d_scene
+def _spy_load(r, s, v):
+    d = _orig_load(r, s, v); GT_BY_N[len(v)] = d; return d
+CO.load_co3d_scene = _spy_load
+cks_ad = O.train_multi("fake", co3d_root, [("oiavisself", 0, os.path.join(WORK, "ckpt", "fake_oiavisself_xtest.pt")),
+                                           ("oiavisselfpatch", 0, os.path.join(WORK, "ckpt", "fake_oiavisselfpatch_xtest.pt"))],
+                       steps=4, device="cpu", val_scans=[], val_every=2)
+ck_ad = torch.load(cks_ad[0], map_location="cpu", weights_only=False)
+m_ad = O.make_oia("fake_oiavisself_xtest")
+acsv = os.path.join(WORK, "adapt.csv")
+H.run_vis(co3d_root, ["fake_oiavisself_xtest"], {"dataset": "co3d", "scans": ["scene_a"], "vis_views": [3], "seeds": [0],
+                                                 "model_hw": MODEL_HW}, out_csv=acsv)
+da = pd.read_csv(acsv)
+checks.update({
+    "make_model routes <base>_border / _dedge to HeuristicWrap": set(["fake_border", "fake_dedge"]) <= set(dh.model)
+        and dh.auroc.notna().all(),
+    "run_vis dumps labels once and conf/depth per detector": set(dumped) >= {"labels", "fake_border", "fake_dedge", "fake_oiavis"}
+        and len(lab_files) == 2 and set(rec.files) == {"conf", "depth"},
+    "visself heads train on a CO3D-format root with a tag": os.path.exists(cks_ad[0]) and ck_ad["train_scans"] == ["scene_a"]
+        and ck_ad["labels"] == "visself",
+    "make_model routes the _x<tag> head": isinstance(m_ad, O.OIAWrap) and m_ad.name == "fake_oiavisself_xtest",
+    "adapted head scored on the CO3D-format scene": len(da) == 1 and bool(da.auroc.notna().all()),
+})
 failed = [k for k, ok in checks.items() if not ok]
 print("checks:", "all passed" if not failed else "FAILED " + ", ".join(failed))
 print("scratch dir:", WORK)

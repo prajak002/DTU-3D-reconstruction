@@ -1,0 +1,53 @@
+{
+  "scans": [
+    1,
+    4,
+    9,
+    10,
+    11,
+    12,
+    13,
+    15,
+    23,
+    24,
+    29,
+    32,
+    33,
+    34,
+    48,
+    49,
+    62,
+    75,
+    77,
+    110,
+    114,
+    118
+  ],
+  "n_views": 10,
+  "light": 3,
+  "seeds": [
+    0
+  ],
+  "radius_fracs": [
+    0.18
+  ],
+  "fills": [
+    "gray",
+    "blur",
+    "noise"
+  ],
+  "model_hw": [
+    420,
+    518
+  ],
+  "dilate_px": 6,
+  "min_U_frac": 0.02,
+  "max_U_frac": 0.35,
+  "max_tries": 50,
+  "tau_keep": 0.9,
+  "err_thresh": 0.1,
+  "view_mode": "spread",
+  "distractor": false,
+  "distractor_view": 0,
+  "dataset": "dtu"
+}

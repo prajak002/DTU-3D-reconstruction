@@ -1,0 +1,1266 @@
+[{"stream_name":"stdout","time":3.713967231,"data":"restored checkpoints from /kaggle/input/datasets/popsensharma/hallu3d-p4-vis-heads\n"}
+,{"stream_name":"stdout","time":4.720448441,"data":"restored results from /kaggle/input/datasets/popsensharma/hallu3d-p4-vis-heads\n"}
+,{"stream_name":"stdout","time":4.855953362,"data":"inputs: {'datasets': ['popsensharma', 'tobyzhou']}\n"}
+,{"stream_name":"stdout","time":4.855995908,"data":"vis heads restored: ['vggt_oiavis.pt', 'vggt_oiavispatch.pt', 'vggt_oiavislin.pt']\n"}
+,{"stream_name":"stdout","time":4.856693473,"data":"\n"}
+,{"stream_name":"stdout","time":4.8567051580000005,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":4.856709066,"data":"== clone  [4s]\n"}
+,{"stream_name":"stdout","time":4.856712487,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":23.994247104,"data":"commit c7e6919\n"}
+,{"stream_name":"stdout","time":23.994274277,"data":"\n"}
+,{"stream_name":"stdout","time":23.994280663,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":23.994284917,"data":"== install backbones (kaggle_prelude.py)  [23s]\n"}
+,{"stream_name":"stdout","time":23.994289006,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":37.617953234,"data":"\n"}
+,{"stream_name":"stdout","time":37.617994354,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":37.618000669,"data":"== stage trainvisself  [37s]\n"}
+,{"stream_name":"stdout","time":37.618005025,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":37.618009444,"data":"\n"}
+,{"stream_name":"stdout","time":37.618013487,"data":"$ /usr/bin/python3 scripts/run_h100.py trainvisself --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt --steps 1500 --skip-gt --variants oia,oialin,oiapatch --ext-bases vggt,pi3x\n"}
+,{"stream_name":"stdout","time":57.508825202,"data":"\n"}
+,{"stream_name":"stdout","time":57.508856814,"data":"##### stage trainvisself 2026-11-06 16:55:48\n"}
+,{"stream_name":"stdout","time":57.508864192,"data":"[train] /usr/bin/python3 /kaggle/tmp/repo/scripts/oia_head.py train --base vggt --variant oiavisself,oiavisselfpatch,oiavisselflin --dtu /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu --out /kaggle/working/checkpoints --steps 1500 --seed 0\n"}
+,{"stream_name":"stderr","time":76.591029759,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":107.767422416,"data":"[oia] base=vggt variant=oiavisself feats=agg arch=conv labels=visself seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":107.767464765,"data":"[oia] base=vggt variant=oiavisselfpatch feats=patch arch=conv labels=visself seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavisselfpatch.pt\n"}
+,{"stream_name":"stdout","time":107.767475981,"data":"[oia] base=vggt variant=oiavisselflin feats=agg arch=linear labels=visself seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavisselflin.pt\n"}
+,{"stream_name":"stdout","time":120.225678681,"data":"[oia] oiavisself head params: 3.29 M, feature dims [2048, 2048, 2048, 2048]\n"}
+,{"stream_name":"stdout","time":121.776619239,"data":"[oia] step     1 oiavisself loss 0.6978 train-auroc 0.281 lr 2.00e-05 14s\n"}
+,{"stream_name":"stdout","time":121.789681138,"data":"[oia] oiavisselfpatch head params: 1.44 M, feature dims [1024]\n"}
+,{"stream_name":"stdout","time":121.850235608,"data":"[oia] step     1 oiavisselfpatch loss 0.6913 train-auroc 0.733 lr 2.00e-05 14s\n"}
+,{"stream_name":"stdout","time":121.866421347,"data":"[oia] oiavisselflin head params: 2.11 M, feature dims [2048, 2048, 2048, 2048]\n"}
+,{"stream_name":"stdout","time":121.933346133,"data":"[oia] step     1 oiavisselflin loss 0.6948 train-auroc 0.545 lr 2.00e-05 14s\n"}
+,{"stream_name":"stdout","time":206.305216669,"data":"[oia] step    25 oiavisself loss 0.3915 train-auroc 0.897 lr 2.60e-04 99s\n"}
+,{"stream_name":"stdout","time":206.383816299,"data":"[oia] step    25 oiavisselfpatch loss 0.5035 train-auroc 0.844 lr 2.60e-04 99s\n"}
+,{"stream_name":"stdout","time":206.479096922,"data":"[oia] step    25 oiavisselflin loss 0.3921 train-auroc 0.911 lr 2.60e-04 99s\n"}
+,{"stream_name":"stdout","time":311.783287271,"data":"[oia] step    50 oiavisself loss 0.2479 train-auroc 0.978 lr 5.09e-04 204s\n"}
+,{"stream_name":"stdout","time":311.80525599,"data":"[oia] step    50 oiavisselfpatch loss 0.4445 train-auroc 0.893 lr 5.09e-04 204s\n"}
+,{"stream_name":"stdout","time":311.832839118,"data":"[oia] step    50 oiavisselflin loss 1.3474 train-auroc 0.973 lr 5.09e-04 204s\n"}
+,{"stream_name":"stdout","time":421.711105774,"data":"[oia] step    75 oiavisself loss 0.1769 train-auroc 0.994 lr 7.55e-04 314s\n"}
+,{"stream_name":"stdout","time":421.730802393,"data":"[oia] step    75 oiavisselfpatch loss 0.3798 train-auroc 0.929 lr 7.55e-04 314s\n"}
+,{"stream_name":"stdout","time":421.756392921,"data":"[oia] step    75 oiavisselflin loss 0.1308 train-auroc 0.992 lr 7.55e-04 314s\n"}
+,{"stream_name":"stdout","time":521.04436628,"data":"[oia] step   100 oiavisself loss 0.1792 train-auroc 0.985 lr 9.89e-04 413s\n"}
+,{"stream_name":"stdout","time":521.089994842,"data":"[oia] step   100 oiavisselfpatch loss 0.5562 train-auroc 0.883 lr 9.89e-04 413s\n"}
+,{"stream_name":"stdout","time":521.140089648,"data":"[oia] step   100 oiavisselflin loss 0.1869 train-auroc 0.980 lr 9.89e-04 413s\n"}
+,{"stream_name":"stdout","time":627.012921621,"data":"[oia] step   125 oiavisself loss 0.2607 train-auroc 0.994 lr 9.83e-04 519s\n"}
+,{"stream_name":"stdout","time":627.038138834,"data":"[oia] step   125 oiavisselfpatch loss 0.2241 train-auroc 0.984 lr 9.83e-04 519s\n"}
+,{"stream_name":"stdout","time":627.068862497,"data":"[oia] step   125 oiavisselflin loss 0.0852 train-auroc 0.995 lr 9.83e-04 519s\n"}
+,{"stream_name":"stdout","time":730.66577711,"data":"[oia] step   150 oiavisself loss 0.4419 train-auroc 0.938 lr 9.76e-04 623s\n"}
+,{"stream_name":"stdout","time":730.68556371,"data":"[oia] step   150 oiavisselfpatch loss 0.5072 train-auroc 0.829 lr 9.76e-04 623s\n"}
+,{"stream_name":"stdout","time":730.710990001,"data":"[oia] step   150 oiavisselflin loss 0.2492 train-auroc 0.964 lr 9.76e-04 623s\n"}
+,{"stream_name":"stdout","time":835.397143098,"data":"[oia] step   175 oiavisself loss 0.2197 train-auroc 0.979 lr 9.67e-04 728s\n"}
+,{"stream_name":"stdout","time":835.486027483,"data":"[oia] step   175 oiavisselfpatch loss 0.3763 train-auroc 0.950 lr 9.67e-04 728s\n"}
+,{"stream_name":"stdout","time":835.591811768,"data":"[oia] step   175 oiavisselflin loss 0.2085 train-auroc 0.975 lr 9.67e-04 728s\n"}
+,{"stream_name":"stdout","time":923.867084508,"data":"[oia] step   200 oiavisself loss 0.2853 train-auroc 0.960 lr 9.57e-04 816s\n"}
+,{"stream_name":"stdout","time":923.887832303,"data":"[oia] step   200 oiavisselfpatch loss 0.4008 train-auroc 0.916 lr 9.57e-04 816s\n"}
+,{"stream_name":"stdout","time":923.914652408,"data":"[oia] step   200 oiavisselflin loss 0.3001 train-auroc 0.957 lr 9.57e-04 816s\n"}
+,{"stream_name":"stdout","time":1020.213301797,"data":"[oia] step   225 oiavisself loss 0.3308 train-auroc 0.982 lr 9.46e-04 912s\n"}
+,{"stream_name":"stdout","time":1020.29809029,"data":"[oia] step   225 oiavisselfpatch loss 0.5179 train-auroc 0.830 lr 9.46e-04 913s\n"}
+,{"stream_name":"stdout","time":1020.404301518,"data":"[oia] step   225 oiavisselflin loss 0.4080 train-auroc 0.951 lr 9.46e-04 913s\n"}
+,{"stream_name":"stdout","time":1126.546723138,"data":"[oia] step   250 oiavisself loss 0.1786 train-auroc 0.993 lr 9.33e-04 1019s\n"}
+,{"stream_name":"stdout","time":1126.587340915,"data":"[oia] step   250 oiavisselfpatch loss 0.3195 train-auroc 0.952 lr 9.33e-04 1019s\n"}
+,{"stream_name":"stdout","time":1126.637839573,"data":"[oia] step   250 oiavisselflin loss 0.1592 train-auroc 0.991 lr 9.33e-04 1019s\n"}
+,{"stream_name":"stdout","time":1140.320230348,"data":"[oia] step   250 oiavisself val-auroc 0.987\n"}
+,{"stream_name":"stdout","time":1140.353914035,"data":"[oia] step   250 oiavisselfpatch val-auroc 0.885\n"}
+,{"stream_name":"stdout","time":1140.364930738,"data":"[oia] step   250 oiavisselflin val-auroc 0.988\n"}
+,{"stream_name":"stdout","time":1243.692989057,"data":"[oia] step   275 oiavisself loss 0.2289 train-auroc 0.973 lr 9.19e-04 1136s\n"}
+,{"stream_name":"stdout","time":1243.714600443,"data":"[oia] step   275 oiavisselfpatch loss 0.5659 train-auroc 0.840 lr 9.19e-04 1136s\n"}
+,{"stream_name":"stdout","time":1243.742326932,"data":"[oia] step   275 oiavisselflin loss 0.3297 train-auroc 0.970 lr 9.19e-04 1136s\n"}
+,{"stream_name":"stdout","time":1330.364848615,"data":"[oia] step   300 oiavisself loss 0.0646 train-auroc 0.998 lr 9.05e-04 1223s\n"}
+,{"stream_name":"stdout","time":1330.384576019,"data":"[oia] step   300 oiavisselfpatch loss 0.2764 train-auroc 0.961 lr 9.05e-04 1223s\n"}
+,{"stream_name":"stdout","time":1330.409894134,"data":"[oia] step   300 oiavisselflin loss 0.1060 train-auroc 0.994 lr 9.05e-04 1223s\n"}
+,{"stream_name":"stdout","time":1423.675859415,"data":"[oia] step   325 oiavisself loss 0.1925 train-auroc 0.987 lr 8.89e-04 1316s\n"}
+,{"stream_name":"stdout","time":1423.758471508,"data":"[oia] step   325 oiavisselfpatch loss 0.2981 train-auroc 0.953 lr 8.89e-04 1316s\n"}
+,{"stream_name":"stdout","time":1423.856011647,"data":"[oia] step   325 oiavisselflin loss 0.1492 train-auroc 0.989 lr 8.89e-04 1316s\n"}
+,{"stream_name":"stdout","time":1516.11313402,"data":"[oia] step   350 oiavisself loss 0.1980 train-auroc 0.986 lr 8.72e-04 1408s\n"}
+,{"stream_name":"stdout","time":1516.13455286,"data":"[oia] step   350 oiavisselfpatch loss 0.5465 train-auroc 0.807 lr 8.72e-04 1408s\n"}
+,{"stream_name":"stdout","time":1516.161157999,"data":"[oia] step   350 oiavisselflin loss 0.2466 train-auroc 0.984 lr 8.72e-04 1408s\n"}
+,{"stream_name":"stdout","time":1619.856560911,"data":"[oia] step   375 oiavisself loss 0.1849 train-auroc 0.992 lr 8.54e-04 1512s\n"}
+,{"stream_name":"stdout","time":1619.939141117,"data":"[oia] step   375 oiavisselfpatch loss 0.4592 train-auroc 0.866 lr 8.54e-04 1512s\n"}
+,{"stream_name":"stdout","time":1620.039299813,"data":"[oia] step   375 oiavisselflin loss 0.1424 train-auroc 0.989 lr 8.54e-04 1512s\n"}
+,{"stream_name":"stdout","time":1730.25552153,"data":"[oia] step   400 oiavisself loss 0.0528 train-auroc 0.999 lr 8.35e-04 1622s\n"}
+,{"stream_name":"stdout","time":1730.297342372,"data":"[oia] step   400 oiavisselfpatch loss 0.2706 train-auroc 0.976 lr 8.35e-04 1623s\n"}
+,{"stream_name":"stdout","time":1730.347646868,"data":"[oia] step   400 oiavisselflin loss 0.0581 train-auroc 0.998 lr 8.35e-04 1623s\n"}
+,{"stream_name":"stdout","time":1834.998910921,"data":"[oia] step   425 oiavisself loss 0.1645 train-auroc 0.990 lr 8.15e-04 1727s\n"}
+,{"stream_name":"stdout","time":1835.079713311,"data":"[oia] step   425 oiavisselfpatch loss 0.4686 train-auroc 0.909 lr 8.15e-04 1727s\n"}
+,{"stream_name":"stdout","time":1835.18066006,"data":"[oia] step   425 oiavisselflin loss 0.1674 train-auroc 0.985 lr 8.15e-04 1727s\n"}
+,{"stream_name":"stdout","time":1923.655383937,"data":"[oia] step   450 oiavisself loss 0.0607 train-auroc 0.999 lr 7.94e-04 1816s\n"}
+,{"stream_name":"stdout","time":1923.675200818,"data":"[oia] step   450 oiavisselfpatch loss 0.3966 train-auroc 0.920 lr 7.94e-04 1816s\n"}
+,{"stream_name":"stdout","time":1923.700807011,"data":"[oia] step   450 oiavisselflin loss 0.4357 train-auroc 0.997 lr 7.94e-04 1816s\n"}
+,{"stream_name":"stdout","time":2032.499887854,"data":"[oia] step   475 oiavisself loss 0.0648 train-auroc 0.997 lr 7.72e-04 1925s\n"}
+,{"stream_name":"stdout","time":2032.542671147,"data":"[oia] step   475 oiavisselfpatch loss 0.2439 train-auroc 0.966 lr 7.72e-04 1925s\n"}
+,{"stream_name":"stdout","time":2032.594010139,"data":"[oia] step   475 oiavisselflin loss 0.1578 train-auroc 0.997 lr 7.72e-04 1925s\n"}
+,{"stream_name":"stdout","time":2127.998482274,"data":"[oia] step   500 oiavisself loss 0.1519 train-auroc 0.986 lr 7.50e-04 2020s\n"}
+,{"stream_name":"stdout","time":2128.086963114,"data":"[oia] step   500 oiavisselfpatch loss 0.3741 train-auroc 0.949 lr 7.50e-04 2020s\n"}
+,{"stream_name":"stdout","time":2128.194066118,"data":"[oia] step   500 oiavisselflin loss 0.1689 train-auroc 0.981 lr 7.50e-04 2020s\n"}
+,{"stream_name":"stdout","time":2138.234979098,"data":"[oia] step   500 oiavisself val-auroc 0.993\n"}
+,{"stream_name":"stdout","time":2138.2682268,"data":"[oia] step   500 oiavisselfpatch val-auroc 0.896\n"}
+,{"stream_name":"stdout","time":2138.281157414,"data":"[oia] step   500 oiavisselflin val-auroc 0.991\n"}
+,{"stream_name":"stdout","time":2247.782755856,"data":"[oia] step   525 oiavisself loss 0.0799 train-auroc 0.997 lr 7.27e-04 2140s\n"}
+,{"stream_name":"stdout","time":2247.824453608,"data":"[oia] step   525 oiavisselfpatch loss 0.2413 train-auroc 0.974 lr 7.27e-04 2140s\n"}
+,{"stream_name":"stdout","time":2247.874242262,"data":"[oia] step   525 oiavisselflin loss 0.1308 train-auroc 0.994 lr 7.27e-04 2140s\n"}
+,{"stream_name":"stdout","time":2341.089946989,"data":"[oia] step   550 oiavisself loss 0.0758 train-auroc 0.998 lr 7.03e-04 2233s\n"}
+,{"stream_name":"stdout","time":2341.114526538,"data":"[oia] step   550 oiavisselfpatch loss 0.5445 train-auroc 0.875 lr 7.03e-04 2233s\n"}
+,{"stream_name":"stdout","time":2341.144614186,"data":"[oia] step   550 oiavisselflin loss 0.0900 train-auroc 0.996 lr 7.03e-04 2233s\n"}
+,{"stream_name":"stdout","time":2434.05532917,"data":"[oia] step   575 oiavisself loss 0.1263 train-auroc 0.995 lr 6.79e-04 2326s\n"}
+,{"stream_name":"stdout","time":2434.076465108,"data":"[oia] step   575 oiavisselfpatch loss 0.5120 train-auroc 0.883 lr 6.79e-04 2326s\n"}
+,{"stream_name":"stdout","time":2434.103558835,"data":"[oia] step   575 oiavisselflin loss 0.1288 train-auroc 0.991 lr 6.79e-04 2326s\n"}
+,{"stream_name":"stdout","time":2523.856266636,"data":"[oia] step   600 oiavisself loss 0.4144 train-auroc 0.987 lr 6.55e-04 2416s\n"}
+,{"stream_name":"stdout","time":2523.896637292,"data":"[oia] step   600 oiavisselfpatch loss 0.4578 train-auroc 0.902 lr 6.55e-04 2416s\n"}
+,{"stream_name":"stdout","time":2523.948034043,"data":"[oia] step   600 oiavisselflin loss 0.2654 train-auroc 0.987 lr 6.55e-04 2416s\n"}
+,{"stream_name":"stdout","time":2610.202719075,"data":"[oia] step   625 oiavisself loss 0.1336 train-auroc 0.990 lr 6.29e-04 2502s\n"}
+,{"stream_name":"stdout","time":2610.292447044,"data":"[oia] step   625 oiavisselfpatch loss 0.8803 train-auroc 0.736 lr 6.29e-04 2503s\n"}
+,{"stream_name":"stdout","time":2610.399970012,"data":"[oia] step   625 oiavisselflin loss 0.1352 train-auroc 0.989 lr 6.29e-04 2503s\n"}
+,{"stream_name":"stdout","time":2710.280036261,"data":"[oia] step   650 oiavisself loss 0.1840 train-auroc 0.993 lr 6.04e-04 2603s\n"}
+,{"stream_name":"stdout","time":2710.299404609,"data":"[oia] step   650 oiavisselfpatch loss 0.6074 train-auroc 0.827 lr 6.04e-04 2603s\n"}
+,{"stream_name":"stdout","time":2710.324967447,"data":"[oia] step   650 oiavisselflin loss 0.2201 train-auroc 0.986 lr 6.04e-04 2603s\n"}
+,{"stream_name":"stdout","time":2828.807914309,"data":"[oia] step   675 oiavisself loss 0.1312 train-auroc 0.991 lr 5.78e-04 2721s\n"}
+,{"stream_name":"stdout","time":2828.852045664,"data":"[oia] step   675 oiavisselfpatch loss 0.4093 train-auroc 0.915 lr 5.78e-04 2721s\n"}
+,{"stream_name":"stdout","time":2828.904979936,"data":"[oia] step   675 oiavisselflin loss 0.1995 train-auroc 0.984 lr 5.78e-04 2721s\n"}
+,{"stream_name":"stdout","time":2932.281830156,"data":"[oia] step   700 oiavisself loss 0.1363 train-auroc 0.989 lr 5.52e-04 2825s\n"}
+,{"stream_name":"stdout","time":2932.367249392,"data":"[oia] step   700 oiavisselfpatch loss 0.2777 train-auroc 0.965 lr 5.52e-04 2825s\n"}
+,{"stream_name":"stdout","time":2932.471577153,"data":"[oia] step   700 oiavisselflin loss 0.1635 train-auroc 0.985 lr 5.52e-04 2825s\n"}
+,{"stream_name":"stdout","time":3024.312826117,"data":"[oia] step   725 oiavisself loss 0.0417 train-auroc 0.999 lr 5.26e-04 2917s\n"}
+,{"stream_name":"stdout","time":3024.337972523,"data":"[oia] step   725 oiavisselfpatch loss 0.1330 train-auroc 0.994 lr 5.26e-04 2917s\n"}
+,{"stream_name":"stdout","time":3024.368647602,"data":"[oia] step   725 oiavisselflin loss 0.0380 train-auroc 0.999 lr 5.26e-04 2917s\n"}
+,{"stream_name":"stdout","time":3110.832906411,"data":"[oia] step   750 oiavisself loss 0.0738 train-auroc 0.997 lr 5.00e-04 3003s\n"}
+,{"stream_name":"stdout","time":3110.853381998,"data":"[oia] step   750 oiavisselfpatch loss 0.2135 train-auroc 0.978 lr 5.00e-04 3003s\n"}
+,{"stream_name":"stdout","time":3110.879248427,"data":"[oia] step   750 oiavisselflin loss 0.0902 train-auroc 0.996 lr 5.00e-04 3003s\n"}
+,{"stream_name":"stdout","time":3120.886438248,"data":"[oia] step   750 oiavisself val-auroc 0.996\n"}
+,{"stream_name":"stdout","time":3120.918978968,"data":"[oia] step   750 oiavisselfpatch val-auroc 0.916\n"}
+,{"stream_name":"stdout","time":3120.931428341,"data":"[oia] step   750 oiavisselflin val-auroc 0.994\n"}
+,{"stream_name":"stdout","time":3223.516569664,"data":"[oia] step   775 oiavisself loss 0.0954 train-auroc 0.995 lr 4.74e-04 3116s\n"}
+,{"stream_name":"stdout","time":3223.560276961,"data":"[oia] step   775 oiavisselfpatch loss 0.2100 train-auroc 0.976 lr 4.74e-04 3116s\n"}
+,{"stream_name":"stdout","time":3223.613355308,"data":"[oia] step   775 oiavisselflin loss 0.0977 train-auroc 0.995 lr 4.74e-04 3116s\n"}
+,{"stream_name":"stdout","time":3347.097455145,"data":"[oia] step   800 oiavisself loss 0.0751 train-auroc 0.996 lr 4.48e-04 3239s\n"}
+,{"stream_name":"stdout","time":3347.181404925,"data":"[oia] step   800 oiavisselfpatch loss 0.1936 train-auroc 0.979 lr 4.48e-04 3239s\n"}
+,{"stream_name":"stdout","time":3347.284657469,"data":"[oia] step   800 oiavisselflin loss 0.0763 train-auroc 0.995 lr 4.48e-04 3240s\n"}
+,{"stream_name":"stdout","time":3436.745477288,"data":"[oia] step   825 oiavisself loss 0.0945 train-auroc 0.994 lr 4.22e-04 3329s\n"}
+,{"stream_name":"stdout","time":3436.826237613,"data":"[oia] step   825 oiavisselfpatch loss 0.3285 train-auroc 0.950 lr 4.22e-04 3329s\n"}
+,{"stream_name":"stdout","time":3436.924053218,"data":"[oia] step   825 oiavisselflin loss 0.1353 train-auroc 0.990 lr 4.22e-04 3329s\n"}
+,{"stream_name":"stdout","time":3540.21817029,"data":"[oia] step   850 oiavisself loss 0.1196 train-auroc 0.991 lr 3.96e-04 3432s\n"}
+,{"stream_name":"stdout","time":3540.257618052,"data":"[oia] step   850 oiavisselfpatch loss 0.5299 train-auroc 0.801 lr 3.96e-04 3432s\n"}
+,{"stream_name":"stdout","time":3540.304949286,"data":"[oia] step   850 oiavisselflin loss 0.1675 train-auroc 0.983 lr 3.96e-04 3433s\n"}
+,{"stream_name":"stdout","time":3651.327626265,"data":"[oia] step   875 oiavisself loss 0.1416 train-auroc 0.993 lr 3.71e-04 3544s\n"}
+,{"stream_name":"stdout","time":3651.420556118,"data":"[oia] step   875 oiavisselfpatch loss 0.4504 train-auroc 0.910 lr 3.71e-04 3544s\n"}
+,{"stream_name":"stdout","time":3651.531788999,"data":"[oia] step   875 oiavisselflin loss 0.1838 train-auroc 0.984 lr 3.71e-04 3544s\n"}
+,{"stream_name":"stdout","time":3732.450623479,"data":"[oia] step   900 oiavisself loss 0.0603 train-auroc 0.998 lr 3.45e-04 3625s\n"}
+,{"stream_name":"stdout","time":3732.47458095,"data":"[oia] step   900 oiavisselfpatch loss 0.2085 train-auroc 0.971 lr 3.45e-04 3625s\n"}
+,{"stream_name":"stdout","time":3732.504044999,"data":"[oia] step   900 oiavisselflin loss 0.0678 train-auroc 0.997 lr 3.45e-04 3625s\n"}
+,{"stream_name":"stdout","time":3830.101072773,"data":"[oia] step   925 oiavisself loss 0.0448 train-auroc 0.999 lr 3.21e-04 3722s\n"}
+,{"stream_name":"stdout","time":3830.126169643,"data":"[oia] step   925 oiavisselfpatch loss 0.3016 train-auroc 0.957 lr 3.21e-04 3722s\n"}
+,{"stream_name":"stdout","time":3830.15646103,"data":"[oia] step   925 oiavisselflin loss 0.0532 train-auroc 0.998 lr 3.21e-04 3722s\n"}
+,{"stream_name":"stdout","time":3921.341912917,"data":"[oia] step   950 oiavisself loss 0.0906 train-auroc 0.995 lr 2.97e-04 3814s\n"}
+,{"stream_name":"stdout","time":3921.382362053,"data":"[oia] step   950 oiavisselfpatch loss 0.2635 train-auroc 0.962 lr 2.97e-04 3814s\n"}
+,{"stream_name":"stdout","time":3921.430702522,"data":"[oia] step   950 oiavisselflin loss 0.1242 train-auroc 0.991 lr 2.97e-04 3814s\n"}
+,{"stream_name":"stdout","time":4006.882746366,"data":"[oia] step   975 oiavisself loss 0.1040 train-auroc 0.994 lr 2.73e-04 3899s\n"}
+,{"stream_name":"stdout","time":4006.926113935,"data":"[oia] step   975 oiavisselfpatch loss 0.4595 train-auroc 0.880 lr 2.73e-04 3899s\n"}
+,{"stream_name":"stdout","time":4006.980313967,"data":"[oia] step   975 oiavisselflin loss 0.1086 train-auroc 0.993 lr 2.73e-04 3899s\n"}
+,{"stream_name":"stdout","time":4132.127148661,"data":"[oia] step  1000 oiavisself loss 0.0400 train-auroc 0.999 lr 2.50e-04 4024s\n"}
+,{"stream_name":"stdout","time":4132.170440381,"data":"[oia] step  1000 oiavisselfpatch loss 0.1838 train-auroc 0.981 lr 2.50e-04 4024s\n"}
+,{"stream_name":"stdout","time":4132.224589533,"data":"[oia] step  1000 oiavisselflin loss 0.0621 train-auroc 0.998 lr 2.50e-04 4024s\n"}
+,{"stream_name":"stdout","time":4142.244754139,"data":"[oia] step  1000 oiavisself val-auroc 0.997\n"}
+,{"stream_name":"stdout","time":4142.278749707,"data":"[oia] step  1000 oiavisselfpatch val-auroc 0.913\n"}
+,{"stream_name":"stdout","time":4142.28542596,"data":"[oia] step  1000 oiavisselflin val-auroc 0.995\n"}
+,{"stream_name":"stdout","time":4247.811506369,"data":"[oia] step  1025 oiavisself loss 0.0710 train-auroc 0.997 lr 2.28e-04 4140s\n"}
+,{"stream_name":"stdout","time":4247.836215224,"data":"[oia] step  1025 oiavisselfpatch loss 0.1792 train-auroc 0.982 lr 2.28e-04 4140s\n"}
+,{"stream_name":"stdout","time":4247.867176599,"data":"[oia] step  1025 oiavisselflin loss 0.0771 train-auroc 0.997 lr 2.28e-04 4140s\n"}
+,{"stream_name":"stdout","time":4336.446306603,"data":"[oia] step  1050 oiavisself loss 0.1757 train-auroc 0.982 lr 2.06e-04 4229s\n"}
+,{"stream_name":"stdout","time":4336.488470119,"data":"[oia] step  1050 oiavisselfpatch loss 0.3862 train-auroc 0.903 lr 2.06e-04 4229s\n"}
+,{"stream_name":"stdout","time":4336.537278312,"data":"[oia] step  1050 oiavisselflin loss 0.2241 train-auroc 0.974 lr 2.06e-04 4229s\n"}
+,{"stream_name":"stdout","time":4439.293258309,"data":"[oia] step  1075 oiavisself loss 0.0504 train-auroc 0.999 lr 1.85e-04 4332s\n"}
+,{"stream_name":"stdout","time":4439.333424357,"data":"[oia] step  1075 oiavisselfpatch loss 0.3077 train-auroc 0.956 lr 1.85e-04 4332s\n"}
+,{"stream_name":"stdout","time":4439.382201286,"data":"[oia] step  1075 oiavisselflin loss 0.0624 train-auroc 0.998 lr 1.85e-04 4332s\n"}
+,{"stream_name":"stdout","time":4522.646870513,"data":"[oia] step  1100 oiavisself loss 0.0415 train-auroc 0.999 lr 1.65e-04 4415s\n"}
+,{"stream_name":"stdout","time":4522.671514818,"data":"[oia] step  1100 oiavisselfpatch loss 0.2358 train-auroc 0.969 lr 1.65e-04 4415s\n"}
+,{"stream_name":"stdout","time":4522.701680628,"data":"[oia] step  1100 oiavisselflin loss 0.0630 train-auroc 0.998 lr 1.65e-04 4415s\n"}
+,{"stream_name":"stdout","time":4636.294275913,"data":"[oia] step  1125 oiavisself loss 0.1406 train-auroc 0.988 lr 1.46e-04 4529s\n"}
+,{"stream_name":"stdout","time":4636.331258055,"data":"[oia] step  1125 oiavisselfpatch loss 0.3574 train-auroc 0.915 lr 1.46e-04 4529s\n"}
+,{"stream_name":"stdout","time":4636.376262894,"data":"[oia] step  1125 oiavisselflin loss 0.1558 train-auroc 0.985 lr 1.46e-04 4529s\n"}
+,{"stream_name":"stdout","time":4731.448422181,"data":"[oia] step  1150 oiavisself loss 0.0678 train-auroc 0.997 lr 1.28e-04 4624s\n"}
+,{"stream_name":"stdout","time":4731.490457223,"data":"[oia] step  1150 oiavisselfpatch loss 0.2914 train-auroc 0.957 lr 1.28e-04 4624s\n"}
+,{"stream_name":"stdout","time":4731.540096531,"data":"[oia] step  1150 oiavisselflin loss 0.1107 train-auroc 0.993 lr 1.28e-04 4624s\n"}
+,{"stream_name":"stdout","time":4812.023097711,"data":"[oia] step  1175 oiavisself loss 0.0910 train-auroc 0.996 lr 1.11e-04 4704s\n"}
+,{"stream_name":"stdout","time":4812.04503078,"data":"[oia] step  1175 oiavisselfpatch loss 0.3546 train-auroc 0.962 lr 1.11e-04 4704s\n"}
+,{"stream_name":"stdout","time":4812.07141187,"data":"[oia] step  1175 oiavisselflin loss 0.1217 train-auroc 0.993 lr 1.11e-04 4704s\n"}
+,{"stream_name":"stdout","time":4908.052606638,"data":"[oia] step  1200 oiavisself loss 0.0880 train-auroc 0.998 lr 9.55e-05 4800s\n"}
+,{"stream_name":"stdout","time":4908.077410997,"data":"[oia] step  1200 oiavisselfpatch loss 0.4072 train-auroc 0.908 lr 9.55e-05 4800s\n"}
+,{"stream_name":"stdout","time":4908.106861712,"data":"[oia] step  1200 oiavisselflin loss 0.1147 train-auroc 0.997 lr 9.55e-05 4800s\n"}
+,{"stream_name":"stdout","time":5005.345834621,"data":"[oia] step  1225 oiavisself loss 0.0672 train-auroc 0.998 lr 8.07e-05 4898s\n"}
+,{"stream_name":"stdout","time":5005.367091203,"data":"[oia] step  1225 oiavisselfpatch loss 0.4619 train-auroc 0.900 lr 8.07e-05 4898s\n"}
+,{"stream_name":"stdout","time":5005.394483284,"data":"[oia] step  1225 oiavisselflin loss 0.0802 train-auroc 0.997 lr 8.07e-05 4898s\n"}
+,{"stream_name":"stdout","time":5100.193782542,"data":"[oia] step  1250 oiavisself loss 0.1270 train-auroc 0.992 lr 6.70e-05 4992s\n"}
+,{"stream_name":"stdout","time":5100.276882141,"data":"[oia] step  1250 oiavisselfpatch loss 0.5394 train-auroc 0.967 lr 6.70e-05 4993s\n"}
+,{"stream_name":"stdout","time":5100.379482218,"data":"[oia] step  1250 oiavisselflin loss 0.1789 train-auroc 0.984 lr 6.70e-05 4993s\n"}
+,{"stream_name":"stdout","time":5110.393608678,"data":"[oia] step  1250 oiavisself val-auroc 0.997\n"}
+,{"stream_name":"stdout","time":5110.425670301,"data":"[oia] step  1250 oiavisselfpatch val-auroc 0.910\n"}
+,{"stream_name":"stdout","time":5110.431992773,"data":"[oia] step  1250 oiavisselflin val-auroc 0.995\n"}
+,{"stream_name":"stdout","time":5202.119134479,"data":"[oia] step  1275 oiavisself loss 0.1129 train-auroc 0.992 lr 5.45e-05 5094s\n"}
+,{"stream_name":"stdout","time":5202.199486512,"data":"[oia] step  1275 oiavisselfpatch loss 0.2653 train-auroc 0.968 lr 5.45e-05 5094s\n"}
+,{"stream_name":"stdout","time":5202.298888669,"data":"[oia] step  1275 oiavisselflin loss 0.1601 train-auroc 0.983 lr 5.45e-05 5095s\n"}
+,{"stream_name":"stdout","time":5285.482597882,"data":"[oia] step  1300 oiavisself loss 0.0502 train-auroc 0.999 lr 4.32e-05 5178s\n"}
+,{"stream_name":"stdout","time":5285.50621017,"data":"[oia] step  1300 oiavisselfpatch loss 0.3416 train-auroc 0.952 lr 4.32e-05 5178s\n"}
+,{"stream_name":"stdout","time":5285.533639668,"data":"[oia] step  1300 oiavisselflin loss 0.0684 train-auroc 0.998 lr 4.32e-05 5178s\n"}
+,{"stream_name":"stdout","time":5396.240124824,"data":"[oia] step  1325 oiavisself loss 0.0517 train-auroc 0.999 lr 3.32e-05 5288s\n"}
+,{"stream_name":"stdout","time":5396.267859056,"data":"[oia] step  1325 oiavisselfpatch loss 0.2350 train-auroc 0.970 lr 3.32e-05 5289s\n"}
+,{"stream_name":"stdout","time":5396.29998618,"data":"[oia] step  1325 oiavisselflin loss 0.0791 train-auroc 0.996 lr 3.32e-05 5289s\n"}
+,{"stream_name":"stdout","time":5492.853760696,"data":"[oia] step  1350 oiavisself loss 0.0420 train-auroc 0.999 lr 2.45e-05 5385s\n"}
+,{"stream_name":"stdout","time":5492.897849228,"data":"[oia] step  1350 oiavisselfpatch loss 0.2112 train-auroc 0.975 lr 2.45e-05 5385s\n"}
+,{"stream_name":"stdout","time":5492.950789365,"data":"[oia] step  1350 oiavisselflin loss 0.0628 train-auroc 0.998 lr 2.45e-05 5385s\n"}
+,{"stream_name":"stdout","time":5583.135282438,"data":"[oia] step  1375 oiavisself loss 0.2103 train-auroc 0.973 lr 1.70e-05 5475s\n"}
+,{"stream_name":"stdout","time":5583.171122822,"data":"[oia] step  1375 oiavisselfpatch loss 0.6255 train-auroc 0.745 lr 1.70e-05 5475s\n"}
+,{"stream_name":"stdout","time":5583.215674526,"data":"[oia] step  1375 oiavisselflin loss 0.2805 train-auroc 0.955 lr 1.70e-05 5475s\n"}
+,{"stream_name":"stdout","time":5674.798904653,"data":"[oia] step  1400 oiavisself loss 0.0902 train-auroc 0.996 lr 1.09e-05 5567s\n"}
+,{"stream_name":"stdout","time":5674.817571946,"data":"[oia] step  1400 oiavisselfpatch loss 0.4002 train-auroc 0.911 lr 1.09e-05 5567s\n"}
+,{"stream_name":"stdout","time":5674.842222812,"data":"[oia] step  1400 oiavisselflin loss 0.1285 train-auroc 0.992 lr 1.09e-05 5567s\n"}
+,{"stream_name":"stdout","time":5765.03686126,"data":"[oia] step  1425 oiavisself loss 0.0432 train-auroc 0.999 lr 6.16e-06 5657s\n"}
+,{"stream_name":"stdout","time":5765.076404118,"data":"[oia] step  1425 oiavisselfpatch loss 0.1163 train-auroc 0.988 lr 6.16e-06 5657s\n"}
+,{"stream_name":"stdout","time":5765.126482143,"data":"[oia] step  1425 oiavisselflin loss 0.0632 train-auroc 0.998 lr 6.16e-06 5657s\n"}
+,{"stream_name":"stdout","time":5863.964376743,"data":"[oia] step  1450 oiavisself loss 0.0619 train-auroc 0.998 lr 2.74e-06 5756s\n"}
+,{"stream_name":"stdout","time":5864.008856259,"data":"[oia] step  1450 oiavisselfpatch loss 0.2559 train-auroc 0.961 lr 2.74e-06 5756s\n"}
+,{"stream_name":"stdout","time":5864.065905719,"data":"[oia] step  1450 oiavisselflin loss 0.0763 train-auroc 0.997 lr 2.74e-06 5756s\n"}
+,{"stream_name":"stdout","time":5964.938457405,"data":"[oia] step  1475 oiavisself loss 0.1061 train-auroc 0.994 lr 6.85e-07 5857s\n"}
+,{"stream_name":"stdout","time":5965.01890937,"data":"[oia] step  1475 oiavisselfpatch loss 0.2354 train-auroc 0.977 lr 6.85e-07 5857s\n"}
+,{"stream_name":"stdout","time":5965.120808135,"data":"[oia] step  1475 oiavisselflin loss 0.1598 train-auroc 0.988 lr 6.85e-07 5857s\n"}
+,{"stream_name":"stdout","time":6043.586281403,"data":"[oia] step  1500 oiavisself loss 0.0177 train-auroc 1.000 lr 0.00e+00 5936s\n"}
+,{"stream_name":"stdout","time":6043.608326566,"data":"[oia] step  1500 oiavisselfpatch loss 0.2541 train-auroc 0.976 lr 0.00e+00 5936s\n"}
+,{"stream_name":"stdout","time":6043.636960783,"data":"[oia] step  1500 oiavisselflin loss 0.0478 train-auroc 0.999 lr 0.00e+00 5936s\n"}
+,{"stream_name":"stdout","time":6053.583886955,"data":"[oia] step  1500 oiavisself val-auroc 0.997\n"}
+,{"stream_name":"stdout","time":6053.614975214,"data":"[oia] step  1500 oiavisselfpatch val-auroc 0.915\n"}
+,{"stream_name":"stdout","time":6053.621599446,"data":"[oia] step  1500 oiavisselflin val-auroc 0.996\n"}
+,{"stream_name":"stdout","time":6053.642890139,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavisself.pt (last), best val-auroc 0.997, 5946s\n"}
+,{"stream_name":"stdout","time":6053.643527493,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavisselfpatch.pt (last), best val-auroc 0.916, 5946s\n"}
+,{"stream_name":"stdout","time":6053.644203604,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavisselflin.pt (last), best val-auroc 0.996, 5946s\n"}
+,{"stream_name":"stdout","time":6057.698102996,"data":"[exit 0, 6057s]\n"}
+,{"stream_name":"stdout","time":6057.698138591,"data":"\n"}
+,{"stream_name":"stdout","time":6057.698147535,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":6057.6981508,"data":"== stage trainvisprobe  [6057s]\n"}
+,{"stream_name":"stdout","time":6057.698153694,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":6057.698156765,"data":"\n"}
+,{"stream_name":"stdout","time":6057.698159527,"data":"$ /usr/bin/python3 scripts/run_h100.py trainvisprobe --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt --steps 1500 --skip-gt --variants oia,oialin,oiapatch --ext-bases vggt,pi3x\n"}
+,{"stream_name":"stdout","time":6058.184560056,"data":"\n"}
+,{"stream_name":"stdout","time":6058.18459339,"data":"##### stage trainvisprobe 2026-11-06 18:35:48\n"}
+,{"stream_name":"stdout","time":6058.184601691,"data":"[train] /usr/bin/python3 /kaggle/tmp/repo/scripts/oia_head.py train --base vggt --variant oiavislin4,oiavislin11,oiavislin17,oiavislin23,oiavispatchlin --dtu /kaggle/input/datasets/tobyzhou/dtu-training/dtu_training/mvs_training/dtu --out /kaggle/working/checkpoints --steps 1500 --seed 0 --extra-seeds 1,2 --extra-seeds-of oiavis\n"}
+,{"stream_name":"stderr","time":6072.538180935,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":6075.02157092,"data":"[oia] base=vggt variant=oiavislin4 feats=agg arch=linear labels=vis seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavislin4.pt\n"}
+,{"stream_name":"stdout","time":6075.021611458,"data":"[oia] base=vggt variant=oiavislin11 feats=agg arch=linear labels=vis seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavislin11.pt\n"}
+,{"stream_name":"stdout","time":6075.021619239,"data":"[oia] base=vggt variant=oiavislin17 feats=agg arch=linear labels=vis seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavislin17.pt\n"}
+,{"stream_name":"stdout","time":6075.021624214,"data":"[oia] base=vggt variant=oiavislin23 feats=agg arch=linear labels=vis seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavislin23.pt\n"}
+,{"stream_name":"stdout","time":6075.021650356,"data":"[oia] base=vggt variant=oiavispatchlin feats=patch arch=linear labels=vis seed=0 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavispatchlin.pt\n"}
+,{"stream_name":"stdout","time":6075.021663056,"data":"[oia] base=vggt variant=oiavis feats=agg arch=conv labels=vis seed=1 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavis_s1.pt\n"}
+,{"stream_name":"stdout","time":6075.021667171,"data":"[oia] base=vggt variant=oiavis feats=agg arch=conv labels=vis seed=2 train scans=77 val scans=[2, 6] steps=1500 -\u003e /kaggle/working/checkpoints/vggt_oiavis_s2.pt\n"}
+,{"stream_name":"stdout","time":6078.874350601,"data":"[oia] oiavislin4 head params: 0.53 M, feature dims [2048]\n"}
+,{"stream_name":"stdout","time":6079.681214656,"data":"[oia] step     1 oiavislin4 loss 0.6833 train-auroc 0.675 lr 2.00e-05 5s\n"}
+,{"stream_name":"stdout","time":6079.687482971,"data":"[oia] oiavislin11 head params: 0.53 M, feature dims [2048]\n"}
+,{"stream_name":"stdout","time":6079.717787491,"data":"[oia] step     1 oiavislin11 loss 0.6482 train-auroc 0.771 lr 2.00e-05 5s\n"}
+,{"stream_name":"stdout","time":6079.72314974,"data":"[oia] oiavislin17 head params: 0.53 M, feature dims [2048]\n"}
+,{"stream_name":"stdout","time":6079.753231376,"data":"[oia] step     1 oiavislin17 loss 0.6808 train-auroc 0.846 lr 2.00e-05 5s\n"}
+,{"stream_name":"stdout","time":6079.758426456,"data":"[oia] oiavislin23 head params: 0.53 M, feature dims [2048]\n"}
+,{"stream_name":"stdout","time":6079.790689493,"data":"[oia] step     1 oiavislin23 loss 0.7195 train-auroc 0.850 lr 2.00e-05 5s\n"}
+,{"stream_name":"stdout","time":6079.794643105,"data":"[oia] oiavispatchlin head params: 0.26 M, feature dims [1024]\n"}
+,{"stream_name":"stdout","time":6079.825321627,"data":"[oia] step     1 oiavispatchlin loss 0.6603 train-auroc 0.778 lr 2.00e-05 5s\n"}
+,{"stream_name":"stdout","time":6079.848805342,"data":"[oia] oiavis head params: 3.29 M, feature dims [2048, 2048, 2048, 2048]\n"}
+,{"stream_name":"stdout","time":6079.938507893,"data":"[oia] step     1 oiavis   loss 0.6952 train-auroc 0.397 lr 2.00e-05 5s\n"}
+,{"stream_name":"stdout","time":6079.961249668,"data":"[oia] oiavis head params: 3.29 M, feature dims [2048, 2048, 2048, 2048]\n"}
+,{"stream_name":"stdout","time":6080.042846817,"data":"[oia] step     1 oiavis   loss 0.7005 train-auroc 0.204 lr 2.00e-05 5s\n"}
+,{"stream_name":"stdout","time":6146.121793217,"data":"[oia] step    25 oiavislin4 loss 0.4787 train-auroc 0.841 lr 2.60e-04 71s\n"}
+,{"stream_name":"stdout","time":6146.181890326,"data":"[oia] step    25 oiavislin11 loss 0.3639 train-auroc 0.926 lr 2.60e-04 71s\n"}
+,{"stream_name":"stdout","time":6146.242985004,"data":"[oia] step    25 oiavislin17 loss 0.3761 train-auroc 0.935 lr 2.60e-04 71s\n"}
+,{"stream_name":"stdout","time":6146.301456879,"data":"[oia] step    25 oiavislin23 loss 0.4690 train-auroc 0.938 lr 2.60e-04 71s\n"}
+,{"stream_name":"stdout","time":6146.357123784,"data":"[oia] step    25 oiavispatchlin loss 0.4966 train-auroc 0.854 lr 2.60e-04 71s\n"}
+,{"stream_name":"stdout","time":6146.482316567,"data":"[oia] step    25 oiavis   loss 0.3569 train-auroc 0.930 lr 2.60e-04 71s\n"}
+,{"stream_name":"stdout","time":6146.603310184,"data":"[oia] step    25 oiavis   loss 0.4563 train-auroc 0.933 lr 2.60e-04 72s\n"}
+,{"stream_name":"stdout","time":6225.985182476,"data":"[oia] step    50 oiavislin4 loss 0.4079 train-auroc 0.910 lr 5.09e-04 151s\n"}
+,{"stream_name":"stdout","time":6226.004241228,"data":"[oia] step    50 oiavislin11 loss 0.3202 train-auroc 0.947 lr 5.09e-04 151s\n"}
+,{"stream_name":"stdout","time":6226.022024459,"data":"[oia] step    50 oiavislin17 loss 0.4870 train-auroc 0.989 lr 5.09e-04 151s\n"}
+,{"stream_name":"stdout","time":6226.038000738,"data":"[oia] step    50 oiavislin23 loss 0.3483 train-auroc 0.935 lr 5.09e-04 151s\n"}
+,{"stream_name":"stdout","time":6226.053641012,"data":"[oia] step    50 oiavispatchlin loss 0.5133 train-auroc 0.908 lr 5.09e-04 151s\n"}
+,{"stream_name":"stdout","time":6226.085638644,"data":"[oia] step    50 oiavis   loss 0.2844 train-auroc 0.963 lr 5.09e-04 151s\n"}
+,{"stream_name":"stdout","time":6226.120098043,"data":"[oia] step    50 oiavis   loss 0.2665 train-auroc 0.965 lr 5.09e-04 151s\n"}
+,{"stream_name":"stdout","time":6307.477959249,"data":"[oia] step    75 oiavislin4 loss 0.4736 train-auroc 0.909 lr 7.55e-04 232s\n"}
+,{"stream_name":"stdout","time":6307.492294506,"data":"[oia] step    75 oiavislin11 loss 0.2523 train-auroc 0.966 lr 7.55e-04 232s\n"}
+,{"stream_name":"stdout","time":6307.506160431,"data":"[oia] step    75 oiavislin17 loss 0.1480 train-auroc 0.993 lr 7.55e-04 232s\n"}
+,{"stream_name":"stdout","time":6307.518781663,"data":"[oia] step    75 oiavislin23 loss 0.3362 train-auroc 0.968 lr 7.55e-04 232s\n"}
+,{"stream_name":"stdout","time":6307.529739173,"data":"[oia] step    75 oiavispatchlin loss 0.4138 train-auroc 0.928 lr 7.55e-04 233s\n"}
+,{"stream_name":"stdout","time":6307.55940805,"data":"[oia] step    75 oiavis   loss 0.2022 train-auroc 0.986 lr 7.55e-04 233s\n"}
+,{"stream_name":"stdout","time":6307.592589979,"data":"[oia] step    75 oiavis   loss 0.1814 train-auroc 0.990 lr 7.55e-04 233s\n"}
+,{"stream_name":"stdout","time":6381.001159879,"data":"[oia] step   100 oiavislin4 loss 0.5002 train-auroc 0.877 lr 9.89e-04 306s\n"}
+,{"stream_name":"stdout","time":6381.040220261,"data":"[oia] step   100 oiavislin11 loss 0.4218 train-auroc 0.936 lr 9.89e-04 306s\n"}
+,{"stream_name":"stdout","time":6381.075590522,"data":"[oia] step   100 oiavislin17 loss 0.1973 train-auroc 0.992 lr 9.89e-04 306s\n"}
+,{"stream_name":"stdout","time":6381.107511396,"data":"[oia] step   100 oiavislin23 loss 0.2713 train-auroc 0.973 lr 9.89e-04 306s\n"}
+,{"stream_name":"stdout","time":6381.133478906,"data":"[oia] step   100 oiavispatchlin loss 0.4441 train-auroc 0.878 lr 9.89e-04 306s\n"}
+,{"stream_name":"stdout","time":6381.188482521,"data":"[oia] step   100 oiavis   loss 0.3103 train-auroc 0.953 lr 9.89e-04 306s\n"}
+,{"stream_name":"stdout","time":6381.250725265,"data":"[oia] step   100 oiavis   loss 0.2135 train-auroc 0.986 lr 9.89e-04 306s\n"}
+,{"stream_name":"stdout","time":6460.801914389,"data":"[oia] step   125 oiavislin4 loss 0.4867 train-auroc 0.963 lr 9.83e-04 386s\n"}
+,{"stream_name":"stdout","time":6460.817801937,"data":"[oia] step   125 oiavislin11 loss 0.2967 train-auroc 0.972 lr 9.83e-04 386s\n"}
+,{"stream_name":"stdout","time":6460.83342244,"data":"[oia] step   125 oiavislin17 loss 0.1294 train-auroc 0.996 lr 9.83e-04 386s\n"}
+,{"stream_name":"stdout","time":6460.847462192,"data":"[oia] step   125 oiavislin23 loss 0.2182 train-auroc 0.987 lr 9.83e-04 386s\n"}
+,{"stream_name":"stdout","time":6460.861158253,"data":"[oia] step   125 oiavispatchlin loss 0.3383 train-auroc 0.962 lr 9.83e-04 386s\n"}
+,{"stream_name":"stdout","time":6460.890654271,"data":"[oia] step   125 oiavis   loss 0.2132 train-auroc 0.988 lr 9.83e-04 386s\n"}
+,{"stream_name":"stdout","time":6460.924923588,"data":"[oia] step   125 oiavis   loss 0.1907 train-auroc 0.990 lr 9.83e-04 386s\n"}
+,{"stream_name":"stdout","time":6538.543822511,"data":"[oia] step   150 oiavislin4 loss 0.4516 train-auroc 0.880 lr 9.76e-04 464s\n"}
+,{"stream_name":"stdout","time":6538.562335104,"data":"[oia] step   150 oiavislin11 loss 0.3597 train-auroc 0.926 lr 9.76e-04 464s\n"}
+,{"stream_name":"stdout","time":6538.578840769,"data":"[oia] step   150 oiavislin17 loss 0.2192 train-auroc 0.973 lr 9.76e-04 464s\n"}
+,{"stream_name":"stdout","time":6538.594546737,"data":"[oia] step   150 oiavislin23 loss 0.3159 train-auroc 0.947 lr 9.76e-04 464s\n"}
+,{"stream_name":"stdout","time":6538.607803189,"data":"[oia] step   150 oiavispatchlin loss 0.5744 train-auroc 0.844 lr 9.76e-04 464s\n"}
+,{"stream_name":"stdout","time":6538.639610589,"data":"[oia] step   150 oiavis   loss 0.2984 train-auroc 0.955 lr 9.76e-04 464s\n"}
+,{"stream_name":"stdout","time":6538.675188543,"data":"[oia] step   150 oiavis   loss 0.2863 train-auroc 0.951 lr 9.76e-04 464s\n"}
+,{"stream_name":"stdout","time":6618.133336259,"data":"[oia] step   175 oiavislin4 loss 0.8365 train-auroc 0.847 lr 9.67e-04 543s\n"}
+,{"stream_name":"stdout","time":6618.183505369,"data":"[oia] step   175 oiavislin11 loss 0.4539 train-auroc 0.884 lr 9.67e-04 543s\n"}
+,{"stream_name":"stdout","time":6618.23228526,"data":"[oia] step   175 oiavislin17 loss 0.2730 train-auroc 0.973 lr 9.67e-04 543s\n"}
+,{"stream_name":"stdout","time":6618.27910911,"data":"[oia] step   175 oiavislin23 loss 0.5031 train-auroc 0.931 lr 9.67e-04 543s\n"}
+,{"stream_name":"stdout","time":6618.3215306,"data":"[oia] step   175 oiavispatchlin loss 0.6426 train-auroc 0.857 lr 9.67e-04 543s\n"}
+,{"stream_name":"stdout","time":6618.434821099,"data":"[oia] step   175 oiavis   loss 1.0493 train-auroc 0.911 lr 9.67e-04 543s\n"}
+,{"stream_name":"stdout","time":6618.548093967,"data":"[oia] step   175 oiavis   loss 0.4056 train-auroc 0.928 lr 9.67e-04 544s\n"}
+,{"stream_name":"stdout","time":6685.745212718,"data":"[oia] step   200 oiavislin4 loss 0.3819 train-auroc 0.908 lr 9.57e-04 611s\n"}
+,{"stream_name":"stdout","time":6685.760244011,"data":"[oia] step   200 oiavislin11 loss 0.2955 train-auroc 0.946 lr 9.57e-04 611s\n"}
+,{"stream_name":"stdout","time":6685.775117604,"data":"[oia] step   200 oiavislin17 loss 0.2361 train-auroc 0.970 lr 9.57e-04 611s\n"}
+,{"stream_name":"stdout","time":6685.789179761,"data":"[oia] step   200 oiavislin23 loss 0.2535 train-auroc 0.959 lr 9.57e-04 611s\n"}
+,{"stream_name":"stdout","time":6685.802096218,"data":"[oia] step   200 oiavispatchlin loss 0.3558 train-auroc 0.921 lr 9.57e-04 611s\n"}
+,{"stream_name":"stdout","time":6685.832308243,"data":"[oia] step   200 oiavis   loss 0.2773 train-auroc 0.972 lr 9.57e-04 611s\n"}
+,{"stream_name":"stdout","time":6685.866609852,"data":"[oia] step   200 oiavis   loss 0.1875 train-auroc 0.975 lr 9.57e-04 611s\n"}
+,{"stream_name":"stdout","time":6758.766176925,"data":"[oia] step   225 oiavislin4 loss 0.6237 train-auroc 0.810 lr 9.46e-04 684s\n"}
+,{"stream_name":"stdout","time":6758.826477732,"data":"[oia] step   225 oiavislin11 loss 0.4686 train-auroc 0.846 lr 9.46e-04 684s\n"}
+,{"stream_name":"stdout","time":6758.8876406,"data":"[oia] step   225 oiavislin17 loss 0.2150 train-auroc 0.975 lr 9.46e-04 684s\n"}
+,{"stream_name":"stdout","time":6758.948636182,"data":"[oia] step   225 oiavislin23 loss 0.3862 train-auroc 0.954 lr 9.46e-04 684s\n"}
+,{"stream_name":"stdout","time":6759.000534172,"data":"[oia] step   225 oiavispatchlin loss 0.5392 train-auroc 0.845 lr 9.46e-04 684s\n"}
+,{"stream_name":"stdout","time":6759.125724174,"data":"[oia] step   225 oiavis   loss 0.2366 train-auroc 0.985 lr 9.46e-04 684s\n"}
+,{"stream_name":"stdout","time":6759.256563694,"data":"[oia] step   225 oiavis   loss 0.2092 train-auroc 0.979 lr 9.46e-04 684s\n"}
+,{"stream_name":"stdout","time":6840.874625351,"data":"[oia] step   250 oiavislin4 loss 0.5188 train-auroc 0.835 lr 9.33e-04 766s\n"}
+,{"stream_name":"stdout","time":6840.899849325,"data":"[oia] step   250 oiavislin11 loss 0.4068 train-auroc 0.902 lr 9.33e-04 766s\n"}
+,{"stream_name":"stdout","time":6840.923194037,"data":"[oia] step   250 oiavislin17 loss 0.2320 train-auroc 0.987 lr 9.33e-04 766s\n"}
+,{"stream_name":"stdout","time":6840.94830751,"data":"[oia] step   250 oiavislin23 loss 0.2475 train-auroc 0.964 lr 9.33e-04 766s\n"}
+,{"stream_name":"stdout","time":6840.968327395,"data":"[oia] step   250 oiavispatchlin loss 0.5485 train-auroc 0.806 lr 9.33e-04 766s\n"}
+,{"stream_name":"stdout","time":6841.021053932,"data":"[oia] step   250 oiavis   loss 0.2594 train-auroc 0.983 lr 9.33e-04 766s\n"}
+,{"stream_name":"stdout","time":6841.081585703,"data":"[oia] step   250 oiavis   loss 0.1912 train-auroc 0.985 lr 9.33e-04 766s\n"}
+,{"stream_name":"stdout","time":6851.385499498,"data":"[oia] step   250 oiavislin4 val-auroc 0.885\n"}
+,{"stream_name":"stdout","time":6851.393789725,"data":"[oia] step   250 oiavislin11 val-auroc 0.949\n"}
+,{"stream_name":"stdout","time":6851.399311952,"data":"[oia] step   250 oiavislin17 val-auroc 0.993\n"}
+,{"stream_name":"stdout","time":6851.404984916,"data":"[oia] step   250 oiavislin23 val-auroc 0.990\n"}
+,{"stream_name":"stdout","time":6851.410213164,"data":"[oia] step   250 oiavispatchlin val-auroc 0.884\n"}
+,{"stream_name":"stdout","time":6851.413915899,"data":"[oia] step   250 oiavis   val-auroc 0.990\n"}
+,{"stream_name":"stdout","time":6851.437769968,"data":"[oia] step   250 oiavis   val-auroc 0.993\n"}
+,{"stream_name":"stdout","time":6929.001638935,"data":"[oia] step   275 oiavislin4 loss 0.7317 train-auroc 0.758 lr 9.19e-04 854s\n"}
+,{"stream_name":"stdout","time":6929.014305621,"data":"[oia] step   275 oiavislin11 loss 0.5847 train-auroc 0.830 lr 9.19e-04 854s\n"}
+,{"stream_name":"stdout","time":6929.02550773,"data":"[oia] step   275 oiavislin17 loss 0.3021 train-auroc 0.948 lr 9.19e-04 854s\n"}
+,{"stream_name":"stdout","time":6929.03647386,"data":"[oia] step   275 oiavislin23 loss 0.4309 train-auroc 0.896 lr 9.19e-04 854s\n"}
+,{"stream_name":"stdout","time":6929.045466742,"data":"[oia] step   275 oiavispatchlin loss 0.6523 train-auroc 0.763 lr 9.19e-04 854s\n"}
+,{"stream_name":"stdout","time":6929.074012025,"data":"[oia] step   275 oiavis   loss 0.3836 train-auroc 0.937 lr 9.19e-04 854s\n"}
+,{"stream_name":"stdout","time":6929.104833128,"data":"[oia] step   275 oiavis   loss 0.3346 train-auroc 0.935 lr 9.19e-04 854s\n"}
+,{"stream_name":"stdout","time":6995.20635467,"data":"[oia] step   300 oiavislin4 loss 0.3244 train-auroc 0.935 lr 9.05e-04 920s\n"}
+,{"stream_name":"stdout","time":6995.223553078,"data":"[oia] step   300 oiavislin11 loss 0.2607 train-auroc 0.960 lr 9.05e-04 920s\n"}
+,{"stream_name":"stdout","time":6995.239829338,"data":"[oia] step   300 oiavislin17 loss 0.0818 train-auroc 0.997 lr 9.05e-04 920s\n"}
+,{"stream_name":"stdout","time":6995.255200895,"data":"[oia] step   300 oiavislin23 loss 0.1213 train-auroc 0.996 lr 9.05e-04 920s\n"}
+,{"stream_name":"stdout","time":6995.268741073,"data":"[oia] step   300 oiavispatchlin loss 0.3103 train-auroc 0.941 lr 9.05e-04 920s\n"}
+,{"stream_name":"stdout","time":6995.299947707,"data":"[oia] step   300 oiavis   loss 0.0961 train-auroc 0.995 lr 9.05e-04 920s\n"}
+,{"stream_name":"stdout","time":6995.334061834,"data":"[oia] step   300 oiavis   loss 0.1062 train-auroc 0.993 lr 9.05e-04 920s\n"}
+,{"stream_name":"stdout","time":7066.393558632,"data":"[oia] step   325 oiavislin4 loss 0.2634 train-auroc 0.946 lr 8.89e-04 991s\n"}
+,{"stream_name":"stdout","time":7066.452285431,"data":"[oia] step   325 oiavislin11 loss 0.2228 train-auroc 0.967 lr 8.89e-04 991s\n"}
+,{"stream_name":"stdout","time":7066.510256244,"data":"[oia] step   325 oiavislin17 loss 0.1678 train-auroc 0.991 lr 8.89e-04 991s\n"}
+,{"stream_name":"stdout","time":7066.568970409,"data":"[oia] step   325 oiavislin23 loss 0.2127 train-auroc 0.989 lr 8.89e-04 992s\n"}
+,{"stream_name":"stdout","time":7066.621722407,"data":"[oia] step   325 oiavispatchlin loss 0.2707 train-auroc 0.948 lr 8.89e-04 992s\n"}
+,{"stream_name":"stdout","time":7066.749259358,"data":"[oia] step   325 oiavis   loss 0.1600 train-auroc 0.992 lr 8.89e-04 992s\n"}
+,{"stream_name":"stdout","time":7066.877574566,"data":"[oia] step   325 oiavis   loss 0.1760 train-auroc 0.991 lr 8.89e-04 992s\n"}
+,{"stream_name":"stdout","time":7138.872495793,"data":"[oia] step   350 oiavislin4 loss 0.5828 train-auroc 0.839 lr 8.72e-04 1064s\n"}
+,{"stream_name":"stdout","time":7138.89055921,"data":"[oia] step   350 oiavislin11 loss 0.3556 train-auroc 0.943 lr 8.72e-04 1064s\n"}
+,{"stream_name":"stdout","time":7138.907977458,"data":"[oia] step   350 oiavislin17 loss 0.1208 train-auroc 0.992 lr 8.72e-04 1064s\n"}
+,{"stream_name":"stdout","time":7138.924557465,"data":"[oia] step   350 oiavislin23 loss 0.3626 train-auroc 0.992 lr 8.72e-04 1064s\n"}
+,{"stream_name":"stdout","time":7138.939415694,"data":"[oia] step   350 oiavispatchlin loss 0.5048 train-auroc 0.841 lr 8.72e-04 1064s\n"}
+,{"stream_name":"stdout","time":7138.971654718,"data":"[oia] step   350 oiavis   loss 0.1572 train-auroc 0.989 lr 8.72e-04 1064s\n"}
+,{"stream_name":"stdout","time":7139.00606234,"data":"[oia] step   350 oiavis   loss 0.1272 train-auroc 0.994 lr 8.72e-04 1064s\n"}
+,{"stream_name":"stdout","time":7216.695427742,"data":"[oia] step   375 oiavislin4 loss 0.4253 train-auroc 0.898 lr 8.54e-04 1142s\n"}
+,{"stream_name":"stdout","time":7216.761252004,"data":"[oia] step   375 oiavislin11 loss 0.3139 train-auroc 0.946 lr 8.54e-04 1142s\n"}
+,{"stream_name":"stdout","time":7216.821738888,"data":"[oia] step   375 oiavislin17 loss 0.1650 train-auroc 0.987 lr 8.54e-04 1142s\n"}
+,{"stream_name":"stdout","time":7216.881010326,"data":"[oia] step   375 oiavislin23 loss 0.1874 train-auroc 0.983 lr 8.54e-04 1142s\n"}
+,{"stream_name":"stdout","time":7216.934530246,"data":"[oia] step   375 oiavispatchlin loss 0.4792 train-auroc 0.867 lr 8.54e-04 1142s\n"}
+,{"stream_name":"stdout","time":7217.060252016,"data":"[oia] step   375 oiavis   loss 0.1443 train-auroc 0.988 lr 8.54e-04 1142s\n"}
+,{"stream_name":"stdout","time":7217.185811957,"data":"[oia] step   375 oiavis   loss 0.1323 train-auroc 0.990 lr 8.54e-04 1142s\n"}
+,{"stream_name":"stdout","time":7302.076874298,"data":"[oia] step   400 oiavislin4 loss 0.2375 train-auroc 0.968 lr 8.35e-04 1227s\n"}
+,{"stream_name":"stdout","time":7302.114010314,"data":"[oia] step   400 oiavislin11 loss 0.1831 train-auroc 0.984 lr 8.35e-04 1227s\n"}
+,{"stream_name":"stdout","time":7302.148605494,"data":"[oia] step   400 oiavislin17 loss 0.0837 train-auroc 0.998 lr 8.35e-04 1227s\n"}
+,{"stream_name":"stdout","time":7302.182361121,"data":"[oia] step   400 oiavislin23 loss 0.1147 train-auroc 0.998 lr 8.35e-04 1227s\n"}
+,{"stream_name":"stdout","time":7302.21473112,"data":"[oia] step   400 oiavispatchlin loss 0.2590 train-auroc 0.962 lr 8.35e-04 1227s\n"}
+,{"stream_name":"stdout","time":7302.280062252,"data":"[oia] step   400 oiavis   loss 0.1288 train-auroc 0.997 lr 8.35e-04 1227s\n"}
+,{"stream_name":"stdout","time":7302.344493202,"data":"[oia] step   400 oiavis   loss 0.0683 train-auroc 0.999 lr 8.35e-04 1227s\n"}
+,{"stream_name":"stdout","time":7384.936472357,"data":"[oia] step   425 oiavislin4 loss 0.5769 train-auroc 0.910 lr 8.15e-04 1310s\n"}
+,{"stream_name":"stdout","time":7385.001496445,"data":"[oia] step   425 oiavislin11 loss 0.2926 train-auroc 0.948 lr 8.15e-04 1310s\n"}
+,{"stream_name":"stdout","time":7385.065995656,"data":"[oia] step   425 oiavislin17 loss 0.1511 train-auroc 0.986 lr 8.15e-04 1310s\n"}
+,{"stream_name":"stdout","time":7385.128656754,"data":"[oia] step   425 oiavislin23 loss 0.1730 train-auroc 0.985 lr 8.15e-04 1310s\n"}
+,{"stream_name":"stdout","time":7385.185693522,"data":"[oia] step   425 oiavispatchlin loss 0.4634 train-auroc 0.889 lr 8.15e-04 1310s\n"}
+,{"stream_name":"stdout","time":7385.317203447,"data":"[oia] step   425 oiavis   loss 0.1169 train-auroc 0.992 lr 8.15e-04 1310s\n"}
+,{"stream_name":"stdout","time":7385.445687583,"data":"[oia] step   425 oiavis   loss 0.1196 train-auroc 0.991 lr 8.15e-04 1310s\n"}
+,{"stream_name":"stdout","time":7454.480947128,"data":"[oia] step   450 oiavislin4 loss 0.4382 train-auroc 0.875 lr 7.94e-04 1379s\n"}
+,{"stream_name":"stdout","time":7454.501578532,"data":"[oia] step   450 oiavislin11 loss 0.3023 train-auroc 0.948 lr 7.94e-04 1379s\n"}
+,{"stream_name":"stdout","time":7454.520205441,"data":"[oia] step   450 oiavislin17 loss 0.1337 train-auroc 0.996 lr 7.94e-04 1379s\n"}
+,{"stream_name":"stdout","time":7454.538561185,"data":"[oia] step   450 oiavislin23 loss 0.1324 train-auroc 0.993 lr 7.94e-04 1380s\n"}
+,{"stream_name":"stdout","time":7454.555627632,"data":"[oia] step   450 oiavispatchlin loss 0.4653 train-auroc 0.865 lr 7.94e-04 1380s\n"}
+,{"stream_name":"stdout","time":7454.588883054,"data":"[oia] step   450 oiavis   loss 0.1086 train-auroc 0.997 lr 7.94e-04 1380s\n"}
+,{"stream_name":"stdout","time":7454.623733036,"data":"[oia] step   450 oiavis   loss 0.1290 train-auroc 0.998 lr 7.94e-04 1380s\n"}
+,{"stream_name":"stdout","time":7541.333112974,"data":"[oia] step   475 oiavislin4 loss 0.2518 train-auroc 0.964 lr 7.72e-04 1466s\n"}
+,{"stream_name":"stdout","time":7541.363455899,"data":"[oia] step   475 oiavislin11 loss 0.1932 train-auroc 0.982 lr 7.72e-04 1466s\n"}
+,{"stream_name":"stdout","time":7541.395997461,"data":"[oia] step   475 oiavislin17 loss 0.0784 train-auroc 0.997 lr 7.72e-04 1466s\n"}
+,{"stream_name":"stdout","time":7541.425838133,"data":"[oia] step   475 oiavislin23 loss 0.1238 train-auroc 0.994 lr 7.72e-04 1466s\n"}
+,{"stream_name":"stdout","time":7541.451820292,"data":"[oia] step   475 oiavispatchlin loss 0.2579 train-auroc 0.963 lr 7.72e-04 1466s\n"}
+,{"stream_name":"stdout","time":7541.511715147,"data":"[oia] step   475 oiavis   loss 0.0821 train-auroc 0.996 lr 7.72e-04 1466s\n"}
+,{"stream_name":"stdout","time":7541.57588916,"data":"[oia] step   475 oiavis   loss 0.0744 train-auroc 0.998 lr 7.72e-04 1467s\n"}
+,{"stream_name":"stdout","time":7616.549996109,"data":"[oia] step   500 oiavislin4 loss 0.3793 train-auroc 0.880 lr 7.50e-04 1542s\n"}
+,{"stream_name":"stdout","time":7616.603492408,"data":"[oia] step   500 oiavislin11 loss 0.2684 train-auroc 0.953 lr 7.50e-04 1542s\n"}
+,{"stream_name":"stdout","time":7616.657795072,"data":"[oia] step   500 oiavislin17 loss 0.1518 train-auroc 0.986 lr 7.50e-04 1542s\n"}
+,{"stream_name":"stdout","time":7616.709579902,"data":"[oia] step   500 oiavislin23 loss 0.2073 train-auroc 0.975 lr 7.50e-04 1542s\n"}
+,{"stream_name":"stdout","time":7616.757478752,"data":"[oia] step   500 oiavispatchlin loss 0.3924 train-auroc 0.894 lr 7.50e-04 1542s\n"}
+,{"stream_name":"stdout","time":7616.87859053,"data":"[oia] step   500 oiavis   loss 0.1422 train-auroc 0.991 lr 7.50e-04 1542s\n"}
+,{"stream_name":"stdout","time":7616.997336208,"data":"[oia] step   500 oiavis   loss 0.2100 train-auroc 0.983 lr 7.50e-04 1542s\n"}
+,{"stream_name":"stdout","time":7627.234259502,"data":"[oia] step   500 oiavislin4 val-auroc 0.907\n"}
+,{"stream_name":"stdout","time":7627.24038634,"data":"[oia] step   500 oiavislin11 val-auroc 0.953\n"}
+,{"stream_name":"stdout","time":7627.246159681,"data":"[oia] step   500 oiavislin17 val-auroc 0.996\n"}
+,{"stream_name":"stdout","time":7627.251708969,"data":"[oia] step   500 oiavislin23 val-auroc 0.992\n"}
+,{"stream_name":"stdout","time":7627.257101596,"data":"[oia] step   500 oiavispatchlin val-auroc 0.896\n"}
+,{"stream_name":"stdout","time":7627.261091593,"data":"[oia] step   500 oiavis   val-auroc 0.994\n"}
+,{"stream_name":"stdout","time":7627.291274937,"data":"[oia] step   500 oiavis   val-auroc 0.996\n"}
+,{"stream_name":"stdout","time":7715.367721248,"data":"[oia] step   525 oiavislin4 loss 0.3275 train-auroc 0.936 lr 7.27e-04 1640s\n"}
+,{"stream_name":"stdout","time":7715.393695932,"data":"[oia] step   525 oiavislin11 loss 0.2313 train-auroc 0.977 lr 7.27e-04 1640s\n"}
+,{"stream_name":"stdout","time":7715.419047822,"data":"[oia] step   525 oiavislin17 loss 0.0976 train-auroc 0.995 lr 7.27e-04 1640s\n"}
+,{"stream_name":"stdout","time":7715.443011416,"data":"[oia] step   525 oiavislin23 loss 0.1209 train-auroc 0.993 lr 7.27e-04 1640s\n"}
+,{"stream_name":"stdout","time":7715.463277401,"data":"[oia] step   525 oiavispatchlin loss 0.3453 train-auroc 0.928 lr 7.27e-04 1640s\n"}
+,{"stream_name":"stdout","time":7715.515321431,"data":"[oia] step   525 oiavis   loss 0.0775 train-auroc 0.998 lr 7.27e-04 1640s\n"}
+,{"stream_name":"stdout","time":7715.57440271,"data":"[oia] step   525 oiavis   loss 0.0807 train-auroc 0.998 lr 7.27e-04 1641s\n"}
+,{"stream_name":"stdout","time":7789.936466661,"data":"[oia] step   550 oiavislin4 loss 0.6191 train-auroc 0.746 lr 7.03e-04 1715s\n"}
+,{"stream_name":"stdout","time":7789.952241187,"data":"[oia] step   550 oiavislin11 loss 0.3182 train-auroc 0.952 lr 7.03e-04 1715s\n"}
+,{"stream_name":"stdout","time":7789.966416651,"data":"[oia] step   550 oiavislin17 loss 0.0643 train-auroc 0.997 lr 7.03e-04 1715s\n"}
+,{"stream_name":"stdout","time":7789.980247182,"data":"[oia] step   550 oiavislin23 loss 0.1268 train-auroc 0.993 lr 7.03e-04 1715s\n"}
+,{"stream_name":"stdout","time":7789.9926462,"data":"[oia] step   550 oiavispatchlin loss 0.5910 train-auroc 0.762 lr 7.03e-04 1715s\n"}
+,{"stream_name":"stdout","time":7790.022410654,"data":"[oia] step   550 oiavis   loss 0.0534 train-auroc 0.998 lr 7.03e-04 1715s\n"}
+,{"stream_name":"stdout","time":7790.054331757,"data":"[oia] step   550 oiavis   loss 0.0878 train-auroc 0.998 lr 7.03e-04 1715s\n"}
+,{"stream_name":"stdout","time":7865.484246888,"data":"[oia] step   575 oiavislin4 loss 0.4709 train-auroc 0.852 lr 6.79e-04 1790s\n"}
+,{"stream_name":"stdout","time":7865.502558046,"data":"[oia] step   575 oiavislin11 loss 0.3494 train-auroc 0.918 lr 6.79e-04 1790s\n"}
+,{"stream_name":"stdout","time":7865.522015981,"data":"[oia] step   575 oiavislin17 loss 0.1350 train-auroc 0.991 lr 6.79e-04 1791s\n"}
+,{"stream_name":"stdout","time":7865.540305116,"data":"[oia] step   575 oiavislin23 loss 0.2264 train-auroc 0.979 lr 6.79e-04 1791s\n"}
+,{"stream_name":"stdout","time":7865.555256184,"data":"[oia] step   575 oiavispatchlin loss 0.4803 train-auroc 0.845 lr 6.79e-04 1791s\n"}
+,{"stream_name":"stdout","time":7865.586963075,"data":"[oia] step   575 oiavis   loss 0.1026 train-auroc 0.997 lr 6.79e-04 1791s\n"}
+,{"stream_name":"stdout","time":7865.619684495,"data":"[oia] step   575 oiavis   loss 0.1136 train-auroc 0.997 lr 6.79e-04 1791s\n"}
+,{"stream_name":"stdout","time":7936.974680631,"data":"[oia] step   600 oiavislin4 loss 0.4249 train-auroc 0.891 lr 6.55e-04 1862s\n"}
+,{"stream_name":"stdout","time":7937.008548353,"data":"[oia] step   600 oiavislin11 loss 0.3109 train-auroc 0.936 lr 6.55e-04 1862s\n"}
+,{"stream_name":"stdout","time":7937.040161912,"data":"[oia] step   600 oiavislin17 loss 0.2754 train-auroc 0.981 lr 6.55e-04 1862s\n"}
+,{"stream_name":"stdout","time":7937.070228273,"data":"[oia] step   600 oiavislin23 loss 0.2437 train-auroc 0.980 lr 6.55e-04 1862s\n"}
+,{"stream_name":"stdout","time":7937.098115885,"data":"[oia] step   600 oiavispatchlin loss 0.4676 train-auroc 0.875 lr 6.55e-04 1862s\n"}
+,{"stream_name":"stdout","time":7937.15578064,"data":"[oia] step   600 oiavis   loss 0.3014 train-auroc 0.979 lr 6.55e-04 1862s\n"}
+,{"stream_name":"stdout","time":7937.21958411,"data":"[oia] step   600 oiavis   loss 0.4039 train-auroc 0.977 lr 6.55e-04 1862s\n"}
+,{"stream_name":"stdout","time":8006.283860338,"data":"[oia] step   625 oiavislin4 loss 0.7472 train-auroc 0.754 lr 6.29e-04 1931s\n"}
+,{"stream_name":"stdout","time":8006.353666327,"data":"[oia] step   625 oiavislin11 loss 0.7855 train-auroc 0.810 lr 6.29e-04 1931s\n"}
+,{"stream_name":"stdout","time":8006.425255358,"data":"[oia] step   625 oiavislin17 loss 0.1086 train-auroc 0.994 lr 6.29e-04 1931s\n"}
+,{"stream_name":"stdout","time":8006.493600379,"data":"[oia] step   625 oiavislin23 loss 0.1394 train-auroc 0.990 lr 6.29e-04 1931s\n"}
+,{"stream_name":"stdout","time":8006.555147879,"data":"[oia] step   625 oiavispatchlin loss 0.7465 train-auroc 0.692 lr 6.29e-04 1932s\n"}
+,{"stream_name":"stdout","time":8006.688384621,"data":"[oia] step   625 oiavis   loss 0.1393 train-auroc 0.989 lr 6.29e-04 1932s\n"}
+,{"stream_name":"stdout","time":8006.821459846,"data":"[oia] step   625 oiavis   loss 0.1425 train-auroc 0.988 lr 6.29e-04 1932s\n"}
+,{"stream_name":"stdout","time":8087.951146502,"data":"[oia] step   650 oiavislin4 loss 0.3276 train-auroc 0.942 lr 6.04e-04 2013s\n"}
+,{"stream_name":"stdout","time":8088.009571742,"data":"[oia] step   650 oiavislin11 loss 0.2790 train-auroc 0.957 lr 6.04e-04 2013s\n"}
+,{"stream_name":"stdout","time":8088.068786158,"data":"[oia] step   650 oiavislin17 loss 0.2693 train-auroc 0.976 lr 6.04e-04 2013s\n"}
+,{"stream_name":"stdout","time":8088.127213376,"data":"[oia] step   650 oiavislin23 loss 0.2524 train-auroc 0.976 lr 6.04e-04 2013s\n"}
+,{"stream_name":"stdout","time":8088.182190741,"data":"[oia] step   650 oiavispatchlin loss 0.3370 train-auroc 0.939 lr 6.04e-04 2013s\n"}
+,{"stream_name":"stdout","time":8088.307444938,"data":"[oia] step   650 oiavis   loss 0.1778 train-auroc 0.986 lr 6.04e-04 2013s\n"}
+,{"stream_name":"stdout","time":8088.429922416,"data":"[oia] step   650 oiavis   loss 0.1621 train-auroc 0.988 lr 6.04e-04 2013s\n"}
+,{"stream_name":"stdout","time":8184.072710573,"data":"[oia] step   675 oiavislin4 loss 0.6029 train-auroc 0.813 lr 5.78e-04 2109s\n"}
+,{"stream_name":"stdout","time":8184.123261197,"data":"[oia] step   675 oiavislin11 loss 0.4728 train-auroc 0.893 lr 5.78e-04 2109s\n"}
+,{"stream_name":"stdout","time":8184.172153811,"data":"[oia] step   675 oiavislin17 loss 0.4142 train-auroc 0.942 lr 5.78e-04 2109s\n"}
+,{"stream_name":"stdout","time":8184.219937092,"data":"[oia] step   675 oiavislin23 loss 0.4116 train-auroc 0.946 lr 5.78e-04 2109s\n"}
+,{"stream_name":"stdout","time":8184.261476603,"data":"[oia] step   675 oiavispatchlin loss 0.5939 train-auroc 0.825 lr 5.78e-04 2109s\n"}
+,{"stream_name":"stdout","time":8184.375138972,"data":"[oia] step   675 oiavis   loss 0.3279 train-auroc 0.947 lr 5.78e-04 2109s\n"}
+,{"stream_name":"stdout","time":8184.489225984,"data":"[oia] step   675 oiavis   loss 0.3957 train-auroc 0.937 lr 5.78e-04 2109s\n"}
+,{"stream_name":"stdout","time":8267.083992926,"data":"[oia] step   700 oiavislin4 loss 0.2417 train-auroc 0.974 lr 5.52e-04 2192s\n"}
+,{"stream_name":"stdout","time":8267.144857159,"data":"[oia] step   700 oiavislin11 loss 0.1503 train-auroc 0.985 lr 5.52e-04 2192s\n"}
+,{"stream_name":"stdout","time":8267.204068862,"data":"[oia] step   700 oiavislin17 loss 0.1252 train-auroc 0.989 lr 5.52e-04 2192s\n"}
+,{"stream_name":"stdout","time":8267.262844884,"data":"[oia] step   700 oiavislin23 loss 0.1510 train-auroc 0.984 lr 5.52e-04 2192s\n"}
+,{"stream_name":"stdout","time":8267.317015585,"data":"[oia] step   700 oiavispatchlin loss 0.2411 train-auroc 0.979 lr 5.52e-04 2192s\n"}
+,{"stream_name":"stdout","time":8267.44095209,"data":"[oia] step   700 oiavis   loss 0.0896 train-auroc 0.994 lr 5.52e-04 2192s\n"}
+,{"stream_name":"stdout","time":8267.569119405,"data":"[oia] step   700 oiavis   loss 0.0900 train-auroc 0.995 lr 5.52e-04 2193s\n"}
+,{"stream_name":"stdout","time":8337.736826665,"data":"[oia] step   725 oiavislin4 loss 0.3337 train-auroc 0.939 lr 5.26e-04 2263s\n"}
+,{"stream_name":"stdout","time":8337.75619267,"data":"[oia] step   725 oiavislin11 loss 0.2411 train-auroc 0.967 lr 5.26e-04 2263s\n"}
+,{"stream_name":"stdout","time":8337.775049205,"data":"[oia] step   725 oiavislin17 loss 0.1323 train-auroc 0.994 lr 5.26e-04 2263s\n"}
+,{"stream_name":"stdout","time":8337.792773557,"data":"[oia] step   725 oiavislin23 loss 0.2722 train-auroc 0.988 lr 5.26e-04 2263s\n"}
+,{"stream_name":"stdout","time":8337.808565571,"data":"[oia] step   725 oiavispatchlin loss 0.4107 train-auroc 0.918 lr 5.26e-04 2263s\n"}
+,{"stream_name":"stdout","time":8337.841852173,"data":"[oia] step   725 oiavis   loss 0.0906 train-auroc 0.995 lr 5.26e-04 2263s\n"}
+,{"stream_name":"stdout","time":8337.877053433,"data":"[oia] step   725 oiavis   loss 0.0867 train-auroc 0.996 lr 5.26e-04 2263s\n"}
+,{"stream_name":"stdout","time":8409.063884458,"data":"[oia] step   750 oiavislin4 loss 0.5501 train-auroc 0.847 lr 5.00e-04 2334s\n"}
+,{"stream_name":"stdout","time":8409.096092041,"data":"[oia] step   750 oiavislin11 loss 0.3041 train-auroc 0.946 lr 5.00e-04 2334s\n"}
+,{"stream_name":"stdout","time":8409.128406638,"data":"[oia] step   750 oiavislin17 loss 0.1501 train-auroc 0.987 lr 5.00e-04 2334s\n"}
+,{"stream_name":"stdout","time":8409.160091305,"data":"[oia] step   750 oiavislin23 loss 0.1954 train-auroc 0.980 lr 5.00e-04 2334s\n"}
+,{"stream_name":"stdout","time":8409.188247037,"data":"[oia] step   750 oiavispatchlin loss 0.5552 train-auroc 0.832 lr 5.00e-04 2334s\n"}
+,{"stream_name":"stdout","time":8409.249368482,"data":"[oia] step   750 oiavis   loss 0.1319 train-auroc 0.991 lr 5.00e-04 2334s\n"}
+,{"stream_name":"stdout","time":8409.310039357,"data":"[oia] step   750 oiavis   loss 0.1352 train-auroc 0.991 lr 5.00e-04 2334s\n"}
+,{"stream_name":"stdout","time":8419.498179192,"data":"[oia] step   750 oiavislin4 val-auroc 0.895\n"}
+,{"stream_name":"stdout","time":8419.501731878,"data":"[oia] step   750 oiavislin11 val-auroc 0.958\n"}
+,{"stream_name":"stdout","time":8419.507288125,"data":"[oia] step   750 oiavislin17 val-auroc 0.997\n"}
+,{"stream_name":"stdout","time":8419.512696249,"data":"[oia] step   750 oiavislin23 val-auroc 0.995\n"}
+,{"stream_name":"stdout","time":8419.518295057,"data":"[oia] step   750 oiavispatchlin val-auroc 0.902\n"}
+,{"stream_name":"stdout","time":8419.522335918,"data":"[oia] step   750 oiavis   val-auroc 0.997\n"}
+,{"stream_name":"stdout","time":8419.552400461,"data":"[oia] step   750 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":8502.197213685,"data":"[oia] step   775 oiavislin4 loss 0.4617 train-auroc 0.874 lr 4.74e-04 2427s\n"}
+,{"stream_name":"stdout","time":8502.228674387,"data":"[oia] step   775 oiavislin11 loss 0.2755 train-auroc 0.970 lr 4.74e-04 2427s\n"}
+,{"stream_name":"stdout","time":8502.258586393,"data":"[oia] step   775 oiavislin17 loss 0.1336 train-auroc 0.994 lr 4.74e-04 2427s\n"}
+,{"stream_name":"stdout","time":8502.286955774,"data":"[oia] step   775 oiavislin23 loss 0.1296 train-auroc 0.991 lr 4.74e-04 2427s\n"}
+,{"stream_name":"stdout","time":8502.31197358,"data":"[oia] step   775 oiavispatchlin loss 0.4728 train-auroc 0.860 lr 4.74e-04 2427s\n"}
+,{"stream_name":"stdout","time":8502.372596324,"data":"[oia] step   775 oiavis   loss 0.1087 train-auroc 0.994 lr 4.74e-04 2427s\n"}
+,{"stream_name":"stdout","time":8502.43612156,"data":"[oia] step   775 oiavis   loss 0.1092 train-auroc 0.994 lr 4.74e-04 2427s\n"}
+,{"stream_name":"stdout","time":8604.067071678,"data":"[oia] step   800 oiavislin4 loss 0.5796 train-auroc 0.850 lr 4.48e-04 2529s\n"}
+,{"stream_name":"stdout","time":8604.082181142,"data":"[oia] step   800 oiavislin11 loss 0.3625 train-auroc 0.921 lr 4.48e-04 2529s\n"}
+,{"stream_name":"stdout","time":8604.096858179,"data":"[oia] step   800 oiavislin17 loss 0.1162 train-auroc 0.990 lr 4.48e-04 2529s\n"}
+,{"stream_name":"stdout","time":8604.112549417,"data":"[oia] step   800 oiavislin23 loss 0.1764 train-auroc 0.989 lr 4.48e-04 2529s\n"}
+,{"stream_name":"stdout","time":8604.124135292,"data":"[oia] step   800 oiavispatchlin loss 0.5567 train-auroc 0.844 lr 4.48e-04 2529s\n"}
+,{"stream_name":"stdout","time":8604.153744641,"data":"[oia] step   800 oiavis   loss 0.1110 train-auroc 0.992 lr 4.48e-04 2529s\n"}
+,{"stream_name":"stdout","time":8604.187137047,"data":"[oia] step   800 oiavis   loss 0.1071 train-auroc 0.993 lr 4.48e-04 2529s\n"}
+,{"stream_name":"stdout","time":8678.664698384,"data":"[oia] step   825 oiavislin4 loss 0.3827 train-auroc 0.911 lr 4.22e-04 2604s\n"}
+,{"stream_name":"stdout","time":8678.692572222,"data":"[oia] step   825 oiavislin11 loss 0.2954 train-auroc 0.947 lr 4.22e-04 2604s\n"}
+,{"stream_name":"stdout","time":8678.718832138,"data":"[oia] step   825 oiavislin17 loss 0.1897 train-auroc 0.983 lr 4.22e-04 2604s\n"}
+,{"stream_name":"stdout","time":8678.744070358,"data":"[oia] step   825 oiavislin23 loss 0.1754 train-auroc 0.982 lr 4.22e-04 2604s\n"}
+,{"stream_name":"stdout","time":8678.766323813,"data":"[oia] step   825 oiavispatchlin loss 0.3950 train-auroc 0.910 lr 4.22e-04 2604s\n"}
+,{"stream_name":"stdout","time":8678.81663046,"data":"[oia] step   825 oiavis   loss 0.1679 train-auroc 0.984 lr 4.22e-04 2604s\n"}
+,{"stream_name":"stdout","time":8678.875227386,"data":"[oia] step   825 oiavis   loss 0.1622 train-auroc 0.985 lr 4.22e-04 2604s\n"}
+,{"stream_name":"stdout","time":8764.432580481,"data":"[oia] step   850 oiavislin4 loss 0.4440 train-auroc 0.883 lr 3.96e-04 2689s\n"}
+,{"stream_name":"stdout","time":8764.457747687,"data":"[oia] step   850 oiavislin11 loss 0.3497 train-auroc 0.927 lr 3.96e-04 2689s\n"}
+,{"stream_name":"stdout","time":8764.48194632,"data":"[oia] step   850 oiavislin17 loss 0.0994 train-auroc 0.995 lr 3.96e-04 2689s\n"}
+,{"stream_name":"stdout","time":8764.505617901,"data":"[oia] step   850 oiavislin23 loss 0.1410 train-auroc 0.992 lr 3.96e-04 2689s\n"}
+,{"stream_name":"stdout","time":8764.526555342,"data":"[oia] step   850 oiavispatchlin loss 0.5212 train-auroc 0.818 lr 3.96e-04 2690s\n"}
+,{"stream_name":"stdout","time":8764.578619268,"data":"[oia] step   850 oiavis   loss 0.0933 train-auroc 0.996 lr 3.96e-04 2690s\n"}
+,{"stream_name":"stdout","time":8764.63609339,"data":"[oia] step   850 oiavis   loss 0.0875 train-auroc 0.997 lr 3.96e-04 2690s\n"}
+,{"stream_name":"stdout","time":8859.498015376,"data":"[oia] step   875 oiavislin4 loss 0.1560 train-auroc 0.979 lr 3.71e-04 2784s\n"}
+,{"stream_name":"stdout","time":8859.567614676,"data":"[oia] step   875 oiavislin11 loss 0.1512 train-auroc 0.984 lr 3.71e-04 2785s\n"}
+,{"stream_name":"stdout","time":8859.637949581,"data":"[oia] step   875 oiavislin17 loss 0.0943 train-auroc 0.995 lr 3.71e-04 2785s\n"}
+,{"stream_name":"stdout","time":8859.709224598,"data":"[oia] step   875 oiavislin23 loss 0.1188 train-auroc 0.992 lr 3.71e-04 2785s\n"}
+,{"stream_name":"stdout","time":8859.775895679,"data":"[oia] step   875 oiavispatchlin loss 0.1618 train-auroc 0.981 lr 3.71e-04 2785s\n"}
+,{"stream_name":"stdout","time":8859.911450958,"data":"[oia] step   875 oiavis   loss 0.0885 train-auroc 0.995 lr 3.71e-04 2785s\n"}
+,{"stream_name":"stdout","time":8860.051679123,"data":"[oia] step   875 oiavis   loss 0.0897 train-auroc 0.995 lr 3.71e-04 2785s\n"}
+,{"stream_name":"stdout","time":8923.102572244,"data":"[oia] step   900 oiavislin4 loss 0.5611 train-auroc 0.804 lr 3.45e-04 2848s\n"}
+,{"stream_name":"stdout","time":8923.139904447,"data":"[oia] step   900 oiavislin11 loss 0.5513 train-auroc 0.813 lr 3.45e-04 2848s\n"}
+,{"stream_name":"stdout","time":8923.176547729,"data":"[oia] step   900 oiavislin17 loss 0.2219 train-auroc 0.972 lr 3.45e-04 2848s\n"}
+,{"stream_name":"stdout","time":8923.213818093,"data":"[oia] step   900 oiavislin23 loss 0.2636 train-auroc 0.961 lr 3.45e-04 2848s\n"}
+,{"stream_name":"stdout","time":8923.246789117,"data":"[oia] step   900 oiavispatchlin loss 0.5870 train-auroc 0.794 lr 3.45e-04 2848s\n"}
+,{"stream_name":"stdout","time":8923.307395596,"data":"[oia] step   900 oiavis   loss 0.2233 train-auroc 0.969 lr 3.45e-04 2848s\n"}
+,{"stream_name":"stdout","time":8923.373866537,"data":"[oia] step   900 oiavis   loss 0.2182 train-auroc 0.971 lr 3.45e-04 2848s\n"}
+,{"stream_name":"stdout","time":9002.858054325,"data":"[oia] step   925 oiavislin4 loss 0.4118 train-auroc 0.943 lr 3.21e-04 2928s\n"}
+,{"stream_name":"stdout","time":9002.875153212,"data":"[oia] step   925 oiavislin11 loss 0.2562 train-auroc 0.973 lr 3.21e-04 2928s\n"}
+,{"stream_name":"stdout","time":9002.891121438,"data":"[oia] step   925 oiavislin17 loss 0.0921 train-auroc 0.996 lr 3.21e-04 2928s\n"}
+,{"stream_name":"stdout","time":9002.906690831,"data":"[oia] step   925 oiavislin23 loss 0.1054 train-auroc 0.994 lr 3.21e-04 2928s\n"}
+,{"stream_name":"stdout","time":9002.920281958,"data":"[oia] step   925 oiavispatchlin loss 0.3787 train-auroc 0.933 lr 3.21e-04 2928s\n"}
+,{"stream_name":"stdout","time":9002.950999205,"data":"[oia] step   925 oiavis   loss 0.0995 train-auroc 0.995 lr 3.21e-04 2928s\n"}
+,{"stream_name":"stdout","time":9002.983661533,"data":"[oia] step   925 oiavis   loss 0.0933 train-auroc 0.995 lr 3.21e-04 2928s\n"}
+,{"stream_name":"stdout","time":9078.28329904,"data":"[oia] step   950 oiavislin4 loss 0.2244 train-auroc 0.977 lr 2.97e-04 3003s\n"}
+,{"stream_name":"stdout","time":9078.298871497,"data":"[oia] step   950 oiavislin11 loss 0.1633 train-auroc 0.987 lr 2.97e-04 3003s\n"}
+,{"stream_name":"stdout","time":9078.312161812,"data":"[oia] step   950 oiavislin17 loss 0.0929 train-auroc 0.997 lr 2.97e-04 3003s\n"}
+,{"stream_name":"stdout","time":9078.324939855,"data":"[oia] step   950 oiavislin23 loss 0.0960 train-auroc 0.996 lr 2.97e-04 3003s\n"}
+,{"stream_name":"stdout","time":9078.336288534,"data":"[oia] step   950 oiavispatchlin loss 0.2230 train-auroc 0.980 lr 2.97e-04 3003s\n"}
+,{"stream_name":"stdout","time":9078.365394156,"data":"[oia] step   950 oiavis   loss 0.0930 train-auroc 0.996 lr 2.97e-04 3003s\n"}
+,{"stream_name":"stdout","time":9078.395526561,"data":"[oia] step   950 oiavis   loss 0.0862 train-auroc 0.996 lr 2.97e-04 3003s\n"}
+,{"stream_name":"stdout","time":9151.708974968,"data":"[oia] step   975 oiavislin4 loss 0.4040 train-auroc 0.915 lr 2.73e-04 3077s\n"}
+,{"stream_name":"stdout","time":9151.757584505,"data":"[oia] step   975 oiavislin11 loss 0.3618 train-auroc 0.915 lr 2.73e-04 3077s\n"}
+,{"stream_name":"stdout","time":9151.808431682,"data":"[oia] step   975 oiavislin17 loss 0.2998 train-auroc 0.961 lr 2.73e-04 3077s\n"}
+,{"stream_name":"stdout","time":9151.86432944,"data":"[oia] step   975 oiavislin23 loss 0.3138 train-auroc 0.948 lr 2.73e-04 3077s\n"}
+,{"stream_name":"stdout","time":9151.91093442,"data":"[oia] step   975 oiavispatchlin loss 0.3838 train-auroc 0.909 lr 2.73e-04 3077s\n"}
+,{"stream_name":"stdout","time":9152.026733212,"data":"[oia] step   975 oiavis   loss 0.3373 train-auroc 0.966 lr 2.73e-04 3077s\n"}
+,{"stream_name":"stdout","time":9152.142422197,"data":"[oia] step   975 oiavis   loss 0.3033 train-auroc 0.968 lr 2.73e-04 3077s\n"}
+,{"stream_name":"stdout","time":9252.473372275,"data":"[oia] step  1000 oiavislin4 loss 0.4585 train-auroc 0.861 lr 2.50e-04 3177s\n"}
+,{"stream_name":"stdout","time":9252.497382166,"data":"[oia] step  1000 oiavislin11 loss 0.3543 train-auroc 0.928 lr 2.50e-04 3177s\n"}
+,{"stream_name":"stdout","time":9252.519090381,"data":"[oia] step  1000 oiavislin17 loss 0.2325 train-auroc 0.971 lr 2.50e-04 3177s\n"}
+,{"stream_name":"stdout","time":9252.539407232,"data":"[oia] step  1000 oiavislin23 loss 0.2109 train-auroc 0.972 lr 2.50e-04 3178s\n"}
+,{"stream_name":"stdout","time":9252.556319478,"data":"[oia] step  1000 oiavispatchlin loss 0.4856 train-auroc 0.852 lr 2.50e-04 3178s\n"}
+,{"stream_name":"stdout","time":9252.603856476,"data":"[oia] step  1000 oiavis   loss 0.1764 train-auroc 0.981 lr 2.50e-04 3178s\n"}
+,{"stream_name":"stdout","time":9252.658369266,"data":"[oia] step  1000 oiavis   loss 0.1479 train-auroc 0.987 lr 2.50e-04 3178s\n"}
+,{"stream_name":"stdout","time":9262.958188852,"data":"[oia] step  1000 oiavislin4 val-auroc 0.901\n"}
+,{"stream_name":"stdout","time":9262.961618954,"data":"[oia] step  1000 oiavislin11 val-auroc 0.965\n"}
+,{"stream_name":"stdout","time":9262.967109249,"data":"[oia] step  1000 oiavislin17 val-auroc 0.997\n"}
+,{"stream_name":"stdout","time":9262.973418365,"data":"[oia] step  1000 oiavislin23 val-auroc 0.995\n"}
+,{"stream_name":"stdout","time":9262.979349752,"data":"[oia] step  1000 oiavispatchlin val-auroc 0.899\n"}
+,{"stream_name":"stdout","time":9262.981626388,"data":"[oia] step  1000 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":9263.013351494,"data":"[oia] step  1000 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":9353.096926063,"data":"[oia] step  1025 oiavislin4 loss 0.4116 train-auroc 0.917 lr 2.28e-04 3278s\n"}
+,{"stream_name":"stdout","time":9353.156951401,"data":"[oia] step  1025 oiavislin11 loss 0.3259 train-auroc 0.933 lr 2.28e-04 3278s\n"}
+,{"stream_name":"stdout","time":9353.216422346,"data":"[oia] step  1025 oiavislin17 loss 0.2270 train-auroc 0.973 lr 2.28e-04 3278s\n"}
+,{"stream_name":"stdout","time":9353.274558264,"data":"[oia] step  1025 oiavislin23 loss 0.2574 train-auroc 0.963 lr 2.28e-04 3278s\n"}
+,{"stream_name":"stdout","time":9353.32639235,"data":"[oia] step  1025 oiavispatchlin loss 0.4280 train-auroc 0.911 lr 2.28e-04 3278s\n"}
+,{"stream_name":"stdout","time":9353.449728825,"data":"[oia] step  1025 oiavis   loss 0.1818 train-auroc 0.980 lr 2.28e-04 3278s\n"}
+,{"stream_name":"stdout","time":9353.572433649,"data":"[oia] step  1025 oiavis   loss 0.1776 train-auroc 0.981 lr 2.28e-04 3279s\n"}
+,{"stream_name":"stdout","time":9424.74086699,"data":"[oia] step  1050 oiavislin4 loss 0.3431 train-auroc 0.943 lr 2.06e-04 3350s\n"}
+,{"stream_name":"stdout","time":9424.805340699,"data":"[oia] step  1050 oiavislin11 loss 0.2151 train-auroc 0.972 lr 2.06e-04 3350s\n"}
+,{"stream_name":"stdout","time":9424.866871723,"data":"[oia] step  1050 oiavislin17 loss 0.1057 train-auroc 0.996 lr 2.06e-04 3350s\n"}
+,{"stream_name":"stdout","time":9424.927428189,"data":"[oia] step  1050 oiavislin23 loss 0.1207 train-auroc 0.991 lr 2.06e-04 3350s\n"}
+,{"stream_name":"stdout","time":9424.983591218,"data":"[oia] step  1050 oiavispatchlin loss 0.3836 train-auroc 0.929 lr 2.06e-04 3350s\n"}
+,{"stream_name":"stdout","time":9425.107018164,"data":"[oia] step  1050 oiavis   loss 0.0950 train-auroc 0.995 lr 2.06e-04 3350s\n"}
+,{"stream_name":"stdout","time":9425.235697312,"data":"[oia] step  1050 oiavis   loss 0.0839 train-auroc 0.996 lr 2.06e-04 3350s\n"}
+,{"stream_name":"stdout","time":9507.003015475,"data":"[oia] step  1075 oiavislin4 loss 0.3999 train-auroc 0.910 lr 1.85e-04 3432s\n"}
+,{"stream_name":"stdout","time":9507.032082464,"data":"[oia] step  1075 oiavislin11 loss 0.3160 train-auroc 0.941 lr 1.85e-04 3432s\n"}
+,{"stream_name":"stdout","time":9507.059443967,"data":"[oia] step  1075 oiavislin17 loss 0.0954 train-auroc 0.995 lr 1.85e-04 3432s\n"}
+,{"stream_name":"stdout","time":9507.088541815,"data":"[oia] step  1075 oiavislin23 loss 0.1190 train-auroc 0.994 lr 1.85e-04 3432s\n"}
+,{"stream_name":"stdout","time":9507.113771405,"data":"[oia] step  1075 oiavispatchlin loss 0.4471 train-auroc 0.883 lr 1.85e-04 3432s\n"}
+,{"stream_name":"stdout","time":9507.1682119,"data":"[oia] step  1075 oiavis   loss 0.0781 train-auroc 0.996 lr 1.85e-04 3432s\n"}
+,{"stream_name":"stdout","time":9507.228834169,"data":"[oia] step  1075 oiavis   loss 0.0785 train-auroc 0.996 lr 1.85e-04 3432s\n"}
+,{"stream_name":"stdout","time":9578.166723223,"data":"[oia] step  1100 oiavislin4 loss 0.4030 train-auroc 0.954 lr 1.65e-04 3503s\n"}
+,{"stream_name":"stdout","time":9578.219777589,"data":"[oia] step  1100 oiavislin11 loss 0.2238 train-auroc 0.979 lr 1.65e-04 3503s\n"}
+,{"stream_name":"stdout","time":9578.275294355,"data":"[oia] step  1100 oiavislin17 loss 0.0896 train-auroc 0.997 lr 1.65e-04 3503s\n"}
+,{"stream_name":"stdout","time":9578.324808614,"data":"[oia] step  1100 oiavislin23 loss 0.0939 train-auroc 0.996 lr 1.65e-04 3503s\n"}
+,{"stream_name":"stdout","time":9578.366749181,"data":"[oia] step  1100 oiavispatchlin loss 0.4079 train-auroc 0.957 lr 1.65e-04 3503s\n"}
+,{"stream_name":"stdout","time":9578.482066783,"data":"[oia] step  1100 oiavis   loss 0.0589 train-auroc 0.998 lr 1.65e-04 3503s\n"}
+,{"stream_name":"stdout","time":9578.59811082,"data":"[oia] step  1100 oiavis   loss 0.0475 train-auroc 0.999 lr 1.65e-04 3504s\n"}
+,{"stream_name":"stdout","time":9667.73660721,"data":"[oia] step  1125 oiavislin4 loss 0.2137 train-auroc 0.980 lr 1.46e-04 3593s\n"}
+,{"stream_name":"stdout","time":9667.753333312,"data":"[oia] step  1125 oiavislin11 loss 0.1323 train-auroc 0.991 lr 1.46e-04 3593s\n"}
+,{"stream_name":"stdout","time":9667.769421983,"data":"[oia] step  1125 oiavislin17 loss 0.0581 train-auroc 0.999 lr 1.46e-04 3593s\n"}
+,{"stream_name":"stdout","time":9667.784323482,"data":"[oia] step  1125 oiavislin23 loss 0.0581 train-auroc 0.998 lr 1.46e-04 3593s\n"}
+,{"stream_name":"stdout","time":9667.797689554,"data":"[oia] step  1125 oiavispatchlin loss 0.2494 train-auroc 0.979 lr 1.46e-04 3593s\n"}
+,{"stream_name":"stdout","time":9667.827908822,"data":"[oia] step  1125 oiavis   loss 0.0476 train-auroc 0.999 lr 1.46e-04 3593s\n"}
+,{"stream_name":"stdout","time":9667.860442301,"data":"[oia] step  1125 oiavis   loss 0.0429 train-auroc 0.999 lr 1.46e-04 3593s\n"}
+,{"stream_name":"stdout","time":9749.466416031,"data":"[oia] step  1150 oiavislin4 loss 0.1630 train-auroc 0.992 lr 1.28e-04 3674s\n"}
+,{"stream_name":"stdout","time":9749.497580177,"data":"[oia] step  1150 oiavislin11 loss 0.1285 train-auroc 0.992 lr 1.28e-04 3674s\n"}
+,{"stream_name":"stdout","time":9749.528677196,"data":"[oia] step  1150 oiavislin17 loss 0.0637 train-auroc 0.999 lr 1.28e-04 3675s\n"}
+,{"stream_name":"stdout","time":9749.557106702,"data":"[oia] step  1150 oiavislin23 loss 0.0765 train-auroc 0.998 lr 1.28e-04 3675s\n"}
+,{"stream_name":"stdout","time":9749.584249076,"data":"[oia] step  1150 oiavispatchlin loss 0.1871 train-auroc 0.991 lr 1.28e-04 3675s\n"}
+,{"stream_name":"stdout","time":9749.639679528,"data":"[oia] step  1150 oiavis   loss 0.0430 train-auroc 0.999 lr 1.28e-04 3675s\n"}
+,{"stream_name":"stdout","time":9749.703612918,"data":"[oia] step  1150 oiavis   loss 0.0400 train-auroc 0.999 lr 1.28e-04 3675s\n"}
+,{"stream_name":"stdout","time":9816.920888477,"data":"[oia] step  1175 oiavislin4 loss 0.3792 train-auroc 0.930 lr 1.11e-04 3742s\n"}
+,{"stream_name":"stdout","time":9816.934875623,"data":"[oia] step  1175 oiavislin11 loss 0.3816 train-auroc 0.917 lr 1.11e-04 3742s\n"}
+,{"stream_name":"stdout","time":9816.948128499,"data":"[oia] step  1175 oiavislin17 loss 0.3196 train-auroc 0.949 lr 1.11e-04 3742s\n"}
+,{"stream_name":"stdout","time":9816.960632535,"data":"[oia] step  1175 oiavislin23 loss 0.3578 train-auroc 0.940 lr 1.11e-04 3742s\n"}
+,{"stream_name":"stdout","time":9816.97138588,"data":"[oia] step  1175 oiavispatchlin loss 0.3786 train-auroc 0.930 lr 1.11e-04 3742s\n"}
+,{"stream_name":"stdout","time":9817.001004886,"data":"[oia] step  1175 oiavis   loss 0.2699 train-auroc 0.964 lr 1.11e-04 3742s\n"}
+,{"stream_name":"stdout","time":9817.030469239,"data":"[oia] step  1175 oiavis   loss 0.2720 train-auroc 0.960 lr 1.11e-04 3742s\n"}
+,{"stream_name":"stdout","time":9899.826370121,"data":"[oia] step  1200 oiavislin4 loss 0.4821 train-auroc 0.869 lr 9.55e-05 3825s\n"}
+,{"stream_name":"stdout","time":9899.891282118,"data":"[oia] step  1200 oiavislin11 loss 0.3595 train-auroc 0.925 lr 9.55e-05 3825s\n"}
+,{"stream_name":"stdout","time":9899.95732378,"data":"[oia] step  1200 oiavislin17 loss 0.1657 train-auroc 0.985 lr 9.55e-05 3825s\n"}
+,{"stream_name":"stdout","time":9900.020913828,"data":"[oia] step  1200 oiavislin23 loss 0.2308 train-auroc 0.971 lr 9.55e-05 3825s\n"}
+,{"stream_name":"stdout","time":9900.079444439,"data":"[oia] step  1200 oiavispatchlin loss 0.4845 train-auroc 0.860 lr 9.55e-05 3825s\n"}
+,{"stream_name":"stdout","time":9900.207834954,"data":"[oia] step  1200 oiavis   loss 0.1332 train-auroc 0.990 lr 9.55e-05 3825s\n"}
+,{"stream_name":"stdout","time":9900.338051476,"data":"[oia] step  1200 oiavis   loss 0.1210 train-auroc 0.991 lr 9.55e-05 3825s\n"}
+,{"stream_name":"stdout","time":9980.062047596,"data":"[oia] step  1225 oiavislin4 loss 0.5806 train-auroc 0.780 lr 8.07e-05 3905s\n"}
+,{"stream_name":"stdout","time":9980.075383559,"data":"[oia] step  1225 oiavislin11 loss 0.5331 train-auroc 0.843 lr 8.07e-05 3905s\n"}
+,{"stream_name":"stdout","time":9980.086996632,"data":"[oia] step  1225 oiavislin17 loss 0.2352 train-auroc 0.967 lr 8.07e-05 3905s\n"}
+,{"stream_name":"stdout","time":9980.098360054,"data":"[oia] step  1225 oiavislin23 loss 0.2781 train-auroc 0.959 lr 8.07e-05 3905s\n"}
+,{"stream_name":"stdout","time":9980.107534873,"data":"[oia] step  1225 oiavispatchlin loss 0.6403 train-auroc 0.736 lr 8.07e-05 3905s\n"}
+,{"stream_name":"stdout","time":9980.135620483,"data":"[oia] step  1225 oiavis   loss 0.2394 train-auroc 0.969 lr 8.07e-05 3905s\n"}
+,{"stream_name":"stdout","time":9980.166497519,"data":"[oia] step  1225 oiavis   loss 0.2350 train-auroc 0.971 lr 8.07e-05 3905s\n"}
+,{"stream_name":"stdout","time":10059.697703833,"data":"[oia] step  1250 oiavislin4 loss 0.5178 train-auroc 0.839 lr 6.70e-05 3985s\n"}
+,{"stream_name":"stdout","time":10059.716918299,"data":"[oia] step  1250 oiavislin11 loss 0.4172 train-auroc 0.896 lr 6.70e-05 3985s\n"}
+,{"stream_name":"stdout","time":10059.734415529,"data":"[oia] step  1250 oiavislin17 loss 0.2075 train-auroc 0.975 lr 6.70e-05 3985s\n"}
+,{"stream_name":"stdout","time":10059.75207629,"data":"[oia] step  1250 oiavislin23 loss 0.3985 train-auroc 0.963 lr 6.70e-05 3985s\n"}
+,{"stream_name":"stdout","time":10059.765801748,"data":"[oia] step  1250 oiavispatchlin loss 0.5873 train-auroc 0.781 lr 6.70e-05 3985s\n"}
+,{"stream_name":"stdout","time":10059.808901107,"data":"[oia] step  1250 oiavis   loss 0.1537 train-auroc 0.985 lr 6.70e-05 3985s\n"}
+,{"stream_name":"stdout","time":10059.862385714,"data":"[oia] step  1250 oiavis   loss 0.1468 train-auroc 0.986 lr 6.70e-05 3985s\n"}
+,{"stream_name":"stdout","time":10070.15012697,"data":"[oia] step  1250 oiavislin4 val-auroc 0.903\n"}
+,{"stream_name":"stdout","time":10070.153643852,"data":"[oia] step  1250 oiavislin11 val-auroc 0.964\n"}
+,{"stream_name":"stdout","time":10070.156644239,"data":"[oia] step  1250 oiavislin17 val-auroc 0.997\n"}
+,{"stream_name":"stdout","time":10070.16209484,"data":"[oia] step  1250 oiavislin23 val-auroc 0.995\n"}
+,{"stream_name":"stdout","time":10070.165176566,"data":"[oia] step  1250 oiavispatchlin val-auroc 0.902\n"}
+,{"stream_name":"stdout","time":10070.167442387,"data":"[oia] step  1250 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":10070.198025576,"data":"[oia] step  1250 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":10146.772838408,"data":"[oia] step  1275 oiavislin4 loss 0.2719 train-auroc 0.953 lr 5.45e-05 4072s\n"}
+,{"stream_name":"stdout","time":10146.801186851,"data":"[oia] step  1275 oiavislin11 loss 0.2448 train-auroc 0.956 lr 5.45e-05 4072s\n"}
+,{"stream_name":"stdout","time":10146.829156012,"data":"[oia] step  1275 oiavislin17 loss 0.1055 train-auroc 0.993 lr 5.45e-05 4072s\n"}
+,{"stream_name":"stdout","time":10146.856470344,"data":"[oia] step  1275 oiavislin23 loss 0.1304 train-auroc 0.990 lr 5.45e-05 4072s\n"}
+,{"stream_name":"stdout","time":10146.881300933,"data":"[oia] step  1275 oiavispatchlin loss 0.2898 train-auroc 0.944 lr 5.45e-05 4072s\n"}
+,{"stream_name":"stdout","time":10146.932568229,"data":"[oia] step  1275 oiavis   loss 0.0801 train-auroc 0.996 lr 5.45e-05 4072s\n"}
+,{"stream_name":"stdout","time":10146.991799392,"data":"[oia] step  1275 oiavis   loss 0.0802 train-auroc 0.996 lr 5.45e-05 4072s\n"}
+,{"stream_name":"stdout","time":10217.003128412,"data":"[oia] step  1300 oiavislin4 loss 0.4029 train-auroc 0.898 lr 4.32e-05 4142s\n"}
+,{"stream_name":"stdout","time":10217.032880344,"data":"[oia] step  1300 oiavislin11 loss 0.2893 train-auroc 0.952 lr 4.32e-05 4142s\n"}
+,{"stream_name":"stdout","time":10217.062935415,"data":"[oia] step  1300 oiavislin17 loss 0.1724 train-auroc 0.981 lr 4.32e-05 4142s\n"}
+,{"stream_name":"stdout","time":10217.09028086,"data":"[oia] step  1300 oiavislin23 loss 0.1844 train-auroc 0.979 lr 4.32e-05 4142s\n"}
+,{"stream_name":"stdout","time":10217.114078574,"data":"[oia] step  1300 oiavispatchlin loss 0.4206 train-auroc 0.884 lr 4.32e-05 4142s\n"}
+,{"stream_name":"stdout","time":10217.167972404,"data":"[oia] step  1300 oiavis   loss 0.1153 train-auroc 0.991 lr 4.32e-05 4142s\n"}
+,{"stream_name":"stdout","time":10217.227868657,"data":"[oia] step  1300 oiavis   loss 0.1117 train-auroc 0.992 lr 4.32e-05 4142s\n"}
+,{"stream_name":"stdout","time":10307.251616044,"data":"[oia] step  1325 oiavislin4 loss 0.2502 train-auroc 0.969 lr 3.32e-05 4232s\n"}
+,{"stream_name":"stdout","time":10307.266328992,"data":"[oia] step  1325 oiavislin11 loss 0.1829 train-auroc 0.980 lr 3.32e-05 4232s\n"}
+,{"stream_name":"stdout","time":10307.280401193,"data":"[oia] step  1325 oiavislin17 loss 0.1285 train-auroc 0.991 lr 3.32e-05 4232s\n"}
+,{"stream_name":"stdout","time":10307.293471152,"data":"[oia] step  1325 oiavislin23 loss 0.1298 train-auroc 0.990 lr 3.32e-05 4232s\n"}
+,{"stream_name":"stdout","time":10307.304642826,"data":"[oia] step  1325 oiavispatchlin loss 0.2584 train-auroc 0.964 lr 3.32e-05 4232s\n"}
+,{"stream_name":"stdout","time":10307.33433133,"data":"[oia] step  1325 oiavis   loss 0.0999 train-auroc 0.994 lr 3.32e-05 4232s\n"}
+,{"stream_name":"stdout","time":10307.367005396,"data":"[oia] step  1325 oiavis   loss 0.0939 train-auroc 0.994 lr 3.32e-05 4232s\n"}
+,{"stream_name":"stdout","time":10388.920277916,"data":"[oia] step  1350 oiavislin4 loss 0.2233 train-auroc 0.979 lr 2.45e-05 4314s\n"}
+,{"stream_name":"stdout","time":10388.947070341,"data":"[oia] step  1350 oiavislin11 loss 0.1503 train-auroc 0.985 lr 2.45e-05 4314s\n"}
+,{"stream_name":"stdout","time":10388.971984537,"data":"[oia] step  1350 oiavislin17 loss 0.0623 train-auroc 0.997 lr 2.45e-05 4314s\n"}
+,{"stream_name":"stdout","time":10388.997273088,"data":"[oia] step  1350 oiavislin23 loss 0.0696 train-auroc 0.997 lr 2.45e-05 4314s\n"}
+,{"stream_name":"stdout","time":10389.020014413,"data":"[oia] step  1350 oiavispatchlin loss 0.2445 train-auroc 0.971 lr 2.45e-05 4314s\n"}
+,{"stream_name":"stdout","time":10389.068067599,"data":"[oia] step  1350 oiavis   loss 0.0517 train-auroc 0.999 lr 2.45e-05 4314s\n"}
+,{"stream_name":"stdout","time":10389.126183728,"data":"[oia] step  1350 oiavis   loss 0.0509 train-auroc 0.999 lr 2.45e-05 4314s\n"}
+,{"stream_name":"stdout","time":10464.402173535,"data":"[oia] step  1375 oiavislin4 loss 0.6328 train-auroc 0.712 lr 1.70e-05 4389s\n"}
+,{"stream_name":"stdout","time":10464.431681859,"data":"[oia] step  1375 oiavislin11 loss 0.6181 train-auroc 0.815 lr 1.70e-05 4389s\n"}
+,{"stream_name":"stdout","time":10464.461056969,"data":"[oia] step  1375 oiavislin17 loss 0.2568 train-auroc 0.961 lr 1.70e-05 4389s\n"}
+,{"stream_name":"stdout","time":10464.490160589,"data":"[oia] step  1375 oiavislin23 loss 0.2153 train-auroc 0.975 lr 1.70e-05 4389s\n"}
+,{"stream_name":"stdout","time":10464.515534008,"data":"[oia] step  1375 oiavispatchlin loss 0.7165 train-auroc 0.634 lr 1.70e-05 4389s\n"}
+,{"stream_name":"stdout","time":10464.571006753,"data":"[oia] step  1375 oiavis   loss 0.2452 train-auroc 0.969 lr 1.70e-05 4390s\n"}
+,{"stream_name":"stdout","time":10464.630908376,"data":"[oia] step  1375 oiavis   loss 0.2260 train-auroc 0.973 lr 1.70e-05 4390s\n"}
+,{"stream_name":"stdout","time":10542.028565798,"data":"[oia] step  1400 oiavislin4 loss 0.4367 train-auroc 0.879 lr 1.09e-05 4467s\n"}
+,{"stream_name":"stdout","time":10542.041505916,"data":"[oia] step  1400 oiavislin11 loss 0.4192 train-auroc 0.907 lr 1.09e-05 4467s\n"}
+,{"stream_name":"stdout","time":10542.053526525,"data":"[oia] step  1400 oiavislin17 loss 0.1428 train-auroc 0.989 lr 1.09e-05 4467s\n"}
+,{"stream_name":"stdout","time":10542.065036373,"data":"[oia] step  1400 oiavislin23 loss 0.1767 train-auroc 0.984 lr 1.09e-05 4467s\n"}
+,{"stream_name":"stdout","time":10542.074141997,"data":"[oia] step  1400 oiavispatchlin loss 0.4510 train-auroc 0.866 lr 1.09e-05 4467s\n"}
+,{"stream_name":"stdout","time":10542.102783124,"data":"[oia] step  1400 oiavis   loss 0.0835 train-auroc 0.996 lr 1.09e-05 4467s\n"}
+,{"stream_name":"stdout","time":10542.132133206,"data":"[oia] step  1400 oiavis   loss 0.0806 train-auroc 0.996 lr 1.09e-05 4467s\n"}
+,{"stream_name":"stdout","time":10618.613298466,"data":"[oia] step  1425 oiavislin4 loss 0.1363 train-auroc 0.993 lr 6.16e-06 4544s\n"}
+,{"stream_name":"stdout","time":10618.63354756,"data":"[oia] step  1425 oiavislin11 loss 0.1270 train-auroc 0.993 lr 6.16e-06 4544s\n"}
+,{"stream_name":"stdout","time":10618.652798957,"data":"[oia] step  1425 oiavislin17 loss 0.0557 train-auroc 0.999 lr 6.16e-06 4544s\n"}
+,{"stream_name":"stdout","time":10618.670647803,"data":"[oia] step  1425 oiavislin23 loss 0.0395 train-auroc 0.999 lr 6.16e-06 4544s\n"}
+,{"stream_name":"stdout","time":10618.686195427,"data":"[oia] step  1425 oiavispatchlin loss 0.1565 train-auroc 0.993 lr 6.16e-06 4544s\n"}
+,{"stream_name":"stdout","time":10618.719231398,"data":"[oia] step  1425 oiavis   loss 0.0333 train-auroc 0.999 lr 6.16e-06 4544s\n"}
+,{"stream_name":"stdout","time":10618.755266872,"data":"[oia] step  1425 oiavis   loss 0.0278 train-auroc 1.000 lr 6.16e-06 4544s\n"}
+,{"stream_name":"stdout","time":10708.520437094,"data":"[oia] step  1450 oiavislin4 loss 0.2051 train-auroc 0.979 lr 2.74e-06 4633s\n"}
+,{"stream_name":"stdout","time":10708.591462896,"data":"[oia] step  1450 oiavislin11 loss 0.1492 train-auroc 0.986 lr 2.74e-06 4634s\n"}
+,{"stream_name":"stdout","time":10708.660425058,"data":"[oia] step  1450 oiavislin17 loss 0.0714 train-auroc 0.997 lr 2.74e-06 4634s\n"}
+,{"stream_name":"stdout","time":10708.72646626,"data":"[oia] step  1450 oiavislin23 loss 0.0759 train-auroc 0.996 lr 2.74e-06 4634s\n"}
+,{"stream_name":"stdout","time":10708.789049504,"data":"[oia] step  1450 oiavispatchlin loss 0.2002 train-auroc 0.983 lr 2.74e-06 4634s\n"}
+,{"stream_name":"stdout","time":10708.923455435,"data":"[oia] step  1450 oiavis   loss 0.0490 train-auroc 0.999 lr 2.74e-06 4634s\n"}
+,{"stream_name":"stdout","time":10709.060911441,"data":"[oia] step  1450 oiavis   loss 0.0507 train-auroc 0.999 lr 2.74e-06 4634s\n"}
+,{"stream_name":"stdout","time":10792.777350008,"data":"[oia] step  1475 oiavislin4 loss 0.2916 train-auroc 0.966 lr 6.85e-07 4718s\n"}
+,{"stream_name":"stdout","time":10792.811108193,"data":"[oia] step  1475 oiavislin11 loss 0.1955 train-auroc 0.982 lr 6.85e-07 4718s\n"}
+,{"stream_name":"stdout","time":10792.843572714,"data":"[oia] step  1475 oiavislin17 loss 0.0673 train-auroc 0.998 lr 6.85e-07 4718s\n"}
+,{"stream_name":"stdout","time":10792.875542454,"data":"[oia] step  1475 oiavislin23 loss 0.0747 train-auroc 0.997 lr 6.85e-07 4718s\n"}
+,{"stream_name":"stdout","time":10792.90709042,"data":"[oia] step  1475 oiavispatchlin loss 0.3027 train-auroc 0.969 lr 6.85e-07 4718s\n"}
+,{"stream_name":"stdout","time":10792.972305362,"data":"[oia] step  1475 oiavis   loss 0.0480 train-auroc 0.998 lr 6.85e-07 4718s\n"}
+,{"stream_name":"stdout","time":10793.036716505,"data":"[oia] step  1475 oiavis   loss 0.0468 train-auroc 0.999 lr 6.85e-07 4718s\n"}
+,{"stream_name":"stdout","time":10859.142071241,"data":"[oia] step  1500 oiavislin4 loss 0.3303 train-auroc 0.947 lr 0.00e+00 4784s\n"}
+,{"stream_name":"stdout","time":10859.154487901,"data":"[oia] step  1500 oiavislin11 loss 0.3116 train-auroc 0.942 lr 0.00e+00 4784s\n"}
+,{"stream_name":"stdout","time":10859.165397089,"data":"[oia] step  1500 oiavislin17 loss 0.2951 train-auroc 0.962 lr 0.00e+00 4784s\n"}
+,{"stream_name":"stdout","time":10859.175599745,"data":"[oia] step  1500 oiavislin23 loss 0.3101 train-auroc 0.961 lr 0.00e+00 4784s\n"}
+,{"stream_name":"stdout","time":10859.184144857,"data":"[oia] step  1500 oiavispatchlin loss 0.3506 train-auroc 0.951 lr 0.00e+00 4784s\n"}
+,{"stream_name":"stdout","time":10859.211556981,"data":"[oia] step  1500 oiavis   loss 0.2132 train-auroc 0.971 lr 0.00e+00 4784s\n"}
+,{"stream_name":"stdout","time":10859.242199007,"data":"[oia] step  1500 oiavis   loss 0.1989 train-auroc 0.975 lr 0.00e+00 4784s\n"}
+,{"stream_name":"stdout","time":10869.412770234,"data":"[oia] step  1500 oiavislin4 val-auroc 0.903\n"}
+,{"stream_name":"stdout","time":10869.416293733,"data":"[oia] step  1500 oiavislin11 val-auroc 0.965\n"}
+,{"stream_name":"stdout","time":10869.422425054,"data":"[oia] step  1500 oiavislin17 val-auroc 0.997\n"}
+,{"stream_name":"stdout","time":10869.428994218,"data":"[oia] step  1500 oiavislin23 val-auroc 0.995\n"}
+,{"stream_name":"stdout","time":10869.432171371,"data":"[oia] step  1500 oiavispatchlin val-auroc 0.902\n"}
+,{"stream_name":"stdout","time":10869.434278601,"data":"[oia] step  1500 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":10869.464707159,"data":"[oia] step  1500 oiavis   val-auroc 0.998\n"}
+,{"stream_name":"stdout","time":10869.499615199,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavislin4.pt (last), best val-auroc 0.907, 4794s\n"}
+,{"stream_name":"stdout","time":10869.500302473,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavislin11.pt (last), best val-auroc 0.965, 4794s\n"}
+,{"stream_name":"stdout","time":10869.501043632,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavislin17.pt (last), best val-auroc 0.997, 4794s\n"}
+,{"stream_name":"stdout","time":10869.501758494,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavislin23.pt (last), best val-auroc 0.995, 4794s\n"}
+,{"stream_name":"stdout","time":10869.502411532,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavispatchlin.pt (last), best val-auroc 0.902, 4794s\n"}
+,{"stream_name":"stdout","time":10869.503083685,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavis_s1.pt (last), best val-auroc 0.998, 4794s\n"}
+,{"stream_name":"stdout","time":10869.503806088,"data":"[oia] done: /kaggle/working/checkpoints/vggt_oiavis_s2.pt (last), best val-auroc 0.998, 4794s\n"}
+,{"stream_name":"stdout","time":10870.583651616,"data":"[exit 0, 10870s]\n"}
+,{"stream_name":"stdout","time":10870.583682821,"data":"\n"}
+,{"stream_name":"stdout","time":10870.583687433,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":10870.583691857,"data":"== stage vis  [10870s]\n"}
+,{"stream_name":"stdout","time":10870.583695448,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":10870.583703695,"data":"\n"}
+,{"stream_name":"stdout","time":10870.583707031,"data":"$ /usr/bin/python3 scripts/run_h100.py vis --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt --steps 1500 --skip-gt --variants oia,oialin,oiapatch --ext-bases vggt,pi3x\n"}
+,{"stream_name":"stdout","time":10871.127051919,"data":"\n"}
+,{"stream_name":"stdout","time":10871.127074004,"data":"##### stage vis 2026-11-06 19:56:01\n"}
+,{"stream_name":"stdout","time":10872.603729323,"data":"== P4-vis: models ['vggt', 'vggt_reproj', 'vggt_oiavis', 'vggt_oiavispatch', 'vggt_oiavislin', 'vggt_oiavis_s1', 'vggt_oiavis_s2', 'vggt_oiavisself', 'vggt_oiavisselfpatch', 'vggt_oiavisselflin', 'vggt_oiavislin4', 'vggt_oiavislin11', 'vggt_oiavislin17', 'vggt_oiavislin23', 'vggt_oiavispatchlin', 'pi3x'], cfg {\"vis_views\": [3, 5, 10], \"seeds\": [0, 1, 2]}\n"}
+,{"stream_name":"stdout","time":10873.536080312,"data":"resuming: 1944 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":10873.536504746,"data":"[vggt] all done\n"}
+,{"stream_name":"stdout","time":10873.536761357,"data":"   vggt: 1s\n"}
+,{"stream_name":"stdout","time":10873.557101151,"data":"resuming: 1944 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":10873.557322272,"data":"[vggt_reproj] all done\n"}
+,{"stream_name":"stdout","time":10873.557540371,"data":"   vggt_reproj: 0s\n"}
+,{"stream_name":"stdout","time":10873.576612514,"data":"resuming: 1944 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":10873.576855229,"data":"[vggt_oiavis] all done\n"}
+,{"stream_name":"stdout","time":10873.577037264,"data":"   vggt_oiavis: 0s\n"}
+,{"stream_name":"stdout","time":10873.595361172,"data":"resuming: 1944 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":10873.595601977,"data":"[vggt_oiavispatch] all done\n"}
+,{"stream_name":"stdout","time":10873.595836653,"data":"   vggt_oiavispatch: 0s\n"}
+,{"stream_name":"stdout","time":10873.613807784,"data":"resuming: 1944 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":10873.614124591,"data":"[vggt_oiavislin] all done\n"}
+,{"stream_name":"stdout","time":10873.614319652,"data":"   vggt_oiavislin: 0s\n"}
+,{"stream_name":"stdout","time":10873.632521115,"data":"resuming: 1944 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stderr","time":10874.200454457,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":10887.929678492,"data":"[vggt_oiavis_s1] head from /kaggle/working/checkpoints/vggt_oiavis_s1.pt (step 1500, val-auroc 0.998)\n"}
+,{"stream_name":"stdout","time":10919.992522192,"data":"[vggt_oiavis_s1] scan 3  auroc=0.996  cur=0.006  absrel_U=0.014 (S 0.005)  fracU=0.041  32s\n"}
+,{"stream_name":"stdout","time":10951.94880918,"data":"[vggt_oiavis_s1] scan 5  auroc=0.997  cur=0.004  absrel_U=0.008 (S 0.004)  fracU=0.034  64s\n"}
+,{"stream_name":"stdout","time":10983.202774674,"data":"[vggt_oiavis_s1] scan 17  auroc=0.986  cur=0.049  absrel_U=0.031 (S 0.006)  fracU=0.092  95s\n"}
+,{"stream_name":"stdout","time":11014.170887287,"data":"[vggt_oiavis_s1] scan 21  auroc=0.990  cur=0.019  absrel_U=0.023 (S 0.008)  fracU=0.099  126s\n"}
+,{"stream_name":"stdout","time":11045.135074125,"data":"[vggt_oiavis_s1] scan 28  auroc=0.996  cur=0.007  absrel_U=0.011 (S 0.005)  fracU=0.147  157s\n"}
+,{"stream_name":"stdout","time":11076.085134554,"data":"[vggt_oiavis_s1] scan 35  auroc=0.999  cur=0.000  absrel_U=0.010 (S 0.003)  fracU=0.055  188s\n"}
+,{"stream_name":"stdout","time":11106.931245935,"data":"[vggt_oiavis_s1] scan 37  auroc=0.984  cur=0.046  absrel_U=0.014 (S 0.007)  fracU=0.173  219s\n"}
+,{"stream_name":"stdout","time":11138.789611754,"data":"[vggt_oiavis_s1] scan 38  auroc=0.998  cur=0.003  absrel_U=0.011 (S 0.004)  fracU=0.088  251s\n"}
+,{"stream_name":"stdout","time":11170.396751408,"data":"[vggt_oiavis_s1] scan 40  auroc=0.995  cur=0.008  absrel_U=0.015 (S 0.006)  fracU=0.150  282s\n"}
+,{"stream_name":"stdout","time":11201.984304843,"data":"[vggt_oiavis_s1] scan 43  auroc=0.996  cur=0.007  absrel_U=0.008 (S 0.004)  fracU=0.089  314s\n"}
+,{"stream_name":"stdout","time":11233.271688014,"data":"[vggt_oiavis_s1] scan 56  auroc=0.994  cur=0.007  absrel_U=0.021 (S 0.005)  fracU=0.092  345s\n"}
+,{"stream_name":"stdout","time":11265.707512161,"data":"[vggt_oiavis_s1] scan 59  auroc=0.998  cur=0.002  absrel_U=0.006 (S 0.004)  fracU=0.109  378s\n"}
+,{"stream_name":"stdout","time":11297.804852572,"data":"[vggt_oiavis_s1] scan 66  auroc=0.994  cur=0.010  absrel_U=0.010 (S 0.005)  fracU=0.078  410s\n"}
+,{"stream_name":"stdout","time":11328.988767753,"data":"[vggt_oiavis_s1] scan 67  auroc=0.995  cur=0.007  absrel_U=0.020 (S 0.005)  fracU=0.092  441s\n"}
+,{"stream_name":"stdout","time":11360.411673046,"data":"[vggt_oiavis_s1] scan 82  auroc=0.988  cur=0.034  absrel_U=0.011 (S 0.006)  fracU=0.168  472s\n"}
+,{"stream_name":"stdout","time":11392.094328474,"data":"[vggt_oiavis_s1] scan 86  auroc=0.977  cur=0.052  absrel_U=0.022 (S 0.013)  fracU=0.081  504s\n"}
+,{"stream_name":"stdout","time":11423.58842991,"data":"[vggt_oiavis_s1] scan 106  auroc=0.995  cur=0.008  absrel_U=0.009 (S 0.005)  fracU=0.074  536s\n"}
+,{"stream_name":"stdout","time":11455.819076028,"data":"[vggt_oiavis_s1] scan 117  auroc=0.997  cur=0.002  absrel_U=0.011 (S 0.004)  fracU=0.084  568s\n"}
+,{"stream_name":"stdout","time":11456.095891555,"data":"   vggt_oiavis_s1: 582s\n"}
+,{"stream_name":"stdout","time":11456.119001544,"data":"resuming: 2106 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":11470.319779505,"data":"[vggt_oiavis_s2] head from /kaggle/working/checkpoints/vggt_oiavis_s2.pt (step 1500, val-auroc 0.998)\n"}
+,{"stream_name":"stdout","time":11494.445944302,"data":"[vggt_oiavis_s2] scan 3  auroc=0.996  cur=0.006  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":11519.244383553,"data":"[vggt_oiavis_s2] scan 5  auroc=0.997  cur=0.004  absrel_U=0.008 (S 0.004)  fracU=0.034  49s\n"}
+,{"stream_name":"stdout","time":11543.141709647,"data":"[vggt_oiavis_s2] scan 17  auroc=0.986  cur=0.052  absrel_U=0.031 (S 0.006)  fracU=0.092  73s\n"}
+,{"stream_name":"stdout","time":11567.066327587,"data":"[vggt_oiavis_s2] scan 21  auroc=0.991  cur=0.016  absrel_U=0.023 (S 0.008)  fracU=0.099  97s\n"}
+,{"stream_name":"stdout","time":11591.230638003,"data":"[vggt_oiavis_s2] scan 28  auroc=0.996  cur=0.007  absrel_U=0.011 (S 0.005)  fracU=0.147  121s\n"}
+,{"stream_name":"stdout","time":11615.305058074,"data":"[vggt_oiavis_s2] scan 35  auroc=0.999  cur=0.000  absrel_U=0.010 (S 0.003)  fracU=0.055  145s\n"}
+,{"stream_name":"stdout","time":11639.185451713,"data":"[vggt_oiavis_s2] scan 37  auroc=0.985  cur=0.043  absrel_U=0.014 (S 0.007)  fracU=0.173  169s\n"}
+,{"stream_name":"stdout","time":11663.178088104,"data":"[vggt_oiavis_s2] scan 38  auroc=0.998  cur=0.002  absrel_U=0.011 (S 0.004)  fracU=0.088  193s\n"}
+,{"stream_name":"stdout","time":11687.290343634,"data":"[vggt_oiavis_s2] scan 40  auroc=0.996  cur=0.006  absrel_U=0.015 (S 0.006)  fracU=0.150  217s\n"}
+,{"stream_name":"stdout","time":11711.418794147,"data":"[vggt_oiavis_s2] scan 43  auroc=0.996  cur=0.006  absrel_U=0.008 (S 0.004)  fracU=0.089  241s\n"}
+,{"stream_name":"stdout","time":11735.50477378,"data":"[vggt_oiavis_s2] scan 56  auroc=0.995  cur=0.006  absrel_U=0.021 (S 0.005)  fracU=0.092  265s\n"}
+,{"stream_name":"stdout","time":11759.435875795,"data":"[vggt_oiavis_s2] scan 59  auroc=0.998  cur=0.001  absrel_U=0.006 (S 0.004)  fracU=0.109  289s\n"}
+,{"stream_name":"stdout","time":11783.493473522,"data":"[vggt_oiavis_s2] scan 66  auroc=0.994  cur=0.010  absrel_U=0.010 (S 0.005)  fracU=0.078  313s\n"}
+,{"stream_name":"stdout","time":11807.44949325,"data":"[vggt_oiavis_s2] scan 67  auroc=0.995  cur=0.008  absrel_U=0.020 (S 0.005)  fracU=0.092  337s\n"}
+,{"stream_name":"stdout","time":11831.488433821,"data":"[vggt_oiavis_s2] scan 82  auroc=0.989  cur=0.028  absrel_U=0.011 (S 0.006)  fracU=0.168  361s\n"}
+,{"stream_name":"stdout","time":11855.571391787,"data":"[vggt_oiavis_s2] scan 86  auroc=0.978  cur=0.047  absrel_U=0.022 (S 0.013)  fracU=0.081  385s\n"}
+,{"stream_name":"stdout","time":11879.602812339,"data":"[vggt_oiavis_s2] scan 106  auroc=0.996  cur=0.007  absrel_U=0.009 (S 0.005)  fracU=0.074  409s\n"}
+,{"stream_name":"stdout","time":11903.626614401,"data":"[vggt_oiavis_s2] scan 117  auroc=0.997  cur=0.002  absrel_U=0.011 (S 0.004)  fracU=0.084  433s\n"}
+,{"stream_name":"stdout","time":11903.901533065,"data":"   vggt_oiavis_s2: 448s\n"}
+,{"stream_name":"stdout","time":11903.924700742,"data":"resuming: 2268 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":11915.412229421,"data":"[vggt_oiavisself] head from /kaggle/working/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stdout","time":11939.384879775,"data":"[vggt_oiavisself] scan 3  auroc=0.995  cur=0.007  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":11964.214239137,"data":"[vggt_oiavisself] scan 5  auroc=0.997  cur=0.005  absrel_U=0.008 (S 0.004)  fracU=0.034  49s\n"}
+,{"stream_name":"stdout","time":11988.257211034,"data":"[vggt_oiavisself] scan 17  auroc=0.986  cur=0.040  absrel_U=0.031 (S 0.006)  fracU=0.092  73s\n"}
+,{"stream_name":"stdout","time":12012.001722467,"data":"[vggt_oiavisself] scan 21  auroc=0.987  cur=0.020  absrel_U=0.023 (S 0.008)  fracU=0.099  97s\n"}
+,{"stream_name":"stdout","time":12036.005468711,"data":"[vggt_oiavisself] scan 28  auroc=0.995  cur=0.007  absrel_U=0.011 (S 0.005)  fracU=0.147  121s\n"}
+,{"stream_name":"stdout","time":12060.105782235,"data":"[vggt_oiavisself] scan 35  auroc=0.999  cur=0.000  absrel_U=0.010 (S 0.003)  fracU=0.055  145s\n"}
+,{"stream_name":"stdout","time":12083.91701276,"data":"[vggt_oiavisself] scan 37  auroc=0.982  cur=0.052  absrel_U=0.014 (S 0.007)  fracU=0.173  169s\n"}
+,{"stream_name":"stdout","time":12107.86575224,"data":"[vggt_oiavisself] scan 38  auroc=0.997  cur=0.002  absrel_U=0.011 (S 0.004)  fracU=0.088  192s\n"}
+,{"stream_name":"stdout","time":12131.930116588,"data":"[vggt_oiavisself] scan 40  auroc=0.994  cur=0.007  absrel_U=0.015 (S 0.006)  fracU=0.150  217s\n"}
+,{"stream_name":"stdout","time":12156.056163929,"data":"[vggt_oiavisself] scan 43  auroc=0.996  cur=0.008  absrel_U=0.008 (S 0.004)  fracU=0.089  241s\n"}
+,{"stream_name":"stdout","time":12180.135398023,"data":"[vggt_oiavisself] scan 56  auroc=0.993  cur=0.010  absrel_U=0.021 (S 0.005)  fracU=0.092  265s\n"}
+,{"stream_name":"stdout","time":12204.033894159,"data":"[vggt_oiavisself] scan 59  auroc=0.997  cur=0.003  absrel_U=0.006 (S 0.004)  fracU=0.109  289s\n"}
+,{"stream_name":"stdout","time":12228.025055121,"data":"[vggt_oiavisself] scan 66  auroc=0.994  cur=0.012  absrel_U=0.010 (S 0.005)  fracU=0.078  313s\n"}
+,{"stream_name":"stdout","time":12252.019754982,"data":"[vggt_oiavisself] scan 67  auroc=0.994  cur=0.009  absrel_U=0.020 (S 0.005)  fracU=0.092  337s\n"}
+,{"stream_name":"stdout","time":12276.023115147,"data":"[vggt_oiavisself] scan 82  auroc=0.983  cur=0.045  absrel_U=0.011 (S 0.006)  fracU=0.168  361s\n"}
+,{"stream_name":"stdout","time":12300.043925458,"data":"[vggt_oiavisself] scan 86  auroc=0.977  cur=0.049  absrel_U=0.022 (S 0.013)  fracU=0.081  385s\n"}
+,{"stream_name":"stdout","time":12324.038072066,"data":"[vggt_oiavisself] scan 106  auroc=0.993  cur=0.021  absrel_U=0.009 (S 0.005)  fracU=0.074  409s\n"}
+,{"stream_name":"stdout","time":12348.005683604,"data":"[vggt_oiavisself] scan 117  auroc=0.997  cur=0.004  absrel_U=0.011 (S 0.004)  fracU=0.084  433s\n"}
+,{"stream_name":"stdout","time":12348.282223352,"data":"   vggt_oiavisself: 444s\n"}
+,{"stream_name":"stdout","time":12348.305560201,"data":"resuming: 2430 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":12359.743457011,"data":"[vggt_oiavisselfpatch] head from /kaggle/working/checkpoints/vggt_oiavisselfpatch.pt (step 1500, val-auroc 0.915)\n"}
+,{"stream_name":"stdout","time":12386.835379738,"data":"[vggt_oiavisselfpatch] scan 3  auroc=0.898  cur=0.327  absrel_U=0.014 (S 0.005)  fracU=0.041  27s\n"}
+,{"stream_name":"stdout","time":12414.772694333,"data":"[vggt_oiavisselfpatch] scan 5  auroc=0.921  cur=0.245  absrel_U=0.008 (S 0.004)  fracU=0.034  55s\n"}
+,{"stream_name":"stdout","time":12441.635033897,"data":"[vggt_oiavisselfpatch] scan 17  auroc=0.798  cur=0.485  absrel_U=0.031 (S 0.006)  fracU=0.092  82s\n"}
+,{"stream_name":"stdout","time":12468.557527588,"data":"[vggt_oiavisselfpatch] scan 21  auroc=0.889  cur=0.359  absrel_U=0.023 (S 0.008)  fracU=0.099  109s\n"}
+,{"stream_name":"stdout","time":12495.801368003,"data":"[vggt_oiavisselfpatch] scan 28  auroc=0.835  cur=0.449  absrel_U=0.011 (S 0.005)  fracU=0.147  136s\n"}
+,{"stream_name":"stdout","time":12522.756873191,"data":"[vggt_oiavisselfpatch] scan 35  auroc=0.821  cur=0.432  absrel_U=0.010 (S 0.003)  fracU=0.055  163s\n"}
+,{"stream_name":"stdout","time":12549.618286571,"data":"[vggt_oiavisselfpatch] scan 37  auroc=0.892  cur=0.382  absrel_U=0.014 (S 0.007)  fracU=0.173  190s\n"}
+,{"stream_name":"stdout","time":12576.77589729,"data":"[vggt_oiavisselfpatch] scan 38  auroc=0.931  cur=0.204  absrel_U=0.011 (S 0.004)  fracU=0.088  217s\n"}
+,{"stream_name":"stdout","time":12603.959863052,"data":"[vggt_oiavisselfpatch] scan 40  auroc=0.916  cur=0.252  absrel_U=0.015 (S 0.006)  fracU=0.150  244s\n"}
+,{"stream_name":"stdout","time":12630.98289368,"data":"[vggt_oiavisselfpatch] scan 43  auroc=0.963  cur=0.110  absrel_U=0.008 (S 0.004)  fracU=0.089  271s\n"}
+,{"stream_name":"stdout","time":12658.076720954,"data":"[vggt_oiavisselfpatch] scan 56  auroc=0.914  cur=0.303  absrel_U=0.021 (S 0.005)  fracU=0.092  298s\n"}
+,{"stream_name":"stdout","time":12685.100323232,"data":"[vggt_oiavisselfpatch] scan 59  auroc=0.939  cur=0.189  absrel_U=0.006 (S 0.004)  fracU=0.109  325s\n"}
+,{"stream_name":"stdout","time":12712.13988469,"data":"[vggt_oiavisselfpatch] scan 66  auroc=0.918  cur=0.263  absrel_U=0.010 (S 0.005)  fracU=0.078  352s\n"}
+,{"stream_name":"stdout","time":12739.196515512,"data":"[vggt_oiavisselfpatch] scan 67  auroc=0.898  cur=0.352  absrel_U=0.020 (S 0.005)  fracU=0.092  379s\n"}
+,{"stream_name":"stdout","time":12766.236167448,"data":"[vggt_oiavisselfpatch] scan 82  auroc=0.926  cur=0.240  absrel_U=0.011 (S 0.006)  fracU=0.168  406s\n"}
+,{"stream_name":"stdout","time":12793.334970311,"data":"[vggt_oiavisselfpatch] scan 86  auroc=0.671  cur=0.637  absrel_U=0.022 (S 0.013)  fracU=0.081  434s\n"}
+,{"stream_name":"stdout","time":12820.405188182,"data":"[vggt_oiavisselfpatch] scan 106  auroc=0.906  cur=0.321  absrel_U=0.009 (S 0.005)  fracU=0.074  461s\n"}
+,{"stream_name":"stdout","time":12847.50337769,"data":"[vggt_oiavisselfpatch] scan 117  auroc=0.889  cur=0.308  absrel_U=0.011 (S 0.004)  fracU=0.084  488s\n"}
+,{"stream_name":"stdout","time":12847.776199753,"data":"   vggt_oiavisselfpatch: 499s\n"}
+,{"stream_name":"stdout","time":12847.800222484,"data":"resuming: 2592 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":12859.050857709,"data":"[vggt_oiavisselflin] head from /kaggle/working/checkpoints/vggt_oiavisselflin.pt (step 1500, val-auroc 0.996)\n"}
+,{"stream_name":"stdout","time":12882.920848358,"data":"[vggt_oiavisselflin] scan 3  auroc=0.993  cur=0.011  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":12907.627657591,"data":"[vggt_oiavisselflin] scan 5  auroc=0.995  cur=0.012  absrel_U=0.008 (S 0.004)  fracU=0.034  49s\n"}
+,{"stream_name":"stdout","time":12931.52336541,"data":"[vggt_oiavisselflin] scan 17  auroc=0.980  cur=0.052  absrel_U=0.031 (S 0.006)  fracU=0.092  72s\n"}
+,{"stream_name":"stdout","time":12955.216585998,"data":"[vggt_oiavisselflin] scan 21  auroc=0.980  cur=0.026  absrel_U=0.023 (S 0.008)  fracU=0.099  96s\n"}
+,{"stream_name":"stdout","time":12979.238110315,"data":"[vggt_oiavisselflin] scan 28  auroc=0.991  cur=0.014  absrel_U=0.011 (S 0.005)  fracU=0.147  120s\n"}
+,{"stream_name":"stdout","time":13003.260564395,"data":"[vggt_oiavisselflin] scan 35  auroc=0.998  cur=0.001  absrel_U=0.010 (S 0.003)  fracU=0.055  144s\n"}
+,{"stream_name":"stdout","time":13026.984916131,"data":"[vggt_oiavisselflin] scan 37  auroc=0.974  cur=0.068  absrel_U=0.014 (S 0.007)  fracU=0.173  168s\n"}
+,{"stream_name":"stdout","time":13050.819985957,"data":"[vggt_oiavisselflin] scan 38  auroc=0.996  cur=0.006  absrel_U=0.011 (S 0.004)  fracU=0.088  192s\n"}
+,{"stream_name":"stdout","time":13074.712881802,"data":"[vggt_oiavisselflin] scan 40  auroc=0.990  cur=0.016  absrel_U=0.015 (S 0.006)  fracU=0.150  216s\n"}
+,{"stream_name":"stdout","time":13098.730478289,"data":"[vggt_oiavisselflin] scan 43  auroc=0.993  cur=0.009  absrel_U=0.008 (S 0.004)  fracU=0.089  240s\n"}
+,{"stream_name":"stdout","time":13122.791958273,"data":"[vggt_oiavisselflin] scan 56  auroc=0.989  cur=0.021  absrel_U=0.021 (S 0.005)  fracU=0.092  264s\n"}
+,{"stream_name":"stdout","time":13146.686987306,"data":"[vggt_oiavisselflin] scan 59  auroc=0.995  cur=0.006  absrel_U=0.006 (S 0.004)  fracU=0.109  288s\n"}
+,{"stream_name":"stdout","time":13170.585266025,"data":"[vggt_oiavisselflin] scan 66  auroc=0.990  cur=0.020  absrel_U=0.010 (S 0.005)  fracU=0.078  312s\n"}
+,{"stream_name":"stdout","time":13194.594583816,"data":"[vggt_oiavisselflin] scan 67  auroc=0.992  cur=0.013  absrel_U=0.020 (S 0.005)  fracU=0.092  336s\n"}
+,{"stream_name":"stdout","time":13218.535665321,"data":"[vggt_oiavisselflin] scan 82  auroc=0.979  cur=0.045  absrel_U=0.011 (S 0.006)  fracU=0.168  359s\n"}
+,{"stream_name":"stdout","time":13242.469919608,"data":"[vggt_oiavisselflin] scan 86  auroc=0.970  cur=0.057  absrel_U=0.022 (S 0.013)  fracU=0.081  383s\n"}
+,{"stream_name":"stdout","time":13266.447269775,"data":"[vggt_oiavisselflin] scan 106  auroc=0.990  cur=0.020  absrel_U=0.009 (S 0.005)  fracU=0.074  407s\n"}
+,{"stream_name":"stdout","time":13290.379034097,"data":"[vggt_oiavisselflin] scan 117  auroc=0.995  cur=0.006  absrel_U=0.011 (S 0.004)  fracU=0.084  431s\n"}
+,{"stream_name":"stdout","time":13290.652708559,"data":"   vggt_oiavisselflin: 443s\n"}
+,{"stream_name":"stdout","time":13290.678759344,"data":"resuming: 2754 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":13302.089677236,"data":"[vggt_oiavislin4] head from /kaggle/working/checkpoints/vggt_oiavislin4.pt (step 1500, val-auroc 0.903)\n"}
+,{"stream_name":"stdout","time":13325.935017351,"data":"[vggt_oiavislin4] scan 3  auroc=0.887  cur=0.383  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":13350.625251627,"data":"[vggt_oiavislin4] scan 5  auroc=0.905  cur=0.293  absrel_U=0.008 (S 0.004)  fracU=0.034  49s\n"}
+,{"stream_name":"stdout","time":13374.327152098,"data":"[vggt_oiavislin4] scan 17  auroc=0.828  cur=0.499  absrel_U=0.031 (S 0.006)  fracU=0.092  72s\n"}
+,{"stream_name":"stdout","time":13397.876111333,"data":"[vggt_oiavislin4] scan 21  auroc=0.880  cur=0.376  absrel_U=0.023 (S 0.008)  fracU=0.099  96s\n"}
+,{"stream_name":"stdout","time":13421.810721755,"data":"[vggt_oiavislin4] scan 28  auroc=0.811  cur=0.468  absrel_U=0.011 (S 0.005)  fracU=0.147  120s\n"}
+,{"stream_name":"stdout","time":13445.770700472,"data":"[vggt_oiavislin4] scan 35  auroc=0.770  cur=0.513  absrel_U=0.010 (S 0.003)  fracU=0.055  144s\n"}
+,{"stream_name":"stdout","time":13469.369736853,"data":"[vggt_oiavislin4] scan 37  auroc=0.883  cur=0.405  absrel_U=0.014 (S 0.007)  fracU=0.173  167s\n"}
+,{"stream_name":"stdout","time":13493.106690539,"data":"[vggt_oiavislin4] scan 38  auroc=0.912  cur=0.242  absrel_U=0.011 (S 0.004)  fracU=0.088  191s\n"}
+,{"stream_name":"stdout","time":13516.955025151,"data":"[vggt_oiavislin4] scan 40  auroc=0.910  cur=0.284  absrel_U=0.015 (S 0.006)  fracU=0.150  215s\n"}
+,{"stream_name":"stdout","time":13540.819297124,"data":"[vggt_oiavislin4] scan 43  auroc=0.956  cur=0.142  absrel_U=0.008 (S 0.004)  fracU=0.089  239s\n"}
+,{"stream_name":"stdout","time":13564.664133296,"data":"[vggt_oiavislin4] scan 56  auroc=0.906  cur=0.321  absrel_U=0.021 (S 0.005)  fracU=0.092  263s\n"}
+,{"stream_name":"stdout","time":13588.409125759,"data":"[vggt_oiavislin4] scan 59  auroc=0.916  cur=0.230  absrel_U=0.006 (S 0.004)  fracU=0.109  286s\n"}
+,{"stream_name":"stdout","time":13612.287864621,"data":"[vggt_oiavislin4] scan 66  auroc=0.907  cur=0.329  absrel_U=0.010 (S 0.005)  fracU=0.078  310s\n"}
+,{"stream_name":"stdout","time":13636.087119849,"data":"[vggt_oiavislin4] scan 67  auroc=0.878  cur=0.356  absrel_U=0.020 (S 0.005)  fracU=0.092  334s\n"}
+,{"stream_name":"stdout","time":13659.677595668,"data":"[vggt_oiavislin4] scan 82  auroc=0.908  cur=0.328  absrel_U=0.011 (S 0.006)  fracU=0.168  358s\n"}
+,{"stream_name":"stdout","time":13683.435475298,"data":"[vggt_oiavislin4] scan 86  auroc=0.694  cur=0.595  absrel_U=0.022 (S 0.013)  fracU=0.081  381s\n"}
+,{"stream_name":"stdout","time":13707.232207622,"data":"[vggt_oiavislin4] scan 106  auroc=0.903  cur=0.334  absrel_U=0.009 (S 0.005)  fracU=0.074  405s\n"}
+,{"stream_name":"stdout","time":13731.199656332,"data":"[vggt_oiavislin4] scan 117  auroc=0.869  cur=0.329  absrel_U=0.011 (S 0.004)  fracU=0.084  429s\n"}
+,{"stream_name":"stdout","time":13731.474372867,"data":"   vggt_oiavislin4: 441s\n"}
+,{"stream_name":"stdout","time":13731.502098104,"data":"resuming: 2916 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":13742.802068587,"data":"[vggt_oiavislin11] head from /kaggle/working/checkpoints/vggt_oiavislin11.pt (step 1500, val-auroc 0.965)\n"}
+,{"stream_name":"stdout","time":13766.595263099,"data":"[vggt_oiavislin11] scan 3  auroc=0.954  cur=0.144  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":13791.171113305,"data":"[vggt_oiavislin11] scan 5  auroc=0.965  cur=0.097  absrel_U=0.008 (S 0.004)  fracU=0.034  48s\n"}
+,{"stream_name":"stdout","time":13814.874022523,"data":"[vggt_oiavislin11] scan 17  auroc=0.923  cur=0.198  absrel_U=0.031 (S 0.006)  fracU=0.092  72s\n"}
+,{"stream_name":"stdout","time":13838.435087465,"data":"[vggt_oiavislin11] scan 21  auroc=0.938  cur=0.173  absrel_U=0.023 (S 0.008)  fracU=0.099  96s\n"}
+,{"stream_name":"stdout","time":13862.336069013,"data":"[vggt_oiavislin11] scan 28  auroc=0.938  cur=0.167  absrel_U=0.011 (S 0.005)  fracU=0.147  120s\n"}
+,{"stream_name":"stdout","time":13886.216948827,"data":"[vggt_oiavislin11] scan 35  auroc=0.952  cur=0.145  absrel_U=0.010 (S 0.003)  fracU=0.055  143s\n"}
+,{"stream_name":"stdout","time":13909.86775512,"data":"[vggt_oiavislin11] scan 37  auroc=0.926  cur=0.220  absrel_U=0.014 (S 0.007)  fracU=0.173  167s\n"}
+,{"stream_name":"stdout","time":13933.588058596,"data":"[vggt_oiavislin11] scan 38  auroc=0.967  cur=0.097  absrel_U=0.011 (S 0.004)  fracU=0.088  191s\n"}
+,{"stream_name":"stdout","time":13957.35065578,"data":"[vggt_oiavislin11] scan 40  auroc=0.951  cur=0.161  absrel_U=0.015 (S 0.006)  fracU=0.150  215s\n"}
+,{"stream_name":"stdout","time":13981.248936285,"data":"[vggt_oiavislin11] scan 43  auroc=0.976  cur=0.062  absrel_U=0.008 (S 0.004)  fracU=0.089  238s\n"}
+,{"stream_name":"stdout","time":14005.186287336,"data":"[vggt_oiavislin11] scan 56  auroc=0.940  cur=0.200  absrel_U=0.021 (S 0.005)  fracU=0.092  262s\n"}
+,{"stream_name":"stdout","time":14028.997629441,"data":"[vggt_oiavislin11] scan 59  auroc=0.974  cur=0.070  absrel_U=0.006 (S 0.004)  fracU=0.109  286s\n"}
+,{"stream_name":"stdout","time":14052.810641876,"data":"[vggt_oiavislin11] scan 66  auroc=0.950  cur=0.149  absrel_U=0.010 (S 0.005)  fracU=0.078  310s\n"}
+,{"stream_name":"stdout","time":14076.590220733,"data":"[vggt_oiavislin11] scan 67  auroc=0.961  cur=0.111  absrel_U=0.020 (S 0.005)  fracU=0.092  334s\n"}
+,{"stream_name":"stdout","time":14100.315606852,"data":"[vggt_oiavislin11] scan 82  auroc=0.935  cur=0.202  absrel_U=0.011 (S 0.006)  fracU=0.168  358s\n"}
+,{"stream_name":"stdout","time":14124.094717088,"data":"[vggt_oiavislin11] scan 86  auroc=0.874  cur=0.314  absrel_U=0.022 (S 0.013)  fracU=0.081  381s\n"}
+,{"stream_name":"stdout","time":14147.934709222,"data":"[vggt_oiavislin11] scan 106  auroc=0.954  cur=0.131  absrel_U=0.009 (S 0.005)  fracU=0.074  405s\n"}
+,{"stream_name":"stdout","time":14171.762682315,"data":"[vggt_oiavislin11] scan 117  auroc=0.945  cur=0.180  absrel_U=0.011 (S 0.004)  fracU=0.084  429s\n"}
+,{"stream_name":"stdout","time":14172.034909302,"data":"   vggt_oiavislin11: 441s\n"}
+,{"stream_name":"stdout","time":14172.063980373,"data":"resuming: 3078 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":14182.795040014,"data":"[vggt_oiavislin17] head from /kaggle/working/checkpoints/vggt_oiavislin17.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stdout","time":14206.602152281,"data":"[vggt_oiavislin17] scan 3  auroc=0.993  cur=0.011  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":14231.227575305,"data":"[vggt_oiavislin17] scan 5  auroc=0.996  cur=0.009  absrel_U=0.008 (S 0.004)  fracU=0.034  48s\n"}
+,{"stream_name":"stdout","time":14254.933510484,"data":"[vggt_oiavislin17] scan 17  auroc=0.970  cur=0.074  absrel_U=0.031 (S 0.006)  fracU=0.092  72s\n"}
+,{"stream_name":"stdout","time":14278.551765065,"data":"[vggt_oiavislin17] scan 21  auroc=0.979  cur=0.057  absrel_U=0.023 (S 0.008)  fracU=0.099  96s\n"}
+,{"stream_name":"stdout","time":14302.435919168,"data":"[vggt_oiavislin17] scan 28  auroc=0.992  cur=0.015  absrel_U=0.011 (S 0.005)  fracU=0.147  120s\n"}
+,{"stream_name":"stdout","time":14326.339298919,"data":"[vggt_oiavislin17] scan 35  auroc=0.999  cur=0.000  absrel_U=0.010 (S 0.003)  fracU=0.055  144s\n"}
+,{"stream_name":"stdout","time":14350.067163872,"data":"[vggt_oiavislin17] scan 37  auroc=0.979  cur=0.059  absrel_U=0.014 (S 0.007)  fracU=0.173  167s\n"}
+,{"stream_name":"stdout","time":14373.826491624,"data":"[vggt_oiavislin17] scan 38  auroc=0.996  cur=0.004  absrel_U=0.011 (S 0.004)  fracU=0.088  191s\n"}
+,{"stream_name":"stdout","time":14397.73581512,"data":"[vggt_oiavislin17] scan 40  auroc=0.993  cur=0.014  absrel_U=0.015 (S 0.006)  fracU=0.150  215s\n"}
+,{"stream_name":"stdout","time":14421.684142516,"data":"[vggt_oiavislin17] scan 43  auroc=0.994  cur=0.011  absrel_U=0.008 (S 0.004)  fracU=0.089  239s\n"}
+,{"stream_name":"stdout","time":14445.634849979,"data":"[vggt_oiavislin17] scan 56  auroc=0.990  cur=0.020  absrel_U=0.021 (S 0.005)  fracU=0.092  263s\n"}
+,{"stream_name":"stdout","time":14469.427907493,"data":"[vggt_oiavislin17] scan 59  auroc=0.996  cur=0.006  absrel_U=0.006 (S 0.004)  fracU=0.109  287s\n"}
+,{"stream_name":"stdout","time":14493.273817965,"data":"[vggt_oiavislin17] scan 66  auroc=0.990  cur=0.022  absrel_U=0.010 (S 0.005)  fracU=0.078  310s\n"}
+,{"stream_name":"stdout","time":14517.081206052,"data":"[vggt_oiavislin17] scan 67  auroc=0.992  cur=0.014  absrel_U=0.020 (S 0.005)  fracU=0.092  334s\n"}
+,{"stream_name":"stdout","time":14540.790075235,"data":"[vggt_oiavislin17] scan 82  auroc=0.983  cur=0.042  absrel_U=0.011 (S 0.006)  fracU=0.168  358s\n"}
+,{"stream_name":"stdout","time":14564.63270335,"data":"[vggt_oiavislin17] scan 86  auroc=0.975  cur=0.046  absrel_U=0.022 (S 0.013)  fracU=0.081  382s\n"}
+,{"stream_name":"stdout","time":14588.525637106,"data":"[vggt_oiavislin17] scan 106  auroc=0.994  cur=0.010  absrel_U=0.009 (S 0.005)  fracU=0.074  406s\n"}
+,{"stream_name":"stdout","time":14612.365363082,"data":"[vggt_oiavislin17] scan 117  auroc=0.996  cur=0.004  absrel_U=0.011 (S 0.004)  fracU=0.084  430s\n"}
+,{"stream_name":"stdout","time":14612.644005806,"data":"   vggt_oiavislin17: 441s\n"}
+,{"stream_name":"stdout","time":14612.674778499,"data":"resuming: 3240 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":14623.486278981,"data":"[vggt_oiavislin23] head from /kaggle/working/checkpoints/vggt_oiavislin23.pt (step 1500, val-auroc 0.995)\n"}
+,{"stream_name":"stdout","time":14647.24448277,"data":"[vggt_oiavislin23] scan 3  auroc=0.992  cur=0.017  absrel_U=0.014 (S 0.005)  fracU=0.041  24s\n"}
+,{"stream_name":"stdout","time":14671.880410008,"data":"[vggt_oiavislin23] scan 5  auroc=0.995  cur=0.014  absrel_U=0.008 (S 0.004)  fracU=0.034  48s\n"}
+,{"stream_name":"stdout","time":14695.63520092,"data":"[vggt_oiavislin23] scan 17  auroc=0.968  cur=0.080  absrel_U=0.031 (S 0.006)  fracU=0.092  72s\n"}
+,{"stream_name":"stdout","time":14719.182952702,"data":"[vggt_oiavislin23] scan 21  auroc=0.972  cur=0.079  absrel_U=0.023 (S 0.008)  fracU=0.099  96s\n"}
+,{"stream_name":"stdout","time":14743.069896475,"data":"[vggt_oiavislin23] scan 28  auroc=0.991  cur=0.019  absrel_U=0.011 (S 0.005)  fracU=0.147  120s\n"}
+,{"stream_name":"stdout","time":14767.013469813,"data":"[vggt_oiavislin23] scan 35  auroc=0.997  cur=0.002  absrel_U=0.010 (S 0.003)  fracU=0.055  144s\n"}
+,{"stream_name":"stdout","time":14790.660648826,"data":"[vggt_oiavislin23] scan 37  auroc=0.973  cur=0.080  absrel_U=0.014 (S 0.007)  fracU=0.173  167s\n"}
+,{"stream_name":"stdout","time":14814.37257058,"data":"[vggt_oiavislin23] scan 38  auroc=0.995  cur=0.007  absrel_U=0.011 (S 0.004)  fracU=0.088  191s\n"}
+,{"stream_name":"stdout","time":14838.337346858,"data":"[vggt_oiavislin23] scan 40  auroc=0.990  cur=0.021  absrel_U=0.015 (S 0.006)  fracU=0.150  215s\n"}
+,{"stream_name":"stdout","time":14862.243051059,"data":"[vggt_oiavislin23] scan 43  auroc=0.993  cur=0.014  absrel_U=0.008 (S 0.004)  fracU=0.089  239s\n"}
+,{"stream_name":"stdout","time":14886.049128979,"data":"[vggt_oiavislin23] scan 56  auroc=0.987  cur=0.030  absrel_U=0.021 (S 0.005)  fracU=0.092  263s\n"}
+,{"stream_name":"stdout","time":14909.690302234,"data":"[vggt_oiavislin23] scan 59  auroc=0.995  cur=0.009  absrel_U=0.006 (S 0.004)  fracU=0.109  286s\n"}
+,{"stream_name":"stdout","time":14933.50958399,"data":"[vggt_oiavislin23] scan 66  auroc=0.986  cur=0.037  absrel_U=0.010 (S 0.005)  fracU=0.078  310s\n"}
+,{"stream_name":"stdout","time":14957.329313795,"data":"[vggt_oiavislin23] scan 67  auroc=0.991  cur=0.021  absrel_U=0.020 (S 0.005)  fracU=0.092  334s\n"}
+,{"stream_name":"stdout","time":14981.111098648,"data":"[vggt_oiavislin23] scan 82  auroc=0.979  cur=0.059  absrel_U=0.011 (S 0.006)  fracU=0.168  358s\n"}
+,{"stream_name":"stdout","time":15004.952911288,"data":"[vggt_oiavislin23] scan 86  auroc=0.965  cur=0.090  absrel_U=0.022 (S 0.013)  fracU=0.081  381s\n"}
+,{"stream_name":"stdout","time":15028.776587211,"data":"[vggt_oiavislin23] scan 106  auroc=0.992  cur=0.018  absrel_U=0.009 (S 0.005)  fracU=0.074  405s\n"}
+,{"stream_name":"stdout","time":15052.612010513,"data":"[vggt_oiavislin23] scan 117  auroc=0.994  cur=0.007  absrel_U=0.011 (S 0.004)  fracU=0.084  429s\n"}
+,{"stream_name":"stdout","time":15052.887301672,"data":"   vggt_oiavislin23: 440s\n"}
+,{"stream_name":"stdout","time":15052.919835497,"data":"resuming: 3402 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":15063.820632006,"data":"[vggt_oiavispatchlin] head from /kaggle/working/checkpoints/vggt_oiavispatchlin.pt (step 1500, val-auroc 0.902)\n"}
+,{"stream_name":"stdout","time":15090.770593374,"data":"[vggt_oiavispatchlin] scan 3  auroc=0.883  cur=0.377  absrel_U=0.014 (S 0.005)  fracU=0.041  27s\n"}
+,{"stream_name":"stdout","time":15118.584905363,"data":"[vggt_oiavispatchlin] scan 5  auroc=0.904  cur=0.278  absrel_U=0.008 (S 0.004)  fracU=0.034  55s\n"}
+,{"stream_name":"stdout","time":15145.339570388,"data":"[vggt_oiavispatchlin] scan 17  auroc=0.800  cur=0.513  absrel_U=0.031 (S 0.006)  fracU=0.092  82s\n"}
+,{"stream_name":"stdout","time":15172.233351623,"data":"[vggt_oiavispatchlin] scan 21  auroc=0.858  cur=0.395  absrel_U=0.023 (S 0.008)  fracU=0.099  108s\n"}
+,{"stream_name":"stdout","time":15199.386696475,"data":"[vggt_oiavispatchlin] scan 28  auroc=0.792  cur=0.509  absrel_U=0.011 (S 0.005)  fracU=0.147  136s\n"}
+,{"stream_name":"stdout","time":15226.342315216,"data":"[vggt_oiavispatchlin] scan 35  auroc=0.749  cur=0.533  absrel_U=0.010 (S 0.003)  fracU=0.055  163s\n"}
+,{"stream_name":"stdout","time":15253.10828522,"data":"[vggt_oiavispatchlin] scan 37  auroc=0.865  cur=0.464  absrel_U=0.014 (S 0.007)  fracU=0.173  189s\n"}
+,{"stream_name":"stdout","time":15280.071719901,"data":"[vggt_oiavispatchlin] scan 38  auroc=0.892  cur=0.273  absrel_U=0.011 (S 0.004)  fracU=0.088  216s\n"}
+,{"stream_name":"stdout","time":15307.129659001,"data":"[vggt_oiavispatchlin] scan 40  auroc=0.904  cur=0.283  absrel_U=0.015 (S 0.006)  fracU=0.150  243s\n"}
+,{"stream_name":"stdout","time":15334.262575351,"data":"[vggt_oiavispatchlin] scan 43  auroc=0.946  cur=0.161  absrel_U=0.008 (S 0.004)  fracU=0.089  270s\n"}
+,{"stream_name":"stdout","time":15361.376951485,"data":"[vggt_oiavispatchlin] scan 56  auroc=0.899  cur=0.348  absrel_U=0.021 (S 0.005)  fracU=0.092  298s\n"}
+,{"stream_name":"stdout","time":15388.390360042,"data":"[vggt_oiavispatchlin] scan 59  auroc=0.911  cur=0.282  absrel_U=0.006 (S 0.004)  fracU=0.109  325s\n"}
+,{"stream_name":"stdout","time":15415.409256435,"data":"[vggt_oiavispatchlin] scan 66  auroc=0.885  cur=0.359  absrel_U=0.010 (S 0.005)  fracU=0.078  352s\n"}
+,{"stream_name":"stdout","time":15442.397529204,"data":"[vggt_oiavispatchlin] scan 67  auroc=0.840  cur=0.399  absrel_U=0.020 (S 0.005)  fracU=0.092  379s\n"}
+,{"stream_name":"stdout","time":15469.29242846,"data":"[vggt_oiavispatchlin] scan 82  auroc=0.903  cur=0.326  absrel_U=0.011 (S 0.006)  fracU=0.168  405s\n"}
+,{"stream_name":"stdout","time":15496.282640529,"data":"[vggt_oiavispatchlin] scan 86  auroc=0.658  cur=0.636  absrel_U=0.022 (S 0.013)  fracU=0.081  432s\n"}
+,{"stream_name":"stdout","time":15523.263368098,"data":"[vggt_oiavispatchlin] scan 106  auroc=0.895  cur=0.343  absrel_U=0.009 (S 0.005)  fracU=0.074  459s\n"}
+,{"stream_name":"stdout","time":15550.399196489,"data":"[vggt_oiavispatchlin] scan 117  auroc=0.866  cur=0.356  absrel_U=0.011 (S 0.004)  fracU=0.084  487s\n"}
+,{"stream_name":"stdout","time":15550.678011067,"data":"   vggt_oiavispatchlin: 498s\n"}
+,{"stream_name":"stdout","time":15550.711075199,"data":"resuming: 3564 rows already in /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":15550.71141862,"data":"[pi3x] all done\n"}
+,{"stream_name":"stdout","time":15550.71183191,"data":"   pi3x: 0s\n"}
+,{"stream_name":"stdout","time":15553.155098447,"data":"[exit 0, 15553s]\n"}
+,{"stream_name":"stdout","time":15553.155136955,"data":"\n"}
+,{"stream_name":"stdout","time":15553.155143592,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":15553.155149161,"data":"== stage vis_co3d  [15553s]\n"}
+,{"stream_name":"stdout","time":15553.155154573,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":15553.155165533,"data":"\n"}
+,{"stream_name":"stdout","time":15553.155170608,"data":"$ /usr/bin/python3 scripts/run_h100.py vis_co3d --dtu /kaggle/input --co3d /kaggle/input --out /kaggle/working/results --ckpt /kaggle/working/checkpoints --bases vggt --steps 1500 --skip-gt --variants oia,oialin,oiapatch --ext-bases vggt,pi3x\n"}
+,{"stream_name":"stdout","time":15564.497703218,"data":"\n"}
+,{"stream_name":"stdout","time":15564.497758214,"data":"##### stage vis_co3d 2026-11-06 21:14:15\n"}
+,{"stream_name":"stdout","time":15566.026784746,"data":"== P4-vis-co3d: models ['vggt', 'vggt_reproj', 'vggt_oiavis', 'vggt_oiavispatch', 'vggt_oiavislin', 'vggt_oiavis_s1', 'vggt_oiavis_s2', 'vggt_oiavisself', 'vggt_oiavisselfpatch', 'vggt_oiavisselflin', 'vggt_oiavislin4', 'vggt_oiavislin11', 'vggt_oiavislin17', 'vggt_oiavislin23', 'vggt_oiavispatchlin'], cfg {\"vis_views\": [3, 5, 10], \"seeds\": [0, 1, 2], \"dataset\": \"co3d\"}\n"}
+,{"stream_name":"stdout","time":15566.397427392,"data":"resuming: 1620 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":15566.397707257,"data":"[vggt] all done\n"}
+,{"stream_name":"stdout","time":15566.397897812,"data":"   vggt: 0s\n"}
+,{"stream_name":"stdout","time":15566.41501402,"data":"resuming: 1620 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":15566.415287025,"data":"[vggt_reproj] all done\n"}
+,{"stream_name":"stdout","time":15566.415505468,"data":"   vggt_reproj: 0s\n"}
+,{"stream_name":"stdout","time":15566.432882225,"data":"resuming: 1620 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":15566.433135777,"data":"[vggt_oiavis] all done\n"}
+,{"stream_name":"stdout","time":15566.433361461,"data":"   vggt_oiavis: 0s\n"}
+,{"stream_name":"stdout","time":15566.450161342,"data":"resuming: 1620 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":15566.450468098,"data":"[vggt_oiavispatch] all done\n"}
+,{"stream_name":"stdout","time":15566.450695106,"data":"   vggt_oiavispatch: 0s\n"}
+,{"stream_name":"stdout","time":15566.467539726,"data":"resuming: 1620 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":15566.467794806,"data":"[vggt_oiavislin] all done\n"}
+,{"stream_name":"stdout","time":15566.467994182,"data":"   vggt_oiavislin: 0s\n"}
+,{"stream_name":"stdout","time":15566.484664162,"data":"resuming: 1620 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stderr","time":15567.109159769,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":15581.211678412,"data":"[vggt_oiavis_s1] head from /kaggle/working/checkpoints/vggt_oiavis_s1.pt (step 1500, val-auroc 0.998)\n"}
+,{"stream_name":"stdout","time":15596.761160863,"data":"[vggt_oiavis_s1] scan apple_110_13051_23361  auroc=0.962  cur=0.118  absrel_U=0.039 (S 0.037)  fracU=0.038  16s\n"}
+,{"stream_name":"stdout","time":15610.886412025,"data":"[vggt_oiavis_s1] scan apple_189_20393_38136  auroc=0.989  cur=0.028  absrel_U=0.031 (S 0.011)  fracU=0.058  30s\n"}
+,{"stream_name":"stdout","time":15626.181408203,"data":"[vggt_oiavis_s1] scan ball_123_14363_28981  auroc=0.995  cur=0.015  absrel_U=0.035 (S 0.016)  fracU=0.044  45s\n"}
+,{"stream_name":"stdout","time":15640.393286643,"data":"[vggt_oiavis_s1] scan ball_375_42693_85518  auroc=0.998  cur=0.005  absrel_U=0.019 (S 0.019)  fracU=0.052  59s\n"}
+,{"stream_name":"stdout","time":15655.054933934,"data":"[vggt_oiavis_s1] scan bench_415_57112_110099  auroc=0.875  cur=0.372  absrel_U=0.017 (S 0.009)  fracU=0.083  74s\n"}
+,{"stream_name":"stdout","time":15669.477206063,"data":"[vggt_oiavis_s1] scan bench_415_57121_110109  auroc=0.910  cur=0.221  absrel_U=0.016 (S 0.010)  fracU=0.043  88s\n"}
+,{"stream_name":"stdout","time":15684.648279698,"data":"[vggt_oiavis_s1] scan hydrant_167_18184_34441  auroc=0.921  cur=0.250  absrel_U=0.019 (S 0.024)  fracU=0.129  103s\n"}
+,{"stream_name":"stdout","time":15698.73105494,"data":"[vggt_oiavis_s1] scan hydrant_411_56064_108483  auroc=0.913  cur=0.273  absrel_U=0.034 (S 0.037)  fracU=0.085  118s\n"}
+,{"stream_name":"stdout","time":15713.109482683,"data":"[vggt_oiavis_s1] scan mouse_107_12753_23606  auroc=0.940  cur=0.186  absrel_U=0.029 (S 0.021)  fracU=0.040  132s\n"}
+,{"stream_name":"stdout","time":15724.278635112,"data":"[vggt_oiavis_s1] scan mouse_377_43416_86289  auroc=0.966  cur=0.103  absrel_U=0.056 (S 0.037)  fracU=0.037  143s\n"}
+,{"stream_name":"stdout","time":15735.998151815,"data":"[vggt_oiavis_s1] scan teddybear_187_20215_38541  auroc=0.930  cur=0.203  absrel_U=0.061 (S 0.027)  fracU=0.032  155s\n"}
+,{"stream_name":"stdout","time":15750.232948202,"data":"[vggt_oiavis_s1] scan teddybear_34_1479_4753  auroc=0.898  cur=0.358  absrel_U=0.026 (S 0.023)  fracU=0.091  169s\n"}
+,{"stream_name":"stdout","time":15765.07930442,"data":"[vggt_oiavis_s1] scan toytrain_240_25394_51994  auroc=0.975  cur=0.076  absrel_U=0.049 (S 0.028)  fracU=0.077  184s\n"}
+,{"stream_name":"stdout","time":15779.661397447,"data":"[vggt_oiavis_s1] scan toytrain_399_51323_100753  auroc=0.958  cur=0.114  absrel_U=0.030 (S 0.019)  fracU=0.054  198s\n"}
+,{"stream_name":"stdout","time":15796.82372524,"data":"[vggt_oiavis_s1] scan toytruck_190_20494_39385  auroc=0.862  cur=0.331  absrel_U=0.032 (S 0.021)  fracU=0.095  216s\n"}
+,{"stream_name":"stdout","time":15811.684412055,"data":"[vggt_oiavis_s1] scan toytruck_346_36113_66551  auroc=0.970  cur=0.082  absrel_U=0.040 (S 0.024)  fracU=0.072  230s\n"}
+,{"stream_name":"stdout","time":15823.003796887,"data":"[vggt_oiavis_s1] scan vase_374_41862_83720  auroc=0.833  cur=0.356  absrel_U=0.081 (S 0.025)  fracU=0.020  242s\n"}
+,{"stream_name":"stdout","time":15837.171733434,"data":"[vggt_oiavis_s1] scan vase_380_44863_89631  auroc=0.804  cur=0.627  absrel_U=0.058 (S 0.052)  fracU=0.033  256s\n"}
+,{"stream_name":"stdout","time":15837.398570178,"data":"   vggt_oiavis_s1: 271s\n"}
+,{"stream_name":"stdout","time":15837.416903392,"data":"resuming: 1782 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":15851.376596987,"data":"[vggt_oiavis_s2] head from /kaggle/working/checkpoints/vggt_oiavis_s2.pt (step 1500, val-auroc 0.998)\n"}
+,{"stream_name":"stdout","time":15861.279901365,"data":"[vggt_oiavis_s2] scan apple_110_13051_23361  auroc=0.962  cur=0.121  absrel_U=0.039 (S 0.037)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":15871.14369305,"data":"[vggt_oiavis_s2] scan apple_189_20393_38136  auroc=0.991  cur=0.019  absrel_U=0.031 (S 0.011)  fracU=0.058  20s\n"}
+,{"stream_name":"stdout","time":15881.282042712,"data":"[vggt_oiavis_s2] scan ball_123_14363_28981  auroc=0.997  cur=0.006  absrel_U=0.035 (S 0.016)  fracU=0.044  30s\n"}
+,{"stream_name":"stdout","time":15891.433086441,"data":"[vggt_oiavis_s2] scan ball_375_42693_85518  auroc=0.998  cur=0.003  absrel_U=0.019 (S 0.019)  fracU=0.052  40s\n"}
+,{"stream_name":"stdout","time":15901.593045839,"data":"[vggt_oiavis_s2] scan bench_415_57112_110099  auroc=0.884  cur=0.371  absrel_U=0.017 (S 0.009)  fracU=0.083  50s\n"}
+,{"stream_name":"stdout","time":15911.459005556,"data":"[vggt_oiavis_s2] scan bench_415_57121_110109  auroc=0.909  cur=0.245  absrel_U=0.016 (S 0.010)  fracU=0.043  60s\n"}
+,{"stream_name":"stdout","time":15921.204747253,"data":"[vggt_oiavis_s2] scan hydrant_167_18184_34441  auroc=0.907  cur=0.274  absrel_U=0.019 (S 0.024)  fracU=0.129  70s\n"}
+,{"stream_name":"stdout","time":15930.761346407,"data":"[vggt_oiavis_s2] scan hydrant_411_56064_108483  auroc=0.901  cur=0.327  absrel_U=0.034 (S 0.037)  fracU=0.085  79s\n"}
+,{"stream_name":"stdout","time":15940.491879801,"data":"[vggt_oiavis_s2] scan mouse_107_12753_23606  auroc=0.941  cur=0.202  absrel_U=0.029 (S 0.021)  fracU=0.040  89s\n"}
+,{"stream_name":"stdout","time":15947.378841464,"data":"[vggt_oiavis_s2] scan mouse_377_43416_86289  auroc=0.963  cur=0.092  absrel_U=0.056 (S 0.037)  fracU=0.037  96s\n"}
+,{"stream_name":"stdout","time":15954.559875281,"data":"[vggt_oiavis_s2] scan teddybear_187_20215_38541  auroc=0.935  cur=0.183  absrel_U=0.061 (S 0.027)  fracU=0.032  103s\n"}
+,{"stream_name":"stdout","time":15964.563954235,"data":"[vggt_oiavis_s2] scan teddybear_34_1479_4753  auroc=0.866  cur=0.408  absrel_U=0.026 (S 0.023)  fracU=0.091  113s\n"}
+,{"stream_name":"stdout","time":15974.665595862,"data":"[vggt_oiavis_s2] scan toytrain_240_25394_51994  auroc=0.978  cur=0.057  absrel_U=0.049 (S 0.028)  fracU=0.077  123s\n"}
+,{"stream_name":"stdout","time":15984.374574411,"data":"[vggt_oiavis_s2] scan toytrain_399_51323_100753  auroc=0.960  cur=0.106  absrel_U=0.030 (S 0.019)  fracU=0.054  133s\n"}
+,{"stream_name":"stdout","time":15996.956644184,"data":"[vggt_oiavis_s2] scan toytruck_190_20494_39385  auroc=0.880  cur=0.292  absrel_U=0.032 (S 0.021)  fracU=0.095  146s\n"}
+,{"stream_name":"stdout","time":16006.890108027,"data":"[vggt_oiavis_s2] scan toytruck_346_36113_66551  auroc=0.972  cur=0.074  absrel_U=0.040 (S 0.024)  fracU=0.072  156s\n"}
+,{"stream_name":"stdout","time":16013.80124217,"data":"[vggt_oiavis_s2] scan vase_374_41862_83720  auroc=0.865  cur=0.331  absrel_U=0.081 (S 0.025)  fracU=0.020  162s\n"}
+,{"stream_name":"stdout","time":16023.394367606,"data":"[vggt_oiavis_s2] scan vase_380_44863_89631  auroc=0.821  cur=0.573  absrel_U=0.058 (S 0.052)  fracU=0.033  172s\n"}
+,{"stream_name":"stdout","time":16023.607896416,"data":"   vggt_oiavis_s2: 186s\n"}
+,{"stream_name":"stdout","time":16023.627164072,"data":"resuming: 1944 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":16035.198004683,"data":"[vggt_oiavisself] head from /kaggle/working/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stdout","time":16044.878300507,"data":"[vggt_oiavisself] scan apple_110_13051_23361  auroc=0.957  cur=0.124  absrel_U=0.039 (S 0.037)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":16054.504350134,"data":"[vggt_oiavisself] scan apple_189_20393_38136  auroc=0.990  cur=0.023  absrel_U=0.031 (S 0.011)  fracU=0.058  19s\n"}
+,{"stream_name":"stdout","time":16064.471680701,"data":"[vggt_oiavisself] scan ball_123_14363_28981  auroc=0.998  cur=0.005  absrel_U=0.035 (S 0.016)  fracU=0.044  29s\n"}
+,{"stream_name":"stdout","time":16074.603503177,"data":"[vggt_oiavisself] scan ball_375_42693_85518  auroc=0.999  cur=0.002  absrel_U=0.019 (S 0.019)  fracU=0.052  39s\n"}
+,{"stream_name":"stdout","time":16084.821112138,"data":"[vggt_oiavisself] scan bench_415_57112_110099  auroc=0.902  cur=0.273  absrel_U=0.017 (S 0.009)  fracU=0.083  50s\n"}
+,{"stream_name":"stdout","time":16094.697457843,"data":"[vggt_oiavisself] scan bench_415_57121_110109  auroc=0.926  cur=0.207  absrel_U=0.016 (S 0.010)  fracU=0.043  59s\n"}
+,{"stream_name":"stdout","time":16104.446782498,"data":"[vggt_oiavisself] scan hydrant_167_18184_34441  auroc=0.888  cur=0.326  absrel_U=0.019 (S 0.024)  fracU=0.129  69s\n"}
+,{"stream_name":"stdout","time":16114.059684012,"data":"[vggt_oiavisself] scan hydrant_411_56064_108483  auroc=0.906  cur=0.284  absrel_U=0.034 (S 0.037)  fracU=0.085  79s\n"}
+,{"stream_name":"stdout","time":16123.651558778,"data":"[vggt_oiavisself] scan mouse_107_12753_23606  auroc=0.924  cur=0.252  absrel_U=0.029 (S 0.021)  fracU=0.040  88s\n"}
+,{"stream_name":"stdout","time":16130.48540224,"data":"[vggt_oiavisself] scan mouse_377_43416_86289  auroc=0.965  cur=0.108  absrel_U=0.056 (S 0.037)  fracU=0.037  95s\n"}
+,{"stream_name":"stdout","time":16137.579023035,"data":"[vggt_oiavisself] scan teddybear_187_20215_38541  auroc=0.958  cur=0.132  absrel_U=0.061 (S 0.027)  fracU=0.032  102s\n"}
+,{"stream_name":"stdout","time":16147.419513177,"data":"[vggt_oiavisself] scan teddybear_34_1479_4753  auroc=0.871  cur=0.370  absrel_U=0.026 (S 0.023)  fracU=0.091  112s\n"}
+,{"stream_name":"stdout","time":16157.489337386,"data":"[vggt_oiavisself] scan toytrain_240_25394_51994  auroc=0.972  cur=0.072  absrel_U=0.049 (S 0.028)  fracU=0.077  122s\n"}
+,{"stream_name":"stdout","time":16167.245585566,"data":"[vggt_oiavisself] scan toytrain_399_51323_100753  auroc=0.966  cur=0.096  absrel_U=0.030 (S 0.019)  fracU=0.054  132s\n"}
+,{"stream_name":"stdout","time":16179.952688078,"data":"[vggt_oiavisself] scan toytruck_190_20494_39385  auroc=0.850  cur=0.387  absrel_U=0.032 (S 0.021)  fracU=0.095  145s\n"}
+,{"stream_name":"stdout","time":16189.960104879,"data":"[vggt_oiavisself] scan toytruck_346_36113_66551  auroc=0.974  cur=0.076  absrel_U=0.040 (S 0.024)  fracU=0.072  155s\n"}
+,{"stream_name":"stdout","time":16196.90347193,"data":"[vggt_oiavisself] scan vase_374_41862_83720  auroc=0.875  cur=0.345  absrel_U=0.081 (S 0.025)  fracU=0.020  162s\n"}
+,{"stream_name":"stdout","time":16206.53914702,"data":"[vggt_oiavisself] scan vase_380_44863_89631  auroc=0.836  cur=0.494  absrel_U=0.058 (S 0.052)  fracU=0.033  171s\n"}
+,{"stream_name":"stdout","time":16206.755403835,"data":"   vggt_oiavisself: 183s\n"}
+,{"stream_name":"stdout","time":16206.777666629,"data":"resuming: 2106 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":16220.205447909,"data":"[vggt_oiavisselfpatch] head from /kaggle/working/checkpoints/vggt_oiavisselfpatch.pt (step 1500, val-auroc 0.915)\n"}
+,{"stream_name":"stdout","time":16230.862880121,"data":"[vggt_oiavisselfpatch] scan apple_110_13051_23361  auroc=0.598  cur=0.894  absrel_U=0.039 (S 0.037)  fracU=0.038  11s\n"}
+,{"stream_name":"stdout","time":16241.480986737,"data":"[vggt_oiavisselfpatch] scan apple_189_20393_38136  auroc=0.456  cur=0.932  absrel_U=0.031 (S 0.011)  fracU=0.058  21s\n"}
+,{"stream_name":"stdout","time":16252.395186402,"data":"[vggt_oiavisselfpatch] scan ball_123_14363_28981  auroc=0.441  cur=0.936  absrel_U=0.035 (S 0.016)  fracU=0.044  32s\n"}
+,{"stream_name":"stdout","time":16263.547695297,"data":"[vggt_oiavisselfpatch] scan ball_375_42693_85518  auroc=0.589  cur=0.916  absrel_U=0.019 (S 0.019)  fracU=0.052  43s\n"}
+,{"stream_name":"stdout","time":16274.75854778,"data":"[vggt_oiavisselfpatch] scan bench_415_57112_110099  auroc=0.329  cur=0.871  absrel_U=0.017 (S 0.009)  fracU=0.083  55s\n"}
+,{"stream_name":"stdout","time":16285.526967372,"data":"[vggt_oiavisselfpatch] scan bench_415_57121_110109  auroc=0.756  cur=0.770  absrel_U=0.016 (S 0.010)  fracU=0.043  65s\n"}
+,{"stream_name":"stdout","time":16296.201472239,"data":"[vggt_oiavisselfpatch] scan hydrant_167_18184_34441  auroc=0.356  cur=0.939  absrel_U=0.019 (S 0.024)  fracU=0.129  76s\n"}
+,{"stream_name":"stdout","time":16306.737687188,"data":"[vggt_oiavisselfpatch] scan hydrant_411_56064_108483  auroc=0.369  cur=0.948  absrel_U=0.034 (S 0.037)  fracU=0.085  87s\n"}
+,{"stream_name":"stdout","time":16317.365551943,"data":"[vggt_oiavisselfpatch] scan mouse_107_12753_23606  auroc=0.366  cur=0.961  absrel_U=0.029 (S 0.021)  fracU=0.040  97s\n"}
+,{"stream_name":"stdout","time":16324.814061114,"data":"[vggt_oiavisselfpatch] scan mouse_377_43416_86289  auroc=0.362  cur=0.980  absrel_U=0.056 (S 0.037)  fracU=0.037  105s\n"}
+,{"stream_name":"stdout","time":16332.46095821,"data":"[vggt_oiavisselfpatch] scan teddybear_187_20215_38541  auroc=0.236  cur=0.981  absrel_U=0.061 (S 0.027)  fracU=0.032  112s\n"}
+,{"stream_name":"stdout","time":16343.311577127,"data":"[vggt_oiavisselfpatch] scan teddybear_34_1479_4753  auroc=0.295  cur=0.974  absrel_U=0.026 (S 0.023)  fracU=0.091  123s\n"}
+,{"stream_name":"stdout","time":16354.245936069,"data":"[vggt_oiavisselfpatch] scan toytrain_240_25394_51994  auroc=0.479  cur=0.890  absrel_U=0.049 (S 0.028)  fracU=0.077  134s\n"}
+,{"stream_name":"stdout","time":16364.851871301,"data":"[vggt_oiavisselfpatch] scan toytrain_399_51323_100753  auroc=0.686  cur=0.694  absrel_U=0.030 (S 0.019)  fracU=0.054  145s\n"}
+,{"stream_name":"stdout","time":16378.839331552,"data":"[vggt_oiavisselfpatch] scan toytruck_190_20494_39385  auroc=0.383  cur=0.945  absrel_U=0.032 (S 0.021)  fracU=0.095  159s\n"}
+,{"stream_name":"stdout","time":16389.672938819,"data":"[vggt_oiavisselfpatch] scan toytruck_346_36113_66551  auroc=0.551  cur=0.897  absrel_U=0.040 (S 0.024)  fracU=0.072  169s\n"}
+,{"stream_name":"stdout","time":16397.115756965,"data":"[vggt_oiavisselfpatch] scan vase_374_41862_83720  auroc=0.732  cur=0.531  absrel_U=0.081 (S 0.025)  fracU=0.020  177s\n"}
+,{"stream_name":"stdout","time":16407.660680609,"data":"[vggt_oiavisselfpatch] scan vase_380_44863_89631  auroc=0.301  cur=0.996  absrel_U=0.058 (S 0.052)  fracU=0.033  187s\n"}
+,{"stream_name":"stdout","time":16407.905316343,"data":"   vggt_oiavisselfpatch: 201s\n"}
+,{"stream_name":"stdout","time":16407.928294028,"data":"resuming: 2268 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":16421.484210264,"data":"[vggt_oiavisselflin] head from /kaggle/working/checkpoints/vggt_oiavisselflin.pt (step 1500, val-auroc 0.996)\n"}
+,{"stream_name":"stdout","time":16431.179630021,"data":"[vggt_oiavisselflin] scan apple_110_13051_23361  auroc=0.949  cur=0.146  absrel_U=0.039 (S 0.037)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":16440.696912042,"data":"[vggt_oiavisselflin] scan apple_189_20393_38136  auroc=0.977  cur=0.059  absrel_U=0.031 (S 0.011)  fracU=0.058  19s\n"}
+,{"stream_name":"stdout","time":16450.560510067,"data":"[vggt_oiavisselflin] scan ball_123_14363_28981  auroc=0.993  cur=0.012  absrel_U=0.035 (S 0.016)  fracU=0.044  29s\n"}
+,{"stream_name":"stdout","time":16460.510564146,"data":"[vggt_oiavisselflin] scan ball_375_42693_85518  auroc=0.997  cur=0.005  absrel_U=0.019 (S 0.019)  fracU=0.052  39s\n"}
+,{"stream_name":"stdout","time":16470.558379894,"data":"[vggt_oiavisselflin] scan bench_415_57112_110099  auroc=0.778  cur=0.557  absrel_U=0.017 (S 0.009)  fracU=0.083  49s\n"}
+,{"stream_name":"stdout","time":16480.312951557,"data":"[vggt_oiavisselflin] scan bench_415_57121_110109  auroc=0.945  cur=0.166  absrel_U=0.016 (S 0.010)  fracU=0.043  59s\n"}
+,{"stream_name":"stdout","time":16489.894119115,"data":"[vggt_oiavisselflin] scan hydrant_167_18184_34441  auroc=0.804  cur=0.639  absrel_U=0.019 (S 0.024)  fracU=0.129  68s\n"}
+,{"stream_name":"stdout","time":16499.351111798,"data":"[vggt_oiavisselflin] scan hydrant_411_56064_108483  auroc=0.841  cur=0.517  absrel_U=0.034 (S 0.037)  fracU=0.085  78s\n"}
+,{"stream_name":"stdout","time":16508.933391972,"data":"[vggt_oiavisselflin] scan mouse_107_12753_23606  auroc=0.908  cur=0.265  absrel_U=0.029 (S 0.021)  fracU=0.040  87s\n"}
+,{"stream_name":"stdout","time":16515.806743537,"data":"[vggt_oiavisselflin] scan mouse_377_43416_86289  auroc=0.961  cur=0.134  absrel_U=0.056 (S 0.037)  fracU=0.037  94s\n"}
+,{"stream_name":"stdout","time":16522.874566047,"data":"[vggt_oiavisselflin] scan teddybear_187_20215_38541  auroc=0.922  cur=0.232  absrel_U=0.061 (S 0.027)  fracU=0.032  101s\n"}
+,{"stream_name":"stdout","time":16532.73864437,"data":"[vggt_oiavisselflin] scan teddybear_34_1479_4753  auroc=0.828  cur=0.509  absrel_U=0.026 (S 0.023)  fracU=0.091  111s\n"}
+,{"stream_name":"stdout","time":16542.680674682,"data":"[vggt_oiavisselflin] scan toytrain_240_25394_51994  auroc=0.958  cur=0.109  absrel_U=0.049 (S 0.028)  fracU=0.077  121s\n"}
+,{"stream_name":"stdout","time":16552.347194961,"data":"[vggt_oiavisselflin] scan toytrain_399_51323_100753  auroc=0.957  cur=0.115  absrel_U=0.030 (S 0.019)  fracU=0.054  131s\n"}
+,{"stream_name":"stdout","time":16564.977690699,"data":"[vggt_oiavisselflin] scan toytruck_190_20494_39385  auroc=0.817  cur=0.478  absrel_U=0.032 (S 0.021)  fracU=0.095  143s\n"}
+,{"stream_name":"stdout","time":16574.923661169,"data":"[vggt_oiavisselflin] scan toytruck_346_36113_66551  auroc=0.963  cur=0.094  absrel_U=0.040 (S 0.024)  fracU=0.072  153s\n"}
+,{"stream_name":"stdout","time":16581.811628652,"data":"[vggt_oiavisselflin] scan vase_374_41862_83720  auroc=0.847  cur=0.537  absrel_U=0.081 (S 0.025)  fracU=0.020  160s\n"}
+,{"stream_name":"stdout","time":16591.366379995,"data":"[vggt_oiavisselflin] scan vase_380_44863_89631  auroc=0.726  cur=0.746  absrel_U=0.058 (S 0.052)  fracU=0.033  170s\n"}
+,{"stream_name":"stdout","time":16591.584785113,"data":"   vggt_oiavisselflin: 184s\n"}
+,{"stream_name":"stdout","time":16591.607332657,"data":"resuming: 2430 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":16604.592905704,"data":"[vggt_oiavislin4] head from /kaggle/working/checkpoints/vggt_oiavislin4.pt (step 1500, val-auroc 0.903)\n"}
+,{"stream_name":"stdout","time":16614.223244637,"data":"[vggt_oiavislin4] scan apple_110_13051_23361  auroc=0.557  cur=0.841  absrel_U=0.039 (S 0.037)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":16623.772882893,"data":"[vggt_oiavislin4] scan apple_189_20393_38136  auroc=0.492  cur=0.893  absrel_U=0.031 (S 0.011)  fracU=0.058  19s\n"}
+,{"stream_name":"stdout","time":16633.564025806,"data":"[vggt_oiavislin4] scan ball_123_14363_28981  auroc=0.307  cur=0.946  absrel_U=0.035 (S 0.016)  fracU=0.044  29s\n"}
+,{"stream_name":"stdout","time":16643.454176536,"data":"[vggt_oiavislin4] scan ball_375_42693_85518  auroc=0.511  cur=0.923  absrel_U=0.019 (S 0.019)  fracU=0.052  39s\n"}
+,{"stream_name":"stdout","time":16653.5828325,"data":"[vggt_oiavislin4] scan bench_415_57112_110099  auroc=0.450  cur=0.844  absrel_U=0.017 (S 0.009)  fracU=0.083  49s\n"}
+,{"stream_name":"stdout","time":16663.408379074,"data":"[vggt_oiavislin4] scan bench_415_57121_110109  auroc=0.832  cur=0.532  absrel_U=0.016 (S 0.010)  fracU=0.043  59s\n"}
+,{"stream_name":"stdout","time":16673.093810618,"data":"[vggt_oiavislin4] scan hydrant_167_18184_34441  auroc=0.368  cur=0.925  absrel_U=0.019 (S 0.024)  fracU=0.129  69s\n"}
+,{"stream_name":"stdout","time":16682.628083794,"data":"[vggt_oiavislin4] scan hydrant_411_56064_108483  auroc=0.429  cur=0.908  absrel_U=0.034 (S 0.037)  fracU=0.085  78s\n"}
+,{"stream_name":"stdout","time":16692.1760064,"data":"[vggt_oiavislin4] scan mouse_107_12753_23606  auroc=0.427  cur=0.953  absrel_U=0.029 (S 0.021)  fracU=0.040  88s\n"}
+,{"stream_name":"stdout","time":16698.989781541,"data":"[vggt_oiavislin4] scan mouse_377_43416_86289  auroc=0.624  cur=0.971  absrel_U=0.056 (S 0.037)  fracU=0.037  94s\n"}
+,{"stream_name":"stdout","time":16706.025756088,"data":"[vggt_oiavislin4] scan teddybear_187_20215_38541  auroc=0.293  cur=0.983  absrel_U=0.061 (S 0.027)  fracU=0.032  101s\n"}
+,{"stream_name":"stdout","time":16715.75732905,"data":"[vggt_oiavislin4] scan teddybear_34_1479_4753  auroc=0.357  cur=0.943  absrel_U=0.026 (S 0.023)  fracU=0.091  111s\n"}
+,{"stream_name":"stdout","time":16725.742736998,"data":"[vggt_oiavislin4] scan toytrain_240_25394_51994  auroc=0.519  cur=0.901  absrel_U=0.049 (S 0.028)  fracU=0.077  121s\n"}
+,{"stream_name":"stdout","time":16735.401087219,"data":"[vggt_oiavislin4] scan toytrain_399_51323_100753  auroc=0.670  cur=0.804  absrel_U=0.030 (S 0.019)  fracU=0.054  131s\n"}
+,{"stream_name":"stdout","time":16748.101576266,"data":"[vggt_oiavislin4] scan toytruck_190_20494_39385  auroc=0.438  cur=0.920  absrel_U=0.032 (S 0.021)  fracU=0.095  144s\n"}
+,{"stream_name":"stdout","time":16757.976181453,"data":"[vggt_oiavislin4] scan toytruck_346_36113_66551  auroc=0.515  cur=0.937  absrel_U=0.040 (S 0.024)  fracU=0.072  153s\n"}
+,{"stream_name":"stdout","time":16764.83334517,"data":"[vggt_oiavislin4] scan vase_374_41862_83720  auroc=0.685  cur=0.724  absrel_U=0.081 (S 0.025)  fracU=0.020  160s\n"}
+,{"stream_name":"stdout","time":16774.344554685,"data":"[vggt_oiavislin4] scan vase_380_44863_89631  auroc=0.253  cur=0.988  absrel_U=0.058 (S 0.052)  fracU=0.033  170s\n"}
+,{"stream_name":"stdout","time":16774.559061483,"data":"   vggt_oiavislin4: 183s\n"}
+,{"stream_name":"stdout","time":16774.581724672,"data":"resuming: 2592 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":16787.781413997,"data":"[vggt_oiavislin11] head from /kaggle/working/checkpoints/vggt_oiavislin11.pt (step 1500, val-auroc 0.965)\n"}
+,{"stream_name":"stdout","time":16797.463259082,"data":"[vggt_oiavislin11] scan apple_110_13051_23361  auroc=0.864  cur=0.434  absrel_U=0.039 (S 0.037)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":16807.064322022,"data":"[vggt_oiavislin11] scan apple_189_20393_38136  auroc=0.786  cur=0.581  absrel_U=0.031 (S 0.011)  fracU=0.058  19s\n"}
+,{"stream_name":"stdout","time":16816.83447255,"data":"[vggt_oiavislin11] scan ball_123_14363_28981  auroc=0.752  cur=0.675  absrel_U=0.035 (S 0.016)  fracU=0.044  29s\n"}
+,{"stream_name":"stdout","time":16826.843631287,"data":"[vggt_oiavislin11] scan ball_375_42693_85518  auroc=0.810  cur=0.565  absrel_U=0.019 (S 0.019)  fracU=0.052  39s\n"}
+,{"stream_name":"stdout","time":16837.019220905,"data":"[vggt_oiavislin11] scan bench_415_57112_110099  auroc=0.450  cur=0.863  absrel_U=0.017 (S 0.009)  fracU=0.083  49s\n"}
+,{"stream_name":"stdout","time":16846.873568476,"data":"[vggt_oiavislin11] scan bench_415_57121_110109  auroc=0.761  cur=0.668  absrel_U=0.016 (S 0.010)  fracU=0.043  59s\n"}
+,{"stream_name":"stdout","time":16856.600030321,"data":"[vggt_oiavislin11] scan hydrant_167_18184_34441  auroc=0.675  cur=0.798  absrel_U=0.019 (S 0.024)  fracU=0.129  69s\n"}
+,{"stream_name":"stdout","time":16866.157638013,"data":"[vggt_oiavislin11] scan hydrant_411_56064_108483  auroc=0.696  cur=0.787  absrel_U=0.034 (S 0.037)  fracU=0.085  78s\n"}
+,{"stream_name":"stdout","time":16875.685809643,"data":"[vggt_oiavislin11] scan mouse_107_12753_23606  auroc=0.598  cur=0.887  absrel_U=0.029 (S 0.021)  fracU=0.040  88s\n"}
+,{"stream_name":"stdout","time":16882.514992306,"data":"[vggt_oiavislin11] scan mouse_377_43416_86289  auroc=0.799  cur=0.749  absrel_U=0.056 (S 0.037)  fracU=0.037  95s\n"}
+,{"stream_name":"stdout","time":16889.565001457,"data":"[vggt_oiavislin11] scan teddybear_187_20215_38541  auroc=0.677  cur=0.799  absrel_U=0.061 (S 0.027)  fracU=0.032  102s\n"}
+,{"stream_name":"stdout","time":16899.346897876,"data":"[vggt_oiavislin11] scan teddybear_34_1479_4753  auroc=0.579  cur=0.829  absrel_U=0.026 (S 0.023)  fracU=0.091  112s\n"}
+,{"stream_name":"stdout","time":16909.322657507,"data":"[vggt_oiavislin11] scan toytrain_240_25394_51994  auroc=0.658  cur=0.746  absrel_U=0.049 (S 0.028)  fracU=0.077  122s\n"}
+,{"stream_name":"stdout","time":16919.118996952,"data":"[vggt_oiavislin11] scan toytrain_399_51323_100753  auroc=0.837  cur=0.496  absrel_U=0.030 (S 0.019)  fracU=0.054  131s\n"}
+,{"stream_name":"stdout","time":16931.875107811,"data":"[vggt_oiavislin11] scan toytruck_190_20494_39385  auroc=0.701  cur=0.676  absrel_U=0.032 (S 0.021)  fracU=0.095  144s\n"}
+,{"stream_name":"stdout","time":16941.724266698,"data":"[vggt_oiavislin11] scan toytruck_346_36113_66551  auroc=0.672  cur=0.725  absrel_U=0.040 (S 0.024)  fracU=0.072  154s\n"}
+,{"stream_name":"stdout","time":16948.604379631,"data":"[vggt_oiavislin11] scan vase_374_41862_83720  auroc=0.842  cur=0.568  absrel_U=0.081 (S 0.025)  fracU=0.020  161s\n"}
+,{"stream_name":"stdout","time":16958.141917047,"data":"[vggt_oiavislin11] scan vase_380_44863_89631  auroc=0.432  cur=0.954  absrel_U=0.058 (S 0.052)  fracU=0.033  170s\n"}
+,{"stream_name":"stdout","time":16958.355101963,"data":"   vggt_oiavislin11: 184s\n"}
+,{"stream_name":"stdout","time":16958.379164814,"data":"resuming: 2754 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":16971.454739246,"data":"[vggt_oiavislin17] head from /kaggle/working/checkpoints/vggt_oiavislin17.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stdout","time":16981.140413133,"data":"[vggt_oiavislin17] scan apple_110_13051_23361  auroc=0.952  cur=0.151  absrel_U=0.039 (S 0.037)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":16990.719158212,"data":"[vggt_oiavislin17] scan apple_189_20393_38136  auroc=0.988  cur=0.024  absrel_U=0.031 (S 0.011)  fracU=0.058  19s\n"}
+,{"stream_name":"stdout","time":17000.605603272,"data":"[vggt_oiavislin17] scan ball_123_14363_28981  auroc=0.991  cur=0.015  absrel_U=0.035 (S 0.016)  fracU=0.044  29s\n"}
+,{"stream_name":"stdout","time":17010.599452402,"data":"[vggt_oiavislin17] scan ball_375_42693_85518  auroc=0.997  cur=0.006  absrel_U=0.019 (S 0.019)  fracU=0.052  39s\n"}
+,{"stream_name":"stdout","time":17020.703512007,"data":"[vggt_oiavislin17] scan bench_415_57112_110099  auroc=0.885  cur=0.406  absrel_U=0.017 (S 0.009)  fracU=0.083  49s\n"}
+,{"stream_name":"stdout","time":17030.547917865,"data":"[vggt_oiavislin17] scan bench_415_57121_110109  auroc=0.943  cur=0.162  absrel_U=0.016 (S 0.010)  fracU=0.043  59s\n"}
+,{"stream_name":"stdout","time":17040.228272657,"data":"[vggt_oiavislin17] scan hydrant_167_18184_34441  auroc=0.835  cur=0.481  absrel_U=0.019 (S 0.024)  fracU=0.129  69s\n"}
+,{"stream_name":"stdout","time":17049.738952547,"data":"[vggt_oiavislin17] scan hydrant_411_56064_108483  auroc=0.839  cur=0.488  absrel_U=0.034 (S 0.037)  fracU=0.085  78s\n"}
+,{"stream_name":"stdout","time":17059.385868703,"data":"[vggt_oiavislin17] scan mouse_107_12753_23606  auroc=0.920  cur=0.239  absrel_U=0.029 (S 0.021)  fracU=0.040  88s\n"}
+,{"stream_name":"stdout","time":17066.224337333,"data":"[vggt_oiavislin17] scan mouse_377_43416_86289  auroc=0.966  cur=0.117  absrel_U=0.056 (S 0.037)  fracU=0.037  95s\n"}
+,{"stream_name":"stdout","time":17073.237556537,"data":"[vggt_oiavislin17] scan teddybear_187_20215_38541  auroc=0.964  cur=0.102  absrel_U=0.061 (S 0.027)  fracU=0.032  102s\n"}
+,{"stream_name":"stdout","time":17082.975671161,"data":"[vggt_oiavislin17] scan teddybear_34_1479_4753  auroc=0.864  cur=0.419  absrel_U=0.026 (S 0.023)  fracU=0.091  112s\n"}
+,{"stream_name":"stdout","time":17092.925723442,"data":"[vggt_oiavislin17] scan toytrain_240_25394_51994  auroc=0.965  cur=0.089  absrel_U=0.049 (S 0.028)  fracU=0.077  121s\n"}
+,{"stream_name":"stdout","time":17102.655617403,"data":"[vggt_oiavislin17] scan toytrain_399_51323_100753  auroc=0.960  cur=0.107  absrel_U=0.030 (S 0.019)  fracU=0.054  131s\n"}
+,{"stream_name":"stdout","time":17115.345412439,"data":"[vggt_oiavislin17] scan toytruck_190_20494_39385  auroc=0.796  cur=0.459  absrel_U=0.032 (S 0.021)  fracU=0.095  144s\n"}
+,{"stream_name":"stdout","time":17125.248902201,"data":"[vggt_oiavislin17] scan toytruck_346_36113_66551  auroc=0.949  cur=0.149  absrel_U=0.040 (S 0.024)  fracU=0.072  154s\n"}
+,{"stream_name":"stdout","time":17132.153024623,"data":"[vggt_oiavislin17] scan vase_374_41862_83720  auroc=0.897  cur=0.284  absrel_U=0.081 (S 0.025)  fracU=0.020  161s\n"}
+,{"stream_name":"stdout","time":17141.741010652,"data":"[vggt_oiavislin17] scan vase_380_44863_89631  auroc=0.844  cur=0.465  absrel_U=0.058 (S 0.052)  fracU=0.033  170s\n"}
+,{"stream_name":"stdout","time":17141.957147274,"data":"   vggt_oiavislin17: 184s\n"}
+,{"stream_name":"stdout","time":17141.983341446,"data":"resuming: 2916 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":17155.238301662,"data":"[vggt_oiavislin23] head from /kaggle/working/checkpoints/vggt_oiavislin23.pt (step 1500, val-auroc 0.995)\n"}
+,{"stream_name":"stdout","time":17164.855065122,"data":"[vggt_oiavislin23] scan apple_110_13051_23361  auroc=0.931  cur=0.206  absrel_U=0.039 (S 0.037)  fracU=0.038  10s\n"}
+,{"stream_name":"stdout","time":17174.465256228,"data":"[vggt_oiavislin23] scan apple_189_20393_38136  auroc=0.985  cur=0.040  absrel_U=0.031 (S 0.011)  fracU=0.058  19s\n"}
+,{"stream_name":"stdout","time":17184.334621914,"data":"[vggt_oiavislin23] scan ball_123_14363_28981  auroc=0.980  cur=0.035  absrel_U=0.035 (S 0.016)  fracU=0.044  29s\n"}
+,{"stream_name":"stdout","time":17194.399191605,"data":"[vggt_oiavislin23] scan ball_375_42693_85518  auroc=0.997  cur=0.004  absrel_U=0.019 (S 0.019)  fracU=0.052  39s\n"}
+,{"stream_name":"stdout","time":17204.5606289,"data":"[vggt_oiavislin23] scan bench_415_57112_110099  auroc=0.706  cur=0.590  absrel_U=0.017 (S 0.009)  fracU=0.083  49s\n"}
+,{"stream_name":"stdout","time":17214.34023906,"data":"[vggt_oiavislin23] scan bench_415_57121_110109  auroc=0.888  cur=0.287  absrel_U=0.016 (S 0.010)  fracU=0.043  59s\n"}
+,{"stream_name":"stdout","time":17224.082010679,"data":"[vggt_oiavislin23] scan hydrant_167_18184_34441  auroc=0.888  cur=0.381  absrel_U=0.019 (S 0.024)  fracU=0.129  69s\n"}
+,{"stream_name":"stdout","time":17233.610616554,"data":"[vggt_oiavislin23] scan hydrant_411_56064_108483  auroc=0.794  cur=0.574  absrel_U=0.034 (S 0.037)  fracU=0.085  78s\n"}
+,{"stream_name":"stdout","time":17243.145691027,"data":"[vggt_oiavislin23] scan mouse_107_12753_23606  auroc=0.855  cur=0.350  absrel_U=0.029 (S 0.021)  fracU=0.040  88s\n"}
+,{"stream_name":"stdout","time":17249.951160938,"data":"[vggt_oiavislin23] scan mouse_377_43416_86289  auroc=0.952  cur=0.161  absrel_U=0.056 (S 0.037)  fracU=0.037  95s\n"}
+,{"stream_name":"stdout","time":17256.950154624,"data":"[vggt_oiavislin23] scan teddybear_187_20215_38541  auroc=0.912  cur=0.231  absrel_U=0.061 (S 0.027)  fracU=0.032  102s\n"}
+,{"stream_name":"stdout","time":17266.777320128,"data":"[vggt_oiavislin23] scan teddybear_34_1479_4753  auroc=0.852  cur=0.452  absrel_U=0.026 (S 0.023)  fracU=0.091  112s\n"}
+,{"stream_name":"stdout","time":17276.737401619,"data":"[vggt_oiavislin23] scan toytrain_240_25394_51994  auroc=0.945  cur=0.151  absrel_U=0.049 (S 0.028)  fracU=0.077  121s\n"}
+,{"stream_name":"stdout","time":17286.420595503,"data":"[vggt_oiavislin23] scan toytrain_399_51323_100753  auroc=0.915  cur=0.181  absrel_U=0.030 (S 0.019)  fracU=0.054  131s\n"}
+,{"stream_name":"stdout","time":17299.010146431,"data":"[vggt_oiavislin23] scan toytruck_190_20494_39385  auroc=0.707  cur=0.642  absrel_U=0.032 (S 0.021)  fracU=0.095  144s\n"}
+,{"stream_name":"stdout","time":17308.810664998,"data":"[vggt_oiavislin23] scan toytruck_346_36113_66551  auroc=0.929  cur=0.185  absrel_U=0.040 (S 0.024)  fracU=0.072  154s\n"}
+,{"stream_name":"stdout","time":17315.635264887,"data":"[vggt_oiavislin23] scan vase_374_41862_83720  auroc=0.853  cur=0.389  absrel_U=0.081 (S 0.025)  fracU=0.020  160s\n"}
+,{"stream_name":"stdout","time":17325.110469077,"data":"[vggt_oiavislin23] scan vase_380_44863_89631  auroc=0.782  cur=0.534  absrel_U=0.058 (S 0.052)  fracU=0.033  170s\n"}
+,{"stream_name":"stdout","time":17325.35187113,"data":"   vggt_oiavislin23: 183s\n"}
+,{"stream_name":"stdout","time":17325.382196241,"data":"resuming: 3078 rows already in /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":17338.377967363,"data":"[vggt_oiavispatchlin] head from /kaggle/working/checkpoints/vggt_oiavispatchlin.pt (step 1500, val-auroc 0.902)\n"}
+,{"stream_name":"stdout","time":17349.05335334,"data":"[vggt_oiavispatchlin] scan apple_110_13051_23361  auroc=0.607  cur=0.826  absrel_U=0.039 (S 0.037)  fracU=0.038  11s\n"}
+,{"stream_name":"stdout","time":17359.685034753,"data":"[vggt_oiavispatchlin] scan apple_189_20393_38136  auroc=0.457  cur=0.926  absrel_U=0.031 (S 0.011)  fracU=0.058  21s\n"}
+,{"stream_name":"stdout","time":17370.60881341,"data":"[vggt_oiavispatchlin] scan ball_123_14363_28981  auroc=0.302  cur=0.933  absrel_U=0.035 (S 0.016)  fracU=0.044  32s\n"}
+,{"stream_name":"stdout","time":17381.704696603,"data":"[vggt_oiavispatchlin] scan ball_375_42693_85518  auroc=0.483  cur=0.931  absrel_U=0.019 (S 0.019)  fracU=0.052  43s\n"}
+,{"stream_name":"stdout","time":17392.937826018,"data":"[vggt_oiavispatchlin] scan bench_415_57112_110099  auroc=0.335  cur=0.865  absrel_U=0.017 (S 0.009)  fracU=0.083  55s\n"}
+,{"stream_name":"stdout","time":17403.72544792,"data":"[vggt_oiavispatchlin] scan bench_415_57121_110109  auroc=0.798  cur=0.716  absrel_U=0.016 (S 0.010)  fracU=0.043  65s\n"}
+,{"stream_name":"stdout","time":17414.38292377,"data":"[vggt_oiavispatchlin] scan hydrant_167_18184_34441  auroc=0.379  cur=0.911  absrel_U=0.019 (S 0.024)  fracU=0.129  76s\n"}
+,{"stream_name":"stdout","time":17424.902999908,"data":"[vggt_oiavispatchlin] scan hydrant_411_56064_108483  auroc=0.387  cur=0.932  absrel_U=0.034 (S 0.037)  fracU=0.085  87s\n"}
+,{"stream_name":"stdout","time":17435.475533672,"data":"[vggt_oiavispatchlin] scan mouse_107_12753_23606  auroc=0.277  cur=0.962  absrel_U=0.029 (S 0.021)  fracU=0.040  97s\n"}
+,{"stream_name":"stdout","time":17442.9706602,"data":"[vggt_oiavispatchlin] scan mouse_377_43416_86289  auroc=0.370  cur=0.974  absrel_U=0.056 (S 0.037)  fracU=0.037  105s\n"}
+,{"stream_name":"stdout","time":17450.670313874,"data":"[vggt_oiavispatchlin] scan teddybear_187_20215_38541  auroc=0.276  cur=0.982  absrel_U=0.061 (S 0.027)  fracU=0.032  112s\n"}
+,{"stream_name":"stdout","time":17461.492312677,"data":"[vggt_oiavispatchlin] scan teddybear_34_1479_4753  auroc=0.361  cur=0.958  absrel_U=0.026 (S 0.023)  fracU=0.091  123s\n"}
+,{"stream_name":"stdout","time":17472.415709347,"data":"[vggt_oiavispatchlin] scan toytrain_240_25394_51994  auroc=0.467  cur=0.911  absrel_U=0.049 (S 0.028)  fracU=0.077  134s\n"}
+,{"stream_name":"stdout","time":17483.090169284,"data":"[vggt_oiavispatchlin] scan toytrain_399_51323_100753  auroc=0.701  cur=0.716  absrel_U=0.030 (S 0.019)  fracU=0.054  145s\n"}
+,{"stream_name":"stdout","time":17497.090066134,"data":"[vggt_oiavispatchlin] scan toytruck_190_20494_39385  auroc=0.394  cur=0.941  absrel_U=0.032 (S 0.021)  fracU=0.095  159s\n"}
+,{"stream_name":"stdout","time":17507.922896703,"data":"[vggt_oiavispatchlin] scan toytruck_346_36113_66551  auroc=0.497  cur=0.893  absrel_U=0.040 (S 0.024)  fracU=0.072  170s\n"}
+,{"stream_name":"stdout","time":17515.42706773,"data":"[vggt_oiavispatchlin] scan vase_374_41862_83720  auroc=0.804  cur=0.450  absrel_U=0.081 (S 0.025)  fracU=0.020  177s\n"}
+,{"stream_name":"stdout","time":17525.954207213,"data":"[vggt_oiavispatchlin] scan vase_380_44863_89631  auroc=0.274  cur=0.994  absrel_U=0.058 (S 0.052)  fracU=0.033  188s\n"}
+,{"stream_name":"stdout","time":17526.179840586,"data":"   vggt_oiavispatchlin: 201s\n"}
+,{"stream_name":"stdout","time":17528.165142269,"data":"[exit 0, 17528s]\n"}
+,{"stream_name":"stdout","time":17528.165187525,"data":"\n"}
+,{"stream_name":"stdout","time":17528.16519404,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":17528.165198676,"data":"== done  [17528s]\n"}
+,{"stream_name":"stdout","time":17528.165203072,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":17528.165526005,"data":"   5,785,253  /kaggle/working/checkpoints/vggt_oiavisselfpatch_best.pt\n"}
+,{"stream_name":"stdout","time":17528.165538412,"data":"  13,189,581  /kaggle/working/checkpoints/vggt_oiavisself_best.pt\n"}
+,{"stream_name":"stdout","time":17528.165543512,"data":"       5,393  /kaggle/working/checkpoints/vggt_oiavis_s1_hist.json\n"}
+,{"stream_name":"stdout","time":17528.165548164,"data":"   5,785,109  /kaggle/working/checkpoints/vggt_oiavisselfpatch.pt\n"}
+,{"stream_name":"stdout","time":17528.165556759,"data":"       5,389  /kaggle/working/checkpoints/vggt_oiavislin17_hist.json\n"}
+,{"stream_name":"stdout","time":17528.165571491,"data":"   5,785,045  /kaggle/working/checkpoints/vggt_oiavispatch.pt\n"}
+,{"stream_name":"stdout","time":17528.165589046,"data":"   8,467,629  /kaggle/working/checkpoints/vggt_oiavisselflin_best.pt\n"}
+,{"stream_name":"stdout","time":17528.165607957,"data":"       5,405  /kaggle/working/checkpoints/vggt_oiavisself_hist.json\n"}
+,{"stream_name":"stdout","time":17528.165677799,"data":"   2,120,061  /kaggle/working/checkpoints/vggt_oiavislin11_best.pt\n"}
+,{"stream_name":"stdout","time":17528.165701665,"data":"  13,189,265  /kaggle/working/checkpoints/vggt_oiavis.pt\n"}
+,{"stream_name":"stdout","time":17528.165777551,"data":"   2,120,001  /kaggle/working/checkpoints/vggt_oiavislin11.pt\n"}
+,{"stream_name":"stdout","time":17528.165787506,"data":"  13,189,413  /kaggle/working/checkpoints/vggt_oiavis_s1.pt\n"}
+,{"stream_name":"stdout","time":17528.165792602,"data":"   8,467,285  /kaggle/working/checkpoints/vggt_oiavislin.pt\n"}
+,{"stream_name":"stdout","time":17528.165797422,"data":"  13,189,553  /kaggle/working/checkpoints/vggt_oiavis_s2_best.pt\n"}
+,{"stream_name":"stdout","time":17528.165819121,"data":"       5,398  /kaggle/working/checkpoints/vggt_oiavisselflin_hist.json\n"}
+,{"stream_name":"stdout","time":17528.165823338,"data":"   8,467,445  /kaggle/working/checkpoints/vggt_oiavisselflin.pt\n"}
+,{"stream_name":"stdout","time":17528.165829339,"data":"       5,361  /kaggle/working/checkpoints/vggt_oiavispatchlin_hist.json\n"}
+,{"stream_name":"stdout","time":17528.165833473,"data":"   2,120,049  /kaggle/working/checkpoints/vggt_oiavislin4_best.pt\n"}
+,{"stream_name":"stdout","time":17528.165837131,"data":"   2,119,849  /kaggle/working/checkpoints/pi3x_oiavislin.pt\n"}
+,{"stream_name":"stdout","time":17528.165841303,"data":"  13,189,413  /kaggle/working/checkpoints/vggt_oiavis_s2.pt\n"}
+,{"stream_name":"stdout","time":17528.165845037,"data":"   2,120,001  /kaggle/working/checkpoints/vggt_oiavislin23.pt\n"}
+,{"stream_name":"stdout","time":17528.165867426,"data":"       5,371  /kaggle/working/checkpoints/vggt_oiavisselfpatch_hist.json\n"}
+,{"stream_name":"stdout","time":17528.165874316,"data":"  13,189,441  /kaggle/working/checkpoints/vggt_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":17528.165878655,"data":"   2,120,061  /kaggle/working/checkpoints/vggt_oiavislin23_best.pt\n"}
+,{"stream_name":"stdout","time":17528.16590189,"data":"       5,385  /kaggle/working/checkpoints/vggt_oiavislin23_hist.json\n"}
+,{"stream_name":"stdout","time":17528.165907582,"data":"  13,189,553  /kaggle/working/checkpoints/vggt_oiavis_s1_best.pt\n"}
+,{"stream_name":"stdout","time":17528.165919822,"data":"   2,120,061  /kaggle/working/checkpoints/vggt_oiavislin17_best.pt\n"}
+,{"stream_name":"stdout","time":17528.165958247,"data":"       5,378  /kaggle/working/checkpoints/vggt_oiavislin4_hist.json\n"}
+,{"stream_name":"stdout","time":17528.165964765,"data":"   5,785,045  /kaggle/working/checkpoints/pi3x_oiavispatch.pt\n"}
+,{"stream_name":"stdout","time":17528.165997591,"data":"   2,120,001  /kaggle/working/checkpoints/vggt_oiavislin17.pt\n"}
+,{"stream_name":"stdout","time":17528.16602442,"data":"   6,841,733  /kaggle/working/checkpoints/pi3x_oiavis.pt\n"}
+,{"stream_name":"stdout","time":17528.167645415,"data":"   2,119,989  /kaggle/working/checkpoints/vggt_oiavislin4.pt\n"}
+,{"stream_name":"stdout","time":17528.167661565,"data":"   1,063,269  /kaggle/working/checkpoints/vggt_oiavispatchlin.pt\n"}
+,{"stream_name":"stdout","time":17528.167667075,"data":"       5,404  /kaggle/working/checkpoints/vggt_oiavis_s2_hist.json\n"}
+,{"stream_name":"stdout","time":17528.167670552,"data":"       5,372  /kaggle/working/checkpoints/vggt_oiavislin11_hist.json\n"}
+,{"stream_name":"stdout","time":17528.167673877,"data":"   1,063,393  /kaggle/working/checkpoints/vggt_oiavispatchlin_best.pt\n"}
+,{"stream_name":"stdout","time":17528.167677304,"data":"       9,687  /kaggle/working/results/P4-vis-co3d/P4-vis-co3d_summary.csv\n"}
+,{"stream_name":"stdout","time":17528.167680614,"data":"       1,023  /kaggle/working/results/P4-vis-co3d/P4-vis-co3d_cfg.json\n"}
+,{"stream_name":"stdout","time":17528.167683985,"data":"     616,345  /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.csv\n"}
+,{"stream_name":"stdout","time":17528.167687305,"data":"         876  /kaggle/working/results/P4-vis-co3d/P4-vis-co3d.log\n"}
+,{"stream_name":"stdout","time":17528.167690553,"data":"     881,230  /kaggle/working/results/P4-vis/P4-vis.csv\n"}
+,{"stream_name":"stdout","time":17528.167693843,"data":"         623  /kaggle/working/results/P4-vis/P4-vis_cfg.json\n"}
+,{"stream_name":"stdout","time":17528.167697081,"data":"         881  /kaggle/working/results/P4-vis/P4-vis.log\n"}
+,{"stream_name":"stdout","time":17528.167700335,"data":"      11,076  /kaggle/working/results/P4-vis/P4-vis_summary.csv\n"}
+,{"stream_name":"stdout","time":17528.167703682,"data":"total 17528s\n"}
+,{"stream_name":"stderr","time":17530.214594734,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":17530.21462951,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":17530.448433943,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":17530.448456212,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":17531.26127354,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":17532.187771718,"data":"[NbConvertApp] Writing 298308 bytes to __results__.html\n"}
+]

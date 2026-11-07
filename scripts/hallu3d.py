@@ -717,6 +717,19 @@ def vis_views(n_views, seed, total=49, mode="spread"):
     return sorted((v + 7 * int(seed)) % total for v in base)
 
 
+def _dump_vis(dump_dir, mname, scan, seed, n, depth, conf, gt, lab):
+    """Per-pixel record of one vis row (scripts/analyze_dumps.py reads them): the labels of the (scan, seed, views)
+    cell once under labels/, the detector's confidence and median-scaled depth under <model>/, both float16."""
+    key = f"{scan}__s{seed}__v{n}"
+    lp = os.path.join(dump_dir, "labels", key + ".npz")
+    if not os.path.exists(lp):
+        os.makedirs(os.path.dirname(lp), exist_ok=True)
+        np.savez_compressed(lp, gt=gt.astype(np.float32), U=lab["U"], S=lab["S"], seen=lab["seen"].astype(np.int8))
+    mp = os.path.join(dump_dir, mname, key + ".npz")
+    os.makedirs(os.path.dirname(mp), exist_ok=True)
+    np.savez_compressed(mp, conf=conf.astype(np.float32), depth=depth.astype(np.float16))
+
+
 def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factory=None, verbose=True):
     """Natural-occlusion protocol (run family P4-vis): clean images, no fill, no patch. For each scan, each number
     of input views in cfg["vis_views"] and each seed (view-set rotation), the model runs once and every detector's
@@ -769,6 +782,8 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
                 d, c = model.predict(data["imgs"], model_hw, out_hw)
                 m = compute_metrics(d, c, data["depths"], U, S, cfg)
                 valid = int((data["depths"] > 0).sum())
+                if cfg.get("dump_dir"):          # per-pixel scores for the risk-coverage / calibration analysis
+                    _dump_vis(cfg["dump_dir"], mname, scan, seed, n, d * m["scale"], c, data["depths"], lab)
                 rows.append(dict(model=mname, scan=scan, seed=seed, radius_frac=0.0, fill=f"vis{n}", n_views=n,
                                  frac_U=nU / max(valid, 1), frac_S=nS / max(valid, 1), skipped=False, **m))
             if not rows:
@@ -833,8 +848,44 @@ class ReprojWrap:
         self.base.free()
 
 
+class HeuristicWrap:
+    """Hand-crafted controls for the true-visibility protocol (P6-heur): single-view pixels concentrate at the image
+    border and at depth discontinuities, so a reviewer may ask whether a head that finds them has learned anything
+    beyond those two cues. Two training-free scores on the base model's own output, no learning, no cameras:
+      <base>_border   confidence = distance of the pixel to the nearest image border (normalised by the shorter side)
+      <base>_dedge    confidence = minus the relative depth gradient of the predicted depth, smoothed (Gaussian, 5 px):
+                      low at occlusion boundaries, high on smooth surfaces
+    The depth is the base model's depth; only the confidence changes."""
+
+    def __init__(self, base, kind):
+        assert kind in ("border", "dedge"), kind
+        self.base, self.kind = base, kind
+        self.name = f"{base.name}_{kind}"
+
+    def predict(self, imgs, model_hw, out_hw):
+        d, _ = self.base.predict(imgs, model_hw, out_hw)
+        N, h, w = d.shape
+        if self.kind == "border":
+            yy, xx = np.mgrid[0:h, 0:w]
+            dist = np.minimum(np.minimum(yy, h - 1 - yy), np.minimum(xx, w - 1 - xx)).astype(np.float32) / min(h, w)
+            conf = np.repeat(dist[None], N, 0)
+        else:
+            conf = np.zeros_like(d)
+            for i in range(N):
+                di = cv2.GaussianBlur(d[i], (5, 5), 0)
+                gx = cv2.Sobel(di, cv2.CV_32F, 1, 0, ksize=3)
+                gy = cv2.Sobel(di, cv2.CV_32F, 0, 1, ksize=3)
+                g = np.sqrt(gx * gx + gy * gy) / np.maximum(np.abs(di), 1e-6)
+                conf[i] = -cv2.GaussianBlur(g, (5, 5), 0)
+        return d.astype(np.float32), conf.astype(np.float32)
+
+    def free(self):
+        self.base.free()
+
+
 def make_model(name):
-    """'vggt' -> VGGTWrap(); 'vggt_pv4' -> PerturbWrap(VGGTWrap(), K=4); 'vggt_reproj' -> ReprojWrap(VGGTWrap())."""
+    """'vggt' -> VGGTWrap(); 'vggt_pv4' -> PerturbWrap(VGGTWrap(), K=4); 'vggt_reproj' -> ReprojWrap(VGGTWrap());
+    'vggt_border' / 'vggt_dedge' -> HeuristicWrap(VGGTWrap(), kind)."""
     m = re.fullmatch(r"(.+)_pvf(\d+)", name)
     if m:
         return PerturbFullWrap(MODEL_REGISTRY[m.group(1)](), K=int(m.group(2)))
@@ -844,6 +895,9 @@ def make_model(name):
     m = re.fullmatch(r"(.+)_reproj", name)
     if m:
         return ReprojWrap(MODEL_REGISTRY[m.group(1)]())
+    m = re.fullmatch(r"(.+)_(border|dedge)", name)
+    if m:
+        return HeuristicWrap(MODEL_REGISTRY[m.group(1)](), m.group(2))
     if re.fullmatch(r".+_oia\w*", name):          # support head variants (scripts/oia_head.py)
         try:
             from oia_head import make_oia

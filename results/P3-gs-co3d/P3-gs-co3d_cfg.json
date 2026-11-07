@@ -1,0 +1,54 @@
+{
+  "scans": [
+    "apple_110_13051_23361",
+    "apple_189_20393_38136",
+    "ball_123_14363_28981",
+    "ball_375_42693_85518",
+    "bench_415_57112_110099",
+    "bench_415_57121_110109",
+    "hydrant_167_18184_34441",
+    "hydrant_411_56064_108483",
+    "mouse_107_12753_23606",
+    "mouse_377_43416_86289",
+    "teddybear_187_20215_38541",
+    "teddybear_34_1479_4753",
+    "toytrain_240_25394_51994",
+    "toytrain_399_51323_100753",
+    "toytruck_190_20494_39385",
+    "toytruck_346_36113_66551",
+    "vase_374_41862_83720",
+    "vase_380_44863_89631"
+  ],
+  "n_views": 10,
+  "light": 3,
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "radius_fracs": [
+    0.1,
+    0.18
+  ],
+  "fills": [
+    "gray",
+    "blur",
+    "noise"
+  ],
+  "model_hw": [
+    420,
+    518
+  ],
+  "dilate_px": 6,
+  "min_U_frac": 0.02,
+  "max_U_frac": 0.35,
+  "max_tries": 50,
+  "tau_keep": 0.9,
+  "err_thresh": 0.1,
+  "view_mode": "spread",
+  "distractor": false,
+  "distractor_view": 0,
+  "dataset": "co3d"
+}
