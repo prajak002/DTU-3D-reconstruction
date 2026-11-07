@@ -40,6 +40,27 @@ On a synthetic DTU-format scene, an oracle that knows what is hidden scores \aur
 \end{figure}
 
 
+\paragraph{The filled patch, in pictures.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{fig1_teaser}
+\caption{\textbf{What a model does with a surface it cannot see.} Top: a DTU scan with one 3D region of the ground-truth surface hidden in all ten input views and inpainted so no seam remains (the inpainted fill of Section~\ref{sec:results}). Bottom: a CO3Dv2 phone capture treated the same way. The top row shows the protocol: the same 3D sphere hides the region in every view, including a view from the other side of the rig. The bottom row shows what the backbone (VGGT) does with it: plausible geometry inside the hidden region, with confidence close to its value outside. The cyan contour marks the unsupported pixels. Model panels are the recorded run outputs.}
+\label{fig:teaser}
+\end{figure}
+
+\paragraph{Fused point clouds at matched coverage.}
+Each backbone's per-view depths are back-projected with its own predicted cameras into one cloud, aligned to the ground-truth frame by a similarity transform fitted on the camera centres, and compared with the ground-truth cloud of the same views at a tolerance of 1\% of the scene's median depth: accuracy is the fraction of predicted points within tolerance of a ground-truth point, completeness the converse. A detector keeps the given fraction of points with the highest score; random dropping and an oracle that drops single-view pixels first are the references. Table~\ref{tab:fuse}: 18 DTU scans and 9 ETH3D scenes, 5 and 10 views, two view sets, run P8-fuse. The absolute accuracies on ETH3D are low because the predicted cameras of a building scan align poorly to the laser frame; the comparison between detectors at matched coverage is what the table is for.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Fused point cloud at matched coverage}, accuracy / completeness against the laser or MVS cloud.}
+\label{tab:fuse}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{\input{tab_fuse}}
+\end{table}
+
 \paragraph{Detectors on the filled patches.}
 The cheap alternatives and the fill-trained heads of Section 5.4 and Section 7 of the main paper, on the Table 1 rows with blur, radius 0.18 and seed 0. A fuller perturbation baseline (photometric, blur, flip and view-permutation perturbations, $K=8$, least-squares scale alignment, median-absolute-deviation spread; run P3-pv-full) scores \auroc{} 0.52 to 0.60 and \cur{} 0.74 to 0.86 on all five backbones over blur and noise, worse than native confidence everywhere. On 22 further DTU scans (the MVSNet test split, run P3-dtuext, seed 0, radius 0.18) the ranking of Table 1 holds: VGGT \auroc{} 0.908 / \cur{} 0.233, Pi3 0.919 / 0.272, Pi3X 0.850 / 0.539, DA3 0.755 / 0.650, MapAnything 0.697 / 0.693 with \curerr{} 0.287. On the nine ETH3D scenes under the full fill protocol (run P3-eth3d) native confidence leaks more than on DTU, \cur{} 0.61 (Pi3) to 0.79 (VGGT), and the fill-trained head scores 0.981 against its per-image control's 0.987.
 
