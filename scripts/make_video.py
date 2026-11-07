@@ -184,6 +184,10 @@ def main():
          lines=[f"It matches a head trained on ground-truth visibility within 0.02, and beats its own teacher, the reprojection test, where cameras are unreliable.",
                 f"Only {pc('vis/dtu/vggt_oiavisself/cur')} of single-view pixels pass its 90%-kept threshold on DTU, against {pc('vis/dtu/vggt/cur')} for native confidence."], fs=24)
 
+    if os.path.exists(os.path.join(ASSETS, "fig_qual.png")):
+        chart(reel, os.path.join(ASSETS, "fig_qual.png"), "What the head says, on captures it never saw",
+              "One view per dataset: photograph, ground-truth support (red: only this view sees it; green: two or more do), native confidence, reprojection consistency, "
+              "the per-image control, and the head's observed / abstain / imagined bands. Rendered from the released per-pixel scores.", 12, chapter="06 / RESULTS")
     # 8. controls
     chart(reel, os.path.join(CH, "layers_dark.png"), "Where the signal lives",
           f"A linear probe per VGGT layer: layer 4 scores {g('layers/dtu/4')} on DTU and {g('layers/co3d/4')} on CO3Dv2, like a per-image head; layer 17 scores {g('layers/dtu/17')} and {g('layers/co3d/17')}. "

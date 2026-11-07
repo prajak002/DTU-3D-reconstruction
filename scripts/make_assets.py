@@ -333,9 +333,10 @@ def chart_fuse(N, theme, out):
                     cov = sorted(float(c) for c in Fz[k][m]); ys = [Fz[k][m][str(c) if str(c) in Fz[k][m] else c][metric] for c in cov]
                     ax.plot(cov, ys, marker="o", color=col, ls=ls, lw=2, label=name)
             ax.set_title(f"{'DTU' if k == 'dtu' else 'ETH3D'}: {ylabel}", fontsize=11); ax.set_xlabel("coverage (fraction of predicted points kept)"); _clean(ax, T)
-    axes[0].legend(fontsize=8, loc="lower left")
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, loc="lower center", ncol=6, fontsize=9, bbox_to_anchor=(0.5, 0.0))
     fig.suptitle("Fused point cloud (VGGT-1B, its own cameras, similarity-aligned to the laser scan): keeping what the detector trusts", fontsize=11)
-    fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
+    fig.tight_layout(rect=(0, 0.08, 1, 1)); fig.savefig(out, dpi=160); plt.close(fig)
 
 
 def chart_method(theme, out):
