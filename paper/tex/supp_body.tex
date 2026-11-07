@@ -40,6 +40,15 @@ On a synthetic DTU-format scene, an oracle that knows what is hidden scores \aur
 \end{figure}
 
 
+\paragraph{The benchmark protocol, in a figure.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig2_pipeline}
+\caption{\textbf{The benchmark protocol.} A sphere is placed on the ground-truth surface; every pixel in every view whose ground-truth point falls inside it is hidden, so the hidden region is 3D-consistent. Hidden pixels are filled (gray, blur, noise or inpaint), the model runs on the filled views, and its depth and confidence are scored against the unsupported (U), supported (S) and ring labels. The same pixels are also scored under clean input as a control.}
+\label{fig:pipeline}
+\end{figure}
+
 \paragraph{The filled patch, in pictures.}
 
 \begin{figure}[h]
