@@ -442,6 +442,28 @@ def stage_adapt_eth3d(args):
         _run_vis(args, "P6-adapt-eth3d", models, _eth3d_cfg(args, VIS_CFG), args.eth3d_root)
 
 
+def stage_vis_on_fill(args):
+    """The benchmark's own question put to the visibility detectors (P6-vis-on-fill): the heads trained on single-view
+    support (ground-truth labels and label-free), their per-image controls, the probe and the two hand-crafted
+    controls, scored zero-shot on the filled patches of the masking benchmark (Table-4 keys on DTU; blur and noise
+    at radius 0.18, seed 0, on CO3Dv2), paired with the native rows of P3-native / table3. The benchmark defines
+    unsupported as "visible in no view"; the heads were trained on "visible in one view only". Whether a detector of
+    the second fires on the first is a result either way. Also the full-protocol rows of MapAnything's multi-view
+    confidence (mapanything_mv), which the paper quoted from a smoke run."""
+    _ckpt_env(args)
+    models = []
+    for b in args.bases:
+        models += [f"{b}_{k}" for k in HEURISTICS]
+        models += [f"{b}_{v}" for v in ("oiavis", "oiavisself", "oiavispatch", "oiavisselfpatch", "oiavislin")
+                   if _have(args, f"{b}_{v}")]
+    run(args, "P6-vis-on-fill", models, T4_KEYS, args.dtu_root)
+    if args.co3d_root:
+        run(args, "P6-vis-on-fill-co3d", models,
+            co3d_cfg(args, {"seeds": [0], "fills": ["blur", "noise"], "radius_fracs": [0.18]}), args.co3d_root)
+    if "mapanything_mv" in H.MODEL_REGISTRY:
+        run(args, "P6-mapanything-mv", ["mapanything_mv"], T4_KEYS, args.dtu_root)
+
+
 MAIN_DETECTORS = ("reproj", "border", "dedge", "oiavis", "oiavispatch", "oiavisself", "oiavisselfpatch")
 
 
@@ -526,7 +548,8 @@ def holm(pvals):
 def stage_stats(args):
     import pandas as pd
     frames = []
-    for run_name in ["P3-oia-dtu", "P3-reproj", "P3-pv", "P3-pv-full", "P3-native", "P3-oia-abl", "P3-dtuext", "P3-gs", "P3-gs-t4"] + [f"P3-oia-abl-seed{s}" for s in args.seeds[1:]]:
+    for run_name in ["P3-oia-dtu", "P3-reproj", "P3-pv", "P3-pv-full", "P3-native", "P3-oia-abl", "P3-dtuext", "P3-gs", "P3-gs-t4",
+                     "P6-vis-on-fill", "P6-mapanything-mv"] + [f"P3-oia-abl-seed{s}" for s in args.seeds[1:]]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         if os.path.exists(p):
             frames.append(pd.read_csv(p))
@@ -652,7 +675,8 @@ def stage_stats(args):
     # full configuration, pooled blur + noise, DTU and CO3D
     for run_name, title in [("P3-oia-dtu", "DTU"), ("P3-oia-co3d", "CO3Dv2 (head never saw it)"), ("P3-eth3d", "ETH3D"),
                             ("P3-dtuext", "DTU extension scans (seed 0, radius 0.18)"), ("P3-gs", "DTU, Gaussian-splatting backbone"),
-                            ("P3-gs-co3d", "CO3Dv2, Gaussian-splatting backbone")]:
+                            ("P3-gs-co3d", "CO3Dv2, Gaussian-splatting backbone"),
+                            ("P6-vis-on-fill-co3d", "CO3Dv2, visibility detectors on the filled patches (seed 0, radius 0.18)")]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         ref = os.path.join(ROOT, "results", {"DTU": "table1_all_models.csv", "CO3Dv2 (head never saw it)": "table3_all_models.csv"}.get(title, "none"))
         if not os.path.exists(p):
@@ -722,7 +746,8 @@ STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": 
           "eth3d": stage_eth3d, "gs": stage_gs, "stats": stage_stats,
           "trainvis": stage_trainvis, "vis": stage_vis, "vis_co3d": stage_vis_co3d, "vis_eth3d": stage_vis_eth3d,
           "trainvisself": stage_trainvisself, "trainvisprobe": stage_trainvisprobe,
-          "adapt_co3d": stage_adapt_co3d, "adapt_eth3d": stage_adapt_eth3d, "vis_ext": stage_vis_ext, "dump": stage_dump}
+          "adapt_co3d": stage_adapt_co3d, "adapt_eth3d": stage_adapt_eth3d, "vis_ext": stage_vis_ext, "dump": stage_dump,
+          "vis_on_fill": stage_vis_on_fill}
 
 
 def main():
@@ -751,7 +776,7 @@ def main():
     a.dtu_root = None
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
-    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump") else None
+    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump", "vis_on_fill") else None
     a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d", "adapt_eth3d", "dump")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]
     for s in stages:

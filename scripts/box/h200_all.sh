@@ -28,7 +28,8 @@ stage adapt_co3d "--bases vggt,pi3x"
 stage adapt_eth3d "--bases vggt,pi3x"
 stage vis_ext "--bases vggt,pi3x"
 stage dump "--bases vggt,pi3x"
-python scripts/analyze_dumps.py results/P6-dump/dtu results/P6-dump/co3d results/P6-dump/eth3d
+python scripts/analyze_dumps.py results/P6-dump/dtu results/P6-dump/co3d results/P6-dump/eth3d --tau-from results/P6-dump/dtu
+stage vis_on_fill "--bases vggt,pi3x"
 # 4. the remaining fill-protocol rows (pending markers of the paper) and the compute table
 stage co3d "--bases pi3x"
 stage dtuext "--bases vggt,pi3x"
