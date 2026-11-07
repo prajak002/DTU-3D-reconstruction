@@ -4,6 +4,8 @@
 #   tmux new -d -s h200 "bash scripts/box/h200_all.sh > ~/logs/h200_all.out 2>&1"
 # Stage markers: grep "^==" ~/logs/h200_all.out
 source ${ROOT:-/home}/env.sh
+export HF_HUB_OFFLINE=0                  # DA3 and MapAnything weights are not in the offline cache
+export ETH3D=${ETH3D:-$ETH}
 mkdir -p ~/logs
 COMMON="--dtu $DTU --co3d $CO3D --eth3d $ETH3D --out results --ckpt checkpoints"
 ALL="--bases vggt,pi3x,pi3 --ext-bases vggt,pi3x,pi3,da3,mapanything"
