@@ -834,6 +834,8 @@ def main():
     tag = f"_x{a.tag}" if a.tag else ""
     if len(variants) == 1 and not extra:
         out = a.out or os.path.join("checkpoints", f"{a.base}_{variants[0]}{tag}.pt")
+        if os.path.isdir(out):                      # --out may be the checkpoint directory (run_h100 passes it so)
+            out = os.path.join(out, f"{a.base}_{variants[0]}{tag}.pt")
         train_multi(a.base, root, [(variants[0], a.seed, out)], a.steps, scans=scans, resume=a.resume, **over)
         return
     d = a.out or "checkpoints"
