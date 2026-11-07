@@ -279,11 +279,12 @@ def page():
 <figure class="fig"><img src="assets/charts/vis_light.png" alt="AUROC per detector family, per backbone and dataset"><figcaption>Every detector family on the four datasets, one panel per backbone, pooled over scenes and view counts with 95% intervals. Runs P4-vis, P4-vis-co3d, P4-vis-eth3d, P7-vis-imc.</figcaption></figure>
 <section class="measure">
   <div class="tabs" data-tabs="vis" role="group" aria-label="Backbone">
-    <button type="button" aria-pressed="true" data-k="vggt">VGGT-1B</button><button type="button" aria-pressed="false" data-k="pi3x">Pi3X</button><button type="button" aria-pressed="false" data-k="pi3">Pi3</button>
+    <button type="button" aria-pressed="true" data-k="vggt">VGGT-1B</button><button type="button" aria-pressed="false" data-k="pi3x">Pi3X</button><button type="button" aria-pressed="false" data-k="pi3">Pi3</button><button type="button" aria-pressed="false" data-k="da3">Depth Anything 3</button>
   </div>
   <div class="tabpane on" data-pane="vis" data-k="vggt">{vis_table('vggt')}</div>
   <div class="tabpane" data-pane="vis" data-k="pi3x">{vis_table('pi3x')}</div>
   <div class="tabpane" data-pane="vis" data-k="pi3">{vis_table('pi3')}</div>
+  <div class="tabpane" data-pane="vis" data-k="da3">{vis_table('da3')}</div>
   <p class="small">AUROC and CUR pooled over scenes and view counts (3 and 5 views on CO3Dv2, where ten views around an object leave no single-view pixel). Every paired difference quoted on this page is at the permutation floor unless a p-value is given; the full tables with intervals are in the supplement and in <code>results/P3-stats.md</code>. The last row is the head trained on one half of the target dataset, still without labels, and scored on the other half.</p>
 </section>
 

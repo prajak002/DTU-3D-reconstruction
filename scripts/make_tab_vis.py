@@ -20,7 +20,7 @@ import hallu3d as H  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RUNS = [("DTU", "P4-vis", None), ("CO3Dv2", "P4-vis-co3d", "P6-adapt-co3d"), ("ETH3D", "P4-vis-eth3d", "P6-adapt-eth3d"),
         ("Photot.", "P7-vis-imc", "P7-adapt-imc")]
-BASES = [("vggt", "VGGT-1B"), ("pi3x", "Pi3X"), ("pi3", "Pi3")]
+BASES = [("vggt", "VGGT-1B"), ("pi3x", "Pi3X"), ("pi3", "Pi3"), ("da3", "Depth Anything 3")]
 # (suffix, label, in main table)
 DETECTORS = [("", "native confidence", True), ("reproj", "reprojection consistency", True),
              ("border", "distance to image border", True), ("dedge", "depth edges", True),

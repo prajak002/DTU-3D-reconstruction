@@ -78,7 +78,7 @@ def numbers():
         if d is None:
             continue
         N["vis"][key] = {}
-        for base in ("vggt", "pi3x", "pi3"):
+        for base in ("vggt", "pi3x", "pi3", "da3"):
             for suf in ("", "reproj", "border", "dedge", "oia", "oiapatch", "oiavispatch", "oiavislin", "oiavis", "oiavisselfpatch",
                         "oiavisselflin", "oiavisself", "oiavisself_x", "oiavisselfpatch_x", "oiavis_s1", "oiavis_s2"):
                 m = base if suf == "" else f"{base}_{suf}"
@@ -200,8 +200,9 @@ def chart_vis(N, theme, out):
     dets = [("", "native confidence", T["c"][1]), ("border", "image border", T["c"][6]), ("oiavispatch", "per-image head", T["c"][2]),
             ("reproj", "reprojection", T["c"][3]), ("oiavis", "head, GT labels", T["c"][5]), ("oiavisself", "head, label-free", T["c"][4])]
     keys = [k for k in DATASETS if k[0] in N["vis"]]
-    fig, axes = plt.subplots(1, 3, figsize=(14, 5.0), sharey=True)
-    for ax, base in zip(axes, ("vggt", "pi3x", "pi3")):
+    bases = [b for b in ("vggt", "pi3x", "pi3", "da3") if any(f"{b}_oiavisself" in N["vis"][k[0]] for k in keys)]
+    fig, axes = plt.subplots(1, len(bases), figsize=(4.7 * len(bases), 5.0), sharey=True)
+    for ax, base in zip(np.atleast_1d(axes), bases):
         x = np.arange(len(keys)); w = 0.8 / len(dets)
         for j, (suf, lab, col) in enumerate(dets):
             m = base if suf == "" else f"{base}_{suf}"

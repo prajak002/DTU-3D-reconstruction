@@ -44,9 +44,13 @@ Each run has an id. A number enters the paper only when the run's CSV and `_cfg.
 | P3-pv-full | the fuller perturbation baseline (`<base>_pvf8`: photometric + blur + flip + view permutation, K = 8, least-squares alignment, MAD spread), five backbones, Table-4 keys with blur and noise | H200 `pvfull` | `results/P3-pv-full/` (180 rows) | 13 min | AUROC 0.52 to 0.60, CUR 0.74 to 0.86 on all five backbones: worse than native confidence everywhere; the perturbation family is insufficient, not only the K = 4 photometric version. |
 | P3-compute | `compute_cost.py` on the H200 | H200 | `results/P3-compute/` (Pi3X and its reprojection detector only) | 2 min | torch 2.11's FLOP counter raises "Expected gradient function to be set" on every VGGT detector and on every head (the script was written against torch 2.5); Pi3X: 0.25 s per ten-view scene, 15 GB peak, 36.6 TFLOPs per forward. Head FLOPs from the architecture: 3.3 M parameters on a 30 x 37 patch grid is about 7 GFLOPs, 0.02% of the backbone. To be re-run after the counter is fixed. |
 
+| P8-xmodel, P8-xmodel-co3d | cross-model disagreement (`hallu3d.CrossModelWrap`: B's depth aligned to A's by a label-free median ratio per view, confidence = minus the relative disagreement) on the benchmark's filled patches, six pairs over VGGT, Pi3X, Pi3, DA3, MapAnything; DTU Table-4 keys and CO3Dv2 blur + noise (seed 0, radius 0.18) | H200 second pass (`scripts/box/h200_p8.sh`, 2026-11-07 15:28 UTC) | `results/P8-xmodel/` (108 rows), `results/P8-xmodel-co3d/` (216 rows) | 10 min | **At chance on both datasets**: AUROC 0.52 to 0.61 on DTU (CUR 0.78 to 0.87), 0.49 to 0.63 on CO3Dv2 (CUR 0.75 to 0.90), for every pair. Five models of three families invent the same surface where no view shows one, on the rig and on phone orbits; CUR-err near zero on DTU says the shared invention is close to the true surface (interpolation of a smooth occluded region). The invention is consistent across views, features and models. |
+
 ## Running
 
-Nothing. The H200 driver printed ALL_DONE at 13:37 UTC on 2026-11-07; the L4 box was paused at 18:00 IST with its replicate `vis` stage unfinished (not needed).
+The H200 second pass (`scripts/box/h200_p8.sh`, tmux `p8`, and `/home/da3_after.sh`, tmux `da3`, started 15:20 UTC on 2026-11-07): DA3 native on the four vis datasets (done), cross-model disagreement on real single-view geometry (`P8-xmodel-vis`), the fused point-cloud metric at matched coverage on DTU and ETH3D (`scripts/fuse_eval.py`, `results/P8-fuse/`), qualitative panels from the dumps, the DA3 visibility and label-free heads (`da3_oiavis` validation 0.996, control 0.859, probe 0.990) and their vis rows, final stats.
+
+The first H200 driver printed ALL_DONE at 13:37 UTC on 2026-11-07; the L4 box was paused at 18:00 IST with its replicate `vis` stage unfinished (not needed).
 
 | run-id | what | config | where | started | notes |
 |---|---|---|---|---|---|
