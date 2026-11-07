@@ -214,6 +214,15 @@ def main():
           "The head certifies agreement between views; a surface the model invents consistently in every view has it. It answers 'which pixels lack corroboration', not 'which surfaces were invented'.",
           11, chapter="10 / THE LIMIT")
 
+    if os.path.exists(os.path.join(CH, "xmodel_dark.png")):
+        chart(reel, os.path.join(CH, "xmodel_dark.png"), "Nor does another model",
+              f"Disagreement between two backbones on the same views, six pairs over five models: AUROC {g('xmodel/fill_dtu/vggt_xpi3x/auroc')} to {g('xmodel/fill_dtu/vggt_xmapanything/auroc')} on the DTU patches, "
+              f"{g('xmodel/fill_co3d/vggt_xpi3x/auroc')} to {g('xmodel/fill_co3d/pi3x_xpi3/auroc')} on CO3Dv2. Five models of three families fill the hole with the same surface.",
+              10, chapter="10 / THE LIMIT")
+    if os.path.exists(os.path.join(CH, "fuse_dark.png")):
+        chart(reel, os.path.join(CH, "fuse_dark.png"), "Downstream: the fused point cloud",
+              "Each backbone's own cameras, aligned to the laser scan; keep the points the detector trusts most. Accuracy and completeness of what remains, at matched coverage, "
+              "against random dropping and the oracle that drops single-view pixels first.", 10, chapter="09 / ABSTAINING")
     # 12. closing
     card(reel, "Released", [
         "The benchmark (DTU, CO3Dv2, ETH3D, phototourism), every result CSV with its configuration and log,",

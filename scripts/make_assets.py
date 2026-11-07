@@ -115,6 +115,21 @@ def numbers():
     bench = [str(x) for x in H.DEFAULT_CFG["scans"]]
     d = d[(d.seed == 0) & (d.fill == "blur") & (d.radius_frac == 0.18) & d.scan.astype(str).isin(bench)]
     N["compare"]["fill"] = {m: {"auroc": ci(d, m), "cur": ci(d, m, "cur")} for m in d.model.unique()}
+    # cross-model disagreement
+    N["xmodel"] = {}
+    for key, run in (("fill_dtu", "P8-xmodel"), ("fill_co3d", "P8-xmodel-co3d"), ("vis_dtu", "P8-xmodel-vis")):
+        d = _csv(run)
+        if d is not None:
+            d = d[~d.skipped.astype(bool)] if "skipped" in d else d
+            N["xmodel"][key] = {m: {"auroc": ci(d, m), "cur": ci(d, m, "cur")} for m in d.model.unique()}
+    # fused point clouds at matched coverage
+    N["fuse"] = {}
+    for key in ("dtu", "eth3d"):
+        p = os.path.join(RES, "P8-fuse", f"P8-fuse-{key}.csv")
+        if os.path.exists(p):
+            d = pd.read_csv(p)
+            g = d.groupby(["model", "coverage"])[["accuracy", "completeness", "f1", "single_view_kept"]].mean().round(4)
+            N["fuse"][key] = {m: {str(c): g.loc[(m, c)].to_dict() for c in sorted(d.coverage.unique())} for m in d.model.unique()}
     # operating points
     for key, *_ in DATASETS:
         p = os.path.join(RES, "P6-dump", f"P6-dump-{key}_curves.csv")
@@ -280,6 +295,49 @@ def chart_onfill(N, theme, out):
     fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
 
 
+def chart_xmodel(N, theme, out):
+    plt, T = _style(theme)
+    X = N.get("xmodel", {})
+    if not X:
+        return
+    pairs = sorted({m for v in X.values() for m in v})
+    lab = lambda m: m.replace("_x", " vs ").replace("vggt", "VGGT").replace("pi3x", "Pi3X").replace("pi3", "Pi3").replace("da3", "DA3").replace("mapanything", "MapAny")
+    fig, ax = plt.subplots(figsize=(10, 4.2))
+    x = np.arange(len(pairs)); w = 0.26
+    for j, (k, name, col) in enumerate([("fill_dtu", "filled patch, DTU", T["c"][2]), ("fill_co3d", "filled patch, CO3Dv2", T["c"][3]), ("vis_dtu", "real single-view, DTU", T["c"][4])]):
+        vals = [X.get(k, {}).get(m, {}).get("auroc") for m in pairs]
+        ax.bar(x + (j - 1) * w, [v[0] if v else 0 for v in vals], w * 0.92, color=col, label=name,
+               yerr=[[v[0] - v[1] if v else 0 for v in vals], [v[2] - v[0] if v else 0 for v in vals]], ecolor=T["muted"], capsize=2)
+    ax.axhline(0.5, color=T["muted"], lw=0.8, ls=":"); ax.set_ylim(0.3, 1.0)
+    ax.set_xticks(x); ax.set_xticklabels([lab(m) for m in pairs], rotation=15); ax.set_ylabel("AUROC of cross-model disagreement")
+    ax.set_title("Do two models invent the same surface? Yes: disagreement between models is at chance"); ax.legend(loc="upper left", fontsize=10); _clean(ax, T)
+    fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
+
+
+def chart_fuse(N, theme, out):
+    plt, T = _style(theme)
+    Fz = N.get("fuse", {})
+    if not Fz:
+        return
+    keys = [k for k in ("dtu", "eth3d") if k in Fz]
+    fig, axes = plt.subplots(1, 2 * len(keys), figsize=(4.4 * 2 * len(keys), 3.9))
+    axes = np.atleast_1d(axes)
+    series = [("vggt", "native confidence", T["c"][1], "-"), ("vggt_reproj", "reprojection", T["c"][3], "-"), ("vggt_oiavispatch", "per-image head", T["c"][2], "-"),
+              ("vggt_oiavisself", "head, label-free", T["c"][4], "-"), ("vggt_random", "random dropping", T["c"][1], ":"), ("vggt_oracle", "oracle (drop single-view first)", T["c"][5], "--")]
+    i = 0
+    for k in keys:
+        for metric, ylabel in (("accuracy", "accuracy of the fused points"), ("completeness", "completeness")):
+            ax = axes[i]; i += 1
+            for m, name, col, ls in series:
+                if m in Fz[k]:
+                    cov = sorted(float(c) for c in Fz[k][m]); ys = [Fz[k][m][str(c) if str(c) in Fz[k][m] else c][metric] for c in cov]
+                    ax.plot(cov, ys, marker="o", color=col, ls=ls, lw=2, label=name)
+            ax.set_title(f"{'DTU' if k == 'dtu' else 'ETH3D'}: {ylabel}", fontsize=11); ax.set_xlabel("coverage (fraction of predicted points kept)"); _clean(ax, T)
+    axes[0].legend(fontsize=8, loc="lower left")
+    fig.suptitle("Fused point cloud (VGGT-1B, its own cameras, similarity-aligned to the laser scan): keeping what the detector trusts", fontsize=11)
+    fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
+
+
 def chart_method(theme, out):
     plt, T = _style(theme)
     from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
@@ -330,6 +388,8 @@ def main():
         chart_adapt(N, theme, os.path.join(a.out, f"adapt_{theme}.png"))
         chart_onfill(N, theme, os.path.join(a.out, f"onfill_{theme}.png"))
         chart_method(theme, os.path.join(a.out, f"method_{theme}.png"))
+        chart_xmodel(N, theme, os.path.join(a.out, f"xmodel_{theme}.png"))
+        chart_fuse(N, theme, os.path.join(a.out, f"fuse_{theme}.png"))
         print("charts written for", theme)
 
 
