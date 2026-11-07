@@ -126,6 +126,18 @@ Table~\ref{tab:vis_supp} lists every detector of the main paper's Table 3 with 9
 \resizebox{\textwidth}{!}{\input{tab_vis_supp}}
 \end{table}
 
+\paragraph{Operating points from the per-pixel scores.}
+Table~\ref{tab:bands} is computed from the per-pixel scores of run P6-dump on the labelled pixels of every cell (scene, seed, view count), each cell weighing the same. AURC: area under the single-view rate of the kept pixels against coverage (oracle: supported pixels first). AbsRel of all labelled pixels and of the half with the highest score. CUR / keep: fraction of single-view pixels passing and fraction of supported pixels kept at a threshold fixed (a) on the other scenes of the same dataset so that 90\% of their supported pixels pass (leave-one-scene-out), (b) on DTU and applied unchanged (frozen; the DTU row has none). Bands: fraction of pixels marked observed / abstain / imagined at the paper's fixed thresholds; the single-view rate and AbsRel inside the observed band.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Operating points.} See the paragraph above for the columns.}
+\label{tab:bands}
+\tiny
+\setlength{\tabcolsep}{2pt}
+\resizebox{\textwidth}{!}{\input{tab_bands}}
+\end{table}
+
 \paragraph{Pre-registered gates.}
 The pass conditions were written into the run registry before the corresponding heads were trained, and the registry is versioned with the code. Gate 3 (true-visibility head; written 2026-11-06, before any visibility head was trained; the training kernels ran from commit \texttt{4132d11}): the head counts as detecting missing support when, pooled over 3, 5 and 10 views on DTU, (a) it beats native confidence on \auroc{} and \cur{} (paired sign-flip $p<0.05$), (b) it beats its per-image control on \auroc{} by at least 0.02 at $p<0.05$, and (c) both conditions hold on at least one dataset the head never saw (CO3Dv2 or ETH3D); if (b) fails, the single-view-support signal is reported as recoverable from per-image features and the method claim is dropped. Gate 4 (label-free head; written 2026-11-06 16:51 UTC, before any label-free head was trained, commit \texttt{c7e6919}): on DTU and on CO3Dv2, (a) and (b) as above against its own per-image control, and (c) within 0.03 \auroc{} of the ground-truth-trained head on DTU and ahead of reprojection consistency on CO3Dv2 at $p<0.05$ (its training signal is the reprojection test, so it has to generalise better than its teacher); if (a) or (b) fails the head is dropped, if only (c) fails it is reported as an ablation. The earlier Gate 2 (fill-trained head) had the clause ``head ahead of the control at $p<0.05$'' with no margin; it passed by the letter on differences of 0.0004 and 0.003 and the paper does not count it, which is why Gate 3 carries a margin.
 
