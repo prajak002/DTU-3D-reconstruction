@@ -1,0 +1,11 @@
+{
+  "gpu": "NVIDIA H200",
+  "torch": "2.11.0+cu130",
+  "reps": 3,
+  "scan": 3,
+  "views": 10,
+  "model_hw": [
+    420,
+    518
+  ]
+}

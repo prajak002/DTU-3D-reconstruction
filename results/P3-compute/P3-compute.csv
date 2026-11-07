@@ -1,0 +1,3 @@
+model,forwards,sec_per_scene,peak_gb,backbone_gflops,head_params_M,head_gflops,head_over_backbone_pct
+pi3x,1,0.25418734550476074,15.105184768,36613.412414282,0.0,0.0,0.0
+pi3x_reproj,1,0.450000524520874,95.665496576,36613.412414282,0.0,0.0,0.0

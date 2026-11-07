@@ -20,6 +20,7 @@
 | vggt_oiavisself | 18 | 0.702 [0.642, 0.759] | 0.837 [0.729, 0.922] | 0.004 [0.001, 0.007] | 5e-05 | 5e-05 |
 | vggt_oiavisselfpatch | 18 | 0.636 [0.553, 0.720] | 0.847 [0.733, 0.937] | 0.004 [0.002, 0.007] | 0.0003 | 0.0002 |
 | vggt_pv4 | 18 | 0.666 [0.602, 0.729] | 0.627 [0.521, 0.732] | 0.001 [0.000, 0.003] | 5e-05 | 5e-05 |
+| vggt_pvf8 | 18 | 0.578 [0.498, 0.648] | 0.775 [0.696, 0.849] | 0.002 [0.000, 0.003] | 5e-05 | 5e-05 |
 | vggt_reproj | 18 | 0.488 [0.473, 0.506] | 0.931 [0.903, 0.954] | 0.004 [0.002, 0.007] | 5e-05 | 5e-05 |
 | pi3x | 18 | 0.832 [0.782, 0.879] | 0.502 [0.362, 0.642] | 0.003 [0.000, 0.006] | nan | nan |
 | pi3x_border | 18 | 0.505 [0.425, 0.583] | 0.887 [0.844, 0.924] | 0.005 [0.002, 0.009] | 5e-05 | 0.0001 |
@@ -32,16 +33,18 @@
 | pi3x_oiavisself | 18 | 0.636 [0.559, 0.710] | 0.871 [0.802, 0.932] | 0.004 [0.002, 0.008] | 5e-05 | 0.0002 |
 | pi3x_oiavisselfpatch | 18 | 0.650 [0.568, 0.732] | 0.852 [0.730, 0.945] | 0.005 [0.002, 0.010] | 0.0002 | 5e-05 |
 | pi3x_pv4 | 18 | 0.550 [0.491, 0.608] | 0.824 [0.754, 0.886] | 0.003 [0.001, 0.006] | 5e-05 | 0.0007 |
+| pi3x_pvf8 | 18 | 0.520 [0.470, 0.569] | 0.859 [0.817, 0.901] | 0.003 [0.001, 0.006] | 5e-05 | 0.00085 |
 | pi3x_reproj | 18 | 0.478 [0.435, 0.518] | 0.929 [0.899, 0.955] | 0.005 [0.002, 0.008] | 5e-05 | 5e-05 |
 | pi3 | 18 | 0.929 [0.905, 0.951] | 0.228 [0.142, 0.322] | 0.002 [0.000, 0.005] | nan | nan |
+| pi3_pvf8 | 18 | 0.502 [0.441, 0.558] | 0.887 [0.851, 0.921] | 0.004 [0.001, 0.008] | 5e-05 | 5e-05 |
 
-Holm-adjusted p-values over all detector-vs-native tests: pi3x_border:auroc 0.0027, pi3x_border:cur 0.0027, pi3x_dedge:auroc 0.0027, pi3x_dedge:cur 0.0027, pi3x_oia:auroc 0.0027, pi3x_oia:cur 0.0027, pi3x_oiapatch:auroc 0.0027, pi3x_oiapatch:cur 0.0027, pi3x_oiavis:auroc 0.0027, pi3x_oiavis:cur 0.0027, pi3x_oiavislin:auroc 0.0027, pi3x_oiavislin:cur 0.0027, pi3x_oiavispatch:auroc 0.0027, pi3x_oiavispatch:cur 0.0027, pi3x_oiavisself:auroc 0.0027, pi3x_oiavisself:cur 0.0027, pi3x_oiavisselfpatch:auroc 0.0027, pi3x_oiavisselfpatch:cur 0.0027, pi3x_pv4:auroc 0.0027, pi3x_pv4:cur 0.0027, pi3x_reproj:auroc 0.0027, pi3x_reproj:cur 0.0027, vggt_border:auroc 0.0027, vggt_border:cur 0.0027, vggt_dedge:auroc 0.0027, vggt_dedge:cur 0.0027, vggt_oia:auroc 0.0027, vggt_oia:cur 0.0027, vggt_oia_s1:auroc 0.0027, vggt_oia_s1:cur 0.0027, vggt_oia_s2:auroc 0.0027, vggt_oia_s2:cur 0.0027, vggt_oiaattn:auroc 0.0027, vggt_oiaattn:cur 0.0027, vggt_oiafuse:auroc 0.0027, vggt_oiafuse:cur 0.0027, vggt_oialin:auroc 0.0027, vggt_oialin:cur 0.0027, vggt_oiapatch:auroc 0.0027, vggt_oiapatch:cur 0.0027, vggt_oiavis:auroc 0.0027, vggt_oiavis:cur 0.0027, vggt_oiavislin:auroc 0.0027, vggt_oiavislin:cur 0.0027, vggt_oiavispatch:auroc 0.0027, vggt_oiavispatch:cur 0.0027, vggt_oiavisself:auroc 0.0027, vggt_oiavisself:cur 0.0027, vggt_oiavisselfpatch:auroc 0.0027, vggt_oiavisselfpatch:cur 0.0027, vggt_pv4:auroc 0.0027, vggt_pv4:cur 0.0027, vggt_reproj:auroc 0.0027, vggt_reproj:cur 0.0027
+Holm-adjusted p-values over all detector-vs-native tests: pi3_pvf8:auroc 0.003, pi3_pvf8:cur 0.003, pi3x_border:auroc 0.003, pi3x_border:cur 0.003, pi3x_dedge:auroc 0.003, pi3x_dedge:cur 0.003, pi3x_oia:auroc 0.003, pi3x_oia:cur 0.003, pi3x_oiapatch:auroc 0.003, pi3x_oiapatch:cur 0.003, pi3x_oiavis:auroc 0.003, pi3x_oiavis:cur 0.003, pi3x_oiavislin:auroc 0.003, pi3x_oiavislin:cur 0.003, pi3x_oiavispatch:auroc 0.003, pi3x_oiavispatch:cur 0.003, pi3x_oiavisself:auroc 0.003, pi3x_oiavisself:cur 0.003, pi3x_oiavisselfpatch:auroc 0.003, pi3x_oiavisselfpatch:cur 0.003, pi3x_pv4:auroc 0.003, pi3x_pv4:cur 0.003, pi3x_pvf8:auroc 0.003, pi3x_pvf8:cur 0.003, pi3x_reproj:auroc 0.003, pi3x_reproj:cur 0.003, vggt_border:auroc 0.003, vggt_border:cur 0.003, vggt_dedge:auroc 0.003, vggt_dedge:cur 0.003, vggt_oia:auroc 0.003, vggt_oia:cur 0.003, vggt_oia_s1:auroc 0.003, vggt_oia_s1:cur 0.003, vggt_oia_s2:auroc 0.003, vggt_oia_s2:cur 0.003, vggt_oiaattn:auroc 0.003, vggt_oiaattn:cur 0.003, vggt_oiafuse:auroc 0.003, vggt_oiafuse:cur 0.003, vggt_oialin:auroc 0.003, vggt_oialin:cur 0.003, vggt_oiapatch:auroc 0.003, vggt_oiapatch:cur 0.003, vggt_oiavis:auroc 0.003, vggt_oiavis:cur 0.003, vggt_oiavislin:auroc 0.003, vggt_oiavislin:cur 0.003, vggt_oiavispatch:auroc 0.003, vggt_oiavispatch:cur 0.003, vggt_oiavisself:auroc 0.003, vggt_oiavisself:cur 0.003, vggt_oiavisselfpatch:auroc 0.003, vggt_oiavisselfpatch:cur 0.003, vggt_pv4:auroc 0.003, vggt_pv4:cur 0.003, vggt_pvf8:auroc 0.003, vggt_pvf8:cur 0.003, vggt_reproj:auroc 0.003, vggt_reproj:cur 0.003
 
-vggt_oia vs per-image control vggt_oiapatch, gray: dAUROC +0.000 (p 0.1604), dCUR -0.000 (p 0.503)
+vggt_oia vs per-image control vggt_oiapatch, gray: dAUROC +0.000 (p 0.2833), dCUR -0.000 (p 0.4976)
 
-vggt_oia vs per-image control vggt_oiapatch, blur: dAUROC +0.000 (p 0.3917), dCUR -0.000 (p 0.5009)
+vggt_oia vs per-image control vggt_oiapatch, blur: dAUROC +0.000 (p 0.021), dCUR -0.000 (p 0.3748)
 
-vggt_oia vs per-image control vggt_oiapatch, noise: dAUROC +0.000 (p 0.8282), dCUR -0.000 (p 1)
+vggt_oia vs per-image control vggt_oiapatch, noise: dAUROC +0.000 (p 0.8798), dCUR -0.000 (p 1)
 
 pi3x_oia vs per-image control pi3x_oiapatch, gray: dAUROC -0.000 (p 0.00275), dCUR +0.000 (p 0.2491)
 
@@ -116,7 +119,7 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.311, control-native
 
 **Pass condition for pi3x_oia, part 1 (head vs native, Table 4 keys)**: dAUROC +0.167 (p 5e-05), dCUR -0.501 (p 5e-05) -> PASS
 part 2, inpainted fill (stress inpaint10): head-native dAUROC +0.208, control-native +0.208, head-control -0.000 (p 0.8802) -> control explains the gain
-part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native +0.262, head-control -0.019 (p 0.4976) -> control explains the gain
+part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native +0.256, head-control -0.018 (p 0.1743) -> control explains the gain
 **Gate 2 for pi3x_oia**: FAIL (part 1 ok; part 2 0/2 tests; criterion: head beats control at p<0.05 or the control's AUROC gain over native is under half the head's, on inpaint and CO3Dv2)
 
 ## Full configuration, DTU, pooled over blur and noise fills
@@ -143,20 +146,35 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | pi3 | 0.891 [0.845, 0.930] | 0.272 [0.190, 0.360] | 0.002 [0.000, 0.006] |
 | pi3x | 0.732 [0.680, 0.779] | 0.570 [0.500, 0.641] | 0.001 [0.000, 0.004] |
 | pi3x_oia | 0.969 [0.946, 0.989] | 0.088 [0.031, 0.157] | 0.001 [0.000, 0.003] |
-| pi3x_oiapatch | 0.987 [0.981, 0.993] | 0.036 [0.020, 0.055] | 0.000 [0.000, 0.001] |
+| pi3x_oiapatch | 0.988 [0.983, 0.992] | 0.033 [0.022, 0.046] | 0.000 [0.000, 0.001] |
 | vggt | 0.681 [0.632, 0.729] | 0.651 [0.566, 0.734] | 0.031 [0.004, 0.073] |
 | vggt_oia | 0.992 [0.987, 0.996] | 0.022 [0.011, 0.035] | 0.001 [0.000, 0.002] |
 | vggt_oiafuse | 0.961 [0.945, 0.974] | 0.101 [0.057, 0.154] | 0.006 [0.001, 0.014] |
 | vggt_oiapatch | 0.989 [0.985, 0.993] | 0.030 [0.018, 0.042] | 0.001 [0.000, 0.003] |
 
+## Full configuration, ETH3D, pooled over blur and noise fills
+
+| model | AUROC | CUR | CUR-err |
+|---|---|---|---|
+| da3 | 0.698 [0.653, 0.747] | 0.620 [0.519, 0.728] | 0.034 [0.001, 0.086] |
+| mapanything | 0.667 [0.629, 0.708] | 0.677 [0.612, 0.741] | 0.033 [0.009, 0.068] |
+| pi3 | 0.771 [0.719, 0.827] | 0.612 [0.495, 0.719] | 0.007 [0.000, 0.020] |
+| pi3x | 0.661 [0.582, 0.730] | 0.707 [0.620, 0.782] | 0.001 [0.000, 0.002] |
+| vggt | 0.670 [0.620, 0.720] | 0.786 [0.699, 0.864] | 0.023 [0.008, 0.045] |
+| vggt_oia | 0.981 [0.969, 0.992] | 0.042 [0.020, 0.068] | 0.000 [0.000, 0.001] |
+| vggt_oiapatch | 0.987 [0.978, 0.994] | 0.032 [0.014, 0.052] | 0.000 [0.000, 0.000] |
+
 ## Full configuration, DTU extension scans (seed 0, radius 0.18), pooled over blur and noise fills
 
 | model | AUROC | CUR | CUR-err |
 |---|---|---|---|
+| da3 | 0.755 [0.680, 0.820] | 0.650 [0.513, 0.781] | 0.002 [0.001, 0.005] |
+| mapanything | 0.697 [0.617, 0.771] | 0.693 [0.593, 0.792] | 0.287 [0.196, 0.384] |
 | pi3 | 0.919 [0.880, 0.952] | 0.272 [0.151, 0.408] | 0.003 [0.000, 0.006] |
 | pi3x | 0.850 [0.814, 0.887] | 0.539 [0.394, 0.682] | 0.007 [0.002, 0.014] |
 | vggt | 0.908 [0.869, 0.941] | 0.233 [0.148, 0.333] | 0.000 [0.000, 0.001] |
 | vggt_oia | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] |
+| vggt_oiapatch | 1.000 [1.000, 1.000] | 0.000 [0.000, 0.000] | 0.000 [0.000, 0.000] |
 
 ## Full configuration, DTU, Gaussian-splatting backbone, pooled over blur and noise fills
 
@@ -814,8 +832,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 3 | pi3x | 9 | 0.857 [0.794, 0.911] | 0.369 [0.255, 0.477] | 0.002 [0.000, 0.003] | 0.011 | 0.031 |
 | 3 | pi3x_border | 9 | 0.786 [0.709, 0.860] | 0.515 [0.365, 0.664] | 0.031 [0.003, 0.080] | 0.011 | 0.031 |
 | 3 | pi3x_dedge | 9 | 0.575 [0.464, 0.691] | 0.766 [0.639, 0.867] | 0.038 [0.004, 0.094] | 0.011 | 0.031 |
-| 3 | pi3x_oia | 9 | 0.708 [0.636, 0.774] | 0.650 [0.569, 0.724] | 0.037 [0.003, 0.099] | 0.011 | 0.031 |
-| 3 | pi3x_oiapatch | 9 | 0.662 [0.582, 0.743] | 0.668 [0.542, 0.780] | 0.041 [0.003, 0.109] | 0.011 | 0.031 |
+| 3 | pi3x_oia | 9 | 0.707 [0.634, 0.774] | 0.651 [0.570, 0.726] | 0.037 [0.003, 0.098] | 0.011 | 0.031 |
+| 3 | pi3x_oiapatch | 9 | 0.662 [0.582, 0.743] | 0.668 [0.542, 0.780] | 0.040 [0.003, 0.108] | 0.011 | 0.031 |
 | 3 | pi3x_oiavis | 9 | 0.980 [0.969, 0.988] | 0.058 [0.027, 0.097] | 0.001 [0.000, 0.002] | 0.011 | 0.031 |
 | 3 | pi3x_oiavis_s1 | 9 | 0.976 [0.964, 0.987] | 0.068 [0.034, 0.106] | 0.001 [0.000, 0.002] | 0.011 | 0.031 |
 | 3 | pi3x_oiavis_s2 | 9 | 0.974 [0.963, 0.985] | 0.072 [0.037, 0.111] | 0.001 [0.000, 0.002] | 0.011 | 0.031 |
@@ -829,8 +847,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 3 | vggt | 9 | 0.654 [0.546, 0.762] | 0.620 [0.457, 0.765] | 0.016 [0.001, 0.036] | 0.014 | 0.036 |
 | 3 | vggt_border | 9 | 0.786 [0.709, 0.860] | 0.515 [0.365, 0.664] | 0.035 [0.004, 0.088] | 0.014 | 0.036 |
 | 3 | vggt_dedge | 9 | 0.574 [0.469, 0.685] | 0.781 [0.651, 0.877] | 0.040 [0.005, 0.096] | 0.014 | 0.036 |
-| 3 | vggt_oia | 9 | 0.661 [0.567, 0.753] | 0.682 [0.565, 0.793] | 0.042 [0.003, 0.102] | 0.014 | 0.036 |
-| 3 | vggt_oiapatch | 9 | 0.648 [0.538, 0.752] | 0.668 [0.535, 0.789] | 0.039 [0.002, 0.095] | 0.014 | 0.036 |
+| 3 | vggt_oia | 9 | 0.662 [0.569, 0.754] | 0.682 [0.565, 0.793] | 0.040 [0.002, 0.099] | 0.014 | 0.036 |
+| 3 | vggt_oiapatch | 9 | 0.649 [0.539, 0.752] | 0.668 [0.536, 0.788] | 0.038 [0.002, 0.094] | 0.014 | 0.036 |
 | 3 | vggt_oiavis | 9 | 0.984 [0.979, 0.990] | 0.041 [0.024, 0.060] | 0.001 [0.000, 0.002] | 0.014 | 0.036 |
 | 3 | vggt_oiavis_s1 | 9 | 0.982 [0.975, 0.988] | 0.048 [0.029, 0.068] | 0.001 [0.000, 0.001] | 0.014 | 0.036 |
 | 3 | vggt_oiavis_s2 | 9 | 0.983 [0.975, 0.989] | 0.047 [0.025, 0.071] | 0.001 [0.000, 0.002] | 0.014 | 0.036 |
@@ -847,8 +865,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 3 | vggt_reproj | 9 | 0.981 [0.972, 0.989] | 0.031 [0.017, 0.045] | 0.003 [0.001, 0.006] | 0.014 | 0.036 |
 | 3 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.258 (p 0.00435) | dCUR -0.627 (p 0.00435) | | | |
 | 3 | vggt_oiavis vs vggt | | dAUROC +0.331 (p 0.00435) | dCUR -0.579 (p 0.00435) | | | |
-| 3 | vggt_oiavis vs vggt_oia | | dAUROC +0.324 (p 0.00435) | dCUR -0.641 (p 0.00435) | | | |
-| 3 | vggt_oia vs vggt | | dAUROC +0.007 (p 0.7998) | dCUR +0.062 (p 0.3805) | | | |
+| 3 | vggt_oiavis vs vggt_oia | | dAUROC +0.323 (p 0.00435) | dCUR -0.641 (p 0.00435) | | | |
+| 3 | vggt_oia vs vggt | | dAUROC +0.008 (p 0.7882) | dCUR +0.062 (p 0.3883) | | | |
 | 3 | vggt_oiavis vs vggt_reproj | | dAUROC +0.004 (p 0.4603) | dCUR +0.011 (p 0.4387) | | | |
 | 3 | vggt_oiavis vs vggt_border | | dAUROC +0.198 (p 0.00435) | dCUR -0.474 (p 0.00435) | | | |
 | 3 | vggt_oiavis vs vggt_dedge | | dAUROC +0.410 (p 0.00435) | dCUR -0.740 (p 0.00435) | | | |
@@ -866,8 +884,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 3 | **vggt_oiavisself gate** | | head-native +0.327, control-native -0.039, head-control +0.366 (p 0.00435) | control does not explain the gain | | | |
 | 3 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.270 (p 0.00435) | dCUR -0.609 (p 0.00435) | | | |
 | 3 | pi3x_oiavis vs pi3x | | dAUROC +0.122 (p 0.00435) | dCUR -0.311 (p 0.0083) | | | |
-| 3 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.272 (p 0.00435) | dCUR -0.592 (p 0.00435) | | | |
-| 3 | pi3x_oia vs pi3x | | dAUROC -0.149 (p 0.02155) | dCUR +0.281 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.272 (p 0.00435) | dCUR -0.593 (p 0.00435) | | | |
+| 3 | pi3x_oia vs pi3x | | dAUROC -0.150 (p 0.02155) | dCUR +0.283 (p 0.00435) | | | |
 | 3 | pi3x_oiavis vs pi3x_reproj | | dAUROC -0.002 (p 0.8331) | dCUR +0.023 (p 0.3973) | | | |
 | 3 | pi3x_oiavis vs pi3x_border | | dAUROC +0.193 (p 0.00435) | dCUR -0.457 (p 0.00435) | | | |
 | 3 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.405 (p 0.00435) | dCUR -0.708 (p 0.00435) | | | |
@@ -913,8 +931,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 5 | pi3x | 9 | 0.893 [0.850, 0.930] | 0.273 [0.194, 0.346] | 0.011 [0.000, 0.031] | 0.011 | 0.036 |
 | 5 | pi3x_border | 9 | 0.721 [0.656, 0.787] | 0.639 [0.534, 0.741] | 0.059 [0.006, 0.125] | 0.011 | 0.036 |
 | 5 | pi3x_dedge | 9 | 0.584 [0.463, 0.705] | 0.775 [0.647, 0.877] | 0.056 [0.010, 0.123] | 0.011 | 0.036 |
-| 5 | pi3x_oia | 9 | 0.681 [0.612, 0.740] | 0.653 [0.583, 0.722] | 0.055 [0.009, 0.115] | 0.011 | 0.035 |
-| 5 | pi3x_oiapatch | 9 | 0.644 [0.597, 0.696] | 0.709 [0.601, 0.795] | 0.061 [0.007, 0.131] | 0.011 | 0.035 |
+| 5 | pi3x_oia | 9 | 0.680 [0.612, 0.740] | 0.652 [0.583, 0.722] | 0.055 [0.009, 0.116] | 0.011 | 0.036 |
+| 5 | pi3x_oiapatch | 9 | 0.644 [0.597, 0.697] | 0.708 [0.601, 0.795] | 0.061 [0.007, 0.131] | 0.011 | 0.036 |
 | 5 | pi3x_oiavis | 9 | 0.980 [0.971, 0.987] | 0.051 [0.026, 0.080] | 0.001 [0.000, 0.002] | 0.011 | 0.036 |
 | 5 | pi3x_oiavis_s1 | 9 | 0.974 [0.961, 0.985] | 0.073 [0.036, 0.121] | 0.002 [0.000, 0.004] | 0.011 | 0.036 |
 | 5 | pi3x_oiavis_s2 | 9 | 0.974 [0.962, 0.985] | 0.069 [0.033, 0.112] | 0.001 [0.000, 0.003] | 0.011 | 0.036 |
@@ -928,8 +946,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 5 | vggt | 9 | 0.682 [0.565, 0.789] | 0.626 [0.477, 0.772] | 0.027 [0.007, 0.055] | 0.010 | 0.041 |
 | 5 | vggt_border | 9 | 0.721 [0.656, 0.787] | 0.639 [0.534, 0.741] | 0.057 [0.023, 0.096] | 0.010 | 0.041 |
 | 5 | vggt_dedge | 9 | 0.584 [0.464, 0.701] | 0.779 [0.657, 0.879] | 0.033 [0.014, 0.053] | 0.010 | 0.041 |
-| 5 | vggt_oia | 9 | 0.696 [0.621, 0.770] | 0.641 [0.533, 0.753] | 0.029 [0.004, 0.062] | 0.010 | 0.041 |
-| 5 | vggt_oiapatch | 9 | 0.613 [0.546, 0.678] | 0.746 [0.668, 0.818] | 0.054 [0.020, 0.091] | 0.010 | 0.041 |
+| 5 | vggt_oia | 9 | 0.697 [0.621, 0.771] | 0.641 [0.533, 0.752] | 0.030 [0.004, 0.063] | 0.010 | 0.041 |
+| 5 | vggt_oiapatch | 9 | 0.613 [0.546, 0.679] | 0.746 [0.667, 0.817] | 0.053 [0.020, 0.091] | 0.010 | 0.041 |
 | 5 | vggt_oiavis | 9 | 0.987 [0.982, 0.991] | 0.035 [0.019, 0.053] | 0.002 [0.001, 0.004] | 0.010 | 0.041 |
 | 5 | vggt_oiavis_s1 | 9 | 0.985 [0.980, 0.990] | 0.038 [0.021, 0.056] | 0.002 [0.001, 0.004] | 0.010 | 0.041 |
 | 5 | vggt_oiavis_s2 | 9 | 0.986 [0.980, 0.991] | 0.038 [0.020, 0.058] | 0.001 [0.001, 0.003] | 0.010 | 0.041 |
@@ -946,8 +964,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 5 | vggt_reproj | 9 | 0.978 [0.972, 0.985] | 0.030 [0.018, 0.043] | 0.003 [0.001, 0.005] | 0.010 | 0.041 |
 | 5 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.294 (p 0.00435) | dCUR -0.636 (p 0.00435) | | | |
 | 5 | vggt_oiavis vs vggt | | dAUROC +0.304 (p 0.00435) | dCUR -0.591 (p 0.00435) | | | |
-| 5 | vggt_oiavis vs vggt_oia | | dAUROC +0.290 (p 0.00435) | dCUR -0.606 (p 0.00435) | | | |
-| 5 | vggt_oia vs vggt | | dAUROC +0.014 (p 0.7217) | dCUR +0.015 (p 0.7832) | | | |
+| 5 | vggt_oiavis vs vggt_oia | | dAUROC +0.290 (p 0.00435) | dCUR -0.605 (p 0.00435) | | | |
+| 5 | vggt_oia vs vggt | | dAUROC +0.014 (p 0.726) | dCUR +0.015 (p 0.8035) | | | |
 | 5 | vggt_oiavis vs vggt_reproj | | dAUROC +0.008 (p 0.1432) | dCUR +0.005 (p 0.6986) | | | |
 | 5 | vggt_oiavis vs vggt_border | | dAUROC +0.266 (p 0.00435) | dCUR -0.604 (p 0.00435) | | | |
 | 5 | vggt_oiavis vs vggt_dedge | | dAUROC +0.403 (p 0.00435) | dCUR -0.744 (p 0.00435) | | | |
@@ -1012,8 +1030,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 10 | pi3x | 9 | 0.902 [0.867, 0.935] | 0.292 [0.179, 0.406] | 0.000 [0.000, 0.000] | 0.009 | 0.032 |
 | 10 | pi3x_border | 9 | 0.677 [0.622, 0.729] | 0.722 [0.652, 0.785] | 0.047 [0.012, 0.093] | 0.009 | 0.032 |
 | 10 | pi3x_dedge | 9 | 0.627 [0.536, 0.730] | 0.740 [0.616, 0.846] | 0.036 [0.012, 0.066] | 0.009 | 0.032 |
-| 10 | pi3x_oia | 9 | 0.562 [0.460, 0.644] | 0.783 [0.717, 0.858] | 0.045 [0.011, 0.092] | 0.009 | 0.032 |
-| 10 | pi3x_oiapatch | 9 | 0.629 [0.585, 0.675] | 0.772 [0.701, 0.833] | 0.044 [0.011, 0.089] | 0.009 | 0.032 |
+| 10 | pi3x_oia | 9 | 0.562 [0.460, 0.644] | 0.784 [0.718, 0.859] | 0.045 [0.011, 0.093] | 0.009 | 0.032 |
+| 10 | pi3x_oiapatch | 9 | 0.629 [0.585, 0.675] | 0.772 [0.701, 0.833] | 0.044 [0.011, 0.090] | 0.009 | 0.032 |
 | 10 | pi3x_oiavis | 9 | 0.967 [0.947, 0.982] | 0.100 [0.050, 0.161] | 0.001 [0.000, 0.004] | 0.009 | 0.032 |
 | 10 | pi3x_oiavis_s1 | 9 | 0.962 [0.937, 0.980] | 0.114 [0.055, 0.195] | 0.001 [0.000, 0.004] | 0.009 | 0.032 |
 | 10 | pi3x_oiavis_s2 | 9 | 0.964 [0.942, 0.980] | 0.100 [0.052, 0.162] | 0.001 [0.000, 0.004] | 0.009 | 0.032 |
@@ -1027,8 +1045,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 10 | vggt | 9 | 0.792 [0.714, 0.875] | 0.464 [0.282, 0.645] | 0.028 [0.005, 0.057] | 0.019 | 0.054 |
 | 10 | vggt_border | 9 | 0.677 [0.622, 0.729] | 0.722 [0.652, 0.785] | 0.130 [0.052, 0.220] | 0.019 | 0.054 |
 | 10 | vggt_dedge | 9 | 0.633 [0.544, 0.730] | 0.726 [0.596, 0.842] | 0.098 [0.037, 0.166] | 0.019 | 0.054 |
-| 10 | vggt_oia | 9 | 0.694 [0.618, 0.779] | 0.650 [0.510, 0.768] | 0.083 [0.028, 0.151] | 0.019 | 0.054 |
-| 10 | vggt_oiapatch | 9 | 0.599 [0.525, 0.686] | 0.782 [0.685, 0.863] | 0.110 [0.049, 0.177] | 0.019 | 0.054 |
+| 10 | vggt_oia | 9 | 0.694 [0.617, 0.779] | 0.651 [0.512, 0.769] | 0.083 [0.028, 0.150] | 0.019 | 0.054 |
+| 10 | vggt_oiapatch | 9 | 0.599 [0.525, 0.685] | 0.782 [0.685, 0.863] | 0.110 [0.049, 0.177] | 0.019 | 0.054 |
 | 10 | vggt_oiavis | 9 | 0.970 [0.947, 0.987] | 0.082 [0.030, 0.146] | 0.019 [0.003, 0.043] | 0.019 | 0.054 |
 | 10 | vggt_oiavis_s1 | 9 | 0.971 [0.954, 0.985] | 0.069 [0.030, 0.116] | 0.017 [0.002, 0.036] | 0.019 | 0.054 |
 | 10 | vggt_oiavis_s2 | 9 | 0.975 [0.958, 0.988] | 0.067 [0.031, 0.109] | 0.015 [0.002, 0.034] | 0.019 | 0.054 |
@@ -1045,8 +1063,8 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 10 | vggt_reproj | 9 | 0.968 [0.952, 0.981] | 0.136 [0.035, 0.243] | 0.021 [0.001, 0.054] | 0.018 | 0.054 |
 | 10 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.252 (p 0.00435) | dCUR -0.579 (p 0.00435) | | | |
 | 10 | vggt_oiavis vs vggt | | dAUROC +0.178 (p 0.00435) | dCUR -0.382 (p 0.00825) | | | |
-| 10 | vggt_oiavis vs vggt_oia | | dAUROC +0.276 (p 0.00435) | dCUR -0.568 (p 0.00435) | | | |
-| 10 | vggt_oia vs vggt | | dAUROC -0.098 (p 0.0163) | dCUR +0.186 (p 0.0279) | | | |
+| 10 | vggt_oiavis vs vggt_oia | | dAUROC +0.276 (p 0.00435) | dCUR -0.570 (p 0.00435) | | | |
+| 10 | vggt_oia vs vggt | | dAUROC -0.098 (p 0.01225) | dCUR +0.188 (p 0.02395) | | | |
 | 10 | vggt_oiavis vs vggt_reproj | | dAUROC +0.002 (p 0.9409) | dCUR -0.055 (p 0.1089) | | | |
 | 10 | vggt_oiavis vs vggt_border | | dAUROC +0.293 (p 0.00435) | dCUR -0.640 (p 0.00435) | | | |
 | 10 | vggt_oiavis vs vggt_dedge | | dAUROC +0.337 (p 0.00435) | dCUR -0.644 (p 0.00435) | | | |
@@ -1064,7 +1082,7 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 10 | **vggt_oiavisself gate** | | head-native +0.179, control-native -0.137, head-control +0.316 (p 0.00435) | control does not explain the gain | | | |
 | 10 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.273 (p 0.00435) | dCUR -0.601 (p 0.00435) | | | |
 | 10 | pi3x_oiavis vs pi3x | | dAUROC +0.066 (p 0.00435) | dCUR -0.191 (p 0.00435) | | | |
-| 10 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.406 (p 0.00435) | dCUR -0.683 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.406 (p 0.00435) | dCUR -0.684 (p 0.00435) | | | |
 | 10 | pi3x_oia vs pi3x | | dAUROC -0.340 (p 0.00435) | dCUR +0.492 (p 0.00435) | | | |
 | 10 | pi3x_oiavis vs pi3x_reproj | | dAUROC -0.002 (p 0.8618) | dCUR +0.048 (p 0.3007) | | | |
 | 10 | pi3x_oiavis vs pi3x_border | | dAUROC +0.290 (p 0.00435) | dCUR -0.622 (p 0.00435) | | | |
@@ -1096,3 +1114,1388 @@ part 2, CO3Dv2 (blur and noise fills): head-native dAUROC +0.238, control-native
 | 10 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.328 (p 0.00435) | dCUR -0.599 (p 0.00435) | | | |
 | 10 | **pi3_oiavis gate** | | head-native +0.134, control-native -0.101, head-control +0.235 (p 0.00435) | control does not explain the gain | | | |
 | 10 | **pi3_oiavisself gate** | | head-native +0.134, control-native -0.139, head-control +0.273 (p 0.00435) | control does not explain the gain | | | |
+
+## True-visibility protocol, DTU, 2 and 20 views (outside the training range) (clean views; U = pixels no other view sees, S = seen by two or more)
+
+| views | detector | n scenes | AUROC | CUR | CUR-err | AbsRel S | AbsRel U |
+|---|---|---|---|---|---|---|---|
+| 20 | pi3x | 18 | 0.830 [0.777, 0.878] | 0.478 [0.347, 0.612] | 0.010 [0.005, 0.016] | 0.016 | 0.025 |
+| 20 | pi3x_border | 18 | 0.807 [0.792, 0.821] | 0.668 [0.636, 0.698] | 0.015 [0.008, 0.024] | 0.016 | 0.025 |
+| 20 | pi3x_dedge | 18 | 0.376 [0.337, 0.416] | 0.919 [0.888, 0.946] | 0.009 [0.004, 0.014] | 0.016 | 0.025 |
+| 20 | pi3x_oiavis | 18 | 0.990 [0.986, 0.994] | 0.017 [0.007, 0.029] | 0.004 [0.001, 0.007] | 0.016 | 0.025 |
+| 20 | pi3x_oiavispatch | 18 | 0.933 [0.913, 0.950] | 0.207 [0.150, 0.273] | 0.010 [0.004, 0.017] | 0.016 | 0.025 |
+| 20 | pi3x_oiavisself | 18 | 0.990 [0.985, 0.993] | 0.015 [0.006, 0.027] | 0.004 [0.001, 0.007] | 0.016 | 0.025 |
+| 20 | pi3x_oiavisselfpatch | 18 | 0.928 [0.906, 0.947] | 0.217 [0.144, 0.304] | 0.010 [0.004, 0.018] | 0.016 | 0.025 |
+| 20 | pi3x_reproj | 18 | 0.889 [0.859, 0.914] | 0.165 [0.133, 0.202] | 0.009 [0.005, 0.013] | 0.016 | 0.025 |
+| 20 | vggt | 18 | 0.606 [0.532, 0.683] | 0.774 [0.678, 0.849] | 0.001 [0.000, 0.001] | 0.006 | 0.009 |
+| 20 | vggt_border | 18 | 0.807 [0.792, 0.821] | 0.668 [0.636, 0.698] | 0.014 [0.007, 0.023] | 0.006 | 0.009 |
+| 20 | vggt_dedge | 18 | 0.365 [0.325, 0.406] | 0.922 [0.891, 0.949] | 0.006 [0.003, 0.010] | 0.006 | 0.009 |
+| 20 | vggt_oiavis | 18 | 0.993 [0.990, 0.995] | 0.012 [0.006, 0.020] | 0.002 [0.001, 0.004] | 0.006 | 0.009 |
+| 20 | vggt_oiavispatch | 18 | 0.941 [0.925, 0.955] | 0.188 [0.139, 0.244] | 0.010 [0.005, 0.016] | 0.006 | 0.009 |
+| 20 | vggt_oiavisself | 18 | 0.992 [0.989, 0.995] | 0.013 [0.005, 0.022] | 0.002 [0.001, 0.004] | 0.006 | 0.009 |
+| 20 | vggt_oiavisselfpatch | 18 | 0.941 [0.923, 0.956] | 0.179 [0.127, 0.242] | 0.009 [0.005, 0.014] | 0.006 | 0.009 |
+| 20 | vggt_reproj | 18 | 0.934 [0.925, 0.943] | 0.117 [0.101, 0.132] | 0.008 [0.004, 0.013] | 0.006 | 0.009 |
+| 20 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.052 (p 5e-05) | dCUR -0.176 (p 5e-05) | | | |
+| 20 | vggt_oiavis vs vggt | | dAUROC +0.387 (p 5e-05) | dCUR -0.762 (p 5e-05) | | | |
+| 20 | vggt_oiavis vs vggt_reproj | | dAUROC +0.059 (p 5e-05) | dCUR -0.105 (p 5e-05) | | | |
+| 20 | vggt_oiavis vs vggt_border | | dAUROC +0.186 (p 5e-05) | dCUR -0.656 (p 5e-05) | | | |
+| 20 | vggt_oiavis vs vggt_dedge | | dAUROC +0.628 (p 5e-05) | dCUR -0.910 (p 5e-05) | | | |
+| 20 | vggt_reproj vs vggt_border | | dAUROC +0.127 (p 5e-05) | dCUR -0.551 (p 5e-05) | | | |
+| 20 | vggt_reproj vs vggt_dedge | | dAUROC +0.568 (p 5e-05) | dCUR -0.805 (p 5e-05) | | | |
+| 20 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.051 (p 5e-05) | dCUR -0.166 (p 5e-05) | | | |
+| 20 | vggt_oiavisself vs vggt | | dAUROC +0.386 (p 5e-05) | dCUR -0.761 (p 5e-05) | | | |
+| 20 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.058 (p 5e-05) | dCUR -0.104 (p 5e-05) | | | |
+| 20 | vggt_oiavisself vs vggt_oiavis | | dAUROC -0.001 (p 0.07075) | dCUR +0.001 (p 0.6262) | | | |
+| 20 | vggt_oiavisself vs vggt_border | | dAUROC +0.185 (p 5e-05) | dCUR -0.655 (p 5e-05) | | | |
+| 20 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.627 (p 5e-05) | dCUR -0.910 (p 5e-05) | | | |
+| 20 | **vggt_oiavis gate** | | head-native +0.387, control-native +0.335, head-control +0.052 (p 5e-05) | control does not explain the gain | | | |
+| 20 | **vggt_oiavisself gate** | | head-native +0.386, control-native +0.335, head-control +0.051 (p 5e-05) | control does not explain the gain | | | |
+| 20 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.058 (p 5e-05) | dCUR -0.191 (p 5e-05) | | | |
+| 20 | pi3x_oiavis vs pi3x | | dAUROC +0.161 (p 5e-05) | dCUR -0.461 (p 5e-05) | | | |
+| 20 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.102 (p 5e-05) | dCUR -0.149 (p 5e-05) | | | |
+| 20 | pi3x_oiavis vs pi3x_border | | dAUROC +0.184 (p 5e-05) | dCUR -0.651 (p 5e-05) | | | |
+| 20 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.614 (p 5e-05) | dCUR -0.902 (p 5e-05) | | | |
+| 20 | pi3x_reproj vs pi3x_border | | dAUROC +0.082 (p 0.00055) | dCUR -0.502 (p 5e-05) | | | |
+| 20 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.512 (p 5e-05) | dCUR -0.753 (p 5e-05) | | | |
+| 20 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.061 (p 5e-05) | dCUR -0.201 (p 5e-05) | | | |
+| 20 | pi3x_oiavisself vs pi3x | | dAUROC +0.160 (p 5e-05) | dCUR -0.462 (p 5e-05) | | | |
+| 20 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.101 (p 5e-05) | dCUR -0.150 (p 5e-05) | | | |
+| 20 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC -0.001 (p 0.1598) | dCUR -0.001 (p 0.2263) | | | |
+| 20 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.183 (p 5e-05) | dCUR -0.652 (p 5e-05) | | | |
+| 20 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.613 (p 5e-05) | dCUR -0.903 (p 5e-05) | | | |
+| 20 | **pi3x_oiavis gate** | | head-native +0.161, control-native +0.103, head-control +0.058 (p 5e-05) | control does not explain the gain | | | |
+| 20 | **pi3x_oiavisself gate** | | head-native +0.160, control-native +0.099, head-control +0.061 (p 5e-05) | control does not explain the gain | | | |
+
+## True-visibility protocol, Phototourism heritage landmarks (tourist photos, COLMAP depth) (clean views; U = pixels no other view sees, S = seen by two or more)
+
+| views | detector | n scenes | AUROC | CUR | CUR-err | AbsRel S | AbsRel U |
+|---|---|---|---|---|---|---|---|
+| 3 | da3 | 9 | 0.752 [0.645, 0.850] | 0.488 [0.318, 0.668] | 0.049 [0.027, 0.075] | 0.027 | 0.150 |
+| 3 | mapanything | 9 | 0.905 [0.862, 0.945] | 0.295 [0.137, 0.470] | 0.045 [0.009, 0.107] | 0.025 | 0.121 |
+| 3 | pi3 | 9 | 0.842 [0.791, 0.890] | 0.462 [0.344, 0.569] | 0.047 [0.017, 0.082] | 0.023 | 0.110 |
+| 3 | pi3_border | 9 | 0.759 [0.720, 0.800] | 0.601 [0.545, 0.657] | 0.138 [0.061, 0.227] | 0.023 | 0.110 |
+| 3 | pi3_dedge | 9 | 0.650 [0.581, 0.713] | 0.659 [0.582, 0.740] | 0.113 [0.043, 0.214] | 0.023 | 0.110 |
+| 3 | pi3_oiavis | 9 | 0.951 [0.937, 0.967] | 0.145 [0.096, 0.195] | 0.046 [0.016, 0.082] | 0.023 | 0.110 |
+| 3 | pi3_oiavislin | 9 | 0.936 [0.913, 0.958] | 0.168 [0.113, 0.220] | 0.050 [0.017, 0.095] | 0.023 | 0.110 |
+| 3 | pi3_oiavispatch | 9 | 0.826 [0.758, 0.882] | 0.455 [0.357, 0.555] | 0.088 [0.037, 0.148] | 0.023 | 0.110 |
+| 3 | pi3_oiavisself | 9 | 0.949 [0.932, 0.966] | 0.135 [0.093, 0.174] | 0.033 [0.008, 0.071] | 0.023 | 0.110 |
+| 3 | pi3_oiavisselflin | 9 | 0.935 [0.910, 0.957] | 0.159 [0.111, 0.203] | 0.040 [0.012, 0.084] | 0.023 | 0.110 |
+| 3 | pi3_oiavisselfpatch | 9 | 0.761 [0.677, 0.842] | 0.637 [0.475, 0.782] | 0.121 [0.052, 0.203] | 0.023 | 0.110 |
+| 3 | pi3_reproj | 9 | 0.846 [0.802, 0.890] | 0.311 [0.213, 0.407] | 0.078 [0.030, 0.139] | 0.023 | 0.110 |
+| 3 | pi3x | 9 | 0.851 [0.808, 0.887] | 0.419 [0.297, 0.548] | 0.058 [0.016, 0.113] | 0.025 | 0.107 |
+| 3 | pi3x_border | 9 | 0.759 [0.720, 0.800] | 0.601 [0.545, 0.657] | 0.138 [0.059, 0.229] | 0.025 | 0.107 |
+| 3 | pi3x_dedge | 9 | 0.647 [0.581, 0.705] | 0.677 [0.604, 0.751] | 0.117 [0.046, 0.206] | 0.025 | 0.107 |
+| 3 | pi3x_oia | 9 | 0.835 [0.798, 0.873] | 0.426 [0.350, 0.493] | 0.049 [0.019, 0.094] | 0.025 | 0.107 |
+| 3 | pi3x_oiapatch | 9 | 0.683 [0.636, 0.729] | 0.698 [0.652, 0.743] | 0.130 [0.054, 0.222] | 0.025 | 0.107 |
+| 3 | pi3x_oiavis | 9 | 0.960 [0.946, 0.974] | 0.119 [0.072, 0.171] | 0.037 [0.011, 0.076] | 0.025 | 0.107 |
+| 3 | pi3x_oiavis_s1 | 9 | 0.961 [0.946, 0.974] | 0.120 [0.072, 0.175] | 0.038 [0.011, 0.080] | 0.025 | 0.107 |
+| 3 | pi3x_oiavis_s2 | 9 | 0.961 [0.946, 0.974] | 0.119 [0.072, 0.172] | 0.037 [0.010, 0.078] | 0.025 | 0.107 |
+| 3 | pi3x_oiavislin | 9 | 0.945 [0.927, 0.963] | 0.142 [0.092, 0.193] | 0.044 [0.015, 0.084] | 0.025 | 0.107 |
+| 3 | pi3x_oiavispatch | 9 | 0.807 [0.746, 0.862] | 0.514 [0.413, 0.613] | 0.101 [0.045, 0.170] | 0.025 | 0.107 |
+| 3 | pi3x_oiavispatchlin | 9 | 0.795 [0.737, 0.848] | 0.559 [0.450, 0.662] | 0.110 [0.049, 0.179] | 0.025 | 0.107 |
+| 3 | pi3x_oiavisself | 9 | 0.961 [0.946, 0.975] | 0.112 [0.071, 0.159] | 0.029 [0.008, 0.059] | 0.025 | 0.107 |
+| 3 | pi3x_oiavisselflin | 9 | 0.946 [0.928, 0.963] | 0.136 [0.091, 0.182] | 0.038 [0.012, 0.076] | 0.025 | 0.107 |
+| 3 | pi3x_oiavisselfpatch | 9 | 0.756 [0.671, 0.838] | 0.638 [0.484, 0.779] | 0.128 [0.058, 0.211] | 0.025 | 0.107 |
+| 3 | pi3x_reproj | 9 | 0.848 [0.810, 0.886] | 0.336 [0.264, 0.408] | 0.079 [0.042, 0.122] | 0.025 | 0.107 |
+| 3 | vggt | 9 | 0.781 [0.714, 0.841] | 0.429 [0.307, 0.567] | 0.041 [0.015, 0.074] | 0.024 | 0.116 |
+| 3 | vggt_border | 9 | 0.759 [0.720, 0.800] | 0.601 [0.545, 0.657] | 0.146 [0.062, 0.250] | 0.024 | 0.116 |
+| 3 | vggt_dedge | 9 | 0.672 [0.596, 0.743] | 0.616 [0.514, 0.718] | 0.082 [0.034, 0.143] | 0.024 | 0.116 |
+| 3 | vggt_oia | 9 | 0.695 [0.628, 0.763] | 0.647 [0.541, 0.748] | 0.106 [0.056, 0.160] | 0.024 | 0.116 |
+| 3 | vggt_oiapatch | 9 | 0.637 [0.579, 0.695] | 0.732 [0.677, 0.779] | 0.152 [0.066, 0.254] | 0.024 | 0.116 |
+| 3 | vggt_oiavis | 9 | 0.918 [0.859, 0.960] | 0.211 [0.105, 0.350] | 0.102 [0.019, 0.228] | 0.024 | 0.116 |
+| 3 | vggt_oiavis_s1 | 9 | 0.917 [0.858, 0.959] | 0.214 [0.111, 0.345] | 0.099 [0.019, 0.215] | 0.024 | 0.116 |
+| 3 | vggt_oiavis_s2 | 9 | 0.921 [0.868, 0.959] | 0.214 [0.110, 0.348] | 0.100 [0.020, 0.221] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin | 9 | 0.915 [0.863, 0.952] | 0.210 [0.124, 0.325] | 0.090 [0.020, 0.199] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin11 | 9 | 0.924 [0.909, 0.939] | 0.213 [0.173, 0.252] | 0.042 [0.016, 0.081] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin17 | 9 | 0.888 [0.821, 0.936] | 0.255 [0.160, 0.380] | 0.104 [0.026, 0.227] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin23 | 9 | 0.911 [0.859, 0.951] | 0.217 [0.128, 0.324] | 0.088 [0.022, 0.186] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin4 | 9 | 0.786 [0.724, 0.836] | 0.539 [0.447, 0.631] | 0.102 [0.044, 0.171] | 0.024 | 0.116 |
+| 3 | vggt_oiavispatch | 9 | 0.819 [0.750, 0.877] | 0.469 [0.369, 0.567] | 0.089 [0.041, 0.148] | 0.024 | 0.116 |
+| 3 | vggt_oiavispatchlin | 9 | 0.810 [0.748, 0.860] | 0.508 [0.416, 0.602] | 0.098 [0.042, 0.163] | 0.024 | 0.116 |
+| 3 | vggt_oiavisself | 9 | 0.945 [0.924, 0.963] | 0.150 [0.098, 0.205] | 0.046 [0.014, 0.093] | 0.024 | 0.116 |
+| 3 | vggt_oiavisselflin | 9 | 0.944 [0.929, 0.959] | 0.141 [0.100, 0.180] | 0.037 [0.010, 0.073] | 0.024 | 0.116 |
+| 3 | vggt_oiavisselfpatch | 9 | 0.768 [0.691, 0.846] | 0.614 [0.454, 0.751] | 0.126 [0.062, 0.199] | 0.024 | 0.116 |
+| 3 | vggt_reproj | 9 | 0.847 [0.804, 0.891] | 0.310 [0.216, 0.401] | 0.079 [0.031, 0.142] | 0.024 | 0.116 |
+| 3 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.099 (p 0.07475) | dCUR -0.258 (p 0.0395) | | | |
+| 3 | vggt_oiavis vs vggt | | dAUROC +0.136 (p 0.04305) | dCUR -0.218 (p 0.1179) | | | |
+| 3 | vggt_oiavis vs vggt_oia | | dAUROC +0.223 (p 0.01205) | dCUR -0.437 (p 0.01205) | | | |
+| 3 | vggt_oia vs vggt | | dAUROC -0.087 (p 0.02345) | dCUR +0.218 (p 0.0076) | | | |
+| 3 | vggt_oiavis vs vggt_reproj | | dAUROC +0.071 (p 0.01635) | dCUR -0.099 (p 0.1185) | | | |
+| 3 | vggt_oiavis vs vggt_border | | dAUROC +0.159 (p 0.00825) | dCUR -0.390 (p 0.00825) | | | |
+| 3 | vggt_oiavis vs vggt_dedge | | dAUROC +0.246 (p 0.00825) | dCUR -0.406 (p 0.01555) | | | |
+| 3 | vggt_reproj vs vggt_border | | dAUROC +0.087 (p 0.0161) | dCUR -0.291 (p 0.00435) | | | |
+| 3 | vggt_reproj vs vggt_dedge | | dAUROC +0.175 (p 0.0233) | dCUR -0.306 (p 0.00825) | | | |
+| 3 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.176 (p 0.00825) | dCUR -0.464 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt | | dAUROC +0.163 (p 0.00435) | dCUR -0.279 (p 0.00825) | | | |
+| 3 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.098 (p 0.00435) | dCUR -0.160 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.027 (p 0.1483) | dCUR -0.061 (p 0.145) | | | |
+| 3 | vggt_oiavisself vs vggt_border | | dAUROC +0.185 (p 0.00435) | dCUR -0.451 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.273 (p 0.00435) | dCUR -0.467 (p 0.00435) | | | |
+| 3 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +0.001 (p 0.301) | dCUR -0.003 (p 0.6704) | | | |
+| 3 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC -0.003 (p 0.5391) | dCUR -0.003 (p 0.7468) | | | |
+| 3 | **vggt_oiavis gate** | | head-native +0.136, control-native +0.038, head-control +0.099 (p 0.07475) | control does not explain the gain | | | |
+| 3 | **vggt_oiavisself gate** | | head-native +0.163, control-native -0.013, head-control +0.176 (p 0.00825) | control does not explain the gain | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.154 (p 0.00435) | dCUR -0.395 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x | | dAUROC +0.110 (p 0.00435) | dCUR -0.300 (p 0.00825) | | | |
+| 3 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.126 (p 0.00435) | dCUR -0.307 (p 0.00435) | | | |
+| 3 | pi3x_oia vs pi3x | | dAUROC -0.016 (p 0.4962) | dCUR +0.007 (p 0.9131) | | | |
+| 3 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.112 (p 0.00435) | dCUR -0.217 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_border | | dAUROC +0.201 (p 0.00435) | dCUR -0.482 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.313 (p 0.00435) | dCUR -0.558 (p 0.00435) | | | |
+| 3 | pi3x_reproj vs pi3x_border | | dAUROC +0.089 (p 0.0122) | dCUR -0.265 (p 0.00435) | | | |
+| 3 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.201 (p 0.0084) | dCUR -0.341 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.205 (p 0.00435) | dCUR -0.526 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x | | dAUROC +0.110 (p 0.00435) | dCUR -0.306 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.113 (p 0.00435) | dCUR -0.224 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +0.001 (p 0.7509) | dCUR -0.007 (p 0.1702) | | | |
+| 3 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.202 (p 0.00435) | dCUR -0.489 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.314 (p 0.00435) | dCUR -0.565 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC -0.000 (p 0.9216) | dCUR -0.001 (p 0.8688) | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC -0.000 (p 0.8607) | dCUR -0.000 (p 0.8552) | | | |
+| 3 | **pi3x_oiavis gate** | | head-native +0.110, control-native -0.044, head-control +0.154 (p 0.00435) | control does not explain the gain | | | |
+| 3 | **pi3x_oiavisself gate** | | head-native +0.110, control-native -0.095, head-control +0.205 (p 0.00435) | control does not explain the gain | | | |
+| 3 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.126 (p 0.00435) | dCUR -0.310 (p 0.00435) | | | |
+| 3 | pi3_oiavis vs pi3 | | dAUROC +0.110 (p 0.00825) | dCUR -0.317 (p 0.00825) | | | |
+| 3 | pi3_oiavis vs pi3_reproj | | dAUROC +0.106 (p 0.00435) | dCUR -0.166 (p 0.00435) | | | |
+| 3 | pi3_oiavis vs pi3_border | | dAUROC +0.192 (p 0.00435) | dCUR -0.456 (p 0.00435) | | | |
+| 3 | pi3_oiavis vs pi3_dedge | | dAUROC +0.301 (p 0.00435) | dCUR -0.514 (p 0.00435) | | | |
+| 3 | pi3_reproj vs pi3_border | | dAUROC +0.086 (p 0.0161) | dCUR -0.290 (p 0.00435) | | | |
+| 3 | pi3_reproj vs pi3_dedge | | dAUROC +0.196 (p 0.0084) | dCUR -0.348 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.188 (p 0.00825) | dCUR -0.502 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3 | | dAUROC +0.107 (p 0.00825) | dCUR -0.327 (p 0.00825) | | | |
+| 3 | pi3_oiavisself vs pi3_reproj | | dAUROC +0.103 (p 0.00435) | dCUR -0.177 (p 0.00825) | | | |
+| 3 | pi3_oiavisself vs pi3_oiavis | | dAUROC -0.002 (p 0.5647) | dCUR -0.010 (p 0.4566) | | | |
+| 3 | pi3_oiavisself vs pi3_border | | dAUROC +0.190 (p 0.00435) | dCUR -0.466 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.299 (p 0.00435) | dCUR -0.524 (p 0.00435) | | | |
+| 3 | **pi3_oiavis gate** | | head-native +0.110, control-native -0.016, head-control +0.126 (p 0.00435) | control does not explain the gain | | | |
+| 3 | **pi3_oiavisself gate** | | head-native +0.107, control-native -0.080, head-control +0.188 (p 0.00825) | control does not explain the gain | | | |
+| 5 | da3 | 9 | 0.790 [0.727, 0.850] | 0.516 [0.409, 0.629] | 0.121 [0.055, 0.210] | 0.029 | 0.329 |
+| 5 | mapanything | 9 | 0.892 [0.845, 0.930] | 0.323 [0.200, 0.472] | 0.055 [0.027, 0.084] | 0.030 | 0.355 |
+| 5 | pi3 | 9 | 0.850 [0.795, 0.895] | 0.442 [0.333, 0.563] | 0.072 [0.031, 0.117] | 0.023 | 0.297 |
+| 5 | pi3_border | 9 | 0.719 [0.677, 0.758] | 0.661 [0.604, 0.714] | 0.197 [0.119, 0.276] | 0.023 | 0.297 |
+| 5 | pi3_dedge | 9 | 0.673 [0.602, 0.732] | 0.647 [0.587, 0.721] | 0.191 [0.106, 0.283] | 0.023 | 0.297 |
+| 5 | pi3_oiavis | 9 | 0.928 [0.902, 0.954] | 0.218 [0.132, 0.307] | 0.089 [0.037, 0.150] | 0.023 | 0.297 |
+| 5 | pi3_oiavislin | 9 | 0.910 [0.880, 0.942] | 0.235 [0.152, 0.317] | 0.086 [0.036, 0.148] | 0.023 | 0.297 |
+| 5 | pi3_oiavispatch | 9 | 0.787 [0.721, 0.844] | 0.516 [0.418, 0.611] | 0.154 [0.083, 0.229] | 0.023 | 0.297 |
+| 5 | pi3_oiavisself | 9 | 0.930 [0.907, 0.954] | 0.192 [0.124, 0.260] | 0.059 [0.024, 0.100] | 0.023 | 0.297 |
+| 5 | pi3_oiavisselflin | 9 | 0.914 [0.885, 0.944] | 0.220 [0.144, 0.296] | 0.072 [0.029, 0.126] | 0.023 | 0.297 |
+| 5 | pi3_oiavisselfpatch | 9 | 0.713 [0.624, 0.802] | 0.696 [0.539, 0.839] | 0.226 [0.118, 0.347] | 0.023 | 0.297 |
+| 5 | pi3_reproj | 9 | 0.804 [0.754, 0.860] | 0.361 [0.258, 0.455] | 0.135 [0.060, 0.228] | 0.023 | 0.297 |
+| 5 | pi3x | 9 | 0.841 [0.817, 0.866] | 0.439 [0.353, 0.532] | 0.101 [0.039, 0.182] | 0.025 | 0.288 |
+| 5 | pi3x_border | 9 | 0.719 [0.677, 0.758] | 0.661 [0.604, 0.714] | 0.199 [0.121, 0.277] | 0.025 | 0.288 |
+| 5 | pi3x_dedge | 9 | 0.658 [0.589, 0.715] | 0.669 [0.614, 0.737] | 0.198 [0.115, 0.279] | 0.025 | 0.288 |
+| 5 | pi3x_oia | 9 | 0.826 [0.782, 0.868] | 0.457 [0.365, 0.552] | 0.077 [0.037, 0.125] | 0.025 | 0.288 |
+| 5 | pi3x_oiapatch | 9 | 0.673 [0.602, 0.742] | 0.726 [0.635, 0.813] | 0.218 [0.112, 0.339] | 0.025 | 0.288 |
+| 5 | pi3x_oiavis | 9 | 0.934 [0.911, 0.957] | 0.188 [0.119, 0.257] | 0.067 [0.029, 0.112] | 0.025 | 0.288 |
+| 5 | pi3x_oiavis_s1 | 9 | 0.935 [0.912, 0.957] | 0.186 [0.118, 0.254] | 0.067 [0.029, 0.112] | 0.025 | 0.288 |
+| 5 | pi3x_oiavis_s2 | 9 | 0.935 [0.914, 0.958] | 0.187 [0.118, 0.255] | 0.066 [0.028, 0.109] | 0.025 | 0.288 |
+| 5 | pi3x_oiavislin | 9 | 0.913 [0.887, 0.940] | 0.223 [0.149, 0.296] | 0.082 [0.037, 0.134] | 0.025 | 0.288 |
+| 5 | pi3x_oiavispatch | 9 | 0.767 [0.708, 0.822] | 0.588 [0.497, 0.673] | 0.181 [0.106, 0.258] | 0.025 | 0.288 |
+| 5 | pi3x_oiavispatchlin | 9 | 0.772 [0.721, 0.822] | 0.604 [0.512, 0.691] | 0.189 [0.108, 0.272] | 0.025 | 0.288 |
+| 5 | pi3x_oiavisself | 9 | 0.935 [0.912, 0.959] | 0.178 [0.111, 0.247] | 0.056 [0.021, 0.097] | 0.025 | 0.288 |
+| 5 | pi3x_oiavisselflin | 9 | 0.914 [0.887, 0.941] | 0.218 [0.147, 0.287] | 0.072 [0.032, 0.119] | 0.025 | 0.288 |
+| 5 | pi3x_oiavisselfpatch | 9 | 0.709 [0.628, 0.793] | 0.706 [0.560, 0.839] | 0.237 [0.134, 0.347] | 0.025 | 0.288 |
+| 5 | pi3x_reproj | 9 | 0.797 [0.748, 0.853] | 0.388 [0.280, 0.483] | 0.132 [0.062, 0.213] | 0.025 | 0.288 |
+| 5 | vggt | 9 | 0.805 [0.731, 0.864] | 0.418 [0.312, 0.548] | 0.072 [0.035, 0.115] | 0.025 | 0.276 |
+| 5 | vggt_border | 9 | 0.719 [0.677, 0.758] | 0.661 [0.604, 0.714] | 0.202 [0.122, 0.289] | 0.025 | 0.276 |
+| 5 | vggt_dedge | 9 | 0.695 [0.612, 0.768] | 0.597 [0.505, 0.698] | 0.147 [0.083, 0.217] | 0.025 | 0.276 |
+| 5 | vggt_oia | 9 | 0.715 [0.651, 0.775] | 0.668 [0.581, 0.752] | 0.186 [0.095, 0.283] | 0.025 | 0.276 |
+| 5 | vggt_oiapatch | 9 | 0.623 [0.544, 0.699] | 0.762 [0.695, 0.822] | 0.250 [0.136, 0.378] | 0.025 | 0.276 |
+| 5 | vggt_oiavis | 9 | 0.900 [0.858, 0.940] | 0.295 [0.170, 0.429] | 0.145 [0.047, 0.276] | 0.025 | 0.276 |
+| 5 | vggt_oiavis_s1 | 9 | 0.897 [0.852, 0.940] | 0.294 [0.171, 0.426] | 0.146 [0.050, 0.272] | 0.025 | 0.276 |
+| 5 | vggt_oiavis_s2 | 9 | 0.900 [0.861, 0.939] | 0.294 [0.171, 0.425] | 0.143 [0.048, 0.270] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin | 9 | 0.887 [0.838, 0.932] | 0.295 [0.173, 0.427] | 0.149 [0.050, 0.277] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin11 | 9 | 0.904 [0.880, 0.931] | 0.255 [0.176, 0.321] | 0.076 [0.032, 0.131] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin17 | 9 | 0.849 [0.779, 0.910] | 0.327 [0.200, 0.466] | 0.164 [0.058, 0.299] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin23 | 9 | 0.878 [0.831, 0.925] | 0.313 [0.188, 0.440] | 0.144 [0.055, 0.254] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin4 | 9 | 0.763 [0.704, 0.819] | 0.601 [0.499, 0.699] | 0.186 [0.102, 0.287] | 0.025 | 0.276 |
+| 5 | vggt_oiavispatch | 9 | 0.778 [0.710, 0.839] | 0.535 [0.434, 0.630] | 0.156 [0.089, 0.230] | 0.025 | 0.276 |
+| 5 | vggt_oiavispatchlin | 9 | 0.779 [0.716, 0.834] | 0.559 [0.462, 0.654] | 0.171 [0.092, 0.256] | 0.025 | 0.276 |
+| 5 | vggt_oiavisself | 9 | 0.923 [0.896, 0.951] | 0.212 [0.134, 0.288] | 0.077 [0.032, 0.131] | 0.025 | 0.276 |
+| 5 | vggt_oiavisselflin | 9 | 0.918 [0.891, 0.946] | 0.201 [0.132, 0.267] | 0.067 [0.029, 0.112] | 0.025 | 0.276 |
+| 5 | vggt_oiavisselfpatch | 9 | 0.717 [0.633, 0.800] | 0.690 [0.535, 0.827] | 0.217 [0.125, 0.321] | 0.025 | 0.276 |
+| 5 | vggt_reproj | 9 | 0.821 [0.777, 0.872] | 0.344 [0.243, 0.439] | 0.127 [0.057, 0.211] | 0.025 | 0.276 |
+| 5 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.122 (p 0.0238) | dCUR -0.241 (p 0.05125) | | | |
+| 5 | vggt_oiavis vs vggt | | dAUROC +0.095 (p 0.105) | dCUR -0.123 (p 0.3347) | | | |
+| 5 | vggt_oiavis vs vggt_oia | | dAUROC +0.186 (p 0.01205) | dCUR -0.373 (p 0.01205) | | | |
+| 5 | vggt_oia vs vggt | | dAUROC -0.091 (p 0.02255) | dCUR +0.250 (p 0.0076) | | | |
+| 5 | vggt_oiavis vs vggt_reproj | | dAUROC +0.079 (p 0.00435) | dCUR -0.050 (p 0.2296) | | | |
+| 5 | vggt_oiavis vs vggt_border | | dAUROC +0.182 (p 0.00435) | dCUR -0.367 (p 0.0161) | | | |
+| 5 | vggt_oiavis vs vggt_dedge | | dAUROC +0.205 (p 0.00435) | dCUR -0.303 (p 0.027) | | | |
+| 5 | vggt_reproj vs vggt_border | | dAUROC +0.102 (p 0.02465) | dCUR -0.317 (p 0.0084) | | | |
+| 5 | vggt_reproj vs vggt_dedge | | dAUROC +0.126 (p 0.06495) | dCUR -0.253 (p 0.01985) | | | |
+| 5 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.206 (p 0.00825) | dCUR -0.478 (p 0.00825) | | | |
+| 5 | vggt_oiavisself vs vggt | | dAUROC +0.118 (p 0.00435) | dCUR -0.206 (p 0.027) | | | |
+| 5 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.102 (p 0.00435) | dCUR -0.132 (p 0.00435) | | | |
+| 5 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.023 (p 0.1376) | dCUR -0.082 (p 0.06005) | | | |
+| 5 | vggt_oiavisself vs vggt_border | | dAUROC +0.204 (p 0.00435) | dCUR -0.449 (p 0.00435) | | | |
+| 5 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.228 (p 0.00435) | dCUR -0.385 (p 0.00435) | | | |
+| 5 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +0.003 (p 0.2506) | dCUR +0.000 (p 0.9864) | | | |
+| 5 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC +0.000 (p 0.9854) | dCUR +0.001 (p 0.8276) | | | |
+| 5 | **vggt_oiavis gate** | | head-native +0.095, control-native -0.027, head-control +0.122 (p 0.0238) | control does not explain the gain | | | |
+| 5 | **vggt_oiavisself gate** | | head-native +0.118, control-native -0.089, head-control +0.206 (p 0.00825) | control does not explain the gain | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.166 (p 0.00435) | dCUR -0.400 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x | | dAUROC +0.092 (p 0.00435) | dCUR -0.251 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.108 (p 0.00435) | dCUR -0.269 (p 0.0084) | | | |
+| 5 | pi3x_oia vs pi3x | | dAUROC -0.015 (p 0.6101) | dCUR +0.018 (p 0.7687) | | | |
+| 5 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.136 (p 0.00435) | dCUR -0.201 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_border | | dAUROC +0.215 (p 0.00435) | dCUR -0.474 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.275 (p 0.00435) | dCUR -0.481 (p 0.00435) | | | |
+| 5 | pi3x_reproj vs pi3x_border | | dAUROC +0.078 (p 0.03205) | dCUR -0.273 (p 0.00435) | | | |
+| 5 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.139 (p 0.02385) | dCUR -0.280 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.226 (p 0.00435) | dCUR -0.528 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x | | dAUROC +0.094 (p 0.00435) | dCUR -0.261 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.138 (p 0.00435) | dCUR -0.210 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +0.002 (p 0.4385) | dCUR -0.009 (p 0.0559) | | | |
+| 5 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.217 (p 0.00435) | dCUR -0.483 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.277 (p 0.00435) | dCUR -0.490 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC -0.001 (p 0.1789) | dCUR +0.001 (p 0.6995) | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC -0.002 (p 0.0616) | dCUR +0.001 (p 0.6584) | | | |
+| 5 | **pi3x_oiavis gate** | | head-native +0.092, control-native -0.074, head-control +0.166 (p 0.00435) | control does not explain the gain | | | |
+| 5 | **pi3x_oiavisself gate** | | head-native +0.094, control-native -0.132, head-control +0.226 (p 0.00435) | control does not explain the gain | | | |
+| 5 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.141 (p 0.00435) | dCUR -0.298 (p 0.00435) | | | |
+| 5 | pi3_oiavis vs pi3 | | dAUROC +0.079 (p 0.01985) | dCUR -0.224 (p 0.02375) | | | |
+| 5 | pi3_oiavis vs pi3_reproj | | dAUROC +0.124 (p 0.00435) | dCUR -0.143 (p 0.0084) | | | |
+| 5 | pi3_oiavis vs pi3_border | | dAUROC +0.209 (p 0.00435) | dCUR -0.443 (p 0.00435) | | | |
+| 5 | pi3_oiavis vs pi3_dedge | | dAUROC +0.255 (p 0.00435) | dCUR -0.429 (p 0.00435) | | | |
+| 5 | pi3_reproj vs pi3_border | | dAUROC +0.086 (p 0.02835) | dCUR -0.300 (p 0.00435) | | | |
+| 5 | pi3_reproj vs pi3_dedge | | dAUROC +0.132 (p 0.03155) | dCUR -0.286 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.218 (p 0.00435) | dCUR -0.504 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3 | | dAUROC +0.081 (p 0.01205) | dCUR -0.250 (p 0.00825) | | | |
+| 5 | pi3_oiavisself vs pi3_reproj | | dAUROC +0.126 (p 0.00435) | dCUR -0.169 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_oiavis | | dAUROC +0.002 (p 0.7746) | dCUR -0.026 (p 0.4846) | | | |
+| 5 | pi3_oiavisself vs pi3_border | | dAUROC +0.212 (p 0.00435) | dCUR -0.469 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.258 (p 0.00435) | dCUR -0.455 (p 0.00435) | | | |
+| 5 | **pi3_oiavis gate** | | head-native +0.079, control-native -0.062, head-control +0.141 (p 0.00435) | control does not explain the gain | | | |
+| 5 | **pi3_oiavisself gate** | | head-native +0.081, control-native -0.137, head-control +0.218 (p 0.00435) | control does not explain the gain | | | |
+| 10 | da3 | 9 | 0.805 [0.726, 0.871] | 0.531 [0.379, 0.682] | 0.166 [0.081, 0.272] | 0.031 | 0.478 |
+| 10 | mapanything | 9 | 0.881 [0.832, 0.927] | 0.361 [0.207, 0.525] | 0.073 [0.036, 0.108] | 0.031 | 0.477 |
+| 10 | pi3 | 9 | 0.849 [0.797, 0.898] | 0.438 [0.299, 0.576] | 0.100 [0.037, 0.176] | 0.026 | 0.450 |
+| 10 | pi3_border | 9 | 0.712 [0.671, 0.750] | 0.684 [0.633, 0.732] | 0.228 [0.124, 0.342] | 0.026 | 0.450 |
+| 10 | pi3_dedge | 9 | 0.634 [0.555, 0.712] | 0.705 [0.604, 0.792] | 0.203 [0.114, 0.302] | 0.026 | 0.450 |
+| 10 | pi3_oiavis | 9 | 0.915 [0.884, 0.946] | 0.239 [0.147, 0.336] | 0.123 [0.054, 0.200] | 0.026 | 0.450 |
+| 10 | pi3_oiavislin | 9 | 0.895 [0.843, 0.937] | 0.250 [0.155, 0.357] | 0.119 [0.047, 0.212] | 0.026 | 0.450 |
+| 10 | pi3_oiavispatch | 9 | 0.774 [0.728, 0.819] | 0.560 [0.484, 0.633] | 0.195 [0.104, 0.295] | 0.026 | 0.450 |
+| 10 | pi3_oiavisself | 9 | 0.914 [0.874, 0.948] | 0.217 [0.134, 0.308] | 0.092 [0.034, 0.162] | 0.026 | 0.450 |
+| 10 | pi3_oiavisselflin | 9 | 0.896 [0.843, 0.939] | 0.246 [0.152, 0.352] | 0.108 [0.040, 0.195] | 0.026 | 0.450 |
+| 10 | pi3_oiavisselfpatch | 9 | 0.698 [0.618, 0.778] | 0.717 [0.573, 0.845] | 0.261 [0.132, 0.410] | 0.026 | 0.450 |
+| 10 | pi3_reproj | 9 | 0.801 [0.754, 0.852] | 0.362 [0.265, 0.453] | 0.126 [0.064, 0.198] | 0.026 | 0.450 |
+| 10 | pi3x | 9 | 0.825 [0.787, 0.863] | 0.493 [0.399, 0.593] | 0.140 [0.057, 0.240] | 0.028 | 0.408 |
+| 10 | pi3x_border | 9 | 0.712 [0.671, 0.750] | 0.684 [0.633, 0.732] | 0.235 [0.133, 0.345] | 0.028 | 0.408 |
+| 10 | pi3x_dedge | 9 | 0.609 [0.529, 0.681] | 0.751 [0.678, 0.816] | 0.256 [0.153, 0.361] | 0.028 | 0.408 |
+| 10 | pi3x_oia | 9 | 0.808 [0.757, 0.858] | 0.478 [0.359, 0.594] | 0.120 [0.058, 0.196] | 0.028 | 0.408 |
+| 10 | pi3x_oiapatch | 9 | 0.687 [0.643, 0.735] | 0.736 [0.675, 0.801] | 0.261 [0.150, 0.383] | 0.028 | 0.408 |
+| 10 | pi3x_oiavis | 9 | 0.920 [0.889, 0.949] | 0.221 [0.133, 0.320] | 0.105 [0.043, 0.184] | 0.028 | 0.408 |
+| 10 | pi3x_oiavis_s1 | 9 | 0.923 [0.894, 0.951] | 0.218 [0.131, 0.316] | 0.103 [0.041, 0.181] | 0.028 | 0.408 |
+| 10 | pi3x_oiavis_s2 | 9 | 0.923 [0.892, 0.951] | 0.218 [0.131, 0.316] | 0.103 [0.041, 0.182] | 0.028 | 0.408 |
+| 10 | pi3x_oiavislin | 9 | 0.898 [0.861, 0.934] | 0.247 [0.156, 0.346] | 0.115 [0.050, 0.194] | 0.028 | 0.408 |
+| 10 | pi3x_oiavispatch | 9 | 0.751 [0.702, 0.800] | 0.628 [0.556, 0.704] | 0.232 [0.128, 0.353] | 0.028 | 0.408 |
+| 10 | pi3x_oiavispatchlin | 9 | 0.742 [0.699, 0.787] | 0.662 [0.596, 0.725] | 0.242 [0.143, 0.355] | 0.028 | 0.408 |
+| 10 | pi3x_oiavisself | 9 | 0.922 [0.891, 0.951] | 0.209 [0.127, 0.297] | 0.091 [0.036, 0.158] | 0.028 | 0.408 |
+| 10 | pi3x_oiavisselflin | 9 | 0.898 [0.855, 0.935] | 0.244 [0.153, 0.348] | 0.108 [0.042, 0.192] | 0.028 | 0.408 |
+| 10 | pi3x_oiavisselfpatch | 9 | 0.691 [0.619, 0.765] | 0.748 [0.636, 0.855] | 0.288 [0.162, 0.425] | 0.028 | 0.408 |
+| 10 | pi3x_reproj | 9 | 0.796 [0.745, 0.846] | 0.357 [0.268, 0.447] | 0.115 [0.064, 0.174] | 0.028 | 0.408 |
+| 10 | vggt | 9 | 0.819 [0.770, 0.867] | 0.505 [0.378, 0.632] | 0.122 [0.048, 0.217] | 0.030 | 0.356 |
+| 10 | vggt_border | 9 | 0.712 [0.671, 0.750] | 0.684 [0.633, 0.732] | 0.233 [0.135, 0.335] | 0.030 | 0.356 |
+| 10 | vggt_dedge | 9 | 0.655 [0.564, 0.740] | 0.643 [0.544, 0.743] | 0.168 [0.097, 0.251] | 0.030 | 0.356 |
+| 10 | vggt_oia | 9 | 0.702 [0.640, 0.761] | 0.704 [0.621, 0.782] | 0.230 [0.121, 0.346] | 0.030 | 0.356 |
+| 10 | vggt_oiapatch | 9 | 0.607 [0.551, 0.671] | 0.786 [0.735, 0.828] | 0.278 [0.161, 0.406] | 0.030 | 0.356 |
+| 10 | vggt_oiavis | 9 | 0.907 [0.867, 0.943] | 0.268 [0.154, 0.401] | 0.140 [0.052, 0.248] | 0.030 | 0.356 |
+| 10 | vggt_oiavis_s1 | 9 | 0.907 [0.867, 0.944] | 0.265 [0.157, 0.386] | 0.133 [0.055, 0.227] | 0.030 | 0.356 |
+| 10 | vggt_oiavis_s2 | 9 | 0.907 [0.869, 0.943] | 0.265 [0.155, 0.391] | 0.134 [0.052, 0.235] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin | 9 | 0.880 [0.825, 0.929] | 0.291 [0.167, 0.436] | 0.156 [0.063, 0.272] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin11 | 9 | 0.901 [0.866, 0.933] | 0.256 [0.170, 0.341] | 0.102 [0.039, 0.187] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin17 | 9 | 0.840 [0.770, 0.904] | 0.347 [0.212, 0.490] | 0.192 [0.095, 0.304] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin23 | 9 | 0.869 [0.814, 0.920] | 0.314 [0.191, 0.452] | 0.159 [0.067, 0.271] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin4 | 9 | 0.751 [0.702, 0.799] | 0.626 [0.538, 0.714] | 0.220 [0.115, 0.338] | 0.030 | 0.356 |
+| 10 | vggt_oiavispatch | 9 | 0.764 [0.715, 0.813] | 0.587 [0.510, 0.661] | 0.195 [0.113, 0.286] | 0.030 | 0.356 |
+| 10 | vggt_oiavispatchlin | 9 | 0.761 [0.717, 0.807] | 0.611 [0.522, 0.691] | 0.202 [0.112, 0.301] | 0.030 | 0.356 |
+| 10 | vggt_oiavisself | 9 | 0.922 [0.895, 0.949] | 0.210 [0.135, 0.284] | 0.087 [0.041, 0.140] | 0.030 | 0.356 |
+| 10 | vggt_oiavisselflin | 9 | 0.911 [0.879, 0.943] | 0.219 [0.139, 0.304] | 0.092 [0.041, 0.152] | 0.030 | 0.356 |
+| 10 | vggt_oiavisselfpatch | 9 | 0.702 [0.630, 0.777] | 0.741 [0.605, 0.858] | 0.263 [0.157, 0.380] | 0.030 | 0.356 |
+| 10 | vggt_reproj | 9 | 0.805 [0.759, 0.851] | 0.367 [0.274, 0.465] | 0.127 [0.063, 0.204] | 0.030 | 0.356 |
+| 10 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.143 (p 0.00435) | dCUR -0.319 (p 0.00825) | | | |
+| 10 | vggt_oiavis vs vggt | | dAUROC +0.088 (p 0.01225) | dCUR -0.237 (p 0.0541) | | | |
+| 10 | vggt_oiavis vs vggt_oia | | dAUROC +0.204 (p 0.00435) | dCUR -0.435 (p 0.00825) | | | |
+| 10 | vggt_oia vs vggt | | dAUROC -0.116 (p 0.01635) | dCUR +0.198 (p 0.0474) | | | |
+| 10 | vggt_oiavis vs vggt_reproj | | dAUROC +0.102 (p 0.00435) | dCUR -0.098 (p 0.05615) | | | |
+| 10 | vggt_oiavis vs vggt_border | | dAUROC +0.195 (p 0.00435) | dCUR -0.416 (p 0.00435) | | | |
+| 10 | vggt_oiavis vs vggt_dedge | | dAUROC +0.252 (p 0.00435) | dCUR -0.375 (p 0.00825) | | | |
+| 10 | vggt_reproj vs vggt_border | | dAUROC +0.093 (p 0.0349) | dCUR -0.318 (p 0.00435) | | | |
+| 10 | vggt_reproj vs vggt_dedge | | dAUROC +0.150 (p 0.0084) | dCUR -0.277 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.220 (p 0.00435) | dCUR -0.531 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt | | dAUROC +0.103 (p 0.00435) | dCUR -0.295 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.118 (p 0.00435) | dCUR -0.157 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.016 (p 0.05805) | dCUR -0.058 (p 0.05705) | | | |
+| 10 | vggt_oiavisself vs vggt_border | | dAUROC +0.211 (p 0.00435) | dCUR -0.474 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.268 (p 0.00435) | dCUR -0.433 (p 0.00435) | | | |
+| 10 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC -0.000 (p 0.9647) | dCUR +0.003 (p 0.957) | | | |
+| 10 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC -0.001 (p 0.5289) | dCUR +0.003 (p 0.5406) | | | |
+| 10 | **vggt_oiavis gate** | | head-native +0.088, control-native -0.055, head-control +0.143 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **vggt_oiavisself gate** | | head-native +0.103, control-native -0.117, head-control +0.220 (p 0.00435) | control does not explain the gain | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.169 (p 0.00435) | dCUR -0.407 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x | | dAUROC +0.096 (p 0.00435) | dCUR -0.272 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.112 (p 0.00435) | dCUR -0.257 (p 0.00435) | | | |
+| 10 | pi3x_oia vs pi3x | | dAUROC -0.016 (p 0.6792) | dCUR -0.015 (p 0.8471) | | | |
+| 10 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.125 (p 0.00435) | dCUR -0.136 (p 0.00835) | | | |
+| 10 | pi3x_oiavis vs pi3x_border | | dAUROC +0.209 (p 0.00435) | dCUR -0.463 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.312 (p 0.00435) | dCUR -0.530 (p 0.00435) | | | |
+| 10 | pi3x_reproj vs pi3x_border | | dAUROC +0.084 (p 0.07095) | dCUR -0.327 (p 0.00435) | | | |
+| 10 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.187 (p 0.00435) | dCUR -0.394 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.231 (p 0.00435) | dCUR -0.539 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x | | dAUROC +0.097 (p 0.00435) | dCUR -0.284 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.126 (p 0.00435) | dCUR -0.148 (p 0.00835) | | | |
+| 10 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +0.002 (p 0.4989) | dCUR -0.012 (p 0.1456) | | | |
+| 10 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.210 (p 0.00435) | dCUR -0.475 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.313 (p 0.00435) | dCUR -0.542 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC -0.003 (p 0.00435) | dCUR +0.004 (p 0.224) | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC -0.002 (p 0.0076) | dCUR +0.003 (p 0.02675) | | | |
+| 10 | **pi3x_oiavis gate** | | head-native +0.096, control-native -0.074, head-control +0.169 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **pi3x_oiavisself gate** | | head-native +0.097, control-native -0.134, head-control +0.231 (p 0.00435) | control does not explain the gain | | | |
+| 10 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.142 (p 0.00435) | dCUR -0.321 (p 0.00435) | | | |
+| 10 | pi3_oiavis vs pi3 | | dAUROC +0.067 (p 0.0444) | dCUR -0.199 (p 0.0241) | | | |
+| 10 | pi3_oiavis vs pi3_reproj | | dAUROC +0.115 (p 0.00435) | dCUR -0.123 (p 0.0163) | | | |
+| 10 | pi3_oiavis vs pi3_border | | dAUROC +0.204 (p 0.00435) | dCUR -0.445 (p 0.00435) | | | |
+| 10 | pi3_oiavis vs pi3_dedge | | dAUROC +0.281 (p 0.00435) | dCUR -0.465 (p 0.00435) | | | |
+| 10 | pi3_reproj vs pi3_border | | dAUROC +0.089 (p 0.04265) | dCUR -0.322 (p 0.00435) | | | |
+| 10 | pi3_reproj vs pi3_dedge | | dAUROC +0.166 (p 0.00435) | dCUR -0.342 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.216 (p 0.00825) | dCUR -0.500 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3 | | dAUROC +0.065 (p 0.07115) | dCUR -0.221 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_reproj | | dAUROC +0.113 (p 0.00435) | dCUR -0.145 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_oiavis | | dAUROC -0.002 (p 0.825) | dCUR -0.022 (p 0.3531) | | | |
+| 10 | pi3_oiavisself vs pi3_border | | dAUROC +0.202 (p 0.00435) | dCUR -0.467 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.279 (p 0.00435) | dCUR -0.487 (p 0.00435) | | | |
+| 10 | **pi3_oiavis gate** | | head-native +0.067, control-native -0.075, head-control +0.142 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **pi3_oiavisself gate** | | head-native +0.065, control-native -0.151, head-control +0.216 (p 0.00825) | control does not explain the gain | | | |
+
+## True-visibility protocol, CO3Dv2, heads adapted label-free on the other fold (pooled with P4-vis-co3d) (clean views; U = pixels no other view sees, S = seen by two or more)
+
+| views | detector | n scenes | AUROC | CUR | CUR-err | AbsRel S | AbsRel U |
+|---|---|---|---|---|---|---|---|
+| 3 | da3 | 18 | 0.687 [0.606, 0.759] | 0.762 [0.651, 0.860] | 0.032 [0.006, 0.072] | 0.042 | 0.033 |
+| 3 | mapanything | 18 | 0.686 [0.626, 0.743] | 0.833 [0.722, 0.920] | 0.050 [0.018, 0.092] | 0.073 | 0.041 |
+| 3 | pi3 | 18 | 0.491 [0.435, 0.546] | 0.927 [0.901, 0.950] | 0.016 [0.003, 0.037] | 0.017 | 0.028 |
+| 3 | pi3_border | 18 | 0.442 [0.376, 0.506] | 0.909 [0.858, 0.952] | 0.017 [0.004, 0.037] | 0.017 | 0.028 |
+| 3 | pi3_dedge | 18 | 0.393 [0.342, 0.443] | 0.951 [0.934, 0.968] | 0.015 [0.002, 0.037] | 0.017 | 0.028 |
+| 3 | pi3_oiavis | 18 | 0.926 [0.900, 0.951] | 0.229 [0.144, 0.324] | 0.003 [0.001, 0.005] | 0.017 | 0.028 |
+| 3 | pi3_oiavislin | 18 | 0.937 [0.911, 0.960] | 0.194 [0.114, 0.287] | 0.003 [0.001, 0.005] | 0.017 | 0.028 |
+| 3 | pi3_oiavispatch | 18 | 0.439 [0.357, 0.526] | 0.881 [0.822, 0.931] | 0.014 [0.002, 0.034] | 0.017 | 0.028 |
+| 3 | pi3_oiavisself | 18 | 0.927 [0.900, 0.951] | 0.234 [0.148, 0.335] | 0.004 [0.000, 0.009] | 0.017 | 0.028 |
+| 3 | pi3_oiavisselflin | 18 | 0.917 [0.880, 0.949] | 0.256 [0.150, 0.373] | 0.003 [0.001, 0.006] | 0.017 | 0.028 |
+| 3 | pi3_oiavisselfpatch | 18 | 0.444 [0.368, 0.522] | 0.898 [0.849, 0.939] | 0.014 [0.003, 0.035] | 0.017 | 0.028 |
+| 3 | pi3_reproj | 18 | 0.916 [0.892, 0.938] | 0.185 [0.118, 0.269] | 0.004 [0.001, 0.008] | 0.016 | 0.028 |
+| 3 | pi3x | 18 | 0.654 [0.601, 0.705] | 0.874 [0.828, 0.914] | 0.016 [0.002, 0.040] | 0.016 | 0.029 |
+| 3 | pi3x_border | 18 | 0.442 [0.376, 0.506] | 0.909 [0.858, 0.952] | 0.023 [0.004, 0.057] | 0.016 | 0.029 |
+| 3 | pi3x_dedge | 18 | 0.395 [0.341, 0.447] | 0.951 [0.933, 0.967] | 0.022 [0.002, 0.057] | 0.016 | 0.029 |
+| 3 | pi3x_oia | 18 | 0.442 [0.369, 0.510] | 0.907 [0.869, 0.942] | 0.021 [0.002, 0.054] | 0.016 | 0.029 |
+| 3 | pi3x_oiapatch | 18 | 0.364 [0.299, 0.429] | 0.953 [0.934, 0.969] | 0.022 [0.004, 0.055] | 0.016 | 0.029 |
+| 3 | pi3x_oiavis | 18 | 0.924 [0.894, 0.952] | 0.246 [0.142, 0.364] | 0.004 [0.001, 0.006] | 0.016 | 0.029 |
+| 3 | pi3x_oiavis_s1 | 18 | 0.905 [0.863, 0.942] | 0.287 [0.169, 0.422] | 0.003 [0.001, 0.007] | 0.016 | 0.029 |
+| 3 | pi3x_oiavis_s2 | 18 | 0.909 [0.871, 0.942] | 0.277 [0.164, 0.402] | 0.004 [0.001, 0.008] | 0.016 | 0.029 |
+| 3 | pi3x_oiavislin | 18 | 0.923 [0.890, 0.953] | 0.236 [0.142, 0.341] | 0.004 [0.001, 0.008] | 0.016 | 0.029 |
+| 3 | pi3x_oiavispatch | 18 | 0.402 [0.323, 0.489] | 0.887 [0.828, 0.937] | 0.018 [0.003, 0.043] | 0.016 | 0.029 |
+| 3 | pi3x_oiavispatchlin | 18 | 0.403 [0.327, 0.488] | 0.895 [0.837, 0.943] | 0.023 [0.004, 0.057] | 0.016 | 0.029 |
+| 3 | pi3x_oiavisself | 18 | 0.935 [0.906, 0.960] | 0.205 [0.119, 0.308] | 0.002 [0.001, 0.004] | 0.016 | 0.029 |
+| 3 | pi3x_oiavisself_xco3d | 18 | 0.968 [0.950, 0.982] | 0.087 [0.048, 0.136] | 0.005 [0.001, 0.010] | 0.016 | 0.029 |
+| 3 | pi3x_oiavisselflin | 18 | 0.925 [0.886, 0.957] | 0.211 [0.119, 0.317] | 0.003 [0.001, 0.007] | 0.016 | 0.029 |
+| 3 | pi3x_oiavisselfpatch | 18 | 0.438 [0.362, 0.519] | 0.882 [0.825, 0.930] | 0.023 [0.003, 0.057] | 0.016 | 0.029 |
+| 3 | pi3x_oiavisselfpatch_xco3d | 18 | 0.729 [0.638, 0.808] | 0.590 [0.465, 0.719] | 0.020 [0.003, 0.048] | 0.016 | 0.029 |
+| 3 | pi3x_reproj | 18 | 0.906 [0.878, 0.932] | 0.199 [0.122, 0.289] | 0.008 [0.002, 0.017] | 0.016 | 0.029 |
+| 3 | vggt | 18 | 0.750 [0.705, 0.788] | 0.768 [0.692, 0.839] | 0.037 [0.009, 0.074] | 0.023 | 0.039 |
+| 3 | vggt_border | 18 | 0.442 [0.376, 0.506] | 0.909 [0.858, 0.952] | 0.027 [0.009, 0.052] | 0.023 | 0.039 |
+| 3 | vggt_dedge | 18 | 0.379 [0.329, 0.429] | 0.948 [0.929, 0.965] | 0.039 [0.009, 0.078] | 0.023 | 0.039 |
+| 3 | vggt_oia | 18 | 0.424 [0.348, 0.497] | 0.918 [0.884, 0.949] | 0.040 [0.010, 0.079] | 0.023 | 0.039 |
+| 3 | vggt_oiapatch | 18 | 0.343 [0.286, 0.401] | 0.954 [0.937, 0.968] | 0.041 [0.010, 0.080] | 0.023 | 0.039 |
+| 3 | vggt_oiavis | 18 | 0.926 [0.901, 0.950] | 0.211 [0.142, 0.285] | 0.011 [0.002, 0.025] | 0.023 | 0.039 |
+| 3 | vggt_oiavis_s1 | 18 | 0.926 [0.900, 0.950] | 0.214 [0.143, 0.291] | 0.012 [0.002, 0.028] | 0.023 | 0.039 |
+| 3 | vggt_oiavis_s2 | 18 | 0.930 [0.905, 0.954] | 0.202 [0.131, 0.278] | 0.010 [0.002, 0.024] | 0.023 | 0.039 |
+| 3 | vggt_oiavislin | 18 | 0.906 [0.866, 0.941] | 0.262 [0.167, 0.366] | 0.012 [0.002, 0.030] | 0.023 | 0.039 |
+| 3 | vggt_oiavislin11 | 18 | 0.662 [0.593, 0.726] | 0.749 [0.681, 0.811] | 0.027 [0.007, 0.057] | 0.023 | 0.039 |
+| 3 | vggt_oiavislin17 | 18 | 0.919 [0.889, 0.947] | 0.235 [0.150, 0.329] | 0.009 [0.001, 0.022] | 0.023 | 0.039 |
+| 3 | vggt_oiavislin23 | 18 | 0.869 [0.815, 0.914] | 0.308 [0.216, 0.411] | 0.017 [0.003, 0.037] | 0.023 | 0.039 |
+| 3 | vggt_oiavislin4 | 18 | 0.447 [0.376, 0.525] | 0.890 [0.836, 0.930] | 0.035 [0.010, 0.067] | 0.023 | 0.039 |
+| 3 | vggt_oiavispatch | 18 | 0.438 [0.358, 0.524] | 0.878 [0.817, 0.929] | 0.029 [0.009, 0.059] | 0.023 | 0.039 |
+| 3 | vggt_oiavispatchlin | 18 | 0.425 [0.350, 0.509] | 0.883 [0.827, 0.931] | 0.029 [0.009, 0.059] | 0.023 | 0.039 |
+| 3 | vggt_oiavisself | 18 | 0.930 [0.906, 0.953] | 0.194 [0.130, 0.260] | 0.011 [0.001, 0.026] | 0.023 | 0.039 |
+| 3 | vggt_oiavisself_xco3d | 18 | 0.849 [0.783, 0.908] | 0.420 [0.275, 0.574] | 0.030 [0.006, 0.066] | 0.023 | 0.039 |
+| 3 | vggt_oiavisselflin | 18 | 0.885 [0.837, 0.929] | 0.314 [0.203, 0.433] | 0.017 [0.002, 0.041] | 0.023 | 0.039 |
+| 3 | vggt_oiavisselfpatch | 18 | 0.433 [0.360, 0.509] | 0.894 [0.845, 0.934] | 0.029 [0.009, 0.059] | 0.023 | 0.039 |
+| 3 | vggt_oiavisselfpatch_xco3d | 18 | 0.587 [0.501, 0.669] | 0.875 [0.820, 0.926] | 0.041 [0.010, 0.081] | 0.023 | 0.039 |
+| 3 | vggt_reproj | 18 | 0.809 [0.754, 0.860] | 0.688 [0.501, 0.860] | 0.039 [0.008, 0.079] | 0.023 | 0.039 |
+| 3 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.488 (p 5e-05) | dCUR -0.667 (p 5e-05) | | | |
+| 3 | vggt_oiavis vs vggt | | dAUROC +0.177 (p 5e-05) | dCUR -0.557 (p 5e-05) | | | |
+| 3 | vggt_oiavis vs vggt_oia | | dAUROC +0.502 (p 5e-05) | dCUR -0.707 (p 5e-05) | | | |
+| 3 | vggt_oia vs vggt | | dAUROC -0.326 (p 5e-05) | dCUR +0.150 (p 0.002) | | | |
+| 3 | vggt_oiavis vs vggt_reproj | | dAUROC +0.117 (p 0.00095) | dCUR -0.477 (p 0.0006) | | | |
+| 3 | vggt_oiavis vs vggt_border | | dAUROC +0.484 (p 5e-05) | dCUR -0.698 (p 5e-05) | | | |
+| 3 | vggt_oiavis vs vggt_dedge | | dAUROC +0.548 (p 5e-05) | dCUR -0.737 (p 5e-05) | | | |
+| 3 | vggt_reproj vs vggt_border | | dAUROC +0.367 (p 5e-05) | dCUR -0.221 (p 0.04635) | | | |
+| 3 | vggt_reproj vs vggt_dedge | | dAUROC +0.430 (p 5e-05) | dCUR -0.260 (p 0.0168) | | | |
+| 3 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.497 (p 5e-05) | dCUR -0.700 (p 5e-05) | | | |
+| 3 | vggt_oiavisself vs vggt | | dAUROC +0.180 (p 5e-05) | dCUR -0.574 (p 5e-05) | | | |
+| 3 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.121 (p 0.00035) | dCUR -0.494 (p 0.00045) | | | |
+| 3 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.004 (p 0.3209) | dCUR -0.017 (p 0.1094) | | | |
+| 3 | vggt_oiavisself vs vggt_border | | dAUROC +0.488 (p 5e-05) | dCUR -0.715 (p 5e-05) | | | |
+| 3 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.551 (p 5e-05) | dCUR -0.754 (p 5e-05) | | | |
+| 3 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +0.000 (p 0.9428) | dCUR -0.003 (p 0.629) | | | |
+| 3 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC -0.004 (p 0.06575) | dCUR +0.009 (p 0.1401) | | | |
+| 3 | vggt_oiavisself_xco3d vs vggt_oiavisselfpatch_xco3d | | dAUROC +0.262 (p 5e-05) | dCUR -0.455 (p 5e-05) | | | |
+| 3 | vggt_oiavisself_xco3d vs vggt_oiavisself | | dAUROC -0.081 (p 0.0103) | dCUR +0.226 (p 0.0032) | | | |
+| 3 | vggt_oiavisself_xco3d vs vggt_oiavis | | dAUROC -0.077 (p 0.0185) | dCUR +0.209 (p 0.0089) | | | |
+| 3 | vggt_oiavisself_xco3d vs vggt | | dAUROC +0.099 (p 0.01055) | dCUR -0.348 (p 0.00085) | | | |
+| 3 | vggt_oiavisself_xco3d vs vggt_reproj | | dAUROC +0.040 (p 0.1372) | dCUR -0.267 (p 0.01445) | | | |
+| 3 | **vggt_oiavis gate** | | head-native +0.177, control-native -0.311, head-control +0.488 (p 5e-05) | control does not explain the gain | | | |
+| 3 | **vggt_oiavisself gate** | | head-native +0.180, control-native -0.316, head-control +0.497 (p 5e-05) | control does not explain the gain | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.523 (p 5e-05) | dCUR -0.640 (p 5e-05) | | | |
+| 3 | pi3x_oiavis vs pi3x | | dAUROC +0.271 (p 5e-05) | dCUR -0.627 (p 5e-05) | | | |
+| 3 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.482 (p 5e-05) | dCUR -0.661 (p 5e-05) | | | |
+| 3 | pi3x_oia vs pi3x | | dAUROC -0.212 (p 0.00015) | dCUR +0.034 (p 0.23) | | | |
+| 3 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.018 (p 0.403) | dCUR +0.048 (p 0.5411) | | | |
+| 3 | pi3x_oiavis vs pi3x_border | | dAUROC +0.482 (p 5e-05) | dCUR -0.662 (p 5e-05) | | | |
+| 3 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.530 (p 5e-05) | dCUR -0.705 (p 5e-05) | | | |
+| 3 | pi3x_reproj vs pi3x_border | | dAUROC +0.464 (p 5e-05) | dCUR -0.710 (p 5e-05) | | | |
+| 3 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.512 (p 5e-05) | dCUR -0.752 (p 5e-05) | | | |
+| 3 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.497 (p 5e-05) | dCUR -0.677 (p 5e-05) | | | |
+| 3 | pi3x_oiavisself vs pi3x | | dAUROC +0.282 (p 5e-05) | dCUR -0.668 (p 5e-05) | | | |
+| 3 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.029 (p 0.1772) | dCUR +0.006 (p 0.9328) | | | |
+| 3 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +0.011 (p 0.1328) | dCUR -0.041 (p 0.0905) | | | |
+| 3 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.493 (p 5e-05) | dCUR -0.704 (p 5e-05) | | | |
+| 3 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.541 (p 5e-05) | dCUR -0.746 (p 5e-05) | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC +0.019 (p 5e-05) | dCUR -0.041 (p 0.0011) | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC +0.016 (p 5e-05) | dCUR -0.030 (p 0.00375) | | | |
+| 3 | pi3x_oiavisself_xco3d vs pi3x_oiavisselfpatch_xco3d | | dAUROC +0.239 (p 5e-05) | dCUR -0.502 (p 5e-05) | | | |
+| 3 | pi3x_oiavisself_xco3d vs pi3x_oiavisself | | dAUROC +0.032 (p 0.0158) | dCUR -0.118 (p 0.00795) | | | |
+| 3 | pi3x_oiavisself_xco3d vs pi3x_oiavis | | dAUROC +0.043 (p 0.0039) | dCUR -0.159 (p 0.00285) | | | |
+| 3 | pi3x_oiavisself_xco3d vs pi3x | | dAUROC +0.314 (p 5e-05) | dCUR -0.786 (p 5e-05) | | | |
+| 3 | pi3x_oiavisself_xco3d vs pi3x_reproj | | dAUROC +0.061 (p 5e-05) | dCUR -0.111 (p 0.0013) | | | |
+| 3 | **pi3x_oiavis gate** | | head-native +0.271, control-native -0.252, head-control +0.523 (p 5e-05) | control does not explain the gain | | | |
+| 3 | **pi3x_oiavisself gate** | | head-native +0.282, control-native -0.216, head-control +0.497 (p 5e-05) | control does not explain the gain | | | |
+| 3 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.487 (p 5e-05) | dCUR -0.651 (p 5e-05) | | | |
+| 3 | pi3_oiavis vs pi3 | | dAUROC +0.436 (p 5e-05) | dCUR -0.697 (p 5e-05) | | | |
+| 3 | pi3_oiavis vs pi3_reproj | | dAUROC +0.010 (p 0.392) | dCUR +0.044 (p 0.347) | | | |
+| 3 | pi3_oiavis vs pi3_border | | dAUROC +0.484 (p 5e-05) | dCUR -0.679 (p 5e-05) | | | |
+| 3 | pi3_oiavis vs pi3_dedge | | dAUROC +0.533 (p 5e-05) | dCUR -0.722 (p 5e-05) | | | |
+| 3 | pi3_reproj vs pi3_border | | dAUROC +0.474 (p 5e-05) | dCUR -0.724 (p 5e-05) | | | |
+| 3 | pi3_reproj vs pi3_dedge | | dAUROC +0.523 (p 5e-05) | dCUR -0.766 (p 5e-05) | | | |
+| 3 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.483 (p 5e-05) | dCUR -0.663 (p 5e-05) | | | |
+| 3 | pi3_oiavisself vs pi3 | | dAUROC +0.436 (p 5e-05) | dCUR -0.692 (p 5e-05) | | | |
+| 3 | pi3_oiavisself vs pi3_reproj | | dAUROC +0.011 (p 0.393) | dCUR +0.049 (p 0.2983) | | | |
+| 3 | pi3_oiavisself vs pi3_oiavis | | dAUROC +0.000 (p 0.9486) | dCUR +0.005 (p 0.8394) | | | |
+| 3 | pi3_oiavisself vs pi3_border | | dAUROC +0.485 (p 5e-05) | dCUR -0.674 (p 5e-05) | | | |
+| 3 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.533 (p 5e-05) | dCUR -0.717 (p 5e-05) | | | |
+| 3 | **pi3_oiavis gate** | | head-native +0.436, control-native -0.052, head-control +0.487 (p 5e-05) | control does not explain the gain | | | |
+| 3 | **pi3_oiavisself gate** | | head-native +0.436, control-native -0.047, head-control +0.483 (p 5e-05) | control does not explain the gain | | | |
+| 5 | da3 | 18 | 0.683 [0.603, 0.755] | 0.706 [0.603, 0.806] | 0.007 [0.000, 0.021] | 0.021 | 0.025 |
+| 5 | mapanything | 18 | 0.735 [0.662, 0.800] | 0.762 [0.642, 0.868] | 0.059 [0.011, 0.131] | 0.045 | 0.037 |
+| 5 | pi3 | 18 | 0.631 [0.575, 0.686] | 0.825 [0.754, 0.885] | 0.019 [0.000, 0.053] | 0.014 | 0.021 |
+| 5 | pi3_border | 18 | 0.474 [0.383, 0.574] | 0.865 [0.746, 0.949] | 0.024 [0.001, 0.064] | 0.014 | 0.021 |
+| 5 | pi3_dedge | 18 | 0.451 [0.385, 0.515] | 0.947 [0.920, 0.971] | 0.023 [0.001, 0.063] | 0.014 | 0.021 |
+| 5 | pi3_oiavis | 18 | 0.945 [0.927, 0.962] | 0.169 [0.105, 0.239] | 0.002 [0.000, 0.005] | 0.014 | 0.021 |
+| 5 | pi3_oiavislin | 18 | 0.952 [0.936, 0.966] | 0.156 [0.099, 0.223] | 0.002 [0.000, 0.005] | 0.014 | 0.021 |
+| 5 | pi3_oiavispatch | 18 | 0.495 [0.411, 0.590] | 0.862 [0.745, 0.945] | 0.023 [0.001, 0.062] | 0.014 | 0.021 |
+| 5 | pi3_oiavisself | 18 | 0.934 [0.909, 0.957] | 0.210 [0.126, 0.303] | 0.002 [0.000, 0.006] | 0.014 | 0.021 |
+| 5 | pi3_oiavisselflin | 18 | 0.939 [0.916, 0.960] | 0.203 [0.112, 0.306] | 0.002 [0.000, 0.005] | 0.014 | 0.021 |
+| 5 | pi3_oiavisselfpatch | 18 | 0.504 [0.416, 0.597] | 0.873 [0.758, 0.950] | 0.023 [0.001, 0.063] | 0.014 | 0.021 |
+| 5 | pi3_reproj | 18 | 0.875 [0.837, 0.906] | 0.222 [0.161, 0.294] | 0.018 [0.000, 0.050] | 0.014 | 0.021 |
+| 5 | pi3x | 18 | 0.753 [0.696, 0.801] | 0.797 [0.714, 0.867] | 0.003 [0.000, 0.008] | 0.014 | 0.026 |
+| 5 | pi3x_border | 18 | 0.474 [0.383, 0.574] | 0.865 [0.746, 0.949] | 0.031 [0.001, 0.088] | 0.014 | 0.026 |
+| 5 | pi3x_dedge | 18 | 0.451 [0.383, 0.516] | 0.949 [0.922, 0.972] | 0.030 [0.000, 0.086] | 0.014 | 0.026 |
+| 5 | pi3x_oia | 18 | 0.424 [0.351, 0.500] | 0.906 [0.822, 0.961] | 0.004 [0.001, 0.009] | 0.014 | 0.026 |
+| 5 | pi3x_oiapatch | 18 | 0.426 [0.367, 0.483] | 0.965 [0.949, 0.980] | 0.031 [0.001, 0.087] | 0.014 | 0.026 |
+| 5 | pi3x_oiavis | 18 | 0.936 [0.909, 0.959] | 0.194 [0.114, 0.291] | 0.002 [0.000, 0.005] | 0.014 | 0.026 |
+| 5 | pi3x_oiavis_s1 | 18 | 0.921 [0.882, 0.952] | 0.243 [0.147, 0.359] | 0.002 [0.000, 0.005] | 0.014 | 0.026 |
+| 5 | pi3x_oiavis_s2 | 18 | 0.928 [0.896, 0.955] | 0.224 [0.131, 0.338] | 0.002 [0.000, 0.005] | 0.014 | 0.026 |
+| 5 | pi3x_oiavislin | 18 | 0.939 [0.915, 0.959] | 0.168 [0.113, 0.231] | 0.002 [0.000, 0.006] | 0.014 | 0.026 |
+| 5 | pi3x_oiavispatch | 18 | 0.463 [0.379, 0.555] | 0.873 [0.756, 0.950] | 0.030 [0.001, 0.086] | 0.014 | 0.026 |
+| 5 | pi3x_oiavispatchlin | 18 | 0.486 [0.407, 0.572] | 0.867 [0.753, 0.941] | 0.030 [0.001, 0.085] | 0.014 | 0.026 |
+| 5 | pi3x_oiavisself | 18 | 0.941 [0.911, 0.965] | 0.170 [0.106, 0.240] | 0.002 [0.000, 0.005] | 0.014 | 0.026 |
+| 5 | pi3x_oiavisself_xco3d | 18 | 0.962 [0.945, 0.977] | 0.099 [0.055, 0.153] | 0.001 [0.000, 0.003] | 0.014 | 0.026 |
+| 5 | pi3x_oiavisselflin | 18 | 0.939 [0.913, 0.960] | 0.169 [0.112, 0.231] | 0.002 [0.000, 0.005] | 0.014 | 0.026 |
+| 5 | pi3x_oiavisselfpatch | 18 | 0.505 [0.418, 0.598] | 0.855 [0.739, 0.932] | 0.030 [0.001, 0.086] | 0.014 | 0.026 |
+| 5 | pi3x_oiavisselfpatch_xco3d | 18 | 0.706 [0.610, 0.794] | 0.639 [0.502, 0.769] | 0.031 [0.001, 0.088] | 0.014 | 0.026 |
+| 5 | pi3x_reproj | 18 | 0.872 [0.841, 0.900] | 0.237 [0.176, 0.304] | 0.018 [0.001, 0.049] | 0.014 | 0.026 |
+| 5 | vggt | 18 | 0.760 [0.707, 0.813] | 0.662 [0.557, 0.763] | 0.064 [0.013, 0.134] | 0.025 | 0.032 |
+| 5 | vggt_border | 18 | 0.474 [0.383, 0.574] | 0.865 [0.746, 0.949] | 0.071 [0.019, 0.142] | 0.025 | 0.032 |
+| 5 | vggt_dedge | 18 | 0.462 [0.396, 0.530] | 0.935 [0.906, 0.962] | 0.098 [0.030, 0.179] | 0.025 | 0.032 |
+| 5 | vggt_oia | 18 | 0.474 [0.392, 0.554] | 0.915 [0.866, 0.956] | 0.097 [0.027, 0.183] | 0.025 | 0.032 |
+| 5 | vggt_oiapatch | 18 | 0.365 [0.303, 0.427] | 0.962 [0.943, 0.979] | 0.102 [0.031, 0.188] | 0.025 | 0.032 |
+| 5 | vggt_oiavis | 18 | 0.930 [0.901, 0.955] | 0.207 [0.130, 0.296] | 0.007 [0.001, 0.018] | 0.025 | 0.032 |
+| 5 | vggt_oiavis_s1 | 18 | 0.928 [0.891, 0.957] | 0.197 [0.127, 0.278] | 0.008 [0.001, 0.021] | 0.025 | 0.032 |
+| 5 | vggt_oiavis_s2 | 18 | 0.930 [0.902, 0.955] | 0.204 [0.131, 0.286] | 0.009 [0.001, 0.022] | 0.025 | 0.032 |
+| 5 | vggt_oiavislin | 18 | 0.927 [0.899, 0.952] | 0.229 [0.147, 0.317] | 0.006 [0.001, 0.014] | 0.025 | 0.032 |
+| 5 | vggt_oiavislin11 | 18 | 0.748 [0.689, 0.803] | 0.650 [0.551, 0.740] | 0.058 [0.016, 0.112] | 0.025 | 0.032 |
+| 5 | vggt_oiavislin17 | 18 | 0.927 [0.896, 0.955] | 0.212 [0.130, 0.301] | 0.004 [0.001, 0.008] | 0.025 | 0.032 |
+| 5 | vggt_oiavislin23 | 18 | 0.900 [0.861, 0.934] | 0.277 [0.187, 0.376] | 0.006 [0.001, 0.012] | 0.025 | 0.032 |
+| 5 | vggt_oiavislin4 | 18 | 0.536 [0.463, 0.609] | 0.875 [0.808, 0.932] | 0.084 [0.028, 0.155] | 0.025 | 0.032 |
+| 5 | vggt_oiavispatch | 18 | 0.492 [0.408, 0.585] | 0.860 [0.745, 0.943] | 0.070 [0.018, 0.141] | 0.025 | 0.032 |
+| 5 | vggt_oiavispatchlin | 18 | 0.491 [0.405, 0.585] | 0.858 [0.743, 0.936] | 0.070 [0.018, 0.141] | 0.025 | 0.032 |
+| 5 | vggt_oiavisself | 18 | 0.933 [0.907, 0.956] | 0.198 [0.132, 0.267] | 0.005 [0.001, 0.013] | 0.025 | 0.032 |
+| 5 | vggt_oiavisself_xco3d | 18 | 0.822 [0.757, 0.879] | 0.544 [0.394, 0.686] | 0.090 [0.021, 0.176] | 0.025 | 0.032 |
+| 5 | vggt_oiavisselflin | 18 | 0.918 [0.886, 0.946] | 0.259 [0.161, 0.366] | 0.006 [0.001, 0.014] | 0.025 | 0.032 |
+| 5 | vggt_oiavisselfpatch | 18 | 0.494 [0.411, 0.585] | 0.872 [0.756, 0.950] | 0.071 [0.019, 0.142] | 0.025 | 0.032 |
+| 5 | vggt_oiavisselfpatch_xco3d | 18 | 0.564 [0.471, 0.649] | 0.898 [0.843, 0.945] | 0.100 [0.030, 0.186] | 0.025 | 0.032 |
+| 5 | vggt_reproj | 18 | 0.762 [0.685, 0.826] | 0.698 [0.515, 0.869] | 0.097 [0.026, 0.186] | 0.025 | 0.032 |
+| 5 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.437 (p 5e-05) | dCUR -0.653 (p 5e-05) | | | |
+| 5 | vggt_oiavis vs vggt | | dAUROC +0.170 (p 0.0002) | dCUR -0.455 (p 5e-05) | | | |
+| 5 | vggt_oiavis vs vggt_oia | | dAUROC +0.456 (p 5e-05) | dCUR -0.708 (p 5e-05) | | | |
+| 5 | vggt_oia vs vggt | | dAUROC -0.286 (p 5e-05) | dCUR +0.253 (p 0.0001) | | | |
+| 5 | vggt_oiavis vs vggt_reproj | | dAUROC +0.167 (p 5e-05) | dCUR -0.491 (p 0.00015) | | | |
+| 5 | vggt_oiavis vs vggt_border | | dAUROC +0.456 (p 5e-05) | dCUR -0.658 (p 5e-05) | | | |
+| 5 | vggt_oiavis vs vggt_dedge | | dAUROC +0.468 (p 5e-05) | dCUR -0.728 (p 5e-05) | | | |
+| 5 | vggt_reproj vs vggt_border | | dAUROC +0.288 (p 0.00205) | dCUR -0.168 (p 0.1378) | | | |
+| 5 | vggt_reproj vs vggt_dedge | | dAUROC +0.300 (p 5e-05) | dCUR -0.238 (p 0.017) | | | |
+| 5 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.440 (p 5e-05) | dCUR -0.674 (p 5e-05) | | | |
+| 5 | vggt_oiavisself vs vggt | | dAUROC +0.173 (p 0.00015) | dCUR -0.464 (p 5e-05) | | | |
+| 5 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.171 (p 5e-05) | dCUR -0.500 (p 0.0001) | | | |
+| 5 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.004 (p 0.4555) | dCUR -0.009 (p 0.7252) | | | |
+| 5 | vggt_oiavisself vs vggt_border | | dAUROC +0.459 (p 5e-05) | dCUR -0.668 (p 5e-05) | | | |
+| 5 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.471 (p 5e-05) | dCUR -0.738 (p 5e-05) | | | |
+| 5 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +0.002 (p 0.9791) | dCUR +0.010 (p 0.17) | | | |
+| 5 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC -0.000 (p 0.8859) | dCUR +0.003 (p 0.8425) | | | |
+| 5 | vggt_oiavisself_xco3d vs vggt_oiavisselfpatch_xco3d | | dAUROC +0.258 (p 5e-05) | dCUR -0.354 (p 5e-05) | | | |
+| 5 | vggt_oiavisself_xco3d vs vggt_oiavisself | | dAUROC -0.111 (p 5e-05) | dCUR +0.346 (p 0.00015) | | | |
+| 5 | vggt_oiavisself_xco3d vs vggt_oiavis | | dAUROC -0.108 (p 0.0001) | dCUR +0.336 (p 0.0002) | | | |
+| 5 | vggt_oiavisself_xco3d vs vggt | | dAUROC +0.062 (p 0.1337) | dCUR -0.119 (p 0.1704) | | | |
+| 5 | vggt_oiavisself_xco3d vs vggt_reproj | | dAUROC +0.060 (p 0.0142) | dCUR -0.154 (p 0.0425) | | | |
+| 5 | **vggt_oiavis gate** | | head-native +0.170, control-native -0.268, head-control +0.437 (p 5e-05) | control does not explain the gain | | | |
+| 5 | **vggt_oiavisself gate** | | head-native +0.173, control-native -0.266, head-control +0.440 (p 5e-05) | control does not explain the gain | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.474 (p 5e-05) | dCUR -0.679 (p 5e-05) | | | |
+| 5 | pi3x_oiavis vs pi3x | | dAUROC +0.184 (p 5e-05) | dCUR -0.603 (p 5e-05) | | | |
+| 5 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.512 (p 5e-05) | dCUR -0.712 (p 5e-05) | | | |
+| 5 | pi3x_oia vs pi3x | | dAUROC -0.328 (p 5e-05) | dCUR +0.108 (p 5e-05) | | | |
+| 5 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.064 (p 0.0119) | dCUR -0.043 (p 0.5107) | | | |
+| 5 | pi3x_oiavis vs pi3x_border | | dAUROC +0.462 (p 5e-05) | dCUR -0.671 (p 5e-05) | | | |
+| 5 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.485 (p 5e-05) | dCUR -0.755 (p 5e-05) | | | |
+| 5 | pi3x_reproj vs pi3x_border | | dAUROC +0.398 (p 5e-05) | dCUR -0.628 (p 5e-05) | | | |
+| 5 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.421 (p 5e-05) | dCUR -0.712 (p 5e-05) | | | |
+| 5 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.437 (p 5e-05) | dCUR -0.685 (p 5e-05) | | | |
+| 5 | pi3x_oiavisself vs pi3x | | dAUROC +0.189 (p 5e-05) | dCUR -0.628 (p 5e-05) | | | |
+| 5 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.069 (p 0.0098) | dCUR -0.067 (p 0.208) | | | |
+| 5 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +0.005 (p 0.3263) | dCUR -0.024 (p 0.2865) | | | |
+| 5 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.467 (p 5e-05) | dCUR -0.695 (p 5e-05) | | | |
+| 5 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.490 (p 5e-05) | dCUR -0.779 (p 5e-05) | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC +0.016 (p 0.0027) | dCUR -0.049 (p 0.0118) | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC +0.008 (p 0.02145) | dCUR -0.030 (p 0.04355) | | | |
+| 5 | pi3x_oiavisself_xco3d vs pi3x_oiavisselfpatch_xco3d | | dAUROC +0.256 (p 5e-05) | dCUR -0.541 (p 5e-05) | | | |
+| 5 | pi3x_oiavisself_xco3d vs pi3x_oiavisself | | dAUROC +0.021 (p 0.0097) | dCUR -0.071 (p 0.0027) | | | |
+| 5 | pi3x_oiavisself_xco3d vs pi3x_oiavis | | dAUROC +0.026 (p 0.00385) | dCUR -0.095 (p 0.00495) | | | |
+| 5 | pi3x_oiavisself_xco3d vs pi3x | | dAUROC +0.210 (p 5e-05) | dCUR -0.699 (p 5e-05) | | | |
+| 5 | pi3x_oiavisself_xco3d vs pi3x_reproj | | dAUROC +0.090 (p 0.0003) | dCUR -0.138 (p 0.0058) | | | |
+| 5 | **pi3x_oiavis gate** | | head-native +0.184, control-native -0.290, head-control +0.474 (p 5e-05) | control does not explain the gain | | | |
+| 5 | **pi3x_oiavisself gate** | | head-native +0.189, control-native -0.248, head-control +0.437 (p 5e-05) | control does not explain the gain | | | |
+| 5 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.450 (p 5e-05) | dCUR -0.693 (p 5e-05) | | | |
+| 5 | pi3_oiavis vs pi3 | | dAUROC +0.314 (p 5e-05) | dCUR -0.656 (p 5e-05) | | | |
+| 5 | pi3_oiavis vs pi3_reproj | | dAUROC +0.070 (p 0.0016) | dCUR -0.053 (p 0.3374) | | | |
+| 5 | pi3_oiavis vs pi3_border | | dAUROC +0.471 (p 5e-05) | dCUR -0.697 (p 5e-05) | | | |
+| 5 | pi3_oiavis vs pi3_dedge | | dAUROC +0.494 (p 5e-05) | dCUR -0.778 (p 5e-05) | | | |
+| 5 | pi3_reproj vs pi3_border | | dAUROC +0.401 (p 5e-05) | dCUR -0.644 (p 5e-05) | | | |
+| 5 | pi3_reproj vs pi3_dedge | | dAUROC +0.424 (p 5e-05) | dCUR -0.725 (p 5e-05) | | | |
+| 5 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.430 (p 5e-05) | dCUR -0.663 (p 0.0001) | | | |
+| 5 | pi3_oiavisself vs pi3 | | dAUROC +0.303 (p 5e-05) | dCUR -0.614 (p 5e-05) | | | |
+| 5 | pi3_oiavisself vs pi3_reproj | | dAUROC +0.059 (p 0.01225) | dCUR -0.011 (p 0.8492) | | | |
+| 5 | pi3_oiavisself vs pi3_oiavis | | dAUROC -0.011 (p 0.03025) | dCUR +0.042 (p 0.03715) | | | |
+| 5 | pi3_oiavisself vs pi3_border | | dAUROC +0.460 (p 5e-05) | dCUR -0.655 (p 0.0001) | | | |
+| 5 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.483 (p 5e-05) | dCUR -0.737 (p 5e-05) | | | |
+| 5 | **pi3_oiavis gate** | | head-native +0.314, control-native -0.135, head-control +0.450 (p 5e-05) | control does not explain the gain | | | |
+| 5 | **pi3_oiavisself gate** | | head-native +0.303, control-native -0.127, head-control +0.430 (p 5e-05) | control does not explain the gain | | | |
+| 10 | da3 | 1 | 0.611 [0.611, 0.611] | 0.947 [0.947, 0.947] | 0.053 [0.053, 0.053] | 0.037 | 0.048 |
+| 10 | mapanything | 1 | 0.699 [0.699, 0.699] | 0.860 [0.860, 0.860] | 0.053 [0.053, 0.053] | 0.137 | 0.052 |
+| 10 | pi3 | 1 | 0.679 [0.679, 0.679] | 0.825 [0.825, 0.825] | 0.018 [0.018, 0.018] | 0.017 | 0.043 |
+| 10 | pi3_border | 1 | 0.488 [0.488, 0.488] | 0.947 [0.947, 0.947] | 0.070 [0.070, 0.070] | 0.017 | 0.043 |
+| 10 | pi3_dedge | 1 | 0.235 [0.235, 0.235] | 1.000 [1.000, 1.000] | 0.070 [0.070, 0.070] | 0.017 | 0.043 |
+| 10 | pi3_oiavis | 1 | 0.678 [0.678, 0.678] | 0.614 [0.614, 0.614] | 0.053 [0.053, 0.053] | 0.017 | 0.043 |
+| 10 | pi3_oiavislin | 1 | 0.657 [0.657, 0.657] | 0.667 [0.667, 0.667] | 0.053 [0.053, 0.053] | 0.017 | 0.043 |
+| 10 | pi3_oiavispatch | 1 | 0.540 [0.540, 0.540] | 0.912 [0.912, 0.912] | 0.070 [0.070, 0.070] | 0.017 | 0.043 |
+| 10 | pi3_oiavisself | 1 | 0.647 [0.647, 0.647] | 0.842 [0.842, 0.842] | 0.070 [0.070, 0.070] | 0.017 | 0.043 |
+| 10 | pi3_oiavisselflin | 1 | 0.647 [0.647, 0.647] | 0.860 [0.860, 0.860] | 0.053 [0.053, 0.053] | 0.017 | 0.043 |
+| 10 | pi3_oiavisselfpatch | 1 | 0.462 [0.462, 0.462] | 0.930 [0.930, 0.930] | 0.070 [0.070, 0.070] | 0.017 | 0.043 |
+| 10 | pi3_reproj | 1 | 0.448 [0.448, 0.448] | 0.965 [0.965, 0.965] | 0.053 [0.053, 0.053] | 0.016 | 0.043 |
+| 10 | pi3x | 1 | 0.636 [0.636, 0.636] | 0.930 [0.930, 0.930] | 0.053 [0.053, 0.053] | 0.016 | 0.048 |
+| 10 | pi3x_border | 1 | 0.488 [0.488, 0.488] | 0.947 [0.947, 0.947] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_dedge | 1 | 0.261 [0.261, 0.261] | 0.982 [0.982, 0.982] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_oia | 1 | 0.465 [0.465, 0.465] | 0.895 [0.895, 0.895] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_oiapatch | 1 | 0.390 [0.390, 0.390] | 0.982 [0.982, 0.982] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_oiavis | 1 | 0.680 [0.680, 0.680] | 0.561 [0.561, 0.561] | 0.053 [0.053, 0.053] | 0.016 | 0.048 |
+| 10 | pi3x_oiavis_s1 | 1 | 0.669 [0.669, 0.669] | 0.614 [0.614, 0.614] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_oiavis_s2 | 1 | 0.673 [0.673, 0.673] | 0.561 [0.561, 0.561] | 0.053 [0.053, 0.053] | 0.016 | 0.047 |
+| 10 | pi3x_oiavislin | 1 | 0.627 [0.627, 0.627] | 0.789 [0.789, 0.789] | 0.070 [0.070, 0.070] | 0.016 | 0.048 |
+| 10 | pi3x_oiavispatch | 1 | 0.526 [0.526, 0.526] | 1.000 [1.000, 1.000] | 0.070 [0.070, 0.070] | 0.016 | 0.048 |
+| 10 | pi3x_oiavispatchlin | 1 | 0.558 [0.558, 0.558] | 0.860 [0.860, 0.860] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_oiavisself | 1 | 0.628 [0.628, 0.628] | 0.860 [0.860, 0.860] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_oiavisself_xco3d | 1 | 0.682 [0.682, 0.682] | 0.614 [0.614, 0.614] | 0.053 [0.053, 0.053] | 0.016 | 0.047 |
+| 10 | pi3x_oiavisselflin | 1 | 0.610 [0.610, 0.610] | 0.842 [0.842, 0.842] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_oiavisselfpatch | 1 | 0.520 [0.520, 0.520] | 0.930 [0.930, 0.930] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_oiavisselfpatch_xco3d | 1 | 0.499 [0.499, 0.499] | 0.930 [0.930, 0.930] | 0.070 [0.070, 0.070] | 0.016 | 0.047 |
+| 10 | pi3x_reproj | 1 | 0.476 [0.476, 0.476] | 0.877 [0.877, 0.877] | 0.070 [0.070, 0.070] | 0.016 | 0.048 |
+| 10 | vggt | 1 | 0.525 [0.525, 0.525] | 0.947 [0.947, 0.947] | 0.018 [0.018, 0.018] | 0.019 | 0.051 |
+| 10 | vggt_border | 1 | 0.488 [0.488, 0.488] | 0.947 [0.947, 0.947] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_dedge | 1 | 0.300 [0.300, 0.300] | 0.982 [0.982, 0.982] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oia | 1 | 0.446 [0.446, 0.446] | 0.982 [0.982, 0.982] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiapatch | 1 | 0.425 [0.425, 0.425] | 0.982 [0.982, 0.982] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavis | 1 | 0.686 [0.686, 0.686] | 0.561 [0.561, 0.561] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavis_s1 | 1 | 0.681 [0.681, 0.681] | 0.509 [0.509, 0.509] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavis_s2 | 1 | 0.677 [0.677, 0.677] | 0.544 [0.544, 0.544] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavislin | 1 | 0.656 [0.656, 0.656] | 0.632 [0.632, 0.632] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavislin11 | 1 | 0.564 [0.564, 0.564] | 0.860 [0.860, 0.860] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavislin17 | 1 | 0.646 [0.646, 0.646] | 0.772 [0.772, 0.772] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavislin23 | 1 | 0.588 [0.588, 0.588] | 0.842 [0.842, 0.842] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavislin4 | 1 | 0.572 [0.572, 0.572] | 0.860 [0.860, 0.860] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavispatch | 1 | 0.542 [0.542, 0.542] | 0.912 [0.912, 0.912] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavispatchlin | 1 | 0.562 [0.562, 0.562] | 0.877 [0.877, 0.877] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavisself | 1 | 0.651 [0.651, 0.651] | 0.895 [0.895, 0.895] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavisself_xco3d | 1 | 0.626 [0.626, 0.626] | 1.000 [1.000, 1.000] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavisselflin | 1 | 0.647 [0.647, 0.647] | 0.895 [0.895, 0.895] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavisselfpatch | 1 | 0.532 [0.532, 0.532] | 0.860 [0.860, 0.860] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavisselfpatch_xco3d | 1 | 0.557 [0.557, 0.557] | 0.982 [0.982, 0.982] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_reproj | 1 | 0.709 [0.709, 0.709] | 1.000 [1.000, 1.000] | 0.053 [0.053, 0.053] | 0.019 | 0.051 |
+| 10 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavis vs vggt | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavis vs vggt_oia | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oia vs vggt | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavis vs vggt_reproj | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavis vs vggt_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavis vs vggt_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_reproj vs vggt_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_reproj vs vggt_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself vs vggt | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself vs vggt_reproj | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself vs vggt_oiavis | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself vs vggt_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself vs vggt_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself_xco3d vs vggt_oiavisselfpatch_xco3d | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself_xco3d vs vggt_oiavisself | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself_xco3d vs vggt_oiavis | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself_xco3d vs vggt | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | vggt_oiavisself_xco3d vs vggt_reproj | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | **vggt_oiavis gate** | | head-native +nan, control-native +nan, head-control +nan (p nan) | control explains the gain | | | |
+| 10 | **vggt_oiavisself gate** | | head-native +nan, control-native +nan, head-control +nan (p nan) | control explains the gain | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavis vs pi3x | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavis vs pi3x_oia | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oia vs pi3x | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavis vs pi3x_reproj | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavis vs pi3x_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavis vs pi3x_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_reproj vs pi3x_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_reproj vs pi3x_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself vs pi3x | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself vs pi3x_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself_xco3d vs pi3x_oiavisselfpatch_xco3d | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself_xco3d vs pi3x_oiavisself | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself_xco3d vs pi3x_oiavis | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself_xco3d vs pi3x | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3x_oiavisself_xco3d vs pi3x_reproj | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | **pi3x_oiavis gate** | | head-native +nan, control-native +nan, head-control +nan (p nan) | control explains the gain | | | |
+| 10 | **pi3x_oiavisself gate** | | head-native +nan, control-native +nan, head-control +nan (p nan) | control explains the gain | | | |
+| 10 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavis vs pi3 | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavis vs pi3_reproj | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavis vs pi3_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavis vs pi3_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_reproj vs pi3_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_reproj vs pi3_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavisself vs pi3 | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavisself vs pi3_reproj | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavisself vs pi3_oiavis | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavisself vs pi3_border | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | pi3_oiavisself vs pi3_dedge | | dAUROC +nan (p nan) | dCUR +nan (p nan) | | | |
+| 10 | **pi3_oiavis gate** | | head-native +nan, control-native +nan, head-control +nan (p nan) | control explains the gain | | | |
+| 10 | **pi3_oiavisself gate** | | head-native +nan, control-native +nan, head-control +nan (p nan) | control explains the gain | | | |
+
+## True-visibility protocol, ETH3D, heads adapted label-free on the four non-benchmark scenes (pooled with P4-vis-eth3d) (clean views; U = pixels no other view sees, S = seen by two or more)
+
+| views | detector | n scenes | AUROC | CUR | CUR-err | AbsRel S | AbsRel U |
+|---|---|---|---|---|---|---|---|
+| 3 | da3 | 9 | 0.578 [0.480, 0.677] | 0.709 [0.594, 0.811] | 0.006 [0.000, 0.016] | 0.015 | 0.024 |
+| 3 | mapanything | 9 | 0.774 [0.687, 0.857] | 0.459 [0.323, 0.573] | 0.025 [0.007, 0.053] | 0.023 | 0.054 |
+| 3 | pi3 | 9 | 0.805 [0.733, 0.874] | 0.454 [0.311, 0.594] | 0.007 [0.001, 0.015] | 0.013 | 0.029 |
+| 3 | pi3_border | 9 | 0.786 [0.709, 0.860] | 0.515 [0.365, 0.664] | 0.016 [0.005, 0.031] | 0.013 | 0.029 |
+| 3 | pi3_dedge | 9 | 0.573 [0.458, 0.690] | 0.788 [0.660, 0.888] | 0.027 [0.007, 0.050] | 0.013 | 0.029 |
+| 3 | pi3_oiavis | 9 | 0.944 [0.916, 0.969] | 0.149 [0.083, 0.223] | 0.002 [0.000, 0.005] | 0.013 | 0.029 |
+| 3 | pi3_oiavislin | 9 | 0.926 [0.890, 0.958] | 0.186 [0.108, 0.269] | 0.001 [0.000, 0.003] | 0.013 | 0.029 |
+| 3 | pi3_oiavispatch | 9 | 0.736 [0.671, 0.797] | 0.658 [0.577, 0.745] | 0.027 [0.009, 0.046] | 0.013 | 0.029 |
+| 3 | pi3_oiavisself | 9 | 0.944 [0.918, 0.968] | 0.156 [0.087, 0.232] | 0.001 [0.000, 0.002] | 0.013 | 0.029 |
+| 3 | pi3_oiavisselflin | 9 | 0.904 [0.869, 0.935] | 0.260 [0.175, 0.345] | 0.002 [0.000, 0.004] | 0.013 | 0.029 |
+| 3 | pi3_oiavisselfpatch | 9 | 0.643 [0.558, 0.724] | 0.758 [0.682, 0.839] | 0.022 [0.005, 0.041] | 0.013 | 0.029 |
+| 3 | pi3_reproj | 9 | 0.980 [0.969, 0.991] | 0.032 [0.015, 0.052] | 0.004 [0.000, 0.008] | 0.013 | 0.029 |
+| 3 | pi3x | 9 | 0.857 [0.794, 0.911] | 0.369 [0.255, 0.477] | 0.002 [0.000, 0.003] | 0.011 | 0.031 |
+| 3 | pi3x_border | 9 | 0.786 [0.709, 0.860] | 0.515 [0.365, 0.664] | 0.031 [0.003, 0.080] | 0.011 | 0.031 |
+| 3 | pi3x_dedge | 9 | 0.575 [0.464, 0.691] | 0.766 [0.639, 0.867] | 0.038 [0.004, 0.094] | 0.011 | 0.031 |
+| 3 | pi3x_oia | 9 | 0.707 [0.634, 0.774] | 0.651 [0.570, 0.726] | 0.037 [0.003, 0.098] | 0.011 | 0.031 |
+| 3 | pi3x_oiapatch | 9 | 0.662 [0.582, 0.743] | 0.668 [0.542, 0.780] | 0.040 [0.003, 0.108] | 0.011 | 0.031 |
+| 3 | pi3x_oiavis | 9 | 0.980 [0.969, 0.988] | 0.058 [0.027, 0.097] | 0.001 [0.000, 0.002] | 0.011 | 0.031 |
+| 3 | pi3x_oiavis_s1 | 9 | 0.976 [0.964, 0.987] | 0.068 [0.034, 0.106] | 0.001 [0.000, 0.002] | 0.011 | 0.031 |
+| 3 | pi3x_oiavis_s2 | 9 | 0.974 [0.963, 0.985] | 0.072 [0.037, 0.111] | 0.001 [0.000, 0.002] | 0.011 | 0.031 |
+| 3 | pi3x_oiavislin | 9 | 0.957 [0.940, 0.973] | 0.120 [0.069, 0.177] | 0.001 [0.000, 0.002] | 0.011 | 0.031 |
+| 3 | pi3x_oiavispatch | 9 | 0.709 [0.626, 0.784] | 0.667 [0.594, 0.749] | 0.037 [0.006, 0.085] | 0.011 | 0.031 |
+| 3 | pi3x_oiavispatchlin | 9 | 0.708 [0.622, 0.782] | 0.660 [0.571, 0.755] | 0.037 [0.005, 0.088] | 0.011 | 0.031 |
+| 3 | pi3x_oiavisself | 9 | 0.970 [0.960, 0.981] | 0.080 [0.048, 0.113] | 0.000 [0.000, 0.001] | 0.011 | 0.031 |
+| 3 | pi3x_oiavisself_xeth3d | 9 | 0.987 [0.979, 0.994] | 0.034 [0.013, 0.057] | 0.001 [0.000, 0.003] | 0.011 | 0.031 |
+| 3 | pi3x_oiavisselflin | 9 | 0.944 [0.927, 0.961] | 0.169 [0.111, 0.229] | 0.002 [0.000, 0.005] | 0.011 | 0.031 |
+| 3 | pi3x_oiavisselfpatch | 9 | 0.619 [0.516, 0.709] | 0.783 [0.719, 0.853] | 0.038 [0.004, 0.092] | 0.011 | 0.031 |
+| 3 | pi3x_oiavisselfpatch_xeth3d | 9 | 0.536 [0.444, 0.638] | 0.760 [0.627, 0.865] | 0.043 [0.005, 0.110] | 0.011 | 0.031 |
+| 3 | pi3x_reproj | 9 | 0.981 [0.971, 0.990] | 0.035 [0.017, 0.055] | 0.005 [0.000, 0.011] | 0.011 | 0.030 |
+| 3 | vggt | 9 | 0.654 [0.546, 0.762] | 0.620 [0.457, 0.765] | 0.016 [0.001, 0.036] | 0.014 | 0.036 |
+| 3 | vggt_border | 9 | 0.786 [0.709, 0.860] | 0.515 [0.365, 0.664] | 0.035 [0.004, 0.088] | 0.014 | 0.036 |
+| 3 | vggt_dedge | 9 | 0.574 [0.469, 0.685] | 0.781 [0.651, 0.877] | 0.040 [0.005, 0.096] | 0.014 | 0.036 |
+| 3 | vggt_oia | 9 | 0.662 [0.569, 0.754] | 0.682 [0.565, 0.793] | 0.040 [0.002, 0.099] | 0.014 | 0.036 |
+| 3 | vggt_oiapatch | 9 | 0.649 [0.539, 0.752] | 0.668 [0.536, 0.788] | 0.038 [0.002, 0.094] | 0.014 | 0.036 |
+| 3 | vggt_oiavis | 9 | 0.984 [0.979, 0.990] | 0.041 [0.024, 0.060] | 0.001 [0.000, 0.002] | 0.014 | 0.036 |
+| 3 | vggt_oiavis_s1 | 9 | 0.982 [0.975, 0.988] | 0.048 [0.029, 0.068] | 0.001 [0.000, 0.001] | 0.014 | 0.036 |
+| 3 | vggt_oiavis_s2 | 9 | 0.983 [0.975, 0.989] | 0.047 [0.025, 0.071] | 0.001 [0.000, 0.002] | 0.014 | 0.036 |
+| 3 | vggt_oiavislin | 9 | 0.965 [0.947, 0.980] | 0.098 [0.052, 0.151] | 0.004 [0.000, 0.008] | 0.014 | 0.036 |
+| 3 | vggt_oiavislin11 | 9 | 0.895 [0.867, 0.920] | 0.283 [0.214, 0.361] | 0.005 [0.002, 0.009] | 0.014 | 0.036 |
+| 3 | vggt_oiavislin17 | 9 | 0.946 [0.925, 0.966] | 0.163 [0.097, 0.231] | 0.005 [0.000, 0.011] | 0.014 | 0.036 |
+| 3 | vggt_oiavislin23 | 9 | 0.952 [0.931, 0.972] | 0.134 [0.079, 0.191] | 0.021 [0.001, 0.057] | 0.014 | 0.036 |
+| 3 | vggt_oiavislin4 | 9 | 0.708 [0.632, 0.788] | 0.663 [0.529, 0.767] | 0.047 [0.005, 0.113] | 0.014 | 0.036 |
+| 3 | vggt_oiavispatch | 9 | 0.727 [0.660, 0.789] | 0.668 [0.590, 0.751] | 0.045 [0.006, 0.106] | 0.014 | 0.036 |
+| 3 | vggt_oiavispatchlin | 9 | 0.735 [0.671, 0.794] | 0.647 [0.563, 0.735] | 0.041 [0.005, 0.096] | 0.014 | 0.036 |
+| 3 | vggt_oiavisself | 9 | 0.981 [0.971, 0.989] | 0.049 [0.026, 0.079] | 0.001 [0.000, 0.003] | 0.014 | 0.036 |
+| 3 | vggt_oiavisself_xeth3d | 9 | 0.974 [0.962, 0.986] | 0.066 [0.031, 0.103] | 0.002 [0.000, 0.004] | 0.014 | 0.036 |
+| 3 | vggt_oiavisselflin | 9 | 0.963 [0.941, 0.979] | 0.095 [0.051, 0.154] | 0.002 [0.000, 0.005] | 0.014 | 0.036 |
+| 3 | vggt_oiavisselfpatch | 9 | 0.615 [0.526, 0.700] | 0.755 [0.674, 0.841] | 0.030 [0.004, 0.065] | 0.014 | 0.036 |
+| 3 | vggt_oiavisselfpatch_xeth3d | 9 | 0.601 [0.534, 0.669] | 0.759 [0.676, 0.833] | 0.044 [0.005, 0.114] | 0.014 | 0.036 |
+| 3 | vggt_reproj | 9 | 0.981 [0.972, 0.989] | 0.031 [0.017, 0.045] | 0.003 [0.001, 0.006] | 0.014 | 0.036 |
+| 3 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.258 (p 0.00435) | dCUR -0.627 (p 0.00435) | | | |
+| 3 | vggt_oiavis vs vggt | | dAUROC +0.331 (p 0.00435) | dCUR -0.579 (p 0.00435) | | | |
+| 3 | vggt_oiavis vs vggt_oia | | dAUROC +0.323 (p 0.00435) | dCUR -0.641 (p 0.00435) | | | |
+| 3 | vggt_oia vs vggt | | dAUROC +0.008 (p 0.7882) | dCUR +0.062 (p 0.3883) | | | |
+| 3 | vggt_oiavis vs vggt_reproj | | dAUROC +0.004 (p 0.4603) | dCUR +0.011 (p 0.4387) | | | |
+| 3 | vggt_oiavis vs vggt_border | | dAUROC +0.198 (p 0.00435) | dCUR -0.474 (p 0.00435) | | | |
+| 3 | vggt_oiavis vs vggt_dedge | | dAUROC +0.410 (p 0.00435) | dCUR -0.740 (p 0.00435) | | | |
+| 3 | vggt_reproj vs vggt_border | | dAUROC +0.195 (p 0.00435) | dCUR -0.484 (p 0.00435) | | | |
+| 3 | vggt_reproj vs vggt_dedge | | dAUROC +0.406 (p 0.00435) | dCUR -0.751 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.366 (p 0.00435) | dCUR -0.705 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt | | dAUROC +0.327 (p 0.00435) | dCUR -0.571 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.000 (p 0.9406) | dCUR +0.019 (p 0.3264) | | | |
+| 3 | vggt_oiavisself vs vggt_oiavis | | dAUROC -0.003 (p 0.5019) | dCUR +0.008 (p 0.5682) | | | |
+| 3 | vggt_oiavisself vs vggt_border | | dAUROC +0.195 (p 0.00435) | dCUR -0.466 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.407 (p 0.00435) | dCUR -0.732 (p 0.00435) | | | |
+| 3 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +0.003 (p 0.04725) | dCUR -0.006 (p 0.1612) | | | |
+| 3 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC +0.002 (p 0.2009) | dCUR -0.006 (p 0.03225) | | | |
+| 3 | vggt_oiavisself_xeth3d vs vggt_oiavisselfpatch_xeth3d | | dAUROC +0.373 (p 0.00435) | dCUR -0.693 (p 0.00435) | | | |
+| 3 | vggt_oiavisself_xeth3d vs vggt_oiavisself | | dAUROC -0.007 (p 0.2652) | dCUR +0.017 (p 0.3928) | | | |
+| 3 | vggt_oiavisself_xeth3d vs vggt_oiavis | | dAUROC -0.010 (p 0.114) | dCUR +0.025 (p 0.1949) | | | |
+| 3 | vggt_oiavisself_xeth3d vs vggt | | dAUROC +0.320 (p 0.00435) | dCUR -0.554 (p 0.00435) | | | |
+| 3 | vggt_oiavisself_xeth3d vs vggt_reproj | | dAUROC -0.007 (p 0.1437) | dCUR +0.035 (p 0.0662) | | | |
+| 3 | **vggt_oiavis gate** | | head-native +0.331, control-native +0.073, head-control +0.258 (p 0.00435) | control does not explain the gain | | | |
+| 3 | **vggt_oiavisself gate** | | head-native +0.327, control-native -0.039, head-control +0.366 (p 0.00435) | control does not explain the gain | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.270 (p 0.00435) | dCUR -0.609 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x | | dAUROC +0.122 (p 0.00435) | dCUR -0.311 (p 0.0083) | | | |
+| 3 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.272 (p 0.00435) | dCUR -0.593 (p 0.00435) | | | |
+| 3 | pi3x_oia vs pi3x | | dAUROC -0.150 (p 0.02155) | dCUR +0.283 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_reproj | | dAUROC -0.002 (p 0.8331) | dCUR +0.023 (p 0.3973) | | | |
+| 3 | pi3x_oiavis vs pi3x_border | | dAUROC +0.193 (p 0.00435) | dCUR -0.457 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.405 (p 0.00435) | dCUR -0.708 (p 0.00435) | | | |
+| 3 | pi3x_reproj vs pi3x_border | | dAUROC +0.195 (p 0.00435) | dCUR -0.480 (p 0.00435) | | | |
+| 3 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.407 (p 0.00435) | dCUR -0.732 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.351 (p 0.00435) | dCUR -0.703 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x | | dAUROC +0.113 (p 0.00435) | dCUR -0.288 (p 0.0083) | | | |
+| 3 | pi3x_oiavisself vs pi3x_reproj | | dAUROC -0.011 (p 0.2882) | dCUR +0.045 (p 0.1112) | | | |
+| 3 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC -0.009 (p 0.0457) | dCUR +0.022 (p 0.0617) | | | |
+| 3 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.184 (p 0.00435) | dCUR -0.435 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.396 (p 0.00435) | dCUR -0.686 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC +0.004 (p 0.0689) | dCUR -0.010 (p 0.1325) | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC +0.005 (p 0.0164) | dCUR -0.014 (p 0.00825) | | | |
+| 3 | pi3x_oiavisself_xeth3d vs pi3x_oiavisselfpatch_xeth3d | | dAUROC +0.451 (p 0.00435) | dCUR -0.726 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself_xeth3d vs pi3x_oiavisself | | dAUROC +0.017 (p 0.0842) | dCUR -0.046 (p 0.1165) | | | |
+| 3 | pi3x_oiavisself_xeth3d vs pi3x_oiavis | | dAUROC +0.008 (p 0.3392) | dCUR -0.024 (p 0.3494) | | | |
+| 3 | pi3x_oiavisself_xeth3d vs pi3x | | dAUROC +0.130 (p 0.00435) | dCUR -0.334 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself_xeth3d vs pi3x_reproj | | dAUROC +0.006 (p 0.0312) | dCUR -0.000 (p 0.9332) | | | |
+| 3 | **pi3x_oiavis gate** | | head-native +0.122, control-native -0.148, head-control +0.270 (p 0.00435) | control does not explain the gain | | | |
+| 3 | **pi3x_oiavisself gate** | | head-native +0.113, control-native -0.238, head-control +0.351 (p 0.00435) | control does not explain the gain | | | |
+| 3 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.207 (p 0.00435) | dCUR -0.509 (p 0.00435) | | | |
+| 3 | pi3_oiavis vs pi3 | | dAUROC +0.139 (p 0.00435) | dCUR -0.305 (p 0.00435) | | | |
+| 3 | pi3_oiavis vs pi3_reproj | | dAUROC -0.037 (p 0.08705) | dCUR +0.117 (p 0.0318) | | | |
+| 3 | pi3_oiavis vs pi3_border | | dAUROC +0.158 (p 0.0083) | dCUR -0.366 (p 0.0083) | | | |
+| 3 | pi3_oiavis vs pi3_dedge | | dAUROC +0.371 (p 0.00435) | dCUR -0.639 (p 0.00435) | | | |
+| 3 | pi3_reproj vs pi3_border | | dAUROC +0.194 (p 0.00835) | dCUR -0.483 (p 0.00435) | | | |
+| 3 | pi3_reproj vs pi3_dedge | | dAUROC +0.407 (p 0.00435) | dCUR -0.755 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.301 (p 0.00435) | dCUR -0.602 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3 | | dAUROC +0.139 (p 0.00435) | dCUR -0.297 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3_reproj | | dAUROC -0.037 (p 0.07555) | dCUR +0.124 (p 0.02395) | | | |
+| 3 | pi3_oiavisself vs pi3_oiavis | | dAUROC -0.000 (p 1) | dCUR +0.007 (p 0.5607) | | | |
+| 3 | pi3_oiavisself vs pi3_border | | dAUROC +0.158 (p 0.00435) | dCUR -0.359 (p 0.0083) | | | |
+| 3 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.371 (p 0.00435) | dCUR -0.631 (p 0.00435) | | | |
+| 3 | **pi3_oiavis gate** | | head-native +0.139, control-native -0.069, head-control +0.207 (p 0.00435) | control does not explain the gain | | | |
+| 3 | **pi3_oiavisself gate** | | head-native +0.139, control-native -0.163, head-control +0.301 (p 0.00435) | control does not explain the gain | | | |
+| 5 | da3 | 9 | 0.657 [0.549, 0.774] | 0.616 [0.456, 0.766] | 0.016 [0.003, 0.032] | 0.014 | 0.032 |
+| 5 | mapanything | 9 | 0.781 [0.696, 0.855] | 0.463 [0.350, 0.575] | 0.029 [0.010, 0.048] | 0.027 | 0.059 |
+| 5 | pi3 | 9 | 0.810 [0.743, 0.870] | 0.492 [0.363, 0.617] | 0.014 [0.000, 0.040] | 0.012 | 0.033 |
+| 5 | pi3_border | 9 | 0.721 [0.656, 0.787] | 0.639 [0.534, 0.741] | 0.031 [0.007, 0.068] | 0.012 | 0.033 |
+| 5 | pi3_dedge | 9 | 0.587 [0.467, 0.707] | 0.780 [0.659, 0.878] | 0.036 [0.004, 0.087] | 0.012 | 0.033 |
+| 5 | pi3_oiavis | 9 | 0.955 [0.931, 0.974] | 0.126 [0.070, 0.192] | 0.001 [0.000, 0.003] | 0.012 | 0.033 |
+| 5 | pi3_oiavislin | 9 | 0.934 [0.901, 0.962] | 0.171 [0.100, 0.253] | 0.004 [0.000, 0.008] | 0.012 | 0.033 |
+| 5 | pi3_oiavispatch | 9 | 0.697 [0.630, 0.762] | 0.664 [0.595, 0.737] | 0.034 [0.006, 0.072] | 0.012 | 0.033 |
+| 5 | pi3_oiavisself | 9 | 0.950 [0.921, 0.969] | 0.134 [0.079, 0.203] | 0.003 [0.000, 0.008] | 0.012 | 0.033 |
+| 5 | pi3_oiavisselflin | 9 | 0.918 [0.886, 0.944] | 0.214 [0.148, 0.294] | 0.007 [0.000, 0.016] | 0.012 | 0.033 |
+| 5 | pi3_oiavisselfpatch | 9 | 0.633 [0.555, 0.709] | 0.778 [0.715, 0.845] | 0.037 [0.006, 0.089] | 0.012 | 0.033 |
+| 5 | pi3_reproj | 9 | 0.979 [0.970, 0.988] | 0.032 [0.017, 0.050] | 0.003 [0.000, 0.008] | 0.012 | 0.033 |
+| 5 | pi3x | 9 | 0.893 [0.850, 0.930] | 0.273 [0.194, 0.346] | 0.011 [0.000, 0.031] | 0.011 | 0.036 |
+| 5 | pi3x_border | 9 | 0.721 [0.656, 0.787] | 0.639 [0.534, 0.741] | 0.059 [0.006, 0.125] | 0.011 | 0.036 |
+| 5 | pi3x_dedge | 9 | 0.584 [0.463, 0.705] | 0.775 [0.647, 0.877] | 0.056 [0.010, 0.123] | 0.011 | 0.036 |
+| 5 | pi3x_oia | 9 | 0.680 [0.612, 0.740] | 0.652 [0.583, 0.722] | 0.055 [0.009, 0.116] | 0.011 | 0.036 |
+| 5 | pi3x_oiapatch | 9 | 0.644 [0.597, 0.697] | 0.708 [0.601, 0.795] | 0.061 [0.007, 0.131] | 0.011 | 0.036 |
+| 5 | pi3x_oiavis | 9 | 0.980 [0.971, 0.987] | 0.051 [0.026, 0.080] | 0.001 [0.000, 0.002] | 0.011 | 0.036 |
+| 5 | pi3x_oiavis_s1 | 9 | 0.974 [0.961, 0.985] | 0.073 [0.036, 0.121] | 0.002 [0.000, 0.004] | 0.011 | 0.036 |
+| 5 | pi3x_oiavis_s2 | 9 | 0.974 [0.962, 0.985] | 0.069 [0.033, 0.112] | 0.001 [0.000, 0.003] | 0.011 | 0.036 |
+| 5 | pi3x_oiavislin | 9 | 0.955 [0.937, 0.971] | 0.124 [0.069, 0.185] | 0.003 [0.000, 0.008] | 0.011 | 0.036 |
+| 5 | pi3x_oiavispatch | 9 | 0.678 [0.619, 0.737] | 0.684 [0.601, 0.757] | 0.067 [0.012, 0.145] | 0.011 | 0.036 |
+| 5 | pi3x_oiavispatchlin | 9 | 0.671 [0.621, 0.720] | 0.693 [0.622, 0.764] | 0.061 [0.010, 0.134] | 0.011 | 0.036 |
+| 5 | pi3x_oiavisself | 9 | 0.969 [0.954, 0.981] | 0.084 [0.046, 0.134] | 0.004 [0.000, 0.012] | 0.011 | 0.036 |
+| 5 | pi3x_oiavisself_xeth3d | 9 | 0.989 [0.983, 0.994] | 0.034 [0.016, 0.054] | 0.002 [0.000, 0.004] | 0.011 | 0.036 |
+| 5 | pi3x_oiavisselflin | 9 | 0.940 [0.920, 0.958] | 0.159 [0.101, 0.225] | 0.007 [0.000, 0.017] | 0.011 | 0.036 |
+| 5 | pi3x_oiavisselfpatch | 9 | 0.594 [0.510, 0.673] | 0.777 [0.713, 0.843] | 0.073 [0.011, 0.154] | 0.011 | 0.036 |
+| 5 | pi3x_oiavisselfpatch_xeth3d | 9 | 0.573 [0.489, 0.660] | 0.724 [0.610, 0.822] | 0.078 [0.014, 0.159] | 0.011 | 0.036 |
+| 5 | pi3x_reproj | 9 | 0.981 [0.971, 0.989] | 0.068 [0.018, 0.151] | 0.005 [0.000, 0.011] | 0.011 | 0.035 |
+| 5 | vggt | 9 | 0.682 [0.565, 0.789] | 0.626 [0.477, 0.772] | 0.027 [0.007, 0.055] | 0.010 | 0.041 |
+| 5 | vggt_border | 9 | 0.721 [0.656, 0.787] | 0.639 [0.534, 0.741] | 0.057 [0.023, 0.096] | 0.010 | 0.041 |
+| 5 | vggt_dedge | 9 | 0.584 [0.464, 0.701] | 0.779 [0.657, 0.879] | 0.033 [0.014, 0.053] | 0.010 | 0.041 |
+| 5 | vggt_oia | 9 | 0.697 [0.621, 0.771] | 0.641 [0.533, 0.752] | 0.030 [0.004, 0.063] | 0.010 | 0.041 |
+| 5 | vggt_oiapatch | 9 | 0.613 [0.546, 0.679] | 0.746 [0.667, 0.817] | 0.053 [0.020, 0.091] | 0.010 | 0.041 |
+| 5 | vggt_oiavis | 9 | 0.987 [0.982, 0.991] | 0.035 [0.019, 0.053] | 0.002 [0.001, 0.004] | 0.010 | 0.041 |
+| 5 | vggt_oiavis_s1 | 9 | 0.985 [0.980, 0.990] | 0.038 [0.021, 0.056] | 0.002 [0.001, 0.004] | 0.010 | 0.041 |
+| 5 | vggt_oiavis_s2 | 9 | 0.986 [0.980, 0.991] | 0.038 [0.020, 0.058] | 0.001 [0.001, 0.003] | 0.010 | 0.041 |
+| 5 | vggt_oiavislin | 9 | 0.976 [0.968, 0.985] | 0.066 [0.035, 0.103] | 0.003 [0.001, 0.005] | 0.010 | 0.041 |
+| 5 | vggt_oiavislin11 | 9 | 0.896 [0.852, 0.933] | 0.278 [0.195, 0.367] | 0.008 [0.003, 0.015] | 0.010 | 0.041 |
+| 5 | vggt_oiavislin17 | 9 | 0.963 [0.945, 0.977] | 0.112 [0.061, 0.175] | 0.004 [0.001, 0.009] | 0.010 | 0.041 |
+| 5 | vggt_oiavislin23 | 9 | 0.937 [0.899, 0.971] | 0.171 [0.086, 0.264] | 0.012 [0.003, 0.026] | 0.010 | 0.041 |
+| 5 | vggt_oiavislin4 | 9 | 0.673 [0.601, 0.744] | 0.718 [0.636, 0.783] | 0.059 [0.027, 0.094] | 0.010 | 0.041 |
+| 5 | vggt_oiavispatch | 9 | 0.693 [0.629, 0.755] | 0.672 [0.603, 0.742] | 0.040 [0.018, 0.064] | 0.010 | 0.041 |
+| 5 | vggt_oiavispatchlin | 9 | 0.691 [0.635, 0.746] | 0.668 [0.595, 0.738] | 0.034 [0.015, 0.057] | 0.010 | 0.041 |
+| 5 | vggt_oiavisself | 9 | 0.988 [0.983, 0.992] | 0.031 [0.014, 0.050] | 0.001 [0.000, 0.002] | 0.010 | 0.041 |
+| 5 | vggt_oiavisself_xeth3d | 9 | 0.983 [0.971, 0.992] | 0.050 [0.015, 0.100] | 0.000 [0.000, 0.001] | 0.010 | 0.041 |
+| 5 | vggt_oiavisselflin | 9 | 0.977 [0.970, 0.984] | 0.059 [0.033, 0.086] | 0.001 [0.000, 0.002] | 0.010 | 0.041 |
+| 5 | vggt_oiavisselfpatch | 9 | 0.605 [0.512, 0.699] | 0.781 [0.696, 0.863] | 0.045 [0.019, 0.076] | 0.010 | 0.041 |
+| 5 | vggt_oiavisselfpatch_xeth3d | 9 | 0.605 [0.531, 0.690] | 0.770 [0.678, 0.841] | 0.044 [0.015, 0.077] | 0.010 | 0.041 |
+| 5 | vggt_reproj | 9 | 0.978 [0.972, 0.985] | 0.030 [0.018, 0.043] | 0.003 [0.001, 0.005] | 0.010 | 0.041 |
+| 5 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.294 (p 0.00435) | dCUR -0.636 (p 0.00435) | | | |
+| 5 | vggt_oiavis vs vggt | | dAUROC +0.304 (p 0.00435) | dCUR -0.591 (p 0.00435) | | | |
+| 5 | vggt_oiavis vs vggt_oia | | dAUROC +0.290 (p 0.00435) | dCUR -0.605 (p 0.00435) | | | |
+| 5 | vggt_oia vs vggt | | dAUROC +0.014 (p 0.726) | dCUR +0.015 (p 0.8035) | | | |
+| 5 | vggt_oiavis vs vggt_reproj | | dAUROC +0.008 (p 0.1432) | dCUR +0.005 (p 0.6986) | | | |
+| 5 | vggt_oiavis vs vggt_border | | dAUROC +0.266 (p 0.00435) | dCUR -0.604 (p 0.00435) | | | |
+| 5 | vggt_oiavis vs vggt_dedge | | dAUROC +0.403 (p 0.00435) | dCUR -0.744 (p 0.00435) | | | |
+| 5 | vggt_reproj vs vggt_border | | dAUROC +0.258 (p 0.00435) | dCUR -0.609 (p 0.00435) | | | |
+| 5 | vggt_reproj vs vggt_dedge | | dAUROC +0.395 (p 0.00435) | dCUR -0.749 (p 0.00435) | | | |
+| 5 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.382 (p 0.00435) | dCUR -0.750 (p 0.00435) | | | |
+| 5 | vggt_oiavisself vs vggt | | dAUROC +0.305 (p 0.00435) | dCUR -0.595 (p 0.00435) | | | |
+| 5 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.009 (p 0.1013) | dCUR +0.001 (p 0.9443) | | | |
+| 5 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.001 (p 0.5012) | dCUR -0.004 (p 0.35) | | | |
+| 5 | vggt_oiavisself vs vggt_border | | dAUROC +0.267 (p 0.00435) | dCUR -0.608 (p 0.00435) | | | |
+| 5 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.404 (p 0.00435) | dCUR -0.748 (p 0.00435) | | | |
+| 5 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +0.002 (p 0.01895) | dCUR -0.003 (p 0.3178) | | | |
+| 5 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC +0.001 (p 0.2485) | dCUR -0.003 (p 0.2519) | | | |
+| 5 | vggt_oiavisself_xeth3d vs vggt_oiavisselfpatch_xeth3d | | dAUROC +0.377 (p 0.00435) | dCUR -0.720 (p 0.00435) | | | |
+| 5 | vggt_oiavisself_xeth3d vs vggt_oiavisself | | dAUROC -0.005 (p 0.3155) | dCUR +0.019 (p 0.3451) | | | |
+| 5 | vggt_oiavisself_xeth3d vs vggt_oiavis | | dAUROC -0.004 (p 0.401) | dCUR +0.015 (p 0.641) | | | |
+| 5 | vggt_oiavisself_xeth3d vs vggt | | dAUROC +0.300 (p 0.00435) | dCUR -0.575 (p 0.00435) | | | |
+| 5 | vggt_oiavisself_xeth3d vs vggt_reproj | | dAUROC +0.004 (p 0.5556) | dCUR +0.020 (p 0.5496) | | | |
+| 5 | **vggt_oiavis gate** | | head-native +0.304, control-native +0.011, head-control +0.294 (p 0.00435) | control does not explain the gain | | | |
+| 5 | **vggt_oiavisself gate** | | head-native +0.305, control-native -0.077, head-control +0.382 (p 0.00435) | control does not explain the gain | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.301 (p 0.00435) | dCUR -0.633 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x | | dAUROC +0.086 (p 0.00435) | dCUR -0.223 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.299 (p 0.00435) | dCUR -0.602 (p 0.00435) | | | |
+| 5 | pi3x_oia vs pi3x | | dAUROC -0.213 (p 0.00435) | dCUR +0.379 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_reproj | | dAUROC -0.001 (p 0.9572) | dCUR -0.018 (p 0.8546) | | | |
+| 5 | pi3x_oiavis vs pi3x_border | | dAUROC +0.259 (p 0.00435) | dCUR -0.588 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.395 (p 0.00435) | dCUR -0.724 (p 0.00435) | | | |
+| 5 | pi3x_reproj vs pi3x_border | | dAUROC +0.260 (p 0.00435) | dCUR -0.570 (p 0.00835) | | | |
+| 5 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.396 (p 0.00435) | dCUR -0.706 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.375 (p 0.00435) | dCUR -0.693 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x | | dAUROC +0.076 (p 0.00435) | dCUR -0.189 (p 0.00825) | | | |
+| 5 | pi3x_oiavisself vs pi3x_reproj | | dAUROC -0.011 (p 0.3755) | dCUR +0.016 (p 0.7635) | | | |
+| 5 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC -0.010 (p 0.00435) | dCUR +0.033 (p 0.03425) | | | |
+| 5 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.249 (p 0.00435) | dCUR -0.555 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.385 (p 0.00435) | dCUR -0.691 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC +0.005 (p 0.1251) | dCUR -0.022 (p 0.09635) | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC +0.005 (p 0.0724) | dCUR -0.018 (p 0.1242) | | | |
+| 5 | pi3x_oiavisself_xeth3d vs pi3x_oiavisselfpatch_xeth3d | | dAUROC +0.416 (p 0.00435) | dCUR -0.691 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself_xeth3d vs pi3x_oiavisself | | dAUROC +0.020 (p 0.01935) | dCUR -0.050 (p 0.0882) | | | |
+| 5 | pi3x_oiavisself_xeth3d vs pi3x_oiavis | | dAUROC +0.009 (p 0.106) | dCUR -0.017 (p 0.3856) | | | |
+| 5 | pi3x_oiavisself_xeth3d vs pi3x | | dAUROC +0.096 (p 0.00825) | dCUR -0.240 (p 0.00825) | | | |
+| 5 | pi3x_oiavisself_xeth3d vs pi3x_reproj | | dAUROC +0.008 (p 0.08695) | dCUR -0.035 (p 0.7812) | | | |
+| 5 | **pi3x_oiavis gate** | | head-native +0.086, control-native -0.215, head-control +0.301 (p 0.00435) | control does not explain the gain | | | |
+| 5 | **pi3x_oiavisself gate** | | head-native +0.076, control-native -0.299, head-control +0.375 (p 0.00435) | control does not explain the gain | | | |
+| 5 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.258 (p 0.00435) | dCUR -0.539 (p 0.00435) | | | |
+| 5 | pi3_oiavis vs pi3 | | dAUROC +0.146 (p 0.00435) | dCUR -0.366 (p 0.00435) | | | |
+| 5 | pi3_oiavis vs pi3_reproj | | dAUROC -0.024 (p 0.09075) | dCUR +0.093 (p 0.03585) | | | |
+| 5 | pi3_oiavis vs pi3_border | | dAUROC +0.235 (p 0.00435) | dCUR -0.513 (p 0.00435) | | | |
+| 5 | pi3_oiavis vs pi3_dedge | | dAUROC +0.368 (p 0.00435) | dCUR -0.654 (p 0.00435) | | | |
+| 5 | pi3_reproj vs pi3_border | | dAUROC +0.259 (p 0.00435) | dCUR -0.607 (p 0.00435) | | | |
+| 5 | pi3_reproj vs pi3_dedge | | dAUROC +0.392 (p 0.00435) | dCUR -0.747 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.316 (p 0.00435) | dCUR -0.645 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3 | | dAUROC +0.140 (p 0.00435) | dCUR -0.358 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_reproj | | dAUROC -0.030 (p 0.06065) | dCUR +0.102 (p 0.01195) | | | |
+| 5 | pi3_oiavisself vs pi3_oiavis | | dAUROC -0.006 (p 0.3126) | dCUR +0.008 (p 0.58) | | | |
+| 5 | pi3_oiavisself vs pi3_border | | dAUROC +0.229 (p 0.00435) | dCUR -0.505 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.362 (p 0.00435) | dCUR -0.646 (p 0.00435) | | | |
+| 5 | **pi3_oiavis gate** | | head-native +0.146, control-native -0.113, head-control +0.258 (p 0.00435) | control does not explain the gain | | | |
+| 5 | **pi3_oiavisself gate** | | head-native +0.140, control-native -0.176, head-control +0.316 (p 0.00435) | control does not explain the gain | | | |
+| 10 | da3 | 9 | 0.679 [0.591, 0.783] | 0.597 [0.418, 0.740] | 0.055 [0.003, 0.134] | 0.020 | 0.054 |
+| 10 | mapanything | 9 | 0.807 [0.728, 0.887] | 0.421 [0.270, 0.573] | 0.061 [0.014, 0.133] | 0.033 | 0.070 |
+| 10 | pi3 | 9 | 0.823 [0.766, 0.876] | 0.537 [0.405, 0.663] | 0.006 [0.000, 0.014] | 0.013 | 0.035 |
+| 10 | pi3_border | 9 | 0.677 [0.622, 0.729] | 0.722 [0.652, 0.785] | 0.037 [0.011, 0.067] | 0.013 | 0.035 |
+| 10 | pi3_dedge | 9 | 0.629 [0.538, 0.732] | 0.726 [0.581, 0.843] | 0.031 [0.010, 0.056] | 0.013 | 0.035 |
+| 10 | pi3_oiavis | 9 | 0.957 [0.926, 0.981] | 0.129 [0.048, 0.236] | 0.002 [0.000, 0.005] | 0.013 | 0.035 |
+| 10 | pi3_oiavislin | 9 | 0.950 [0.917, 0.977] | 0.141 [0.058, 0.236] | 0.002 [0.000, 0.005] | 0.013 | 0.035 |
+| 10 | pi3_oiavispatch | 9 | 0.722 [0.631, 0.785] | 0.661 [0.581, 0.743] | 0.036 [0.012, 0.062] | 0.013 | 0.035 |
+| 10 | pi3_oiavisself | 9 | 0.957 [0.929, 0.979] | 0.128 [0.053, 0.226] | 0.001 [0.000, 0.002] | 0.013 | 0.035 |
+| 10 | pi3_oiavisselflin | 9 | 0.927 [0.890, 0.958] | 0.205 [0.111, 0.308] | 0.002 [0.000, 0.006] | 0.013 | 0.035 |
+| 10 | pi3_oiavisselfpatch | 9 | 0.684 [0.588, 0.765] | 0.716 [0.579, 0.830] | 0.034 [0.010, 0.063] | 0.013 | 0.035 |
+| 10 | pi3_reproj | 9 | 0.968 [0.953, 0.980] | 0.052 [0.031, 0.082] | 0.004 [0.001, 0.007] | 0.013 | 0.036 |
+| 10 | pi3x | 9 | 0.902 [0.867, 0.935] | 0.292 [0.179, 0.406] | 0.000 [0.000, 0.000] | 0.009 | 0.032 |
+| 10 | pi3x_border | 9 | 0.677 [0.622, 0.729] | 0.722 [0.652, 0.785] | 0.047 [0.012, 0.093] | 0.009 | 0.032 |
+| 10 | pi3x_dedge | 9 | 0.627 [0.536, 0.730] | 0.740 [0.616, 0.846] | 0.036 [0.012, 0.066] | 0.009 | 0.032 |
+| 10 | pi3x_oia | 9 | 0.562 [0.460, 0.644] | 0.784 [0.718, 0.859] | 0.045 [0.011, 0.093] | 0.009 | 0.032 |
+| 10 | pi3x_oiapatch | 9 | 0.629 [0.585, 0.675] | 0.772 [0.701, 0.833] | 0.044 [0.011, 0.090] | 0.009 | 0.032 |
+| 10 | pi3x_oiavis | 9 | 0.967 [0.947, 0.982] | 0.100 [0.050, 0.161] | 0.001 [0.000, 0.004] | 0.009 | 0.032 |
+| 10 | pi3x_oiavis_s1 | 9 | 0.962 [0.937, 0.980] | 0.114 [0.055, 0.195] | 0.001 [0.000, 0.004] | 0.009 | 0.032 |
+| 10 | pi3x_oiavis_s2 | 9 | 0.964 [0.942, 0.980] | 0.100 [0.052, 0.162] | 0.001 [0.000, 0.004] | 0.009 | 0.032 |
+| 10 | pi3x_oiavislin | 9 | 0.956 [0.935, 0.974] | 0.123 [0.067, 0.185] | 0.001 [0.000, 0.003] | 0.009 | 0.032 |
+| 10 | pi3x_oiavispatch | 9 | 0.694 [0.627, 0.757] | 0.702 [0.608, 0.785] | 0.032 [0.010, 0.058] | 0.009 | 0.032 |
+| 10 | pi3x_oiavispatchlin | 9 | 0.694 [0.637, 0.749] | 0.712 [0.628, 0.782] | 0.028 [0.008, 0.052] | 0.009 | 0.032 |
+| 10 | pi3x_oiavisself | 9 | 0.952 [0.924, 0.973] | 0.137 [0.073, 0.223] | 0.001 [0.000, 0.004] | 0.009 | 0.032 |
+| 10 | pi3x_oiavisself_xeth3d | 9 | 0.994 [0.992, 0.996] | 0.010 [0.004, 0.017] | 0.000 [0.000, 0.000] | 0.009 | 0.032 |
+| 10 | pi3x_oiavisselflin | 9 | 0.934 [0.905, 0.961] | 0.181 [0.103, 0.270] | 0.002 [0.000, 0.005] | 0.009 | 0.032 |
+| 10 | pi3x_oiavisselfpatch | 9 | 0.614 [0.522, 0.708] | 0.770 [0.658, 0.854] | 0.025 [0.007, 0.047] | 0.009 | 0.032 |
+| 10 | pi3x_oiavisselfpatch_xeth3d | 9 | 0.612 [0.520, 0.700] | 0.728 [0.611, 0.834] | 0.046 [0.012, 0.093] | 0.009 | 0.032 |
+| 10 | pi3x_reproj | 9 | 0.969 [0.950, 0.983] | 0.052 [0.029, 0.089] | 0.012 [0.001, 0.031] | 0.009 | 0.032 |
+| 10 | vggt | 9 | 0.792 [0.714, 0.875] | 0.464 [0.282, 0.645] | 0.028 [0.005, 0.057] | 0.019 | 0.054 |
+| 10 | vggt_border | 9 | 0.677 [0.622, 0.729] | 0.722 [0.652, 0.785] | 0.130 [0.052, 0.220] | 0.019 | 0.054 |
+| 10 | vggt_dedge | 9 | 0.633 [0.544, 0.730] | 0.726 [0.596, 0.842] | 0.098 [0.037, 0.166] | 0.019 | 0.054 |
+| 10 | vggt_oia | 9 | 0.694 [0.617, 0.779] | 0.651 [0.512, 0.769] | 0.083 [0.028, 0.150] | 0.019 | 0.054 |
+| 10 | vggt_oiapatch | 9 | 0.599 [0.525, 0.685] | 0.782 [0.685, 0.863] | 0.110 [0.049, 0.177] | 0.019 | 0.054 |
+| 10 | vggt_oiavis | 9 | 0.970 [0.947, 0.987] | 0.082 [0.030, 0.146] | 0.019 [0.003, 0.043] | 0.019 | 0.054 |
+| 10 | vggt_oiavis_s1 | 9 | 0.971 [0.954, 0.985] | 0.069 [0.030, 0.116] | 0.017 [0.002, 0.036] | 0.019 | 0.054 |
+| 10 | vggt_oiavis_s2 | 9 | 0.975 [0.958, 0.988] | 0.067 [0.031, 0.109] | 0.015 [0.002, 0.034] | 0.019 | 0.054 |
+| 10 | vggt_oiavislin | 9 | 0.958 [0.934, 0.976] | 0.120 [0.070, 0.178] | 0.019 [0.003, 0.040] | 0.019 | 0.054 |
+| 10 | vggt_oiavislin11 | 9 | 0.926 [0.902, 0.948] | 0.222 [0.152, 0.296] | 0.022 [0.004, 0.044] | 0.019 | 0.054 |
+| 10 | vggt_oiavislin17 | 9 | 0.945 [0.925, 0.965] | 0.157 [0.099, 0.216] | 0.023 [0.006, 0.044] | 0.019 | 0.054 |
+| 10 | vggt_oiavislin23 | 9 | 0.879 [0.808, 0.939] | 0.271 [0.164, 0.387] | 0.056 [0.017, 0.100] | 0.019 | 0.054 |
+| 10 | vggt_oiavislin4 | 9 | 0.665 [0.587, 0.724] | 0.731 [0.649, 0.814] | 0.107 [0.051, 0.166] | 0.019 | 0.054 |
+| 10 | vggt_oiavispatch | 9 | 0.718 [0.630, 0.781] | 0.661 [0.582, 0.741] | 0.094 [0.044, 0.150] | 0.019 | 0.054 |
+| 10 | vggt_oiavispatchlin | 9 | 0.715 [0.638, 0.773] | 0.686 [0.611, 0.760] | 0.097 [0.046, 0.152] | 0.019 | 0.054 |
+| 10 | vggt_oiavisself | 9 | 0.971 [0.947, 0.989] | 0.070 [0.021, 0.130] | 0.014 [0.001, 0.037] | 0.019 | 0.054 |
+| 10 | vggt_oiavisself_xeth3d | 9 | 0.987 [0.981, 0.994] | 0.027 [0.008, 0.049] | 0.001 [0.000, 0.004] | 0.019 | 0.054 |
+| 10 | vggt_oiavisselflin | 9 | 0.960 [0.933, 0.980] | 0.100 [0.050, 0.158] | 0.013 [0.001, 0.031] | 0.019 | 0.054 |
+| 10 | vggt_oiavisselfpatch | 9 | 0.655 [0.544, 0.753] | 0.720 [0.585, 0.833] | 0.090 [0.033, 0.156] | 0.019 | 0.054 |
+| 10 | vggt_oiavisselfpatch_xeth3d | 9 | 0.687 [0.603, 0.758] | 0.696 [0.590, 0.804] | 0.057 [0.025, 0.090] | 0.019 | 0.054 |
+| 10 | vggt_reproj | 9 | 0.968 [0.952, 0.981] | 0.136 [0.035, 0.243] | 0.021 [0.001, 0.054] | 0.018 | 0.054 |
+| 10 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.252 (p 0.00435) | dCUR -0.579 (p 0.00435) | | | |
+| 10 | vggt_oiavis vs vggt | | dAUROC +0.178 (p 0.00435) | dCUR -0.382 (p 0.00825) | | | |
+| 10 | vggt_oiavis vs vggt_oia | | dAUROC +0.276 (p 0.00435) | dCUR -0.570 (p 0.00435) | | | |
+| 10 | vggt_oia vs vggt | | dAUROC -0.098 (p 0.01225) | dCUR +0.188 (p 0.02395) | | | |
+| 10 | vggt_oiavis vs vggt_reproj | | dAUROC +0.002 (p 0.9409) | dCUR -0.055 (p 0.1089) | | | |
+| 10 | vggt_oiavis vs vggt_border | | dAUROC +0.293 (p 0.00435) | dCUR -0.640 (p 0.00435) | | | |
+| 10 | vggt_oiavis vs vggt_dedge | | dAUROC +0.337 (p 0.00435) | dCUR -0.644 (p 0.00435) | | | |
+| 10 | vggt_reproj vs vggt_border | | dAUROC +0.291 (p 0.00435) | dCUR -0.585 (p 0.00435) | | | |
+| 10 | vggt_reproj vs vggt_dedge | | dAUROC +0.335 (p 0.00435) | dCUR -0.589 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.316 (p 0.00435) | dCUR -0.650 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt | | dAUROC +0.179 (p 0.00435) | dCUR -0.394 (p 0.00825) | | | |
+| 10 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.003 (p 0.894) | dCUR -0.067 (p 0.04805) | | | |
+| 10 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.001 (p 0.6679) | dCUR -0.012 (p 0.2695) | | | |
+| 10 | vggt_oiavisself vs vggt_border | | dAUROC +0.294 (p 0.00435) | dCUR -0.652 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.338 (p 0.00435) | dCUR -0.656 (p 0.00435) | | | |
+| 10 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC -0.001 (p 0.8334) | dCUR +0.013 (p 0.3358) | | | |
+| 10 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC -0.005 (p 0.102) | dCUR +0.015 (p 0.3247) | | | |
+| 10 | vggt_oiavisself_xeth3d vs vggt_oiavisselfpatch_xeth3d | | dAUROC +0.301 (p 0.00435) | dCUR -0.669 (p 0.00435) | | | |
+| 10 | vggt_oiavisself_xeth3d vs vggt_oiavisself | | dAUROC +0.016 (p 0.1245) | dCUR -0.043 (p 0.07595) | | | |
+| 10 | vggt_oiavisself_xeth3d vs vggt_oiavis | | dAUROC +0.018 (p 0.00825) | dCUR -0.055 (p 0.00435) | | | |
+| 10 | vggt_oiavisself_xeth3d vs vggt | | dAUROC +0.195 (p 0.00435) | dCUR -0.437 (p 0.00825) | | | |
+| 10 | vggt_oiavisself_xeth3d vs vggt_reproj | | dAUROC +0.019 (p 0.00435) | dCUR -0.109 (p 0.01235) | | | |
+| 10 | **vggt_oiavis gate** | | head-native +0.178, control-native -0.074, head-control +0.252 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **vggt_oiavisself gate** | | head-native +0.179, control-native -0.137, head-control +0.316 (p 0.00435) | control does not explain the gain | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.273 (p 0.00435) | dCUR -0.601 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x | | dAUROC +0.066 (p 0.00435) | dCUR -0.191 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.406 (p 0.00435) | dCUR -0.684 (p 0.00435) | | | |
+| 10 | pi3x_oia vs pi3x | | dAUROC -0.340 (p 0.00435) | dCUR +0.492 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_reproj | | dAUROC -0.002 (p 0.8618) | dCUR +0.048 (p 0.3007) | | | |
+| 10 | pi3x_oiavis vs pi3x_border | | dAUROC +0.290 (p 0.00435) | dCUR -0.622 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.340 (p 0.00435) | dCUR -0.640 (p 0.00435) | | | |
+| 10 | pi3x_reproj vs pi3x_border | | dAUROC +0.292 (p 0.00435) | dCUR -0.670 (p 0.00435) | | | |
+| 10 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.342 (p 0.00825) | dCUR -0.688 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.338 (p 0.00435) | dCUR -0.633 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x | | dAUROC +0.051 (p 0.00435) | dCUR -0.155 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_reproj | | dAUROC -0.017 (p 0.422) | dCUR +0.085 (p 0.1287) | | | |
+| 10 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC -0.015 (p 0.015) | dCUR +0.037 (p 0.03735) | | | |
+| 10 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.275 (p 0.00435) | dCUR -0.585 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.325 (p 0.00435) | dCUR -0.603 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC +0.005 (p 0.106) | dCUR -0.014 (p 0.2337) | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC +0.003 (p 0.07565) | dCUR -0.000 (p 1) | | | |
+| 10 | pi3x_oiavisself_xeth3d vs pi3x_oiavisselfpatch_xeth3d | | dAUROC +0.382 (p 0.00435) | dCUR -0.719 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself_xeth3d vs pi3x_oiavisself | | dAUROC +0.042 (p 0.00825) | dCUR -0.127 (p 0.00825) | | | |
+| 10 | pi3x_oiavisself_xeth3d vs pi3x_oiavis | | dAUROC +0.027 (p 0.01285) | dCUR -0.090 (p 0.00825) | | | |
+| 10 | pi3x_oiavisself_xeth3d vs pi3x | | dAUROC +0.092 (p 0.00435) | dCUR -0.282 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself_xeth3d vs pi3x_reproj | | dAUROC +0.025 (p 0.00435) | dCUR -0.042 (p 0.0083) | | | |
+| 10 | **pi3x_oiavis gate** | | head-native +0.066, control-native -0.207, head-control +0.273 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **pi3x_oiavisself gate** | | head-native +0.051, control-native -0.287, head-control +0.338 (p 0.00435) | control does not explain the gain | | | |
+| 10 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.235 (p 0.00435) | dCUR -0.532 (p 0.00435) | | | |
+| 10 | pi3_oiavis vs pi3 | | dAUROC +0.134 (p 0.00435) | dCUR -0.409 (p 0.00435) | | | |
+| 10 | pi3_oiavis vs pi3_reproj | | dAUROC -0.010 (p 0.6435) | dCUR +0.077 (p 0.2476) | | | |
+| 10 | pi3_oiavis vs pi3_border | | dAUROC +0.280 (p 0.00435) | dCUR -0.593 (p 0.00435) | | | |
+| 10 | pi3_oiavis vs pi3_dedge | | dAUROC +0.329 (p 0.00435) | dCUR -0.598 (p 0.00435) | | | |
+| 10 | pi3_reproj vs pi3_border | | dAUROC +0.291 (p 0.00435) | dCUR -0.670 (p 0.00435) | | | |
+| 10 | pi3_reproj vs pi3_dedge | | dAUROC +0.339 (p 0.00435) | dCUR -0.674 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.273 (p 0.00435) | dCUR -0.588 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3 | | dAUROC +0.134 (p 0.00435) | dCUR -0.410 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_reproj | | dAUROC -0.011 (p 0.6121) | dCUR +0.075 (p 0.2178) | | | |
+| 10 | pi3_oiavisself vs pi3_oiavis | | dAUROC -0.000 (p 0.9457) | dCUR -0.001 (p 0.9226) | | | |
+| 10 | pi3_oiavisself vs pi3_border | | dAUROC +0.280 (p 0.00435) | dCUR -0.594 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.328 (p 0.00435) | dCUR -0.599 (p 0.00435) | | | |
+| 10 | **pi3_oiavis gate** | | head-native +0.134, control-native -0.101, head-control +0.235 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **pi3_oiavisself gate** | | head-native +0.134, control-native -0.139, head-control +0.273 (p 0.00435) | control does not explain the gain | | | |
+
+## True-visibility protocol, Phototourism, heads adapted label-free on the other fold (pooled with P7-vis-imc) (clean views; U = pixels no other view sees, S = seen by two or more)
+
+| views | detector | n scenes | AUROC | CUR | CUR-err | AbsRel S | AbsRel U |
+|---|---|---|---|---|---|---|---|
+| 3 | da3 | 9 | 0.752 [0.645, 0.850] | 0.488 [0.318, 0.668] | 0.049 [0.027, 0.075] | 0.027 | 0.150 |
+| 3 | mapanything | 9 | 0.905 [0.862, 0.945] | 0.295 [0.137, 0.470] | 0.045 [0.009, 0.107] | 0.025 | 0.121 |
+| 3 | pi3 | 9 | 0.842 [0.791, 0.890] | 0.462 [0.344, 0.569] | 0.047 [0.017, 0.082] | 0.023 | 0.110 |
+| 3 | pi3_border | 9 | 0.759 [0.720, 0.800] | 0.601 [0.545, 0.657] | 0.138 [0.061, 0.227] | 0.023 | 0.110 |
+| 3 | pi3_dedge | 9 | 0.650 [0.581, 0.713] | 0.659 [0.582, 0.740] | 0.113 [0.043, 0.214] | 0.023 | 0.110 |
+| 3 | pi3_oiavis | 9 | 0.951 [0.937, 0.967] | 0.145 [0.096, 0.195] | 0.046 [0.016, 0.082] | 0.023 | 0.110 |
+| 3 | pi3_oiavislin | 9 | 0.936 [0.913, 0.958] | 0.168 [0.113, 0.220] | 0.050 [0.017, 0.095] | 0.023 | 0.110 |
+| 3 | pi3_oiavispatch | 9 | 0.826 [0.758, 0.882] | 0.455 [0.357, 0.555] | 0.088 [0.037, 0.148] | 0.023 | 0.110 |
+| 3 | pi3_oiavisself | 9 | 0.949 [0.932, 0.966] | 0.135 [0.093, 0.174] | 0.033 [0.008, 0.071] | 0.023 | 0.110 |
+| 3 | pi3_oiavisselflin | 9 | 0.935 [0.910, 0.957] | 0.159 [0.111, 0.203] | 0.040 [0.012, 0.084] | 0.023 | 0.110 |
+| 3 | pi3_oiavisselfpatch | 9 | 0.761 [0.677, 0.842] | 0.637 [0.475, 0.782] | 0.121 [0.052, 0.203] | 0.023 | 0.110 |
+| 3 | pi3_reproj | 9 | 0.846 [0.802, 0.890] | 0.311 [0.213, 0.407] | 0.078 [0.030, 0.139] | 0.023 | 0.110 |
+| 3 | pi3x | 9 | 0.851 [0.808, 0.887] | 0.419 [0.297, 0.548] | 0.058 [0.016, 0.113] | 0.025 | 0.107 |
+| 3 | pi3x_border | 9 | 0.759 [0.720, 0.800] | 0.601 [0.545, 0.657] | 0.138 [0.059, 0.229] | 0.025 | 0.107 |
+| 3 | pi3x_dedge | 9 | 0.647 [0.581, 0.705] | 0.677 [0.604, 0.751] | 0.117 [0.046, 0.206] | 0.025 | 0.107 |
+| 3 | pi3x_oia | 9 | 0.835 [0.798, 0.873] | 0.426 [0.350, 0.493] | 0.049 [0.019, 0.094] | 0.025 | 0.107 |
+| 3 | pi3x_oiapatch | 9 | 0.683 [0.636, 0.729] | 0.698 [0.652, 0.743] | 0.130 [0.054, 0.222] | 0.025 | 0.107 |
+| 3 | pi3x_oiavis | 9 | 0.960 [0.946, 0.974] | 0.119 [0.072, 0.171] | 0.037 [0.011, 0.076] | 0.025 | 0.107 |
+| 3 | pi3x_oiavis_s1 | 9 | 0.961 [0.946, 0.974] | 0.120 [0.072, 0.175] | 0.038 [0.011, 0.080] | 0.025 | 0.107 |
+| 3 | pi3x_oiavis_s2 | 9 | 0.961 [0.946, 0.974] | 0.119 [0.072, 0.172] | 0.037 [0.010, 0.078] | 0.025 | 0.107 |
+| 3 | pi3x_oiavislin | 9 | 0.945 [0.927, 0.963] | 0.142 [0.092, 0.193] | 0.044 [0.015, 0.084] | 0.025 | 0.107 |
+| 3 | pi3x_oiavispatch | 9 | 0.807 [0.746, 0.862] | 0.514 [0.413, 0.613] | 0.101 [0.045, 0.170] | 0.025 | 0.107 |
+| 3 | pi3x_oiavispatchlin | 9 | 0.795 [0.737, 0.848] | 0.559 [0.450, 0.662] | 0.110 [0.049, 0.179] | 0.025 | 0.107 |
+| 3 | pi3x_oiavisself | 9 | 0.961 [0.946, 0.975] | 0.112 [0.071, 0.159] | 0.029 [0.008, 0.059] | 0.025 | 0.107 |
+| 3 | pi3x_oiavisself_ximc | 9 | 0.951 [0.927, 0.972] | 0.135 [0.077, 0.197] | 0.040 [0.013, 0.080] | 0.025 | 0.107 |
+| 3 | pi3x_oiavisselflin | 9 | 0.946 [0.928, 0.963] | 0.136 [0.091, 0.182] | 0.038 [0.012, 0.076] | 0.025 | 0.107 |
+| 3 | pi3x_oiavisselfpatch | 9 | 0.756 [0.671, 0.838] | 0.638 [0.484, 0.779] | 0.128 [0.058, 0.211] | 0.025 | 0.107 |
+| 3 | pi3x_oiavisselfpatch_ximc | 9 | 0.814 [0.758, 0.870] | 0.483 [0.345, 0.613] | 0.057 [0.028, 0.094] | 0.025 | 0.107 |
+| 3 | pi3x_reproj | 9 | 0.848 [0.810, 0.886] | 0.336 [0.264, 0.408] | 0.079 [0.042, 0.122] | 0.025 | 0.107 |
+| 3 | vggt | 9 | 0.781 [0.714, 0.841] | 0.429 [0.307, 0.567] | 0.041 [0.015, 0.074] | 0.024 | 0.116 |
+| 3 | vggt_border | 9 | 0.759 [0.720, 0.800] | 0.601 [0.545, 0.657] | 0.146 [0.062, 0.250] | 0.024 | 0.116 |
+| 3 | vggt_dedge | 9 | 0.672 [0.596, 0.743] | 0.616 [0.514, 0.718] | 0.082 [0.034, 0.143] | 0.024 | 0.116 |
+| 3 | vggt_oia | 9 | 0.695 [0.628, 0.763] | 0.647 [0.541, 0.748] | 0.106 [0.056, 0.160] | 0.024 | 0.116 |
+| 3 | vggt_oiapatch | 9 | 0.637 [0.579, 0.695] | 0.732 [0.677, 0.779] | 0.152 [0.066, 0.254] | 0.024 | 0.116 |
+| 3 | vggt_oiavis | 9 | 0.918 [0.859, 0.960] | 0.211 [0.105, 0.350] | 0.102 [0.019, 0.228] | 0.024 | 0.116 |
+| 3 | vggt_oiavis_s1 | 9 | 0.917 [0.858, 0.959] | 0.214 [0.111, 0.345] | 0.099 [0.019, 0.215] | 0.024 | 0.116 |
+| 3 | vggt_oiavis_s2 | 9 | 0.921 [0.868, 0.959] | 0.214 [0.110, 0.348] | 0.100 [0.020, 0.221] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin | 9 | 0.915 [0.863, 0.952] | 0.210 [0.124, 0.325] | 0.090 [0.020, 0.199] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin11 | 9 | 0.924 [0.909, 0.939] | 0.213 [0.173, 0.252] | 0.042 [0.016, 0.081] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin17 | 9 | 0.888 [0.821, 0.936] | 0.255 [0.160, 0.380] | 0.104 [0.026, 0.227] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin23 | 9 | 0.911 [0.859, 0.951] | 0.217 [0.128, 0.324] | 0.088 [0.022, 0.186] | 0.024 | 0.116 |
+| 3 | vggt_oiavislin4 | 9 | 0.786 [0.724, 0.836] | 0.539 [0.447, 0.631] | 0.102 [0.044, 0.171] | 0.024 | 0.116 |
+| 3 | vggt_oiavispatch | 9 | 0.819 [0.750, 0.877] | 0.469 [0.369, 0.567] | 0.089 [0.041, 0.148] | 0.024 | 0.116 |
+| 3 | vggt_oiavispatchlin | 9 | 0.810 [0.748, 0.860] | 0.508 [0.416, 0.602] | 0.098 [0.042, 0.163] | 0.024 | 0.116 |
+| 3 | vggt_oiavisself | 9 | 0.945 [0.924, 0.963] | 0.150 [0.098, 0.205] | 0.046 [0.014, 0.093] | 0.024 | 0.116 |
+| 3 | vggt_oiavisself_ximc | 9 | 0.953 [0.936, 0.968] | 0.127 [0.084, 0.174] | 0.029 [0.011, 0.052] | 0.024 | 0.116 |
+| 3 | vggt_oiavisselflin | 9 | 0.944 [0.929, 0.959] | 0.141 [0.100, 0.180] | 0.037 [0.010, 0.073] | 0.024 | 0.116 |
+| 3 | vggt_oiavisselfpatch | 9 | 0.768 [0.691, 0.846] | 0.614 [0.454, 0.751] | 0.126 [0.062, 0.199] | 0.024 | 0.116 |
+| 3 | vggt_oiavisselfpatch_ximc | 9 | 0.797 [0.733, 0.858] | 0.553 [0.408, 0.691] | 0.060 [0.033, 0.092] | 0.024 | 0.116 |
+| 3 | vggt_reproj | 9 | 0.847 [0.804, 0.891] | 0.310 [0.216, 0.401] | 0.079 [0.031, 0.142] | 0.024 | 0.116 |
+| 3 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.099 (p 0.07475) | dCUR -0.258 (p 0.0395) | | | |
+| 3 | vggt_oiavis vs vggt | | dAUROC +0.136 (p 0.04305) | dCUR -0.218 (p 0.1179) | | | |
+| 3 | vggt_oiavis vs vggt_oia | | dAUROC +0.223 (p 0.01205) | dCUR -0.437 (p 0.01205) | | | |
+| 3 | vggt_oia vs vggt | | dAUROC -0.087 (p 0.02345) | dCUR +0.218 (p 0.0076) | | | |
+| 3 | vggt_oiavis vs vggt_reproj | | dAUROC +0.071 (p 0.01635) | dCUR -0.099 (p 0.1185) | | | |
+| 3 | vggt_oiavis vs vggt_border | | dAUROC +0.159 (p 0.00825) | dCUR -0.390 (p 0.00825) | | | |
+| 3 | vggt_oiavis vs vggt_dedge | | dAUROC +0.246 (p 0.00825) | dCUR -0.406 (p 0.01555) | | | |
+| 3 | vggt_reproj vs vggt_border | | dAUROC +0.087 (p 0.0161) | dCUR -0.291 (p 0.00435) | | | |
+| 3 | vggt_reproj vs vggt_dedge | | dAUROC +0.175 (p 0.0233) | dCUR -0.306 (p 0.00825) | | | |
+| 3 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.176 (p 0.00825) | dCUR -0.464 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt | | dAUROC +0.163 (p 0.00435) | dCUR -0.279 (p 0.00825) | | | |
+| 3 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.098 (p 0.00435) | dCUR -0.160 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.027 (p 0.1483) | dCUR -0.061 (p 0.145) | | | |
+| 3 | vggt_oiavisself vs vggt_border | | dAUROC +0.185 (p 0.00435) | dCUR -0.451 (p 0.00435) | | | |
+| 3 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.273 (p 0.00435) | dCUR -0.467 (p 0.00435) | | | |
+| 3 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +0.001 (p 0.301) | dCUR -0.003 (p 0.6704) | | | |
+| 3 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC -0.003 (p 0.5391) | dCUR -0.003 (p 0.7468) | | | |
+| 3 | vggt_oiavisself_ximc vs vggt_oiavisselfpatch_ximc | | dAUROC +0.156 (p 0.00435) | dCUR -0.426 (p 0.00435) | | | |
+| 3 | vggt_oiavisself_ximc vs vggt_oiavisself | | dAUROC +0.008 (p 0.33) | dCUR -0.023 (p 0.351) | | | |
+| 3 | vggt_oiavisself_ximc vs vggt_oiavis | | dAUROC +0.035 (p 0.1738) | dCUR -0.084 (p 0.1544) | | | |
+| 3 | vggt_oiavisself_ximc vs vggt | | dAUROC +0.172 (p 0.00435) | dCUR -0.302 (p 0.00435) | | | |
+| 3 | vggt_oiavisself_ximc vs vggt_reproj | | dAUROC +0.107 (p 0.00435) | dCUR -0.183 (p 0.00435) | | | |
+| 3 | **vggt_oiavis gate** | | head-native +0.136, control-native +0.038, head-control +0.099 (p 0.07475) | control does not explain the gain | | | |
+| 3 | **vggt_oiavisself gate** | | head-native +0.163, control-native -0.013, head-control +0.176 (p 0.00825) | control does not explain the gain | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.154 (p 0.00435) | dCUR -0.395 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x | | dAUROC +0.110 (p 0.00435) | dCUR -0.300 (p 0.00825) | | | |
+| 3 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.126 (p 0.00435) | dCUR -0.307 (p 0.00435) | | | |
+| 3 | pi3x_oia vs pi3x | | dAUROC -0.016 (p 0.4962) | dCUR +0.007 (p 0.9131) | | | |
+| 3 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.112 (p 0.00435) | dCUR -0.217 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_border | | dAUROC +0.201 (p 0.00435) | dCUR -0.482 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.313 (p 0.00435) | dCUR -0.558 (p 0.00435) | | | |
+| 3 | pi3x_reproj vs pi3x_border | | dAUROC +0.089 (p 0.0122) | dCUR -0.265 (p 0.00435) | | | |
+| 3 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.201 (p 0.0084) | dCUR -0.341 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.205 (p 0.00435) | dCUR -0.526 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x | | dAUROC +0.110 (p 0.00435) | dCUR -0.306 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.113 (p 0.00435) | dCUR -0.224 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +0.001 (p 0.7509) | dCUR -0.007 (p 0.1702) | | | |
+| 3 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.202 (p 0.00435) | dCUR -0.489 (p 0.00435) | | | |
+| 3 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.314 (p 0.00435) | dCUR -0.565 (p 0.00435) | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC -0.000 (p 0.9216) | dCUR -0.001 (p 0.8688) | | | |
+| 3 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC -0.000 (p 0.8607) | dCUR -0.000 (p 0.8552) | | | |
+| 3 | pi3x_oiavisself_ximc vs pi3x_oiavisselfpatch_ximc | | dAUROC +0.136 (p 0.00825) | dCUR -0.348 (p 0.00825) | | | |
+| 3 | pi3x_oiavisself_ximc vs pi3x_oiavisself | | dAUROC -0.010 (p 0.2415) | dCUR +0.023 (p 0.3856) | | | |
+| 3 | pi3x_oiavisself_ximc vs pi3x_oiavis | | dAUROC -0.010 (p 0.2623) | dCUR +0.016 (p 0.5411) | | | |
+| 3 | pi3x_oiavisself_ximc vs pi3x | | dAUROC +0.100 (p 0.00435) | dCUR -0.284 (p 0.00825) | | | |
+| 3 | pi3x_oiavisself_ximc vs pi3x_reproj | | dAUROC +0.102 (p 0.00435) | dCUR -0.201 (p 0.00435) | | | |
+| 3 | **pi3x_oiavis gate** | | head-native +0.110, control-native -0.044, head-control +0.154 (p 0.00435) | control does not explain the gain | | | |
+| 3 | **pi3x_oiavisself gate** | | head-native +0.110, control-native -0.095, head-control +0.205 (p 0.00435) | control does not explain the gain | | | |
+| 3 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.126 (p 0.00435) | dCUR -0.310 (p 0.00435) | | | |
+| 3 | pi3_oiavis vs pi3 | | dAUROC +0.110 (p 0.00825) | dCUR -0.317 (p 0.00825) | | | |
+| 3 | pi3_oiavis vs pi3_reproj | | dAUROC +0.106 (p 0.00435) | dCUR -0.166 (p 0.00435) | | | |
+| 3 | pi3_oiavis vs pi3_border | | dAUROC +0.192 (p 0.00435) | dCUR -0.456 (p 0.00435) | | | |
+| 3 | pi3_oiavis vs pi3_dedge | | dAUROC +0.301 (p 0.00435) | dCUR -0.514 (p 0.00435) | | | |
+| 3 | pi3_reproj vs pi3_border | | dAUROC +0.086 (p 0.0161) | dCUR -0.290 (p 0.00435) | | | |
+| 3 | pi3_reproj vs pi3_dedge | | dAUROC +0.196 (p 0.0084) | dCUR -0.348 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.188 (p 0.00825) | dCUR -0.502 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3 | | dAUROC +0.107 (p 0.00825) | dCUR -0.327 (p 0.00825) | | | |
+| 3 | pi3_oiavisself vs pi3_reproj | | dAUROC +0.103 (p 0.00435) | dCUR -0.177 (p 0.00825) | | | |
+| 3 | pi3_oiavisself vs pi3_oiavis | | dAUROC -0.002 (p 0.5647) | dCUR -0.010 (p 0.4566) | | | |
+| 3 | pi3_oiavisself vs pi3_border | | dAUROC +0.190 (p 0.00435) | dCUR -0.466 (p 0.00435) | | | |
+| 3 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.299 (p 0.00435) | dCUR -0.524 (p 0.00435) | | | |
+| 3 | **pi3_oiavis gate** | | head-native +0.110, control-native -0.016, head-control +0.126 (p 0.00435) | control does not explain the gain | | | |
+| 3 | **pi3_oiavisself gate** | | head-native +0.107, control-native -0.080, head-control +0.188 (p 0.00825) | control does not explain the gain | | | |
+| 5 | da3 | 9 | 0.790 [0.727, 0.850] | 0.516 [0.409, 0.629] | 0.121 [0.055, 0.210] | 0.029 | 0.329 |
+| 5 | mapanything | 9 | 0.892 [0.845, 0.930] | 0.323 [0.200, 0.472] | 0.055 [0.027, 0.084] | 0.030 | 0.355 |
+| 5 | pi3 | 9 | 0.850 [0.795, 0.895] | 0.442 [0.333, 0.563] | 0.072 [0.031, 0.117] | 0.023 | 0.297 |
+| 5 | pi3_border | 9 | 0.719 [0.677, 0.758] | 0.661 [0.604, 0.714] | 0.197 [0.119, 0.276] | 0.023 | 0.297 |
+| 5 | pi3_dedge | 9 | 0.673 [0.602, 0.732] | 0.647 [0.587, 0.721] | 0.191 [0.106, 0.283] | 0.023 | 0.297 |
+| 5 | pi3_oiavis | 9 | 0.928 [0.902, 0.954] | 0.218 [0.132, 0.307] | 0.089 [0.037, 0.150] | 0.023 | 0.297 |
+| 5 | pi3_oiavislin | 9 | 0.910 [0.880, 0.942] | 0.235 [0.152, 0.317] | 0.086 [0.036, 0.148] | 0.023 | 0.297 |
+| 5 | pi3_oiavispatch | 9 | 0.787 [0.721, 0.844] | 0.516 [0.418, 0.611] | 0.154 [0.083, 0.229] | 0.023 | 0.297 |
+| 5 | pi3_oiavisself | 9 | 0.930 [0.907, 0.954] | 0.192 [0.124, 0.260] | 0.059 [0.024, 0.100] | 0.023 | 0.297 |
+| 5 | pi3_oiavisselflin | 9 | 0.914 [0.885, 0.944] | 0.220 [0.144, 0.296] | 0.072 [0.029, 0.126] | 0.023 | 0.297 |
+| 5 | pi3_oiavisselfpatch | 9 | 0.713 [0.624, 0.802] | 0.696 [0.539, 0.839] | 0.226 [0.118, 0.347] | 0.023 | 0.297 |
+| 5 | pi3_reproj | 9 | 0.804 [0.754, 0.860] | 0.361 [0.258, 0.455] | 0.135 [0.060, 0.228] | 0.023 | 0.297 |
+| 5 | pi3x | 9 | 0.841 [0.817, 0.866] | 0.439 [0.353, 0.532] | 0.101 [0.039, 0.182] | 0.025 | 0.288 |
+| 5 | pi3x_border | 9 | 0.719 [0.677, 0.758] | 0.661 [0.604, 0.714] | 0.199 [0.121, 0.277] | 0.025 | 0.288 |
+| 5 | pi3x_dedge | 9 | 0.658 [0.589, 0.715] | 0.669 [0.614, 0.737] | 0.198 [0.115, 0.279] | 0.025 | 0.288 |
+| 5 | pi3x_oia | 9 | 0.826 [0.782, 0.868] | 0.457 [0.365, 0.552] | 0.077 [0.037, 0.125] | 0.025 | 0.288 |
+| 5 | pi3x_oiapatch | 9 | 0.673 [0.602, 0.742] | 0.726 [0.635, 0.813] | 0.218 [0.112, 0.339] | 0.025 | 0.288 |
+| 5 | pi3x_oiavis | 9 | 0.934 [0.911, 0.957] | 0.188 [0.119, 0.257] | 0.067 [0.029, 0.112] | 0.025 | 0.288 |
+| 5 | pi3x_oiavis_s1 | 9 | 0.935 [0.912, 0.957] | 0.186 [0.118, 0.254] | 0.067 [0.029, 0.112] | 0.025 | 0.288 |
+| 5 | pi3x_oiavis_s2 | 9 | 0.935 [0.914, 0.958] | 0.187 [0.118, 0.255] | 0.066 [0.028, 0.109] | 0.025 | 0.288 |
+| 5 | pi3x_oiavislin | 9 | 0.913 [0.887, 0.940] | 0.223 [0.149, 0.296] | 0.082 [0.037, 0.134] | 0.025 | 0.288 |
+| 5 | pi3x_oiavispatch | 9 | 0.767 [0.708, 0.822] | 0.588 [0.497, 0.673] | 0.181 [0.106, 0.258] | 0.025 | 0.288 |
+| 5 | pi3x_oiavispatchlin | 9 | 0.772 [0.721, 0.822] | 0.604 [0.512, 0.691] | 0.189 [0.108, 0.272] | 0.025 | 0.288 |
+| 5 | pi3x_oiavisself | 9 | 0.935 [0.912, 0.959] | 0.178 [0.111, 0.247] | 0.056 [0.021, 0.097] | 0.025 | 0.288 |
+| 5 | pi3x_oiavisself_ximc | 9 | 0.930 [0.902, 0.957] | 0.204 [0.123, 0.291] | 0.069 [0.030, 0.113] | 0.025 | 0.288 |
+| 5 | pi3x_oiavisselflin | 9 | 0.914 [0.887, 0.941] | 0.218 [0.147, 0.287] | 0.072 [0.032, 0.119] | 0.025 | 0.288 |
+| 5 | pi3x_oiavisselfpatch | 9 | 0.709 [0.628, 0.793] | 0.706 [0.560, 0.839] | 0.237 [0.134, 0.347] | 0.025 | 0.288 |
+| 5 | pi3x_oiavisselfpatch_ximc | 9 | 0.829 [0.787, 0.870] | 0.484 [0.375, 0.596] | 0.115 [0.065, 0.174] | 0.025 | 0.288 |
+| 5 | pi3x_reproj | 9 | 0.797 [0.748, 0.853] | 0.388 [0.280, 0.483] | 0.132 [0.062, 0.213] | 0.025 | 0.288 |
+| 5 | vggt | 9 | 0.805 [0.731, 0.864] | 0.418 [0.312, 0.548] | 0.072 [0.035, 0.115] | 0.025 | 0.276 |
+| 5 | vggt_border | 9 | 0.719 [0.677, 0.758] | 0.661 [0.604, 0.714] | 0.202 [0.122, 0.289] | 0.025 | 0.276 |
+| 5 | vggt_dedge | 9 | 0.695 [0.612, 0.768] | 0.597 [0.505, 0.698] | 0.147 [0.083, 0.217] | 0.025 | 0.276 |
+| 5 | vggt_oia | 9 | 0.715 [0.651, 0.775] | 0.668 [0.581, 0.752] | 0.186 [0.095, 0.283] | 0.025 | 0.276 |
+| 5 | vggt_oiapatch | 9 | 0.623 [0.544, 0.699] | 0.762 [0.695, 0.822] | 0.250 [0.136, 0.378] | 0.025 | 0.276 |
+| 5 | vggt_oiavis | 9 | 0.900 [0.858, 0.940] | 0.295 [0.170, 0.429] | 0.145 [0.047, 0.276] | 0.025 | 0.276 |
+| 5 | vggt_oiavis_s1 | 9 | 0.897 [0.852, 0.940] | 0.294 [0.171, 0.426] | 0.146 [0.050, 0.272] | 0.025 | 0.276 |
+| 5 | vggt_oiavis_s2 | 9 | 0.900 [0.861, 0.939] | 0.294 [0.171, 0.425] | 0.143 [0.048, 0.270] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin | 9 | 0.887 [0.838, 0.932] | 0.295 [0.173, 0.427] | 0.149 [0.050, 0.277] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin11 | 9 | 0.904 [0.880, 0.931] | 0.255 [0.176, 0.321] | 0.076 [0.032, 0.131] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin17 | 9 | 0.849 [0.779, 0.910] | 0.327 [0.200, 0.466] | 0.164 [0.058, 0.299] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin23 | 9 | 0.878 [0.831, 0.925] | 0.313 [0.188, 0.440] | 0.144 [0.055, 0.254] | 0.025 | 0.276 |
+| 5 | vggt_oiavislin4 | 9 | 0.763 [0.704, 0.819] | 0.601 [0.499, 0.699] | 0.186 [0.102, 0.287] | 0.025 | 0.276 |
+| 5 | vggt_oiavispatch | 9 | 0.778 [0.710, 0.839] | 0.535 [0.434, 0.630] | 0.156 [0.089, 0.230] | 0.025 | 0.276 |
+| 5 | vggt_oiavispatchlin | 9 | 0.779 [0.716, 0.834] | 0.559 [0.462, 0.654] | 0.171 [0.092, 0.256] | 0.025 | 0.276 |
+| 5 | vggt_oiavisself | 9 | 0.923 [0.896, 0.951] | 0.212 [0.134, 0.288] | 0.077 [0.032, 0.131] | 0.025 | 0.276 |
+| 5 | vggt_oiavisself_ximc | 9 | 0.922 [0.894, 0.949] | 0.223 [0.142, 0.303] | 0.063 [0.030, 0.098] | 0.025 | 0.276 |
+| 5 | vggt_oiavisselflin | 9 | 0.918 [0.891, 0.946] | 0.201 [0.132, 0.267] | 0.067 [0.029, 0.112] | 0.025 | 0.276 |
+| 5 | vggt_oiavisselfpatch | 9 | 0.717 [0.633, 0.800] | 0.690 [0.535, 0.827] | 0.217 [0.125, 0.321] | 0.025 | 0.276 |
+| 5 | vggt_oiavisselfpatch_ximc | 9 | 0.796 [0.724, 0.851] | 0.531 [0.418, 0.651] | 0.094 [0.053, 0.139] | 0.025 | 0.276 |
+| 5 | vggt_reproj | 9 | 0.821 [0.777, 0.872] | 0.344 [0.243, 0.439] | 0.127 [0.057, 0.211] | 0.025 | 0.276 |
+| 5 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.122 (p 0.0238) | dCUR -0.241 (p 0.05125) | | | |
+| 5 | vggt_oiavis vs vggt | | dAUROC +0.095 (p 0.105) | dCUR -0.123 (p 0.3347) | | | |
+| 5 | vggt_oiavis vs vggt_oia | | dAUROC +0.186 (p 0.01205) | dCUR -0.373 (p 0.01205) | | | |
+| 5 | vggt_oia vs vggt | | dAUROC -0.091 (p 0.02255) | dCUR +0.250 (p 0.0076) | | | |
+| 5 | vggt_oiavis vs vggt_reproj | | dAUROC +0.079 (p 0.00435) | dCUR -0.050 (p 0.2296) | | | |
+| 5 | vggt_oiavis vs vggt_border | | dAUROC +0.182 (p 0.00435) | dCUR -0.367 (p 0.0161) | | | |
+| 5 | vggt_oiavis vs vggt_dedge | | dAUROC +0.205 (p 0.00435) | dCUR -0.303 (p 0.027) | | | |
+| 5 | vggt_reproj vs vggt_border | | dAUROC +0.102 (p 0.02465) | dCUR -0.317 (p 0.0084) | | | |
+| 5 | vggt_reproj vs vggt_dedge | | dAUROC +0.126 (p 0.06495) | dCUR -0.253 (p 0.01985) | | | |
+| 5 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.206 (p 0.00825) | dCUR -0.478 (p 0.00825) | | | |
+| 5 | vggt_oiavisself vs vggt | | dAUROC +0.118 (p 0.00435) | dCUR -0.206 (p 0.027) | | | |
+| 5 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.102 (p 0.00435) | dCUR -0.132 (p 0.00435) | | | |
+| 5 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.023 (p 0.1376) | dCUR -0.082 (p 0.06005) | | | |
+| 5 | vggt_oiavisself vs vggt_border | | dAUROC +0.204 (p 0.00435) | dCUR -0.449 (p 0.00435) | | | |
+| 5 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.228 (p 0.00435) | dCUR -0.385 (p 0.00435) | | | |
+| 5 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC +0.003 (p 0.2506) | dCUR +0.000 (p 0.9864) | | | |
+| 5 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC +0.000 (p 0.9854) | dCUR +0.001 (p 0.8276) | | | |
+| 5 | vggt_oiavisself_ximc vs vggt_oiavisselfpatch_ximc | | dAUROC +0.126 (p 0.00435) | dCUR -0.308 (p 0.00435) | | | |
+| 5 | vggt_oiavisself_ximc vs vggt_oiavisself | | dAUROC -0.001 (p 0.8386) | dCUR +0.010 (p 0.6848) | | | |
+| 5 | vggt_oiavisself_ximc vs vggt_oiavis | | dAUROC +0.022 (p 0.283) | dCUR -0.072 (p 0.2907) | | | |
+| 5 | vggt_oiavisself_ximc vs vggt | | dAUROC +0.116 (p 0.0081) | dCUR -0.195 (p 0.0236) | | | |
+| 5 | vggt_oiavisself_ximc vs vggt_reproj | | dAUROC +0.101 (p 0.00435) | dCUR -0.122 (p 0.0096) | | | |
+| 5 | **vggt_oiavis gate** | | head-native +0.095, control-native -0.027, head-control +0.122 (p 0.0238) | control does not explain the gain | | | |
+| 5 | **vggt_oiavisself gate** | | head-native +0.118, control-native -0.089, head-control +0.206 (p 0.00825) | control does not explain the gain | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.166 (p 0.00435) | dCUR -0.400 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x | | dAUROC +0.092 (p 0.00435) | dCUR -0.251 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.108 (p 0.00435) | dCUR -0.269 (p 0.0084) | | | |
+| 5 | pi3x_oia vs pi3x | | dAUROC -0.015 (p 0.6101) | dCUR +0.018 (p 0.7687) | | | |
+| 5 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.136 (p 0.00435) | dCUR -0.201 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_border | | dAUROC +0.215 (p 0.00435) | dCUR -0.474 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.275 (p 0.00435) | dCUR -0.481 (p 0.00435) | | | |
+| 5 | pi3x_reproj vs pi3x_border | | dAUROC +0.078 (p 0.03205) | dCUR -0.273 (p 0.00435) | | | |
+| 5 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.139 (p 0.02385) | dCUR -0.280 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.226 (p 0.00435) | dCUR -0.528 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x | | dAUROC +0.094 (p 0.00435) | dCUR -0.261 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.138 (p 0.00435) | dCUR -0.210 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +0.002 (p 0.4385) | dCUR -0.009 (p 0.0559) | | | |
+| 5 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.217 (p 0.00435) | dCUR -0.483 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.277 (p 0.00435) | dCUR -0.490 (p 0.00435) | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC -0.001 (p 0.1789) | dCUR +0.001 (p 0.6995) | | | |
+| 5 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC -0.002 (p 0.0616) | dCUR +0.001 (p 0.6584) | | | |
+| 5 | pi3x_oiavisself_ximc vs pi3x_oiavisselfpatch_ximc | | dAUROC +0.102 (p 0.00825) | dCUR -0.279 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself_ximc vs pi3x_oiavisself | | dAUROC -0.005 (p 0.2732) | dCUR +0.026 (p 0.1935) | | | |
+| 5 | pi3x_oiavisself_ximc vs pi3x_oiavis | | dAUROC -0.003 (p 0.5326) | dCUR +0.017 (p 0.39) | | | |
+| 5 | pi3x_oiavisself_ximc vs pi3x | | dAUROC +0.089 (p 0.00435) | dCUR -0.235 (p 0.00435) | | | |
+| 5 | pi3x_oiavisself_ximc vs pi3x_reproj | | dAUROC +0.133 (p 0.00435) | dCUR -0.184 (p 0.00435) | | | |
+| 5 | **pi3x_oiavis gate** | | head-native +0.092, control-native -0.074, head-control +0.166 (p 0.00435) | control does not explain the gain | | | |
+| 5 | **pi3x_oiavisself gate** | | head-native +0.094, control-native -0.132, head-control +0.226 (p 0.00435) | control does not explain the gain | | | |
+| 5 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.141 (p 0.00435) | dCUR -0.298 (p 0.00435) | | | |
+| 5 | pi3_oiavis vs pi3 | | dAUROC +0.079 (p 0.01985) | dCUR -0.224 (p 0.02375) | | | |
+| 5 | pi3_oiavis vs pi3_reproj | | dAUROC +0.124 (p 0.00435) | dCUR -0.143 (p 0.0084) | | | |
+| 5 | pi3_oiavis vs pi3_border | | dAUROC +0.209 (p 0.00435) | dCUR -0.443 (p 0.00435) | | | |
+| 5 | pi3_oiavis vs pi3_dedge | | dAUROC +0.255 (p 0.00435) | dCUR -0.429 (p 0.00435) | | | |
+| 5 | pi3_reproj vs pi3_border | | dAUROC +0.086 (p 0.02835) | dCUR -0.300 (p 0.00435) | | | |
+| 5 | pi3_reproj vs pi3_dedge | | dAUROC +0.132 (p 0.03155) | dCUR -0.286 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.218 (p 0.00435) | dCUR -0.504 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3 | | dAUROC +0.081 (p 0.01205) | dCUR -0.250 (p 0.00825) | | | |
+| 5 | pi3_oiavisself vs pi3_reproj | | dAUROC +0.126 (p 0.00435) | dCUR -0.169 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_oiavis | | dAUROC +0.002 (p 0.7746) | dCUR -0.026 (p 0.4846) | | | |
+| 5 | pi3_oiavisself vs pi3_border | | dAUROC +0.212 (p 0.00435) | dCUR -0.469 (p 0.00435) | | | |
+| 5 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.258 (p 0.00435) | dCUR -0.455 (p 0.00435) | | | |
+| 5 | **pi3_oiavis gate** | | head-native +0.079, control-native -0.062, head-control +0.141 (p 0.00435) | control does not explain the gain | | | |
+| 5 | **pi3_oiavisself gate** | | head-native +0.081, control-native -0.137, head-control +0.218 (p 0.00435) | control does not explain the gain | | | |
+| 10 | da3 | 9 | 0.805 [0.726, 0.871] | 0.531 [0.379, 0.682] | 0.166 [0.081, 0.272] | 0.031 | 0.478 |
+| 10 | mapanything | 9 | 0.881 [0.832, 0.927] | 0.361 [0.207, 0.525] | 0.073 [0.036, 0.108] | 0.031 | 0.477 |
+| 10 | pi3 | 9 | 0.849 [0.797, 0.898] | 0.438 [0.299, 0.576] | 0.100 [0.037, 0.176] | 0.026 | 0.450 |
+| 10 | pi3_border | 9 | 0.712 [0.671, 0.750] | 0.684 [0.633, 0.732] | 0.228 [0.124, 0.342] | 0.026 | 0.450 |
+| 10 | pi3_dedge | 9 | 0.634 [0.555, 0.712] | 0.705 [0.604, 0.792] | 0.203 [0.114, 0.302] | 0.026 | 0.450 |
+| 10 | pi3_oiavis | 9 | 0.915 [0.884, 0.946] | 0.239 [0.147, 0.336] | 0.123 [0.054, 0.200] | 0.026 | 0.450 |
+| 10 | pi3_oiavislin | 9 | 0.895 [0.843, 0.937] | 0.250 [0.155, 0.357] | 0.119 [0.047, 0.212] | 0.026 | 0.450 |
+| 10 | pi3_oiavispatch | 9 | 0.774 [0.728, 0.819] | 0.560 [0.484, 0.633] | 0.195 [0.104, 0.295] | 0.026 | 0.450 |
+| 10 | pi3_oiavisself | 9 | 0.914 [0.874, 0.948] | 0.217 [0.134, 0.308] | 0.092 [0.034, 0.162] | 0.026 | 0.450 |
+| 10 | pi3_oiavisselflin | 9 | 0.896 [0.843, 0.939] | 0.246 [0.152, 0.352] | 0.108 [0.040, 0.195] | 0.026 | 0.450 |
+| 10 | pi3_oiavisselfpatch | 9 | 0.698 [0.618, 0.778] | 0.717 [0.573, 0.845] | 0.261 [0.132, 0.410] | 0.026 | 0.450 |
+| 10 | pi3_reproj | 9 | 0.801 [0.754, 0.852] | 0.362 [0.265, 0.453] | 0.126 [0.064, 0.198] | 0.026 | 0.450 |
+| 10 | pi3x | 9 | 0.825 [0.787, 0.863] | 0.493 [0.399, 0.593] | 0.140 [0.057, 0.240] | 0.028 | 0.408 |
+| 10 | pi3x_border | 9 | 0.712 [0.671, 0.750] | 0.684 [0.633, 0.732] | 0.235 [0.133, 0.345] | 0.028 | 0.408 |
+| 10 | pi3x_dedge | 9 | 0.609 [0.529, 0.681] | 0.751 [0.678, 0.816] | 0.256 [0.153, 0.361] | 0.028 | 0.408 |
+| 10 | pi3x_oia | 9 | 0.808 [0.757, 0.858] | 0.478 [0.359, 0.594] | 0.120 [0.058, 0.196] | 0.028 | 0.408 |
+| 10 | pi3x_oiapatch | 9 | 0.687 [0.643, 0.735] | 0.736 [0.675, 0.801] | 0.261 [0.150, 0.383] | 0.028 | 0.408 |
+| 10 | pi3x_oiavis | 9 | 0.920 [0.889, 0.949] | 0.221 [0.133, 0.320] | 0.105 [0.043, 0.184] | 0.028 | 0.408 |
+| 10 | pi3x_oiavis_s1 | 9 | 0.923 [0.894, 0.951] | 0.218 [0.131, 0.316] | 0.103 [0.041, 0.181] | 0.028 | 0.408 |
+| 10 | pi3x_oiavis_s2 | 9 | 0.923 [0.892, 0.951] | 0.218 [0.131, 0.316] | 0.103 [0.041, 0.182] | 0.028 | 0.408 |
+| 10 | pi3x_oiavislin | 9 | 0.898 [0.861, 0.934] | 0.247 [0.156, 0.346] | 0.115 [0.050, 0.194] | 0.028 | 0.408 |
+| 10 | pi3x_oiavispatch | 9 | 0.751 [0.702, 0.800] | 0.628 [0.556, 0.704] | 0.232 [0.128, 0.353] | 0.028 | 0.408 |
+| 10 | pi3x_oiavispatchlin | 9 | 0.742 [0.699, 0.787] | 0.662 [0.596, 0.725] | 0.242 [0.143, 0.355] | 0.028 | 0.408 |
+| 10 | pi3x_oiavisself | 9 | 0.922 [0.891, 0.951] | 0.209 [0.127, 0.297] | 0.091 [0.036, 0.158] | 0.028 | 0.408 |
+| 10 | pi3x_oiavisself_ximc | 9 | 0.907 [0.861, 0.945] | 0.256 [0.154, 0.368] | 0.093 [0.045, 0.146] | 0.028 | 0.408 |
+| 10 | pi3x_oiavisselflin | 9 | 0.898 [0.855, 0.935] | 0.244 [0.153, 0.348] | 0.108 [0.042, 0.192] | 0.028 | 0.408 |
+| 10 | pi3x_oiavisselfpatch | 9 | 0.691 [0.619, 0.765] | 0.748 [0.636, 0.855] | 0.288 [0.162, 0.425] | 0.028 | 0.408 |
+| 10 | pi3x_oiavisselfpatch_ximc | 9 | 0.818 [0.776, 0.860] | 0.499 [0.386, 0.612] | 0.139 [0.084, 0.200] | 0.028 | 0.408 |
+| 10 | pi3x_reproj | 9 | 0.796 [0.745, 0.846] | 0.357 [0.268, 0.447] | 0.115 [0.064, 0.174] | 0.028 | 0.408 |
+| 10 | vggt | 9 | 0.819 [0.770, 0.867] | 0.505 [0.378, 0.632] | 0.122 [0.048, 0.217] | 0.030 | 0.356 |
+| 10 | vggt_border | 9 | 0.712 [0.671, 0.750] | 0.684 [0.633, 0.732] | 0.233 [0.135, 0.335] | 0.030 | 0.356 |
+| 10 | vggt_dedge | 9 | 0.655 [0.564, 0.740] | 0.643 [0.544, 0.743] | 0.168 [0.097, 0.251] | 0.030 | 0.356 |
+| 10 | vggt_oia | 9 | 0.702 [0.640, 0.761] | 0.704 [0.621, 0.782] | 0.230 [0.121, 0.346] | 0.030 | 0.356 |
+| 10 | vggt_oiapatch | 9 | 0.607 [0.551, 0.671] | 0.786 [0.735, 0.828] | 0.278 [0.161, 0.406] | 0.030 | 0.356 |
+| 10 | vggt_oiavis | 9 | 0.907 [0.867, 0.943] | 0.268 [0.154, 0.401] | 0.140 [0.052, 0.248] | 0.030 | 0.356 |
+| 10 | vggt_oiavis_s1 | 9 | 0.907 [0.867, 0.944] | 0.265 [0.157, 0.386] | 0.133 [0.055, 0.227] | 0.030 | 0.356 |
+| 10 | vggt_oiavis_s2 | 9 | 0.907 [0.869, 0.943] | 0.265 [0.155, 0.391] | 0.134 [0.052, 0.235] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin | 9 | 0.880 [0.825, 0.929] | 0.291 [0.167, 0.436] | 0.156 [0.063, 0.272] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin11 | 9 | 0.901 [0.866, 0.933] | 0.256 [0.170, 0.341] | 0.102 [0.039, 0.187] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin17 | 9 | 0.840 [0.770, 0.904] | 0.347 [0.212, 0.490] | 0.192 [0.095, 0.304] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin23 | 9 | 0.869 [0.814, 0.920] | 0.314 [0.191, 0.452] | 0.159 [0.067, 0.271] | 0.030 | 0.356 |
+| 10 | vggt_oiavislin4 | 9 | 0.751 [0.702, 0.799] | 0.626 [0.538, 0.714] | 0.220 [0.115, 0.338] | 0.030 | 0.356 |
+| 10 | vggt_oiavispatch | 9 | 0.764 [0.715, 0.813] | 0.587 [0.510, 0.661] | 0.195 [0.113, 0.286] | 0.030 | 0.356 |
+| 10 | vggt_oiavispatchlin | 9 | 0.761 [0.717, 0.807] | 0.611 [0.522, 0.691] | 0.202 [0.112, 0.301] | 0.030 | 0.356 |
+| 10 | vggt_oiavisself | 9 | 0.922 [0.895, 0.949] | 0.210 [0.135, 0.284] | 0.087 [0.041, 0.140] | 0.030 | 0.356 |
+| 10 | vggt_oiavisself_ximc | 9 | 0.904 [0.863, 0.942] | 0.259 [0.160, 0.363] | 0.079 [0.036, 0.125] | 0.030 | 0.356 |
+| 10 | vggt_oiavisselflin | 9 | 0.911 [0.879, 0.943] | 0.219 [0.139, 0.304] | 0.092 [0.041, 0.152] | 0.030 | 0.356 |
+| 10 | vggt_oiavisselfpatch | 9 | 0.702 [0.630, 0.777] | 0.741 [0.605, 0.858] | 0.263 [0.157, 0.380] | 0.030 | 0.356 |
+| 10 | vggt_oiavisselfpatch_ximc | 9 | 0.784 [0.692, 0.848] | 0.517 [0.412, 0.647] | 0.134 [0.072, 0.205] | 0.030 | 0.356 |
+| 10 | vggt_reproj | 9 | 0.805 [0.759, 0.851] | 0.367 [0.274, 0.465] | 0.127 [0.063, 0.204] | 0.030 | 0.356 |
+| 10 | vggt_oiavis vs vggt_oiavispatch | | dAUROC +0.143 (p 0.00435) | dCUR -0.319 (p 0.00825) | | | |
+| 10 | vggt_oiavis vs vggt | | dAUROC +0.088 (p 0.01225) | dCUR -0.237 (p 0.0541) | | | |
+| 10 | vggt_oiavis vs vggt_oia | | dAUROC +0.204 (p 0.00435) | dCUR -0.435 (p 0.00825) | | | |
+| 10 | vggt_oia vs vggt | | dAUROC -0.116 (p 0.01635) | dCUR +0.198 (p 0.0474) | | | |
+| 10 | vggt_oiavis vs vggt_reproj | | dAUROC +0.102 (p 0.00435) | dCUR -0.098 (p 0.05615) | | | |
+| 10 | vggt_oiavis vs vggt_border | | dAUROC +0.195 (p 0.00435) | dCUR -0.416 (p 0.00435) | | | |
+| 10 | vggt_oiavis vs vggt_dedge | | dAUROC +0.252 (p 0.00435) | dCUR -0.375 (p 0.00825) | | | |
+| 10 | vggt_reproj vs vggt_border | | dAUROC +0.093 (p 0.0349) | dCUR -0.318 (p 0.00435) | | | |
+| 10 | vggt_reproj vs vggt_dedge | | dAUROC +0.150 (p 0.0084) | dCUR -0.277 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_oiavisselfpatch | | dAUROC +0.220 (p 0.00435) | dCUR -0.531 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt | | dAUROC +0.103 (p 0.00435) | dCUR -0.295 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_reproj | | dAUROC +0.118 (p 0.00435) | dCUR -0.157 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_oiavis | | dAUROC +0.016 (p 0.05805) | dCUR -0.058 (p 0.05705) | | | |
+| 10 | vggt_oiavisself vs vggt_border | | dAUROC +0.211 (p 0.00435) | dCUR -0.474 (p 0.00435) | | | |
+| 10 | vggt_oiavisself vs vggt_dedge | | dAUROC +0.268 (p 0.00435) | dCUR -0.433 (p 0.00435) | | | |
+| 10 | vggt_oiavis vs vggt_oiavis_s1 | | dAUROC -0.000 (p 0.9647) | dCUR +0.003 (p 0.957) | | | |
+| 10 | vggt_oiavis vs vggt_oiavis_s2 | | dAUROC -0.001 (p 0.5289) | dCUR +0.003 (p 0.5406) | | | |
+| 10 | vggt_oiavisself_ximc vs vggt_oiavisselfpatch_ximc | | dAUROC +0.120 (p 0.00825) | dCUR -0.258 (p 0.00435) | | | |
+| 10 | vggt_oiavisself_ximc vs vggt_oiavisself | | dAUROC -0.018 (p 0.2313) | dCUR +0.049 (p 0.117) | | | |
+| 10 | vggt_oiavisself_ximc vs vggt_oiavis | | dAUROC -0.003 (p 0.9555) | dCUR -0.009 (p 0.8561) | | | |
+| 10 | vggt_oiavisself_ximc vs vggt | | dAUROC +0.085 (p 0.00435) | dCUR -0.246 (p 0.0096) | | | |
+| 10 | vggt_oiavisself_ximc vs vggt_reproj | | dAUROC +0.099 (p 0.00435) | dCUR -0.107 (p 0.0096) | | | |
+| 10 | **vggt_oiavis gate** | | head-native +0.088, control-native -0.055, head-control +0.143 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **vggt_oiavisself gate** | | head-native +0.103, control-native -0.117, head-control +0.220 (p 0.00435) | control does not explain the gain | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavispatch | | dAUROC +0.169 (p 0.00435) | dCUR -0.407 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x | | dAUROC +0.096 (p 0.00435) | dCUR -0.272 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_oia | | dAUROC +0.112 (p 0.00435) | dCUR -0.257 (p 0.00435) | | | |
+| 10 | pi3x_oia vs pi3x | | dAUROC -0.016 (p 0.6792) | dCUR -0.015 (p 0.8471) | | | |
+| 10 | pi3x_oiavis vs pi3x_reproj | | dAUROC +0.125 (p 0.00435) | dCUR -0.136 (p 0.00835) | | | |
+| 10 | pi3x_oiavis vs pi3x_border | | dAUROC +0.209 (p 0.00435) | dCUR -0.463 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_dedge | | dAUROC +0.312 (p 0.00435) | dCUR -0.530 (p 0.00435) | | | |
+| 10 | pi3x_reproj vs pi3x_border | | dAUROC +0.084 (p 0.07095) | dCUR -0.327 (p 0.00435) | | | |
+| 10 | pi3x_reproj vs pi3x_dedge | | dAUROC +0.187 (p 0.00435) | dCUR -0.394 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_oiavisselfpatch | | dAUROC +0.231 (p 0.00435) | dCUR -0.539 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x | | dAUROC +0.097 (p 0.00435) | dCUR -0.284 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_reproj | | dAUROC +0.126 (p 0.00435) | dCUR -0.148 (p 0.00835) | | | |
+| 10 | pi3x_oiavisself vs pi3x_oiavis | | dAUROC +0.002 (p 0.4989) | dCUR -0.012 (p 0.1456) | | | |
+| 10 | pi3x_oiavisself vs pi3x_border | | dAUROC +0.210 (p 0.00435) | dCUR -0.475 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself vs pi3x_dedge | | dAUROC +0.313 (p 0.00435) | dCUR -0.542 (p 0.00435) | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavis_s1 | | dAUROC -0.003 (p 0.00435) | dCUR +0.004 (p 0.224) | | | |
+| 10 | pi3x_oiavis vs pi3x_oiavis_s2 | | dAUROC -0.002 (p 0.0076) | dCUR +0.003 (p 0.02675) | | | |
+| 10 | pi3x_oiavisself_ximc vs pi3x_oiavisselfpatch_ximc | | dAUROC +0.089 (p 0.0253) | dCUR -0.243 (p 0.0253) | | | |
+| 10 | pi3x_oiavisself_ximc vs pi3x_oiavisself | | dAUROC -0.015 (p 0.6501) | dCUR +0.047 (p 0.3898) | | | |
+| 10 | pi3x_oiavisself_ximc vs pi3x_oiavis | | dAUROC -0.014 (p 0.7464) | dCUR +0.035 (p 0.804) | | | |
+| 10 | pi3x_oiavisself_ximc vs pi3x | | dAUROC +0.082 (p 0.00435) | dCUR -0.238 (p 0.00435) | | | |
+| 10 | pi3x_oiavisself_ximc vs pi3x_reproj | | dAUROC +0.111 (p 0.00435) | dCUR -0.101 (p 0.0139) | | | |
+| 10 | **pi3x_oiavis gate** | | head-native +0.096, control-native -0.074, head-control +0.169 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **pi3x_oiavisself gate** | | head-native +0.097, control-native -0.134, head-control +0.231 (p 0.00435) | control does not explain the gain | | | |
+| 10 | pi3_oiavis vs pi3_oiavispatch | | dAUROC +0.142 (p 0.00435) | dCUR -0.321 (p 0.00435) | | | |
+| 10 | pi3_oiavis vs pi3 | | dAUROC +0.067 (p 0.0444) | dCUR -0.199 (p 0.0241) | | | |
+| 10 | pi3_oiavis vs pi3_reproj | | dAUROC +0.115 (p 0.00435) | dCUR -0.123 (p 0.0163) | | | |
+| 10 | pi3_oiavis vs pi3_border | | dAUROC +0.204 (p 0.00435) | dCUR -0.445 (p 0.00435) | | | |
+| 10 | pi3_oiavis vs pi3_dedge | | dAUROC +0.281 (p 0.00435) | dCUR -0.465 (p 0.00435) | | | |
+| 10 | pi3_reproj vs pi3_border | | dAUROC +0.089 (p 0.04265) | dCUR -0.322 (p 0.00435) | | | |
+| 10 | pi3_reproj vs pi3_dedge | | dAUROC +0.166 (p 0.00435) | dCUR -0.342 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_oiavisselfpatch | | dAUROC +0.216 (p 0.00825) | dCUR -0.500 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3 | | dAUROC +0.065 (p 0.07115) | dCUR -0.221 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_reproj | | dAUROC +0.113 (p 0.00435) | dCUR -0.145 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_oiavis | | dAUROC -0.002 (p 0.825) | dCUR -0.022 (p 0.3531) | | | |
+| 10 | pi3_oiavisself vs pi3_border | | dAUROC +0.202 (p 0.00435) | dCUR -0.467 (p 0.00435) | | | |
+| 10 | pi3_oiavisself vs pi3_dedge | | dAUROC +0.279 (p 0.00435) | dCUR -0.487 (p 0.00435) | | | |
+| 10 | **pi3_oiavis gate** | | head-native +0.067, control-native -0.075, head-control +0.142 (p 0.00435) | control does not explain the gain | | | |
+| 10 | **pi3_oiavisself gate** | | head-native +0.065, control-native -0.151, head-control +0.216 (p 0.00825) | control does not explain the gain | | | |
