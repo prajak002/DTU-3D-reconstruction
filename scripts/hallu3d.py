@@ -762,6 +762,21 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
             return co3d.load_co3d_scene(root, scan, views)
         return load_scan(root, scan, vis_views(n, seed, mode=cfg.get("view_mode", "spread")), cfg["light"])
 
+    # the ground-truth support labels of a cell do not depend on the detector: computed once per (scene, seed, views)
+    # and cached on disk next to the CSV (the support count is the slow part of a vis row, not the backbone forward)
+    tag = f"{cfg.get('vis_tol', 0.03)}_{cfg.get('vis_min_seen', 2)}_{cfg.get('vis_dilate_px', 3)}_{cfg.get('view_mode', 'spread')}_{cfg.get('light', 3)}"
+    cache_dir = cfg.get("label_cache") or os.path.join(os.path.dirname(os.path.abspath(out_csv)), "labels_cache")
+
+    def _labels(scan, n, seed, data):
+        p = os.path.join(cache_dir, f"{scan}__s{seed}__v{n}__{tag}.npz")
+        if os.path.exists(p):
+            z = np.load(p)
+            return dict(U=z["U"], S=z["S"], seen=z["seen"].astype(np.int32), unknown=z["unknown"].astype(np.int32))
+        lab = vis_labels(data, cfg)
+        os.makedirs(cache_dir, exist_ok=True)
+        np.savez_compressed(p, U=lab["U"], S=lab["S"], seen=lab["seen"].astype(np.int16), unknown=lab["unknown"].astype(np.int16))
+        return lab
+
     for mname in model_names:
         todo = [(sc, sd, n) for sc in cfg["scans"] for sd in cfg["seeds"] for n in cfg["vis_views"]
                 if (mname, sc, sd, 0.0, f"vis{n}") not in done]
@@ -773,7 +788,7 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
             rows = []
             for (_, seed, n) in [t for t in todo if t[0] == scan]:
                 data = _load(scan, n, seed)
-                lab = vis_labels(data, cfg)
+                lab = _labels(scan, n, seed, data)
                 U, S = lab["U"], lab["S"]
                 nU, nS = int(U.sum()), int(S.sum())
                 if nU < cfg.get("vis_min_pixels", 50) or nS < cfg.get("vis_min_pixels", 50):
