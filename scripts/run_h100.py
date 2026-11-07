@@ -464,6 +464,43 @@ def stage_vis_on_fill(args):
         run(args, "P6-mapanything-mv", ["mapanything_mv"], T4_KEYS, args.dtu_root)
 
 
+# ----------------------------------------------------------------------------- P7: in-the-wild heritage photo collections
+IMC_SCENES = ["british_museum", "florence_cathedral_side", "lincoln_memorial_statue", "london_bridge", "milan_cathedral",
+              "mount_rushmore", "piazza_san_marco", "sagrada_familia", "st_pauls_cathedral"]   # all nine pass the gate (LOG 2026-11-07)
+
+
+def _imc_cfg(args, extra):
+    scenes = [s for s in IMC_SCENES if s in co3d.list_co3d_scenes(args.imc_root)]
+    return {**extra, "dataset": "co3d", "scans": scenes, "view_mode": "adjacent"}
+
+
+def stage_vis_imc(args):
+    """P7-vis-imc: the vis protocol on nine phototourism landmarks (tourist photos, COLMAP depth), every detector."""
+    _ckpt_env(args)
+    if not args.imc_root:
+        print("[skip] vis_imc: no --imc root"); return
+    _run_vis(args, "P7-vis-imc", _vis_models(args, [b for b in args.ext_bases if b not in args.bases]),
+             _imc_cfg(args, VIS_CFG), args.imc_root)
+
+
+def stage_adapt_imc(args):
+    """P7-adapt-imc: label-free adaptation to tourist photos. Fold A = the first five landmarks (sorted), fold B = the
+    other four; the label-free head and its control are trained on one fold without ground truth and scored on the
+    other; stats pools the folds as <base>_oiavisself_ximc."""
+    _ckpt_env(args)
+    if not args.imc_root:
+        print("[skip] adapt_imc: no --imc root"); return
+    scenes = [s for s in IMC_SCENES if s in co3d.list_co3d_scenes(args.imc_root)]
+    folds = {"imcA": scenes[:5], "imcB": scenes[5:]}
+    for base in args.bases:
+        for tag, train_scenes in folds.items():
+            _train_heads(args, base, ADAPT_VARIANTS, "oiavisself", root=args.imc_root, scans=train_scenes, tag=tag)
+    for tag, test_tag in (("imcA", "imcB"), ("imcB", "imcA")):
+        models = [f"{b}_{v}_x{tag}" for b in args.bases for v in ADAPT_VARIANTS if _have(args, f"{b}_{v}_x{tag}")]
+        if models:
+            _run_vis(args, "P7-adapt-imc", models, {**_imc_cfg(args, VIS_CFG), "scans": folds[test_tag]}, args.imc_root)
+
+
 MAIN_DETECTORS = ("reproj", "border", "dedge", "oiavis", "oiavispatch", "oiavisself", "oiavisselfpatch")
 
 
@@ -492,6 +529,9 @@ def stage_dump(args):
         jobs.append(("co3d", co3d_cfg(args, VIS_CFG), args.co3d_root))
     if args.eth3d_root:
         jobs.append(("eth3d", _eth3d_cfg(args, VIS_CFG), args.eth3d_root))
+    if args.imc_root:
+        jobs.append(("imc", _imc_cfg(args, VIS_CFG), args.imc_root))
+    jobs = [j for j in jobs if j[0] in args.dump_datasets.split(",")]
     for name, cfg, root in jobs:
         dd = os.path.join(args.out, "P6-dump", name)
         _run_vis(args, f"P6-dump-{name}", models, {**cfg, "dump_dir": dd}, root)
@@ -693,16 +733,18 @@ def stage_stats(args):
     # confidence, per number of input views; the fill-trained head shows whether patch detection transfers.
     for run_name, title in [("P4-vis", "DTU"), ("P4-vis-co3d", "CO3Dv2"), ("P4-vis-eth3d", "ETH3D"),
                             ("P4-vis-ext", "DTU, 2 and 20 views (outside the training range)"),
+                            ("P7-vis-imc", "Phototourism heritage landmarks (tourist photos, COLMAP depth)"),
                             ("P6-adapt-co3d", "CO3Dv2, heads adapted label-free on the other fold (pooled with P4-vis-co3d)"),
-                            ("P6-adapt-eth3d", "ETH3D, heads adapted label-free on the four non-benchmark scenes (pooled with P4-vis-eth3d)")]:
+                            ("P6-adapt-eth3d", "ETH3D, heads adapted label-free on the four non-benchmark scenes (pooled with P4-vis-eth3d)"),
+                            ("P7-adapt-imc", "Phototourism, heads adapted label-free on the other fold (pooled with P7-vis-imc)")]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         if not os.path.exists(p):
             continue
         dv = pd.read_csv(p)
-        if run_name.startswith("P6-adapt"):       # pool the two folds under one name and add the reference detectors
-            dv["model"] = dv.model.str.replace(r"_xco3d[AB]$", "_xco3d", regex=True)
-            ref = os.path.join(args.out, "P4-vis-co3d" if "co3d" in run_name else "P4-vis-eth3d",
-                               "P4-vis-co3d.csv" if "co3d" in run_name else "P4-vis-eth3d.csv")
+        if "adapt" in run_name:                    # pool the folds under one name and add the reference detectors
+            dv["model"] = dv.model.str.replace(r"_x(co3d|eth3d|imc)[AB]$", r"_x\1", regex=True)
+            ref_run = {"co3d": "P4-vis-co3d", "eth3d": "P4-vis-eth3d", "imc": "P7-vis-imc"}[run_name.rsplit("-", 1)[1]]
+            ref = os.path.join(args.out, ref_run, f"{ref_run}.csv")
             if os.path.exists(ref):
                 dv = pd.concat([dv, pd.read_csv(ref)], ignore_index=True)
         if "skipped" in dv:
@@ -721,8 +763,8 @@ def stage_stats(args):
                 head, ctrl, fill_head = f"{base}_oiavis", f"{base}_oiavispatch", f"{base}_oia"
                 sh, sctrl, rp = f"{base}_oiavisself", f"{base}_oiavisselfpatch", f"{base}_reproj"
                 bd, de = f"{base}_border", f"{base}_dedge"
-                ad = [(f"{sh}_x{t}", f"{sctrl}_x{t}") for t in ("co3d", "eth3d")]            # adapted head vs its control
-                ad += [(f"{sh}_x{t}", m) for t in ("co3d", "eth3d") for m in (sh, head, base, rp)]  # vs DTU-trained, native, reproj
+                ad = [(f"{sh}_x{t}", f"{sctrl}_x{t}") for t in ("co3d", "eth3d", "imc")]            # adapted head vs its control
+                ad += [(f"{sh}_x{t}", m) for t in ("co3d", "eth3d", "imc") for m in (sh, head, base, rp)]  # vs DTU-trained, native, reproj
                 for a, b in ((head, ctrl), (head, base), (head, fill_head), (fill_head, base), (head, rp),
                              (head, bd), (head, de), (rp, bd), (rp, de),
                              (sh, sctrl), (sh, base), (sh, rp), (sh, head), (sh, bd), (sh, de),
@@ -747,7 +789,7 @@ STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": 
           "trainvis": stage_trainvis, "vis": stage_vis, "vis_co3d": stage_vis_co3d, "vis_eth3d": stage_vis_eth3d,
           "trainvisself": stage_trainvisself, "trainvisprobe": stage_trainvisprobe,
           "adapt_co3d": stage_adapt_co3d, "adapt_eth3d": stage_adapt_eth3d, "vis_ext": stage_vis_ext, "dump": stage_dump,
-          "vis_on_fill": stage_vis_on_fill}
+          "vis_on_fill": stage_vis_on_fill, "vis_imc": stage_vis_imc, "adapt_imc": stage_adapt_imc}
 
 
 def main():
@@ -756,6 +798,8 @@ def main():
     ap.add_argument("--dtu", default=None, help="directory searched for a DTU root")
     ap.add_argument("--co3d", default=None, help="preprocessed CO3D root (folders with meta.npz)")
     ap.add_argument("--eth3d", default=None, help="preprocessed ETH3D root (scripts/eth3d.py; same folder format)")
+    ap.add_argument("--imc", default=None, help="preprocessed phototourism root (scripts/imc.py; same folder format)")
+    ap.add_argument("--dump-datasets", default="dtu,co3d,eth3d,imc", help="dump stage: which datasets to dump")
     ap.add_argument("--out", default=os.path.join(ROOT, "results"))
     ap.add_argument("--ckpt", default=os.path.join(ROOT, "checkpoints"))
     ap.add_argument("--steps", type=int, default=1500)
@@ -778,6 +822,7 @@ def main():
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
     a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump", "vis_on_fill") else None
     a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d", "adapt_eth3d", "dump")) else None
+    a.imc_root = co3d.find_co3d_root((a.imc,)) if (a.imc and a.stage in ("all", "vis_imc", "adapt_imc", "dump")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]
     for s in stages:
         if s == "co3d" and not a.co3d_root:
