@@ -1,0 +1,4 @@
+08:51:45 == P6-mapanything-mv: models ['mapanything_mv'], cfg {"seeds": [0], "fills": ["blur"], "radius_fracs": [0.18]}
+08:52:54    mapanything_mv: 69s
+08:52:54             model  radius_frac  fill  n_runs                 auroc            auroc_ctrl                   cur               cur_err              absrel_S              absrel_U         absrel_U_ctrl          conf_ratio_U  n_scans  p_auroc_vs_0.5
+0  mapanything_mv         0.18  blur      18  0.665 [0.594, 0.735]  0.470 [0.412, 0.537]  0.783 [0.657, 0.892]  0.367 [0.258, 0.487]  0.098 [0.082, 0.115]  0.117 [0.091, 0.148]  0.104 [0.076, 0.139]  0.522 [0.393, 0.657]       18          0.0007
