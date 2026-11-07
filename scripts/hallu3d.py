@@ -717,14 +717,17 @@ def vis_views(n_views, seed, total=49, mode="spread"):
     return sorted((v + 7 * int(seed)) % total for v in base)
 
 
-def _dump_vis(dump_dir, mname, scan, seed, n, depth, conf, gt, lab):
+def _dump_vis(dump_dir, mname, scan, seed, n, depth, conf, gt, lab, imgs=None):
     """Per-pixel record of one vis row (scripts/analyze_dumps.py reads them): the labels of the (scan, seed, views)
     cell once under labels/, the detector's confidence and median-scaled depth under <model>/, both float16."""
     key = f"{scan}__s{seed}__v{n}"
     lp = os.path.join(dump_dir, "labels", key + ".npz")
     if not os.path.exists(lp):
         os.makedirs(os.path.dirname(lp), exist_ok=True)
-        np.savez_compressed(lp, gt=gt.astype(np.float32), U=lab["U"], S=lab["S"], seen=lab["seen"].astype(np.int8))
+        h, w = gt.shape[1:]
+        rgb = np.stack([cv2.resize((im * 255).astype(np.uint8), (w, h), interpolation=cv2.INTER_AREA) for im in imgs]) \
+            if imgs is not None else np.zeros((len(gt), h, w, 3), np.uint8)
+        np.savez_compressed(lp, gt=gt.astype(np.float32), U=lab["U"], S=lab["S"], seen=lab["seen"].astype(np.int8), rgb=rgb)
     mp = os.path.join(dump_dir, mname, key + ".npz")
     os.makedirs(os.path.dirname(mp), exist_ok=True)
     np.savez_compressed(mp, conf=conf.astype(np.float32), depth=depth.astype(np.float16))
@@ -783,7 +786,7 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
                 m = compute_metrics(d, c, data["depths"], U, S, cfg)
                 valid = int((data["depths"] > 0).sum())
                 if cfg.get("dump_dir"):          # per-pixel scores for the risk-coverage / calibration analysis
-                    _dump_vis(cfg["dump_dir"], mname, scan, seed, n, d * m["scale"], c, data["depths"], lab)
+                    _dump_vis(cfg["dump_dir"], mname, scan, seed, n, d * m["scale"], c, data["depths"], lab, data["imgs"])
                 rows.append(dict(model=mname, scan=scan, seed=seed, radius_frac=0.0, fill=f"vis{n}", n_views=n,
                                  frac_U=nU / max(valid, 1), frac_S=nS / max(valid, 1), skipped=False, **m))
             if not rows:
