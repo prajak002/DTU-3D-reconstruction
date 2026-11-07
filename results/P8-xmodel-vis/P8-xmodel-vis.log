@@ -1,0 +1,4 @@
+15:41:43 == P8-xmodel-vis: models ['vggt_xpi3x', 'vggt_xpi3', 'pi3x_xpi3'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2]}
+15:43:36    vggt_xpi3x: 114s
+15:44:41    vggt_xpi3: 65s
+15:45:51    pi3x_xpi3: 70s

@@ -138,6 +138,21 @@ Table~\ref{tab:bands} is computed from the per-pixel scores of run P6-dump on th
 \resizebox{\textwidth}{!}{\input{tab_bands}}
 \end{table}
 
+\paragraph{Cross-model disagreement.}
+Two backbones run on the same views; view by view the second depth is aligned to the first by the median ratio over all valid pixels, and minus the relative disagreement is the confidence. Table~\ref{tab:xmodel}: on the benchmark's filled patches every pair is at chance, and on real single-view geometry (DTU, clean views) disagreement scores 0.50 to 0.63, so models also agree with one another where only one view supports the surface. Agreement between models, unlike agreement between views, carries no signal in either case. Runs P8-xmodel, P8-xmodel-co3d, P8-xmodel-vis.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Cross-model disagreement as a detector.} Filled patches: DTU seed 0, blur, radius 0.18 (18 scans); CO3Dv2 blur and noise, seed 0, radius 0.18 (18 scenes). Single-view: the DTU vis protocol pooled over 3, 5 and 10 views. 95\% cluster-bootstrap intervals over scenes.}
+\label{tab:xmodel}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{\input{tab_xmodel}}
+\end{table}
+
+\paragraph{Twenty views.}
+With 20 clean DTU views, twice the most the heads saw in training (run P4-vis-ext), the visibility heads score \auroc{} 0.990 to 0.993 and the label-free heads 0.990 to 0.992, native confidence falls to 0.61 (VGGT) and 0.83 (Pi3X), reprojection consistency scores 0.93 and 0.89, and the per-image control rises to 0.94: with twenty views the few remaining single-view pixels sit at the frame edge, and the control reads the edge.
+
 \paragraph{Pre-registered gates.}
 The pass conditions were written into the run registry before the corresponding heads were trained, and the registry is versioned with the code. Gate 3 (true-visibility head; written 2026-11-06, before any visibility head was trained; the training kernels ran from commit \texttt{4132d11}): the head counts as detecting missing support when, pooled over 3, 5 and 10 views on DTU, (a) it beats native confidence on \auroc{} and \cur{} (paired sign-flip $p<0.05$), (b) it beats its per-image control on \auroc{} by at least 0.02 at $p<0.05$, and (c) both conditions hold on at least one dataset the head never saw (CO3Dv2 or ETH3D); if (b) fails, the single-view-support signal is reported as recoverable from per-image features and the method claim is dropped. Gate 4 (label-free head; written 2026-11-06 16:51 UTC, before any label-free head was trained, commit \texttt{c7e6919}): on DTU and on CO3Dv2, (a) and (b) as above against its own per-image control, and (c) within 0.03 \auroc{} of the ground-truth-trained head on DTU and ahead of reprojection consistency on CO3Dv2 at $p<0.05$ (its training signal is the reprojection test, so it has to generalise better than its teacher); if (a) or (b) fails the head is dropped, if only (c) fails it is reported as an ablation. The earlier Gate 2 (fill-trained head) had the clause ``head ahead of the control at $p<0.05$'' with no margin; it passed by the letter on differences of 0.0004 and 0.003 and the paper does not count it, which is why Gate 3 carries a margin.
 
