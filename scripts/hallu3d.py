@@ -643,22 +643,15 @@ class PerturbFullWrap:
         self.base.free()
 
 
-def reproj_support_score(depths, K, E, tol=0.03):
-    """Training-free support score from cross-view reprojection agreement of a multi-view depth prediction
-    (P3-reproj). depths (N,h,w) predicted depth of every view in one common frame (0 = invalid), K (N,3,3)
-    intrinsics at that resolution, E (N,4,4) world -> camera.
-
-    For each pixel of view i the predicted point is back-projected and projected into every other view j.
-    View j *sees* the point when it lands in frame in front of the camera and is not behind view j's own
-    predicted surface (points farther than view j's depth by more than tol are occluded and do not count).
-    View j *explains* the point when |z_ij - d_j| / d_j < tol. The score is explains / sees, or 0 when no
-    other view sees the point. A point the model places on a surface that its own other views do not contain
-    gets a low score; a coherent imagination gets a high one, which is exactly what this baseline is meant
-    to test. One forward pass, no learning."""
+def reproj_support_pairs(depths, K, E, tol=0.03):
+    """Per-pair reprojection test of a multi-view depth prediction: sees[i, j] (N,N,h,w) view j sees the predicted
+    point of pixel p of view i (in frame, in front of camera j, not behind j's own predicted surface by more than
+    tol), agree[i, j] (N,N,h,w) float in [0, 1]: 1 - |z - d_j| / (tol d_j) clipped, 0 where j does not see it. The
+    training-free attribution baseline of the provenance heads (P10-prov); reproj_support_score is hits / sees."""
     depths = np.asarray(depths, np.float64)
     N, h, w = depths.shape
-    hits = np.zeros((N, h, w), np.float64)
-    seen = np.zeros((N, h, w), np.float64)
+    sees = np.zeros((N, N, h, w), bool)
+    agree = np.zeros((N, N, h, w), np.float32)
     for i in range(N):
         Pw = backproject(depths[i], K[i], E[i])
         valid_i = depths[i] > 0
@@ -672,28 +665,42 @@ def reproj_support_score(depths, K, E, tol=0.03):
             dj[ok] = depths[j][vi[ok], ui[ok]]
             ok &= dj > 0
             rel = (dj - z) / np.maximum(dj, 1e-9)          # < 0: point behind view j's surface (occluded)
-            sees = ok & (rel > -tol)
-            seen[i] += sees
-            hits[i] += sees & (np.abs(rel) < tol)
+            sj = ok & (rel > -tol)
+            sees[i, j] = sj
+            agree[i, j] = np.where(sj, np.clip(1.0 - np.abs(rel) / tol, 0.0, 1.0), 0.0)
+    return sees, agree
+
+
+def reproj_support_score(depths, K, E, tol=0.03):
+    """Training-free support score from cross-view reprojection agreement of a multi-view depth prediction
+    (P3-reproj). depths (N,h,w) predicted depth of every view in one common frame (0 = invalid), K (N,3,3)
+    intrinsics at that resolution, E (N,4,4) world -> camera.
+
+    For each pixel of view i the predicted point is back-projected and projected into every other view j.
+    View j *sees* the point when it lands in frame in front of the camera and is not behind view j's own
+    predicted surface (points farther than view j's depth by more than tol are occluded and do not count).
+    View j *explains* the point when |z_ij - d_j| / d_j < tol. The score is explains / sees, or 0 when no
+    other view sees the point. A point the model places on a surface that its own other views do not contain
+    gets a low score; a coherent imagination gets a high one, which is exactly what this baseline is meant
+    to test. One forward pass, no learning."""
+    sees, agree = reproj_support_pairs(depths, K, E, tol)
+    seen = sees.sum(1).astype(np.float64)
+    hits = (sees & (agree > 0)).sum(1).astype(np.float64)
     return np.where(seen > 0, hits / np.maximum(seen, 1), 0.0).astype(np.float32)
 
 
 # ----------------------------------------------------------------------------- true-visibility support (P4-vis)
-def support_count(depths, K, E, tol=0.03):
-    """Ground-truth multi-view support of every pixel, the natural-occlusion counterpart of the filled patch.
-    depths (N,h,w) ground-truth depth (0 = unknown), K (N,3,3) at that resolution, E (N,4,4) world -> camera.
-
-    For each pixel of view i with known depth, its ground-truth 3D point is projected into every other input view j:
-    j *sees* it when it lands in frame in front of camera j on a known depth d_j with |z - d_j| / d_j < tol (j's
-    own surface is this point); the test is *unknown* when it lands on an unknown depth of view j (hole in the
-    ground truth); otherwise j does not see it (out of frame, behind the camera, occluded by a nearer surface of j,
-    or in front of j's surface, which is ground-truth noise). Returns seen (N,h,w) and unknown (N,h,w), int counts
-    over the other N-1 views. A pixel seen by no other view has no parallax in the input: its geometry can only come
-    from the single-image prior, which is what the benchmark's masking imitates with a patch. No patch is involved."""
+def support_matrix(depths, K, E, tol=0.03):
+    """Per-view support of every pixel (the provenance labels, run family P10-prov). depths (N,h,w) with 0 = unknown,
+    K (N,3,3) at that resolution, E (N,4,4) world -> camera. Returns three (N,N,h,w) bool arrays indexed [i, j]:
+    seen: view j sees the 3D point of pixel p of view i on its own known surface (|z - d_j| / d_j < tol);
+    unknown: the point lands on an unknown depth of view j (hole in the ground truth; the test is undecided);
+    inframe: the point lands in frame in front of camera j. The diagonal is False. support_count sums over j."""
     depths = np.asarray(depths, np.float64)
     N, h, w = depths.shape
-    seen = np.zeros((N, h, w), np.int32)
-    unknown = np.zeros((N, h, w), np.int32)
+    seen = np.zeros((N, N, h, w), bool)
+    unknown = np.zeros((N, N, h, w), bool)
+    inframe = np.zeros((N, N, h, w), bool)
     for i in range(N):
         valid_i = depths[i] > 0
         Pw = backproject(depths[i], K[i], E[i])
@@ -706,9 +713,56 @@ def support_count(depths, K, E, tol=0.03):
             dj = np.zeros((h, w))
             dj[inside] = depths[j][vi[inside], ui[inside]]
             known = inside & (dj > 0)
-            unknown[i] += inside & ~known
-            seen[i] += known & (np.abs(dj - z) / np.maximum(dj, 1e-9) < tol)
-    return seen, unknown
+            inframe[i, j] = inside
+            unknown[i, j] = inside & ~known
+            seen[i, j] = known & (np.abs(dj - z) / np.maximum(dj, 1e-9) < tol)
+    return seen, unknown, inframe
+
+
+def support_count(depths, K, E, tol=0.03):
+    """Ground-truth multi-view support of every pixel, the natural-occlusion counterpart of the filled patch.
+    depths (N,h,w) ground-truth depth (0 = unknown), K (N,3,3) at that resolution, E (N,4,4) world -> camera.
+
+    For each pixel of view i with known depth, its ground-truth 3D point is projected into every other input view j:
+    j *sees* it when it lands in frame in front of camera j on a known depth d_j with |z - d_j| / d_j < tol (j's
+    own surface is this point); the test is *unknown* when it lands on an unknown depth of view j (hole in the
+    ground truth); otherwise j does not see it (out of frame, behind the camera, occluded by a nearer surface of j,
+    or in front of j's surface, which is ground-truth noise). Returns seen (N,h,w) and unknown (N,h,w), int counts
+    over the other N-1 views. A pixel seen by no other view has no parallax in the input: its geometry can only come
+    from the single-image prior, which is what the benchmark's masking imitates with a patch. No patch is involved.
+    The per-view bits behind the counts are support_matrix."""
+    seen, unknown, _ = support_matrix(depths, K, E, tol)
+    return seen.sum(1).astype(np.int32), unknown.sum(1).astype(np.int32)
+
+
+def provenance_metrics(P, seen, unknown, inframe, valid, S=None, max_pixels=300000, seed=0):
+    """Attribution quality of per-view support scores P (N,N,h,w), P[i, j] = predicted probability that view j
+    corroborates pixel p of view i (diagonal ignored), against the ground-truth matrix of support_matrix.
+    prov_auroc: over every ordered pair (i, j) and every pixel with known depth in view i whose test in view j is
+    decided, does the score rank the views that see the point above the views that do not (out of frame, occluded,
+    or on a different surface)? prov_auroc_inframe: the same restricted to views in whose frame the point lands, so
+    that frame geometry alone cannot answer it. prov_top1: on the supported pixels S, the fraction whose highest
+    scoring view does see the point. prov_count_mae: mean |sum_j P - number of seeing views| over valid pixels.
+    Pixels are subsampled to max_pixels per class before the rank statistic."""
+    P = np.asarray(P, np.float32)
+    N = P.shape[0]
+    off = ~np.eye(N, dtype=bool)
+    base = off[:, :, None, None] & valid[:, None] & ~unknown
+    rng = np.random.default_rng(seed)
+
+    def _sub(x):
+        return rng.choice(x, max_pixels, replace=False) if len(x) > max_pixels else x
+
+    out = {"prov_auroc": auroc(_sub(P[base & seen]), _sub(P[base & ~seen])),
+           "prov_auroc_inframe": auroc(_sub(P[base & seen]), _sub(P[base & inframe & ~seen]))}
+    Pm = np.where(off[:, :, None, None], P, 0.0)
+    cnt = seen.sum(1)
+    out["prov_count_mae"] = float(np.mean(np.abs(Pm.sum(1) - cnt)[valid])) if valid.any() else float("nan")
+    if S is not None and S.any():
+        top = np.argmax(np.where(off[:, :, None, None], P, -1.0), axis=1)          # (N,h,w): best other view
+        hit = np.take_along_axis(seen, top[:, None], 1)[:, 0]
+        out["prov_top1"] = float(hit[S].mean())
+    return out
 
 
 def vis_labels(data, cfg=None):
@@ -717,7 +771,8 @@ def vis_labels(data, cfg=None):
     other views, outside a dilation of U. Labels at depth resolution, same shapes and meaning as build_masks."""
     cfg = {**DEFAULT_CFG, **(cfg or {})}
     depths, Kd, E = data["depths"], data["K_dep"], data["E"]
-    seen, unknown = support_count(depths, Kd, E, cfg.get("vis_tol", 0.03))
+    seen_m, unk_m, inframe_m = support_matrix(depths, Kd, E, cfg.get("vis_tol", 0.03))
+    seen, unknown = seen_m.sum(1).astype(np.int32), unk_m.sum(1).astype(np.int32)
     valid = depths > 0
     U = valid & (seen == 0) & (unknown == 0)
     S = valid & (seen >= cfg.get("vis_min_seen", 2))
@@ -725,7 +780,10 @@ def vis_labels(data, cfg=None):
     kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k))
     for i in range(len(U)):
         S[i] &= ~(cv2.dilate(U[i].astype(np.uint8), kernel) > 0)
-    return dict(U=U, S=S, seen=seen, unknown=unknown)
+    out = dict(U=U, S=S, seen=seen, unknown=unknown)
+    if cfg.get("vis_pairs"):          # the per-view bits behind the counts (provenance labels, P10-prov)
+        out.update(seen_mat=seen_m, unknown_mat=unk_m, inframe_mat=inframe_m, valid=valid)
+    return out
 
 
 def vis_views(n_views, seed, total=49, mode="spread"):
@@ -815,8 +873,24 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
                     continue
                 out_hw = data["depths"].shape[1:]
                 model_hw = tuple(data.get("model_hw", cfg["model_hw"]))
-                d, c = model.predict(data["imgs"], model_hw, out_hw)
+                pm = {}
+                if cfg.get("prov") and getattr(model, "has_pairs", False):
+                    # provenance (P10-prov): per-view support scores against the ground-truth per-view matrix
+                    d, c, P = model.predict_pairs(data["imgs"], model_hw, out_hw)
+                    sm, um, fm = support_matrix(data["depths"], data["K_dep"], data["E"], cfg.get("vis_tol", 0.03))
+                    pm = provenance_metrics(P, sm, um, fm, data["depths"] > 0, S)
+                    if cfg.get("dump_pairs"):
+                        pp = os.path.join(cfg["dump_pairs"], mname, f"{scan}__s{seed}__v{n}.npz")
+                        os.makedirs(os.path.dirname(pp), exist_ok=True)
+                        np.savez_compressed(pp, P=P.astype(np.float16), seen=sm, unknown=um, inframe=fm,
+                                            rgb=np.stack([cv2.resize((im * 255).astype(np.uint8), (out_hw[1], out_hw[0]),
+                                                                     interpolation=cv2.INTER_AREA) for im in data["imgs"]]),
+                                            gt=data["depths"].astype(np.float32), U=U, S=S, conf=c.astype(np.float32),
+                                            depth=d.astype(np.float16))
+                else:
+                    d, c = model.predict(data["imgs"], model_hw, out_hw)
                 m = compute_metrics(d, c, data["depths"], U, S, cfg)
+                m.update(pm)
                 valid = int((data["depths"] > 0).sum())
                 if cfg.get("dump_dir"):          # per-pixel scores for the risk-coverage / calibration analysis
                     _dump_vis(cfg["dump_dir"], mname, scan, seed, n, d * m["scale"], c, data["depths"], lab, data["imgs"])
@@ -828,7 +902,8 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
             df.to_csv(out_csv, mode="a", header=not os.path.exists(out_csv), index=False)
             if verbose:
                 g = df[~df.skipped.astype(bool)]
-                print(f"[{mname}] scan {scan}  auroc={g.auroc.mean():.3f}  cur={g.cur.mean():.3f}  "
+                prov = f"prov_auroc={g.prov_auroc.mean():.3f} top1={g.prov_top1.mean():.3f}  " if "prov_auroc" in g and len(g) else ""
+                print(f"[{mname}] scan {scan}  auroc={g.auroc.mean():.3f}  cur={g.cur.mean():.3f}  {prov}"
                       f"absrel_U={g.absrel_U.mean():.3f} (S {g.absrel_S.mean():.3f})  fracU={g.frac_U.mean():.3f}  "
                       f"{time.time() - t0:.0f}s" if len(g) else f"[{mname}] scan {scan}: too few U or S pixels")
         if hasattr(model, "free") and not cfg.get("keep_model", False):
@@ -879,6 +954,29 @@ class ReprojWrap:
         K[:, 1] *= out_hw[0] / model_hw[0]
         conf = reproj_support_score(d_s, K, E, self.tol)
         return d_s.astype(np.float32), conf.astype(np.float32)
+
+    has_pairs = True
+
+    def predict_pairs(self, imgs, model_hw, out_hw):
+        """Depth, support score and the per-view agreement (N,N,h,w) of the model's own reprojection test: the
+        training-free attribution baseline of the provenance heads."""
+        torch = self.base.torch
+        x = self.base._prep(imgs, model_hw)
+        with torch.no_grad():
+            d, K, E = self.base._forward_cams(x, self.base.dtype)
+            if not torch.isfinite(d).all():
+                d, K, E = self.base._forward_cams(x, None)
+        d = d.float().cpu().numpy().astype(np.float32)
+        K = np.asarray(K.float().cpu().numpy(), np.float64).copy()
+        E = np.asarray(E.float().cpu().numpy(), np.float64)
+        d_s = np.stack([cv2.resize(x_, (out_hw[1], out_hw[0]), interpolation=cv2.INTER_AREA) for x_ in d])
+        K[:, 0] *= out_hw[1] / model_hw[1]
+        K[:, 1] *= out_hw[0] / model_hw[0]
+        sees, agree = reproj_support_pairs(d_s, K, E, self.tol)
+        seen = sees.sum(1).astype(np.float64)
+        hits = (sees & (agree > 0)).sum(1).astype(np.float64)
+        conf = np.where(seen > 0, hits / np.maximum(seen, 1), 0.0).astype(np.float32)
+        return d_s.astype(np.float32), conf, agree
 
     def free(self):
         self.base.free()

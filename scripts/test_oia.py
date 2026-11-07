@@ -246,6 +246,61 @@ checks.update({
     "make_model routes the _x<tag> head": isinstance(m_ad, O.OIAWrap) and m_ad.name == "fake_oiavisself_xtest",
     "adapted head scored on the CO3D-format scene": len(da) == 1 and bool(da.auroc.notna().all()),
 })
+# ---------------------------------------------------------------- P10: provenance head (per-view evidence attention)
+GT_BY_N.clear()
+CO.load_co3d_scene = _orig_load
+GT.update(data)
+d3b = H.load_scan(root, 3, H.vis_views(3, 1), 3)
+sm, um, fm = H.support_matrix(d3b["depths"], d3b["K_dep"], d3b["E"])
+sc_, uc_ = H.support_count(d3b["depths"], d3b["K_dep"], d3b["E"])
+labp = H.vis_labels(d3b, {"vis_pairs": True})
+# reprojection pairs: the fake prediction equals the ground truth, so every view that sees a point also agrees with it
+sees_r, agree_r = H.reproj_support_pairs(d3b["depths"], d3b["K_dep"], d3b["E"])
+pm_r = H.provenance_metrics(agree_r, sm, um, fm, d3b["depths"] > 0, labp["S"])
+pm_rand = H.provenance_metrics(np.random.default_rng(0).random(sm.shape).astype(np.float32), sm, um, fm, d3b["depths"] > 0, labp["S"])
+print("provenance of the reprojection test on GT:", {k: round(v, 3) for k, v in pm_r.items()}, "| random:", {k: round(v, 3) for k, v in pm_rand.items()})
+GT.update(d3b)
+cks_prov = O.train_multi("fake", root, [("oiaprov", 0, os.path.join(WORK, "ckpt", "fake_oiaprov.pt"))],
+                         steps=30, device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, lr=2e-3, warmup=5,
+                         log_every=10, val_every=15, val_scans=[3], val_seeds=[0], random_light=False, vis_views=(3, 5))
+cks_provself = O.train_multi("fake", root, [("oiaprovself", 0, os.path.join(WORK, "ckpt", "fake_oiaprovself.pt"))],
+                             steps=10, device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, lr=2e-3, warmup=5,
+                             log_every=5, val_every=10, val_scans=[], random_light=False, vis_views=(3,))
+ckp = torch.load(cks_prov[0], map_location="cpu", weights_only=False)
+mp = O.make_oia("fake_oiaprov")
+for n in (3, 5):
+    GT_BY_N[n] = H.load_scan(root, 3, H.vis_views(n, 0), 3)
+pcsv = os.path.join(WORK, "prov.csv")
+if os.path.exists(pcsv):
+    os.remove(pcsv)
+pdump = os.path.join(WORK, "provdump")
+H.run_vis(root, ["fake_oiaprov", "fake_oiaprovself"], {"scans": [3], "vis_views": [3, 5], "seeds": [0], "model_hw": MODEL_HW,
+                                                       "prov": True, "dump_pairs": pdump}, out_csv=pcsv)
+H.run_vis(root, ["fake_oiaprov"], {"scans": [3], "vis_views": [3], "seeds": [0], "model_hw": MODEL_HW}, out_csv=pcsv)  # no prov cfg: plain row path
+dp = pd.read_csv(pcsv)
+print(dp[["model", "fill", "auroc", "cur", "prov_auroc", "prov_auroc_inframe", "prov_top1", "prov_count_mae"]].to_string())
+dpr = dp[dp.model == "fake_oiaprov"]
+d_, s_, P_ = mp.predict_pairs(GT_BY_N[3]["imgs"], MODEL_HW, GT_BY_N[3]["depths"].shape[1:])
+dumped_p = np.load(os.path.join(pdump, "fake_oiaprovself", "3__s0__v3.npz"))
+checks.update({
+    "support_matrix sums to support_count": bool((sm.sum(1) == sc_).all() and (um.sum(1) == uc_).all()),
+    "support_matrix: diagonal empty, inframe contains seen and unknown": bool(not np.einsum("iihw->ihw", sm).any() and ((sm | um) <= fm).all()),
+    "vis_labels returns the pair matrices on request": set(["seen_mat", "unknown_mat", "inframe_mat", "valid"]) <= set(labp),
+    "reprojection pairs of a perfect prediction attribute perfectly (prov_auroc > 0.99, top1 > 0.99)":
+        pm_r["prov_auroc"] > 0.99 and pm_r["prov_top1"] > 0.99,
+    "random per-view scores attribute at chance (0.4 < prov_auroc < 0.6)": 0.4 < pm_rand["prov_auroc"] < 0.6,
+    "provenance head trains, checkpoints with arch prov": os.path.exists(cks_prov[0]) and ckp["arch"] == "prov" and ckp["labels"] == "vis",
+    "label-free provenance head trains on visself pair labels": os.path.exists(cks_provself[0])
+        and torch.load(cks_provself[0], map_location="cpu", weights_only=False)["labels"] == "visself",
+    "make_model routes <base>_oiaprov to a pair-capable wrapper": isinstance(mp, O.OIAWrap) and mp.has_pairs,
+    "predict_pairs: P is (N,N,h,w) in [0,1] with an empty diagonal": P_.shape == (3, 3) + tuple(GT_BY_N[3]["depths"].shape[1:])
+        and float(P_.min()) >= 0 and float(P_.max()) <= 1 and not np.einsum("iihw->ihw", P_).any(),
+    "predict_pairs aggregate matches predict's support score": np.allclose(s_, mp.predict(GT_BY_N[3]["imgs"], MODEL_HW, GT_BY_N[3]["depths"].shape[1:])[1], atol=1e-4),
+    "run_vis writes attribution columns for pair-capable models under cfg prov": len(dpr) == 2 and dpr.prov_auroc.notna().all()
+        and dpr.prov_top1.notna().all() and dp[dp.model == "fake_oiaprovself"].prov_auroc.notna().all(),
+    "run_vis dumps per-view maps when asked": set(["P", "seen", "unknown", "inframe", "rgb", "gt", "U", "S", "conf", "depth"]) <= set(dumped_p.files)
+        and dumped_p["P"].shape[:2] == (3, 3),
+})
 failed = [k for k, ok in checks.items() if not ok]
 print("checks:", "all passed" if not failed else "FAILED " + ", ".join(failed))
 print("scratch dir:", WORK)

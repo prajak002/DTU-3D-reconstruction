@@ -21,6 +21,9 @@ Variants (all share this file, selected by the model name passed to hallu3d.make
   <base>_oiavis     conv head trained on TRUE visibility labels (ground-truth multi-view support, no patch)  (P4-vis)
   <base>_oiavisself the same head trained on the backbone's OWN predicted support: no ground truth anywhere  (P5)
   <base>_oiavislin<L> linear probe on one aggregator layer, true-visibility labels (where visibility lives)
+  <base>_oiaprov    provenance head: per-view evidence attention, says WHICH input views corroborate each pixel;
+                    trained on ground-truth per-view visibility (hallu3d.support_matrix)                      (P10-prov)
+  <base>_oiaprovself the same head trained on the per-view support of the backbone's own prediction, label-free (P10-prov)
 Several heads with the same label source train jointly on the same backbone forwards (train_multi, --variant a,b,c).
 Checkpoints: $OIA_CKPT_<NAME> (e.g. OIA_CKPT_VGGT_OIA) or $OIA_CKPT_DIR/<name>.pt (default checkpoints/).
 Backbones with feature hooks: vggt (aggregator tokens, layers 4/11/17/23, 2048-d), pi3 and pi3x (decoder tokens
@@ -85,6 +88,11 @@ VARIANTS = {
     # evaluation-time fusion with native confidence (geometric mean of the two scores); share the head's checkpoint
     "oiavisfuse":     ("agg",   "conv",   "vis"),
     "oiavisselffuse": ("agg",   "conv",   "visself"),
+    # provenance (P10-prov): one logit per (target view, source view, patch) from cross-view evidence attention over
+    # the same features; the support score is the log-odds that no source view corroborates the patch. Trained on
+    # the per-view visibility bits of the ground truth (oiaprov) or of the backbone's own prediction (oiaprovself).
+    "oiaprov":     ("agg",   "prov",   "vis"),
+    "oiaprovself": ("agg",   "prov",   "visself"),
 }
 LAYER_PICK = {"oiavislin4": 0, "oiavislin11": 1, "oiavislin17": 2, "oiavislin23": 3}
 
@@ -260,6 +268,58 @@ def build_head(torch, in_dims, arch="conv", width=256):
             h = sum(p(f) for p, f in zip(self.proj, F))
             return self.out(self.body(h))[:, 0]
 
+    class ProvenanceHead(nn.Module):
+        """Feature maps (list of (N,Ci,ph,pw)) -> per-view evidence logits (N,N,ph,pw): logit[i, j, p] says whether
+        source view j corroborates the surface at patch p of target view i (the diagonal is unused). Every target
+        token queries the tokens of each other view with multi-head attention; the attended evidence, the query,
+        their product and the attention's peak weight per head feed a shared MLP. No cameras and no positions are
+        given: the backbone's cross-view tokens already carry the geometry, and the head only has to read where a
+        patch's evidence sits in another view. forward() returns the support logit of the other heads (positive =
+        imagined): the log-odds that no source view corroborates the patch, sum_j log(1 - sigmoid(logit_ij))."""
+
+        def __init__(self, heads=4):
+            super().__init__()
+            self.proj = nn.ModuleList([nn.Sequential(ChannelLN(c), nn.Conv2d(c, width, 1)) for c in in_dims])
+            self.local = nn.Sequential(nn.GELU(), nn.Conv2d(width, width, 3, padding=1), nn.GELU())
+            self.ln = nn.LayerNorm(width)
+            self.q, self.k, self.v = nn.Linear(width, width), nn.Linear(width, width), nn.Linear(width, width)
+            self.heads = heads
+            self.mlp = nn.Sequential(nn.Linear(3 * width + heads, width), nn.GELU(), nn.Linear(width, width // 2),
+                                     nn.GELU(), nn.Linear(width // 2, 1))
+
+        def tokens(self, F):
+            h = sum(p(f) for p, f in zip(self.proj, F))
+            h = h + self.local(h)
+            N, C, ph, pw = h.shape
+            return h.flatten(2).transpose(1, 2), (ph, pw)                    # (N, L, C)
+
+        def pairs(self, F):
+            x, (ph, pw) = self.tokens(F)
+            N, L, C = x.shape
+            Hh, dh = self.heads, C // self.heads
+            xn = self.ln(x)
+            q = self.q(xn).reshape(N, L, Hh, dh)
+            k = self.k(xn).reshape(N, L, Hh, dh)
+            v = self.v(xn).reshape(N, L, Hh, dh)
+            att = torch.einsum("ilhd,jmhd->ijhlm", q, k) / dh ** 0.5         # target (i, l) over source (j, m)
+            a = att.softmax(-1)
+            e = torch.einsum("ijhlm,jmhd->ijlhd", a, v).reshape(N, N, L, C)  # evidence read from view j
+            peak = a.amax(-1).permute(0, 1, 3, 2)                             # (i, j, l, Hh)
+            xi = x[:, None].expand(N, N, L, C)
+            logit = self.mlp(torch.cat([xi, e, xi * e, peak], -1))[..., 0]
+            return logit.reshape(N, N, ph, pw)
+
+        @staticmethod
+        def aggregate(pair_logit):
+            N = pair_logit.shape[0]
+            off = ~torch.eye(N, dtype=torch.bool, device=pair_logit.device)
+            lognot = torch.nn.functional.logsigmoid(-pair_logit) * off[:, :, None, None]
+            log_p = lognot.sum(1).clamp(max=-1e-6)                            # log P(no view corroborates)
+            return log_p - torch.log(-torch.expm1(log_p))                     # logit, positive = imagined
+
+        def forward(self, F):
+            return self.aggregate(self.pairs(F))
+
     class CrossViewBlocks(nn.Module):
         """Transformer blocks with global attention over the tokens of every view (pre-LN, SDPA). Each token
         carries a 2D sinusoidal position and a learned view embedding, so the head can relate a patch to the
@@ -299,11 +359,19 @@ def build_head(torch, in_dims, arch="conv", width=256):
                 x = x + b["mlp"](b["ln2"](x))
             return x.reshape(N, ph * pw, C).transpose(1, 2).reshape(N, C, ph, pw)
 
-    return SupportHead()
+    return ProvenanceHead() if arch == "prov" else SupportHead()
 
 
 def upsample_logit(torch, logit, hw):
     return torch.nn.functional.interpolate(logit[:, None], size=hw, mode="bilinear", align_corners=False)[:, 0]
+
+
+def upsample_pairs(torch, pair_logit, hw):
+    """(N,N,ph,pw) -> (N,N,h,w), bilinear."""
+    N = pair_logit.shape[0]
+    up = torch.nn.functional.interpolate(pair_logit.reshape(N * N, 1, *pair_logit.shape[2:]), size=hw, mode="bilinear",
+                                         align_corners=False)
+    return up.reshape(N, N, *hw)
 
 
 def three_way(score, lo=0.3, hi=0.7):
@@ -459,7 +527,8 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         return md
 
     hw_lab = (model_hw[0] // 2, model_hw[1] // 2)
-    vis_cfg = {"vis_tol": tc["vis_tol"], "vis_min_seen": tc["vis_min_seen"], "vis_dilate_px": 3}
+    any_prov = any(VARIANTS[v][1] == "prov" for v, _, _ in specs)
+    vis_cfg = {"vis_tol": tc["vis_tol"], "vis_min_seen": tc["vis_min_seen"], "vis_dilate_px": 3, "vis_pairs": any_prov}
     bce = torch.nn.BCEWithLogitsLoss(reduction="none")
     heads = [dict(variant=v, seed=sd, out=o, feats=VARIANTS[v][0], arch=VARIANTS[v][1], head=None, opt=None,
                   sched=None, hist=[], best=-1.0) for v, sd, o in specs]
@@ -481,17 +550,38 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         print(f"[oia] {hd['variant']} head params: {sum(p.numel() for p in hd['head'].parameters()) / 1e6:.2f} M, "
               f"feature dims {[f.shape[1] for f in F]}", flush=True)
 
-    def step_loss(hd, F, U, S):
+    def step_loss(hd, F, U, S, pairs=None):
         if hd["head"] is None:
             build(hd, F)
-        logit = upsample_logit(torch, hd["head"](_pick(hd["variant"], F)), tuple(U.shape[1:]))
+        hw = tuple(U.shape[1:])
+        pair_logit = None
+        if hd["arch"] == "prov":
+            pair_logit = hd["head"].pairs(_pick(hd["variant"], F))
+            logit = upsample_logit(torch, hd["head"].aggregate(pair_logit), hw)
+        else:
+            logit = upsample_logit(torch, hd["head"](_pick(hd["variant"], F)), hw)
         U_t, S_t = torch.from_numpy(U).to(device), torch.from_numpy(S).to(device)
         tgt = U_t.float()
         w = torch.zeros_like(tgt)
         nU, nS = max(int(U_t.sum()), 1), max(int(S_t.sum()), 1)
         w[U_t] = 0.5 / nU
         w[S_t] = 0.5 / nS
-        return (bce(logit, tgt) * w).sum(), logit
+        loss = (bce(logit, tgt) * w).sum()
+        if pair_logit is not None and pairs is not None:
+            # per-view term: does view j corroborate pixel p of view i? Decided pixels only (known depth in view i,
+            # no hole in view j), classes balanced, the diagonal excluded. Same weight as the support term.
+            seen_m, unk_m, valid = pairs
+            N = pair_logit.shape[0]
+            pl = upsample_pairs(torch, pair_logit, hw)
+            off = ~torch.eye(N, dtype=torch.bool, device=device)
+            mask = off[:, :, None, None] & torch.from_numpy(valid).to(device)[:, None] & ~torch.from_numpy(unk_m).to(device)
+            pos = mask & torch.from_numpy(seen_m).to(device)
+            neg = mask & ~pos
+            wp = torch.zeros_like(pl)
+            wp[pos] = 0.5 / max(int(pos.sum()), 1)
+            wp[neg] = 0.5 / max(int(neg.sum()), 1)
+            loss = loss + (bce(pl, pos.float()) * wp).sum()
+        return loss, logit
 
     def val_auroc():
         if not val_scans:
@@ -557,12 +647,15 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             if fails >= 20:
                 raise RuntimeError(f"20 consecutive scene failures, last: {e}")
             continue
+        pairs = None
         if labels in ("vis", "visself"):  # clean images; labels from the ground-truth support count (vis) or from
             imgs_in = md["imgs"]          # the support count of the backbone's own prediction (visself, no GT)
             m = H.vis_labels(md, vis_cfg)
             U, S = m["U"], m["S"]
             if U.sum() < tc["vis_min_pixels"] or S.sum() < tc["vis_min_pixels"]:
                 continue
+            if any_prov:
+                pairs = (m["seen_mat"], m["unknown_mat"], m["valid"])
         elif rng.random() < tc["p_clean"]:
             imgs_in = md["imgs"]
             U = np.zeros(md["depths"].shape, bool)
@@ -579,7 +672,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             _, _, F, _, _ = forward(imgs_in, feats_mode)
         s += 1
         for hd in heads:
-            loss, logit = step_loss(hd, F[hd["feats"]], U, S)
+            loss, logit = step_loss(hd, F[hd["feats"]], U, S, pairs if hd["arch"] == "prov" else None)
             hd["opt"].zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(hd["head"].parameters(), 1.0)
@@ -628,6 +721,7 @@ class OIAWrap:
         self.feats, self.ckpt, self.pick = ck["feats"], path, ck.get("layer_pick")
         self.head = build_head(torch, ck["in_dims"], ck["arch"], ck["width"]).to(base.device).eval()
         self.head.load_state_dict(ck["state"])
+        self.has_pairs = ck["arch"] == "prov"
         self.ff = forward_feats or FORWARD_FEATS[base.name]
         print(f"[{self.name}] head from {path} (step {ck.get('step')}, val-auroc {ck.get('val_auroc', float('nan')):.3f})")
 
@@ -649,6 +743,28 @@ class OIAWrap:
                 cn = (cn - cn.min()) / (cn.max() - cn.min() + 1e-9)
                 score = torch.sqrt(score.clamp_min(1e-6) * cn.clamp_min(1e-6))
         return d.cpu().numpy().astype(np.float32), score.cpu().numpy().astype(np.float32)
+
+    def predict_pairs(self, imgs, model_hw, out_hw):
+        """Provenance heads only: depth, support score and P (N,N,h,w), P[i, j] = probability that input view j
+        corroborates pixel p of view i (diagonal 0)."""
+        if not self.has_pairs:
+            raise AttributeError(f"{self.name} is not a provenance head")
+        torch = self.base.torch
+        x = self.base._prep(imgs, model_hw)
+        with torch.no_grad():
+            d, c, F, _, _ = self.ff(self.base, x, self.base.dtype, self.feats)
+            if not torch.isfinite(d).all():
+                d, c, F, _, _ = self.ff(self.base, x, None, self.feats)
+            F = [f.float() for f in F]
+            pl = self.head.pairs(F)
+            logit = upsample_logit(torch, self.head.aggregate(pl), out_hw)
+            score = 1.0 - torch.sigmoid(logit.float())
+            P = torch.sigmoid(upsample_pairs(torch, pl, tuple(out_hw)).float())
+            N = P.shape[0]
+            P = P * (~torch.eye(N, dtype=torch.bool, device=P.device))[:, :, None, None]
+            d = H._resize_t(d[:, None].float(), out_hw, "area")[:, 0]
+        return (d.cpu().numpy().astype(np.float32), score.cpu().numpy().astype(np.float32),
+                P.cpu().numpy().astype(np.float32))
 
     def free(self):
         self.base.free()

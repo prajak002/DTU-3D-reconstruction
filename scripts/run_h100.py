@@ -274,6 +274,7 @@ HEURISTICS = ("border", "dedge")      # hallu3d.HeuristicWrap: training-free con
 VIS_DETECTORS = ("oia", "oiapatch", "oiavis", "oiavispatch", "oiavislin", "oiavis_s1", "oiavis_s2",
                  "oiavisself", "oiavisselfpatch", "oiavisselflin",
                  "oiavislin4", "oiavislin11", "oiavislin17", "oiavislin23", "oiavispatchlin")
+# the provenance heads are scored by stage prov (their own run family, with the attribution metrics)
 
 
 def _train_heads(args, base, variants, marker, extra_seeds=(), extra_of=None, root=None, scans=None, tag=None):
@@ -310,6 +311,42 @@ def stage_trainvisself(args):
     support count of the backbone's own prediction. Same cost as trainvis (one forward per step)."""
     for base in args.bases:
         _train_heads(args, base, ["oiavisself", "oiavisselfpatch", "oiavisselflin"], "oiavisself")
+
+
+def stage_trainprov(args):
+    """Provenance heads (P10-prov): <base>_oiaprov on the ground-truth per-view visibility bits and <base>_oiaprovself
+    on the per-view support of the backbone's own prediction (label-free). Different label sources, so one run each
+    per backbone; same cost per step as the other visibility heads plus the pair attention."""
+    for base in args.bases:
+        _train_heads(args, base, ["oiaprov"], "oiaprov")
+        _train_heads(args, base, ["oiaprovself"], "oiaprovself")
+
+
+def stage_prov(args):
+    """P10-prov: the provenance heads and the reprojection attribution baseline on the vis protocol of every dataset
+    given (DTU, CO3Dv2, ETH3D, phototourism), with the per-view attribution metrics (hallu3d.provenance_metrics):
+    results/P10-prov-<dataset>/P10-prov-<dataset>.csv. The AUROC / CUR columns of these rows are the support score of
+    the heads on the same cells as P4-vis*, so the heads join the vis table; prov_auroc, prov_top1 and prov_count_mae
+    are the attribution columns. One scene per dataset (first scan, seed 0, 5 views) is also dumped with its per-view
+    maps for the qualitative figure (results/P10-prov-dump/)."""
+    _ckpt_env(args)
+    heads = [f"{b}_{v}" for b in args.bases for v in ("oiaprov", "oiaprovself") if _have(args, f"{b}_{v}")]
+    if not heads:
+        print("[skip] prov: no provenance head checkpoint is complete"); return
+    models = heads + [f"{b}_reproj" for b in args.bases if b in ("vggt", "pi3x", "pi3", "da3")]
+    jobs = [("dtu", args.dtu_root, dict(VIS_CFG))]
+    if args.co3d_root:
+        jobs.append(("co3d", args.co3d_root, co3d_cfg(args, VIS_CFG)))
+    if args.eth3d_root:
+        jobs.append(("eth3d", args.eth3d_root, _eth3d_cfg(args, VIS_CFG)))
+    if args.imc_root:
+        jobs.append(("imc", args.imc_root, _imc_cfg(args, VIS_CFG)))
+    dump = os.path.join(args.out, "P10-prov-dump")
+    for tag, root, cfg in jobs:
+        _run_vis(args, f"P10-prov-{tag}", models, {**cfg, "prov": True}, root)
+        scans = cfg.get("scans", H.DEFAULT_CFG["scans"])
+        small = {**cfg, "prov": True, "scans": list(scans)[:2], "seeds": [0], "vis_views": [5], "dump_pairs": os.path.join(dump, tag)}
+        _run_vis(args, f"P10-prov-dump-{tag}", [m for m in models if m.endswith("provself") or m.endswith("reproj")], small, root)
 
 
 def stage_trainvisprobe(args):
@@ -807,7 +844,8 @@ STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": 
           "trainvis": stage_trainvis, "vis": stage_vis, "vis_co3d": stage_vis_co3d, "vis_eth3d": stage_vis_eth3d,
           "trainvisself": stage_trainvisself, "trainvisprobe": stage_trainvisprobe,
           "adapt_co3d": stage_adapt_co3d, "adapt_eth3d": stage_adapt_eth3d, "vis_ext": stage_vis_ext, "dump": stage_dump,
-          "vis_on_fill": stage_vis_on_fill, "vis_imc": stage_vis_imc, "adapt_imc": stage_adapt_imc, "xmodel": stage_xmodel}
+          "vis_on_fill": stage_vis_on_fill, "vis_imc": stage_vis_imc, "adapt_imc": stage_adapt_imc, "xmodel": stage_xmodel,
+          "trainprov": stage_trainprov, "prov": stage_prov}
 
 
 def main():
@@ -838,9 +876,9 @@ def main():
     a.dtu_root = None
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
-    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump", "vis_on_fill", "xmodel") else None
-    a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d", "adapt_eth3d", "dump")) else None
-    a.imc_root = co3d.find_co3d_root((a.imc,)) if (a.imc and a.stage in ("all", "vis_imc", "adapt_imc", "dump")) else None
+    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump", "vis_on_fill", "xmodel", "prov") else None
+    a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d", "adapt_eth3d", "dump", "prov")) else None
+    a.imc_root = co3d.find_co3d_root((a.imc,)) if (a.imc and a.stage in ("all", "vis_imc", "adapt_imc", "dump", "prov")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]
     for s in stages:
         if s == "co3d" and not a.co3d_root:
