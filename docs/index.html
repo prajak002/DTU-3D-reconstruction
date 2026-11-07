@@ -4,95 +4,99 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Observe, Imagine, Abstain</title>
-<meta name="description" content="HalluBench-3D: measuring how confidently 3D foundation models report geometry no camera saw. CVPR 2027 submission.">
+<meta name="description" content="HalluBench-3D and the label-free support head: measuring and detecting geometry that feed-forward 3D models return without having seen it. CVPR 2027 submission.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>
-:root{
-  --paper:#F7F8F6; --ink:#17201F; --slate:#4C5A58; --rule:#D9DEDC;
-  --observed:#1E8A7A; --unsupported:#18B8E0; --pending:#B86E00; --pending-bg:#FFF4E3;
-  --measure:66ch;
-}
+:root{--paper:#F7F8F6;--ink:#17201F;--slate:#4C5A58;--rule:#D9DEDC;--observed:#1E8A7A;--unsupported:#18B8E0;--warn:#B86E00;--warn-bg:#FFF4E3;--measure:68ch}
 *{box-sizing:border-box}
-html{background:var(--paper);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:19px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%}
+html{background:var(--paper);color:var(--ink);font-family:"Newsreader",Georgia,serif;font-size:19px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0}
 a{color:inherit;text-decoration-color:var(--unsupported);text-decoration-thickness:2px;text-underline-offset:3px}
 a:hover{color:var(--observed)}
 :focus-visible{outline:3px solid var(--unsupported);outline-offset:3px}
 main{padding:0 20px 120px}
 .measure{max-width:var(--measure);margin:0 auto}
-h1{font-weight:400;font-size:clamp(2.2rem,6vw,4.6rem);line-height:1.02;letter-spacing:-0.015em;margin:0 0 .4em}
+.wide{max-width:1180px;margin:0 auto}
+h1{font-weight:400;font-size:clamp(2.2rem,6vw,4.4rem);line-height:1.02;letter-spacing:-0.015em;margin:0 0 .4em}
 h1 em{font-style:italic;font-weight:300}
-h2{font-weight:500;font-size:1.65rem;line-height:1.2;margin:3.2rem 0 .8rem}
+h2{font-weight:500;font-size:1.65rem;line-height:1.2;margin:3.4rem 0 .8rem}
+h2 .num{display:block;font-size:.8rem;letter-spacing:.14em;color:var(--slate);font-family:ui-monospace,Menlo,Consolas,monospace;margin-bottom:.4rem}
 h3{font-weight:500;font-size:1.15rem;margin:1.8rem 0 .4rem}
 p{margin:0 0 1em}
-.lede{font-size:1.32rem;line-height:1.4;color:var(--ink);max-width:36ch}
+.lede{font-size:1.32rem;line-height:1.4;max-width:40ch}
 .sub{color:var(--slate)}
-.meta{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;margin:1.6rem 0 2.4rem;color:var(--slate);font-size:.95rem}
-.meta a{white-space:nowrap}
-header{padding:64px 0 24px}
 .small{font-size:.9rem;color:var(--slate)}
-
-/* hero reveal */
-.reveal{max-width:960px;margin:0 auto 2rem;padding:0}
+header{padding:56px 0 20px}
+nav.top{position:sticky;top:0;z-index:5;background:rgba(247,248,246,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);font-size:.9rem}
+nav.top .in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;gap:.2rem 1.3rem;padding:.55rem 20px;align-items:center}
+nav.top .brand{font-weight:500;margin-right:auto}
+nav.top a{text-decoration:none;color:var(--slate)}
+nav.top a:hover{color:var(--ink)}
+.buttons{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0 2.2rem}
+.buttons a{display:inline-block;border:1px solid var(--ink);padding:.45rem .95rem;text-decoration:none;font-size:.95rem;border-radius:3px}
+.buttons a:hover{background:var(--ink);color:var(--paper)}
+.buttons a.primary{background:var(--ink);color:var(--paper)}
+.buttons a.primary:hover{background:var(--observed);border-color:var(--observed)}
+.reveal{max-width:960px;margin:0 auto 1.5rem}
 .reveal figure{margin:0}
 .stage{position:relative;aspect-ratio:432/324;background:#e9ecea;border:1px solid var(--rule);overflow:hidden}
 .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .25s ease}
 .stage img.on{opacity:1}
-.seg{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--ink);width:max-content;max-width:100%;margin:14px 0 8px}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--ink);width:max-content;max-width:100%;margin:14px 0 8px}
 .seg button{font:inherit;font-size:1rem;background:none;border:0;border-right:1px solid var(--ink);padding:.5rem 1rem;cursor:pointer;color:var(--ink);flex:1 1 auto}
 .seg button:last-child{border-right:0}
-@media (max-width:640px){.seg{width:100%}.seg button{border-right:0;border-bottom:1px solid var(--ink);flex-basis:100%;text-align:left}.seg button:last-child{border-bottom:0}}
 .seg button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
 .reveal figcaption{color:var(--slate);font-size:.95rem;max-width:70ch}
 .cyan{color:var(--unsupported);font-weight:500}
-@media (prefers-reduced-motion:reduce){.stage img{transition:none}}
-
-/* headline bars */
-.bars{margin:1.2rem 0 .4rem;border-top:1px solid var(--rule)}
-.row{display:grid;grid-template-columns:11ch 1fr 1fr;gap:0 1.2rem;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--rule)}
-.row.head{color:var(--slate);font-size:.9rem;padding:.4rem 0}
-.bar{position:relative;height:14px;background:#E6EAE8}
-.bar span{position:absolute;left:0;top:0;bottom:0;background:var(--unsupported)}
-.bar.dtu span{background:var(--observed)}
-.bar b{position:absolute;left:calc(var(--v) * 100% + 8px);top:-4px;font-weight:500;font-size:.95rem;white-space:nowrap}
-.legend{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;font-size:.9rem;color:var(--slate);margin:.5rem 0 0}
-.legend span{white-space:nowrap}.legend span:last-child{white-space:normal;flex-basis:100%}
-.legend i{display:inline-block;width:12px;height:12px;vertical-align:-1px;margin-right:.4rem}
-figure.fig{margin:1.8rem auto;max-width:1180px}
+figure.fig{margin:1.6rem auto;max-width:1180px}
 figure.fig img{width:100%;height:auto;display:block;border:1px solid var(--rule);background:#fff}
 figure.fig figcaption{max-width:var(--measure);margin:.6rem auto 0;color:var(--slate);font-size:.95rem}
-.pending{background:var(--pending-bg);color:var(--pending);padding:.05em .4em;border-radius:2px;font-size:.9em}
-ol.steps{padding-left:1.4em}
-ol.steps li{margin-bottom:.4em}
-video{width:100%;height:auto;display:block;background:#000;border:1px solid var(--rule)}
-.video{max-width:1180px;margin:1.6rem auto}
-table{border-collapse:collapse;width:100%;font-size:.95rem;margin:1rem 0}
-th,td{text-align:left;padding:.45rem .6rem .45rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:1.4rem 0}
+.kpi{border-top:2px solid var(--ink);padding-top:.5rem}
+.kpi b{display:block;font-size:2rem;font-weight:400;line-height:1.1}
+.kpi span{font-size:.9rem;color:var(--slate)}
+.callout{border-left:3px solid var(--observed);padding:.2rem 0 .2rem 1rem;margin:1.4rem 0;color:var(--ink)}
+.warnbox{background:var(--warn-bg);border-left:3px solid var(--warn);padding:.6rem 1rem;margin:1.4rem 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:1rem 0}
+th,td{text-align:left;padding:.42rem .6rem .42rem 0;border-bottom:1px solid var(--rule);vertical-align:top}
 th{font-weight:500;color:var(--slate)}
-td.n{text-align:right;padding-right:1.2rem}
-th.n{text-align:right;padding-right:1.2rem}
+td.n,th.n{text-align:right;padding-right:1rem;white-space:nowrap}
+tr.hl td{font-weight:500}
+tr.grp td{color:var(--slate);font-style:italic;border-bottom:0;padding-top:.8rem}
+.tabs{display:flex;flex-wrap:wrap;gap:0;border:1px solid var(--ink);width:max-content;max-width:100%;margin:1rem 0}
+.tabs button{font:inherit;font-size:.95rem;background:none;border:0;border-right:1px solid var(--ink);padding:.4rem .9rem;cursor:pointer;color:var(--ink)}
+.tabs button:last-child{border-right:0}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.tabpane{display:none}.tabpane.on{display:block}
+video{width:100%;height:auto;display:block;background:#000;border:1px solid var(--rule)}
+.video{max-width:1180px;margin:1.2rem auto}
 pre{font-size:.8rem;line-height:1.4;overflow:auto;background:#EEF1EF;padding:1rem;border:1px solid var(--rule)}
 footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top:1px solid var(--rule);color:var(--slate);font-size:.9rem}
-@media (max-width:640px){.row{grid-template-columns:9ch 1fr 1fr;gap:0 .6rem}.bar b{font-size:.85rem}}
+@media (max-width:640px){.seg{width:100%}.seg button{border-right:0;border-bottom:1px solid var(--ink);flex-basis:100%;text-align:left}.seg button:last-child{border-bottom:0}}
+@media (prefers-reduced-motion:reduce){.stage img{transition:none}}
 </style>
 </head>
 <body>
+<nav class="top" aria-label="Sections"><div class="in">
+  <span class="brand">Observe, Imagine, Abstain</span>
+  <a href="#finding">Finding</a><a href="#benchmark">Benchmark</a><a href="#method">Method</a><a href="#results">Results</a><a href="#controls">Controls</a><a href="#abstain">Abstaining</a><a href="#limit">Limit</a><a href="#video">Video</a><a href="#cite">Cite</a>
+  <a href="https://github.com/prajak002/DTU-3D-reconstruction">GitHub &#8599;</a>
+</div></nav>
 <main>
 
 <header class="measure">
   <h1>Observe, Imagine, <em>Abstain</em></h1>
-  <p class="lede">When a 3D model has not seen a surface, does it say so? We measured five of them. Mostly, no.</p>
+  <p class="lede">When a 3D model has not seen a surface, does it say so? We measured five of them. Mostly, no. Then we taught them to say so, without any labels.</p>
   <p class="sub">Detecting hallucinated geometry in feed-forward 3D reconstruction. Anonymous submission to CVPR 2027.</p>
-  <div class="meta">
-    <a href="assets/paper.pdf">Paper (PDF)</a>
-    <a href="explorer_io.html">Input → output explorer</a>
-    <a href="#demo">Demo video</a>
-    <a href="#walkthrough">Walkthrough</a>
-    <a href="https://github.com/prajak002/DTU-3D-reconstruction">Code and results</a>
+  <div class="buttons">
+    <a class="primary" href="assets/paper.pdf">Paper (PDF)</a>
+    <a href="assets/supp.pdf">Supplement</a>
+    <a href="https://github.com/prajak002/DTU-3D-reconstruction">Code, heads, run log</a>
+    <a href="assets/hallubench3d_results.zip">Every result CSV</a>
     <a href="explorer.html">Per-scene explorer</a>
-    <a href="assets/hallubench3d_results.zip">Results (CSV bundle)</a>
-    <a href="#pending">What is not done yet</a>
+    <a href="explorer_io.html">Input &rarr; output explorer</a>
+    <a href="#video">Video</a>
   </div>
 </header>
 
@@ -108,144 +112,113 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
       <button type="button" aria-pressed="false" data-k="depth">The depth it returned</button>
       <button type="button" aria-pressed="false" data-k="conf">How sure it was</button>
     </div>
-    <figcaption id="reveal-h">DTU scan 17, VGGT. A 3D region of the real surface was hidden in all ten views and inpainted. The <span class="cyan">cyan contour</span> encloses pixels that no camera observed. The model draws a building there anyway, and its confidence barely drops. Recorded output, not a mock-up.</figcaption>
+    <figcaption id="reveal-h">DTU scan 17, VGGT. A 3D region of the real surface was hidden in all ten views and inpainted. The <span class="cyan">cyan contour</span> encloses pixels that no camera observed. The model fills them with a plausible facade and is about as confident there as anywhere else.</figcaption>
   </figure>
 </section>
 
 <section class="measure">
-  <h2>The finding</h2>
-  <p>Feed-forward 3D models such as VGGT, Pi3 and Depth Anything 3 return geometry at every pixel, including pixels whose surface appears in no photograph. The training objective rewards a plausible guess, so they learn to guess. The guess is often good. The trouble is that the confidence map, the one signal you get, does not tell you which parts were observed and which were guessed.</p>
-  <p>We define a predicted point as <strong>hallucinated</strong> when it lies on a surface that no input view shows, and we measure how much of that geometry survives a confidence filter tuned to keep 90% of the observed geometry. We call that the Confident-Unsupported Rate, or CUR. Zero means the model abstains where it should; 0.9 is what a blind guesser gets.</p>
-
-  <div class="bars" aria-label="Confident-Unsupported Rate per model on DTU and CO3Dv2">
-    <div class="row head"><div>model</div><div>DTU, 18 scans</div><div>CO3Dv2, 18 scenes</div></div>
-    <div class="row"><div>VGGT-1B</div><div class="bar dtu"><span style="width:24.2%"></span><b style="--v:.242">0.24</b></div><div class="bar"><span style="width:65.1%"></span><b style="--v:.651">0.65</b></div></div>
-    <div class="row"><div>Pi3</div><div class="bar dtu"><span style="width:28.1%"></span><b style="--v:.281">0.28</b></div><div class="bar"><span style="width:27.2%"></span><b style="--v:.272">0.27</b></div></div>
-    <div class="row"><div>Pi3X</div><div class="bar dtu"><span style="width:53.2%"></span><b style="--v:.532">0.53</b></div><div class="bar"><span style="width:57%"></span><b style="--v:.57">0.57</b></div></div>
-    <div class="row"><div>MapAnything</div><div class="bar dtu"><span style="width:62.2%"></span><b style="--v:.622">0.62</b></div><div class="bar"><span style="width:81%"></span><b style="--v:.81">0.81</b></div></div>
-    <div class="row"><div>Depth Anything 3</div><div class="bar dtu"><span style="width:70.1%"></span><b style="--v:.701">0.70</b></div><div class="bar"><span style="width:79.7%"></span><b style="--v:.797">0.80</b></div></div>
-  </div>
-  <p class="legend"><span><i style="background:var(--observed)"></i>lab rig (DTU)</span><span><i style="background:var(--unsupported)"></i>phone captures (CO3Dv2)</span><span>share of unseen geometry that passes the filter; pooled over blur and noise fills, five mask seeds, two radii</span></p>
-
-  <p>Three things stand out. The leak is large for every model. It is larger on phone captures than on the lab rig for three of the five, and only Pi3 behaves the same on both. And the imagined geometry is usually <em>accurate</em>: the depth error inside the hidden region is about the same as outside it. The models are good at imagining. They are bad at saying that they did.</p>
+  <h2><span class="num">ABSTRACT</span>In one paragraph</h2>
+  <p>Feed-forward 3D models (VGGT, Pi3, Pi3X, MapAnything, Depth Anything 3) reconstruct a scene from unposed photographs in one pass. Where no photograph shows a surface they fill the gap from learned priors, and they assign the invented geometry a confidence close to that of observed geometry. We define a predicted point as hallucinated when it lies on a surface no input view shows, and build a benchmark that labels such points for free by hiding a 3D region of the ground-truth surface in every view. Across five models and three datasets, native confidence lets 24% to 81% of unsupported pixels through a filter that keeps 90% of observed ones. Cheap fixes (perturbation variance, reprojection consistency) do not help, and a head trained on the benchmark's own fills learns the fill. We then change what the detector must learn: a small <em>support head</em> on the frozen cross-view features predicts whether each pixel has multi-view support, with labels computed from the backbone's own prediction, so it needs no ground truth. On three backbones and four datasets it never saw it separates single-view from supported geometry at AUROC 0.93 to 0.99 against 0.55 to 0.89 for native confidence, matches a head trained on ground-truth visibility, and beats a per-image control that falls below chance off the lab rig. One limit, measured: a consistent invention that every view agrees on passes every test, this head included.</p>
 </section>
 
+<section class="measure" id="finding">
+  <h2><span class="num">01 / THE FINDING</span>Native confidence does not know what the model has seen</h2>
+  <p>We hide one 3D region of the ground-truth surface in every input view (three fills, five placements, two sizes, plus an inpainted fill that leaves no seam), run the model, and ask whether its confidence separates the pixels inside the hidden region (unsupported) from those far outside (supported). AUROC measures the ranking; CUR, the Confident-Unsupported Rate, is the share of unsupported pixels that survive a threshold keeping 90% of supported ones.</p>
+  <div class="kpis">
+    <div class="kpi"><b>24%</b><span>of unseen geometry passes for the best model on the lab rig (VGGT, DTU)</span></div>
+    <div class="kpi"><b>81%</b><span>for the worst on phone captures (MapAnything, CO3Dv2)</span></div>
+    <div class="kpi"><b>79%</b><span>for VGGT on building-scale ETH3D scans</span></div>
+    <div class="kpi"><b>5 of 5</b><span>models leak; only Pi3 behaves the same on the rig and on phone video</span></div>
+  </div>
+</section>
+<figure class="fig"><img src="assets/charts/leak_light.png" alt="Bar chart of CUR per model on DTU, 22 more DTU scans, CO3Dv2 and ETH3D"><figcaption>Share of unseen geometry that passes a confidence filter keeping 90% of observed geometry, pooled over blur and noise fills with 95% cluster-bootstrap intervals over scenes. Runs P1-full, P2-full, P2-co3d, P3-dtuext, P3-eth3d.</figcaption></figure>
 <section class="measure">
-  <h2>How the labels come for free</h2>
-  <p>Hallucination labels are expensive if you annotate them. We get them by construction.</p>
+  <table><tr><th>model</th><th class="n" colspan="2">DTU, 18 scans</th><th class="n" colspan="2">DTU, 22 more</th><th class="n" colspan="2">CO3Dv2</th><th class="n" colspan="2">ETH3D</th></tr><tr><th></th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th></tr><tr><td>VGGT-1B</td><td class="n">0.903</td><td class="n">0.242</td><td class="n">0.908</td><td class="n">0.233</td><td class="n">0.681</td><td class="n">0.651</td><td class="n">0.670</td><td class="n">0.786</td></tr><tr><td>Pi3</td><td class="n">0.912</td><td class="n">0.281</td><td class="n">0.919</td><td class="n">0.272</td><td class="n">0.891</td><td class="n">0.272</td><td class="n">0.771</td><td class="n">0.612</td></tr><tr><td>Pi3X</td><td class="n">0.813</td><td class="n">0.532</td><td class="n">0.851</td><td class="n">0.539</td><td class="n">0.732</td><td class="n">0.570</td><td class="n">0.661</td><td class="n">0.707</td></tr><tr><td>MapAnything</td><td class="n">0.743</td><td class="n">0.622</td><td class="n">0.697</td><td class="n">0.693</td><td class="n">0.576</td><td class="n">0.810</td><td class="n">0.667</td><td class="n">0.677</td></tr><tr><td>Depth Anything 3</td><td class="n">0.711</td><td class="n">0.701</td><td class="n">0.755</td><td class="n">0.650</td><td class="n">0.620</td><td class="n">0.797</td><td class="n">0.698</td><td class="n">0.620</td></tr></table>
+  <p class="small">Pooled over blur and noise fills; five seeds and two radii on the 18-scene sets, seed 0 and radius 0.18 on the 22 extension scans. Intervals in the paper and in <code>results/P3-stats.md</code>.</p>
+</section>
+
+<section class="measure" id="benchmark">
+  <h2><span class="num">02 / THE BENCHMARK</span>Labels for free, with controls on the same pixels</h2>
+  <p>One sphere, placed on the ground-truth surface, is hidden in every view with the true cameras. Pixels inside it are unsupported in every view; pixels outside a margin are supported. A clean run of the same views gives a control for every pixel, so confident-and-wrong is separated from confident-and-imagined. Two correctness guards run before any model: the ground truth must reproject consistently between views, and unsupported points of one view must land inside the hidden mask of the others.</p>
   <ol class="steps">
-    <li>Place a sphere on the ground-truth surface of a scene.</li>
-    <li>Hide every pixel, in every view, whose true point lies inside the sphere. The hidden region is therefore consistent in 3D: no camera sees it from any angle.</li>
-    <li>Fill the hole with gray, a blur, noise, or an inpainting, so that the result is not an artefact of one kind of patch.</li>
-    <li>Run the model on the filled views. Pixels inside the sphere are unsupported; pixels well outside it are supported; a thin ring in between is ignored.</li>
-    <li>Score the model's own confidence: does it rank supported above unsupported (AUROC), and how much unsupported geometry passes a 90% filter (CUR)? Score the same pixels under clean input as a control.</li>
+    <li>Stress tests: an inpainted fill raises the leak rather than lowering it; dropping views, low parallax and a distractor image change nothing for VGGT and Pi3X; the imagined depth is as accurate as the observed depth on DTU, so the failure is "cannot tell", not "wrong".</li>
+    <li>The ranking changes between the rig and phone video: VGGT, MapAnything and DA3 leak far more on CO3Dv2.</li>
+    <li>Cheap fixes fail: perturbation variance (K=4, and K=8 with geometric augmentation) is worse than native confidence on all five backbones; reprojection consistency with the model's own cameras is at chance; MapAnything's multi-view confidence leaks more than its learned one.</li>
   </ol>
 </section>
-<figure class="fig">
-  <img src="assets/fig2_pipeline.png" alt="Diagram of the benchmark pipeline with real thumbnails of a view, its hide mask, and the four fills">
-  <figcaption>The protocol, with real thumbnails from DTU scan 3. Masks are deterministic in scene, seed and radius; the code is 700 lines of Python with no training.</figcaption>
-</figure>
+<figure class="fig"><img src="assets/fig2_pipeline.png" alt="The masking protocol: sphere placed on the ground-truth surface, hidden in every view, fills, labels, controls"><figcaption>The protocol. Everything downstream of the sphere is computed from the ground truth and the cameras; no model is involved in the labels.</figcaption></figure>
+<figure class="fig"><img src="assets/charts/compare_light.png" alt="AUROC of every detector on the filled patch and on real single-view geometry"><figcaption>Left: on the benchmark's filled patch, the only detectors that score are the ones trained on the fill, and their per-image control scores the same, so they found the patch, not the missing support. Right: on real single-view geometry from clean views, the cross-view tokens carry the answer, a per-image head does not, and the fill-trained head scores below native confidence.</figcaption></figure>
 
+<section class="measure" id="method">
+  <h2><span class="num">03 / THE METHOD</span>Change what the detector must learn</h2>
+  <p>A head trained on the benchmark's fills learns to see the fill, which a single image reveals even when inpainted. So the label was changed to the thing the patch imitates, multi-view support, and the input to clean views: a pixel that only one view supports is the positive class, a pixel two or more views support is the negative class. The decisive control is the same head on per-image tokens, before any cross-view attention.</p>
+  <p>The method of record goes one step further and needs no ground truth at all. The backbone is run once on clean views; each predicted point is projected into the other views with the predicted cameras and counted as supported where it lands on their predicted surface. That count is the label. The reprojection test is the teacher, and the head has to generalise better than its teacher to be worth having. It does: on phone orbits and tourist photographs, where the model's own cameras are least reliable, the head beats the test it learned from.</p>
+</section>
+<figure class="fig"><img src="assets/charts/method_light.png" alt="Schematic of the label-free support head"><figcaption>The label-free support head. 3.3 M parameters on VGGT-1B (1.7 M on Pi3X and Pi3): a projection per layer, two convolutions at patch resolution, one logit per patch, under 1% of the backbone's FLOPs. Trained in ten minutes on one GPU, 1500 steps, on the 79 DTU training scans, which the benchmark never uses.</figcaption></figure>
+
+<section class="measure" id="results">
+  <h2><span class="num">04 / RESULTS</span>Three backbones, four datasets the heads never saw</h2>
+  <p>Clean inputs of 3, 5 and 10 views, three rotations of the view set per scene. DTU: 18 benchmark scans. CO3Dv2: 18 phone orbits. ETH3D: nine building-scale DSLR scans with laser ground truth. Phototourism: nine landmarks from Internet photo collections (British Museum, Florence cathedral, Lincoln Memorial, London Bridge, Milan cathedral, Mount Rushmore, Piazza San Marco, Sagrada Familia, St Paul's) with people and vehicles in front of the monument and COLMAP depth as ground truth. Pre-registered pass conditions, written before the heads were trained, with a 0.02 margin against the control: both pass on every dataset and backbone.</p>
+  <div class="kpis">
+    <div class="kpi"><b>0.99</b><span>AUROC of the label-free head on DTU (VGGT); native 0.77, per-image control 0.88</span></div>
+    <div class="kpi"><b>0.93</b><span>on CO3Dv2 phone orbits; the per-image control falls to 0.46, below chance</span></div>
+    <div class="kpi"><b>0.94</b><span>on tourist photographs (Pi3X); reprojection consistency 0.81, native 0.84</span></div>
+    <div class="kpi"><b>2%</b><span>of single-view pixels pass the head's 90%-kept threshold on DTU, against 53% for native confidence</span></div>
+  </div>
+</section>
+<figure class="fig"><img src="assets/charts/vis_light.png" alt="AUROC per detector family, per backbone and dataset"><figcaption>Every detector family on the four datasets, one panel per backbone, pooled over scenes and view counts with 95% intervals. Runs P4-vis, P4-vis-co3d, P4-vis-eth3d, P7-vis-imc.</figcaption></figure>
 <section class="measure">
-  <h2>Is it just the patch?</h2>
-  <p>The fair objection is that the model is reacting to a visible patch rather than to the absence of a surface. Four stress tests say otherwise. An inpainted fill, which leaves no seam, raises the leak for VGGT and Pi3X rather than lowering it. Dropping from ten views to three changes nothing, so having less evidence to cross-check does not make the models less sure. Under low parallax, Pi3X's imagined depth gets worse while its confidence stays put. Depth Anything 3 is the odd one out: a distractor image raises its leak and low parallax halves it, which suggests its confidence tracks something other than observation.</p>
+  <div class="tabs" data-tabs="vis" role="group" aria-label="Backbone">
+    <button type="button" aria-pressed="true" data-k="vggt">VGGT-1B</button><button type="button" aria-pressed="false" data-k="pi3x">Pi3X</button><button type="button" aria-pressed="false" data-k="pi3">Pi3</button>
+  </div>
+  <div class="tabpane on" data-pane="vis" data-k="vggt"><table><tr><th>detector</th><th class="n" colspan="2">DTU</th><th class="n" colspan="2">CO3Dv2</th><th class="n" colspan="2">ETH3D</th><th class="n" colspan="2">Phototourism</th></tr><tr><th></th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th></tr><tr><td>native confidence</td><td class="n">0.772</td><td class="n">0.530</td><td class="n">0.754</td><td class="n">0.723</td><td class="n">0.715</td><td class="n">0.566</td><td class="n">0.802</td><td class="n">0.451</td></tr><tr><td>distance to image border</td><td class="n">0.702</td><td class="n">0.727</td><td class="n">0.454</td><td class="n">0.897</td><td class="n">0.725</td><td class="n">0.632</td><td class="n">0.730</td><td class="n">0.649</td></tr><tr><td>per-image head (control)</td><td class="n">0.878</td><td class="n">0.340</td><td class="n">0.462</td><td class="n">0.878</td><td class="n">0.712</td><td class="n">0.666</td><td class="n">0.787</td><td class="n">0.530</td></tr><tr><td>reprojection consistency</td><td class="n">0.954</td><td class="n">0.082</td><td class="n">0.793</td><td class="n">0.693</td><td class="n">0.975</td><td class="n">0.069</td><td class="n">0.824</td><td class="n">0.340</td></tr><tr><td>linear probe, cross-view tokens</td><td class="n">0.989</td><td class="n">0.025</td><td class="n">0.913</td><td class="n">0.250</td><td class="n">0.966</td><td class="n">0.095</td><td class="n">0.894</td><td class="n">0.265</td></tr><tr><td>support head, ground-truth labels</td><td class="n">0.993</td><td class="n">0.015</td><td class="n">0.927</td><td class="n">0.210</td><td class="n">0.980</td><td class="n">0.054</td><td class="n">0.908</td><td class="n">0.258</td></tr><tr><td>per-image control, self labels</td><td class="n">0.885</td><td class="n">0.325</td><td class="n">0.460</td><td class="n">0.892</td><td class="n">0.626</td><td class="n">0.750</td><td class="n">0.729</td><td class="n">0.681</td></tr><tr class="hl"><td>support head, label-free</td><td class="n">0.992</td><td class="n">0.017</td><td class="n">0.931</td><td class="n">0.199</td><td class="n">0.980</td><td class="n">0.051</td><td class="n">0.930</td><td class="n">0.191</td></tr><tr><td>label-free head trained on the target capture</td><td class="n">--</td><td class="n">--</td><td class="n">0.841</td><td class="n">0.474</td><td class="n">--</td><td class="n">--</td><td class="n">0.926</td><td class="n">0.203</td></tr></table></div>
+  <div class="tabpane" data-pane="vis" data-k="pi3x"><table><tr><th>detector</th><th class="n" colspan="2">DTU</th><th class="n" colspan="2">CO3Dv2</th><th class="n" colspan="2">ETH3D</th><th class="n" colspan="2">Phototourism</th></tr><tr><th></th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th></tr><tr><td>native confidence</td><td class="n">0.820</td><td class="n">0.493</td><td class="n">0.697</td><td class="n">0.846</td><td class="n">0.887</td><td class="n">0.304</td><td class="n">0.839</td><td class="n">0.450</td></tr><tr><td>distance to image border</td><td class="n">0.702</td><td class="n">0.727</td><td class="n">0.454</td><td class="n">0.897</td><td class="n">0.725</td><td class="n">0.632</td><td class="n">0.730</td><td class="n">0.649</td></tr><tr><td>per-image head (control)</td><td class="n">0.863</td><td class="n">0.376</td><td class="n">0.428</td><td class="n">0.889</td><td class="n">0.694</td><td class="n">0.685</td><td class="n">0.775</td><td class="n">0.577</td></tr><tr><td>reprojection consistency</td><td class="n">0.914</td><td class="n">0.164</td><td class="n">0.885</td><td class="n">0.224</td><td class="n">0.977</td><td class="n">0.054</td><td class="n">0.814</td><td class="n">0.360</td></tr><tr><td>linear probe, cross-view tokens</td><td class="n">0.985</td><td class="n">0.034</td><td class="n">0.931</td><td class="n">0.203</td><td class="n">0.956</td><td class="n">0.123</td><td class="n">0.919</td><td class="n">0.204</td></tr><tr><td>support head, ground-truth labels</td><td class="n">0.991</td><td class="n">0.021</td><td class="n">0.930</td><td class="n">0.221</td><td class="n">0.975</td><td class="n">0.072</td><td class="n">0.938</td><td class="n">0.176</td></tr><tr><td>per-image control, self labels</td><td class="n">0.871</td><td class="n">0.363</td><td class="n">0.469</td><td class="n">0.877</td><td class="n">0.610</td><td class="n">0.776</td><td class="n">0.719</td><td class="n">0.697</td></tr><tr class="hl"><td>support head, label-free</td><td class="n">0.988</td><td class="n">0.025</td><td class="n">0.939</td><td class="n">0.190</td><td class="n">0.963</td><td class="n">0.103</td><td class="n">0.940</td><td class="n">0.167</td></tr><tr><td>label-free head trained on the target capture</td><td class="n">--</td><td class="n">--</td><td class="n">0.964</td><td class="n">0.095</td><td class="n">--</td><td class="n">--</td><td class="n">0.929</td><td class="n">0.198</td></tr></table></div>
+  <div class="tabpane" data-pane="vis" data-k="pi3"><table><tr><th>detector</th><th class="n" colspan="2">DTU</th><th class="n" colspan="2">CO3Dv2</th><th class="n" colspan="2">ETH3D</th><th class="n" colspan="2">Phototourism</th></tr><tr><th></th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th><th class="n">AUROC</th><th class="n">CUR</th></tr><tr><td>native confidence</td><td class="n">0.841</td><td class="n">0.489</td><td class="n">0.551</td><td class="n">0.882</td><td class="n">0.814</td><td class="n">0.498</td><td class="n">0.847</td><td class="n">0.447</td></tr><tr><td>distance to image border</td><td class="n">0.702</td><td class="n">0.727</td><td class="n">0.454</td><td class="n">0.897</td><td class="n">0.725</td><td class="n">0.632</td><td class="n">0.730</td><td class="n">0.649</td></tr><tr><td>per-image head (control)</td><td class="n">0.878</td><td class="n">0.345</td><td class="n">0.464</td><td class="n">0.880</td><td class="n">0.717</td><td class="n">0.661</td><td class="n">0.795</td><td class="n">0.510</td></tr><tr><td>reprojection consistency</td><td class="n">0.952</td><td class="n">0.089</td><td class="n">0.893</td><td class="n">0.205</td><td class="n">0.976</td><td class="n">0.039</td><td class="n">0.817</td><td class="n">0.345</td></tr><tr><td>linear probe, cross-view tokens</td><td class="n">0.985</td><td class="n">0.032</td><td class="n">0.943</td><td class="n">0.175</td><td class="n">0.938</td><td class="n">0.165</td><td class="n">0.914</td><td class="n">0.218</td></tr><tr><td>support head, ground-truth labels</td><td class="n">0.992</td><td class="n">0.016</td><td class="n">0.934</td><td class="n">0.203</td><td class="n">0.953</td><td class="n">0.135</td><td class="n">0.932</td><td class="n">0.201</td></tr><tr><td>per-image control, self labels</td><td class="n">0.888</td><td class="n">0.320</td><td class="n">0.471</td><td class="n">0.895</td><td class="n">0.654</td><td class="n">0.750</td><td class="n">0.724</td><td class="n">0.683</td></tr><tr class="hl"><td>support head, label-free</td><td class="n">0.990</td><td class="n">0.021</td><td class="n">0.930</td><td class="n">0.225</td><td class="n">0.951</td><td class="n">0.139</td><td class="n">0.931</td><td class="n">0.181</td></tr></table></div>
+  <p class="small">AUROC and CUR pooled over scenes and view counts (3 and 5 views on CO3Dv2, where ten views around an object leave no single-view pixel). Every paired difference quoted on this page is at the permutation floor unless a p-value is given; the full tables with intervals are in the supplement and in <code>results/P3-stats.md</code>. The last row is the head trained on one half of the target dataset, still without labels, and scored on the other half.</p>
 </section>
-<figure class="fig">
-  <img src="assets/fig6_stress.png" alt="Bar chart of CUR under each stress condition for VGGT, Pi3X and Depth Anything 3, with confidence intervals">
-  <figcaption>CUR under each stress condition against the reference, 18 scans, two seeds, 95% intervals. Asterisks mark paired sign-flip p below 0.05.</figcaption>
-</figure>
 
+<section class="measure" id="controls">
+  <h2><span class="num">05 / CONTROLS AND ABLATIONS</span>What the head reads, and what it does not</h2>
+  <p><strong>Not the frame edge.</strong> On the lab rig single-view pixels sit at the image border, and a per-image head learns that: the distance to the border alone scores 0.70 on DTU. Off the rig it collapses (0.45 on CO3Dv2), and so does the per-image control (0.46, indistinguishable from the border score). Depth edges score 0.42 to 0.60. The cross-view head keeps 0.93 to 0.98 on the same scenes.</p>
+  <p><strong>Where the signal lives.</strong> A linear probe on the same cross-view tokens scores within 0.015 of the convolutional head, so the information is in the features; the head is a reader. One probe per VGGT layer says where it appears: layer 4 of 24 scores 0.87 on DTU and 0.48 on CO3Dv2, like the per-image control; layer 17 scores 0.99 and 0.92. Support becomes readable in the second half of the aggregator.</p>
+  <p><strong>Stable.</strong> Two extra initialisation seeds are within 0.005 of the head. With 20 views, twice the most it saw in training, the head scores 0.992 (VGGT) while native confidence falls to 0.61.</p>
+  <p><strong>Adaptation without labels.</strong> Because the labels come from the backbone itself, the head can be trained on the target capture. On one half of a dataset and scored on the other half, this helps where the backbone's own geometry on that capture is reliable (Pi3X on CO3Dv2: 0.939 to 0.964; on ETH3D: 0.963 to --), changes nothing on the landmarks, and hurts VGGT on CO3Dv2 (0.931 to 0.841), whose reprojection test, the teacher, scores only 0.79 there. The DTU-trained head is the safe default.</p>
+</section>
+<figure class="fig"><img src="assets/charts/layers_light.png" alt="Linear probe AUROC per VGGT layer on four datasets"><figcaption>One linear probe per VGGT aggregator layer, trained on ground-truth visibility labels. The early layers carry only the per-image cue that fails off the rig.</figcaption></figure>
+<figure class="fig"><img src="assets/charts/adapt_light.png" alt="Label-free adaptation: DTU-trained head against a head trained on the target capture"><figcaption>Label-free adaptation on CO3Dv2, ETH3D and the landmarks (runs P6-adapt-co3d, P6-adapt-eth3d, P7-adapt-imc): the target-trained head is scored on scenes it never saw.</figcaption></figure>
+
+<section class="measure" id="abstain">
+  <h2><span class="num">06 / ABSTAINING</span>What a user gets from it</h2>
+  <p>A detector is used with a threshold. CUR sets it on the test scene itself, which a deployed filter cannot do, so from the per-pixel scores (run P6-dump) three deployable readings. Ranking: keeping the half of the pixels the head trusts most lowers the depth error of what remains by 15 to 44%, and the area under the single-view rate of the kept pixels against coverage is within 0.02 of the oracle on every dataset. Fixed bands, set before any evaluation at 0.3 and 0.7: the head marks 82% of the pixels observed on DTU with 1% single-view inside, 64% with 3% on CO3Dv2. Frozen thresholds: a threshold set to keep 90% of the supported pixels of the <em>other</em> scenes lets 1% of single-view pixels through on DTU and 16% on CO3Dv2, against 63% and 83% for native confidence. VGGT's native confidence has no scale that transfers between datasets at all; the head's probability does.</p>
+  <table><tr><th>dataset</th><th>detector (VGGT-1B)</th><th class="n">AURC</th><th class="n">AbsRel, all</th><th class="n">AbsRel, top half</th><th class="n">CUR / kept at a threshold set on the other scenes</th><th class="n">observed / abstain / imagined</th><th class="n">single-view share inside observed</th></tr><tr><td>DTU</td><td>native confidence</td><td class="n">0.077</td><td class="n">0.0069</td><td class="n">0.0037</td><td class="n">0.63 / 0.89</td><td class="n">--</td><td class="n">--</td></tr><tr><td>DTU</td><td>reprojection</td><td class="n">0.035</td><td class="n">0.0069</td><td class="n">0.0051</td><td class="n">0.08 / 0.94</td><td class="n">--</td><td class="n">--</td></tr><tr><td>DTU</td><td>head, label-free</td><td class="n">0.026</td><td class="n">0.0069</td><td class="n">0.0044</td><td class="n">0.01 / 0.90</td><td class="n">0.82 / 0.03 / 0.14</td><td class="n">0.008</td></tr><tr><td>CO3Dv2</td><td>native confidence</td><td class="n">0.105</td><td class="n">0.0261</td><td class="n">0.0193</td><td class="n">0.83 / 0.90</td><td class="n">--</td><td class="n">--</td></tr><tr><td>CO3Dv2</td><td>reprojection</td><td class="n">0.088</td><td class="n">0.0260</td><td class="n">0.0214</td><td class="n">1.00 / 1.00</td><td class="n">--</td><td class="n">--</td></tr><tr><td>CO3Dv2</td><td>head, label-free</td><td class="n">0.070</td><td class="n">0.0261</td><td class="n">0.0221</td><td class="n">0.16 / 0.82</td><td class="n">0.64 / 0.10 / 0.26</td><td class="n">0.034</td></tr><tr><td>ETH3D</td><td>native confidence</td><td class="n">0.196</td><td class="n">0.0221</td><td class="n">0.0156</td><td class="n">0.68 / 0.89</td><td class="n">--</td><td class="n">--</td></tr><tr><td>ETH3D</td><td>reprojection</td><td class="n">0.125</td><td class="n">0.0220</td><td class="n">0.0170</td><td class="n">0.03 / 0.93</td><td class="n">--</td><td class="n">--</td></tr><tr><td>ETH3D</td><td>head, label-free</td><td class="n">0.123</td><td class="n">0.0221</td><td class="n">0.0162</td><td class="n">0.07 / 0.90</td><td class="n">0.57 / 0.07 / 0.36</td><td class="n">0.008</td></tr><tr><td>Phototourism</td><td>native confidence</td><td class="n">0.030</td><td class="n">0.0391</td><td class="n">0.0196</td><td class="n">0.57 / 0.89</td><td class="n">--</td><td class="n">--</td></tr><tr><td>Phototourism</td><td>reprojection</td><td class="n">0.024</td><td class="n">0.0390</td><td class="n">0.0251</td><td class="n">0.30 / 0.91</td><td class="n">--</td><td class="n">--</td></tr><tr><td>Phototourism</td><td>head, label-free</td><td class="n">0.012</td><td class="n">0.0391</td><td class="n">0.0233</td><td class="n">0.20 / 0.90</td><td class="n">0.72 / 0.10 / 0.18</td><td class="n">0.007</td></tr></table>
+</section>
+<figure class="fig"><img src="assets/charts/rc_light.png" alt="Risk-coverage curves on four datasets"><figcaption>Keep the pixels a detector trusts most: how much single-view geometry survives at each coverage (VGGT-1B). Lower is better; the head stays near the floor on every dataset.</figcaption></figure>
+
+<section class="measure" id="limit">
+  <h2><span class="num">07 / THE LIMIT</span>A consistent invention passes</h2>
+  <div class="warnbox"><p>The benchmark defines unsupported geometry as a surface no view shows; the detector was trained on surfaces only one view shows. Put back to the benchmark's filled patches, the visibility heads score AUROC 0.70 to 0.74 on DTU and 0.63 on CO3Dv2, below native confidence on the same rows. A head trained to find single-view geometry does not fire on a patch that every view shows, for the reason the reprojection and perturbation baselines do not: the invented surface is coherent across views and across the features. The head certifies agreement between views, and a consistent invention has it. The detector answers "which pixels lack corroboration", not "which surfaces were invented"; on real captures, the first question is the one with an answer.</p></div>
+</section>
+<figure class="fig"><img src="assets/charts/onfill_light.png" alt="Visibility detectors on the filled patch"><figcaption>Run P6-vis-on-fill: the visibility detectors scored zero-shot on the benchmark's own filled patches.</figcaption></figure>
+
+<section class="measure" id="video">
+  <h2><span class="num">08 / VIDEO</span>Three minutes, no audio</h2>
+  <p>The story of this page in order: the question, the protocol, the leak, why the cheap fixes and the fill-trained head fail, the label-free head, the four datasets, the controls, what abstaining buys, and the limit. Every chart in it is recomputed from the released CSVs when the video is built.</p>
+</section>
+<div class="video"><video controls preload="metadata" playsinline poster="assets/charts/vis_dark.png"><source src="assets/overview.mp4" type="video/mp4">Your browser cannot play this video. <a href="assets/overview.mp4">Download it</a> instead.</video></div>
 <section class="measure">
-  <h2>Lab rig versus phone captures</h2>
-  <p>Everything in the protocol was frozen on DTU before CO3Dv2 was touched: the same radii, fills, thresholds and seeds. The ranking still changed. VGGT, joint best on DTU, leaks 65% of unseen geometry on everyday objects filmed with a phone and is almost blind under a noise fill. Pi3 transfers; the rest do not.</p>
-</section>
-<figure class="fig">
-  <img src="assets/fig4_dtu_vs_co3d.png" alt="Dumbbell chart of CUR and AUROC per model on DTU versus CO3Dv2 with confidence intervals">
-  <figcaption>Pooled blur-and-noise CUR and AUROC per model on both datasets, 95% cluster-bootstrap intervals over scenes.</figcaption>
-</figure>
-<figure class="fig">
-  <img src="assets/fig7_perscene.png" alt="Heatmaps of per-scene CUR for every model on the 18 DTU scans and 18 CO3Dv2 scenes">
-  <figcaption>Per-scene CUR. The leak is not driven by a few scenes; removing the one CO3Dv2 scene that narrowly missed a mask-consistency guard moves no pooled number by more than 0.013.</figcaption>
-</figure>
-
-<section class="measure">
-  <h2>The cheap fixes do not work</h2>
-  <p>The first thing anyone tries is to perturb the input a few times and take the variance. On both backbones we tested, that is much worse than the native confidence while costing four forward passes: the imagined geometry is stable under perturbation, so its variance looks like everyone else's. MapAnything's multi-view consistency confidence leaks more than its learned one. The disagreement has to come from somewhere other than the input.</p>
-</section>
-<figure class="fig">
-  <img src="assets/fig8_cheap_detectors.png" alt="Bar chart comparing native confidence with perturbation variance and multi-view consistency confidence on AUROC and CUR">
-  <figcaption>Two training-free detectors against native confidence. Perturbation variance, four photometric perturbations with median-scale alignment, on VGGT and Pi3X; MapAnything learned against multi-view confidence.</figcaption>
-</section>
-
-<section class="measure">
-  <h2>What we propose</h2>
-  <p>We do not want to stop these models from imagining; that is what makes them useful. We want them to say when they do. A small <strong>support head</strong> sits on the frozen multi-view features of the backbone and predicts, per pixel, whether the geometry there was observed or imagined, with an abstain band in between. It is trained without any hallucination labels: the benchmark's own masking is applied to the backbone's <em>own</em> clean prediction on training scenes that never appear in the benchmark, and the head learns to find the hidden pixels again. One backbone forward, one head forward.</p>
-  <p>A head trained on hidden regions could learn to see the patch instead of the missing support. Four controls separate the two: a head of the same size on per-image features only, which can see nothing but the patch; the inpainted fill, which the head never sees in training; CO3Dv2, which the head never sees at all; and a linear probe on the same features. A cross-view transformer head, two attention blocks over the tokens of all views, tests whether attention inside the detector adds anything. The head, the probe, the control and the transformer head are trained jointly on the same stream of backbone forwards, so the comparison holds the data fixed.</p>
-  <p>The pass condition was pre-registered: the head must beat native confidence on AUROC and CUR with a paired test over the 18 scans at one backbone forward, and the per-image control must not explain the gain on the inpainted fill or on CO3Dv2. <strong>Result (November 6, 2026, runs P3-oia-dtu, P3-oia-abl, P3-oia-stress, P3-native, P3-reproj, P3-pv):</strong> part 1 passes for both backbones (VGGT AUROC 1.000 against 0.915, CUR 0.000 against 0.255; Pi3X 0.999 against 0.832, 0.001 against 0.502; p = 0.00005). Part 2 fails: the per-image control scores the same as the head on every DTU cell and on the held-out inpainted fill (VGGT 1.000 against 0.999, Pi3X 0.994 against 0.994), and the linear probe reaches 1.000 as well. A head trained on the benchmark's fills learns to see the fill, which is detectable from one image even when inpainted. The paper reports the head as a negative result and the per-image control as mandatory for any detector trained on masking labels. Reprojection consistency with the model's own cameras is at chance (AUROC 0.49 / 0.48).</p>
-  <p>On CO3Dv2, which the heads never saw (run P3-oia-co3d, 2070 rows), the VGGT head scores AUROC 0.992 and its per-image control 0.989 over blur and noise, both 0.31 above native confidence (0.681); the Pi3X head 0.975. The 0.003 difference reaches p = 0.03, which meets the letter of the pre-registered criterion (any positive difference at p &lt; 0.05) while the control accounts for 99% of the gain; the paper calls that clause a flaw of its own pre-registration and does not count it as a pass. An independent replicate of the VGGT heads (run P3-kaggle-vggt, Kaggle T4) gives 0.992 against 0.990.</p>
-  <p><strong>True-visibility protocol (run P4-vis, November 6, 2026).</strong> The patch was the problem, so the label was changed to the thing the patch imitates: ground-truth multi-view support. For every pixel the ground-truth point is projected into the other input views; a pixel no other view sees is single-view, a pixel seen by two or more is supported. Heads trained on that label on the 79 training scans, evaluated on the 18 benchmark scans with 3, 5 and 10 clean views (single-view pixels are 18%, 9% and 2.5% of the known pixels): support head AUROC 0.993 (VGGT) and 0.990 (Pi3X) against native confidence 0.772 / 0.820 and the per-image control 0.878 / 0.863, paired p = 0.00005; CUR 0.015 / 0.021 against 0.53 / 0.49 for native confidence, which lets half of the single-view pixels through. The linear probe reaches 0.989 / 0.985 (the information is in the cross-view features); reprojection consistency is the best training-free detector here (0.954 / 0.914). Gate 3, pre-registered with a 0.02 margin before the head was trained, is met on DTU with five times that margin.</p>
-  <p><strong>Transfer and the label-free head (November 7, 2026, runs P4-vis-co3d, P4-vis-eth3d, P7-vis-imc, P6-adapt-*, P6-dump; one H200).</strong> On CO3Dv2 phone orbits, ETH3D building scans and nine phototourism landmarks (tourist photographs with COLMAP depth), none seen by any head, the visibility head keeps AUROC 0.93, 0.95 to 0.98 and 0.93 against native confidence 0.55 to 0.89, while the per-image control falls below chance on CO3Dv2 (0.43 to 0.47) and the distance to the image border scores the same as the control there: it had learned the frame edge. The same head trained on the backbone's own predicted support, with no ground truth anywhere, matches the ground-truth-trained head within 0.02 on all four datasets for VGGT, Pi3X and Pi3, beats its teacher, the reprojection test, on CO3Dv2 and the landmarks (by 0.04 to 0.14) and ties it on ETH3D; Gate 4, pre-registered on November 6, passes. A probe on each VGGT layer finds support linearly decodable from layer 17 of 24. From the per-pixel scores, a threshold set on the other scenes of a dataset lets 1 to 20% of single-view pixels through against 57 to 83% for native confidence. Put back to the benchmark's filled patches, the visibility heads score 0.62 to 0.75, below native confidence: the head certifies agreement between views, and a consistent invention has it. The Pi3X CO3Dv2 control of the fill-trained head completed at 0.988 against the head's 0.969.</p>
-</section>
-<figure class="fig">
-  <img src="assets/fig9_method.png" alt="Design diagram of the support head: frozen backbone, label-free masking of its own prediction, per-pixel observed / abstain / imagined output">
-  <figcaption>Design figure of the support head. The backbone stays frozen; only the head is trained, on the backbone's own predictions, with no labels.</figcaption>
-</figure>
-
-<section class="measure">
-  <h2>Three datasets, six models</h2>
-  <p>DTU is a lab rig with 49 cameras; CO3Dv2 is phone video of everyday objects; ETH3D is nine building-scale scenes (a courtyard, a facade, a stone relief, terraces) with laser-scanner ground truth, added to answer the objection that neither of the first two has long-range structure. Twenty-two further DTU scans extend the lab set from 18 to 40 scenes. The sixth model is AnySplat, a feed-forward Gaussian-splatting transformer from unposed views, scored with the opacity of each pixel's Gaussian as its confidence: it asks whether the representation changes the answer, or only the training objective does.</p>
-  <p>Training-data overlap, from the papers: VGGT, Pi3 and Depth Anything 3 trained on CO3Dv2; MapAnything did not; none trained on DTU or ETH3D. The leak is largest on the dataset three of the models were trained on.</p>
-  <p>Every logged row is browsable in the <a href="explorer_io.html">input → output explorer</a>: choose a dataset, scene, model, fill, radius and placement, and see what the model returned, how much passed its own filter, and how the other models did on the identical input.</p>
-</section>
-
-<section class="measure" id="demo">
-  <h2>Demo</h2>
-  <p>The first part runs the masking protocol and consistency checks live on real DTU and CO3Dv2 data and prints the numbers the code returns. The second part replays the model outputs recorded on a single T4 and the matching rows of the result tables. Three minutes, no audio.</p>
-</section>
-<div class="video">
-  <video controls preload="metadata" playsinline>
-    <source src="assets/demo.mp4" type="video/mp4">
-    Your browser cannot play this video. <a href="assets/demo.mp4">Download it</a> instead.
-  </video>
-</div>
-
-<section class="measure" id="walkthrough">
-  <h2>End-to-end walkthrough</h2>
-  <p>A second video follows the whole pipeline in order, and needs no dataset to rebuild: the benchmark's own CPU self-test runs live (synthetic scan: views, sphere, fills, labels, consistency check, two reference models through the metric code, the reprojection detector), then the recorded runs of the five real models are replayed with their CSV rows, the charts are recomputed from the CSVs, and the video ends with the paper figures, the proposed method and the artefacts present in the repository at build time. Five minutes, chaptered, no audio. Live frames and replayed frames are tagged as such.</p>
-</section>
-<div class="video">
-  <video controls preload="metadata" playsinline>
-    <source src="assets/walkthrough.mp4" type="video/mp4">
-    Your browser cannot play this video. <a href="assets/walkthrough.mp4">Download it</a> instead.
-  </video>
-</div>
-
-<section class="measure" id="pending">
-  <h2>What is measured and what is not</h2>
-  <table>
-    <tr><th>Done, every number from a logged run</th><th>Not yet</th></tr>
-    <tr>
-      <td>Benchmark on DTU and CO3Dv2, five models, three fills plus inpaint, stress tests, two failing cheap baselines, intervals and paired tests for all of it. About eight GPU hours on one T4.</td>
-      <td>Done since November 6, 2026 (logged under <code>results/P3-*</code> and <code>results/P4-vis/</code>): the fill-trained support head, its per-image control, the linear probe, the transformer head and two extra seeds on DTU, the five stress tests and CO3Dv2; the visibility-trained head, its control and probe on the true-visibility protocol of DTU; the reprojection detector and the perturbation baseline on the same rows. In progress: the visibility head on CO3Dv2 and ETH3D, the Pi3X CO3Dv2 control, the 22 extension scans, the Gaussian-splatting backbone, the fuller perturbation baseline, compute accounting. Future work: the generative head, continual adaptation, the heritage photo study, dynamic scenes.</td>
-    </tr>
-  </table>
-  <p class="small">The full run log, including the runs that failed and every correction made to a reported number, ships with the code.</p>
+  <h3>Earlier videos</h3>
+  <p class="small">The <a href="assets/demo.mp4">benchmark demo</a> (the masking protocol run live on DTU and CO3Dv2 data, then the five models' recorded outputs) and the <a href="assets/walkthrough.mp4">end-to-end walkthrough</a> (the CPU self-test live, the recorded runs, the charts, chaptered) predate the support head and show the benchmark side in detail.</p>
 </section>
 
 <section class="measure">
-  <h2>Headline table</h2>
-  <table>
-    <tr><th>model</th><th class="n">AUROC DTU</th><th class="n">AUROC CO3Dv2</th><th class="n">CUR DTU</th><th class="n">CUR CO3Dv2</th></tr>
-    <tr><td>VGGT-1B</td><td class="n">0.903</td><td class="n">0.681</td><td class="n">0.242</td><td class="n">0.651</td></tr>
-    <tr><td>Pi3</td><td class="n">0.912</td><td class="n">0.891</td><td class="n">0.281</td><td class="n">0.272</td></tr>
-    <tr><td>Pi3X</td><td class="n">0.813</td><td class="n">0.732</td><td class="n">0.532</td><td class="n">0.570</td></tr>
-    <tr><td>MapAnything</td><td class="n">0.743</td><td class="n">0.576</td><td class="n">0.622</td><td class="n">0.810</td></tr>
-    <tr><td>Depth Anything 3</td><td class="n">0.711</td><td class="n">0.620</td><td class="n">0.701</td><td class="n">0.797</td></tr>
-  </table>
-  <p class="small">Pooled over blur and noise fills, 18 scenes per dataset, five seeds, two radii. Intervals and per-fill cells are in the paper.</p>
+  <h2><span class="num">09 / REPRODUCIBILITY</span>Every number from a logged run</h2>
+  <p>Each table cell maps to a run id whose CSV, configuration and log are in the repository (<code>results/</code>), together with the dated log of every failed run and every correction (<code>LOG.md</code>, <code>EXPERIMENTS.md</code>). The pass conditions of the heads were written into that registry, with dates and commit hashes, before the heads were trained. The benchmark is 1000 lines of Python with no training and runs on one 16 GB GPU in about eight hours; a head trains in ten minutes on one H200. Everything on this page, including the charts and the video, is regenerated by the scripts in <code>scripts/</code>.</p>
+</section>
 
-  <h3>Cite</h3>
-<pre>@inproceedings{observeimagineabstain2027,
+<section class="measure" id="cite">
+  <h2><span class="num">CITATION</span>Cite</h2>
+  <button type="button" id="copybib" class="seg" style="padding:.4rem .9rem;font:inherit;font-size:.9rem;cursor:pointer;background:none;color:var(--ink)">Copy BibTeX</button>
+<pre id="bib">@inproceedings{observeimagineabstain2027,
   title     = {Observe, Imagine, Abstain: Detecting Hallucinated Geometry
                in Feed-Forward 3D Reconstruction},
   author    = {Anonymous},
@@ -255,23 +228,29 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
 </section>
 
 <footer>
-  Built from the released result files; no number on this page was typed by hand except the citation year. Figures and video are regenerated by the scripts in the repository.
+  Built from the released result files by <code>scripts/make_page.py</code>; no number on this page was typed by hand except the citation year. Charts by <code>scripts/make_assets.py</code>, video by <code>scripts/make_video.py</code>.
 </footer>
 </main>
-
 <script>
 (function(){
   var stage=document.getElementById('stage');
-  var imgs=stage.querySelectorAll('img');
-  var btns=document.querySelectorAll('.seg button');
-  function show(k){
-    imgs.forEach(function(i){i.classList.toggle('on',i.dataset.k===k)});
-    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===k))});
+  if(stage){
+    var imgs=stage.querySelectorAll('img'), btns=document.querySelectorAll('.seg button');
+    function show(k){imgs.forEach(function(i){i.classList.toggle('on',i.dataset.k===k)});btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===k))})}
+    btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.k)})});
+    var order=['input','depth','conf'],idx=0,touched=false,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    btns.forEach(function(b){b.addEventListener('click',function(){touched=true})});
+    if(!reduce){var t=setInterval(function(){if(touched){clearInterval(t);return}idx=(idx+1)%3;show(order[idx])},2600)}
   }
-  btns.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.k)})});
-  var order=['input','depth','conf'],idx=0,touched=false,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  btns.forEach(function(b){b.addEventListener('click',function(){touched=true})});
-  if(!reduce){var t=setInterval(function(){if(touched){clearInterval(t);return}idx=(idx+1)%3;show(order[idx])},2600)}
+  document.querySelectorAll('[data-tabs]').forEach(function(g){
+    var bs=g.querySelectorAll('button'), panes=document.querySelectorAll('[data-pane="'+g.dataset.tabs+'"]');
+    bs.forEach(function(b){b.addEventListener('click',function(){
+      bs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+      panes.forEach(function(p){p.classList.toggle('on',p.dataset.k===b.dataset.k)});
+    })});
+  });
+  var cp=document.getElementById('copybib');
+  if(cp){cp.addEventListener('click',function(){navigator.clipboard.writeText(document.getElementById('bib').textContent).then(function(){cp.textContent='Copied'})})}
 })();
 </script>
 </body>
