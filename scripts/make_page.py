@@ -174,6 +174,33 @@ def bands_table():
     return "<table>" + head + "".join(rows) + "</table>"
 
 
+def fused_par():
+    """The combined score: head times native confidence, if the fused variants were scored."""
+    if v('vis/dtu/vggt_oiavisselffuse/auroc') == "--":
+        return ""
+    return (f"""<p><strong>The two signals combined.</strong> Native confidence tracks error, the head tracks support, and the two are nearly independent, so their product is a third detector at no cost. """
+            f"""The label-free head multiplied by native confidence scores AUROC {v('vis/dtu/vggt_oiavisselffuse/auroc')} on DTU (head alone {v('vis/dtu/vggt_oiavisself/auroc')}, native {v('vis/dtu/vggt/auroc')}), """
+            f"""{v('vis/co3d/vggt_oiavisselffuse/auroc')} on CO3Dv2 ({v('vis/co3d/vggt_oiavisself/auroc')}, {v('vis/co3d/vggt/auroc')}), {v('vis/eth3d/vggt_oiavisselffuse/auroc')} on ETH3D ({v('vis/eth3d/vggt_oiavisself/auroc')}, {v('vis/eth3d/vggt/auroc')}) """
+            f"""and {v('vis/imc/vggt_oiavisselffuse/auroc')} on the landmarks ({v('vis/imc/vggt_oiavisself/auroc')}, {v('vis/imc/vggt/auroc')}); CUR {v('vis/dtu/vggt_oiavisselffuse/cur')} / {v('vis/co3d/vggt_oiavisselffuse/cur')} / {v('vis/eth3d/vggt_oiavisselffuse/cur')} / {v('vis/imc/vggt_oiavisselffuse/cur')}. """
+            f"""In the fused point cloud at 0.8 coverage the product reaches accuracy {v('fuse/dtu/vggt_oiavisselffuse/0.8/accuracy', nd=2)} on DTU against {v('fuse/dtu/vggt_oiavisself/0.8/accuracy', nd=2)} for the head and {v('fuse/dtu/vggt/0.8/accuracy', nd=2)} for native confidence, """
+            f"""at a single-view rate of {pct('fuse/dtu/vggt_oiavisselffuse/0.8/single_view_kept')} of the kept points (native {pct('fuse/dtu/vggt/0.8/single_view_kept')}). Runs P4-vis, P7-vis-imc, P8-fuse (fused rows).</p>""")
+
+
+def refill_block():
+    """Fill sensitivity of the invented surface, if run P9-refill exists."""
+    if v('refill/dtu/vggt/auroc') == "--":
+        return ""
+    models = [m for m in ("vggt", "pi3x", "pi3", "da3") if v(f'refill/dtu/{m}/auroc') != "--"]
+    sp = rng([f'refill/dtu/{m}/auroc' for m in models]); nat = rng([f'refill/dtu/{m}/auroc_native_blur' for m in models])
+    spc = rng([f'refill/co3d/{m}/auroc' for m in models])
+    su = rng([f'refill/dtu/{m}/spread_U' for m in models], 3); ss = rng([f'refill/dtu/{m}/spread_S' for m in models], 3)
+    return (f"""<section class="measure">
+  <p><strong>Nor do the pixels it was filled with.</strong> If the invented surface were read off the fill, changing the fill would move it. The same hidden sphere filled three ways (gray, blur, noise), the backbone run on each, the depths aligned outside the hidden region: the spread of the invented depth over the three fills scores AUROC {sp} on DTU and {spc} on CO3Dv2 against native confidence's {nat} on the same cells (run P9-refill). """
+            f"""The median relative spread is {su} inside the hidden region and {ss} outside it. The surface the model draws where it saw nothing is the same surface whichever pixels it was shown: a third sense in which the invention is consistent.</p>
+</section>
+<figure class="fig"><img src="assets/charts/refill_light.png" alt="Fill sensitivity: AUROC of the depth spread over three fills against native confidence"><figcaption>Run P9-refill: the depth spread over three fills of the same hidden sphere as a detector, against native confidence on the same cells.</figcaption></figure>""")
+
+
 def page():
     H = []
     H.append(f"""<!doctype html>
@@ -304,6 +331,7 @@ def page():
   <h2><span class="num">06 / ABSTAINING</span>What a user gets from it</h2>
   <p>A detector is used with a threshold. CUR sets it on the test scene itself, which a deployed filter cannot do, so from the per-pixel scores (run P6-dump) three deployable readings. Ranking: keeping the half of the pixels the head trusts most lowers the depth error of what remains by 15 to 44%, and the area under the single-view rate of the kept pixels against coverage is within 0.02 of the oracle on every dataset. Fixed bands, set before any evaluation at 0.3 and 0.7: the head marks {pct('bands/dtu/vggt_oiavisself/frac_observed')} of the pixels observed on DTU with {pct('bands/dtu/vggt_oiavisself/risk_observed')} single-view inside, {pct('bands/co3d/vggt_oiavisself/frac_observed')} with {pct('bands/co3d/vggt_oiavisself/risk_observed')} on CO3Dv2. Frozen thresholds: a threshold set to keep 90% of the supported pixels of the <em>other</em> scenes lets {pct('bands/dtu/vggt_oiavisself/cur_loso')} of single-view pixels through on DTU and {pct('bands/co3d/vggt_oiavisself/cur_loso')} on CO3Dv2, against {pct('bands/dtu/vggt/cur_loso')} and {pct('bands/co3d/vggt/cur_loso')} for native confidence. VGGT's native confidence has no scale that transfers between datasets at all; the head's probability does.</p>
   {bands_table()}
+  {fused_par()}
   <p><strong>Downstream.</strong> Fusing the views with the backbone's own cameras (aligned to the laser scan by a similarity transform on the camera centres) and keeping the 80% of points the head trusts most raises the accuracy of the fused cloud on DTU from {v('fuse/dtu/vggt_random/1.0/accuracy', nd=2)} to {v('fuse/dtu/vggt_oiavisself/0.8/accuracy', nd=2)} (native confidence {v('fuse/dtu/vggt/0.8/accuracy', nd=2)}, reprojection {v('fuse/dtu/vggt_reproj/0.8/accuracy', nd=2)}, per-image control {v('fuse/dtu/vggt_oiavispatch/0.8/accuracy', nd=2)}, random {v('fuse/dtu/vggt_random/0.8/accuracy', nd=2)}), while the oracle that drops single-view pixels first reaches {v('fuse/dtu/vggt_oracle/0.8/accuracy', nd=2)}: on DTU single-view geometry is nearly as accurate as supported geometry, so abstaining buys corroboration, not accuracy, and native confidence, which tracks error, filters accuracy as well. Run P8-fuse; ETH3D in the supplement.</p>
 </section>
 <figure class="fig"><img src="assets/charts/fuse_light.png" alt="Accuracy and completeness of the fused point cloud against coverage, DTU and ETH3D"><figcaption>Fused point cloud at matched coverage (VGGT-1B): accuracy and completeness of the kept points against the ground-truth cloud, for every detector, random dropping and the oracle.</figcaption></figure>
@@ -317,6 +345,7 @@ def page():
 <section class="measure">
   <p><strong>Nor does another model.</strong> If two backbones invented different surfaces, their disagreement would find the patch. It does not: disagreement between VGGT, Pi3X, Pi3, Depth Anything 3 and MapAnything, six pairs with depths aligned by a label-free median ratio, scores AUROC {rng(['xmodel/fill_dtu/vggt_xpi3x/auroc', 'xmodel/fill_dtu/vggt_xmapanything/auroc'])} on the DTU patches and {rng(['xmodel/fill_co3d/vggt_xpi3x/auroc', 'xmodel/fill_co3d/pi3x_xpi3/auroc'])} on CO3Dv2 (run P8-xmodel). Five models of three families fill the hole with the same surface. The invention is consistent across views, across the features, and across models, which is the strongest form of the finding this benchmark set out to measure.</p>
 </section>
+{refill_block()}
 <figure class="fig"><img src="assets/charts/xmodel_light.png" alt="Cross-model disagreement AUROC per pair on the filled patches and on real single-view geometry"><figcaption>Cross-model disagreement as a detector, six pairs. At chance on the filled patches of both datasets, and weak on real single-view geometry too: models agree with one another even where only one view supports the surface.</figcaption></figure>
 
 <section class="measure" id="video">

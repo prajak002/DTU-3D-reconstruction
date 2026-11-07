@@ -223,6 +223,11 @@ def main():
               f"Disagreement between two backbones on the same views, six pairs over five models: AUROC {g('xmodel/fill_dtu/vggt_xpi3x/auroc')} to {g('xmodel/fill_dtu/vggt_xmapanything/auroc')} on the DTU patches, "
               f"{g('xmodel/fill_co3d/vggt_xpi3x/auroc')} to {g('xmodel/fill_co3d/pi3x_xpi3/auroc')} on CO3Dv2. Five models of three families fill the hole with the same surface.",
               10, chapter="10 / THE LIMIT")
+    if os.path.exists(os.path.join(CH, "refill_dark.png")):
+        chart(reel, os.path.join(CH, "refill_dark.png"), "Nor do the pixels it was filled with",
+              f"The same hidden sphere filled three ways, the backbone run on each: the spread of the invented depth over the fills scores AUROC {g('refill/dtu/vggt/auroc')} (VGGT) to {g('refill/dtu/pi3/auroc')} (Pi3) on DTU "
+              f"against {g('refill/dtu/vggt/auroc_native_blur')} to {g('refill/dtu/pi3/auroc_native_blur')} for native confidence. The model draws the same surface whichever pixels it is shown.",
+              10, chapter="10 / THE LIMIT")
     if os.path.exists(os.path.join(CH, "fuse_dark.png")):
         chart(reel, os.path.join(CH, "fuse_dark.png"), "Downstream: the fused point cloud",
               "Each backbone's own cameras, aligned to the laser scan; keep the points the detector trusts most. Accuracy and completeness of what remains, at matched coverage, "

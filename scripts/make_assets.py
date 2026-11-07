@@ -12,6 +12,9 @@ Writes docs/assets/numbers.json (every number the page and the video quote, with
   adapt_<theme>.png       label-free adaptation on the target capture against the DTU-trained head
   onfill_<theme>.png      the limit: visibility detectors on the benchmark's filled patches
   method_<theme>.png      schematic of the label-free support head
+  xmodel_<theme>.png      cross-model disagreement as a detector
+  fuse_<theme>.png        fused point cloud at matched coverage
+  refill_<theme>.png      fill sensitivity of the invented surface (P9-refill)
 """
 import argparse
 import json
@@ -80,7 +83,7 @@ def numbers():
         N["vis"][key] = {}
         for base in ("vggt", "pi3x", "pi3", "da3"):
             for suf in ("", "reproj", "border", "dedge", "oia", "oiapatch", "oiavispatch", "oiavislin", "oiavis", "oiavisselfpatch",
-                        "oiavisselflin", "oiavisself", "oiavisself_x", "oiavisselfpatch_x", "oiavis_s1", "oiavis_s2"):
+                        "oiavisselflin", "oiavisself", "oiavisself_x", "oiavisselfpatch_x", "oiavis_s1", "oiavis_s2", "oiavisfuse", "oiavisselffuse"):
                 m = base if suf == "" else f"{base}_{suf}"
                 c = ci(d, m)
                 if c:
@@ -130,6 +133,16 @@ def numbers():
             d = pd.read_csv(p)
             g = d.groupby(["model", "coverage"])[["accuracy", "completeness", "f1", "single_view_kept"]].mean().round(4)
             N["fuse"][key] = {m: {str(c): g.loc[(m, c)].to_dict() for c in sorted(d.coverage.unique())} for m in d.model.unique()}
+    # fill sensitivity of the invented surface
+    N["refill"] = {}
+    for key, fn in (("dtu", "P9-refill.csv"), ("co3d", "P9-refill-co3d.csv")):
+        p = os.path.join(RES, "P9-refill", fn)
+        if os.path.exists(p):
+            d = pd.read_csv(p)
+            N["refill"][key] = {}
+            for m in d.model.unique():
+                g = d[d.model == m].groupby("scan")[["auroc_blur_noise", "auroc_gray_blur", "auroc_gray_noise", "spread_U", "spread_S", "auroc_native_blur"]].mean().mean()
+                N["refill"][key][m] = {"auroc": ci(d, m), "cur": ci(d, m, "cur"), **{k: round(float(v), 4) for k, v in g.items()}}
     # operating points
     for key, *_ in DATASETS:
         p = os.path.join(RES, "P6-dump", f"P6-dump-{key}_curves.csv")
@@ -215,6 +228,8 @@ def chart_vis(N, theme, out):
     dets = [("", "native confidence", T["c"][1]), ("border", "image border", T["c"][6]), ("oiavispatch", "per-image head", T["c"][2]),
             ("reproj", "reprojection", T["c"][3]), ("oiavis", "head, GT labels", T["c"][5]), ("oiavisself", "head, label-free", T["c"][4])]
     keys = [k for k in DATASETS if k[0] in N["vis"]]
+    if any(f"{b}_oiavisselffuse" in N["vis"][k[0]] for b in ("vggt", "pi3x", "pi3", "da3") for k in keys):
+        dets.append(("oiavisselffuse", "label-free head x native", T["c"][0]))
     bases = [b for b in ("vggt", "pi3x", "pi3", "da3") if any(f"{b}_oiavisself" in N["vis"][k[0]] for k in keys)]
     fig, axes = plt.subplots(1, len(bases), figsize=(4.7 * len(bases), 5.0), sharey=True)
     for ax, base in zip(np.atleast_1d(axes), bases):
@@ -323,7 +338,8 @@ def chart_fuse(N, theme, out):
     fig, axes = plt.subplots(1, 2 * len(keys), figsize=(4.4 * 2 * len(keys), 3.9))
     axes = np.atleast_1d(axes)
     series = [("vggt", "native confidence", T["c"][1], "-"), ("vggt_reproj", "reprojection", T["c"][3], "-"), ("vggt_oiavispatch", "per-image head", T["c"][2], "-"),
-              ("vggt_oiavisself", "head, label-free", T["c"][4], "-"), ("vggt_random", "random dropping", T["c"][1], ":"), ("vggt_oracle", "oracle (drop single-view first)", T["c"][5], "--")]
+              ("vggt_oiavisself", "head, label-free", T["c"][4], "-"), ("vggt_oiavisselffuse", "head x native confidence", T["c"][0], "-"),
+              ("vggt_random", "random dropping", T["c"][1], ":"), ("vggt_oracle", "oracle (drop single-view first)", T["c"][5], "--")]
     i = 0
     for k in keys:
         for metric, ylabel in (("accuracy", "accuracy of the fused points"), ("completeness", "completeness")):
@@ -337,6 +353,30 @@ def chart_fuse(N, theme, out):
     fig.legend(h, l, loc="lower center", ncol=6, fontsize=9, bbox_to_anchor=(0.5, 0.0))
     fig.suptitle("Fused point cloud (VGGT-1B, its own cameras, similarity-aligned to the laser scan): keeping what the detector trusts", fontsize=11)
     fig.tight_layout(rect=(0, 0.08, 1, 1)); fig.savefig(out, dpi=160); plt.close(fig)
+
+
+def chart_refill(N, theme, out):
+    """Fill sensitivity: AUROC of the depth spread over three fills of the same hidden sphere, against native confidence."""
+    plt, T = _style(theme)
+    R = N.get("refill", {})
+    if not R:
+        return
+    keys = [k for k in ("dtu", "co3d") if k in R]
+    models = [m for m in ("vggt", "pi3x", "pi3", "da3", "mapanything") if any(m in R[k] for k in keys)]
+    fig, axes = plt.subplots(1, len(keys), figsize=(5.6 * len(keys), 4.2), sharey=True)
+    axes = np.atleast_1d(axes)
+    for ax, k in zip(axes, keys):
+        x = np.arange(len(models)); w = 0.38
+        nat = [R[k].get(m, {}).get("auroc_native_blur") for m in models]
+        sp = [R[k].get(m, {}).get("auroc") for m in models]
+        ax.bar(x - w / 2, [v or 0 for v in nat], w * 0.92, color=T["c"][1], label="native confidence (blur fill)")
+        ax.bar(x + w / 2, [v[0] if v else 0 for v in sp], w * 0.92, color=T["c"][2], label="depth spread over gray / blur / noise fills",
+               yerr=[[v[0] - v[1] if v else 0 for v in sp], [v[2] - v[0] if v else 0 for v in sp]], ecolor=T["muted"], capsize=3)
+        ax.set_xticks(x); ax.set_xticklabels([NAME[m] for m in models]); ax.set_ylim(0.3, 1.0); ax.axhline(0.5, color=T["muted"], lw=0.8, ls=":")
+        ax.set_title({"dtu": "DTU, 18 scans", "co3d": "CO3Dv2, 18 scenes"}[k], fontsize=12); _clean(ax, T)
+    axes[0].set_ylabel("AUROC on the filled patch"); axes[0].legend(fontsize=9, loc="upper left")
+    fig.suptitle("Does the invented surface depend on the pixels it was filled with? The same sphere filled three ways (run P9-refill)", fontsize=11)
+    fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
 
 
 def chart_method(theme, out):
@@ -391,6 +431,7 @@ def main():
         chart_method(theme, os.path.join(a.out, f"method_{theme}.png"))
         chart_xmodel(N, theme, os.path.join(a.out, f"xmodel_{theme}.png"))
         chart_fuse(N, theme, os.path.join(a.out, f"fuse_{theme}.png"))
+        chart_refill(N, theme, os.path.join(a.out, f"refill_{theme}.png"))
         print("charts written for", theme)
 
 
