@@ -24,6 +24,9 @@ Every number in the paper maps to a CSV and a configuration file in the released
 \label{fig:perscene}
 \end{figure}
 
+\paragraph{Correctness guards.}
+Before any model is scored we check that ground-truth depth reprojects consistently between view pairs and that unsupported points of view $i$, where visible in view $j$, land inside view $j$'s hidden mask. DTU: reprojection agreement 0.80 to 0.82 at a 1\% depth tolerance, U-transfer 0.96 to 0.99. CO3Dv2 (cameras converted from PyTorch3D and checked against the official point cloud): with an occlusion-aware 3\% tolerance, agreement 0.92 to 1.00 and U-transfer 0.90 to 0.98 on 17 of 18 scenes; the eighteenth scores 0.80, is kept, and removing it changes nothing (Section~\ref{sec:results}). ETH3D: agreement 0.996 to 1.000 on all scenes; nine of twelve pass the U-transfer gate and three are excluded before any model is run.
+
 \paragraph{Pipeline validation.}
 On a synthetic DTU-format scene, an oracle that knows what is hidden scores \auroc{} 1.000 and \cur{} 0.000, and a blind guesser with flat confidence scores \auroc{} 0.500 and \cur{} 0.90 (the 10\% of supported pixels dropped by $\tau$ is the expected floor). These numbers validate the code, not any model.
 
@@ -64,6 +67,42 @@ Pi3X & fill-trained support head & 1 & \ci{0.999}{0.999}{1.000} & \ci{0.001}{0.0
 \bottomrule
 \end{tabular}}
 \end{table}
+
+\paragraph{Stress tests.}
+Section 5.2 of the main paper summarises this table.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Stress tests on DTU.} 18 scans $\times$ 2 mask seeds, radius 0.18, models VGGT, Pi3X, DA3. Reference rows are the matching cells of Table~\ref{tab:dtu} (blur, 10 spread views, seeds 0 and 1). Last column: paired \cur{} difference against the reference with a sign-flip $p$ over scans. Run P2-stress.}
+\label{tab:stress}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccccl}
+\toprule
+model & test & \auroc & \cur & \curerr & $\absrel_U$ & \cur{} vs ref \\
+\midrule
+VGGT-1B & reference & \ci{0.902}{0.868}{0.930} & \ci{0.259}{0.175}{0.349} & 0.000 & 0.010 & \\
+VGGT-1B & inpaint fill & \ci{0.867}{0.821}{0.907} & \ci{0.347}{0.255}{0.443} & 0.001 & 0.018 & $+0.088$ ($p=0.031$) \\
+VGGT-1B & 5 views & 0.902 & \ci{0.269}{0.173}{0.377} & 0.000 & 0.011 & $+0.010$ ($p=0.63$) \\
+VGGT-1B & 3 views & 0.899 & \ci{0.259}{0.167}{0.361} & 0.000 & 0.013 & $+0.001$ ($p=0.98$) \\
+VGGT-1B & low parallax & 0.911 & \ci{0.214}{0.110}{0.334} & 0.000 & 0.021 & $-0.045$ ($p=0.35$) \\
+VGGT-1B & + distractor & 0.905 & \ci{0.257}{0.179}{0.340} & 0.000 & 0.011 & $-0.002$ ($p=0.90$) \\
+Pi3X & reference & \ci{0.828}{0.781}{0.870} & \ci{0.521}{0.390}{0.650} & 0.002 & 0.024 & \\
+Pi3X & inpaint fill & \ci{0.786}{0.731}{0.836} & \ci{0.589}{0.473}{0.702} & 0.004 & 0.022 & $+0.068$ ($p=0.005$) \\
+Pi3X & 5 views & 0.822 & \ci{0.539}{0.411}{0.661} & 0.006 & 0.024 & $+0.018$ ($p=0.44$) \\
+Pi3X & 3 views & 0.840 & \ci{0.497}{0.373}{0.618} & 0.032 & 0.051 & $-0.024$ ($p=0.64$) \\
+Pi3X & low parallax & 0.812 & \ci{0.523}{0.376}{0.671} & 0.040 & 0.050 & $+0.002$ ($p=0.98$) \\
+Pi3X & + distractor & 0.829 & \ci{0.510}{0.368}{0.650} & 0.002 & 0.024 & $-0.011$ ($p=0.66$) \\
+DA3 & reference & \ci{0.712}{0.632}{0.783} & \ci{0.679}{0.569}{0.791} & 0.006 & 0.018 & \\
+DA3 & inpaint fill & 0.726 & \ci{0.688}{0.605}{0.774} & 0.009 & 0.018 & $+0.008$ ($p=0.87$) \\
+DA3 & 5 views & 0.697 & \ci{0.785}{0.703}{0.865} & 0.005 & 0.019 & $+0.106$ ($p=0.008$) \\
+DA3 & 3 views & 0.729 & \ci{0.667}{0.560}{0.770} & 0.018 & 0.031 & $-0.012$ ($p=0.81$) \\
+DA3 & low parallax & \ci{0.863}{0.785}{0.925} & \ci{0.372}{0.230}{0.520} & 0.008 & 0.029 & $-0.307$ ($p=0.0003$) \\
+DA3 & + distractor & \ci{0.660}{0.580}{0.734} & \ci{0.775}{0.680}{0.868} & 0.003 & 0.019 & $+0.096$ ($p=0.0004$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 
 \paragraph{Stress tests, plotted.}
 
