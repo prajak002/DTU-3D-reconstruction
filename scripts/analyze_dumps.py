@@ -90,10 +90,12 @@ def ece(p_imagined, is_u, bins=10):
 
 
 def at_tau(c, tau):
+    """At threshold tau: cur = fraction of single-view pixels kept (the benchmark's CUR), risk = fraction of kept
+    pixels that are single-view, keep = fraction of supported pixels kept, absrel of the kept pixels."""
     keep = c["conf"] >= tau
     u = c["is_u"]
-    return dict(cur=float(u[keep].mean()) if keep.any() else float("nan"), keep=float(keep[~u].mean()),
-                absrel=float(c["err"][keep].mean()) if keep.any() else float("nan"))
+    return dict(cur=float(keep[u].mean()) if u.any() else float("nan"), risk=float(u[keep].mean()) if keep.any() else float("nan"),
+                keep=float(keep[~u].mean()), absrel=float(c["err"][keep].mean()) if keep.any() else float("nan"))
 
 
 def analyse(name, cells_by_model, out, tau_source=None):
@@ -105,11 +107,11 @@ def analyse(name, cells_by_model, out, tau_source=None):
         for c in cells:
             conf, is_u, err = c["conf"], c["is_u"], c["err"]
             r, e = risk_coverage(conf, is_u, err)
-            cell = dict(aurc=float(np.trapz(r, GRID) / (GRID[-1] - GRID[0])), risk50=float(r[49]), risk80=float(r[79]),
+            cell = dict(aurc=float(np.trapezoid(r, GRID) / (GRID[-1] - GRID[0])), risk50=float(r[49]), risk80=float(r[79]),
                         risk90=float(r[89]), absrel_all=float(err.mean()), absrel50=float(e[49]), absrel90=float(e[89]),
                         frac_u=float(is_u.mean()))
             ro = np.maximum(0.0, 1 - (1 - is_u.mean()) / GRID)
-            cell["aurc_oracle"] = float(np.trapz(ro, GRID) / (GRID[-1] - GRID[0]))
+            cell["aurc_oracle"] = float(np.trapezoid(ro, GRID) / (GRID[-1] - GRID[0]))
             tau_own = float(np.quantile(conf[~is_u], 0.10))               # the benchmark's oracle threshold
             cell.update({f"{k}_own": v for k, v in at_tau(c, tau_own).items()})
             others = np.concatenate([v for sc, v in pooled.items() if sc != c["scene"]]) if len(pooled) > 1 else None
