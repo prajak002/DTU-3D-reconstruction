@@ -15,6 +15,7 @@ Writes docs/assets/numbers.json (every number the page and the video quote, with
   xmodel_<theme>.png      cross-model disagreement as a detector
   fuse_<theme>.png        fused point cloud at matched coverage
   refill_<theme>.png      fill sensitivity of the invented surface (P9-refill)
+  prov_<theme>.png        provenance: which view saw it (P10-prov), head against the reprojection test, per dataset
 """
 import argparse
 import json
@@ -152,6 +153,22 @@ def numbers():
                 g = d[d.model == m].groupby("scan")[cols].mean().mean()
                 N["refill_single"][key][m] = {"auroc_own": ci(d, m, "auroc_own"), "auroc_cross": ci(d, m, "auroc_cross") if "auroc_cross" in d else None,
                                               **{k: (None if pd.isna(v) else round(float(v), 4)) for k, v in g.items()}}
+    # provenance heads (P10-prov): support score and attribution per dataset and detector
+    N["prov"] = {}
+    for key, *_ in DATASETS:
+        p = os.path.join(RES, f"P10-prov-{key}", f"P10-prov-{key}.csv")
+        if not os.path.exists(p):
+            continue
+        d = pd.read_csv(p)
+        d = d[~d.skipped.astype(bool)] if "skipped" in d else d
+        N["prov"][key] = {}
+        for m in d.model.unique():
+            x = d[d.model == m].dropna(subset=["auroc"])
+            e = {"auroc": ci(x, m), "cur": ci(x, m, "cur")}
+            for c in ("prov_auroc", "prov_auroc_inframe", "prov_top1", "prov_count_mae"):
+                if c in x and x[c].notna().any():
+                    e[c] = ci(x.dropna(subset=[c]), m, c)
+            N["prov"][key][m] = e
     # operating points
     for key, *_ in DATASETS:
         p = os.path.join(RES, "P6-dump", f"P6-dump-{key}_curves.csv")
@@ -388,6 +405,34 @@ def chart_refill(N, theme, out):
     fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
 
 
+def chart_prov(N, theme, out):
+    """Provenance: attribution AUROC (does the per-view score rank the views that see a point above those that do not)
+    of the label-free provenance head against the reprojection test with the model's own cameras, per backbone and dataset."""
+    plt, T = _style(theme)
+    P = N.get("prov", {})
+    keys = [k for k, *_ in DATASETS if k in P]
+    if not keys:
+        return
+    bases = [b for b in ("vggt", "pi3x", "pi3", "da3") if any(f"{b}_oiaprovself" in P[k] for k in keys)]
+    fig, axes = plt.subplots(1, len(keys), figsize=(4.2 * len(keys), 4.2), sharey=True)
+    axes = np.atleast_1d(axes)
+    for ax, k in zip(axes, keys):
+        x = np.arange(len(bases)); w = 0.27
+        for i, (suf, lab, col) in enumerate((("reproj", "reprojection, own cameras", T["c"][1]), ("oiaprov", "provenance head, GT labels", T["c"][4]),
+                                             ("oiaprovself", "provenance head, label-free", T["c"][2]))):
+            vals = [P[k].get(f"{b}_{suf}", {}).get("prov_auroc") for b in bases]
+            ax.bar(x + (i - 1) * w, [v[0] if v else 0 for v in vals], w * 0.92, color=col, label=lab,
+                   yerr=[[v[0] - v[1] if v else 0 for v in vals], [v[2] - v[0] if v else 0 for v in vals]], ecolor=T["muted"], capsize=2)
+        ax.set_xticks(x); ax.set_xticklabels([NAME[b] for b in bases], fontsize=9); ax.set_ylim(0.4, 1.0); ax.axhline(0.5, color=T["muted"], lw=0.8, ls=":")
+        ax.set_title(dict(DATASETS_LABEL)[k], fontsize=12); _clean(ax, T)
+    axes[0].set_ylabel("attribution AUROC (which views see the point)"); axes[0].legend(fontsize=8, loc="lower left")
+    fig.suptitle("Which view saw it: per-view attribution of the provenance head against the model's own reprojection test (run P10-prov)", fontsize=11)
+    fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
+
+
+DATASETS_LABEL = [(k, f"{lab}" ) for k, lab, *_ in [("dtu", "DTU, 18 scans"), ("co3d", "CO3Dv2, 18 scenes"), ("eth3d", "ETH3D, 9 scenes"), ("imc", "Phototourism, 9 landmarks")]]
+
+
 def chart_method(theme, out):
     plt, T = _style(theme)
     from matplotlib.patches import FancyBboxPatch, FancyArrowPatch
@@ -441,6 +486,7 @@ def main():
         chart_xmodel(N, theme, os.path.join(a.out, f"xmodel_{theme}.png"))
         chart_fuse(N, theme, os.path.join(a.out, f"fuse_{theme}.png"))
         chart_refill(N, theme, os.path.join(a.out, f"refill_{theme}.png"))
+        chart_prov(N, theme, os.path.join(a.out, f"prov_{theme}.png"))
         print("charts written for", theme)
 
 

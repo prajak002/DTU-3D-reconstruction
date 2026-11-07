@@ -196,6 +196,21 @@ def single_sentence():
             """the invented surface follows the pixels of the view it is drawn in, with a weaker pull from the other views.""")
 
 
+def prov_block():
+    """Provenance head (run P10-prov), if its rows exist."""
+    if v('prov/dtu/vggt_oiaprovself/prov_auroc') == "--":
+        return ""
+    ds = [d for d in ("dtu", "co3d", "eth3d", "imc") if v(f'prov/{d}/vggt_oiaprovself/prov_auroc') != "--"]
+    bases = [b for b in ("vggt", "pi3x", "pi3", "da3") if v(f'prov/dtu/{b}_oiaprovself/prov_auroc') != "--"]
+    head = rng([f'prov/{d}/{b}_oiaprovself/prov_auroc' for d in ds for b in bases]); rp = rng([f'prov/{d}/{b}_reproj/prov_auroc' for d in ds for b in bases])
+    top = rng([f'prov/dtu/{b}_oiaprovself/prov_top1' for b in bases]); topr = rng([f'prov/dtu/{b}_reproj/prov_top1' for b in bases])
+    sup = rng([f'prov/{d}/{b}_oiaprovself/auroc' for d in ds for b in bases]); conv = rng([f'vis/{d}/{b}_oiavisself/auroc' for d in ds for b in bases])
+    return (f"""<section class="measure">
+  <p><strong>Which view saw it.</strong> The support head says whether a point is corroborated; a <em>provenance head</em> on the same frozen tokens says by which photographs. Each target token queries the tokens of every other input view with cross-view evidence attention (no cameras, no positions) and returns, per other view, the probability that this view corroborates the point; the support score is the probability that no view does, so the head is scored on exactly the cells of the table above. Trained label-free on the per-view bits of the backbone's own reprojection, it ranks the views that see a point above the views that do not at attribution AUROC {head} across {len(ds)} datasets and {len(bases)} backbones, against {rp} for the reprojection test with the model's own cameras; its top-scoring view does see the point for {top} of the supported pixels on DTU (reprojection {topr}); its support score stays at {sup} AUROC against {conv} for the conv head (run P10-prov).</p>
+</section>
+<figure class="fig"><img src="assets/charts/prov_light.png" alt="Provenance: attribution AUROC of the provenance head against the reprojection test"><figcaption>Run P10-prov: per-view attribution of the provenance heads against the model's own reprojection test, four datasets. 95% cluster-bootstrap intervals over scenes.</figcaption></figure>""")
+
+
 def refill_block():
     """Fill sensitivity of the invented surface, if run P9-refill exists."""
     if v('refill/dtu/vggt/auroc') == "--":
@@ -305,6 +320,7 @@ def page():
   <p>The method of record goes one step further and needs no ground truth at all. The backbone is run once on clean views; each predicted point is projected into the other views with the predicted cameras and counted as supported where it lands on their predicted surface. That count is the label. The reprojection test is the teacher, and the head has to generalise better than its teacher to be worth having. It does: on phone orbits and tourist photographs, where the model's own cameras are least reliable, the head beats the test it learned from.</p>
 </section>
 <figure class="fig"><img src="assets/charts/method_light.png" alt="Schematic of the label-free support head"><figcaption>The label-free support head. 3.3 M parameters on VGGT-1B (1.7 M on Pi3X and Pi3): a projection per layer, two convolutions at patch resolution, one logit per patch, under 1% of the backbone's FLOPs. Trained in ten minutes on one GPU, 1500 steps, on the 79 DTU training scans, which the benchmark never uses.</figcaption></figure>
+{prov_block()}
 
 <section class="measure" id="results">
   <h2><span class="num">04 / RESULTS</span>Three backbones, four datasets the heads never saw</h2>

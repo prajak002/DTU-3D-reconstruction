@@ -158,6 +158,7 @@ footer{max-width:var(--measure);margin:4rem auto 0;padding-top:1.5rem;border-top
 </section>
 <figure class="fig"><img src="assets/charts/method_light.png" alt="Schematic of the label-free support head"><figcaption>The label-free support head. 3.3 M parameters on VGGT-1B (1.7 M on Pi3X and Pi3): a projection per layer, two convolutions at patch resolution, one logit per patch, under 1% of the backbone's FLOPs. Trained in ten minutes on one GPU, 1500 steps, on the 79 DTU training scans, which the benchmark never uses.</figcaption></figure>
 
+
 <section class="measure" id="results">
   <h2><span class="num">04 / RESULTS</span>Three backbones, four datasets the heads never saw</h2>
   <p>Clean inputs of 3, 5 and 10 views, three rotations of the view set per scene. DTU: 18 benchmark scans. CO3Dv2: 18 phone orbits. ETH3D: nine building-scale DSLR scans with laser ground truth. Phototourism: nine landmarks from Internet photo collections (British Museum, Florence cathedral, Lincoln Memorial, London Bridge, Milan cathedral, Mount Rushmore, Piazza San Marco, Sagrada Familia, St Paul's) with people and vehicles in front of the monument and COLMAP depth as ground truth. Pre-registered pass conditions, written before the heads were trained, with a 0.02 margin against the control: both pass on every dataset and backbone.</p>

@@ -184,6 +184,11 @@ def main():
          lines=[f"It matches a head trained on ground-truth visibility within 0.02, and beats its own teacher, the reprojection test, where cameras are unreliable.",
                 f"Only {pc('vis/dtu/vggt_oiavisself/cur')} of single-view pixels pass its 90%-kept threshold on DTU, against {pc('vis/dtu/vggt/cur')} for native confidence."], fs=24)
 
+    if os.path.exists(os.path.join(CH, "prov_dark.png")):
+        chart(reel, os.path.join(CH, "prov_dark.png"), "Which view saw it",
+              f"A provenance head on the same tokens says which input views corroborate each pixel: attribution AUROC {g('prov/dtu/vggt_oiaprovself/prov_auroc')} on DTU and "
+              f"{g('prov/imc/vggt_oiaprovself/prov_auroc')} on tourist photographs (VGGT, label-free) against {g('prov/dtu/vggt_reproj/prov_auroc')} and {g('prov/imc/vggt_reproj/prov_auroc')} "
+              "for the model's own reprojection test, with no camera in the loop.", 10, chapter="06 / RESULTS")
     if os.path.exists(os.path.join(ASSETS, "fig_qual.png")):
         chart(reel, os.path.join(ASSETS, "fig_qual.png"), "What the head says, on captures it never saw",
               "One view per dataset: photograph, ground-truth support (red: only this view sees it; green: two or more do), native confidence, reprojection consistency, "
