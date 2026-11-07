@@ -1,0 +1,17 @@
+11:01:12 == P4-vis-ext: models ['vggt', 'vggt_reproj', 'vggt_border', 'vggt_dedge', 'vggt_oiavis', 'vggt_oiavispatch', 'vggt_oiavisself', 'vggt_oiavisselfpatch', 'pi3x', 'pi3x_reproj', 'pi3x_border', 'pi3x_dedge', 'pi3x_oiavis', 'pi3x_oiavispatch', 'pi3x_oiavisself', 'pi3x_oiavisselfpatch'], cfg {"vis_views": [2, 20], "seeds": [0, 1, 2]}
+11:02:22    vggt: 70s
+11:03:23    vggt_reproj: 61s
+11:04:07    vggt_border: 45s
+11:04:53    vggt_dedge: 45s
+11:05:36    vggt_oiavis: 44s
+11:06:21    vggt_oiavispatch: 45s
+11:07:05    vggt_oiavisself: 44s
+11:07:50    vggt_oiavisselfpatch: 45s
+11:08:37    pi3x: 47s
+11:09:51    pi3x_reproj: 74s
+11:10:36    pi3x_border: 46s
+11:11:23    pi3x_dedge: 47s
+11:12:22    pi3x_oiavis: 60s
+11:13:22    pi3x_oiavispatch: 60s
+11:14:22    pi3x_oiavisself: 59s
+11:15:21    pi3x_oiavisselfpatch: 59s

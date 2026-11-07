@@ -1,0 +1,10 @@
+10:30:56 == P6-adapt-co3d: models ['vggt_oiavisself_xco3dA', 'vggt_oiavisselfpatch_xco3dA', 'pi3x_oiavisself_xco3dA', 'pi3x_oiavisselfpatch_xco3dA'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "dataset": "co3d"}
+10:31:34    vggt_oiavisself_xco3dA: 38s
+10:32:01    vggt_oiavisselfpatch_xco3dA: 27s
+10:32:30    pi3x_oiavisself_xco3dA: 29s
+10:32:58    pi3x_oiavisselfpatch_xco3dA: 28s
+10:32:58 == P6-adapt-co3d: models ['vggt_oiavisself_xco3dB', 'vggt_oiavisselfpatch_xco3dB', 'pi3x_oiavisself_xco3dB', 'pi3x_oiavisselfpatch_xco3dB'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "dataset": "co3d"}
+10:33:32    vggt_oiavisself_xco3dB: 34s
+10:33:59    vggt_oiavisselfpatch_xco3dB: 27s
+10:34:30    pi3x_oiavisself_xco3dB: 31s
+10:35:01    pi3x_oiavisselfpatch_xco3dB: 31s

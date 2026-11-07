@@ -24,6 +24,69 @@ Every number in the paper maps to a CSV and a configuration file in the released
 \label{fig:perscene}
 \end{figure}
 
+\paragraph{Pipeline validation.}
+On a synthetic DTU-format scene, an oracle that knows what is hidden scores \auroc{} 1.000 and \cur{} 0.000, and a blind guesser with flat confidence scores \auroc{} 0.500 and \cur{} 0.90 (the 10\% of supported pixels dropped by $\tau$ is the expected floor). These numbers validate the code, not any model.
+
+\paragraph{Lab rig versus phone captures, plotted.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig4_dtu_vs_co3d}
+\caption{\textbf{Lab rig versus phone captures.} Pooled blur-and-noise \cur{} and \auroc{} per model on DTU and CO3Dv2 with 95\% intervals. Pi3 is the only model whose numbers transfer; VGGT, MapAnything and DA3 leak markedly more on CO3Dv2.}
+\label{fig:dtuco3d}
+\end{figure}
+
+
+\paragraph{Detectors on the filled patches.}
+The cheap alternatives and the fill-trained heads of Section 5.4 and Section 7 of the main paper, on the Table 1 rows with blur, radius 0.18 and seed 0.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Detectors on the filled patches, DTU} (18 scans, seed 0, blur, radius 0.18; native and perturbation rows re-run on the detectors' hardware, runs P3-native and P3-pv, so every pair is scored on identical rows). The three learned rows per backbone are the \emph{fill-trained} heads: they find the fill, not the missing support (Section~\ref{sec:exp}), which is why the per-image control matches them. The visibility-trained heads are in the main paper.}
+\label{tab:detectors}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{0.7\textwidth}{!}{\begin{tabular}{llccc}
+\toprule
+backbone & detector & fwd & \auroc & \cur \\
+\midrule
+VGGT-1B & native confidence & 1 & \ci{0.915}{0.883}{0.943} & \ci{0.255}{0.157}{0.364} \\
+VGGT-1B & perturbation var., $K{=}4$ & 4 & \ci{0.666}{0.602}{0.729} & \ci{0.627}{0.521}{0.732} \\
+VGGT-1B & reprojection consistency & 1 & \ci{0.488}{0.473}{0.506} & \ci{0.931}{0.903}{0.954} \\
+VGGT-1B & fill-trained linear probe & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
+VGGT-1B & fill-trained per-image control & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
+VGGT-1B & fill-trained support head & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
+Pi3X & native confidence & 1 & \ci{0.832}{0.782}{0.879} & \ci{0.502}{0.362}{0.642} \\
+Pi3X & perturbation var., $K{=}4$ & 4 & \ci{0.550}{0.491}{0.608} & \ci{0.824}{0.754}{0.886} \\
+Pi3X & reprojection consistency & 1 & \ci{0.478}{0.435}{0.518} & \ci{0.929}{0.899}{0.955} \\
+Pi3X & fill-trained per-image control & 1 & \ci{1.000}{0.999}{1.000} & \ci{0.000}{0.000}{0.001} \\
+Pi3X & fill-trained support head & 1 & \ci{0.999}{0.999}{1.000} & \ci{0.001}{0.000}{0.003} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Stress tests, plotted.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig6_stress}
+\caption{\textbf{Stress tests.} \cur{} under each stress condition against the reference, with intervals. View count does nothing for VGGT and Pi3X; the inpainted fill raises leakage; DA3 alone reacts to parallax and to a distractor.}
+\label{fig:stress}
+\end{figure}
+
+
+\paragraph{Every detector on the true-visibility protocol.}
+Table~\ref{tab:vis_supp} lists every detector of the main paper's Table 3 with 95\% cluster-bootstrap intervals over scenes, including the fill-trained heads and the linear probe trained on self-support labels. Per-view-count tables, the per-layer probes and every paired test are in the released statistics file (\texttt{results/P3-stats.md}).
+
+\begin{table}[h]
+\centering
+\caption{\textbf{True-visibility protocol, every detector}, pooled over scenes and view counts as in the main paper, with 95\% cluster-bootstrap intervals over scenes.}
+\label{tab:vis_supp}
+\tiny
+\setlength{\tabcolsep}{2pt}
+\resizebox{\textwidth}{!}{\input{tab_vis_supp}}
+\end{table}
+
 \paragraph{Pre-registered gates.}
 The pass conditions were written into the run registry before the corresponding heads were trained, and the registry is versioned with the code. Gate 3 (true-visibility head; written 2026-11-06, before any visibility head was trained; the training kernels ran from commit \texttt{4132d11}): the head counts as detecting missing support when, pooled over 3, 5 and 10 views on DTU, (a) it beats native confidence on \auroc{} and \cur{} (paired sign-flip $p<0.05$), (b) it beats its per-image control on \auroc{} by at least 0.02 at $p<0.05$, and (c) both conditions hold on at least one dataset the head never saw (CO3Dv2 or ETH3D); if (b) fails, the single-view-support signal is reported as recoverable from per-image features and the method claim is dropped. Gate 4 (label-free head; written 2026-11-06 16:51 UTC, before any label-free head was trained, commit \texttt{c7e6919}): on DTU and on CO3Dv2, (a) and (b) as above against its own per-image control, and (c) within 0.03 \auroc{} of the ground-truth-trained head on DTU and ahead of reprojection consistency on CO3Dv2 at $p<0.05$ (its training signal is the reprojection test, so it has to generalise better than its teacher); if (a) or (b) fails the head is dropped, if only (c) fails it is reported as an ablation. The earlier Gate 2 (fill-trained head) had the clause ``head ahead of the control at $p<0.05$'' with no margin; it passed by the letter on differences of 0.0004 and 0.003 and the paper does not count it, which is why Gate 3 carries a margin.
 

@@ -10,7 +10,7 @@
 \maketitle
 
 \begin{abstract}
-Feed-forward 3D foundation models reconstruct a scene from unposed photographs in a single pass. Where no photograph shows a surface, they fill the gap from learned priors, and they often assign the invented geometry a confidence indistinguishable from that of observed geometry. We call this geometric hallucination and define it operationally: a predicted point is hallucinated when it lies on a surface that no input view observes. \bench{} produces such labels for free by hiding a 3D region of the ground-truth surface in every input view, so that every pixel inside the region is unsupported and every pixel far from it is supported. We ask whether a model's native confidence separates the two (\auroc) and how much unsupported geometry survives a threshold that keeps 90\% of supported geometry, the Confident-Unsupported Rate (\cur). Across five models (VGGT, Pi3, Pi3X, MapAnything, Depth Anything 3), 18 DTU scans and 18 CO3Dv2 scenes, with five mask placements, two region sizes and three fills each, native confidence lets between 24\% and 81\% of unsupported pixels through. A realistic inpainted fill makes leakage worse, not better; dropping views or adding a distractor image leaves it unchanged; and the cheapest alternative, variance over perturbed inputs, is worse than native confidence on both backbones we tried. The ranking of models also changes between the lab rig and phone captures: only Pi3 behaves the same on both. We then propose a detector that does not forbid imagination but makes it explicit: a small \emph{support head} on the frozen features of the backbone predicts, per pixel, whether the geometry was observed or imagined, and abstains in between. It costs one backbone forward and is trained on 79 held-out scans with the label the benchmark makes natural: ground-truth multi-view support, the pixels that no other input view sees. On the 18 benchmark scans with 3 to 10 clean views it separates single-view from supported geometry at \auroc{} 0.99 against 0.77 to 0.82 for native confidence and 0.86 to 0.88 for a control head that sees one image at a time ($p<0.0001$ on both backbones); native confidence lets half of the single-view pixels through, the head 2\%. On CO3Dv2 phone captures the head never saw, it keeps \auroc{} 0.93 on both backbones against 0.70 to 0.76 for native confidence, while the per-image control falls below chance. A head trained on the benchmark's synthetic fills instead scores 1.00, but so does its per-image control, a cautionary result we report in full. Code, benchmark and the full run log will be released.
+Feed-forward 3D foundation models reconstruct a scene from unposed photographs in a single pass. Where no photograph shows a surface, they fill the gap from learned priors, and they often assign the invented geometry a confidence indistinguishable from that of observed geometry. We call this geometric hallucination and define it operationally: a predicted point is hallucinated when it lies on a surface that no input view observes. \bench{} produces such labels for free by hiding a 3D region of the ground-truth surface in every input view, so that every pixel inside the region is unsupported and every pixel far from it is supported. We ask whether a model's native confidence separates the two (\auroc) and how much unsupported geometry survives a threshold that keeps 90\% of supported geometry, the Confident-Unsupported Rate (\cur). Across five models (VGGT, Pi3, Pi3X, MapAnything, Depth Anything 3), 18 DTU scans and 18 CO3Dv2 scenes, with five mask placements, two region sizes and three fills each, native confidence lets between 24\% and 81\% of unsupported pixels through. A realistic inpainted fill makes leakage worse, not better; dropping views or adding a distractor image leaves it unchanged; and the cheapest alternative, variance over perturbed inputs, is worse than native confidence on both backbones we tried. The ranking of models also changes between the lab rig and phone captures: only Pi3 behaves the same on both. We then ask what a detector of unobserved geometry can be. A small \emph{support head} on the frozen multi-view features of the backbone predicts, per pixel, whether the output has multi-view support, and abstains in between. It needs no ground truth: its labels are the support count of the backbone's own prediction, the quantity a reprojection test measures, and the head learns to read it from the features in one forward. On three backbones (VGGT, Pi3X, Pi3) and three datasets its training never touched (DTU benchmark scans with 3 to 10 clean views, CO3Dv2 phone orbits, ETH3D building scans) it separates single-view from supported geometry at \auroc{} 0.93 to 0.99 against 0.55 to 0.89 for native confidence, matches a head trained on ground-truth visibility within 0.01, and beats a control that sees one image at a time, which falls below chance off the lab rig, as does the distance to the image border. It beats reprojection consistency on DTU and CO3Dv2 and ties it on ETH3D at a fraction of the cost. Two cautions come with it: a head trained on the benchmark's fills learns the fill, and no detector, this head included, fires on a filled patch that every view shows. A consistent invention passes. Code, benchmark, heads and the full run log will be released.
 \end{abstract}
 
 %------------------------------------------------------------------------
@@ -19,7 +19,7 @@ Feed-forward 3D foundation models reconstruct a scene from unposed photographs i
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.52\textwidth]{fig1_teaser}
+\includegraphics[width=0.47\textwidth]{fig1_teaser}
 \caption{\textbf{What a model does with a surface it cannot see.} Top: a DTU scan with one 3D region of the ground-truth surface hidden in all ten input views and inpainted so no seam remains (the inpainted fill of Section~\ref{sec:results}). Bottom: a CO3Dv2 phone capture treated the same way. The top row shows the protocol: the same 3D sphere hides the region in every view, including a view from the other side of the rig. The bottom row shows what the backbone (VGGT) does with it: plausible geometry inside the hidden region, with confidence close to its value outside. The cyan contour marks the unsupported pixels. Model panels are the recorded run outputs.}
 \label{fig:teaser}
 \end{figure*}
@@ -32,11 +32,11 @@ We make three contributions.
 
 \begin{enumerate}[leftmargin=*,itemsep=1pt,topsep=2pt]
 \item \textbf{A definition and a benchmark.} We define hallucinated geometry as predicted points on surfaces that no input view shows. \bench{} produces these labels by 3D-consistent masking of ground-truth surfaces, with controls on the same pixels under clean input. We report \auroc, \cur{} and \curerr{} for five models on DTU and CO3Dv2, three fill types, an inpainted fill, and stress tests (view dropping, low parallax, a distractor image), each with cluster-bootstrap intervals and paired permutation tests.
-\item \textbf{A support head that detects missing support.} A head of a few million parameters on the frozen multi-view features of the backbone predicts per pixel whether the output has multi-view support, with an abstain band in between, at no extra backbone forward. Trained on ground-truth visibility of scenes disjoint from the benchmark, it passes a pre-registered test against native confidence and against a per-image control (Section~\ref{sec:exp}); trained on the benchmark's synthetic fills instead, it learns the fill, which we report as a warning for masking-based supervision.
-\item \textbf{Controls that a detector must pass.} Native confidence, perturbation variance, multi-view and reprojection consistency, a linear probe on the same features, and a head that sees only per-image features (a patch detector) are scored on identical rows with paired tests; the support head is also evaluated zero-shot on phone captures and on a fill it never saw.
+\item \textbf{A label-free support head.} A head of 1.7 to 3.3 M parameters on the frozen multi-view features of the backbone predicts per pixel whether the output has multi-view support, with an abstain band in between, at no extra backbone forward. Its labels come from the backbone's own prediction, so it trains on any capture; on three backbones and three datasets it passes two pre-registered tests against native confidence, a per-image control and a ground-truth-trained head (Section~\ref{sec:exp}). Trained on the benchmark's synthetic fills instead, it learns the fill, which we report as a warning for masking-based supervision.
+\item \textbf{Controls that a detector must pass, and one it fails.} Native confidence, perturbation variance, reprojection consistency, the distance to the image border, depth edges, a linear probe on the same features and a head that sees one image at a time are scored on identical rows with paired tests. The last two show where the signal lives: visibility is linearly decodable from the second half of the backbone's cross-view layers and not from its per-image tokens. Put back to the benchmark's own filled patches, the head does not fire: it certifies agreement between views, which a consistent invention has.
 \end{enumerate}
 
-Contribution 1 is complete and every number in Sections~\ref{sec:bench} and~\ref{sec:results} comes from a logged run. Contributions 2 and 3 are specified in Section~\ref{sec:method} with a pre-registered pass condition and evaluated in Section~\ref{sec:exp}; the few cells whose run does not yet exist are marked \tbd{run id} rather than estimated.
+Every number comes from a logged run with a run id; the pass conditions of Section~\ref{sec:exp} were written down, with dates, before the heads they judge were trained (supplement). The few cells whose run was still open when this draft was built are marked \tbd{run id} rather than estimated.
 
 The headline claim we test, and do not assume, is that native confidence fails to flag unsupported geometry across current models. It holds, and it holds more strongly on phone captures than on the lab rig.
 
@@ -83,7 +83,7 @@ Native confidence is trained as a per-pixel loss weight on observed data. It lea
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.58\textwidth]{fig2_pipeline}
+\includegraphics[width=0.52\textwidth]{fig2_pipeline}
 \caption{\textbf{The benchmark protocol.} A sphere is placed on the ground-truth surface; every pixel in every view whose ground-truth point falls inside it is hidden, so the hidden region is 3D-consistent. Hidden pixels are filled (gray, blur, noise or inpaint), the model runs on the filled views, and its depth and confidence are scored against the unsupported (U), supported (S) and ring labels. The same pixels are also scored under clean input as a control.}
 \label{fig:pipeline}
 \end{figure*}
@@ -96,9 +96,6 @@ For each scene we take 10 views. A sphere is centred on a random ground-truth su
 
 \paragraph{Correctness guards.}
 Before any model is scored we check that ground-truth depth reprojects consistently between view pairs and that unsupported points of view $i$, where visible in view $j$, land inside view $j$'s hidden mask. DTU: reprojection agreement 0.80 to 0.82 at a 1\% depth tolerance, U-transfer 0.96 to 0.99. CO3Dv2 (cameras converted from PyTorch3D and checked against the official point cloud): with an occlusion-aware 3\% tolerance, agreement 0.92 to 1.00 and U-transfer 0.90 to 0.98 on 17 of 18 scenes; the eighteenth scores 0.80, is kept, and removing it changes nothing (Section~\ref{sec:results}). ETH3D: agreement 0.996 to 1.000 on all scenes; nine of twelve pass the U-transfer gate and three are excluded before any model is run.
-
-\paragraph{Pipeline validation.}
-On a synthetic DTU-format scene, an oracle that knows what is hidden scores \auroc{} 1.000 and \cur{} 0.000, and a blind guesser with flat confidence scores \auroc{} 0.500 and \cur{} 0.90 (the 10\% of supported pixels dropped by $\tau$ is the expected floor). These numbers validate the code, not any model.
 
 \paragraph{Models.}
 VGGT-1B~\cite{vggt} (depth and depth confidence), Pi3 and Pi3X~\cite{pi3} (local point $z$ and sigmoid confidence), MapAnything~\cite{mapanything} (image-only metric mode), and Depth Anything 3~\cite{da3} (Large 1.1). Same views and resolution for all; fp16 on a T4. A feed-forward Gaussian-splatting model, AnySplat~\cite{anysplat}, scored on each pixel's Gaussian depth with its opacity as confidence, is in the supplement from a partial run: the representation does not change the answer.
@@ -188,7 +185,7 @@ DA3 & + distractor & \ci{0.660}{0.580}{0.734} & \ci{0.775}{0.680}{0.868} & 0.003
 \end{tabular}
 \end{table*}
 
-A reasonable objection to Table~\ref{tab:dtu} is that a filled patch is visible, and the model is reacting to the patch rather than to the absence of a surface. Table~\ref{tab:stress} and Figure~\ref{fig:stress} answer it four ways.
+A reasonable objection to Table~\ref{tab:dtu} is that a filled patch is visible, and the model is reacting to the patch rather than to the absence of a surface. Table~\ref{tab:stress} answers it four ways (plotted in the supplement).
 
 \emph{Fill realism.} An inpainted fill is edge-continuous and has no texture discontinuity. It raises leakage further for VGGT ($+0.088$, $p=0.031$) and Pi3X ($+0.068$, $p=0.005$). Table~\ref{tab:dtu} is therefore a lower bound on what a natural-looking occluder produces.
 
@@ -197,13 +194,6 @@ A reasonable objection to Table~\ref{tab:dtu} is that a filled patch is visible,
 \emph{Geometry under stress.} With 3 views or low parallax, Pi3X's imagined depth degrades ($\absrel_U$ 0.05, \curerr{} up to 0.04) while its confidence does not move. The confident-and-wrong fraction, invisible on the easy rig, appears under harder capture.
 
 \emph{DA3 is different.} A distractor image raises its leakage and low-parallax input halves it, consistent with a confidence that tracks appearance consistency across views rather than observation of the surface. We flag this as an observation to explain, not as an explanation.
-
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.58\textwidth]{fig6_stress}
-\caption{\textbf{Stress tests.} \cur{} under each stress condition against the reference, with intervals. View count does nothing for VGGT and Pi3X; the inpainted fill raises leakage; DA3 alone reacts to parallax and to a distractor.}
-\label{fig:stress}
-\end{figure*}
 
 \subsection{CO3Dv2: the ranking changes}
 \label{sec:co3d}
@@ -237,14 +227,7 @@ Depth Anything 3 & noise & \ci{0.618}{0.553}{0.679} & \ci{0.780}{0.702}{0.854} &
 \end{tabular}}
 \end{table*}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.56\textwidth]{fig4_dtu_vs_co3d}
-\caption{\textbf{Lab rig versus phone captures.} Pooled blur-and-noise \cur{} and \auroc{} per model on DTU and CO3Dv2 with 95\% intervals. Pi3 is the only model whose numbers transfer; VGGT, MapAnything and DA3 leak markedly more on CO3Dv2.}
-\label{fig:dtuco3d}
-\end{figure*}
-
-Table~\ref{tab:co3d} and Figure~\ref{fig:dtuco3d} repeat the full protocol on CO3Dv2 phone captures, with every threshold frozen from DTU. Pooled over blur and noise, \cur{} is 0.272 for Pi3, 0.570 for Pi3X, 0.651 for VGGT, 0.797 for DA3 and 0.810 for MapAnything; \auroc{} is 0.891, 0.732, 0.681, 0.620 and 0.576.
+Table~\ref{tab:co3d} repeats the full protocol on CO3Dv2 phone captures (plotted in the supplement), with every threshold frozen from DTU. Pooled over blur and noise, \cur{} is 0.272 for Pi3, 0.570 for Pi3X, 0.651 for VGGT, 0.797 for DA3 and 0.810 for MapAnything; \auroc{} is 0.891, 0.732, 0.681, 0.620 and 0.576.
 
 The ranking changes. Pi3 is the only model whose behaviour transfers from the lab rig to phone video (\cur{} 0.27 on both). The leak is larger on the dataset three of the models were trained on: seeing CO3Dv2 at training time did not teach their confidence to notice a missing surface. VGGT, joint best on DTU, leaks 65\% of unsupported pixels on CO3Dv2, $2.7\times$ its DTU value, and under a noise fill its confidence is almost blind to non-observation (\auroc{} 0.59). MapAnything and DA3 let about four in five unsupported pixels through. After Holm correction, Pi3 leaks less than every other model ($p=0.0005$ each); Pi3X leaks less than MapAnything and DA3 ($p=0.0005$); VGGT leaks less than MapAnything ($p=0.010$) and DA3 ($p=0.0005$); VGGT versus Pi3X ($p=0.23$) and MapAnything versus DA3 ($p=0.73$) are not separated. Across datasets, the intervals of VGGT, MapAnything and DA3 do not overlap; those of Pi3 and Pi3X do.
 
@@ -262,115 +245,62 @@ Figure~S3 in the supplementary shows that the leak is not driven by a few scenes
 \label{sec:cheap}
 
 
-Two obvious alternatives are in Table~\ref{tab:detectors}. Variance over $K=4$ photometrically perturbed runs, aligned per sample by median scale, is much worse than native confidence on both backbones (paired $p\le0.0007$ in all four tests) while costing four forwards: the imagined geometry is stable under input perturbation, the systematic bias ReVar3R's authors describe. Reprojection consistency with the model's own cameras is no better than chance (\auroc{} 0.49, 0.48): the imagined surface is cross-view coherent. MapAnything's multi-view consistency confidence leaks more than its learned confidence (\cur{} 0.51 against 0.33 in the smoke configuration).
+Two obvious alternatives, scored on the Table~\ref{tab:dtu} rows with blur, radius 0.18 and seed 0 (full table in the supplement). Variance over $K=4$ photometrically perturbed runs, aligned per sample by median scale, is much worse than native confidence on both backbones (\auroc{} 0.67 and 0.55 against 0.92 and 0.83, paired $p\le0.0007$) while costing four forwards: the imagined geometry is stable under input perturbation, the systematic bias ReVar3R's authors describe. Reprojection consistency with the model's own cameras is no better than chance (\auroc{} 0.49, 0.48): the imagined surface is cross-view coherent. MapAnything's multi-view consistency confidence leaks more than its learned confidence (\auroc{} 0.67, \cur{} 0.78 against 0.74 and 0.62 on the same rows, run P6-mapanything-mv).
 
 %------------------------------------------------------------------------
 \section{Method: observe, imagine, abstain}
 \label{sec:method}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=0.44\textwidth]{fig9_method}
-\caption{\textbf{Proposed detector: the support head.} A frozen 3D backbone supplies geometry, native confidence and the multi-view tokens that produced them; a small head on those tokens outputs $P(\text{imagined})$ per pixel, shown to the user as \emph{observed}, \emph{abstain} or \emph{imagined}. Shown is the label-free variant: the backbone is run on clean views, a sphere is placed on its \emph{own} predicted surface and hidden in every view, and the head learns to find the hidden pixels. The main head is trained instead on ground-truth visibility, the pixels no other input view sees, from clean views and without a patch. Training scenes are disjoint from the benchmark. This figure specifies the design; Section~\ref{sec:exp} reports what the head learned.}
-\label{fig:method}
-\end{figure*}
-
-The benchmark says that native confidence does not know what the model has seen. Rather than suppress the prior, which is what makes these models useful, we want the model to say which of its outputs came from the prior. Figure~\ref{fig:method} shows the design.
+The benchmark says that native confidence does not know what the model has seen. Rather than suppress the prior, which is what makes these models useful, we want the model to say which of its outputs came from the prior.
 
 \paragraph{Architecture.}
-A frozen backbone (VGGT or Pi3X) provides geometry, native confidence, and the multi-view features that produced them: for VGGT the aggregated tokens of the four layers its depth head reads (2048-d at $14\times14$ patches), for Pi3X the 2048-d decoder tokens feeding its confidence head. The \emph{support head} (LayerNorm and $1{\times}1$ projection per layer to 256 channels, sum, two $3{\times}3$ convolutions at patch resolution, one logit per patch upsampled bilinearly) outputs $P(\text{imagined})$; the benchmark scores $1-P(\text{imagined})$. A few million parameters; the backbone is neither modified nor re-run.
+A frozen backbone (VGGT, Pi3X or Pi3) provides geometry, native confidence, and the multi-view features that produced them: for VGGT the aggregated tokens of the four layers its depth head reads (2048-d at $14\times14$ patches), for Pi3X and Pi3 the 2048-d decoder tokens feeding their confidence heads. The \emph{support head} (LayerNorm and $1{\times}1$ projection per layer to 256 channels, sum, two $3{\times}3$ convolutions at patch resolution, one logit per patch upsampled bilinearly) outputs $P(\text{imagined})$; the benchmark scores $1-P(\text{imagined})$. 3.3 M parameters on VGGT, 1.7 M on Pi3X and Pi3; the backbone is neither modified nor re-run.
 
 \paragraph{Training labels.}
-Two label sources, both on the 79 scans of the DTU training split, disjoint from the 18 benchmark scans and the 22 extension scans of Section~\ref{sec:exp}. \emph{Visibility labels} (the main head): each pixel's ground-truth point is projected into the other input views; a pixel that no other view sees, with no view undecided, is \emph{single-view}, a pixel seen by two or more is \emph{supported} (3\% depth tolerance, a 3-pixel margin). The views are clean, 3, 5 or 10 at random per step; the head learns to fire on single-view pixels, the benchmark's notion of support without the patch, at the price of needing multi-view ground truth. \emph{Self-labels} (the fill-trained variant): the backbone is run once on clean views, a sphere is placed on its \emph{predicted} surface and projected with its \emph{predicted} depth and cameras into every view, the views are filled (gray, blur or noise; inpaint held out) and the head learns to find the hidden pixels, with 15\% clean samples. Both: class-balanced binary cross-entropy, 1500 AdamW steps (learning rate $10^{-3}$, cosine, warm-up 100), one scene of random views per step, 1.2 to 2.5 hours per backbone on one L4 or T4; hyperparameters fixed before any benchmark scan was evaluated.
+Three label sources, all on the 79 scans of the DTU training split, disjoint from the 18 benchmark scans and the 22 extension scans of Section~\ref{sec:exp}; the views are clean, 3, 5 or 10 at random per step. \emph{Self-support labels} (the main head, label-free): the backbone is run once; each pixel's \emph{predicted} point is projected with the \emph{predicted} depth and cameras into the other input views and counted as supported where it lands on their predicted surface (3\% depth tolerance, the 20\% least confident pixels dropped). A pixel no other view supports is the positive class, a pixel supported by two or more views outside a 3-pixel margin the negative class. This is the reprojection test of Section~\ref{sec:cheap} used as a teacher, so the head has to generalise beyond it to be worth having. \emph{Visibility labels} (the upper bound): the same count from ground-truth depth and cameras. \emph{Fill labels} (the cautionary variant): a sphere placed on the predicted surface is hidden in every view (gray, blur or noise; inpaint held out) and the head learns to find the hidden pixels, with 15\% clean samples. All three: class-balanced binary cross-entropy, 1500 AdamW steps (learning rate $10^{-3}$, cosine, warm-up 100), one scene of random views per step, 10 minutes per backbone on one H200 (1.2 hours on a T4); hyperparameters fixed before any benchmark scan was evaluated.
 
 \paragraph{Inference and compute.}
 One backbone forward, one head forward; the head adds under 1\% of the backbone's FLOPs, against four backbone passes for perturbation variance. Three colours for the user: \emph{observed} above $1-P(\text{imagined})=0.7$, \emph{imagined} below 0.3, \emph{abstain} between (thresholds fixed in advance); the metrics use the continuous score.
 
 \paragraph{Controls and ablations.}
-A head could learn an image cue (the patch; image borders and depth edges, where single-view pixels concentrate) rather than the missing support. The decisive control is the \emph{per-image feature head}: the same head on per-image encoder tokens before any cross-view attention, trained on the same labels. Further controls: the held-out inpainted fill and CO3Dv2 for the fill-trained head, a \emph{linear probe} on the same features~\cite{vggtknows}, extra seeds, a transformer head and fusion with native confidence; heads sharing a label source train jointly on the same backbone forwards.
+A head could learn an image cue (the patch; image borders and depth edges, where single-view pixels concentrate) rather than the missing support. The decisive control is the \emph{per-image feature head}: the same head on per-image encoder tokens before any cross-view attention, trained on the same labels. Two hand-crafted scores test the same objection without training: the distance of a pixel to the image border and minus the gradient of the predicted depth. Further controls: a \emph{linear probe} on the same features~\cite{vggtknows} and on each cross-view layer alone, two extra initialisation seeds, the held-out inpainted fill and CO3Dv2 for the fill-trained head; heads sharing a label source train jointly on the same backbone forwards.
 
 %------------------------------------------------------------------------
 \section{Experiments on the method}
 \label{sec:exp}
 
-\begin{table}[t]
-\centering
-\caption{\textbf{Detectors on the filled patches, DTU} (18 scans, seed 0, blur, radius 0.18; native and perturbation rows re-run on the detectors' hardware, runs P3-native and P3-pv, so every pair is scored on identical rows). The three learned rows per backbone are the \emph{fill-trained} heads: they find the fill, not the missing support (Section~\ref{sec:exp}), which is why the per-image control matches them. The visibility-trained heads are in Table~\ref{tab:vis}.}
-\label{tab:detectors}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
-\resizebox{\columnwidth}{!}{\begin{tabular}{llccc}
-\toprule
-backbone & detector & fwd & \auroc & \cur \\
-\midrule
-VGGT-1B & native confidence & 1 & \ci{0.915}{0.883}{0.943} & \ci{0.255}{0.157}{0.364} \\
-VGGT-1B & perturbation var., $K{=}4$ & 4 & \ci{0.666}{0.602}{0.729} & \ci{0.627}{0.521}{0.732} \\
-VGGT-1B & reprojection consistency & 1 & \ci{0.488}{0.473}{0.506} & \ci{0.931}{0.903}{0.954} \\
-VGGT-1B & fill-trained linear probe & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
-VGGT-1B & fill-trained per-image control & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
-VGGT-1B & fill-trained support head & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
-Pi3X & native confidence & 1 & \ci{0.832}{0.782}{0.879} & \ci{0.502}{0.362}{0.642} \\
-Pi3X & perturbation var., $K{=}4$ & 4 & \ci{0.550}{0.491}{0.608} & \ci{0.824}{0.754}{0.886} \\
-Pi3X & reprojection consistency & 1 & \ci{0.478}{0.435}{0.518} & \ci{0.929}{0.899}{0.955} \\
-Pi3X & fill-trained per-image control & 1 & \ci{1.000}{0.999}{1.000} & \ci{0.000}{0.000}{0.001} \\
-Pi3X & fill-trained support head & 1 & \ci{0.999}{0.999}{1.000} & \ci{0.001}{0.000}{0.003} \\
-\bottomrule
-\end{tabular}}
-\end{table}
 
-\begin{table}[t]
+\begin{table*}[t]
 \centering
-\caption{\textbf{True-visibility protocol on DTU and CO3Dv2.} DTU: 18 scans, clean inputs of 3, 5 and 10 views, three view sets each, pooled; single-view pixels are 18\%, 9\% and 2.5\% of the known pixels. CO3Dv2: 18 phone-video scenes the head never saw, 3 and 5 views pooled (10 views around an object leave almost no single-view pixel, and the protocol skips the scene); single-view pixels are 10\% and 2.5\%. AUROC and \cur{} for separating single-view from supported pixels; AbsRel of the prediction on single-view pixels is about twice that on supported ones (DTU: VGGT 0.014 against 0.006, Pi3X 0.036 against 0.018; CO3Dv2: 0.036 against 0.024, 0.028 against 0.015). Runs P4-vis and P4-vis-co3d.}
+\caption{\textbf{True-visibility protocol: detecting single-view geometry from clean views.} Pooled \auroc{} and \cur{} over scenes and view counts (3, 5 and 10 views on DTU and ETH3D; 3 and 5 on CO3Dv2, where ten views around an object leave almost no single-view pixel and the protocol skips the cell). No head saw any of these scenes. DA3 and MapAnything native confidence on the same rows: \auroc{} 0.836 / 0.675 / 0.645 and 0.848 / 0.719 / 0.789 on DTU / CO3Dv2 / ETH3D. Intervals, per-view-count tables and paired tests: supplement. Runs P4-vis, P4-vis-co3d, P4-vis-eth3d.}
 \label{tab:vis}
 \footnotesize
-\setlength{\tabcolsep}{3pt}
-\resizebox{\columnwidth}{!}{\begin{tabular}{llcc}
-\toprule
-backbone & detector & \auroc & \cur \\
-\midrule
-VGGT-1B & native confidence & \ci{0.772}{0.722}{0.823} & \ci{0.530}{0.443}{0.616} \\
-VGGT-1B & reprojection consistency & \ci{0.954}{0.944}{0.963} & \ci{0.082}{0.067}{0.098} \\
-VGGT-1B & per-image feature head (control) & \ci{0.878}{0.845}{0.907} & \ci{0.340}{0.289}{0.394} \\
-VGGT-1B & linear probe on features & \ci{0.989}{0.985}{0.992} & \ci{0.024}{0.015}{0.035} \\
-VGGT-1B & \textbf{support head} & \ci{0.993}{0.990}{0.995} & \ci{0.015}{0.008}{0.024} \\
-Pi3X & native confidence & \ci{0.820}{0.793}{0.845} & \ci{0.493}{0.435}{0.553} \\
-Pi3X & reprojection consistency & \ci{0.914}{0.900}{0.929} & \ci{0.164}{0.120}{0.213} \\
-Pi3X & per-image feature head (control) & \ci{0.863}{0.831}{0.891} & \ci{0.375}{0.326}{0.425} \\
-Pi3X & linear probe on features & \ci{0.985}{0.979}{0.989} & \ci{0.034}{0.021}{0.049} \\
-Pi3X & \textbf{support head} & \ci{0.990}{0.986}{0.994} & \ci{0.021}{0.010}{0.035} \\
-\midrule
-\multicolumn{4}{l}{\emph{CO3Dv2, never seen by the head (3 and 5 views)}} \\
-VGGT-1B & native confidence & \ci{0.755}{0.715}{0.793} & \ci{0.722}{0.649}{0.795} \\
-VGGT-1B & reprojection consistency & \ci{0.794}{0.747}{0.841} & \ci{0.688}{0.505}{0.858} \\
-VGGT-1B & per-image feature head (control) & \ci{0.461}{0.389}{0.540} & \ci{0.879}{0.813}{0.933} \\
-VGGT-1B & linear probe on features & \ci{0.915}{0.885}{0.943} & \ci{0.248}{0.164}{0.335} \\
-VGGT-1B & \textbf{support head} & \ci{0.929}{0.905}{0.952} & \ci{0.208}{0.138}{0.284} \\
-Pi3X & native confidence & \ci{0.697}{0.649}{0.740} & \ci{0.846}{0.802}{0.888} \\
-Pi3X & reprojection consistency & \ci{0.888}{0.863}{0.910} & \ci{0.219}{0.160}{0.287} \\
-Pi3X & per-image feature head (control) & \ci{0.426}{0.356}{0.507} & \ci{0.889}{0.823}{0.941} \\
-Pi3X & linear probe on features & \ci{0.933}{0.910}{0.955} & \ci{0.200}{0.131}{0.273} \\
-Pi3X & \textbf{support head} & \ci{0.932}{0.909}{0.954} & \ci{0.219}{0.135}{0.309} \\
-\bottomrule
-\end{tabular}}
-\end{table}
+\setlength{\tabcolsep}{5pt}
+\input{tab_vis}
+\end{table*}
 
 \paragraph{Fill-trained head: what it learns.}
-Its pre-registered test: (1) beat native confidence on \auroc{} and \cur{} (paired sign-flip $p<0.05$, 18 scans, one forward); (2) the per-image control does not explain the gain on the inpainted fill or on CO3Dv2. Part 1 passes for both backbones ($p<0.0001$; \auroc{} 0.990 to 1.000 on every cell of the full configuration and the stress tests). Part 2 fails in substance: the control matches the head on every fill, on the held-out inpainted fill and on CO3Dv2 (VGGT \ci{0.992}{0.987}{0.996} against \ci{0.989}{0.985}{0.993}; Pi3X head 0.975, control \tbd{P3-oia-co3d}). The clause ``head ahead at $p<0.05$'' is formally met by differences of 0.0004 and 0.003 while the control carries 99\% of the gain: a flaw of that criterion, not a pass. A head trained on the benchmark's fills learns the fill, detectable from one image even when inpainted. The per-image control is mandatory for anyone training on masking labels.
+Its pre-registered test asked it to beat native confidence ($p<0.05$) and to beat its per-image control on the held-out inpainted fill and on CO3Dv2. It scores \auroc{} 0.990 to 1.000 on every cell of the full configuration and the stress tests, and so does the control: on the inpainted fill 1.000 against 0.999 (VGGT) and 0.994 against 0.994 (Pi3X), on CO3Dv2 \ci{0.992}{0.987}{0.996} against \ci{0.989}{0.985}{0.993} (Pi3X head 0.975, control \tbd{P3-oia-co3d}). The clause ``head ahead at $p<0.05$'' is formally met by differences of 0.0004 and 0.003 while the control carries 99\% of the gain: a flaw of that criterion, not a pass. Put to real single-view geometry (supplement table), the same head scores \emph{below} native confidence on all three datasets. It learned the fill, detectable from one image even when inpainted, and nothing else; the per-image control is mandatory for anyone training on masking labels.
 
-\paragraph{Visibility-trained head: the real test.}
-Gate 3 was fixed before this head was trained (the dated text and commit hashes are in the supplement), with a margin this time: beat native confidence on \auroc{} and \cur{} ($p<0.05$), beat the per-image control on \auroc{} by at least 0.02 at $p<0.05$, on DTU and on one dataset the head never saw. Table~\ref{tab:vis}: pooled over 3, 5 and 10 views the head reaches \auroc{} 0.993 (VGGT) and 0.990 (Pi3X) against 0.772 and 0.820 for native confidence and 0.878 and 0.863 for the control; head minus control $+0.115$ and $+0.127$, head minus native $+0.221$ and $+0.171$, $p<0.0001$ throughout and at each view count (Pi3 and MapAnything native: 0.841, 0.848). Native confidence lets half of the single-view pixels through a threshold that keeps 90\% of supported ones; the head lets 2\% through. The linear probe scores 0.989 and 0.985, so the information sits in the cross-view features. Reprojection consistency is the best training-free detector here (0.954, 0.914): real single-view geometry, unlike the fill, is cross-view incoherent; the head beats it by 0.04 and 0.08. The DTU conditions hold with five times the pre-registered margin. On CO3Dv2, which the head never saw, it keeps \auroc{} 0.929 (VGGT) and 0.932 (Pi3X) against 0.755 and 0.697 for native confidence, while the per-image control falls \emph{below chance}, 0.461 and 0.426: whatever single-image cue it learned on the lab rig does not exist on phone video. Head minus control $+0.468$ and $+0.505$, head minus native $+0.174$ and $+0.234$, $p<0.0001$ for all four. Reprojection consistency scores 0.794 and 0.888; the head beats it by 0.135 ($p=0.0002$) on VGGT and by 0.044 ($p=0.026$) on Pi3X, where both let 22\% of single-view pixels through. Gate 3 passes on both datasets; ETH3D is \tbd{P4-vis-eth3d}.
+\paragraph{Visibility head: the pre-registered test.}
+Gate 3 was written before any visibility head was trained, with a margin this time: beat native confidence on \auroc{} and \cur{} ($p<0.05$) and the per-image control on \auroc{} by at least 0.02 ($p<0.05$), on DTU and on one unseen dataset. Table~\ref{tab:vis}: the ground-truth-trained head reaches \auroc{} 0.990 to 0.993 on DTU against 0.77 to 0.84 for native confidence and 0.86 to 0.88 for the control; it lets 2\% of single-view pixels through a threshold that keeps 90\% of supported ones where native confidence lets half through. Head minus control is $+0.11$ to $+0.13$ at every view count. On CO3Dv2 the head keeps 0.93 on all three backbones while native confidence falls to 0.55 to 0.75 and the control falls \emph{below chance}, 0.43 to 0.47; on ETH3D the head scores 0.95 to 0.98 against 0.72 to 0.89 and 0.69 to 0.72. Every paired difference is at the permutation floor ($p<0.0001$ on 18 scenes, $0.0043$ on nine). Gate 3 passes on three datasets and three backbones.
+
+\paragraph{Label-free head: the method.}
+Gate 4, written before any label-free head was trained, asks the same of the head trained on the backbone's own support count, and adds: within 0.03 \auroc{} of the ground-truth-trained head on DTU, and ahead of reprojection consistency, its own teacher, on CO3Dv2 at $p<0.05$. It passes on all three backbones. The label-free head is within 0.004 of the ground-truth-trained head on every dataset (DTU 0.992 / 0.988 / 0.989; CO3Dv2 0.930 / 0.938 / 0.929; ETH3D 0.980 / 0.963 / 0.951 for VGGT / Pi3X / Pi3), beats its own per-image control by 0.10 to 0.12 on DTU and by 0.35 to 0.50 elsewhere, and beats reprojection consistency by 0.04 to 0.07 on DTU and by 0.14, 0.05 and 0.04 on CO3Dv2 ($p<0.0001$, $0.006$, $0.008$). On ETH3D the two tie ($\pm0.02$, $p>0.15$): with adjacent DSLR views of a building the model's own cameras and depths make the reprojection test as good as any head, and the head's advantage there is cost alone (one convolution against $N^2$ projections of every pixel). The two extra initialisation seeds of the head are within 0.005 of it on every dataset.
+
+\paragraph{What the head reads.}
+The per-image control falls below chance on CO3Dv2 and ETH3D, and so does the distance to the image border, 0.45 and 0.73, which is indistinguishable from the control there ($p>0.3$ on both): on the lab rig single-view pixels sit at the frame edge, on a phone orbit and in a courtyard they do not, and a head that cannot see across views learns the edge. Depth edges score 0.42 to 0.60 everywhere. The linear probe on the same cross-view features scores within 0.015 of the convolutional head on every dataset (0.989 / 0.985 / 0.985 on DTU), so the information is in the features, not in the head; the head is a reader. A probe on one VGGT layer at a time says where it appears: layer 4 of 24 scores 0.87 on DTU and 0.48 on CO3Dv2, like the per-image control; layer 11 0.95 and 0.70; layer 17 0.99 and 0.92; layer 23 0.99 and 0.88. Multi-view support becomes linearly decodable in the second half of the aggregator and the early layers carry only the per-image cue.
+
+\paragraph{The benchmark's own question.}
+The benchmark defines unsupported geometry as a surface no input view shows; the vis protocol's positive class is a surface only one view shows. Put back to the benchmark's filled patches (Table~\ref{tab:dtu} rows with blur, seed 0, radius 0.18; CO3Dv2 blur and noise), the visibility heads score \auroc{} 0.70 to 0.75 on DTU and 0.62 to 0.67 on CO3Dv2, the controls 0.60 to 0.65, border and depth edges 0.43 to 0.51, all below native confidence on the same rows (run P6-vis-on-fill). A head trained to find single-view geometry does not fire on a patch every view shows, for the reason the reprojection and perturbation baselines do not: the invented surface is coherent across views and across the features. The head certifies agreement between views, and a consistent invention has it. The detector answers ``which pixels lack corroboration'', not ``which surfaces were invented''; on real captures the first question is the one with an answer.
 
 %------------------------------------------------------------------------
-\section{Limitations}
+\section{Limitations and conclusion}
 \label{sec:limits}
 
-Static scenes only. The benchmark labels are a proxy for real occlusion: a real unobserved region is not surrounded by a filled patch, and the stress tests bound but do not remove that gap. CO3Dv2 ground truth is COLMAP depth with 1 to 3\% noise, so \absrel{} below about 0.03 reads as equal, and three backbones saw CO3Dv2 in training, which can flatter their imagination there, not the leak. The benchmark cannot certify a detector trained on its own fills, as the fill-trained head shows. The visibility head needs multi-view ground truth to train; a variant trained on the support count of the backbone's own prediction, with no ground truth, is \tbd{P5-visself}. It transfers from DTU to CO3Dv2; ETH3D is \tbd{P4-vis-eth3d}. All findings depend on the released checkpoints.
+The head certifies multi-view agreement, not truth: a surface every view agrees on passes, whether a camera saw it or the prior drew it, and the benchmark's filled patch is that case. The benchmark labels are a proxy for real occlusion, and the stress tests bound but do not remove that gap. CO3Dv2 ground truth is COLMAP depth with 1 to 3\% noise, so \absrel{} below about 0.03 reads as equal, and three backbones saw CO3Dv2 in training. Heads were trained on the three pointmap backbones whose cross-view tokens are documented; the two worst leakers of Table~\ref{tab:dtu}, DA3 and MapAnything, have only their native confidence on the vis protocol. \cur{} sets its threshold on the test scene's own supported pixels, which a deployed filter cannot do; a frozen threshold is \tbd{P6-dump}. Static scenes only. All findings depend on the released checkpoints.
 
-%------------------------------------------------------------------------
-\section{Conclusion}
-\label{sec:conclusion}
-
-When a feed-forward 3D model has not seen a surface, it mostly does not say so: a quarter to four fifths of the geometry it invents passes a confidence filter tuned to keep 90\% of what it observed, and the leak grows when the occluder looks natural. The answer is not to stop the models from imagining but to make them say when they do. A support head trained on ground-truth visibility separates single-view from supported geometry at \auroc{} 0.99 where native confidence scores 0.8 and a one-image control 0.87; the same head trained on the benchmark's fills learns the fill, the warning that comes with masking labels.
+When a feed-forward 3D model has not seen a surface, it mostly does not say so: a quarter to four fifths of the geometry it invents passes a confidence filter tuned to keep 90\% of what it observed, and the leak grows when the occluder looks natural. The answer is not to stop the models from imagining but to make them say when they do. The models already know: a linear probe on their cross-view features separates single-view from supported geometry at \auroc{} 0.99 where native confidence scores 0.8, and a small head trained on the backbone's own multi-view agreement, with no ground truth, reads the same signal on three backbones and three datasets it never saw. What it cannot do sets the next problem: a surface the model invents consistently in every view passes every test we have.
 
 %------------------------------------------------------------------------
 \section*{LLM Usage Statement}

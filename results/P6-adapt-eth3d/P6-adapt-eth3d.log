@@ -1,0 +1,5 @@
+10:58:45 == P6-adapt-eth3d: models ['vggt_oiavisself_xeth3d', 'vggt_oiavisselfpatch_xeth3d', 'pi3x_oiavisself_xeth3d', 'pi3x_oiavisselfpatch_xeth3d'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "dataset": "co3d", "view_mode": "adjacent"}
+10:59:31    vggt_oiavisself_xeth3d: 46s
+11:00:00    vggt_oiavisselfpatch_xeth3d: 29s
+11:00:35    pi3x_oiavisself_xeth3d: 35s
+11:01:09    pi3x_oiavisselfpatch_xeth3d: 34s
