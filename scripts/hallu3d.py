@@ -495,6 +495,24 @@ class DA3Wrap(ModelWrap):
         c = np.stack([cv2.resize(x, (out_hw[1], out_hw[0]), interpolation=cv2.INTER_AREA) for x in c])
         return d.astype(np.float32), c.astype(np.float32)
 
+    # direct forward (scripts/oia_head.py da3_forward_feats and the reprojection detector): x (N,3,H,W) in [0,1] at a
+    # multiple of 14; ImageNet normalisation as in DA3's InputProcessor; DepthAnything3.forward takes (B,N,3,H,W) and
+    # applies its own autocast. Returns the output Dict with depth (B,N,H,W), depth_conf, extrinsics, intrinsics.
+    def _forward_raw(self, x):
+        torch = self.torch
+        mean = torch.tensor([0.485, 0.456, 0.406], device=x.device).view(1, 3, 1, 1)
+        std = torch.tensor([0.229, 0.224, 0.225], device=x.device).view(1, 3, 1, 1)
+        with torch.no_grad():
+            return self.model(((x - mean) / std)[None])
+
+    def _forward_cams(self, x, dtype):
+        out = self._forward_raw(x)
+        d = out["depth"][0].float()
+        E = out["extrinsics"][0].float()
+        if E.shape[-2] == 3:                       # (N,3,4) -> (N,4,4)
+            E4 = self.torch.eye(4, device=E.device).repeat(E.shape[0], 1, 1); E4[:, :3, :4] = E; E = E4
+        return d, out["intrinsics"][0].float(), E
+
 
 class MapAnythingWrap(ModelWrap):
     """MapAnything (facebookresearch/map-anything). API verified from mapanything/models/mapanything/model.py:
@@ -901,9 +919,38 @@ class HeuristicWrap:
         self.base.free()
 
 
+class CrossModelWrap:
+    """Cross-model disagreement (P8-xmodel): the one test the benchmark's filled patch has not had. Two backbones run
+    on the same views; view by view, B's depth is aligned to A's by the median ratio over all valid pixels (no label
+    is used) and the confidence is minus the relative disagreement |d_A - s d_B| / d_A. If the models invent
+    different surfaces where no view shows one but agree where views do, this separates the two; if they invent the
+    same surface, inventions are consistent across models as well as across views, which is the finding either way.
+    Depth is A's. Model name '<a>_x<b>', e.g. vggt_xpi3x."""
+
+    def __init__(self, a, b):
+        self.a, self.b = a, b
+        self.name = f"{a.name}_x{b.name}"
+
+    def predict(self, imgs, model_hw, out_hw):
+        da, _ = self.a.predict(imgs, model_hw, out_hw)
+        db, _ = self.b.predict(imgs, model_hw, out_hw)
+        conf = np.zeros_like(da)
+        for i in range(len(da)):
+            ok = (da[i] > 0) & (db[i] > 0) & np.isfinite(da[i]) & np.isfinite(db[i])
+            s = float(np.median(da[i][ok] / db[i][ok])) if ok.sum() > 10 else 1.0
+            conf[i] = -np.abs(da[i] - s * db[i]) / np.maximum(np.abs(da[i]), 1e-6)
+        return da.astype(np.float32), conf.astype(np.float32)
+
+    def free(self):
+        self.a.free(); self.b.free()
+
+
 def make_model(name):
     """'vggt' -> VGGTWrap(); 'vggt_pv4' -> PerturbWrap(VGGTWrap(), K=4); 'vggt_reproj' -> ReprojWrap(VGGTWrap());
-    'vggt_border' / 'vggt_dedge' -> HeuristicWrap(VGGTWrap(), kind)."""
+    'vggt_border' / 'vggt_dedge' -> HeuristicWrap(VGGTWrap(), kind); 'vggt_xpi3x' -> CrossModelWrap(VGGTWrap(), Pi3XWrap())."""
+    m = re.fullmatch(r"(vggt|pi3x|pi3|da3|mapanything)_x(vggt|pi3x|pi3|da3|mapanything)", name)
+    if m:
+        return CrossModelWrap(MODEL_REGISTRY[m.group(1)](), MODEL_REGISTRY[m.group(2)]())
     m = re.fullmatch(r"(.+)_pvf(\d+)", name)
     if m:
         return PerturbFullWrap(MODEL_REGISTRY[m.group(1)](), K=int(m.group(2)))

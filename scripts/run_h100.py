@@ -260,7 +260,7 @@ def _vis_models(args, extra_native=()):
     its per-image control and the linear probe, the label-free head and the adapted heads."""
     ms = []
     for b in args.bases:
-        ms += [b] + ([f"{b}_reproj"] if b in ("vggt", "pi3x", "pi3") else []) + [f"{b}_{k}" for k in HEURISTICS]
+        ms += [b] + ([f"{b}_reproj"] if b in ("vggt", "pi3x", "pi3", "da3") else []) + [f"{b}_{k}" for k in HEURISTICS]
         ms += [f"{b}_{v}" for v in VIS_DETECTORS if _have(args, f"{b}_{v}")]
     return ms + [m for m in extra_native if m not in ms]
 
@@ -501,6 +501,22 @@ def stage_adapt_imc(args):
             _run_vis(args, "P7-adapt-imc", models, {**_imc_cfg(args, VIS_CFG), "scans": folds[test_tag]}, args.imc_root)
 
 
+# ----------------------------------------------------------------------------- P8: cross-model disagreement
+XMODEL_PAIRS = ["vggt_xpi3x", "vggt_xpi3", "pi3x_xpi3", "vggt_xda3", "pi3x_xda3", "vggt_xmapanything"]
+
+
+def stage_xmodel(args):
+    """P8-xmodel: do two backbones invent the same surface? Cross-model disagreement (hallu3d.CrossModelWrap) scored
+    on the benchmark's filled patches (DTU Table-4 keys; CO3Dv2 blur and noise, seed 0, radius 0.18) and, as a
+    control, on real single-view geometry (the DTU vis protocol). Pairs that need a backbone that is not installed
+    fail and are logged."""
+    pairs = [p for p in XMODEL_PAIRS if all(b in H.MODEL_REGISTRY for b in p.split("_x"))]
+    run(args, "P8-xmodel", pairs, T4_KEYS, args.dtu_root)
+    if args.co3d_root:
+        run(args, "P8-xmodel-co3d", pairs, co3d_cfg(args, {"seeds": [0], "fills": ["blur", "noise"], "radius_fracs": [0.18]}), args.co3d_root)
+    _run_vis(args, "P8-xmodel-vis", pairs[:3], VIS_CFG, args.dtu_root)
+
+
 MAIN_DETECTORS = ("reproj", "border", "dedge", "oiavis", "oiavispatch", "oiavisself", "oiavisselfpatch")
 
 
@@ -589,7 +605,7 @@ def stage_stats(args):
     import pandas as pd
     frames = []
     for run_name in ["P3-oia-dtu", "P3-reproj", "P3-pv", "P3-pv-full", "P3-native", "P3-oia-abl", "P3-dtuext", "P3-gs", "P3-gs-t4",
-                     "P6-vis-on-fill", "P6-mapanything-mv"] + [f"P3-oia-abl-seed{s}" for s in args.seeds[1:]]:
+                     "P6-vis-on-fill", "P6-mapanything-mv", "P8-xmodel"] + [f"P3-oia-abl-seed{s}" for s in args.seeds[1:]]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         if os.path.exists(p):
             frames.append(pd.read_csv(p))
@@ -716,7 +732,8 @@ def stage_stats(args):
     for run_name, title in [("P3-oia-dtu", "DTU"), ("P3-oia-co3d", "CO3Dv2 (head never saw it)"), ("P3-eth3d", "ETH3D"),
                             ("P3-dtuext", "DTU extension scans (seed 0, radius 0.18)"), ("P3-gs", "DTU, Gaussian-splatting backbone"),
                             ("P3-gs-co3d", "CO3Dv2, Gaussian-splatting backbone"),
-                            ("P6-vis-on-fill-co3d", "CO3Dv2, visibility detectors on the filled patches (seed 0, radius 0.18)")]:
+                            ("P6-vis-on-fill-co3d", "CO3Dv2, visibility detectors on the filled patches (seed 0, radius 0.18)"),
+                            ("P8-xmodel-co3d", "CO3Dv2, cross-model disagreement on the filled patches (seed 0, radius 0.18)")]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         ref = os.path.join(ROOT, "results", {"DTU": "table1_all_models.csv", "CO3Dv2 (head never saw it)": "table3_all_models.csv"}.get(title, "none"))
         if not os.path.exists(p):
@@ -736,7 +753,8 @@ def stage_stats(args):
                             ("P7-vis-imc", "Phototourism heritage landmarks (tourist photos, COLMAP depth)"),
                             ("P6-adapt-co3d", "CO3Dv2, heads adapted label-free on the other fold (pooled with P4-vis-co3d)"),
                             ("P6-adapt-eth3d", "ETH3D, heads adapted label-free on the four non-benchmark scenes (pooled with P4-vis-eth3d)"),
-                            ("P7-adapt-imc", "Phototourism, heads adapted label-free on the other fold (pooled with P7-vis-imc)")]:
+                            ("P7-adapt-imc", "Phototourism, heads adapted label-free on the other fold (pooled with P7-vis-imc)"),
+                            ("P8-xmodel-vis", "DTU, cross-model disagreement on real single-view geometry")]:
         p = os.path.join(args.out, run_name, f"{run_name}.csv")
         if not os.path.exists(p):
             continue
@@ -789,7 +807,7 @@ STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": 
           "trainvis": stage_trainvis, "vis": stage_vis, "vis_co3d": stage_vis_co3d, "vis_eth3d": stage_vis_eth3d,
           "trainvisself": stage_trainvisself, "trainvisprobe": stage_trainvisprobe,
           "adapt_co3d": stage_adapt_co3d, "adapt_eth3d": stage_adapt_eth3d, "vis_ext": stage_vis_ext, "dump": stage_dump,
-          "vis_on_fill": stage_vis_on_fill, "vis_imc": stage_vis_imc, "adapt_imc": stage_adapt_imc}
+          "vis_on_fill": stage_vis_on_fill, "vis_imc": stage_vis_imc, "adapt_imc": stage_adapt_imc, "xmodel": stage_xmodel}
 
 
 def main():
@@ -820,7 +838,7 @@ def main():
     a.dtu_root = None
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
-    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump", "vis_on_fill") else None
+    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump", "vis_on_fill", "xmodel") else None
     a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d", "adapt_eth3d", "dump")) else None
     a.imc_root = co3d.find_co3d_root((a.imc,)) if (a.imc and a.stage in ("all", "vis_imc", "adapt_imc", "dump")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]

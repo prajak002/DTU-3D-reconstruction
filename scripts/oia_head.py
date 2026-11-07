@@ -184,7 +184,44 @@ def pi3_forward_feats(wrap, x, dtype, feats="agg"):
     return depth, conf, F, K, E
 
 
-FORWARD_FEATS = {"vggt": vggt_forward_feats, "pi3": pi3_forward_feats, "pi3x": pi3_forward_feats}
+def da3_forward_feats(wrap, x, dtype, feats="agg"):
+    """Depth Anything 3 (Large 1.1). Cross-view attention lives inside its DINOv2: blocks 0 to 7 attend within a
+    frame, from block 8 on odd blocks attend across all views; the depth head reads blocks 11, 15, 19, 23, each as
+    the frame-wise stream concatenated with the global stream (2048-d). "agg": those four maps, captured on the
+    backbone's output (feats = four (patch tokens (B,S,Np,2048), camera token) pairs); "patch": the output of
+    block 7, the last block before any cross-view attention (1024-d), captured with a hook on that block. Depth,
+    confidence and cameras come from the same forward (hallu3d.DA3Wrap._forward_raw)."""
+    torch, model = wrap.torch, wrap.model
+    N, ph, pw = x.shape[0], x.shape[-2] // PATCH, x.shape[-1] // PATCH
+    cap, hooks = {}, []
+    net = model.model
+    hooks.append(net.backbone.register_forward_hook(lambda m, a, o: cap.__setitem__("feats", o[0])))
+    if feats in ("patch", "both"):
+        hooks.append(net.backbone.pretrained.blocks[7].register_forward_hook(lambda m, a, o: cap.__setitem__("local", o)))
+    try:
+        out = wrap._forward_raw(x)
+    finally:
+        for h in hooks:
+            h.remove()
+    F = {}
+    if feats in ("agg", "both"):
+        F["agg"] = [_grid(f[0][0][:, -ph * pw:], N, ph, pw) for f in cap["feats"]]
+    if feats in ("patch", "both"):
+        loc = cap["local"]
+        loc = loc.reshape(N, -1, loc.shape[-1]) if loc.dim() == 3 else loc[0]
+        F["patch"] = [_grid(loc[:, -ph * pw:], N, ph, pw)]
+    if not F:
+        raise ValueError(feats)
+    F = F if feats == "both" else F[feats]
+    depth = out["depth"][0].float()
+    conf = out["depth_conf"][0].float() if "depth_conf" in out else torch.ones_like(depth)
+    E = out["extrinsics"][0].float()
+    if E.shape[-2] == 3:
+        E4 = torch.eye(4, device=E.device).repeat(N, 1, 1); E4[:, :3, :4] = E; E = E4
+    return depth, conf, F, out["intrinsics"][0].float(), E
+
+
+FORWARD_FEATS = {"vggt": vggt_forward_feats, "pi3": pi3_forward_feats, "pi3x": pi3_forward_feats, "da3": da3_forward_feats}
 
 
 # ----------------------------------------------------------------------------- the head
