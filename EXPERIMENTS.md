@@ -50,9 +50,11 @@ Each run has an id. A number enters the paper only when the run's CSV and `_cfg.
 | P8-fuse | fused point clouds at matched coverage (`scripts/fuse_eval.py`): backbone's own cameras, similarity on camera centres, tolerance 1% of median depth; detectors native, reprojection, per-image control, label-free head (VGGT and Pi3X) with random and oracle references; coverages 0.6 to 1.0 | H200, DTU 18 scans and ETH3D 9 scenes, 5 and 10 views, seeds 0, 1 | `results/P8-fuse/` (7560 + 3780 rows) | 60 min | DTU accuracy at 0.8 coverage: head 0.77, native 0.78, reprojection 0.76, control 0.70, random 0.65, oracle 0.66; ETH3D 0.30 / 0.31 / 0.30 / 0.28 / 0.27 / 0.28. Abstaining buys corroboration, not accuracy. |
 | fig_qual | qualitative figure from the dumps (`scripts/make_fig_qual.py`), views chosen by largest single-view region | H200 | `paper/figures/fig_qual.pdf`, panels under `paper/figures/qual_panels/` | 1 min | Figure 1 of the paper and the lead figure of the page and the video. |
 
+| P4-vis* / P7-vis-imc, DA3 block | DA3 visibility and label-free heads (hook on the four cross-view layer outputs, control on the last frame-only block; `da3_oiavis` validation 0.996, control 0.859; `da3_oiavisself` 0.994, 0.864), scored on the four datasets with DA3's own reprojection detector | H200 second pass, `/home/da3_after.sh` | rows in the four vis CSVs; supplement table | 10 + 10 min training, 15 min scoring | label-free 0.982 / 0.878 / 0.974 / 0.925 against native 0.836 / 0.675 / 0.645 / 0.782, control 0.76 / 0.44 / 0.75 / 0.73, reprojection 0.926 / 0.836 / 0.961 / 0.844. Fourth backbone, worst leaker of Table 1: the plug-in claim holds. |
+
 ## Running
 
-The H200 second pass (`scripts/box/h200_p8.sh`, tmux `p8`, and `/home/da3_after.sh`, tmux `da3`, started 15:20 UTC on 2026-11-07): DA3 native on the four vis datasets (done), cross-model disagreement on real single-view geometry (`P8-xmodel-vis`), the fused point-cloud metric at matched coverage on DTU and ETH3D (`scripts/fuse_eval.py`, `results/P8-fuse/`), qualitative panels from the dumps, the DA3 visibility and label-free heads (`da3_oiavis` validation 0.996, control 0.859, probe 0.990) and their vis rows, final stats.
+Nothing. The second H200 pass finished at 16:58 UTC on 2026-11-07 (P8_DONE 16:46, DA3_DONE 16:58).
 
 The first H200 driver printed ALL_DONE at 13:37 UTC on 2026-11-07; the L4 box was paused at 18:00 IST with its replicate `vis` stage unfinished (not needed).
 
