@@ -82,6 +82,9 @@ VARIANTS = {
     "oiavislin17":    ("agg",   "linear", "vis"),
     "oiavislin23":    ("agg",   "linear", "vis"),
     "oiavispatchlin": ("patch", "linear", "vis"),
+    # evaluation-time fusion with native confidence (geometric mean of the two scores); share the head's checkpoint
+    "oiavisfuse":     ("agg",   "conv",   "vis"),
+    "oiavisselffuse": ("agg",   "conv",   "visself"),
 }
 LAYER_PICK = {"oiavislin4": 0, "oiavislin11": 1, "oiavislin17": 2, "oiavislin23": 3}
 
@@ -605,8 +608,8 @@ def resolve_ckpt(name):
     if env:
         return env
     base, var = name.rsplit("_", 1)
-    if var == "oiafuse":
-        return resolve_ckpt(f"{base}_oia")
+    if var.endswith("fuse"):                       # oiafuse, oiavisfuse, oiavisselffuse share the head's checkpoint
+        return resolve_ckpt(f"{base}_{var[:-4]}")
     return os.path.join(os.environ.get("OIA_CKPT_DIR", "checkpoints"), f"{name}.pt")
 
 
@@ -617,7 +620,7 @@ class OIAWrap:
         torch = base.torch
         self.base, self.variant = base, variant          # variant may carry an extra-seed suffix, e.g. oiavis_s1
         self.name = f"{base.name}_{variant}"
-        self.fuse = variant == "oiafuse"
+        self.fuse = variant.endswith("fuse")
         path = ckpt or resolve_ckpt(self.name)
         if not os.path.exists(path):
             raise FileNotFoundError(f"{self.name}: checkpoint {path} not found (train with scripts/oia_head.py train)")
