@@ -57,11 +57,13 @@ def main():
         if hasattr(model, "free"):
             model.free()
     n = 2 + len(models)
-    fig, ax = plt.subplots(1, n, figsize=(2.75 * n, 2.6))
-    ax[0].imshow(imgs[ref]); ax[0].set_title(f"reference view, {a.fill} fill", fontsize=9)
+    fig, ax = plt.subplots(1, n, figsize=(2.75 * n, 3.0))
+    ax[0].imshow(imgs[ref]); ax[0].set_title(f"reference view, {a.fill} fill
+red: imagined, green: observed", fontsize=9)
     ax[0].contour(up(m["U"][ref]), levels=[0.5], colors="#d62728", linewidths=1.4)
     ax[0].contour(up(m["Sm"][ref]), levels=[0.5], colors="#2ca02c", linewidths=1.4)
-    ax[1].imshow(data["imgs"][ev]); ax[1].set_title(f"clean view {ev}: the green surface is visible", fontsize=9)
+    ax[1].imshow(data["imgs"][ev]); ax[1].set_title(f"clean view {ev}
+the green surface is visible here", fontsize=9)
     # the observed sphere's surface in the evidence view: pixels of view ev that see the Sm pixels of the reference view
     seen_m, _, _ = H.support_matrix(data["depths"], data["K_dep"], data["E"])
     Pw = H.backproject(data["depths"][ref], data["K_dep"][ref], data["E"][ref])
@@ -83,7 +85,7 @@ def main():
         x.axis("off")
     fig.text(0.5, 0.01, "red: hidden in every view (imagined).  green: hidden in this view, visible in a clean view (observed, filled). "
              "Same fill, size and depth; a per-image score cannot tell them apart.", ha="center", fontsize=8.5)
-    plt.tight_layout(rect=(0, 0.05, 1, 1))
+    plt.tight_layout(rect=(0, 0.06, 1, 0.98))
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     fig.savefig(a.out + ".pdf"); fig.savefig(a.out + ".png", dpi=150)
     print("->", a.out, {k: tuple(round(x, 3) for x in v) for k, v in aur.items()})
