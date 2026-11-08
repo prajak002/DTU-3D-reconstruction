@@ -938,7 +938,9 @@ def build_masks_matched(data, seed, radius_frac, cfg, evidence="1"):
          observed (Sm) wherever a view of Ev actually sees the pixel's ground-truth point (support test);
       D  hidden only in the views of Ev: observed with many-view evidence, and it keeps the number of patches per
          view at two, so counting patches across views cannot tell A from B.
-    B and D match A's reference-view area within `match_area` and its reference depth within `match_depth`.
+    B and D match A's reference-view area within `match_area`, its reference depth within `match_depth` and its local
+    texture within `match_tex` (so a sphere on the object is not matched by one on the flat backdrop); A, B and D are
+    all seen by at least n_ev + 1 other views, so the imagined sphere is not the one on a rarely seen surface.
     Returns hide (N,H,W) at image resolution, U, S (clean supported, outside a dilation of every patch), Sm, the
     per-pixel evidence count ev_count (clean views that see the pixel) and ev_par (angle to the nearest of them,
     degrees), the evidence views and the sphere parameters. Deterministic in (scan, seed, radius, evidence).
@@ -970,6 +972,16 @@ def build_masks_matched(data, seed, radius_frac, cfg, evidence="1"):
 
     P_all = np.stack(Pws).reshape(-1, 3)                      # (N*h*w, 3): one distance pass per candidate sphere
     valid_flat = valid.reshape(-1)
+    # local texture of the reference image at label resolution: the spheres must sit on surfaces that look alike
+    # (the backdrop of a rig and the object differ in context even under an identical fill)
+    gray = cv2.cvtColor((np.clip(data["imgs"][ref], 0, 1) * 255).astype(np.uint8), cv2.COLOR_RGB2GRAY).astype(np.float32) / 255.0
+    mu = cv2.blur(gray, (21, 21)); tex_img = np.sqrt(np.maximum(cv2.blur(gray * gray, (21, 21)) - mu * mu, 0))
+    tex = cv2.resize(tex_img, (w, h), interpolation=cv2.INTER_AREA)
+    match_tex, min_tex = cfg.get("match_tex", 0.5), cfg.get("match_min_tex", 0.015)
+
+    def tex_of(ins):
+        sel_ = ins[ref]
+        return float(tex[sel_].mean()) if sel_.any() else 0.0
 
     def inside_of(c):
         return ((np.linalg.norm(P_all - c, axis=-1) < radius) & valid_flat).reshape(N, h, w)
@@ -998,6 +1010,8 @@ def build_masks_matched(data, seed, radius_frac, cfg, evidence="1"):
             a = int(ins[ref].sum())
             if a == 0 or abs(a - areaA) / max(areaA, 1) > tol_area:
                 continue
+            if abs(tex_of(ins) - texA) > max(match_tex * texA, 0.02):
+                continue
             return k, c, ins
         return None
 
@@ -1011,12 +1025,18 @@ def build_masks_matched(data, seed, radius_frac, cfg, evidence="1"):
             k = rng.integers(len(pts_ref))
             cA, dA = pts_ref[k], float(dep_ref[k])
             ins = inside_of(cA)
-            if inside_frac_ok(ins):
-                inA = ins
-                break
+            if not inside_frac_ok(ins) or tex_of(ins) < min_tex:
+                continue
+            aA = int(ins[ref].sum())
+            # the same visibility requirement B will face: seen by at least n_ev + 1 other views (symmetric)
+            if sum(1 for i in range(N) if i != ref and ins[i].sum() >= 0.2 * aA) < n_ev + 1:
+                continue
+            inA = ins
+            break
         if inA is None:
             raise RuntimeError(f"scan {data['scan']} seed {seed} r{radius_frac}: no valid sphere A after {cfg['max_tries']} tries")
         areaA = int(inA[ref].sum())
+        texA = tex_of(inA)
         pool, cache = candidate_pool(dA)
         for sep_f, tol_area in ((2.5, match_area), (2.2, match_area), (2.2, match_area * 1.5)):
             used = []
@@ -1086,7 +1106,7 @@ def build_masks_matched(data, seed, radius_frac, cfg, evidence="1"):
     return dict(hide=hide, U=U, S=S, Sm=Sm, ev_count=ev_count, ev_par=ev_par, evidence_views=Ev, has_D=has_D,
                 center=cA, center_B=cB, center_D=(cD if has_D else None), radius=radius, diag=diag,
                 area_A=areaA, area_B=int(inB[ref].sum()), area_D=(int(inD[ref].sum()) if has_D else 0),
-                depth_A=dA)
+                depth_A=dA, tex_A=texA, tex_B=tex_of(inB), tex_D=(tex_of(inD) if has_D else None))
 
 
 def compute_metrics_matched(pred_depth, conf, gt, masks, cfg, ctrl_depth=None, ctrl_conf=None, min_bucket=30):
