@@ -58,12 +58,10 @@ def main():
             model.free()
     n = 2 + len(models)
     fig, ax = plt.subplots(1, n, figsize=(2.75 * n, 3.0))
-    ax[0].imshow(imgs[ref]); ax[0].set_title(f"reference view, {a.fill} fill
-red: imagined, green: observed", fontsize=9)
+    ax[0].imshow(imgs[ref]); ax[0].set_title(f"reference view, {a.fill} fill" + "\nred: imagined, green: observed", fontsize=9)
     ax[0].contour(up(m["U"][ref]), levels=[0.5], colors="#d62728", linewidths=1.4)
     ax[0].contour(up(m["Sm"][ref]), levels=[0.5], colors="#2ca02c", linewidths=1.4)
-    ax[1].imshow(data["imgs"][ev]); ax[1].set_title(f"clean view {ev}
-the green surface is visible here", fontsize=9)
+    ax[1].imshow(data["imgs"][ev]); ax[1].set_title(f"clean view {ev}" + "\nthe green surface is visible here", fontsize=9)
     # the observed sphere's surface in the evidence view: pixels of view ev that see the Sm pixels of the reference view
     seen_m, _, _ = H.support_matrix(data["depths"], data["K_dep"], data["E"])
     Pw = H.backproject(data["depths"][ref], data["K_dep"][ref], data["E"][ref])
