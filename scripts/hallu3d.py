@@ -1164,7 +1164,7 @@ def run_matched(root, model_names, cfg=None, out_csv="matched_results.csv", mode
         os.makedirs(cache_dir, exist_ok=True)
         try:
             m = build_masks_matched(data, seed, rf, cfg, ev)
-        except RuntimeError as e:
+        except (RuntimeError, ValueError) as e:
             print(f"[masks] {scan} seed {seed} ev {ev}: {e}")
             np.savez_compressed(p, failed=True)
             return None

@@ -627,7 +627,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
                     for sd in tc["val_seeds"]:
                         try:
                             m = H.build_masks_matched(md, 1000 + sd, 0.18, cfg, evidence="1")
-                        except RuntimeError:
+                        except (RuntimeError, ValueError):
                             continue
                         imgs_in = H.apply_fill(md["imgs"], m["hide"], "blur", 1000 + sd)
                         _, _, F, _, _ = forward(imgs_in, feats_mode)
@@ -696,7 +696,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             try:                          # three identical patches: imagined (U), observed-filled (Sm), clean S
                 m = H.build_masks_matched(md, s, float(rng.uniform(*tc["radius_range"])), cfg,
                                           evidence=str(rng.choice(["1", "2", "half"])))
-            except RuntimeError as e:
+            except (RuntimeError, ValueError) as e:      # no placement, or too few confident pixels in the prediction
                 print(f"[oia] skip matched sample: {e}", flush=True)
                 continue
             imgs_in = H.apply_fill(md["imgs"], m["hide"], str(rng.choice(tc["fills"])), s)

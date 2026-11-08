@@ -432,27 +432,30 @@ def chart_matched(N, theme, out):
     if not keys:
         return
     models = [b for b in ("vggt", "pi3", "pi3x", "mapanything", "da3") if any(b in M[k] for k in keys)]
-    fig, axes = plt.subplots(1, len(keys), figsize=(5.2 * len(keys), 4.4), sharey=True)
+    fig, axes = plt.subplots(1, len(keys), figsize=(6.4 * len(keys), 4.8), sharey=True)
     axes = np.atleast_1d(axes)
+    short = {"vggt": "VGGT-1B", "pi3": "Pi3", "pi3x": "Pi3X", "mapanything": "MapAnything", "da3": "DA3"}
     for ax, k in zip(axes, keys):
         x = np.arange(len(models)); w = 0.2
-        series = [("auroc", "native confidence vs clean pixels (the original benchmark)", T["muted"]),
-                  ("auroc_m", "native confidence vs filled-but-observed pixels (matched)", T["c"][1])]
+        series = [("auroc", "vs clean pixels (the original benchmark)", T["c"][1]),
+                  ("auroc_m", "vs filled-but-observed pixels (matched split)", T["c"][2])]
         for i, (col, lab, colr) in enumerate(series):
             vals = [M[k].get(b, {}).get(col) for b in models]
             ax.bar(x + (i - 1.5) * w, [v[0] if v else 0 for v in vals], w * 0.92, color=colr, label=lab,
                    yerr=[[v[0] - v[1] if v else 0 for v in vals], [v[2] - v[0] if v else 0 for v in vals]], ecolor=T["muted"], capsize=2)
-        for i, (suf, lab, colr) in enumerate((("_oiamatchselfpatch", "matched per-image control", T["c"][3]), ("_oiamatchself", "matched head, label-free", T["c"][2]))):
+        for i, (suf, lab, colr) in enumerate((("_oiamatchselfpatch", "matched per-image control (pipeline check)", T["c"][3]), ("_oiamatchself", "matched head, label-free", T["c"][4]))):
             vals = [M[k].get(f"{b}{suf}", {}).get("auroc_m") for b in models]
             if any(vals):
                 ax.bar(x + (i + 0.5) * w, [v[0] if v else 0 for v in vals], w * 0.92, color=colr, label=lab,
                        yerr=[[v[0] - v[1] if v else 0 for v in vals], [v[2] - v[0] if v else 0 for v in vals]], ecolor=T["muted"], capsize=2)
-        ax.set_xticks(x); ax.set_xticklabels([NAME[b] for b in models], fontsize=9); ax.set_ylim(0.2, 1.0)
+        ax.set_xticks(x); ax.set_xticklabels([short[b] for b in models], fontsize=10); ax.set_ylim(0.2, 1.0)
         ax.axhline(0.5, color=T["muted"], lw=0.8, ls=":")
         ax.set_title(dict(DATASETS_LABEL)[k], fontsize=12); _clean(ax, T)
-    axes[0].set_ylabel("AUROC"); axes[0].legend(fontsize=8, loc="lower left")
-    fig.suptitle("The same patch under two labels: native confidence reads the patch, not the missing support (run P11-matched)", fontsize=11)
-    fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
+    axes[0].set_ylabel("AUROC, imagined patch against ...")
+    h, l = axes[0].get_legend_handles_labels()
+    fig.legend(h, l, loc="lower center", ncol=2, fontsize=9, frameon=False, bbox_to_anchor=(0.5, 0.0))
+    fig.suptitle("The same patch under two labels: native confidence reads the patch (run P11-matched)", fontsize=12)
+    fig.tight_layout(rect=(0.01, 0.12, 1, 0.97)); fig.savefig(out, dpi=160); plt.close(fig)
 
 
 def chart_prov(N, theme, out):
