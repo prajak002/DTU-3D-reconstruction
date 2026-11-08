@@ -1,0 +1,36 @@
+08:20:07 == P11-matched-co3d: models ['vggt', 'pi3x', 'pi3', 'da3', 'mapanything', 'vggt_reproj', 'pi3x_reproj', 'pi3_reproj', 'da3_reproj'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"], "dataset": "co3d"}
+08:24:57    vggt: 290s
+08:28:25    pi3x: 208s
+08:30:46    pi3: 140s
+08:33:07    da3: 141s
+08:35:23    mapanything: 136s
+08:38:57    vggt_reproj: 214s
+08:43:02    pi3x_reproj: 246s
+08:47:11    pi3_reproj: 249s
+08:50:22    da3_reproj: 191s
+09:52:14 == P11-matched-co3d: models ['vggt', 'pi3x', 'pi3', 'da3', 'mapanything', 'vggt_reproj', 'pi3x_reproj', 'pi3_reproj', 'da3_reproj', 'vggt_oiamatch', 'vggt_oiamatchpatch', 'vggt_oiamatchlin', 'vggt_oiamatchself', 'vggt_oiamatchselfpatch', 'vggt_oiamatchselflin', 'vggt_oiavisself', 'vggt_oiavisselfpatch', 'pi3x_oiamatch', 'pi3x_oiamatchpatch', 'pi3x_oiamatchlin', 'pi3x_oiamatchself', 'pi3x_oiamatchselfpatch', 'pi3x_oiamatchselflin', 'pi3x_oiavisself', 'pi3x_oiavisselfpatch'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"], "dataset": "co3d"}
+09:52:15    vggt: 0s
+09:52:15    pi3x: 0s
+09:52:15    pi3: 0s
+09:52:15    da3: 0s
+09:52:15    mapanything: 0s
+09:52:15    vggt_reproj: 0s
+09:52:15    pi3x_reproj: 0s
+09:52:15    pi3_reproj: 0s
+09:52:15    da3_reproj: 0s
+09:53:59    vggt_oiamatch: 105s
+09:55:46    vggt_oiamatchpatch: 107s
+09:57:27    vggt_oiamatchlin: 101s
+09:58:24    vggt_oiamatchself: 58s
+09:59:24    vggt_oiamatchselfpatch: 60s
+10:01:04    vggt_oiamatchselflin: 100s
+10:02:45    vggt_oiavisself: 101s
+10:04:31    vggt_oiavisselfpatch: 106s
+10:07:00    pi3x_oiamatch: 149s
+10:09:35    pi3x_oiamatchpatch: 155s
+10:12:09    pi3x_oiamatchlin: 154s
+10:13:29    pi3x_oiamatchself: 79s
+10:15:16    pi3x_oiamatchselfpatch: 108s
+10:17:41    pi3x_oiamatchselflin: 145s
+10:20:05    pi3x_oiavisself: 144s
+10:22:28    pi3x_oiavisselfpatch: 143s
