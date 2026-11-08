@@ -307,11 +307,11 @@ cks_m = O.train_multi("fake", root, [("oiamatch", 0, os.path.join(WORK, "ckpt", 
                                      ("oiamatchlin", 0, os.path.join(WORK, "ckpt", "fake_oiamatchlin.pt"))],
                       steps=12, device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, lr=2e-3, warmup=5,
                       log_every=4, val_every=6, val_scans=[3], val_seeds=[0], random_light=False, p_clean=0.0)
+GT_BY_N.clear(); GT.update(H.load_scan(root, 3, H.select_views(10), 3))   # the fake predicts a ten-view scene
 cks_ms = O.train_multi("fake", root, [("oiamatchself", 0, os.path.join(WORK, "ckpt", "fake_oiamatchself.pt"))],
                        steps=6, device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, lr=2e-3, warmup=5,
                        log_every=3, val_every=6, val_scans=[], random_light=False, p_clean=0.0)
 ckm = torch.load(cks_m[0], map_location="cpu", weights_only=False)
-GT_BY_N.clear(); GT.update(data)
 mcsv = os.path.join(WORK, "matched.csv")
 if os.path.exists(mcsv):
     os.remove(mcsv)
