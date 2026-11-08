@@ -2,6 +2,13 @@
 
 ## 2026-11-08
 
+### Paper redesigned for readability: short abstract, figure-led sections, no number changed
+
+- **Why.** The author asked for the visual style of recent spotlight papers (light text, diagrams, charts and tables that carry the argument). Six reference papers were rendered and read for layout before the rewrite.
+- **New figures** (`scripts/make_fig_design.py`, one palette for the paper: teal observed and ours, coral imagined, amber abstain, slate baselines; drawn at print size from `docs/assets/numbers.json`, `matched.json` and the logged CSVs; image panels cropped from figures already rendered from runs): page-1 teaser (identical patches, native confidence against the support head, headline AUROC ranges), the architecture diagram (frozen backbone, tapped cross-view layers, head, bands, label-free training lane, per-image control tap), the benchmark and matched-split diagram, the four-dataset results chart, the leak chart with the matched control, the per-layer probe chart, the evidence-bucket chart of the matched head, the stress-test chart, the abstaining chart (single-view share by coverage, fused-cloud accuracy), the real-occlusion chart and the limit chart.
+- **New tables.** Table 1 compact (means, matched columns shaded; the version with intervals moved to the supplement as `tab_leak_full.tex`); a compact true-visibility table, mean over the four backbones with our rows tinted and the best value bold (`scripts/make_tab_summary.py` -> `tab_vis_compact.tex`; the per-backbone table stays in the supplement); a table of the pre-registered gates with pass, partial and fail marks.
+- **Text.** Abstract cut to about 150 words; a boxed "What we find" with three findings in the introduction; contributions in three lines; two one-line takeaway boxes; sections renumbered (3 benchmark, 4 native confidence, 5 method, 6 experiments, 7 limitations and conclusion) and the supplement's cross-references updated. Every number is the one the previous version reported. Body ends on page 7 of 8.
+
 ### Fifth pass: the matched split (Gate 6), matched heads (Gate 7), real occlusion against the dense scan (Gate 8); the paper restructured around them
 
 - **Why.** The supervisor's review and our own: every unsupported pixel of the benchmark sat under a filled patch and no supported pixel did, so native confidence (and any head) was partly scored on patch detection. Gates 6 to 8 were pre-registered (06:05 UTC, commit 74aa0a3) before any matched run; the protocol, label modes, stages and tests went in at 2f0399c.

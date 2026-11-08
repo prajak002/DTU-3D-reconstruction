@@ -25,10 +25,22 @@ Every number in the paper maps to a CSV and a configuration file in the released
 \end{figure}
 
 \paragraph{Correctness guards.}
-Before any model is scored we check that ground-truth depth reprojects consistently between view pairs and that unsupported points of view $i$, where visible in view $j$, land inside view $j$'s hidden mask. DTU: reprojection agreement 0.80 to 0.82 at a 1\% depth tolerance, U-transfer 0.96 to 0.99. CO3Dv2 (cameras converted from PyTorch3D and checked against the official point cloud): with an occlusion-aware 3\% tolerance, agreement 0.92 to 1.00 and U-transfer 0.90 to 0.98 on 17 of 18 scenes; the eighteenth scores 0.80, is kept, and removing it changes nothing (Section~5 of the paper). ETH3D: agreement 0.996 to 1.000 on all scenes; nine of twelve pass the U-transfer gate and three are excluded before any model is run.
+Before any model is scored we check that ground-truth depth reprojects consistently between view pairs and that unsupported points of view $i$, where visible in view $j$, land inside view $j$'s hidden mask. DTU: reprojection agreement 0.80 to 0.82 at a 1\% depth tolerance, U-transfer 0.96 to 0.99. CO3Dv2 (cameras converted from PyTorch3D and checked against the official point cloud): with an occlusion-aware 3\% tolerance, agreement 0.92 to 1.00 and U-transfer 0.90 to 0.98 on 17 of 18 scenes; the eighteenth scores 0.80, is kept, and removing it changes nothing (Section~4 of the paper). ETH3D: agreement 0.996 to 1.000 on all scenes; nine of twelve pass the U-transfer gate and three are excluded before any model is run.
 
 \paragraph{Pipeline validation.}
 On a synthetic DTU-format scene, an oracle that knows what is hidden scores \auroc{} 1.000 and \cur{} 0.000, and a blind guesser with flat confidence scores \auroc{} 0.500 and \cur{} 0.90 (the 10\% of supported pixels dropped by $\tau$ is the expected floor). These numbers validate the code, not any model.
+
+\paragraph{Table 1 with intervals.}
+The paper's Table 1 shows means; Table~\ref{tab:leak_full} adds 95\% cluster-bootstrap intervals over scenes, \curerr{} and the confidence ratio (median confidence inside the hidden region over its clean value), with the matched split's \auroc$_m$ and \cur$_m$.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Native confidence, full numbers.} Blur and noise pooled, 18 scenes $\times$ 5 seeds $\times$ 2 radii; mean [95\% CI]; matched split seeds 0 and 1, radius 0.18. Runs P1-full, P2-full, P2-co3d, P2-co3d-b, P11-matched.}
+\label{tab:leak_full}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tab_leak_full}}
+\end{table}
 
 \paragraph{DTU and CO3Dv2, full configuration per fill.}
 
@@ -114,7 +126,7 @@ Depth Anything 3 & noise & \ci{0.618}{0.553}{0.679} & \ci{0.780}{0.702}{0.854} &
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{fig1_teaser}
-\caption{\textbf{What a model does with a surface it cannot see.} Top: a DTU scan with one 3D region of the ground-truth surface hidden in all ten input views and inpainted so no seam remains (the inpainted fill of Section~5 of the paper). Bottom: a CO3Dv2 phone capture treated the same way. The top row shows the protocol: the same 3D sphere hides the region in every view, including a view from the other side of the rig. The bottom row shows what the backbone (VGGT) does with it: plausible geometry inside the hidden region, with confidence close to its value outside. The cyan contour marks the unsupported pixels. Model panels are the recorded run outputs.}
+\caption{\textbf{What a model does with a surface it cannot see.} Top: a DTU scan with one 3D region of the ground-truth surface hidden in all ten input views and inpainted so no seam remains (the inpainted fill of Section~4 of the paper). Bottom: a CO3Dv2 phone capture treated the same way. The top row shows the protocol: the same 3D sphere hides the region in every view, including a view from the other side of the rig. The bottom row shows what the backbone (VGGT) does with it: plausible geometry inside the hidden region, with confidence close to its value outside. The cyan contour marks the unsupported pixels. Model panels are the recorded run outputs.}
 \label{fig:teaser}
 \end{figure}
 
@@ -131,11 +143,11 @@ Each backbone's per-view depths are back-projected with its own predicted camera
 \end{table}
 
 \paragraph{Detectors on the filled patches.}
-The cheap alternatives and the fill-trained heads of Section 5.4 and Section 7 of the main paper, on the Table 1 rows with blur, radius 0.18 and seed 0. A fuller perturbation baseline (photometric, blur, flip and view-permutation perturbations, $K=8$, least-squares scale alignment, median-absolute-deviation spread; run P3-pv-full) scores \auroc{} 0.52 to 0.60 and \cur{} 0.74 to 0.86 on all five backbones over blur and noise, worse than native confidence everywhere. On 22 further DTU scans (the MVSNet test split, run P3-dtuext, seed 0, radius 0.18) the ranking of Table 1 holds: VGGT \auroc{} 0.908 / \cur{} 0.233, Pi3 0.919 / 0.272, Pi3X 0.850 / 0.539, DA3 0.755 / 0.650, MapAnything 0.697 / 0.693 with \curerr{} 0.287. On the nine ETH3D scenes under the full fill protocol (run P3-eth3d) native confidence leaks more than on DTU, \cur{} 0.61 (Pi3) to 0.79 (VGGT), and the fill-trained head scores 0.981 against its per-image control's 0.987.
+The cheap alternatives and the fill-trained heads of Sections 4 and 6 of the main paper, on the Table 1 rows with blur, radius 0.18 and seed 0. A fuller perturbation baseline (photometric, blur, flip and view-permutation perturbations, $K=8$, least-squares scale alignment, median-absolute-deviation spread; run P3-pv-full) scores \auroc{} 0.52 to 0.60 and \cur{} 0.74 to 0.86 on all five backbones over blur and noise, worse than native confidence everywhere. On 22 further DTU scans (the MVSNet test split, run P3-dtuext, seed 0, radius 0.18) the ranking of Table 1 holds: VGGT \auroc{} 0.908 / \cur{} 0.233, Pi3 0.919 / 0.272, Pi3X 0.850 / 0.539, DA3 0.755 / 0.650, MapAnything 0.697 / 0.693 with \curerr{} 0.287. On the nine ETH3D scenes under the full fill protocol (run P3-eth3d) native confidence leaks more than on DTU, \cur{} 0.61 (Pi3) to 0.79 (VGGT), and the fill-trained head scores 0.981 against its per-image control's 0.987.
 
 \begin{table}[h]
 \centering
-\caption{\textbf{Detectors on the filled patches, DTU} (18 scans, seed 0, blur, radius 0.18; native and perturbation rows re-run on the detectors' hardware, runs P3-native and P3-pv, so every pair is scored on identical rows). The three learned rows per backbone are the \emph{fill-trained} heads: they find the fill, not the missing support (Section~7 of the paper), which is why the per-image control matches them. The visibility-trained heads are in the main paper.}
+\caption{\textbf{Detectors on the filled patches, DTU} (18 scans, seed 0, blur, radius 0.18; native and perturbation rows re-run on the detectors' hardware, runs P3-native and P3-pv, so every pair is scored on identical rows). The three learned rows per backbone are the \emph{fill-trained} heads: they find the fill, not the missing support (Section~5 of the paper), which is why the per-image control matches them. The visibility-trained heads are in the main paper.}
 \label{tab:detectors}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -254,7 +266,7 @@ If the surface a backbone returns inside the hidden region were fixed by the pri
 
 
 \paragraph{The matched split.}
-Table~\ref{tab:matched_heads}: every detector on the matched-patch protocol of the paper's Section~4 (three identical patches per scene: hidden everywhere, hidden except in an evidence set of 1, 2 or half the views, hidden only in the evidence set), DTU and CO3Dv2, blur and noise pooled, seeds 0 and 1, radius 0.18. \auroc$_m$ and \cur$_m$ score the imagined patch against the filled-but-observed one; \emph{patch} scores clean supported pixels against the filled-but-observed ones; the evidence columns split the observed pixels by how many clean views see them (one at low or high parallax, two or more). The per-image controls are the pipeline check of Gate 7. The gray fill and the paired tests are in the released statistics file (P11-matched-stats).
+Table~\ref{tab:matched_heads}: every detector on the matched-patch protocol of the paper's Section~3 (three identical patches per scene: hidden everywhere, hidden except in an evidence set of 1, 2 or half the views, hidden only in the evidence set), DTU and CO3Dv2, blur and noise pooled, seeds 0 and 1, radius 0.18. \auroc$_m$ and \cur$_m$ score the imagined patch against the filled-but-observed one; \emph{patch} scores clean supported pixels against the filled-but-observed ones; the evidence columns split the observed pixels by how many clean views see them (one at low or high parallax, two or more). The per-image controls are the pipeline check of Gate 7. The gray fill and the paired tests are in the released statistics file (P11-matched-stats).
 
 \begin{table}[h]
 \centering
@@ -266,7 +278,7 @@ Table~\ref{tab:matched_heads}: every detector on the matched-patch protocol of t
 \end{table}
 
 \paragraph{Provenance.}
-Table~\ref{tab:prov}: the provenance heads of Section~6 of the paper on the vis cells of every dataset, support \auroc{} and \cur{} of the aggregated score next to the conv head of the main table on the same cells, and the attribution columns (prov-\auroc, its in-frame variant that keeps only views whose frame contains the point, top-1) against the reprojection test with the model's own cameras read per view. Means over scene means; the paired sign-flip tests are in the released statistics file (P10-prov-stats), the gate text and its outcome in the run registry. Figure~\ref{fig:prov_all} shows one scene per dataset.
+Table~\ref{tab:prov}: the provenance heads of Section~5 of the paper on the vis cells of every dataset, support \auroc{} and \cur{} of the aggregated score next to the conv head of the main table on the same cells, and the attribution columns (prov-\auroc, its in-frame variant that keeps only views whose frame contains the point, top-1) against the reprojection test with the model's own cameras read per view. Means over scene means; the paired sign-flip tests are in the released statistics file (P10-prov-stats), the gate text and its outcome in the run registry. Figure~\ref{fig:prov_all} shows one scene per dataset.
 
 \begin{table}[h]
 \centering

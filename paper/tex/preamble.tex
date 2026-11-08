@@ -36,3 +36,20 @@
 \newcommand{\absrel}{\textsc{AbsRel}}
 \newcommand{\bench}{HalluBench-3D}
 \newcommand{\ci}[3]{#1\,{\scriptsize[#2,\,#3]}}
+
+% the paper's palette (the same hex values as scripts/make_fig_design.py and the charts)
+\definecolor{ours}{HTML}{2A9D8F}
+\definecolor{oursbg}{HTML}{E9F5F3}
+\definecolor{imag}{HTML}{D1495B}
+\definecolor{matchbg}{HTML}{FCEFF1}
+\definecolor{inkc}{HTML}{1D2B36}
+\usepackage{tcolorbox}
+% boxed findings (introduction) and one-line takeaways (end of a section)
+\newtcolorbox{findings}{colback=oursbg,colframe=ours,boxrule=0.6pt,arc=2pt,left=5pt,right=5pt,top=3pt,bottom=3pt,before skip=4pt,after skip=4pt}
+\newcommand{\takeaway}[1]{\par\vspace{2pt}\noindent\colorbox{oursbg}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{\small\textcolor{ours}{\textbf{Takeaway.}} #1}}\par\vspace{2pt}}
+\newcommand{\ours}[1]{\textcolor{ours}{\textbf{#1}}}
+\usepackage{pifont}
+\newcommand{\yes}{\textcolor{ours}{\ding{51}}}
+\newcommand{\no}{\textcolor{imag}{\ding{55}}}
+\definecolor{partc}{HTML}{E39B4C}
+\newcommand{\partly}{\textcolor{partc}{\ding{108}}}
