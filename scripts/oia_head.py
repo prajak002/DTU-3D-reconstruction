@@ -105,7 +105,16 @@ VARIANTS = {
     "oiamatchself":      ("agg",   "conv",   "matchself"),
     "oiamatchselfpatch": ("patch", "conv",   "matchself"),
     "oiamatchselflin":   ("agg",   "linear", "matchself"),
+    # P13 (Gate 9): the same triples fine-tuned from the 1500-step matched checkpoints with single-view evidence
+    # oversampled (evidence "1" with probability 0.7, "2" and "half" 0.15 each), aimed at the one-view bucket
+    "oiamatchev":          ("agg",   "conv",   "match"),
+    "oiamatchevpatch":     ("patch", "conv",   "match"),
+    "oiamatchevlin":       ("agg",   "linear", "match"),
+    "oiamatchselfev":      ("agg",   "conv",   "matchself"),
+    "oiamatchselfevpatch": ("patch", "conv",   "matchself"),
+    "oiamatchselfevlin":   ("agg",   "linear", "matchself"),
 }
+EV_FOCUS = {"oiamatchev", "oiamatchevpatch", "oiamatchevlin", "oiamatchselfev", "oiamatchselfevpatch", "oiamatchselfevlin"}
 LAYER_PICK = {"oiavislin4": 0, "oiavislin11": 1, "oiavislin17": 2, "oiavislin23": 3}
 
 
@@ -694,8 +703,9 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             S = md["depths"] > 0
         elif labels in ("match", "matchself"):
             try:                          # three identical patches: imagined (U), observed-filled (Sm), clean S
+                ev_p = [0.7, 0.15, 0.15] if all(v in EV_FOCUS for v, _, _ in specs) else None
                 m = H.build_masks_matched(md, s, float(rng.uniform(*tc["radius_range"])), cfg,
-                                          evidence=str(rng.choice(["1", "2", "half"])))
+                                          evidence=str(rng.choice(["1", "2", "half"], p=ev_p)))
             except (RuntimeError, ValueError) as e:      # no placement, or too few confident pixels in the prediction
                 print(f"[oia] skip matched sample: {e}", flush=True)
                 continue

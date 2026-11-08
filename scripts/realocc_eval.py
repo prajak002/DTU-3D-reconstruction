@@ -15,7 +15,10 @@ Reported per (detector, scan, seed, N): the share of each class, the mean score 
 detector's score for observed against unobserved points and for observed against off points.
 
   python scripts/realocc_eval.py --dtu <root> --models vggt,vggt_reproj,vggt_oiavisself,pi3x,...
-Writes results/P12-realocc/P12-realocc.csv and a summary."""
+  python scripts/realocc_eval.py --co3d-format <eth3d root> --models ...   (P13: second real dataset)
+With --co3d-format the reference is every frame of the scene (ETH3D: laser-scan depth of all images of the scene)
+and the input views are the scene's adjacent-view selection, as in fuse_eval.py.
+Writes results/P12-realocc/P12-realocc.csv (or P12-realocc-<root name>.csv) and a summary."""
 import argparse
 import os
 import sys
@@ -26,6 +29,7 @@ import pandas as pd
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import hallu3d as H  # noqa: E402
+import co3d  # noqa: E402
 from fuse_eval import umeyama, nn_dist  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,6 +46,11 @@ def load_gt_all(root, scan, n_total=49):
         Kd, _ = H._scale_K_to(K, dep.shape[:2])
         depths.append(dep); Ks.append(Kd); Es.append(E)
     return np.stack(depths), np.stack(Ks), np.stack(Es)
+
+
+def load_gt_all_co3d(root, scene):
+    m = np.load(os.path.join(root, scene, "meta.npz"))
+    return m["depth"].astype(np.float32), m["K_dep"].astype(np.float64), m["E"].astype(np.float64)
 
 
 def observed_flags(gt_pts, src_view, in_views, depths_all, Ks, Es, tol=0.03):
@@ -63,7 +72,8 @@ def observed_flags(gt_pts, src_view, in_views, depths_all, Ks, Es, tol=0.03):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--dtu", required=True)
+    ap.add_argument("--dtu", default=None)
+    ap.add_argument("--co3d-format", default=None)
     ap.add_argument("--scans", default=None)
     ap.add_argument("--models", default="vggt,vggt_reproj,vggt_oiavisself,pi3x,pi3x_reproj,pi3x_oiavisself")
     ap.add_argument("--views", default="3,5,10")
@@ -73,18 +83,23 @@ def main():
     ap.add_argument("--tol", type=float, default=0.03)
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
-    root = H.find_dtu_root((a.dtu,))
-    scans = [int(x) for x in (a.scans.split(",") if a.scans else H.DEFAULT_CFG["scans"])]
-    csv = os.path.join(a.out, "P12-realocc.csv")
+    if a.dtu:
+        root = H.find_dtu_root((a.dtu,))
+        scans = [int(x) for x in (a.scans.split(",") if a.scans else H.DEFAULT_CFG["scans"])]
+        csv = os.path.join(a.out, "P12-realocc.csv")
+    else:
+        root = co3d.find_co3d_root((a.co3d_format,))
+        scans = a.scans.split(",") if a.scans else co3d.list_co3d_scenes(root)
+        csv = os.path.join(a.out, f"P12-realocc-{os.path.basename(os.path.normpath(a.co3d_format))}.csv")
     done = set()
     if os.path.exists(csv):
         prev = pd.read_csv(csv)
-        done = {(r.model, int(r.scan), int(r.seed), int(r.n_views)) for r in prev.itertuples()}
+        done = {(r.model, str(r.scan), int(r.seed), int(r.n_views)) for r in prev.itertuples()}
     rng = np.random.default_rng(0)
     gt_cache = {}
     for mname in a.models.split(","):
         todo = [(sc, int(sd), int(n)) for sc in scans for sd in a.seeds.split(",") for n in a.views.split(",")
-                if (mname, sc, int(sd), int(n)) not in done]
+                if (mname, str(sc), int(sd), int(n)) not in done]
         if not todo:
             print(f"[{mname}] all done"); continue
         model = H.make_model(mname)
@@ -92,7 +107,7 @@ def main():
         t0 = time.time()
         for sc, sd, n in todo:
             if sc not in gt_cache:
-                D, Ks, Es = load_gt_all(root, sc)
+                D, Ks, Es = load_gt_all(root, sc) if a.dtu else load_gt_all_co3d(root, sc)
                 pts, src = [], []
                 for v in range(len(D)):
                     m = D[v] > 0
@@ -102,10 +117,16 @@ def main():
                     k = rng.choice(len(pts), a.max_gt, replace=False); pts, src = pts[k], src[k]
                 gt_cache = {sc: (D, Ks, Es, pts, src)}
             D, Ks, Es, gt_pts, src = gt_cache[sc]
-            views = H.vis_views(n, sd)
-            data = H.load_scan(root, sc, views, 3)
+            if a.dtu:
+                views = H.vis_views(n, sd)
+                data = H.load_scan(root, sc, views, 3)
+            else:
+                if n >= len(D):
+                    continue
+                views = H.vis_views(n, sd, total=len(D), mode="adjacent")
+                data = co3d.load_co3d_scene(root, sc, views)
             out_hw = data["depths"].shape[1:]
-            model_hw = tuple(H.DEFAULT_CFG["model_hw"])
+            model_hw = tuple(data.get("model_hw", H.DEFAULT_CFG["model_hw"]))
             d, c = model.predict(data["imgs"], model_hw, out_hw)
             torch = base.torch
             x = base._prep(data["imgs"], model_hw)
@@ -144,7 +165,7 @@ def main():
     df = pd.read_csv(csv)
     summ = df.groupby(["model", "n_views"])[["frac_obs", "frac_unobs", "frac_off", "frac_gt_unobserved",
                                              "auroc_obs_unobs", "auroc_obs_off"]].mean().round(4)
-    summ.to_csv(os.path.join(a.out, "P12-realocc_summary.csv"))
+    summ.to_csv(csv.replace(".csv", "_summary.csv"))
     print(summ.to_string())
 
 

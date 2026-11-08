@@ -71,9 +71,12 @@ def main():
     ap.add_argument("--coverages", default="0.6,0.7,0.8,0.9,1.0")
     ap.add_argument("--out", default=os.path.join(ROOT, "results", "P8-fuse"))
     ap.add_argument("--max-points", type=int, default=400000)
+    ap.add_argument("--combine", action="store_true", help="for a head model also score native confidence and the "
+                    "rank mean of the two (rows <model>_native and <model>_comb; P13, Gate 11)")
+    ap.add_argument("--tag", default=None)
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
-    tag = "dtu" if a.dtu else os.path.basename(os.path.normpath(a.co3d_format))
+    tag = a.tag or ("dtu" if a.dtu else os.path.basename(os.path.normpath(a.co3d_format)))
     csv = os.path.join(a.out, f"P8-fuse-{tag}.csv")
     done = set()
     if os.path.exists(csv):
@@ -123,9 +126,15 @@ def main():
             score = c.reshape(-1)
             is_u = lab["U"].reshape(-1); is_s = lab["S"].reshape(-1)
             rows = []
-            for name, order in (("detector", np.argsort(-score, kind="stable")),
-                                ("random", rng.permutation(len(score))),
-                                ("oracle", np.argsort(is_u.astype(np.int8), kind="stable"))):
+            orders = [("detector", np.argsort(-score, kind="stable")), ("random", rng.permutation(len(score))),
+                      ("oracle", np.argsort(is_u.astype(np.int8), kind="stable"))]
+            if a.combine and base is not model:
+                _, c_nat = base.predict(data["imgs"], model_hw, out_hw)
+                nat = np.asarray(c_nat, np.float64).reshape(-1)
+                rk = lambda v: np.argsort(np.argsort(v, kind="stable"), kind="stable") / max(len(v) - 1, 1)
+                comb = 0.5 * (rk(nat) + rk(score.astype(np.float64)))
+                orders += [("native", np.argsort(-nat, kind="stable")), ("comb", np.argsort(-comb, kind="stable"))]
+            for name, order in orders:
                 for cov in covs:
                     k = max(1, int(round(cov * len(score))))
                     keep = order[:k]

@@ -845,7 +845,8 @@ MATCHED_NATIVE = ("vggt", "pi3x", "pi3", "da3", "mapanything")
 # heads scored on the matched split when their checkpoints are complete: the matched heads with their controls and
 # probes (both label sources) and, for the record, the label-free visibility head and its control
 MATCHED_DETECTORS = ("oiamatch", "oiamatchpatch", "oiamatchlin", "oiamatchself", "oiamatchselfpatch", "oiamatchselflin",
-                     "oiavisself", "oiavisselfpatch")
+                     "oiavisself", "oiavisselfpatch",
+                     "oiamatchev", "oiamatchevpatch", "oiamatchevlin", "oiamatchselfev", "oiamatchselfevpatch", "oiamatchselfevlin")
 
 
 def _matched_models(args):
@@ -855,6 +856,9 @@ def _matched_models(args):
             ms.append(f"{b}_reproj")
     for b in args.bases:
         ms += [f"{b}_{v}" for v in MATCHED_DETECTORS if _have(args, f"{b}_{v}")]
+    if getattr(args, "only", None):            # score a subset (rows already in the CSV are skipped anyway)
+        keep = set(args.only.split(","))
+        ms = [m for m in ms if m in keep]
     return ms
 
 
@@ -891,6 +895,22 @@ def stage_trainmatch(args):
         _train_heads(args, base, ["oiamatchself", "oiamatchselfpatch", "oiamatchselflin"], "oiamatchself")
 
 
+def stage_trainmatchev(args):
+    """Gate 9 (P13): fine-tune the matched triples from their 1500-step checkpoints with single-view evidence
+    oversampled. The checkpoints are copied to the ev names first, so training resumes at step 1500 and runs to
+    --steps (2500 in the registered run) on a schedule that continues the cosine decay."""
+    import shutil
+    for base in args.bases:
+        for src, dst in (("oiamatch", "oiamatchev"), ("oiamatchpatch", "oiamatchevpatch"), ("oiamatchlin", "oiamatchevlin"),
+                         ("oiamatchself", "oiamatchselfev"), ("oiamatchselfpatch", "oiamatchselfevpatch"),
+                         ("oiamatchselflin", "oiamatchselfevlin")):
+            s, d = os.path.join(args.ckpt, f"{base}_{src}.pt"), os.path.join(args.ckpt, f"{base}_{dst}.pt")
+            if not os.path.exists(d):
+                shutil.copy(s, d)
+        _train_heads(args, base, ["oiamatchev", "oiamatchevpatch", "oiamatchevlin"], "oiamatchev")
+        _train_heads(args, base, ["oiamatchselfev", "oiamatchselfevpatch", "oiamatchselfevlin"], "oiamatchselfev")
+
+
 def stage_matched(args):
     """P11-matched on the 18 DTU benchmark scans: the five native models, the reprojection detectors and every
     matched head whose checkpoint is complete (Gate 6 for the natives, Gate 7 for the heads)."""
@@ -924,7 +944,7 @@ STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": 
           "adapt_co3d": stage_adapt_co3d, "adapt_eth3d": stage_adapt_eth3d, "vis_ext": stage_vis_ext, "dump": stage_dump,
           "vis_on_fill": stage_vis_on_fill, "vis_imc": stage_vis_imc, "adapt_imc": stage_adapt_imc, "xmodel": stage_xmodel,
           "trainprov": stage_trainprov, "prov": stage_prov,
-          "trainmatch": stage_trainmatch, "matched": stage_matched, "matched_co3d": stage_matched_co3d, "realocc": stage_realocc}
+          "trainmatch": stage_trainmatch, "trainmatchev": stage_trainmatchev, "matched": stage_matched, "matched_co3d": stage_matched_co3d, "realocc": stage_realocc}
 
 
 def main():
@@ -940,6 +960,7 @@ def main():
     ap.add_argument("--steps", type=int, default=1500)
     ap.add_argument("--seeds", default="0,1,2", help="initialisation seeds of the main head (0 = the reported one)")
     ap.add_argument("--bases", default="vggt,pi3x")
+    ap.add_argument("--only", default=None, help="matched stages: score only these models")
     ap.add_argument("--pv-bases", default="vggt,pi3x,pi3,da3,mapanything", help="backbones for the pvfull stage")
     ap.add_argument("--ext-bases", default="vggt,pi3x,pi3,da3,mapanything", help="native models for the dtuext stage")
     ap.add_argument("--skip-gt", action="store_true", help="do not train the GT-placed variant (oiagt)")
