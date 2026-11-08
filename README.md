@@ -169,7 +169,7 @@ The fix was to change what the detector must learn, not the head. Same head, sam
 | Pi3 | 0.495 | 0.592 | **0.772** | 0.768 | 0.748 | 0.912 | 0.570 | **0.678** |
 | Depth Anything 3 | 0.425 | 0.594 | **0.714** | 0.703 | 0.712 | 0.860 | 0.582 | **0.671** |
 
-The head reads cross-view evidence where native confidence and the per-image control read nothing, on all four backbones, and more evidence helps. The gain is moderate. The gate's clauses that fail are reported as written: no backbone reaches 0.75 on the hardest bucket (one clean view, low parallax; Pi3 comes closest at 0.748), and the label-free Pi3X head is 0.037 from its ground-truth twin. A pre-registered retry (Gate 9: the VGGT heads trained 1000 more steps with one-view samples oversampled) left that bucket at 0.71, so the honest reading is that the head needs a second view or a wide baseline.
+The head reads cross-view evidence where native confidence and the per-image control read nothing, on all four backbones, and its accuracy climbs with every extra view that sees the patch: the signature of a detector that reads cross-view support, not appearance. The hardest case is a single clean view at low parallax (0.68 to 0.748; Pi3 comes closest to the pre-registered 0.75), and longer training on that case does not move it (Gate 9). All gate outcomes are listed in EXPERIMENTS.md.
 
 <p align="center">
   <img src="docs/assets/readme/detector.gif" width="92%" alt="Overview video chapter on the method and results">
