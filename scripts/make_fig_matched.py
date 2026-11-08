@@ -57,11 +57,11 @@ def main():
         if hasattr(model, "free"):
             model.free()
     n = 2 + len(models)
-    fig, ax = plt.subplots(1, n, figsize=(2.75 * n, 3.0))
-    ax[0].imshow(imgs[ref]); ax[0].set_title(f"reference view, {a.fill} fill" + "\nred: imagined, green: observed", fontsize=9)
+    fig, ax = plt.subplots(1, n, figsize=(2.3 * n, 2.75))
+    ax[0].imshow(imgs[ref]); ax[0].set_title(f"reference view, {a.fill} fill" + "\nred: imagined, green: observed", fontsize=10)
     ax[0].contour(up(m["U"][ref]), levels=[0.5], colors="#d62728", linewidths=1.4)
     ax[0].contour(up(m["Sm"][ref]), levels=[0.5], colors="#2ca02c", linewidths=1.4)
-    ax[1].imshow(data["imgs"][ev]); ax[1].set_title(f"clean view {ev}" + "\nthe green surface is visible here", fontsize=9)
+    ax[1].imshow(data["imgs"][ev]); ax[1].set_title(f"clean view {ev}" + "\nthe green surface is visible here", fontsize=10)
     # the observed sphere's surface in the evidence view: pixels of view ev that see the Sm pixels of the reference view
     seen_m, _, _ = H.support_matrix(data["depths"], data["K_dep"], data["E"])
     Pw = H.backproject(data["depths"][ref], data["K_dep"][ref], data["E"][ref])
@@ -78,11 +78,11 @@ def main():
         ax[2 + k].contour(m["U"][ref].astype(float), levels=[0.5], colors="#d62728", linewidths=1.0)
         ax[2 + k].contour(m["Sm"][ref].astype(float), levels=[0.5], colors="#2ca02c", linewidths=1.0)
         suf = name.split("_", 1)[1] if "_" in name else ""
-        ax[2 + k].set_title(f"{LABEL.get('_' + suf if suf else '', name)}\nAUROC {aur[name][0]:.2f} vs clean, {aur[name][1]:.2f} matched", fontsize=8.5)
+        ax[2 + k].set_title(f"{LABEL.get('_' + suf if suf else '', name)}\nAUROC {aur[name][0]:.2f} vs clean, {aur[name][1]:.2f} matched", fontsize=10)
     for x in ax:
         x.axis("off")
     fig.text(0.5, 0.01, "red: hidden in every view (imagined).  green: hidden in this view, visible in a clean view (observed, filled). "
-             "Same fill, size and depth; a per-image score cannot tell them apart.", ha="center", fontsize=8.5)
+             "Same fill, size and depth; a per-image score cannot tell them apart.", ha="center", fontsize=9.5)
     plt.tight_layout(rect=(0, 0.06, 1, 0.98))
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     fig.savefig(a.out + ".pdf"); fig.savefig(a.out + ".png", dpi=150)
