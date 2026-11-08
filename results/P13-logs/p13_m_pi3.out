@@ -1,0 +1,84 @@
+
+##### stage matched 2026-11-08 11:43:51
+== P11-matched: models ['pi3_oiamatch', 'pi3_oiamatchpatch', 'pi3_oiamatchself', 'pi3_oiamatchselfpatch'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"]}
+resuming: 8208 rows already in /home/hallu/results/P11-matched/P11-matched.csv
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[pi3_oiamatch] head from /home/hallu/checkpoints/pi3_oiamatch.pt (step 1500, val-auroc 0.804)
+[pi3_oiamatch] 37  auroc=0.996 auroc_m=0.809 cur=0.000 cur_m=0.390 patch=0.972  ev1lo=0.774  24s
+[pi3_oiamatch] 38  auroc=0.999 auroc_m=0.847 cur=0.000 cur_m=0.395 patch=0.983  ev1lo=0.848  43s
+[pi3_oiamatch] 40  auroc=0.998 auroc_m=0.750 cur=0.000 cur_m=0.499 patch=0.996  ev1lo=0.767  54s
+[pi3_oiamatch] 43  auroc=0.999 auroc_m=0.855 cur=0.000 cur_m=0.380 patch=0.988  ev1lo=0.794  70s
+[pi3_oiamatch] 56  auroc=0.999 auroc_m=0.853 cur=0.000 cur_m=0.336 patch=0.984  ev1lo=0.893  90s
+[pi3_oiamatch] 59  auroc=0.998 auroc_m=0.751 cur=0.000 cur_m=0.487 patch=0.991  ev1lo=0.697  110s
+[pi3_oiamatch] 66  auroc=0.997 auroc_m=0.742 cur=0.002 cur_m=0.460 patch=0.972  ev1lo=0.521  130s
+[pi3_oiamatch] 67  auroc=0.997 auroc_m=0.538 cur=0.001 cur_m=0.725 patch=0.996  ev1lo=0.543  150s
+[pi3_oiamatch] 82  auroc=0.995 auroc_m=0.796 cur=0.004 cur_m=0.374 patch=0.976  ev1lo=0.798  170s
+[pi3_oiamatch] 86  auroc=0.996 auroc_m=0.625 cur=0.001 cur_m=0.664 patch=0.993  ev1lo=0.585  189s
+[pi3_oiamatch] 106  auroc=0.999 auroc_m=0.924 cur=0.000 cur_m=0.195 patch=0.986  ev1lo=0.929  209s
+[pi3_oiamatch] 117  auroc=0.999 auroc_m=0.834 cur=0.000 cur_m=0.288 patch=0.991  ev1lo=0.855  229s
+   pi3_oiamatch: 270s
+resuming: 8802 rows already in /home/hallu/results/P11-matched/P11-matched.csv
+[pi3_oiamatchpatch] head from /home/hallu/checkpoints/pi3_oiamatchpatch.pt (step 1500, val-auroc 0.390)
+[pi3_oiamatchpatch] 3  auroc=1.000 auroc_m=0.478 cur=0.000 cur_m=0.815 patch=1.000  ev1lo=0.509  19s
+[pi3_oiamatchpatch] 5  auroc=1.000 auroc_m=0.604 cur=0.000 cur_m=0.613 patch=1.000  ev1lo=0.647  39s
+[pi3_oiamatchpatch] 17  auroc=1.000 auroc_m=0.556 cur=0.000 cur_m=0.739 patch=1.000  ev1lo=0.522  58s
+[pi3_oiamatchpatch] 21  auroc=1.000 auroc_m=0.620 cur=0.000 cur_m=0.688 patch=1.000  ev1lo=0.617  76s
+[pi3_oiamatchpatch] 28  auroc=0.998 auroc_m=0.495 cur=0.000 cur_m=0.866 patch=0.998  ev1lo=0.378  95s
+[pi3_oiamatchpatch] 35  auroc=1.000 auroc_m=0.797 cur=0.000 cur_m=0.445 patch=0.999  ev1lo=0.816  115s
+[pi3_oiamatchpatch] 37  auroc=0.999 auroc_m=0.469 cur=0.000 cur_m=0.803 patch=0.999  ev1lo=0.518  134s
+[pi3_oiamatchpatch] 38  auroc=1.000 auroc_m=0.618 cur=0.000 cur_m=0.678 patch=1.000  ev1lo=0.613  152s
+[pi3_oiamatchpatch] 40  auroc=0.998 auroc_m=0.647 cur=0.000 cur_m=0.621 patch=0.998  ev1lo=0.609  162s
+[pi3_oiamatchpatch] 43  auroc=1.000 auroc_m=0.733 cur=0.000 cur_m=0.528 patch=1.000  ev1lo=0.723  182s
+[pi3_oiamatchpatch] 56  auroc=1.000 auroc_m=0.611 cur=0.000 cur_m=0.646 patch=1.000  ev1lo=0.711  203s
+[pi3_oiamatchpatch] 59  auroc=0.999 auroc_m=0.615 cur=0.000 cur_m=0.671 patch=0.998  ev1lo=0.529  223s
+[pi3_oiamatchpatch] 66  auroc=1.000 auroc_m=0.532 cur=0.000 cur_m=0.684 patch=1.000  ev1lo=0.437  238s
+[pi3_oiamatchpatch] 67  auroc=1.000 auroc_m=0.480 cur=0.000 cur_m=0.803 patch=1.000  ev1lo=0.518  257s
+[pi3_oiamatchpatch] 82  auroc=0.997 auroc_m=0.494 cur=0.000 cur_m=0.805 patch=0.997  ev1lo=0.373  276s
+[pi3_oiamatchpatch] 86  auroc=0.999 auroc_m=0.471 cur=0.000 cur_m=0.806 patch=0.999  ev1lo=0.405  296s
+[pi3_oiamatchpatch] 106  auroc=1.000 auroc_m=0.621 cur=0.000 cur_m=0.670 patch=1.000  ev1lo=0.740  316s
+[pi3_oiamatchpatch] 117  auroc=1.000 auroc_m=0.710 cur=0.000 cur_m=0.538 patch=1.000  ev1lo=0.676  337s
+   pi3_oiamatchpatch: 355s
+resuming: 9702 rows already in /home/hallu/results/P11-matched/P11-matched.csv
+[pi3_oiamatchself] head from /home/hallu/checkpoints/pi3_oiamatchself.pt (step 1500, val-auroc 0.755)
+[pi3_oiamatchself] 3  auroc=0.998 auroc_m=0.757 cur=0.001 cur_m=0.503 patch=0.994  ev1lo=0.682  20s
+[pi3_oiamatchself] 5  auroc=0.999 auroc_m=0.780 cur=0.000 cur_m=0.402 patch=0.994  ev1lo=0.763  37s
+[pi3_oiamatchself] 17  auroc=0.999 auroc_m=0.780 cur=0.000 cur_m=0.466 patch=0.994  ev1lo=0.753  56s
+[pi3_oiamatchself] 21  auroc=0.999 auroc_m=0.825 cur=0.001 cur_m=0.353 patch=0.991  ev1lo=0.803  75s
+[pi3_oiamatchself] 28  auroc=0.992 auroc_m=0.750 cur=0.009 cur_m=0.476 patch=0.981  ev1lo=0.727  95s
+[pi3_oiamatchself] 35  auroc=0.998 auroc_m=0.814 cur=0.001 cur_m=0.449 patch=0.991  ev1lo=0.798  115s
+[pi3_oiamatchself] 37  auroc=0.997 auroc_m=0.726 cur=0.000 cur_m=0.500 patch=0.987  ev1lo=0.668  134s
+[pi3_oiamatchself] 38  auroc=0.999 auroc_m=0.810 cur=0.000 cur_m=0.454 patch=0.991  ev1lo=0.807  156s
+[pi3_oiamatchself] 40  auroc=0.998 auroc_m=0.741 cur=0.000 cur_m=0.534 patch=0.996  ev1lo=0.713  167s
+[pi3_oiamatchself] 43  auroc=0.999 auroc_m=0.856 cur=0.000 cur_m=0.380 patch=0.989  ev1lo=0.773  183s
+[pi3_oiamatchself] 56  auroc=0.999 auroc_m=0.890 cur=0.002 cur_m=0.252 patch=0.992  ev1lo=0.927  199s
+[pi3_oiamatchself] 59  auroc=0.997 auroc_m=0.747 cur=0.000 cur_m=0.475 patch=0.991  ev1lo=0.707  216s
+[pi3_oiamatchself] 66  auroc=0.997 auroc_m=0.811 cur=0.002 cur_m=0.356 patch=0.985  ev1lo=0.636  228s
+[pi3_oiamatchself] 67  auroc=0.996 auroc_m=0.486 cur=0.002 cur_m=0.707 patch=0.997  ev1lo=0.495  244s
+[pi3_oiamatchself] 82  auroc=0.992 auroc_m=0.796 cur=0.006 cur_m=0.432 patch=0.973  ev1lo=0.790  260s
+[pi3_oiamatchself] 86  auroc=0.995 auroc_m=0.684 cur=0.001 cur_m=0.606 patch=0.990  ev1lo=0.692  276s
+[pi3_oiamatchself] 106  auroc=0.999 auroc_m=0.896 cur=0.000 cur_m=0.258 patch=0.990  ev1lo=0.873  290s
+[pi3_oiamatchself] 117  auroc=0.999 auroc_m=0.781 cur=0.000 cur_m=0.408 patch=0.995  ev1lo=0.824  306s
+   pi3_oiamatchself: 325s
+resuming: 10368 rows already in /home/hallu/results/P11-matched/P11-matched.csv
+[pi3_oiamatchselfpatch] head from /home/hallu/checkpoints/pi3_oiamatchselfpatch.pt (step 1500, val-auroc 0.689)
+[pi3_oiamatchselfpatch] 3  auroc=1.000 auroc_m=0.436 cur=0.000 cur_m=0.804 patch=1.000  ev1lo=0.499  19s
+[pi3_oiamatchselfpatch] 5  auroc=1.000 auroc_m=0.579 cur=0.000 cur_m=0.728 patch=1.000  ev1lo=0.584  38s
+[pi3_oiamatchselfpatch] 17  auroc=0.999 auroc_m=0.591 cur=0.000 cur_m=0.801 patch=0.999  ev1lo=0.563  58s
+[pi3_oiamatchselfpatch] 21  auroc=1.000 auroc_m=0.657 cur=0.000 cur_m=0.681 patch=1.000  ev1lo=0.648  74s
+[pi3_oiamatchselfpatch] 28  auroc=0.998 auroc_m=0.519 cur=0.000 cur_m=0.821 patch=0.997  ev1lo=0.425  91s
+[pi3_oiamatchselfpatch] 35  auroc=1.000 auroc_m=0.633 cur=0.000 cur_m=0.531 patch=0.999  ev1lo=0.650  109s
+[pi3_oiamatchselfpatch] 37  auroc=0.999 auroc_m=0.612 cur=0.000 cur_m=0.684 patch=0.999  ev1lo=0.679  125s
+[pi3_oiamatchselfpatch] 38  auroc=1.000 auroc_m=0.637 cur=0.000 cur_m=0.537 patch=1.000  ev1lo=0.615  142s
+[pi3_oiamatchselfpatch] 40  auroc=0.999 auroc_m=0.588 cur=0.000 cur_m=0.585 patch=0.999  ev1lo=0.591  150s
+[pi3_oiamatchselfpatch] 43  auroc=1.000 auroc_m=0.793 cur=0.000 cur_m=0.416 patch=0.999  ev1lo=0.751  164s
+[pi3_oiamatchselfpatch] 56  auroc=1.000 auroc_m=0.569 cur=0.000 cur_m=0.665 patch=1.000  ev1lo=0.624  179s
+[pi3_oiamatchselfpatch] 59  auroc=0.999 auroc_m=0.595 cur=0.000 cur_m=0.688 patch=0.998  ev1lo=0.499  194s
+[pi3_oiamatchselfpatch] 66  auroc=1.000 auroc_m=0.618 cur=0.000 cur_m=0.639 patch=1.000  ev1lo=0.494  208s
+[pi3_oiamatchselfpatch] 67  auroc=0.999 auroc_m=0.458 cur=0.002 cur_m=0.874 patch=1.000  ev1lo=0.522  223s
+[pi3_oiamatchselfpatch] 82  auroc=0.997 auroc_m=0.572 cur=0.002 cur_m=0.779 patch=0.996  ev1lo=0.503  240s
+[pi3_oiamatchselfpatch] 86  auroc=0.999 auroc_m=0.450 cur=0.000 cur_m=0.802 patch=0.999  ev1lo=0.464  257s
+[pi3_oiamatchselfpatch] 106  auroc=1.000 auroc_m=0.634 cur=0.000 cur_m=0.667 patch=1.000  ev1lo=0.662  276s
+[pi3_oiamatchselfpatch] 117  auroc=1.000 auroc_m=0.740 cur=0.000 cur_m=0.460 patch=1.000  ev1lo=0.719  292s
+   pi3_oiamatchselfpatch: 310s
+== P13_m_pi3_DONE Sun Nov  8 12:05:01 UTC 2026

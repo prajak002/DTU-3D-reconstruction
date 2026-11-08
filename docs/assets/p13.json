@@ -1,0 +1,545 @@
+{
+ "gate9": {
+  "GT placement": {
+   "control": [
+    0.5839,
+    0.5429,
+    0.6261,
+    18
+   ],
+   "head": [
+    0.7499,
+    0.6994,
+    0.7969,
+    18
+   ],
+   "old": [
+    0.763,
+    0.7161,
+    0.806,
+    18
+   ],
+   "ev1lo": [
+    0.713,
+    0.6649,
+    0.7605,
+    18
+   ],
+   "ev1lo_old": [
+    0.7249,
+    0.6819,
+    0.7662,
+    18
+   ],
+   "vs_native": [
+    0.1991,
+    5e-05
+   ],
+   "vs_control": [
+    0.166,
+    5e-05
+   ],
+   "clauses": {
+    "p": true,
+    "a": false,
+    "b": true,
+    "c": true
+   },
+   "passed": false
+  },
+  "label-free": {
+   "control": [
+    0.5972,
+    0.5552,
+    0.6376,
+    18
+   ],
+   "head": [
+    0.7578,
+    0.7177,
+    0.797,
+    18
+   ],
+   "old": [
+    0.754,
+    0.7177,
+    0.7897,
+    18
+   ],
+   "ev1lo": [
+    0.7147,
+    0.6731,
+    0.7561,
+    18
+   ],
+   "ev1lo_old": [
+    0.7073,
+    0.6682,
+    0.7474,
+    18
+   ],
+   "vs_native": [
+    0.207,
+    5e-05
+   ],
+   "vs_control": [
+    0.1606,
+    5e-05
+   ],
+   "clauses": {
+    "p": true,
+    "a": false,
+    "b": true,
+    "c": true
+   },
+   "passed": false
+  }
+ },
+ "gate10": {
+  "DTU:3:vggt": {
+   "share": 0.01349,
+   "qualifies": true,
+   "native": 0.7972,
+   "head": 0.8145,
+   "diff": [
+    0.0173,
+    0.28969
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "DTU:3:pi3x": {
+   "share": 0.01089,
+   "qualifies": true,
+   "native": 0.6825,
+   "head": 0.7762,
+   "diff": [
+    0.0938,
+    0.0004
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU:3:pi3": {
+   "share": 0.01143,
+   "qualifies": true,
+   "native": 0.6581,
+   "head": 0.7587,
+   "diff": [
+    0.1006,
+    0.0038
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU:3:da3": {
+   "share": 0.017,
+   "qualifies": true,
+   "native": 0.6054,
+   "head": 0.7069,
+   "diff": [
+    0.1015,
+    0.00025
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU:5:vggt": {
+   "share": 0.00815,
+   "qualifies": true,
+   "native": 0.797,
+   "head": 0.8957,
+   "diff": [
+    0.0987,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU:5:pi3x": {
+   "share": 0.00528,
+   "qualifies": true,
+   "native": 0.6959,
+   "head": 0.8224,
+   "diff": [
+    0.1265,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU:5:pi3": {
+   "share": 0.00637,
+   "qualifies": true,
+   "native": 0.7425,
+   "head": 0.849,
+   "diff": [
+    0.1066,
+    0.0002
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU:5:da3": {
+   "share": 0.00691,
+   "qualifies": true,
+   "native": 0.6748,
+   "head": 0.7746,
+   "diff": [
+    0.0998,
+    0.00025
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU:10:vggt": {
+   "share": 0.00358,
+   "qualifies": false,
+   "native": 0.7822,
+   "head": 0.9176,
+   "diff": [
+    0.1354,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "DTU:10:pi3x": {
+   "share": 0.00167,
+   "qualifies": false,
+   "native": 0.7104,
+   "head": 0.8943,
+   "diff": [
+    0.184,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "DTU:10:pi3": {
+   "share": 0.00203,
+   "qualifies": false,
+   "native": 0.797,
+   "head": 0.8912,
+   "diff": [
+    0.0942,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "DTU:10:da3": {
+   "share": 0.00226,
+   "qualifies": false,
+   "native": 0.7469,
+   "head": 0.8862,
+   "diff": [
+    0.1393,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "ETH3D:3:vggt": {
+   "share": 0.06698,
+   "qualifies": true,
+   "native": 0.5512,
+   "head": 0.616,
+   "diff": [
+    0.0648,
+    0.02655
+   ],
+   "holds": true,
+   "n_scenes": 12
+  },
+  "ETH3D:3:pi3x": {
+   "share": 0.07995,
+   "qualifies": true,
+   "native": 0.6372,
+   "head": 0.6395,
+   "diff": [
+    0.0023,
+    0.952
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:5:vggt": {
+   "share": 0.06688,
+   "qualifies": true,
+   "native": 0.5795,
+   "head": 0.6555,
+   "diff": [
+    0.076,
+    0.0023
+   ],
+   "holds": true,
+   "n_scenes": 12
+  },
+  "ETH3D:5:pi3x": {
+   "share": 0.06561,
+   "qualifies": true,
+   "native": 0.6572,
+   "head": 0.6597,
+   "diff": [
+    0.0026,
+    0.86391
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:10:vggt": {
+   "share": 0.0386,
+   "qualifies": true,
+   "native": 0.604,
+   "head": 0.684,
+   "diff": [
+    0.0799,
+    0.00385
+   ],
+   "holds": true,
+   "n_scenes": 12
+  },
+  "ETH3D:10:pi3x": {
+   "share": 0.05488,
+   "qualifies": true,
+   "native": 0.6431,
+   "head": 0.676,
+   "diff": [
+    0.0329,
+    0.22194
+   ],
+   "holds": false,
+   "n_scenes": 12
+  }
+ },
+ "gate11": {
+  "DTU:vggt:0.6": {
+   "native": 0.821,
+   "head": 0.7986,
+   "comb": 0.8073,
+   "diff": [
+    -0.0137,
+    5e-05
+   ],
+   "all_points": 0.7551,
+   "n_scenes": 18
+  },
+  "DTU:vggt:0.7": {
+   "native": 0.8374,
+   "head": 0.821,
+   "comb": 0.8302,
+   "diff": [
+    -0.0071,
+    0.00065
+   ],
+   "all_points": 0.7551,
+   "n_scenes": 18
+  },
+  "DTU:vggt:0.8": {
+   "native": 0.8288,
+   "head": 0.8171,
+   "comb": 0.8288,
+   "diff": [
+    0.0,
+    0.972
+   ],
+   "all_points": 0.7551,
+   "n_scenes": 18
+  },
+  "DTU:vggt:0.9": {
+   "native": 0.7977,
+   "head": 0.79,
+   "comb": 0.7984,
+   "diff": [
+    0.0007,
+    0.0719
+   ],
+   "all_points": 0.7551,
+   "n_scenes": 18
+  },
+  "DTU:pi3x:0.6": {
+   "native": 0.4255,
+   "head": 0.4374,
+   "comb": 0.4328,
+   "diff": [
+    0.0073,
+    0.01165
+   ],
+   "all_points": 0.3817,
+   "n_scenes": 18
+  },
+  "DTU:pi3x:0.7": {
+   "native": 0.4242,
+   "head": 0.435,
+   "comb": 0.432,
+   "diff": [
+    0.0078,
+    0.0001
+   ],
+   "all_points": 0.3817,
+   "n_scenes": 18
+  },
+  "DTU:pi3x:0.8": {
+   "native": 0.4184,
+   "head": 0.4222,
+   "comb": 0.4236,
+   "diff": [
+    0.0052,
+    0.0001
+   ],
+   "all_points": 0.3817,
+   "n_scenes": 18
+  },
+  "DTU:pi3x:0.9": {
+   "native": 0.4037,
+   "head": 0.4032,
+   "comb": 0.4057,
+   "diff": [
+    0.0021,
+    0.0012
+   ],
+   "all_points": 0.3817,
+   "n_scenes": 18
+  },
+  "DTU:pi3:0.6": {
+   "native": 0.4775,
+   "head": 0.4802,
+   "comb": 0.4799,
+   "diff": [
+    0.0025,
+    1.0
+   ],
+   "all_points": 0.4087,
+   "n_scenes": 2
+  },
+  "DTU:pi3:0.7": {
+   "native": 0.4721,
+   "head": 0.4812,
+   "comb": 0.4806,
+   "diff": [
+    0.0085,
+    0.49238
+   ],
+   "all_points": 0.4087,
+   "n_scenes": 2
+  },
+  "DTU:pi3:0.8": {
+   "native": 0.4582,
+   "head": 0.4613,
+   "comb": 0.4629,
+   "diff": [
+    0.0047,
+    0.49238
+   ],
+   "all_points": 0.4087,
+   "n_scenes": 2
+  },
+  "DTU:pi3:0.9": {
+   "native": 0.4353,
+   "head": 0.4341,
+   "comb": 0.4365,
+   "diff": [
+    0.0012,
+    0.49238
+   ],
+   "all_points": 0.4087,
+   "n_scenes": 2
+  },
+  "ETH3D:vggt:0.6": {
+   "native": 0.3444,
+   "head": 0.3385,
+   "comb": 0.3476,
+   "diff": [
+    0.0032,
+    0.64417
+   ],
+   "all_points": 0.3223,
+   "n_scenes": 12
+  },
+  "ETH3D:vggt:0.7": {
+   "native": 0.3431,
+   "head": 0.3361,
+   "comb": 0.3456,
+   "diff": [
+    0.0024,
+    0.40398
+   ],
+   "all_points": 0.3223,
+   "n_scenes": 12
+  },
+  "ETH3D:vggt:0.8": {
+   "native": 0.3387,
+   "head": 0.3329,
+   "comb": 0.3412,
+   "diff": [
+    0.0025,
+    0.38633
+   ],
+   "all_points": 0.3223,
+   "n_scenes": 12
+  },
+  "ETH3D:vggt:0.9": {
+   "native": 0.3328,
+   "head": 0.3287,
+   "comb": 0.3332,
+   "diff": [
+    0.0004,
+    0.82641
+   ],
+   "all_points": 0.3223,
+   "n_scenes": 12
+  },
+  "ETH3D:pi3x:0.6": {
+   "native": 0.3435,
+   "head": 0.333,
+   "comb": 0.3437,
+   "diff": [
+    0.0001,
+    0.97925
+   ],
+   "all_points": 0.3108,
+   "n_scenes": 12
+  },
+  "ETH3D:pi3x:0.7": {
+   "native": 0.3427,
+   "head": 0.3289,
+   "comb": 0.34,
+   "diff": [
+    -0.0027,
+    0.42768
+   ],
+   "all_points": 0.3108,
+   "n_scenes": 12
+  },
+  "ETH3D:pi3x:0.8": {
+   "native": 0.3367,
+   "head": 0.3232,
+   "comb": 0.3338,
+   "diff": [
+    -0.0029,
+    0.22879
+   ],
+   "all_points": 0.3108,
+   "n_scenes": 12
+  },
+  "ETH3D:pi3x:0.9": {
+   "native": 0.3274,
+   "head": 0.3175,
+   "comb": 0.3252,
+   "diff": [
+    -0.0023,
+    0.16389
+   ],
+   "all_points": 0.3108,
+   "n_scenes": 12
+  }
+ },
+ "gate11_pass": {
+  "backbones_passing": {
+   "DTU": 1,
+   "ETH3D": 0
+  },
+  "passed": false
+ }
+}

@@ -1,0 +1,90 @@
+== P13_EV_TRAIN_DONE Sun Nov  8 12:21:45 UTC 2026
+
+##### stage matched 2026-11-08 12:21:45
+== P11-matched: models ['vggt_oiamatchev', 'vggt_oiamatchevpatch', 'vggt_oiamatchselfev', 'vggt_oiamatchselfevpatch'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"]}
+resuming: 10692 rows already in /home/hallu/results/P11-matched/P11-matched.csv
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[vggt_oiamatchev] head from /home/hallu/checkpoints/vggt_oiamatchev.pt (step 2500, val-auroc 0.717)
+[vggt_oiamatchev] 3  auroc=0.996 auroc_m=0.577 cur=0.000 cur_m=0.654 patch=0.995  ev1lo=0.540  11s
+[vggt_oiamatchev] 5  auroc=0.999 auroc_m=0.680 cur=0.000 cur_m=0.479 patch=0.993  ev1lo=0.680  19s
+[vggt_oiamatchev] 17  auroc=0.999 auroc_m=0.838 cur=0.000 cur_m=0.374 patch=0.996  ev1lo=0.831  26s
+[vggt_oiamatchev] 21  auroc=0.999 auroc_m=0.785 cur=0.000 cur_m=0.457 patch=0.996  ev1lo=0.720  34s
+[vggt_oiamatchev] 28  auroc=0.999 auroc_m=0.834 cur=0.000 cur_m=0.348 patch=0.993  ev1lo=0.784  42s
+[vggt_oiamatchev] 35  auroc=0.999 auroc_m=0.753 cur=0.000 cur_m=0.506 patch=0.995  ev1lo=0.683  50s
+[vggt_oiamatchev] 37  auroc=0.999 auroc_m=0.872 cur=0.000 cur_m=0.327 patch=0.989  ev1lo=0.879  58s
+[vggt_oiamatchev] 38  auroc=0.998 auroc_m=0.701 cur=0.000 cur_m=0.450 patch=0.992  ev1lo=0.623  66s
+[vggt_oiamatchev] 40  auroc=0.997 auroc_m=0.663 cur=0.000 cur_m=0.523 patch=0.996  ev1lo=0.691  69s
+[vggt_oiamatchev] 43  auroc=1.000 auroc_m=0.903 cur=0.000 cur_m=0.191 patch=0.994  ev1lo=0.878  76s
+[vggt_oiamatchev] 56  auroc=1.000 auroc_m=0.704 cur=0.000 cur_m=0.456 patch=0.997  ev1lo=0.691  84s
+[vggt_oiamatchev] 59  auroc=0.997 auroc_m=0.675 cur=0.000 cur_m=0.530 patch=0.988  ev1lo=0.585  91s
+[vggt_oiamatchev] 66  auroc=1.000 auroc_m=0.845 cur=0.000 cur_m=0.363 patch=0.996  ev1lo=0.666  98s
+[vggt_oiamatchev] 67  auroc=0.999 auroc_m=0.508 cur=0.000 cur_m=0.674 patch=0.999  ev1lo=0.481  105s
+[vggt_oiamatchev] 82  auroc=0.997 auroc_m=0.768 cur=0.001 cur_m=0.354 patch=0.980  ev1lo=0.784  113s
+[vggt_oiamatchev] 86  auroc=0.999 auroc_m=0.782 cur=0.000 cur_m=0.496 patch=0.996  ev1lo=0.762  121s
+[vggt_oiamatchev] 106  auroc=1.000 auroc_m=0.805 cur=0.000 cur_m=0.390 patch=0.997  ev1lo=0.764  128s
+[vggt_oiamatchev] 117  auroc=0.999 auroc_m=0.829 cur=0.000 cur_m=0.184 patch=0.994  ev1lo=0.826  136s
+   vggt_oiamatchev: 170s
+resuming: 11016 rows already in /home/hallu/results/P11-matched/P11-matched.csv
+[vggt_oiamatchevpatch] head from /home/hallu/checkpoints/vggt_oiamatchevpatch.pt (step 2500, val-auroc 0.483)
+[vggt_oiamatchevpatch] 3  auroc=1.000 auroc_m=0.439 cur=0.000 cur_m=0.820 patch=1.000  ev1lo=0.500  9s
+[vggt_oiamatchevpatch] 5  auroc=1.000 auroc_m=0.584 cur=0.000 cur_m=0.614 patch=1.000  ev1lo=0.593  17s
+[vggt_oiamatchevpatch] 17  auroc=1.000 auroc_m=0.625 cur=0.000 cur_m=0.748 patch=1.000  ev1lo=0.586  25s
+[vggt_oiamatchevpatch] 21  auroc=1.000 auroc_m=0.647 cur=0.000 cur_m=0.650 patch=1.000  ev1lo=0.618  33s
+[vggt_oiamatchevpatch] 28  auroc=0.998 auroc_m=0.520 cur=0.000 cur_m=0.864 patch=0.998  ev1lo=0.386  41s
+[vggt_oiamatchevpatch] 35  auroc=1.000 auroc_m=0.735 cur=0.000 cur_m=0.555 patch=1.000  ev1lo=0.734  49s
+[vggt_oiamatchevpatch] 37  auroc=0.999 auroc_m=0.526 cur=0.000 cur_m=0.740 patch=0.999  ev1lo=0.610  57s
+[vggt_oiamatchevpatch] 38  auroc=1.000 auroc_m=0.590 cur=0.000 cur_m=0.653 patch=1.000  ev1lo=0.567  65s
+[vggt_oiamatchevpatch] 40  auroc=0.998 auroc_m=0.568 cur=0.000 cur_m=0.625 patch=0.998  ev1lo=0.569  69s
+[vggt_oiamatchevpatch] 43  auroc=1.000 auroc_m=0.797 cur=0.000 cur_m=0.398 patch=0.999  ev1lo=0.803  76s
+[vggt_oiamatchevpatch] 56  auroc=1.000 auroc_m=0.611 cur=0.000 cur_m=0.629 patch=1.000  ev1lo=0.689  84s
+[vggt_oiamatchevpatch] 59  auroc=0.999 auroc_m=0.604 cur=0.000 cur_m=0.696 patch=0.998  ev1lo=0.501  92s
+[vggt_oiamatchevpatch] 66  auroc=1.000 auroc_m=0.574 cur=0.000 cur_m=0.629 patch=1.000  ev1lo=0.479  99s
+[vggt_oiamatchevpatch] 67  auroc=1.000 auroc_m=0.486 cur=0.000 cur_m=0.776 patch=1.000  ev1lo=0.515  107s
+[vggt_oiamatchevpatch] 82  auroc=0.997 auroc_m=0.474 cur=0.001 cur_m=0.806 patch=0.996  ev1lo=0.375  114s
+[vggt_oiamatchevpatch] 86  auroc=0.999 auroc_m=0.432 cur=0.000 cur_m=0.818 patch=1.000  ev1lo=0.392  123s
+[vggt_oiamatchevpatch] 106  auroc=1.000 auroc_m=0.638 cur=0.000 cur_m=0.657 patch=1.000  ev1lo=0.716  130s
+[vggt_oiamatchevpatch] 117  auroc=1.000 auroc_m=0.702 cur=0.000 cur_m=0.516 patch=1.000  ev1lo=0.688  138s
+   vggt_oiamatchevpatch: 154s
+resuming: 11340 rows already in /home/hallu/results/P11-matched/P11-matched.csv
+[vggt_oiamatchselfev] head from /home/hallu/checkpoints/vggt_oiamatchselfev.pt (step 2500, val-auroc 0.605)
+[vggt_oiamatchselfev] 3  auroc=0.999 auroc_m=0.664 cur=0.000 cur_m=0.562 patch=0.996  ev1lo=0.607  8s
+[vggt_oiamatchselfev] 5  auroc=0.999 auroc_m=0.702 cur=0.000 cur_m=0.421 patch=0.991  ev1lo=0.683  15s
+[vggt_oiamatchselfev] 17  auroc=0.999 auroc_m=0.829 cur=0.000 cur_m=0.376 patch=0.996  ev1lo=0.829  23s
+[vggt_oiamatchselfev] 21  auroc=0.999 auroc_m=0.719 cur=0.000 cur_m=0.533 patch=0.998  ev1lo=0.647  30s
+[vggt_oiamatchselfev] 28  auroc=0.998 auroc_m=0.813 cur=0.000 cur_m=0.397 patch=0.991  ev1lo=0.780  38s
+[vggt_oiamatchselfev] 35  auroc=0.999 auroc_m=0.833 cur=0.000 cur_m=0.413 patch=0.990  ev1lo=0.754  46s
+[vggt_oiamatchselfev] 37  auroc=0.999 auroc_m=0.871 cur=0.000 cur_m=0.367 patch=0.989  ev1lo=0.863  54s
+[vggt_oiamatchselfev] 38  auroc=0.999 auroc_m=0.743 cur=0.000 cur_m=0.450 patch=0.992  ev1lo=0.659  64s
+[vggt_oiamatchselfev] 40  auroc=0.998 auroc_m=0.732 cur=0.000 cur_m=0.446 patch=0.995  ev1lo=0.729  68s
+[vggt_oiamatchselfev] 43  auroc=1.000 auroc_m=0.915 cur=0.000 cur_m=0.200 patch=0.997  ev1lo=0.890  76s
+[vggt_oiamatchselfev] 56  auroc=0.999 auroc_m=0.720 cur=0.000 cur_m=0.447 patch=0.996  ev1lo=0.705  85s
+[vggt_oiamatchselfev] 59  auroc=0.998 auroc_m=0.682 cur=0.000 cur_m=0.515 patch=0.993  ev1lo=0.621  96s
+[vggt_oiamatchselfev] 66  auroc=1.000 auroc_m=0.825 cur=0.000 cur_m=0.382 patch=0.994  ev1lo=0.650  105s
+[vggt_oiamatchselfev] 67  auroc=0.999 auroc_m=0.586 cur=0.001 cur_m=0.667 patch=0.998  ev1lo=0.539  114s
+[vggt_oiamatchselfev] 82  auroc=0.997 auroc_m=0.759 cur=0.001 cur_m=0.357 patch=0.983  ev1lo=0.769  126s
+[vggt_oiamatchselfev] 86  auroc=0.998 auroc_m=0.660 cur=0.000 cur_m=0.625 patch=0.998  ev1lo=0.632  138s
+[vggt_oiamatchselfev] 106  auroc=0.999 auroc_m=0.825 cur=0.000 cur_m=0.407 patch=0.995  ev1lo=0.764  147s
+[vggt_oiamatchselfev] 117  auroc=1.000 auroc_m=0.823 cur=0.000 cur_m=0.228 patch=0.994  ev1lo=0.811  154s
+   vggt_oiamatchselfev: 169s
+resuming: 11664 rows already in /home/hallu/results/P11-matched/P11-matched.csv
+[vggt_oiamatchselfevpatch] head from /home/hallu/checkpoints/vggt_oiamatchselfevpatch.pt (step 2500, val-auroc 0.407)
+[vggt_oiamatchselfevpatch] 3  auroc=1.000 auroc_m=0.404 cur=0.000 cur_m=0.804 patch=1.000  ev1lo=0.477  8s
+[vggt_oiamatchselfevpatch] 5  auroc=1.000 auroc_m=0.601 cur=0.000 cur_m=0.617 patch=1.000  ev1lo=0.607  16s
+[vggt_oiamatchselfevpatch] 17  auroc=1.000 auroc_m=0.610 cur=0.000 cur_m=0.748 patch=1.000  ev1lo=0.593  25s
+[vggt_oiamatchselfevpatch] 21  auroc=1.000 auroc_m=0.614 cur=0.000 cur_m=0.686 patch=1.000  ev1lo=0.593  32s
+[vggt_oiamatchselfevpatch] 28  auroc=0.999 auroc_m=0.541 cur=0.000 cur_m=0.841 patch=0.999  ev1lo=0.429  41s
+[vggt_oiamatchselfevpatch] 35  auroc=1.000 auroc_m=0.676 cur=0.000 cur_m=0.583 patch=0.999  ev1lo=0.609  49s
+[vggt_oiamatchselfevpatch] 37  auroc=0.999 auroc_m=0.638 cur=0.000 cur_m=0.670 patch=0.998  ev1lo=0.708  58s
+[vggt_oiamatchselfevpatch] 38  auroc=1.000 auroc_m=0.607 cur=0.000 cur_m=0.563 patch=1.000  ev1lo=0.592  67s
+[vggt_oiamatchselfevpatch] 40  auroc=0.999 auroc_m=0.517 cur=0.000 cur_m=0.630 patch=0.999  ev1lo=0.522  72s
+[vggt_oiamatchselfevpatch] 43  auroc=1.000 auroc_m=0.799 cur=0.000 cur_m=0.395 patch=1.000  ev1lo=0.775  79s
+[vggt_oiamatchselfevpatch] 56  auroc=1.000 auroc_m=0.581 cur=0.000 cur_m=0.666 patch=1.000  ev1lo=0.701  87s
+[vggt_oiamatchselfevpatch] 59  auroc=0.999 auroc_m=0.619 cur=0.000 cur_m=0.666 patch=0.998  ev1lo=0.551  95s
+[vggt_oiamatchselfevpatch] 66  auroc=1.000 auroc_m=0.568 cur=0.000 cur_m=0.600 patch=0.999  ev1lo=0.481  101s
+[vggt_oiamatchselfevpatch] 67  auroc=0.999 auroc_m=0.522 cur=0.000 cur_m=0.833 patch=1.000  ev1lo=0.553  109s
+[vggt_oiamatchselfevpatch] 82  auroc=0.998 auroc_m=0.618 cur=0.001 cur_m=0.615 patch=0.996  ev1lo=0.592  117s
+[vggt_oiamatchselfevpatch] 86  auroc=0.998 auroc_m=0.445 cur=0.000 cur_m=0.753 patch=0.999  ev1lo=0.422  125s
+[vggt_oiamatchselfevpatch] 106  auroc=1.000 auroc_m=0.650 cur=0.000 cur_m=0.584 patch=1.000  ev1lo=0.679  133s
+[vggt_oiamatchselfevpatch] 117  auroc=1.000 auroc_m=0.769 cur=0.000 cur_m=0.362 patch=1.000  ev1lo=0.767  141s
+   vggt_oiamatchselfevpatch: 160s
+== P13_EV_DONE Sun Nov  8 12:32:48 UTC 2026

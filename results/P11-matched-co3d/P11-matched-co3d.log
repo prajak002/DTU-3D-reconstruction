@@ -34,3 +34,12 @@
 10:17:41    pi3x_oiamatchselflin: 145s
 10:20:05    pi3x_oiavisself: 144s
 10:22:28    pi3x_oiavisselfpatch: 143s
+11:43:52 == P11-matched-co3d: models ['pi3_oiamatch', 'pi3_oiamatchpatch', 'pi3_oiamatchself', 'pi3_oiamatchselfpatch', 'da3_oiamatch', 'da3_oiamatchpatch', 'da3_oiamatchself', 'da3_oiamatchselfpatch'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"], "dataset": "co3d"}
+11:49:29    pi3_oiamatch: 337s
+11:54:41    pi3_oiamatchpatch: 312s
+11:59:25    pi3_oiamatchself: 284s
+12:03:41    pi3_oiamatchselfpatch: 256s
+12:06:02    da3_oiamatch: 141s
+12:08:08    da3_oiamatchpatch: 126s
+12:10:07    da3_oiamatchself: 119s
+12:12:08    da3_oiamatchselfpatch: 121s

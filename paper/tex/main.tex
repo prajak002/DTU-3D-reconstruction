@@ -20,7 +20,7 @@
 }]
 
 \begin{abstract}
-Feed-forward 3D models reconstruct a scene from unposed photographs in one pass. Where no photograph shows a surface they invent one, and report it with the confidence of an observed surface. We build \bench{}, which hides a 3D region of the ground truth from every input view, and test five models on 18 DTU scans and 18 CO3Dv2 scenes: native confidence lets 24\% to 81\% of the invented geometry through a filter that keeps 90\% of the observed geometry (blur and noise fills). A matched split shows why. Against an identical patch that another view does see, confidence is at chance (\auroc{} 0.43 to 0.55): it reads the patch, not the missing support. The information is in the model's cross-view tokens. A small \emph{support head} (1.7 to 3.3\,M parameters), trained on the backbone's own multi-view agreement with no ground truth, flags single-view geometry at \auroc{} 0.93 to 0.99 on four datasets it never saw (native confidence: 0.55 to 0.89), and separates the matched patches where a per-image control cannot.
+Feed-forward 3D models reconstruct a scene from unposed photographs in one pass. Where no photograph shows a surface they invent one, and report it with the confidence of an observed surface. We build \bench{}, which hides a 3D region of the ground truth from every input view, and test five models on 18 DTU scans and 18 CO3Dv2 scenes: native confidence lets 24\% to 81\% of the invented geometry through a filter that keeps 90\% of the observed geometry (blur and noise fills). A matched split shows why. Against an identical patch that another view does see, confidence is at chance (\auroc{} 0.43 to 0.55): it reads the patch, not the missing support. The information is in the model's cross-view tokens. A small \emph{support head} (1.7 to 3.3\,M parameters), trained on the backbone's own multi-view agreement with no ground truth, flags single-view geometry at \auroc{} 0.93 to 0.99 on four datasets it never saw (native confidence: 0.55 to 0.89), and separates the matched patches where a per-image control cannot. Against dense scans of real scenes it finds surfaces no input view saw better than native confidence in 10 of 14 pre-registered settings.
 \end{abstract}
 
 %------------------------------------------------------------------------
@@ -193,22 +193,22 @@ The per-image control falls below chance on CO3Dv2 and ETH3D: without cross-view
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_evidence}
-\caption{\textbf{The matched head reads evidence.} \auroc$_m$ of the imagined against the observed patch, by how many clean views see the observed one. Native confidence and the per-image control stay near chance; the head improves with evidence.}
+\caption{\textbf{The matched head reads evidence.} \auroc$_m$ of the imagined against the observed patch, by how many clean views see the observed one (mean of four backbones). Native confidence and the per-image control stay near chance; the head improves with evidence. Dashed: the pre-registered 0.75 and the one-view fine-tune.}
 \label{fig:evidence}
 \end{figure}
 
 \paragraph{The matched head.}
-Trained on the three-patch protocol (Figure~\ref{fig:evidence}), the per-image control stays at 0.56 to 0.61 \auroc$_m$ (pre-registered bound 0.60), so the pipeline does not leak. The head separates the imagined patch from the observed one at \auroc$_m$ 0.69 to 0.76 against 0.47 to 0.55 for native confidence ($p\le0.0001$), holds on CO3Dv2 without retraining (0.68 against 0.54 to 0.56 for its control), and improves with evidence: 0.68 to 0.71 with one clean view at low parallax, 0.80 to 0.89 with three or more. The gain is real and moderate. The check earned its place: a first placement that ignored texture let the observed patch fall on the rig's backdrop and the control rose to 0.62, so the run was repeated.
+Trained on the three-patch protocol on all four backbones (Figure~\ref{fig:evidence}), the per-image control stays at 0.56 to 0.61 \auroc$_m$ (pre-registered bound 0.60), so the pipeline does not leak. The head separates the imagined patch from the observed one at \auroc$_m$ 0.69 to 0.77 against 0.43 to 0.55 for native confidence ($p\le0.0003$ on every backbone), the label-free head within 0.04 of the ground-truth one, and holds on CO3Dv2 without retraining (0.62 to 0.69 against 0.54 to 0.58 for its control). It improves with evidence: 0.68 to 0.748 with one clean view at low parallax, 0.80 to 0.92 with three or more. One view stays short of the pre-registered 0.75: another 1000 steps with one-view samples oversampled leave it at 0.71 (Gate 9). The gain is real and moderate, and it needs a second view or wide parallax. The check earned its place: a first placement that ignored texture let the observed patch fall on the rig's backdrop and the control rose to 0.62, so the run was repeated.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_realocc}
-\caption{\textbf{Real occlusion against the 49-view scan.} (a) Share of predicted points on surfaces no input view saw. (b) \auroc{} for those points against observed ones. Gate 8 allows a claim above 0.5\% (dashed).}
+\caption{\textbf{Real occlusion against dense scans} (DTU, 49 views; ETH3D, every image of the scene). (a) Share of predicted points on surfaces no input view saw; a claim is allowed above 0.5\% (dashed). (b) The head's \auroc{} gain over native confidence on those points; filled where the pre-registered claim holds.}
 \label{fig:realocc}
 \end{figure}
 
 \paragraph{Real occlusion against the dense scan.}
-Against all 49 DTU views (Figure~\ref{fig:realocc}), 1.1 to 1.3\% of the predicted points lie on surfaces no input view saw with three views, 0.2 to 0.4\% with ten. On those points the head beats native confidence where Gate 8 allows the claim: Pi3X at three and five views (0.78 and 0.82 against 0.68 and 0.70) and VGGT at five (0.90 against 0.80). The models rarely invent geometry their inputs give no reason for.
+Against all 49 DTU views (Figure~\ref{fig:realocc}), 1.1 to 1.7\% of the predicted points of the four backbones lie on surfaces no input view saw with three views, 0.2 to 0.4\% with ten. On ETH3D, where each scene has few images, the share is 3.9 to 8.0\%. Where the share allows a claim, the head beats native confidence in 10 of 14 settings (Gates 8 and 10): by 0.09 to 0.13 \auroc{} for every backbone on DTU at five views and for Pi3X, Pi3 and DA3 at three, and by 0.07 to 0.08 for VGGT on ETH3D at every view count. It does not for VGGT on DTU at three views ($+0.02$) or for Pi3X on ETH3D ($+0.00$ to $+0.03$). The models rarely invent geometry their inputs give no reason for; where they do, the head finds it more often than not.
 
 \begin{figure}[t]
 \centering
@@ -230,7 +230,7 @@ The provenance variant (Figure~\ref{fig:prov}) ranks the views that see a point 
 Trained label-free on half of a target dataset and scored on the other half, the head gains where the backbone's own geometry is reliable (Pi3X on CO3Dv2 and ETH3D, $+0.025$ and $+0.027$) and loses where its teacher is weak (VGGT on CO3Dv2, $-0.09$); the DTU-trained head is the safe default.
 
 \paragraph{What abstaining buys.}
-The head keeps almost no single-view geometry until high coverage (Figure~\ref{fig:abstain}a). With the bands fixed in advance, the head marks 57\% to 87\% of the pixels \emph{observed}, of which 0.5\% to 5\% are single-view; a threshold set on other scenes lets 1\% to 2\% of single-view pixels through on DTU against 57\% to 83\% for native confidence. Keeping the 80\% of points the head trusts most raises the accuracy of the fused DTU cloud from 0.65 to 0.77 (Figure~\ref{fig:abstain}b); native confidence gets there too, because on DTU single-view geometry is nearly as accurate as supported geometry: abstaining buys corroboration, not accuracy.
+The head keeps almost no single-view geometry until high coverage (Figure~\ref{fig:abstain}a). With the bands fixed in advance, the head marks 57\% to 87\% of the pixels \emph{observed}, of which 0.5\% to 5\% are single-view; a threshold set on other scenes lets 1\% to 2\% of single-view pixels through on DTU against 57\% to 83\% for native confidence. Keeping the 80\% of points the head trusts most raises the accuracy of the fused DTU cloud from 0.65 to 0.77 (Figure~\ref{fig:abstain}b); native confidence gets there too, because on DTU single-view geometry is nearly as accurate as supported geometry: abstaining buys corroboration, not accuracy. Combining the two scores does not change that. Ranking points by the mean of native confidence and the head changes F1 at 70\% and 80\% coverage by $-0.007$ to $+0.008$ on DTU and not significantly on ETH3D (Gate 11, VGGT and Pi3X). The head is a test of support, not a better depth filter.
 
 \begin{figure}[t]
 \centering
@@ -258,8 +258,11 @@ gate & condition & outcome \\
 4 & label-free head: as Gate 3, within 0.03 of the ground-truth head, ahead of its reprojection teacher on CO3Dv2 & \yes{} \\
 5 & provenance head beats reprojection attribution on three datasets & \no{} \\
 6 & native confidence still leaks under the matched control & \yes{} \\
-7 & matched head: control at most 0.60, head beats it by 0.10 and native confidence; 0.75 with one low-parallax view & \partly{} \\
-8 & real occlusion: share at least 0.5\% and head beats native confidence & \partly{} \\
+7 & matched head, four backbones: control at most 0.60, head beats it by 0.10 and native confidence; 0.75 with one low-parallax view & \partly{} \\
+8 & real occlusion on DTU: share at least 0.5\% and head beats native confidence & \partly{} \\
+9 & a one-view fine-tune reaches 0.75 with one low-parallax view & \no{} \\
+10 & real occlusion with four backbones and on ETH3D: as Gate 8 (holds in 10 of 14 settings) & \partly{} \\
+11 & native confidence and head combined improve fused-cloud F1 & \no{} \\
 \bottomrule
 \end{tabular}
 \end{table}

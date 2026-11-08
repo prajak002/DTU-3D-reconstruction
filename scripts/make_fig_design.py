@@ -19,7 +19,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
-from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Rectangle  # noqa: E402
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Patch, Rectangle  # noqa: E402
 from PIL import Image  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -143,8 +143,8 @@ def fig_teaser(N, M, out):
     bases = ("vggt", "pi3x", "pi3", "da3")
     rows = [("imagined vs observed patch", None, None),
             ("native", [MC[d][b]["auroc_m"][0] for d in MC for b in ("vggt", "pi3x", "pi3", "da3", "mapanything") if b in MC[d]], BASE),
-            ("per-image", [MC[d][f"{b}_oiamatchselfpatch"]["auroc_m"][0] for d in MC for b in ("vggt", "pi3x") if f"{b}_oiamatchselfpatch" in MC[d]], CTRL),
-            ("ours", [MC[d][f"{b}_oiamatchself"]["auroc_m"][0] for d in MC for b in ("vggt", "pi3x") if f"{b}_oiamatchself" in MC[d]], OBS),
+            ("per-image", [MC[d][f"{b}_oiamatchselfpatch"]["auroc_m"][0] for d in MC for b in bases if f"{b}_oiamatchselfpatch" in MC[d]], CTRL),
+            ("ours", [MC[d][f"{b}_oiamatchself"]["auroc_m"][0] for d in MC for b in bases if f"{b}_oiamatchself" in MC[d]], OBS),
             ("single-view geometry, unseen data", None, None),
             ("native", [V[d][b]["auroc"][0] for d in V for b in bases if b in V[d]], BASE),
             ("ours", [V[d][f"{b}_oiavisself"]["auroc"][0] for d in V for b in bases if f"{b}_oiavisself" in V[d]], OBS)]
@@ -383,12 +383,16 @@ def fig_evidence(M, out):
     fig, ax = plt.subplots(figsize=(3.3, 1.6))
     fig.subplots_adjust(left=0.11, right=0.99, top=0.80, bottom=0.25)
     for suf, lab, col, mk in dets:
-        v = [np.mean([C[f"{b}{suf}"][k][0] for b in ("vggt", "pi3x") if C.get(f"{b}{suf}", {}).get(k)]) for k, _ in buckets]
+        v = [np.mean([C[f"{b}{suf}"][k][0] for b in ("vggt", "pi3x", "pi3", "da3") if C.get(f"{b}{suf}", {}).get(k)]) for k, _ in buckets]
         ax.plot(range(4), v, "-", marker=mk, color=col, ms=3.2, lw=1.3, label=lab)
+    if C.get("vggt_oiamatchselfev"):
+        v = [C["vggt_oiamatchselfev"][k][0] for k, _ in buckets]
+        ax.plot(range(4), v, "--", marker="D", color=OBS, mfc="white", ms=3.0, lw=1.0, label="VGGT label-free, one-view fine-tune")
+    ax.axhline(0.75, color=IMAG, lw=0.5, ls="--")
     ax.axhline(0.5, color=MUTED, lw=0.5, ls=":")
     ax.set_xticks(range(4)); ax.set_xticklabels([b for _, b in buckets], fontsize=6.0)
     ax.set_ylim(0.35, 0.95); ax.set_ylabel("AUROC$_m$", fontsize=6.4)
-    ax.set_xlabel("evidence for the observed patch (mean of VGGT and Pi3X, DTU)", fontsize=5.9, labelpad=1)
+    ax.set_xlabel("evidence for the observed patch (mean of four backbones, DTU)", fontsize=5.9, labelpad=1)
     _axstyle(ax)
     fig.legend(loc="upper center", ncol=2, fontsize=5.9, frameon=False, bbox_to_anchor=(0.55, 1.01), handlelength=1.4, columnspacing=1.0)
     _save(fig, out)
@@ -423,31 +427,44 @@ def fig_abstain(N, out):
     _save(fig, out)
 
 
-def fig_realocc(M, out):
-    """Real occlusion against the 49-view scan: share of predicted points on unobserved surfaces, and AUROC on them."""
-    g8 = M.get("gate8", {})
+def fig_realocc(P13, out):
+    """Real occlusion against the dense reference (Gates 8 and 10): (a) share of predicted points on surfaces no input
+    view saw, per dataset, backbone and view count; (b) the head's AUROC gain over native confidence on those points,
+    filled where the pre-registered claim holds, hollow where the cell does not qualify or the test fails."""
+    g = P13.get("gate10", {})
     views = [3, 5, 10]
-    fig, (a, b) = plt.subplots(1, 2, figsize=(3.3, 1.45))
-    fig.subplots_adjust(left=0.1, right=0.99, top=0.78, bottom=0.2, wspace=0.45)
-    for i, (bb, col) in enumerate((("vggt", "#4F6584"), ("pi3x", "#B8C4D6"))):
-        v = [100 * g8.get(f"{n}:{bb}", {}).get("frac_unobs", np.nan) for n in views]
-        a.bar(np.arange(3) + (i - 0.5) * 0.36, v, 0.34, color=col, label=NAMES[bb])
-    a.axhline(0.5, color=IMAG, lw=0.7, ls="--"); a.text(2.45, 0.56, "0.5%", fontsize=5.4, color=IMAG, ha="right", va="bottom")
+    cols = {"vggt": "#4F6584", "pi3x": "#8FA3BF", "pi3": "#C9D3E2", "da3": "#E3B8A0"}
+    groups = [("DTU", b) for b in ("vggt", "pi3x", "pi3", "da3")] + [("ETH3D", b) for b in ("vggt", "pi3x")]
+    fig, (a, b) = plt.subplots(1, 2, figsize=(3.3, 1.6))
+    fig.subplots_adjust(left=0.1, right=0.99, top=0.74, bottom=0.21, wspace=0.42)
+    w = 0.8 / len(groups)
+    for i, (ds, bb) in enumerate(groups):
+        x = np.arange(3) + (i - (len(groups) - 1) / 2) * w
+        v = [100 * g.get(f"{ds}:{n}:{bb}", {}).get("share", np.nan) for n in views]
+        a.bar(x, v, w * 0.92, color=cols[bb], hatch="////" if ds == "ETH3D" else None, edgecolor="white", lw=0.3)
+        d = [g.get(f"{ds}:{n}:{bb}", {}) for n in views]
+        for xi, c in zip(x, d):
+            if not c:
+                continue
+            ok = c.get("holds")
+            b.plot([xi], [c["diff"][0]], marker="s" if ds == "ETH3D" else "o", ms=3.0, color=cols[bb] if bb != "pi3" else "#9AA8BD",
+                   mfc=(cols[bb] if bb != "pi3" else "#9AA8BD") if ok else "white", mew=0.9, ls="none")
+    a.axhline(0.5, color=IMAG, lw=0.7, ls="--"); a.text(-0.5, 0.75, "0.5%", fontsize=5.4, color=IMAG, ha="left", va="bottom", bbox=dict(fc="white", ec="none", pad=0.4))
     a.set_xticks(range(3)); a.set_xticklabels([f"{n} views" for n in views], fontsize=6.0)
     a.set_ylabel("% of points unobserved", fontsize=5.8, labelpad=1)
     a.set_title("(a) how often", fontsize=6.3, weight="bold", loc="left", pad=2)
-    a.legend(fontsize=5.6, frameon=False, handlelength=1.0)
-    for bb, ls in (("vggt", "-"), ("pi3x", "--")):
-        b.plot(views, [g8.get(f"{n}:{bb}", {}).get("auroc", np.nan) for n in views], ls, marker="o", color=BASE, ms=2.6, lw=1.1)
-        b.plot(views, [g8.get(f"{n}:{bb}_oiavisself", {}).get("auroc", np.nan) for n in views], ls, marker="D", color=OBS, ms=2.6, lw=1.1)
-    b.set_xticks(views); b.set_xlabel("input views", fontsize=5.9, labelpad=1); b.set_ylim(0.6, 0.95)
-    b.set_ylabel("AUROC", fontsize=5.8, labelpad=1)
+    b.axhline(0, color=MUTED, lw=0.6)
+    b.set_xticks(range(3)); b.set_xticklabels([f"{n} views" for n in views], fontsize=6.0)
+    b.set_ylabel("head - native AUROC", fontsize=5.8, labelpad=1)
     b.set_title("(b) detecting them", fontsize=6.3, weight="bold", loc="left", pad=2)
     for x in (a, b):
         _axstyle(x)
-    hs = [Line2D([0], [0], color=BASE, marker="o", ms=2.6, lw=1.1, label="native"), Line2D([0], [0], color=OBS, marker="D", ms=2.6, lw=1.1, label="support head"),
-          Line2D([0], [0], color=MUTED, lw=1.1, label="VGGT"), Line2D([0], [0], color=MUTED, lw=1.1, ls="--", label="Pi3X")]
-    fig.legend(handles=hs, loc="upper center", ncol=4, fontsize=5.6, frameon=False, bbox_to_anchor=(0.6, 1.02), handlelength=1.4, columnspacing=0.8)
+    hs = [Patch(color=cols[bb], label=NAMES[bb]) for bb in ("vggt", "pi3x", "pi3", "da3")]
+    hs += [Patch(facecolor="white", edgecolor=MUTED, hatch="////", label="ETH3D (bars)")]
+    fig.legend(handles=hs, loc="upper center", ncol=5, fontsize=5.3, frameon=False, bbox_to_anchor=(0.55, 1.02), handlelength=1.0,
+               columnspacing=0.7)
+    fig.text(0.55, 0.835, "(b): filled = claim holds (share >= 0.5%, p < 0.05); circles DTU, squares ETH3D", fontsize=5.1, color=MUTED,
+             ha="center")
     _save(fig, out)
 
 
@@ -517,7 +534,8 @@ def main():
     fig_layers(N, os.path.join(a.out, "fig_layers"))
     fig_evidence(M, os.path.join(a.out, "fig_evidence"))
     fig_abstain(N, os.path.join(a.out, "fig_abstain"))
-    fig_realocc(M, os.path.join(a.out, "fig_realocc"))
+    P13 = json.load(open(os.path.join(ROOT, "docs", "assets", "p13.json"), encoding="utf-8"))
+    fig_realocc(P13, os.path.join(a.out, "fig_realocc"))
     fig_limit(N, os.path.join(a.out, "fig_limit"))
     fig_stress(os.path.join(a.out, "fig_stress"))
     print("-> fig_teaser, fig_arch, fig_protocol, fig_results, fig_leak, fig_layers, fig_evidence, fig_abstain, fig_realocc, fig_limit in", a.out)

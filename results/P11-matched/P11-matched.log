@@ -34,3 +34,44 @@
 09:44:59    pi3x_oiamatchselflin: 224s
 09:48:42    pi3x_oiavisself: 224s
 09:52:06    pi3x_oiavisselfpatch: 204s
+10:36:51 == P11-matched: models ['vggt', 'pi3x', 'pi3', 'da3', 'mapanything', 'vggt_reproj', 'pi3x_reproj', 'pi3_reproj', 'da3_reproj', 'vggt_oiamatch', 'vggt_oiamatchpatch', 'vggt_oiamatchlin', 'vggt_oiamatchself', 'vggt_oiamatchselfpatch', 'vggt_oiamatchselflin', 'vggt_oiavisself', 'vggt_oiavisselfpatch', 'pi3x_oiamatch', 'pi3x_oiamatchpatch', 'pi3x_oiamatchlin', 'pi3x_oiamatchself', 'pi3x_oiamatchselfpatch', 'pi3x_oiamatchselflin', 'pi3x_oiavisself', 'pi3x_oiavisselfpatch', 'pi3_oiamatch', 'pi3_oiamatchpatch', 'pi3_oiamatchlin', 'pi3_oiamatchself', 'pi3_oiamatchselfpatch', 'pi3_oiamatchselflin', 'pi3_oiavisself', 'pi3_oiavisselfpatch', 'da3_oiamatch', 'da3_oiamatchpatch', 'da3_oiamatchlin', 'da3_oiamatchself', 'da3_oiamatchselfpatch', 'da3_oiamatchselflin', 'da3_oiavisself', 'da3_oiavisselfpatch'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"]}
+10:36:51    vggt: 0s
+10:36:51    pi3x: 0s
+10:36:51    pi3: 0s
+10:36:52    da3: 0s
+10:36:52    mapanything: 0s
+10:36:52    vggt_reproj: 0s
+10:36:52    pi3x_reproj: 0s
+10:36:52    pi3_reproj: 0s
+10:36:52    da3_reproj: 0s
+10:36:52    vggt_oiamatch: 0s
+10:36:52    vggt_oiamatchpatch: 0s
+10:36:52    vggt_oiamatchlin: 0s
+10:36:52    vggt_oiamatchself: 0s
+10:36:53    vggt_oiamatchselfpatch: 0s
+10:36:53    vggt_oiamatchselflin: 0s
+10:36:53    vggt_oiavisself: 0s
+10:36:53    vggt_oiavisselfpatch: 0s
+10:36:53    pi3x_oiamatch: 0s
+10:36:53    pi3x_oiamatchpatch: 0s
+10:36:53    pi3x_oiamatchlin: 0s
+10:36:53    pi3x_oiamatchself: 0s
+10:36:53    pi3x_oiamatchselfpatch: 0s
+10:36:53    pi3x_oiamatchselflin: 0s
+10:36:53    pi3x_oiavisself: 0s
+10:36:53    pi3x_oiavisselfpatch: 0s
+11:43:52 == P11-matched: models ['pi3_oiamatch', 'pi3_oiamatchpatch', 'pi3_oiamatchself', 'pi3_oiamatchselfpatch'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"]}
+11:43:52 == P11-matched: models ['da3_oiamatch', 'da3_oiamatchpatch', 'da3_oiamatchself', 'da3_oiamatchselfpatch'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"]}
+11:47:35    da3_oiamatch: 223s
+11:48:22    pi3_oiamatch: 270s
+11:50:54    da3_oiamatchpatch: 199s
+11:54:17    pi3_oiamatchpatch: 355s
+11:54:19    da3_oiamatchself: 205s
+11:57:41    da3_oiamatchselfpatch: 202s
+11:59:42    pi3_oiamatchself: 325s
+12:04:52    pi3_oiamatchselfpatch: 310s
+12:21:47 == P11-matched: models ['vggt_oiamatchev', 'vggt_oiamatchevpatch', 'vggt_oiamatchselfev', 'vggt_oiamatchselfevpatch'], cfg {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"]}
+12:24:36    vggt_oiamatchev: 170s
+12:27:10    vggt_oiamatchevpatch: 154s
+12:29:59    vggt_oiamatchselfev: 169s
+12:32:39    vggt_oiamatchselfevpatch: 160s

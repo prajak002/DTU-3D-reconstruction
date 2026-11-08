@@ -2,6 +2,15 @@
 
 ## 2026-11-08
 
+### Sixth pass: four-backbone matched heads, a one-view retry, real occlusion on ETH3D, a downstream test
+
+- **Pre-registered** Gates 7 (Pi3, DA3), 9, 10 and 11 at 11:45 UTC in commit 04893b8, before any run (H200 resumed as instance 566718; driver `scripts/box/h200_p13.sh`, six jobs on one card, 11:43 to 12:33 UTC, about 414 INR; paused after the fetch, checkpoints md5-verified in results/P13-ckpt-md5.txt).
+- **Gate 7, Pi3 and DA3:** pass except the one-view clause (0.740, 0.701). The matched claim now covers four backbones.
+- **Gate 9 fails:** the one-view fine-tune of the VGGT heads leaves that bucket at 0.713 and 0.715.
+- **Gate 10:** the real-occlusion claim holds in 10 of 14 qualifying settings (all four backbones on DTU, VGGT on ETH3D; not Pi3X on ETH3D, not VGGT at 3 DTU views).
+- **Gate 11 fails:** combining native confidence and the head does not improve fused-cloud F1 (DTU -0.007 to +0.008, ETH3D not significant); Pi3 and DA3 not run once the gate could not pass.
+- **Paper:** abstract gains one sentence on real occlusion; matched-head, real-occlusion and abstaining paragraphs, Figures (teaser ranges, evidence, real occlusion) and the gates table updated; supplement gate paragraph extended. Body still ends on page 7 of 8.
+
 ### Paper redesigned for readability: short abstract, figure-led sections, no number changed
 
 - **Why.** The author asked for the visual style of recent spotlight papers (light text, diagrams, charts and tables that carry the argument). Six reference papers were rendered and read for layout before the rewrite.

@@ -21,25 +21,47 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | DTU | VGGT-1B | 0.587 | 0.763 [0.716, 0.806] | +0.176 (5e-05) | +0.212 (5e-05) | 0.725 | 0.754 [0.718, 0.790] | -0.009 (0.5459) | +0.192 (5e-05) | +0.203 (5e-05) |
 | DTU | Pi3X | 0.591 | 0.730 [0.678, 0.774] | +0.139 (5e-05) | +0.256 (0.0001) | 0.710 | 0.693 [0.640, 0.745] | -0.037 (0.09895) | +0.079 (0.0001) | +0.219 (0.0001) |
+| DTU | Pi3 | 0.585 | 0.768 [0.724, 0.805] | +0.183 (5e-05) | +0.273 (5e-05) | 0.740 | 0.772 [0.728, 0.807] | +0.005 (0.6312) | +0.181 (5e-05) | +0.277 (5e-05) |
+| DTU | Depth Anything 3 | 0.591 | 0.703 [0.655, 0.747] | +0.112 (0.0003) | +0.278 (5e-05) | 0.701 | 0.714 [0.672, 0.756] | +0.011 (0.4761) | +0.120 (5e-05) | +0.289 (0.0001) |
 | CO3Dv2 | VGGT-1B | 0.575 | 0.656 [0.605, 0.706] | +0.082 (0.01075) | +0.171 (5e-05) | 0.649 | 0.681 [0.631, 0.729] | +0.024 (0.3359) | +0.143 (5e-05) | +0.195 (0.0001) |
 | CO3Dv2 | Pi3X | 0.583 | 0.687 [0.633, 0.740] | +0.105 (0.0004) | +0.187 (5e-05) | 0.681 | 0.675 [0.636, 0.716] | -0.012 (0.5588) | +0.111 (0.00025) | +0.175 (5e-05) |
+| CO3Dv2 | Pi3 | 0.571 | 0.685 [0.636, 0.734] | +0.114 (0.0009) | +0.191 (5e-05) | 0.679 | 0.678 [0.641, 0.719] | -0.007 (0.4412) | +0.108 (0.0003) | +0.184 (5e-05) |
+| CO3Dv2 | Depth Anything 3 | 0.581 | 0.622 [0.580, 0.668] | +0.042 (0.0279) | +0.140 (5e-05) | 0.649 | 0.671 [0.633, 0.717] | +0.049 (0.03715) | +0.089 (5e-05) | +0.189 (5e-05) |
 
 ## Gate 8: real occlusion against the 49-view scan (P12-realocc)
 
 | views | model | share of predicted points on unobserved surfaces | share off every surface | AUROC observed vs unobserved | head - native (p) |
 |---|---|---|---|---|---|
+| 3 | da3 | 1.70% | 83.8% | 0.605 | +nan (nan) |
+| 3 | da3_oiavisself | 1.48% | 82.9% | 0.707 | +0.102 (0.00025) |
+| 3 | da3_reproj | 1.48% | 82.9% | 0.613 | +0.008 (0.7777) |
+| 3 | pi3 | 1.14% | 81.2% | 0.658 | +nan (nan) |
+| 3 | pi3_oiavisself | 1.15% | 81.2% | 0.759 | +0.101 (0.0038) |
+| 3 | pi3_reproj | 1.14% | 81.2% | 0.651 | -0.007 (0.8139) |
 | 3 | pi3x | 1.09% | 84.1% | 0.682 | +nan (nan) |
 | 3 | pi3x_oiavisself | 1.09% | 84.1% | 0.776 | +0.094 (0.0004) |
 | 3 | pi3x_reproj | 1.09% | 84.1% | 0.628 | -0.054 (0.07895) |
 | 3 | vggt | 1.35% | 47.6% | 0.797 | +nan (nan) |
 | 3 | vggt_oiavisself | 1.35% | 47.6% | 0.815 | +0.017 (0.2897) |
 | 3 | vggt_reproj | 1.36% | 47.6% | 0.757 | -0.040 (0.01625) |
+| 5 | da3 | 0.69% | 72.9% | 0.675 | +nan (nan) |
+| 5 | da3_oiavisself | 0.83% | 68.3% | 0.775 | +0.100 (0.00025) |
+| 5 | da3_reproj | 0.83% | 68.3% | 0.633 | -0.042 (0.0286) |
+| 5 | pi3 | 0.64% | 68.5% | 0.742 | +nan (nan) |
+| 5 | pi3_oiavisself | 0.63% | 68.5% | 0.849 | +0.107 (0.0002) |
+| 5 | pi3_reproj | 0.63% | 68.5% | 0.707 | -0.036 (0.1914) |
 | 5 | pi3x | 0.53% | 75.4% | 0.696 | +nan (nan) |
 | 5 | pi3x_oiavisself | 0.53% | 75.4% | 0.822 | +0.126 (5e-05) |
 | 5 | pi3x_reproj | 0.53% | 75.4% | 0.676 | -0.020 (0.4254) |
 | 5 | vggt | 0.82% | 36.0% | 0.797 | +nan (nan) |
 | 5 | vggt_oiavisself | 0.81% | 36.0% | 0.896 | +0.099 (5e-05) |
 | 5 | vggt_reproj | 0.82% | 35.9% | 0.811 | +0.014 (0.3783) |
+| 10 | da3 | 0.23% | 68.2% | 0.747 | +nan (nan) |
+| 10 | da3_oiavisself | 0.25% | 61.5% | 0.886 | +0.139 (5e-05) |
+| 10 | da3_reproj | 0.25% | 61.4% | 0.618 | -0.129 (5e-05) |
+| 10 | pi3 | 0.20% | 57.3% | 0.797 | +nan (nan) |
+| 10 | pi3_oiavisself | 0.20% | 57.3% | 0.891 | +0.094 (5e-05) |
+| 10 | pi3_reproj | 0.20% | 57.3% | 0.662 | -0.135 (5e-05) |
 | 10 | pi3x | 0.17% | 63.9% | 0.710 | +nan (nan) |
 | 10 | pi3x_oiavisself | 0.17% | 63.9% | 0.894 | +0.184 (5e-05) |
 | 10 | pi3x_reproj | 0.17% | 63.9% | 0.600 | -0.099 (0.0004) |
@@ -52,9 +74,17 @@
 | dataset | detector | one view, low parallax | one view, high parallax | two views | three or more | AUROC_patch |
 |---|---|---|---|---|---|---|
 | DTU | da3 | 0.420 | 0.414 | 0.387 | 0.321 | 0.751 |
+| DTU | da3_oiamatch | 0.701 | 0.678 | 0.748 | 0.887 | 0.996 |
+| DTU | da3_oiamatchpatch | 0.597 | 0.607 | 0.607 | 0.622 | 0.724 |
+| DTU | da3_oiamatchself | 0.712 | 0.670 | 0.762 | 0.860 | 0.991 |
+| DTU | da3_oiamatchselfpatch | 0.608 | 0.590 | 0.598 | 0.605 | 0.711 |
 | DTU | da3_reproj | 0.429 | 0.410 | 0.400 | 0.371 | 0.570 |
 | DTU | mapanything | 0.511 | 0.488 | 0.491 | 0.456 | 0.754 |
 | DTU | pi3 | 0.495 | 0.494 | 0.478 | 0.491 | 0.925 |
+| DTU | pi3_oiamatch | 0.740 | 0.728 | 0.800 | 0.918 | 0.983 |
+| DTU | pi3_oiamatchpatch | 0.572 | 0.601 | 0.572 | 0.586 | 0.999 |
+| DTU | pi3_oiamatchself | 0.748 | 0.729 | 0.797 | 0.912 | 0.988 |
+| DTU | pi3_oiamatchselfpatch | 0.578 | 0.588 | 0.562 | 0.593 | 0.999 |
 | DTU | pi3_reproj | 0.497 | 0.484 | 0.477 | 0.487 | 0.524 |
 | DTU | pi3x | 0.499 | 0.407 | 0.437 | 0.423 | 0.822 |
 | DTU | pi3x_oiamatch | 0.710 | 0.715 | 0.759 | 0.856 | 0.985 |
@@ -68,18 +98,30 @@
 | DTU | pi3x_reproj | 0.472 | 0.437 | 0.444 | 0.434 | 0.520 |
 | DTU | vggt | 0.521 | 0.503 | 0.521 | 0.478 | 0.909 |
 | DTU | vggt_oiamatch | 0.725 | 0.727 | 0.758 | 0.892 | 0.993 |
+| DTU | vggt_oiamatchev | 0.713 | 0.716 | 0.733 | 0.873 | 0.993 |
+| DTU | vggt_oiamatchevpatch | 0.570 | 0.597 | 0.561 | 0.584 | 0.999 |
 | DTU | vggt_oiamatchlin | 0.686 | 0.691 | 0.720 | 0.855 | 0.982 |
 | DTU | vggt_oiamatchpatch | 0.577 | 0.610 | 0.571 | 0.591 | 0.999 |
 | DTU | vggt_oiamatchself | 0.707 | 0.726 | 0.762 | 0.889 | 0.992 |
+| DTU | vggt_oiamatchselfev | 0.715 | 0.727 | 0.759 | 0.898 | 0.993 |
+| DTU | vggt_oiamatchselfevpatch | 0.590 | 0.600 | 0.581 | 0.611 | 0.999 |
 | DTU | vggt_oiamatchselflin | 0.692 | 0.695 | 0.733 | 0.862 | 0.986 |
 | DTU | vggt_oiamatchselfpatch | 0.559 | 0.569 | 0.538 | 0.579 | 0.999 |
 | DTU | vggt_oiavisself | 0.459 | 0.466 | 0.497 | 0.536 | 0.742 |
 | DTU | vggt_oiavisselfpatch | 0.410 | 0.388 | 0.424 | 0.500 | 0.659 |
 | DTU | vggt_reproj | 0.494 | 0.485 | 0.482 | 0.453 | 0.527 |
 | CO3Dv2 | da3 | 0.528 | 0.479 | 0.475 | 0.417 | 0.663 |
+| CO3Dv2 | da3_oiamatch | 0.649 | 0.624 | 0.664 | 0.694 | 0.976 |
+| CO3Dv2 | da3_oiamatchpatch | 0.570 | 0.572 | 0.594 | 0.648 | 0.736 |
+| CO3Dv2 | da3_oiamatchself | 0.679 | 0.657 | 0.703 | 0.751 | 0.955 |
+| CO3Dv2 | da3_oiamatchselfpatch | 0.572 | 0.568 | 0.586 | 0.646 | 0.727 |
 | CO3Dv2 | da3_reproj | 0.488 | 0.458 | 0.468 | 0.460 | 0.479 |
 | CO3Dv2 | mapanything | 0.540 | 0.441 | 0.451 | 0.445 | 0.585 |
 | CO3Dv2 | pi3 | 0.518 | 0.521 | 0.492 | 0.491 | 0.905 |
+| CO3Dv2 | pi3_oiamatch | 0.679 | 0.643 | 0.699 | 0.823 | 0.949 |
+| CO3Dv2 | pi3_oiamatchpatch | 0.570 | 0.580 | 0.574 | 0.602 | 0.988 |
+| CO3Dv2 | pi3_oiamatchself | 0.691 | 0.616 | 0.683 | 0.797 | 0.946 |
+| CO3Dv2 | pi3_oiamatchselfpatch | 0.578 | 0.566 | 0.563 | 0.606 | 0.981 |
 | CO3Dv2 | pi3_reproj | 0.482 | 0.462 | 0.478 | 0.467 | 0.494 |
 | CO3Dv2 | pi3x | 0.536 | 0.473 | 0.489 | 0.503 | 0.767 |
 | CO3Dv2 | pi3x_oiamatch | 0.681 | 0.674 | 0.697 | 0.812 | 0.925 |
@@ -104,9 +146,45 @@
 
 ## Paired sign-flip tests (mean difference, p)
 
+- DTU da3_oiamatch:da3:auroc_m: +0.2778 (p 5e-05)
+- DTU da3_oiamatch:da3:auroc_m_ev1lo: +0.2803 (p 0.0001)
+- DTU da3_oiamatch:da3:cur_m: -0.3068 (p 5e-05)
+- DTU da3_oiamatch:da3_oiamatchpatch:auroc_m: +0.1116 (p 0.0003)
+- DTU da3_oiamatch:da3_oiamatchpatch:auroc_m_ev1lo: +0.1040 (p 0.0052)
+- DTU da3_oiamatch:da3_oiamatchpatch:cur_m: -0.2255 (p 5e-05)
+- DTU da3_oiamatchself:da3:auroc_m: +0.2890 (p 0.0001)
+- DTU da3_oiamatchself:da3:auroc_m_ev1lo: +0.2919 (p 0.0001)
+- DTU da3_oiamatchself:da3:cur_m: -0.3385 (p 5e-05)
+- DTU da3_oiamatchself:da3_oiamatch:auroc_m: +0.0112 (p 0.47608)
+- DTU da3_oiamatchself:da3_oiamatch:auroc_m_ev1lo: +0.0117 (p 0.49998)
+- DTU da3_oiamatchself:da3_oiamatch:cur_m: -0.0317 (p 0.17589)
+- DTU da3_oiamatchself:da3_oiamatchselfpatch:auroc_m: +0.1198 (p 5e-05)
+- DTU da3_oiamatchself:da3_oiamatchselfpatch:auroc_m_ev1lo: +0.1048 (p 0.00045)
+- DTU da3_oiamatchself:da3_oiamatchselfpatch:cur_m: -0.2328 (p 5e-05)
+- DTU da3_oiamatchself:da3_reproj:auroc_m: +0.2828 (p 5e-05)
+- DTU da3_oiamatchself:da3_reproj:auroc_m_ev1lo: +0.2834 (p 5e-05)
+- DTU da3_oiamatchself:da3_reproj:cur_m: -0.4084 (p 5e-05)
 - DTU da3_reproj:da3:auroc_m: +0.0063 (p 0.81891)
 - DTU da3_reproj:da3:auroc_m_ev1lo: +0.0085 (p 0.79101)
 - DTU da3_reproj:da3:cur_m: +0.0698 (p 0.0003)
+- DTU pi3_oiamatch:pi3:auroc_m: +0.2727 (p 5e-05)
+- DTU pi3_oiamatch:pi3:auroc_m_ev1lo: +0.2443 (p 0.0001)
+- DTU pi3_oiamatch:pi3:cur_m: -0.3742 (p 5e-05)
+- DTU pi3_oiamatch:pi3_oiamatchpatch:auroc_m: +0.1828 (p 5e-05)
+- DTU pi3_oiamatch:pi3_oiamatchpatch:auroc_m_ev1lo: +0.1680 (p 0.0001)
+- DTU pi3_oiamatch:pi3_oiamatchpatch:cur_m: -0.2399 (p 5e-05)
+- DTU pi3_oiamatchself:pi3:auroc_m: +0.2774 (p 5e-05)
+- DTU pi3_oiamatchself:pi3:auroc_m_ev1lo: +0.2525 (p 0.0001)
+- DTU pi3_oiamatchself:pi3:cur_m: -0.3805 (p 5e-05)
+- DTU pi3_oiamatchself:pi3_oiamatch:auroc_m: +0.0047 (p 0.63122)
+- DTU pi3_oiamatchself:pi3_oiamatch:auroc_m_ev1lo: +0.0082 (p 0.54862)
+- DTU pi3_oiamatchself:pi3_oiamatch:cur_m: -0.0062 (p 0.68407)
+- DTU pi3_oiamatchself:pi3_oiamatchselfpatch:auroc_m: +0.1808 (p 5e-05)
+- DTU pi3_oiamatchself:pi3_oiamatchselfpatch:auroc_m_ev1lo: +0.1699 (p 5e-05)
+- DTU pi3_oiamatchself:pi3_oiamatchselfpatch:cur_m: -0.2354 (p 5e-05)
+- DTU pi3_oiamatchself:pi3_reproj:auroc_m: +0.2714 (p 5e-05)
+- DTU pi3_oiamatchself:pi3_reproj:auroc_m_ev1lo: +0.2510 (p 5e-05)
+- DTU pi3_oiamatchself:pi3_reproj:cur_m: -0.4435 (p 5e-05)
 - DTU pi3_reproj:pi3:auroc_m: +0.0060 (p 0.78011)
 - DTU pi3_reproj:pi3:auroc_m_ev1lo: +0.0016 (p 0.95525)
 - DTU pi3_reproj:pi3:cur_m: +0.0630 (p 0.00075)
@@ -158,9 +236,45 @@
 - DTU vggt_reproj:vggt:auroc_m: -0.0562 (p 0.01655)
 - DTU vggt_reproj:vggt:auroc_m_ev1lo: -0.0273 (p 0.28099)
 - DTU vggt_reproj:vggt:cur_m: +0.1013 (p 0.0001)
+- CO3Dv2 da3_oiamatch:da3:auroc_m: +0.1403 (p 5e-05)
+- CO3Dv2 da3_oiamatch:da3:auroc_m_ev1lo: +0.1204 (p 0.0002)
+- CO3Dv2 da3_oiamatch:da3:cur_m: -0.1848 (p 5e-05)
+- CO3Dv2 da3_oiamatch:da3_oiamatchpatch:auroc_m: +0.0417 (p 0.0279)
+- CO3Dv2 da3_oiamatch:da3_oiamatchpatch:auroc_m_ev1lo: +0.0783 (p 0.0001)
+- CO3Dv2 da3_oiamatch:da3_oiamatchpatch:cur_m: -0.1233 (p 0.0002)
+- CO3Dv2 da3_oiamatchself:da3:auroc_m: +0.1892 (p 5e-05)
+- CO3Dv2 da3_oiamatchself:da3:auroc_m_ev1lo: +0.1510 (p 5e-05)
+- CO3Dv2 da3_oiamatchself:da3:cur_m: -0.2326 (p 5e-05)
+- CO3Dv2 da3_oiamatchself:da3_oiamatch:auroc_m: +0.0489 (p 0.03715)
+- CO3Dv2 da3_oiamatchself:da3_oiamatch:auroc_m_ev1lo: +0.0306 (p 0.20749)
+- CO3Dv2 da3_oiamatchself:da3_oiamatch:cur_m: -0.0477 (p 0.23414)
+- CO3Dv2 da3_oiamatchself:da3_oiamatchselfpatch:auroc_m: +0.0891 (p 5e-05)
+- CO3Dv2 da3_oiamatchself:da3_oiamatchselfpatch:auroc_m_ev1lo: +0.1073 (p 5e-05)
+- CO3Dv2 da3_oiamatchself:da3_oiamatchselfpatch:cur_m: -0.1749 (p 5e-05)
+- CO3Dv2 da3_oiamatchself:da3_reproj:auroc_m: +0.1870 (p 5e-05)
+- CO3Dv2 da3_oiamatchself:da3_reproj:auroc_m_ev1lo: +0.1909 (p 5e-05)
+- CO3Dv2 da3_oiamatchself:da3_reproj:cur_m: -0.2796 (p 5e-05)
 - CO3Dv2 da3_reproj:da3:auroc_m: +0.0023 (p 0.86536)
 - CO3Dv2 da3_reproj:da3:auroc_m_ev1lo: -0.0399 (p 0.0255)
 - CO3Dv2 da3_reproj:da3:cur_m: +0.0470 (p 0.00675)
+- CO3Dv2 pi3_oiamatch:pi3:auroc_m: +0.1909 (p 5e-05)
+- CO3Dv2 pi3_oiamatch:pi3:auroc_m_ev1lo: +0.1603 (p 5e-05)
+- CO3Dv2 pi3_oiamatch:pi3:cur_m: -0.2152 (p 0.00025)
+- CO3Dv2 pi3_oiamatch:pi3_oiamatchpatch:auroc_m: +0.1137 (p 0.0009)
+- CO3Dv2 pi3_oiamatch:pi3_oiamatchpatch:auroc_m_ev1lo: +0.1084 (p 0.00275)
+- CO3Dv2 pi3_oiamatch:pi3_oiamatchpatch:cur_m: -0.1551 (p 0.0012)
+- CO3Dv2 pi3_oiamatchself:pi3:auroc_m: +0.1841 (p 5e-05)
+- CO3Dv2 pi3_oiamatchself:pi3:auroc_m_ev1lo: +0.1724 (p 5e-05)
+- CO3Dv2 pi3_oiamatchself:pi3:cur_m: -0.1808 (p 0.00055)
+- CO3Dv2 pi3_oiamatchself:pi3_oiamatch:auroc_m: -0.0068 (p 0.44123)
+- CO3Dv2 pi3_oiamatchself:pi3_oiamatch:auroc_m_ev1lo: +0.0121 (p 0.19924)
+- CO3Dv2 pi3_oiamatchself:pi3_oiamatch:cur_m: +0.0344 (p 0.0222)
+- CO3Dv2 pi3_oiamatchself:pi3_oiamatchselfpatch:auroc_m: +0.1076 (p 0.0003)
+- CO3Dv2 pi3_oiamatchself:pi3_oiamatchselfpatch:auroc_m_ev1lo: +0.1133 (p 0.0004)
+- CO3Dv2 pi3_oiamatchself:pi3_oiamatchselfpatch:cur_m: -0.1289 (p 0.0013)
+- CO3Dv2 pi3_oiamatchself:pi3_reproj:auroc_m: +0.2027 (p 5e-05)
+- CO3Dv2 pi3_oiamatchself:pi3_reproj:auroc_m_ev1lo: +0.2086 (p 5e-05)
+- CO3Dv2 pi3_oiamatchself:pi3_reproj:cur_m: -0.2967 (p 5e-05)
 - CO3Dv2 pi3_reproj:pi3:auroc_m: -0.0185 (p 0.49068)
 - CO3Dv2 pi3_reproj:pi3:auroc_m_ev1lo: -0.0362 (p 0.22854)
 - CO3Dv2 pi3_reproj:pi3:cur_m: +0.1159 (p 5e-05)

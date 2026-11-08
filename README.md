@@ -166,8 +166,10 @@ The fix was to change what the detector must learn, not the head. Same head, sam
 |---|---|---|---|---|---|---|---|---|
 | VGGT-1B | 0.551 | 0.562 | **0.754** | 0.763 | 0.707 | 0.889 | 0.538 | **0.681** |
 | Pi3X | 0.474 | 0.614 | **0.693** | 0.730 | 0.680 | 0.801 | 0.565 | **0.675** |
+| Pi3 | 0.495 | 0.592 | **0.772** | 0.768 | 0.748 | 0.912 | 0.570 | **0.678** |
+| Depth Anything 3 | 0.425 | 0.594 | **0.714** | 0.703 | 0.712 | 0.860 | 0.582 | **0.671** |
 
-The head reads cross-view evidence where native confidence and the per-image control read nothing, and more evidence helps. The gain is moderate, and the gate's clauses that fail (0.75 on the hardest bucket; the label-free Pi3X head 0.037 from its ground-truth twin) are reported as written.
+The head reads cross-view evidence where native confidence and the per-image control read nothing, on all four backbones, and more evidence helps. The gain is moderate. The gate's clauses that fail are reported as written: no backbone reaches 0.75 on the hardest bucket (one clean view, low parallax; Pi3 comes closest at 0.748), and the label-free Pi3X head is 0.037 from its ground-truth twin. A pre-registered retry (Gate 9: the VGGT heads trained 1000 more steps with one-view samples oversampled) left that bucket at 0.71, so the honest reading is that the head needs a second view or a wide baseline.
 
 <p align="center">
   <img src="docs/assets/readme/detector.gif" width="92%" alt="Overview video chapter on the method and results">
@@ -252,7 +254,19 @@ What does move it is the pixels it was drawn from. With the same hidden sphere f
 
 ## Real occlusion against the dense scan
 
-How often does a backbone put geometry on a surface its inputs never showed, on a real capture? Against the full 49-view DTU scan, every predicted point is matched to the nearest ground-truth point, and that point is either observed by some input view or not (run P12-realocc, Gate 8). The share of predicted points on unobserved surfaces is small and falls with the view count (3 views: VGGT-1B 1.35%, Pi3X 1.09%; 5 views: VGGT-1B 0.82%, Pi3X 0.53%; 10 views: VGGT-1B 0.36%, Pi3X 0.17%). The models do not invent geometry where their inputs showed none; the hallucination the benchmark measures arises when the pixels force it, a filled or occluded region, and the natural case on real captures is single-view geometry, which the true-visibility protocol scores. No detection claim is made from real occlusion.
+How often does a backbone put geometry on a surface its inputs never showed, on a real capture? Against the full 49-view DTU scan, every predicted point is matched to the nearest ground-truth point, and that point is either observed by some input view or not (run P12-realocc, Gate 8). The same test runs on ETH3D, where the laser-scan depth of every image of a scene is the reference (Gate 10). The share of predicted points on unobserved surfaces is small on DTU and falls with the view count; it is larger on ETH3D, whose scenes have few images.
+
+| setting | unobserved share | head beats native confidence (pre-registered claim) |
+|---|---|---|
+| DTU, 3 views, four backbones | 1.1 to 1.7% | Pi3X, Pi3, DA3 (+0.09 to +0.10 AUROC); not VGGT (+0.02) |
+| DTU, 5 views, four backbones | 0.5 to 0.8% | all four (+0.10 to +0.13) |
+| DTU, 10 views | 0.2 to 0.4% | below the 0.5% needed for a claim |
+| ETH3D, 3 / 5 / 10 views, VGGT | 3.9 to 6.7% | yes at every view count (+0.07 to +0.08) |
+| ETH3D, 3 / 5 / 10 views, Pi3X | 5.5 to 8.0% | no (+0.00 to +0.03) |
+
+The claim holds in 10 of the 14 settings that qualify. The models rarely invent geometry their inputs give no reason for; where they do, the head finds it more often than not.
+
+**Does it improve the reconstruction?** Not as a depth filter. Ranking points of the fused cloud by the mean of native confidence and the head changes F1 at 70% and 80% coverage by -0.007 to +0.008 on DTU and not significantly on ETH3D (Gate 11, pre-registered, fails). Native confidence already tracks depth error; the head tracks support, and that is what it should be used for.
 
 ## Repository layout
 
