@@ -277,7 +277,7 @@ Table~\ref{tab:gates} lists every pass condition and its outcome, failures inclu
 \label{sec:limits}
 
 \paragraph{Limitations.}
-The head certifies multi-view agreement, not truth: a surface every view agrees on passes, whether a camera saw it or the prior drew it. The benchmark's labels are a proxy for real occlusion, which the stress tests, the matched split and the scan comparison bound but do not remove. CO3Dv2 depth is COLMAP with 1\% to 3\% noise and three backbones saw CO3Dv2 in training; the landmarks' ground truth has holes; scenes are static. The matched gain is moderate (\auroc$_m$ up to 0.76), and the matched split was run on DTU and CO3Dv2 only.
+The head certifies multi-view agreement, not truth: a surface every view agrees on passes, whether a camera saw it or the prior drew it. The benchmark's labels are a proxy for real occlusion, which the stress tests, the matched split and the dense-scan comparisons on DTU and ETH3D bound but do not remove. CO3Dv2 depth is COLMAP with 1\% to 3\% noise and three backbones saw CO3Dv2 in training; the landmarks' ground truth has holes; scenes are static. The matched gain is moderate (\auroc$_m$ up to 0.77, below 0.75 with one low-parallax view), and the matched split was run on DTU and CO3Dv2 only.
 
 \paragraph{Conclusion.} Feed-forward 3D models mostly do not say when they have not seen a surface, and their confidence reacts to appearance. Their cross-view tokens do carry the answer, and a small head trained on the backbone's own agreement reads it on captures it never saw. The next problem is the invention every view agrees on.
 
