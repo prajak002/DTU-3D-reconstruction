@@ -451,10 +451,10 @@ def chart_matched(N, theme, out):
         ax.set_xticks(x); ax.set_xticklabels([short[b] for b in models], fontsize=10); ax.set_ylim(0.2, 1.0)
         ax.axhline(0.5, color=T["muted"], lw=0.8, ls=":")
         ax.set_title(dict(DATASETS_LABEL)[k], fontsize=12); _clean(ax, T)
-    axes[0].set_ylabel("AUROC, imagined patch against ...")
+    axes[0].set_ylabel("AUROC")
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, l, loc="lower center", ncol=2, fontsize=9, frameon=False, bbox_to_anchor=(0.5, 0.0))
-    fig.suptitle("The same patch under two labels: native confidence reads the patch (run P11-matched)", fontsize=12)
+    fig.suptitle("The same patch under two labels: native confidence reads the patch (run P11-matched)", fontsize=11)
     fig.tight_layout(rect=(0.01, 0.12, 1, 0.97)); fig.savefig(out, dpi=160); plt.close(fig)
 
 
