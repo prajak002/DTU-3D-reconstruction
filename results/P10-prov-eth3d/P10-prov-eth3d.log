@@ -1,0 +1,13 @@
+20:08:37 == P10-prov-eth3d: models ['vggt_oiaprov', 'vggt_oiaprovself', 'pi3x_oiaprov', 'pi3x_oiaprovself', 'pi3_oiaprov', 'pi3_oiaprovself', 'da3_oiaprov', 'da3_oiaprovself', 'vggt_reproj', 'pi3x_reproj', 'pi3_reproj', 'da3_reproj'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "dataset": "co3d", "view_mode": "adjacent", "prov": true}
+20:09:35    vggt_oiaprov: 57s
+20:10:17    vggt_oiaprovself: 42s
+20:11:07    pi3x_oiaprov: 49s
+20:11:56    pi3x_oiaprovself: 50s
+20:12:40    pi3_oiaprov: 43s
+20:13:23    pi3_oiaprovself: 44s
+20:13:56    da3_oiaprov: 33s
+20:14:29    da3_oiaprovself: 32s
+20:15:20    vggt_reproj: 52s
+20:16:18    pi3x_reproj: 58s
+20:17:10    pi3_reproj: 52s
+20:17:52    da3_reproj: 42s

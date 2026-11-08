@@ -17,6 +17,9 @@
 \renewcommand{\arraystretch}{0.93}
 \setlength{\textfloatsep}{8pt}
 \setlength{\abovecaptionskip}{4pt}
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}{2ex \@plus .6ex \@minus .2ex}{-1em}{\normalfont\normalsize\bfseries}}
+\makeatother
 \usepackage[pagebackref,breaklinks,colorlinks,citecolor=cvprblue,linkcolor=cvprblue,urlcolor=cvprblue]{hyperref}
 
 \def\confName{CVPR}

@@ -1,0 +1,13 @@
+19:44:51 == P10-prov-dtu: models ['vggt_oiaprov', 'vggt_oiaprovself', 'pi3x_oiaprov', 'pi3x_oiaprovself', 'pi3_oiaprov', 'pi3_oiaprovself', 'da3_oiaprov', 'da3_oiaprovself', 'vggt_reproj', 'pi3x_reproj', 'pi3_reproj', 'da3_reproj'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "prov": true}
+19:45:56    vggt_oiaprov: 65s
+19:46:48    vggt_oiaprovself: 52s
+19:47:59    pi3x_oiaprov: 72s
+19:49:09    pi3x_oiaprovself: 69s
+19:50:07    pi3_oiaprov: 58s
+19:51:04    pi3_oiaprovself: 58s
+19:51:42    da3_oiaprov: 38s
+19:52:18    da3_oiaprovself: 36s
+19:53:16    vggt_reproj: 58s
+19:54:32    pi3x_reproj: 76s
+19:55:36    pi3_reproj: 64s
+19:56:18    da3_reproj: 42s

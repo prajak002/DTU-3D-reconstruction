@@ -1,0 +1,13 @@
+19:57:14 == P10-prov-co3d: models ['vggt_oiaprov', 'vggt_oiaprovself', 'pi3x_oiaprov', 'pi3x_oiaprovself', 'pi3_oiaprov', 'pi3_oiaprovself', 'da3_oiaprov', 'da3_oiaprovself', 'vggt_reproj', 'pi3x_reproj', 'pi3_reproj', 'da3_reproj'], cfg {"vis_views": [3, 5, 10], "seeds": [0, 1, 2], "dataset": "co3d", "prov": true}
+19:58:22    vggt_oiaprov: 68s
+19:59:13    vggt_oiaprovself: 51s
+20:00:10    pi3x_oiaprov: 57s
+20:01:07    pi3x_oiaprovself: 56s
+20:01:57    pi3_oiaprov: 50s
+20:02:48    pi3_oiaprovself: 51s
+20:03:28    da3_oiaprov: 41s
+20:04:09    da3_oiaprovself: 41s
+20:05:04    vggt_reproj: 55s
+20:06:03    pi3x_reproj: 60s
+20:06:57    pi3_reproj: 54s
+20:07:41    da3_reproj: 44s

@@ -80,7 +80,7 @@ def column(row, a, rng, plt):
     ax.set_xticks(range(len(others))); ax.set_xticklabels([f"view {j}" for j in others], fontsize=8)
     ax.set_ylim(0, 1); ax.axhline(0.5, color="#4C5A58", lw=0.6, ls=":")
     ax.set_ylabel("P(view corroborates the query)", fontsize=8); ax.tick_params(axis="y", labelsize=7)
-    ax.legend(fontsize=7, loc="upper right", frameon=False, title="query (bar outline)", title_fontsize=7)
+    ax.legend(fontsize=7, loc="upper center", bbox_to_anchor=(0.62, 1.0), frameon=False, title="query (bar outline)", title_fontsize=7)
     ax.set_title("fill: ground truth, green = that view sees the point, red = it does not (hatched: undecided)", fontsize=8, loc="left")
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     for ext in ("pdf", "png"):

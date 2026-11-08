@@ -25,7 +25,7 @@ Every number in the paper maps to a CSV and a configuration file in the released
 \end{figure}
 
 \paragraph{Correctness guards.}
-Before any model is scored we check that ground-truth depth reprojects consistently between view pairs and that unsupported points of view $i$, where visible in view $j$, land inside view $j$'s hidden mask. DTU: reprojection agreement 0.80 to 0.82 at a 1\% depth tolerance, U-transfer 0.96 to 0.99. CO3Dv2 (cameras converted from PyTorch3D and checked against the official point cloud): with an occlusion-aware 3\% tolerance, agreement 0.92 to 1.00 and U-transfer 0.90 to 0.98 on 17 of 18 scenes; the eighteenth scores 0.80, is kept, and removing it changes nothing (Section~\ref{sec:results}). ETH3D: agreement 0.996 to 1.000 on all scenes; nine of twelve pass the U-transfer gate and three are excluded before any model is run.
+Before any model is scored we check that ground-truth depth reprojects consistently between view pairs and that unsupported points of view $i$, where visible in view $j$, land inside view $j$'s hidden mask. DTU: reprojection agreement 0.80 to 0.82 at a 1\% depth tolerance, U-transfer 0.96 to 0.99. CO3Dv2 (cameras converted from PyTorch3D and checked against the official point cloud): with an occlusion-aware 3\% tolerance, agreement 0.92 to 1.00 and U-transfer 0.90 to 0.98 on 17 of 18 scenes; the eighteenth scores 0.80, is kept, and removing it changes nothing (Section~5 of the paper). ETH3D: agreement 0.996 to 1.000 on all scenes; nine of twelve pass the U-transfer gate and three are excluded before any model is run.
 
 \paragraph{Pipeline validation.}
 On a synthetic DTU-format scene, an oracle that knows what is hidden scores \auroc{} 1.000 and \cur{} 0.000, and a blind guesser with flat confidence scores \auroc{} 0.500 and \cur{} 0.90 (the 10\% of supported pixels dropped by $\tau$ is the expected floor). These numbers validate the code, not any model.
@@ -114,7 +114,7 @@ Depth Anything 3 & noise & \ci{0.618}{0.553}{0.679} & \ci{0.780}{0.702}{0.854} &
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{fig1_teaser}
-\caption{\textbf{What a model does with a surface it cannot see.} Top: a DTU scan with one 3D region of the ground-truth surface hidden in all ten input views and inpainted so no seam remains (the inpainted fill of Section~\ref{sec:results}). Bottom: a CO3Dv2 phone capture treated the same way. The top row shows the protocol: the same 3D sphere hides the region in every view, including a view from the other side of the rig. The bottom row shows what the backbone (VGGT) does with it: plausible geometry inside the hidden region, with confidence close to its value outside. The cyan contour marks the unsupported pixels. Model panels are the recorded run outputs.}
+\caption{\textbf{What a model does with a surface it cannot see.} Top: a DTU scan with one 3D region of the ground-truth surface hidden in all ten input views and inpainted so no seam remains (the inpainted fill of Section~5 of the paper). Bottom: a CO3Dv2 phone capture treated the same way. The top row shows the protocol: the same 3D sphere hides the region in every view, including a view from the other side of the rig. The bottom row shows what the backbone (VGGT) does with it: plausible geometry inside the hidden region, with confidence close to its value outside. The cyan contour marks the unsupported pixels. Model panels are the recorded run outputs.}
 \label{fig:teaser}
 \end{figure}
 
@@ -135,7 +135,7 @@ The cheap alternatives and the fill-trained heads of Section 5.4 and Section 7 o
 
 \begin{table}[h]
 \centering
-\caption{\textbf{Detectors on the filled patches, DTU} (18 scans, seed 0, blur, radius 0.18; native and perturbation rows re-run on the detectors' hardware, runs P3-native and P3-pv, so every pair is scored on identical rows). The three learned rows per backbone are the \emph{fill-trained} heads: they find the fill, not the missing support (Section~\ref{sec:exp}), which is why the per-image control matches them. The visibility-trained heads are in the main paper.}
+\caption{\textbf{Detectors on the filled patches, DTU} (18 scans, seed 0, blur, radius 0.18; native and perturbation rows re-run on the detectors' hardware, runs P3-native and P3-pv, so every pair is scored on identical rows). The three learned rows per backbone are the \emph{fill-trained} heads: they find the fill, not the missing support (Section~7 of the paper), which is why the per-image control matches them. The visibility-trained heads are in the main paper.}
 \label{tab:detectors}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -163,7 +163,7 @@ Section 5.2 of the main paper summarises this table.
 
 \begin{table}[h]
 \centering
-\caption{\textbf{Stress tests on DTU.} 18 scans $\times$ 2 mask seeds, radius 0.18, models VGGT, Pi3X, DA3. Reference rows are the matching cells of Table~\ref{tab:dtu} (blur, 10 spread views, seeds 0 and 1). Last column: paired \cur{} difference against the reference with a sign-flip $p$ over scans. Run P2-stress.}
+\caption{\textbf{Stress tests on DTU.} 18 scans $\times$ 2 mask seeds, radius 0.18, models VGGT, Pi3X, DA3. Reference rows are the matching cells of Table~1 of the paper (blur, 10 spread views, seeds 0 and 1). Last column: paired \cur{} difference against the reference with a sign-flip $p$ over scans. Run P2-stress.}
 \label{tab:stress}
 \footnotesize
 \setlength{\tabcolsep}{4pt}
@@ -252,13 +252,32 @@ If the surface a backbone returns inside the hidden region were fixed by the pri
 \resizebox{\textwidth}{!}{\input{tab_refill}}
 \end{table}
 
+\paragraph{Provenance.}
+Table~\ref{tab:prov}: the provenance heads of Section~6 of the paper on the vis cells of every dataset, support \auroc{} and \cur{} of the aggregated score next to the conv head of the main table on the same cells, and the attribution columns (prov-\auroc, its in-frame variant that keeps only views whose frame contains the point, top-1) against the reprojection test with the model's own cameras read per view. Means over scene means; the paired sign-flip tests are in the released statistics file (P10-prov-stats), the gate text and its outcome in the run registry. Figure~\ref{fig:prov_all} shows one scene per dataset.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Provenance heads.} Support score (\auroc, \cur) and attribution (prov-\auroc{} over every ordered pair of views, its in-frame variant, top-1 on supported pixels) per backbone and dataset; run P10-prov.}
+\label{tab:prov}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tab_prov}}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig_prov_all}
+\caption{\textbf{Which view saw it, one scene per dataset} (VGGT, label-free provenance head, five input views, scenes the head never saw). Per row: the reference view with three query pixels, the ground-truth number of other views that see each pixel, the number the head attributes, and the head's probability per other input view for each query (bar colour: ground truth). Run P10-prov.}
+\label{fig:prov_all}
+\end{figure}
+
 \paragraph{Twenty views.}
 With 20 clean DTU views, twice the most the heads saw in training (run P4-vis-ext), the visibility heads score \auroc{} 0.990 to 0.993 and the label-free heads 0.990 to 0.992, native confidence falls to 0.61 (VGGT) and 0.83 (Pi3X), reprojection consistency scores 0.93 and 0.89, and the per-image control rises to 0.94: with twenty views the few remaining single-view pixels sit at the frame edge, and the control reads the edge.
 
 \paragraph{Pre-registered gates.}
-The pass conditions were written into the run registry before the corresponding heads were trained, and the registry is versioned with the code. Gate 3 (true-visibility head; written 2026-11-06, before any visibility head was trained; the training kernels ran from commit \texttt{4132d11}): the head counts as detecting missing support when, pooled over 3, 5 and 10 views on DTU, (a) it beats native confidence on \auroc{} and \cur{} (paired sign-flip $p<0.05$), (b) it beats its per-image control on \auroc{} by at least 0.02 at $p<0.05$, and (c) both conditions hold on at least one dataset the head never saw (CO3Dv2 or ETH3D); if (b) fails, the single-view-support signal is reported as recoverable from per-image features and the method claim is dropped. Gate 4 (label-free head; written 2026-11-06 16:51 UTC, before any label-free head was trained, commit \texttt{c7e6919}): on DTU and on CO3Dv2, (a) and (b) as above against its own per-image control, and (c) within 0.03 \auroc{} of the ground-truth-trained head on DTU and ahead of reprojection consistency on CO3Dv2 at $p<0.05$ (its training signal is the reprojection test, so it has to generalise better than its teacher); if (a) or (b) fails the head is dropped, if only (c) fails it is reported as an ablation. The earlier Gate 2 (fill-trained head) had the clause ``head ahead of the control at $p<0.05$'' with no margin; it passed by the letter on differences of 0.0004 and 0.003 and the paper does not count it, which is why Gate 3 carries a margin.
+The pass conditions were written into the run registry before the corresponding heads were trained, and the registry is versioned with the code. Gate 3 (true-visibility head; written 2026-11-06, before any visibility head was trained; the training kernels ran from commit \texttt{4132d11}): the head counts as detecting missing support when, pooled over 3, 5 and 10 views on DTU, (a) it beats native confidence on \auroc{} and \cur{} (paired sign-flip $p<0.05$), (b) it beats its per-image control on \auroc{} by at least 0.02 at $p<0.05$, and (c) both conditions hold on at least one dataset the head never saw (CO3Dv2 or ETH3D); if (b) fails, the single-view-support signal is reported as recoverable from per-image features and the method claim is dropped. Gate 4 (label-free head; written 2026-11-06 16:51 UTC, before any label-free head was trained, commit \texttt{c7e6919}): on DTU and on CO3Dv2, (a) and (b) as above against its own per-image control, and (c) within 0.03 \auroc{} of the ground-truth-trained head on DTU and ahead of reprojection consistency on CO3Dv2 at $p<0.05$ (its training signal is the reprojection test, so it has to generalise better than its teacher); if (a) or (b) fails the head is dropped, if only (c) fails it is reported as an ablation. Gate 5 (provenance head; written 2026-11-07 18:31 UTC, before any provenance head was trained, commit \texttt{f36fbd6}): the label-free provenance head replaces the conv head as the method of record when (a) its support score is within 0.02 \auroc{} of the conv head on every dataset and backbone, (b) its attribution beats the reprojection test read per view on prov-\auroc{} at $p<0.05$ on DTU and on at least two of CO3Dv2, ETH3D and the landmarks, for at least three backbones, and (c) its top-1 view sees the point for at least 90\% of the supported pixels on DTU; if (a) fails it is an attribution add-on, if (b) fails the attribution is reported as measured and the claim is reduced to reading per-view evidence at one forward, if (c) fails ``which view'' is not claimed. Outcome (run P10-prov, Table~\ref{tab:prov}): (a) holds on 15 of the 16 cells (Pi3X on CO3Dv2: $-0.025$), (b) fails (ahead of reprojection on DTU only, for three backbones), (c) holds (0.98 to 0.99); the conv head stays the method of record. The earlier Gate 2 (fill-trained head) had the clause ``head ahead of the control at $p<0.05$'' with no margin; it passed by the letter on differences of 0.0004 and 0.003 and the paper does not count it, which is why Gate 3 carries a margin.
 
 \paragraph{Gaussian-splatting backbone (partial run).}
-AnySplat~\cite{anysplat}, a feed-forward 3D Gaussian-splatting model, was scored on the DTU configuration with its per-pixel Gaussian opacity as confidence (120 of 540 rows) and with the rendered accumulated alpha (450 of 540 rows), bf16 on one L4, run P3-gs. Pooled over blur and noise: opacity \auroc{} 0.583 / \cur{} 0.718, rendered alpha 0.632 / 0.745, \curerr{} 0.02 and 0.06; the noise fill drives the opacity below chance (0.36). The representation does not change the answer: a Gaussian the model places on an unseen surface is as opaque as one on an observed surface. The run stopped behind other jobs on the shared card and is reported as partial.
+AnySplat (reference in the paper), a feed-forward 3D Gaussian-splatting model, was scored on the DTU configuration with its per-pixel Gaussian opacity as confidence (120 of 540 rows) and with the rendered accumulated alpha (450 of 540 rows), bf16 on one L4, run P3-gs. Pooled over blur and noise: opacity \auroc{} 0.583 / \cur{} 0.718, rendered alpha 0.632 / 0.745, \curerr{} 0.02 and 0.06; the noise fill drives the opacity below chance (0.36). The representation does not change the answer: a Gaussian the model places on an unseen surface is as opaque as one on an observed surface. The run stopped behind other jobs on the shared card and is reported as partial.
 
 \paragraph{Run registry.} Every table cell maps to a run id (P1-full, P2-full, P2-stress, P2-co3d, P2-co3d-b, P3-pv-smoke, P2-smoke-b, P3-native, P3-reproj, P3-pv, P3-oia-dtu, P3-oia-abl, P3-oia-stress-*, P3-kaggle-vggt) whose CSV, configuration JSON and kernel log are released with the code, together with the dated log of every failed run and every correction.

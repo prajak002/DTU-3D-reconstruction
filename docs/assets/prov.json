@@ -1,0 +1,906 @@
+{
+ "DTU": {
+  "vggt": {
+   "oiavisself": {
+    "auroc": 0.9920086243494626,
+    "cur": 0.016791396701498634,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.9533199251764535,
+    "cur": 0.08292317605473452,
+    "prov_auroc": 0.9645500267764747,
+    "prov_auroc_inframe": 0.9435019714207645,
+    "prov_top1": 0.9901802672960655
+   },
+   "oiaprov": {
+    "auroc": 0.9949611600237068,
+    "cur": 0.01079140921349987,
+    "prov_auroc": 0.970939015961584,
+    "prov_auroc_inframe": 0.9387350600291929,
+    "prov_top1": 0.9923093539124661
+   },
+   "oiaprovself": {
+    "auroc": 0.9933440147414109,
+    "cur": 0.01357011654885545,
+    "prov_auroc": 0.9584787840851333,
+    "prov_auroc_inframe": 0.9214549930739303,
+    "prov_top1": 0.9884439569535949
+   },
+   "tests": {
+    "vggt_oiaprovself:vggt_reproj:prov_auroc": [
+     -0.0061,
+     0.00975
+    ],
+    "vggt_oiaprov:vggt_reproj:prov_auroc": [
+     0.0064,
+     0.0005
+    ],
+    "vggt_oiaprovself:vggt_reproj:prov_top1": [
+     -0.0017,
+     0.10409
+    ],
+    "vggt_oiaprovself:vggt_oiavisself:auroc": [
+     0.0013,
+     0.00165
+    ],
+    "vggt_oiaprovself:vggt_oiavisself:cur": [
+     -0.0032,
+     0.01965
+    ],
+    "vggt_oiaprovself:vggt_oiaprov:prov_auroc": [
+     -0.0125,
+     5e-05
+    ]
+   }
+  },
+  "pi3x": {
+   "oiavisself": {
+    "auroc": 0.9881813989812019,
+    "cur": 0.025142859786216113,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.9141287393085743,
+    "cur": 0.16418240721624133,
+    "prov_auroc": 0.9111582756275561,
+    "prov_auroc_inframe": 0.880479945546882,
+    "prov_top1": 0.9812270453576113
+   },
+   "oiaprov": {
+    "auroc": 0.9917191427843424,
+    "cur": 0.018450736256791007,
+    "prov_auroc": 0.9533047283321362,
+    "prov_auroc_inframe": 0.9174376804819002,
+    "prov_top1": 0.9859167280292264
+   },
+   "oiaprovself": {
+    "auroc": 0.9888016464586603,
+    "cur": 0.0246773765938618,
+    "prov_auroc": 0.9429965211088943,
+    "prov_auroc_inframe": 0.9109375274424186,
+    "prov_top1": 0.9846023808234352
+   },
+   "tests": {
+    "pi3x_oiaprovself:pi3x_reproj:prov_auroc": [
+     0.0318,
+     5e-05
+    ],
+    "pi3x_oiaprov:pi3x_reproj:prov_auroc": [
+     0.0421,
+     5e-05
+    ],
+    "pi3x_oiaprovself:pi3x_reproj:prov_top1": [
+     0.0034,
+     0.0124
+    ],
+    "pi3x_oiaprovself:pi3x_oiavisself:auroc": [
+     0.0006,
+     0.0216
+    ],
+    "pi3x_oiaprovself:pi3x_oiavisself:cur": [
+     -0.0005,
+     0.59297
+    ],
+    "pi3x_oiaprovself:pi3x_oiaprov:prov_auroc": [
+     -0.0103,
+     5e-05
+    ]
+   }
+  },
+  "pi3": {
+   "oiavisself": {
+    "auroc": 0.989472801949215,
+    "cur": 0.020980923160227174,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.9516950408015747,
+    "cur": 0.08910393529388044,
+    "prov_auroc": 0.9407573341912769,
+    "prov_auroc_inframe": 0.9238080725813549,
+    "prov_top1": 0.9870890971415628
+   },
+   "oiaprov": {
+    "auroc": 0.9927167138301214,
+    "cur": 0.015567507257232176,
+    "prov_auroc": 0.9564189893052879,
+    "prov_auroc_inframe": 0.9248241299821497,
+    "prov_top1": 0.9867326156248895
+   },
+   "oiaprovself": {
+    "auroc": 0.9908373893846942,
+    "cur": 0.01899259414375728,
+    "prov_auroc": 0.951153005112046,
+    "prov_auroc_inframe": 0.9247315754552717,
+    "prov_top1": 0.9863730503543674
+   },
+   "tests": {
+    "pi3_oiaprovself:pi3_reproj:prov_auroc": [
+     0.0104,
+     0.00105
+    ],
+    "pi3_oiaprov:pi3_reproj:prov_auroc": [
+     0.0157,
+     0.00015
+    ],
+    "pi3_oiaprovself:pi3_reproj:prov_top1": [
+     -0.0007,
+     0.49493
+    ],
+    "pi3_oiaprovself:pi3_oiavisself:auroc": [
+     0.0014,
+     0.0013
+    ],
+    "pi3_oiaprovself:pi3_oiavisself:cur": [
+     -0.002,
+     0.0984
+    ],
+    "pi3_oiaprovself:pi3_oiaprov:prov_auroc": [
+     -0.0053,
+     0.00035
+    ]
+   }
+  },
+  "da3": {
+   "oiavisself": {
+    "auroc": 0.9820279501175051,
+    "cur": 0.04014650231434939,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.9263453679080528,
+    "cur": 0.1748309234503665,
+    "prov_auroc": 0.8898283049547828,
+    "prov_auroc_inframe": 0.870148711920356,
+    "prov_top1": 0.9811765394451837
+   },
+   "oiaprov": {
+    "auroc": 0.985033131305737,
+    "cur": 0.03690054543429849,
+    "prov_auroc": 0.9371377795283232,
+    "prov_auroc_inframe": 0.8949565964305464,
+    "prov_top1": 0.9804361579956292
+   },
+   "oiaprovself": {
+    "auroc": 0.9821478349056597,
+    "cur": 0.04352291568945293,
+    "prov_auroc": 0.9295097635874227,
+    "prov_auroc_inframe": 0.8922913250876162,
+    "prov_top1": 0.9799094191631161
+   },
+   "tests": {
+    "da3_oiaprovself:da3_reproj:prov_auroc": [
+     0.0397,
+     5e-05
+    ],
+    "da3_oiaprov:da3_reproj:prov_auroc": [
+     0.0473,
+     5e-05
+    ],
+    "da3_oiaprovself:da3_reproj:prov_top1": [
+     -0.0013,
+     0.44833
+    ],
+    "da3_oiaprovself:da3_oiavisself:auroc": [
+     0.0001,
+     0.9153
+    ],
+    "da3_oiaprovself:da3_oiavisself:cur": [
+     0.0034,
+     0.45433
+    ],
+    "da3_oiaprovself:da3_oiaprov:prov_auroc": [
+     -0.0076,
+     5e-05
+    ]
+   }
+  }
+ },
+ "CO3Dv2": {
+  "vggt": {
+   "oiavisself": {
+    "auroc": 0.9309366424215421,
+    "cur": 0.19874801898229222,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.792487058102374,
+    "cur": 0.7023239604812459,
+    "prov_auroc": 0.7832337777968751,
+    "prov_auroc_inframe": 0.7828105507023264,
+    "prov_top1": 0.93655142220085
+   },
+   "oiaprov": {
+    "auroc": 0.9240099456767896,
+    "cur": 0.2078387368458729,
+    "prov_auroc": 0.8347508079910615,
+    "prov_auroc_inframe": 0.8312365961547344,
+    "prov_top1": 0.9393590511900629
+   },
+   "oiaprovself": {
+    "auroc": 0.9261335528608472,
+    "cur": 0.19519793438800204,
+    "prov_auroc": 0.8286262231151397,
+    "prov_auroc_inframe": 0.825783275334479,
+    "prov_top1": 0.9397981256551182
+   },
+   "tests": {
+    "vggt_oiaprovself:vggt_reproj:prov_auroc": [
+     0.0454,
+     0.15389
+    ],
+    "vggt_oiaprov:vggt_reproj:prov_auroc": [
+     0.0515,
+     0.13264
+    ],
+    "vggt_oiaprovself:vggt_reproj:prov_top1": [
+     0.0032,
+     0.58717
+    ],
+    "vggt_oiaprovself:vggt_oiavisself:auroc": [
+     -0.0048,
+     0.29654
+    ],
+    "vggt_oiaprovself:vggt_oiavisself:cur": [
+     -0.0036,
+     0.78566
+    ],
+    "vggt_oiaprovself:vggt_oiaprov:prov_auroc": [
+     -0.0061,
+     0.29554
+    ]
+   }
+  },
+  "pi3x": {
+   "oiavisself": {
+    "auroc": 0.9385507136291538,
+    "cur": 0.18978134090708787,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.8843781111120815,
+    "cur": 0.25351247319994763,
+    "prov_auroc": 0.9115474095447929,
+    "prov_auroc_inframe": 0.9106137513686361,
+    "prov_top1": 0.9511037614111562
+   },
+   "oiaprov": {
+    "auroc": 0.902602908885695,
+    "cur": 0.2705209780458999,
+    "prov_auroc": 0.8697865275878393,
+    "prov_auroc_inframe": 0.8699648775352068,
+    "prov_top1": 0.9451933714549219
+   },
+   "oiaprovself": {
+    "auroc": 0.9132062865143382,
+    "cur": 0.24972422172412254,
+    "prov_auroc": 0.8769795013614368,
+    "prov_auroc_inframe": 0.8774980198373872,
+    "prov_top1": 0.9483061813981382
+   },
+   "tests": {
+    "pi3x_oiaprovself:pi3x_reproj:prov_auroc": [
+     -0.0346,
+     0.03795
+    ],
+    "pi3x_oiaprov:pi3x_reproj:prov_auroc": [
+     -0.0418,
+     0.0167
+    ],
+    "pi3x_oiaprovself:pi3x_reproj:prov_top1": [
+     -0.0028,
+     0.24984
+    ],
+    "pi3x_oiaprovself:pi3x_oiavisself:auroc": [
+     -0.0253,
+     0.0003
+    ],
+    "pi3x_oiaprovself:pi3x_oiavisself:cur": [
+     0.0599,
+     0.0038
+    ],
+    "pi3x_oiaprovself:pi3x_oiaprov:prov_auroc": [
+     0.0072,
+     0.00645
+    ]
+   }
+  },
+  "pi3": {
+   "oiavisself": {
+    "auroc": 0.9302478457446283,
+    "cur": 0.2251130597839304,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.8935389236534744,
+    "cur": 0.20519447369475025,
+    "prov_auroc": 0.9295272579276597,
+    "prov_auroc_inframe": 0.9286659533157609,
+    "prov_top1": 0.9534438389012825
+   },
+   "oiaprov": {
+    "auroc": 0.9402769694597237,
+    "cur": 0.1851498986902202,
+    "prov_auroc": 0.8765700526353115,
+    "prov_auroc_inframe": 0.8755764891803828,
+    "prov_top1": 0.9396527137895497
+   },
+   "oiaprovself": {
+    "auroc": 0.9474229917714135,
+    "cur": 0.15176294007570978,
+    "prov_auroc": 0.8807852334336627,
+    "prov_auroc_inframe": 0.8794924713599687,
+    "prov_top1": 0.9421636500919388
+   },
+   "tests": {
+    "pi3_oiaprovself:pi3_reproj:prov_auroc": [
+     -0.0487,
+     0.0001
+    ],
+    "pi3_oiaprov:pi3_reproj:prov_auroc": [
+     -0.053,
+     5e-05
+    ],
+    "pi3_oiaprovself:pi3_reproj:prov_top1": [
+     -0.0113,
+     0.0012
+    ],
+    "pi3_oiaprovself:pi3_oiavisself:auroc": [
+     0.0172,
+     0.00055
+    ],
+    "pi3_oiaprovself:pi3_oiavisself:cur": [
+     -0.0734,
+     0.0003
+    ],
+    "pi3_oiaprovself:pi3_oiaprov:prov_auroc": [
+     0.0042,
+     0.30463
+    ]
+   }
+  },
+  "da3": {
+   "oiavisself": {
+    "auroc": 0.879137661434982,
+    "cur": 0.32310832854492494,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.8360667613357227,
+    "cur": 0.46318946489287227,
+    "prov_auroc": 0.8535235593734987,
+    "prov_auroc_inframe": 0.8529239675395834,
+    "prov_top1": 0.9490078640552517
+   },
+   "oiaprov": {
+    "auroc": 0.8869073651564029,
+    "cur": 0.29454001459929774,
+    "prov_auroc": 0.8470027295142291,
+    "prov_auroc_inframe": 0.8449027466715364,
+    "prov_top1": 0.938237671087794
+   },
+   "oiaprovself": {
+    "auroc": 0.8868226472853599,
+    "cur": 0.3012854200509254,
+    "prov_auroc": 0.850227837346937,
+    "prov_auroc_inframe": 0.8476194505883182,
+    "prov_top1": 0.940903387903981
+   },
+   "tests": {
+    "da3_oiaprovself:da3_reproj:prov_auroc": [
+     -0.0033,
+     0.88956
+    ],
+    "da3_oiaprov:da3_reproj:prov_auroc": [
+     -0.0065,
+     0.81741
+    ],
+    "da3_oiaprovself:da3_reproj:prov_top1": [
+     -0.0081,
+     0.13619
+    ],
+    "da3_oiaprovself:da3_oiavisself:auroc": [
+     0.0077,
+     0.34278
+    ],
+    "da3_oiaprovself:da3_oiavisself:cur": [
+     -0.0218,
+     0.11664
+    ],
+    "da3_oiaprovself:da3_oiaprov:prov_auroc": [
+     0.0032,
+     0.51652
+    ]
+   }
+  }
+ },
+ "ETH3D": {
+  "vggt": {
+   "oiavisself": {
+    "auroc": 0.9796254825198437,
+    "cur": 0.0505607944521247,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.9752310737873852,
+    "cur": 0.06883907230708643,
+    "prov_auroc": 0.9593325866373864,
+    "prov_auroc_inframe": 0.9053214318546049,
+    "prov_top1": 0.8268800412969795
+   },
+   "oiaprov": {
+    "auroc": 0.9768696547998859,
+    "cur": 0.057576566534438656,
+    "prov_auroc": 0.8791998437299505,
+    "prov_auroc_inframe": 0.8281151676146228,
+    "prov_top1": 0.7786932861905568
+   },
+   "oiaprovself": {
+    "auroc": 0.9697586153215862,
+    "cur": 0.0787592445372531,
+    "prov_auroc": 0.8278311082902111,
+    "prov_auroc_inframe": 0.8317787076714627,
+    "prov_top1": 0.7660251224912965
+   },
+   "tests": {
+    "vggt_oiaprovself:vggt_reproj:prov_auroc": [
+     -0.1315,
+     0.00435
+    ],
+    "vggt_oiaprov:vggt_reproj:prov_auroc": [
+     -0.0801,
+     0.00435
+    ],
+    "vggt_oiaprovself:vggt_reproj:prov_top1": [
+     -0.0609,
+     0.00835
+    ],
+    "vggt_oiaprovself:vggt_oiavisself:auroc": [
+     -0.0099,
+     0.00825
+    ],
+    "vggt_oiaprovself:vggt_oiavisself:cur": [
+     0.0282,
+     0.01605
+    ],
+    "vggt_oiaprovself:vggt_oiaprov:prov_auroc": [
+     -0.0514,
+     0.00435
+    ]
+   }
+  },
+  "pi3x": {
+   "oiavisself": {
+    "auroc": 0.9630878876266399,
+    "cur": 0.1029466811805023,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.9766952080311501,
+    "cur": 0.053575832257812234,
+    "prov_auroc": 0.9757442305917972,
+    "prov_auroc_inframe": 0.9227534388481339,
+    "prov_top1": 0.8312451962710331
+   },
+   "oiaprov": {
+    "auroc": 0.9650595876276031,
+    "cur": 0.09350654219722523,
+    "prov_auroc": 0.817722254539008,
+    "prov_auroc_inframe": 0.8400811745174368,
+    "prov_top1": 0.7580530715751803
+   },
+   "oiaprovself": {
+    "auroc": 0.9581186546098256,
+    "cur": 0.11456029653222928,
+    "prov_auroc": 0.8219122205936612,
+    "prov_auroc_inframe": 0.8518124587233724,
+    "prov_top1": 0.7520923520835359
+   },
+   "tests": {
+    "pi3x_oiaprovself:pi3x_reproj:prov_auroc": [
+     -0.1538,
+     0.00435
+    ],
+    "pi3x_oiaprov:pi3x_reproj:prov_auroc": [
+     -0.158,
+     0.00435
+    ],
+    "pi3x_oiaprovself:pi3x_reproj:prov_top1": [
+     -0.0792,
+     0.00435
+    ],
+    "pi3x_oiaprovself:pi3x_oiavisself:auroc": [
+     -0.005,
+     0.25634
+    ],
+    "pi3x_oiaprovself:pi3x_oiavisself:cur": [
+     0.0116,
+     0.42963
+    ],
+    "pi3x_oiaprovself:pi3x_oiaprov:prov_auroc": [
+     0.0042,
+     0.55997
+    ]
+   }
+  },
+  "pi3": {
+   "oiavisself": {
+    "auroc": 0.9505353180432782,
+    "cur": 0.13895456602318831,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.9755821773979336,
+    "cur": 0.03915464290818946,
+    "prov_auroc": 0.9722851687944478,
+    "prov_auroc_inframe": 0.936725441995206,
+    "prov_top1": 0.8308186752309599
+   },
+   "oiaprov": {
+    "auroc": 0.9613931242687558,
+    "cur": 0.10298661408981485,
+    "prov_auroc": 0.806531333162241,
+    "prov_auroc_inframe": 0.8365197863971308,
+    "prov_top1": 0.7595339853385787
+   },
+   "oiaprovself": {
+    "auroc": 0.9461779765419139,
+    "cur": 0.15039085222095233,
+    "prov_auroc": 0.8153148767344987,
+    "prov_auroc_inframe": 0.8557082297173548,
+    "prov_top1": 0.7617402157453376
+   },
+   "tests": {
+    "pi3_oiaprovself:pi3_reproj:prov_auroc": [
+     -0.157,
+     0.00435
+    ],
+    "pi3_oiaprov:pi3_reproj:prov_auroc": [
+     -0.1658,
+     0.00435
+    ],
+    "pi3_oiaprovself:pi3_reproj:prov_top1": [
+     -0.0691,
+     0.00435
+    ],
+    "pi3_oiaprovself:pi3_oiavisself:auroc": [
+     -0.0044,
+     0.66822
+    ],
+    "pi3_oiaprovself:pi3_oiavisself:cur": [
+     0.0114,
+     0.73146
+    ],
+    "pi3_oiaprovself:pi3_oiaprov:prov_auroc": [
+     0.0088,
+     0.26884
+    ]
+   }
+  },
+  "da3": {
+   "oiavisself": {
+    "auroc": 0.9740961575718958,
+    "cur": 0.07028083140261969,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.961624668558643,
+    "cur": 0.10882474482645473,
+    "prov_auroc": 0.9338550036044734,
+    "prov_auroc_inframe": 0.8680203518630689,
+    "prov_top1": 0.8283820805246714
+   },
+   "oiaprov": {
+    "auroc": 0.9705977252300095,
+    "cur": 0.06903073608297774,
+    "prov_auroc": 0.8422260480766762,
+    "prov_auroc_inframe": 0.7673090751076802,
+    "prov_top1": 0.7765828732000463
+   },
+   "oiaprovself": {
+    "auroc": 0.9664434271740708,
+    "cur": 0.08440444436139766,
+    "prov_auroc": 0.8406987321495714,
+    "prov_auroc_inframe": 0.7981716404892404,
+    "prov_top1": 0.7931386021565112
+   },
+   "tests": {
+    "da3_oiaprovself:da3_reproj:prov_auroc": [
+     -0.0932,
+     0.0122
+    ],
+    "da3_oiaprov:da3_reproj:prov_auroc": [
+     -0.0916,
+     0.0122
+    ],
+    "da3_oiaprovself:da3_reproj:prov_top1": [
+     -0.0352,
+     0.00805
+    ],
+    "da3_oiaprovself:da3_oiavisself:auroc": [
+     -0.0077,
+     0.61187
+    ],
+    "da3_oiaprovself:da3_oiavisself:cur": [
+     0.0141,
+     0.50587
+    ],
+    "da3_oiaprovself:da3_oiaprov:prov_auroc": [
+     -0.0015,
+     0.81476
+    ]
+   }
+  }
+ },
+ "Photot.": {
+  "vggt": {
+   "oiavisself": {
+    "auroc": 0.9299276492801662,
+    "cur": 0.19069695205459228,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.8239956660648379,
+    "cur": 0.34035434070104237,
+    "prov_auroc": 0.8886751377742537,
+    "prov_auroc_inframe": 0.7647333551806105,
+    "prov_top1": 0.9513664579660234
+   },
+   "oiaprov": {
+    "auroc": 0.925965301706094,
+    "cur": 0.21553390946441364,
+    "prov_auroc": 0.8844896119862112,
+    "prov_auroc_inframe": 0.7837910984719691,
+    "prov_top1": 0.9549586283187715
+   },
+   "oiaprovself": {
+    "auroc": 0.9315396589227652,
+    "cur": 0.1767133351065209,
+    "prov_auroc": 0.8532103517306125,
+    "prov_auroc_inframe": 0.7755194099852053,
+    "prov_top1": 0.938354012553644
+   },
+   "tests": {
+    "vggt_oiaprovself:vggt_reproj:prov_auroc": [
+     -0.0355,
+     0.13774
+    ],
+    "vggt_oiaprov:vggt_reproj:prov_auroc": [
+     -0.0042,
+     0.72716
+    ],
+    "vggt_oiaprovself:vggt_reproj:prov_top1": [
+     -0.013,
+     0.14034
+    ],
+    "vggt_oiaprovself:vggt_oiavisself:auroc": [
+     0.0016,
+     0.86001
+    ],
+    "vggt_oiaprovself:vggt_oiavisself:cur": [
+     -0.014,
+     0.0627
+    ],
+    "vggt_oiaprovself:vggt_oiaprov:prov_auroc": [
+     -0.0313,
+     0.02375
+    ]
+   }
+  },
+  "pi3x": {
+   "oiavisself": {
+    "auroc": 0.9395102628627485,
+    "cur": 0.16648618591392697,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.8136516341644412,
+    "cur": 0.3605283068597088,
+    "prov_auroc": 0.8775673026314917,
+    "prov_auroc_inframe": 0.7556006613147851,
+    "prov_top1": 0.9496292304705966
+   },
+   "oiaprov": {
+    "auroc": 0.9234720205601613,
+    "cur": 0.20147728415872856,
+    "prov_auroc": 0.8227969207159403,
+    "prov_auroc_inframe": 0.7901821301622122,
+    "prov_top1": 0.9060111610524184
+   },
+   "oiaprovself": {
+    "auroc": 0.9278956849255321,
+    "cur": 0.1868369614483472,
+    "prov_auroc": 0.8287969177562109,
+    "prov_auroc_inframe": 0.793192837037862,
+    "prov_top1": 0.9086013892674694
+   },
+   "tests": {
+    "pi3x_oiaprovself:pi3x_reproj:prov_auroc": [
+     -0.0488,
+     0.0954
+    ],
+    "pi3x_oiaprov:pi3x_reproj:prov_auroc": [
+     -0.0548,
+     0.05945
+    ],
+    "pi3x_oiaprovself:pi3x_reproj:prov_top1": [
+     -0.041,
+     0.02395
+    ],
+    "pi3x_oiaprovself:pi3x_oiavisself:auroc": [
+     -0.0116,
+     0.0084
+    ],
+    "pi3x_oiaprovself:pi3x_oiavisself:cur": [
+     0.0204,
+     0.12504
+    ],
+    "pi3x_oiaprovself:pi3x_oiaprov:prov_auroc": [
+     0.006,
+     0.36948
+    ]
+   }
+  },
+  "pi3": {
+   "oiavisself": {
+    "auroc": 0.9310926822966697,
+    "cur": 0.181377230114794,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.8169184787303608,
+    "cur": 0.34489348993909247,
+    "prov_auroc": 0.8874507406838641,
+    "prov_auroc_inframe": 0.7610231783871327,
+    "prov_top1": 0.9501227903499115
+   },
+   "oiaprov": {
+    "auroc": 0.9178074912997781,
+    "cur": 0.22309563445209513,
+    "prov_auroc": 0.8235890491174144,
+    "prov_auroc_inframe": 0.7914129497162988,
+    "prov_top1": 0.9153568140668713
+   },
+   "oiaprovself": {
+    "auroc": 0.9233788972061059,
+    "cur": 0.200603393401711,
+    "prov_auroc": 0.8202064561911417,
+    "prov_auroc_inframe": 0.8014490831416548,
+    "prov_top1": 0.9178609221381334
+   },
+   "tests": {
+    "pi3_oiaprovself:pi3_reproj:prov_auroc": [
+     -0.0672,
+     0.03555
+    ],
+    "pi3_oiaprov:pi3_reproj:prov_auroc": [
+     -0.0639,
+     0.0394
+    ],
+    "pi3_oiaprovself:pi3_reproj:prov_top1": [
+     -0.0323,
+     0.0353
+    ],
+    "pi3_oiaprovself:pi3_oiavisself:auroc": [
+     -0.0077,
+     0.12784
+    ],
+    "pi3_oiaprovself:pi3_oiavisself:cur": [
+     0.0192,
+     0.20634
+    ],
+    "pi3_oiaprovself:pi3_oiaprov:prov_auroc": [
+     -0.0034,
+     0.43348
+    ]
+   }
+  },
+  "da3": {
+   "oiavisself": {
+    "auroc": 0.9251784937385759,
+    "cur": 0.20162595327264876,
+    "prov_auroc": null,
+    "prov_auroc_inframe": null,
+    "prov_top1": null
+   },
+   "reproj": {
+    "auroc": 0.8435569615234462,
+    "cur": 0.3316081140231224,
+    "prov_auroc": 0.8663437417409932,
+    "prov_auroc_inframe": 0.7554454468032791,
+    "prov_top1": 0.9531338576678103
+   },
+   "oiaprov": {
+    "auroc": 0.9222326438620035,
+    "cur": 0.20219658954165387,
+    "prov_auroc": 0.8100800623934401,
+    "prov_auroc_inframe": 0.7611259445073701,
+    "prov_top1": 0.9050157196963755
+   },
+   "oiaprovself": {
+    "auroc": 0.9236691415281957,
+    "cur": 0.2023457037862578,
+    "prov_auroc": 0.7968693767167936,
+    "prov_auroc_inframe": 0.7696628446480873,
+    "prov_top1": 0.9018908195504599
+   },
+   "tests": {
+    "da3_oiaprovself:da3_reproj:prov_auroc": [
+     -0.0695,
+     0.0236
+    ],
+    "da3_oiaprov:da3_reproj:prov_auroc": [
+     -0.0563,
+     0.0278
+    ],
+    "da3_oiaprovself:da3_reproj:prov_top1": [
+     -0.0512,
+     0.00435
+    ],
+    "da3_oiaprovself:da3_oiavisself:auroc": [
+     -0.0015,
+     0.75336
+    ],
+    "da3_oiaprovself:da3_oiavisself:cur": [
+     0.0007,
+     0.9285
+    ],
+    "da3_oiaprovself:da3_oiaprov:prov_auroc": [
+     -0.0132,
+     0.27594
+    ]
+   }
+  }
+ }
+}
