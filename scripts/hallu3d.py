@@ -911,6 +911,281 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
     return out_csv
 
 
+# ----------------------------------------------------------------------------- matched-patch protocol (P11-matched)
+def _cam_dir(E):
+    """Viewing direction of a world->camera extrinsic, in world coordinates."""
+    return E[:3, :3].T @ np.array([0.0, 0.0, 1.0])
+
+
+def _view_angles(E):
+    """(N,N) angle in degrees between the viewing directions of every pair of cameras."""
+    d = np.stack([_cam_dir(e) for e in E])
+    d /= np.maximum(np.linalg.norm(d, axis=1, keepdims=True), 1e-9)
+    return np.degrees(np.arccos(np.clip(d @ d.T, -1.0, 1.0)))
+
+
+def _hide_from_inside(inside_i, H, W, sx, sy):
+    up = cv2.resize(inside_i.astype(np.uint8), (W, H), interpolation=cv2.INTER_NEAREST)
+    return cv2.GaussianBlur(up.astype(np.float32), (0, 0), sigmaX=max(sx, sy) * 0.6) > 0.5
+
+
+def build_masks_matched(data, seed, radius_frac, cfg, evidence="1"):
+    """The matched-patch protocol (run family P11-matched; Gates 6 and 7). Three spheres of the same radius on the
+    ground-truth surface, filled the same way, so that from a single image their patches are identical:
+      A  hidden in every input view: its pixels are imagined (U), as in build_masks;
+      B  hidden in every view except an evidence set Ev of `evidence` views (1, 2 or half of them, drawn among the
+         views that see it): its filled pixels in the hidden views stay visible in a clean view, so they are
+         observed (Sm) wherever a view of Ev actually sees the pixel's ground-truth point (support test);
+      D  hidden only in the views of Ev: observed with many-view evidence, and it keeps the number of patches per
+         view at two, so counting patches across views cannot tell A from B.
+    B and D match A's reference-view area within `match_area` and its reference depth within `match_depth`.
+    Returns hide (N,H,W) at image resolution, U, S (clean supported, outside a dilation of every patch), Sm, the
+    per-pixel evidence count ev_count (clean views that see the pixel) and ev_par (angle to the nearest of them,
+    degrees), the evidence views and the sphere parameters. Deterministic in (scan, seed, radius, evidence).
+    Raises RuntimeError when no matched placement exists for this (scene, seed)."""
+    rng = np.random.default_rng(_stable_seed("matched", data["scan"], seed, radius_frac, evidence))
+    depths, Kd, E = data["depths"], data["K_dep"], data["E"]
+    N, h, w = depths.shape
+    H, W = data["imgs"].shape[1:3]
+    sy, sx = H // h, W // w
+    Pws = [backproject(depths[i], Kd[i], E[i]) for i in range(N)]
+    valid = depths > 0
+    ref = 0
+    cm = data.get("center_mask")
+    sel = valid[ref] & (cm[ref] if cm is not None else True)
+    pts_ref, dep_ref = Pws[ref][sel], depths[ref][sel]
+    if len(pts_ref) < 100:
+        raise ValueError(f"scan {data['scan']}: too few valid GT pixels in ref view")
+    lo, hi = np.percentile(pts_ref, 2, axis=0), np.percentile(pts_ref, 98, axis=0)
+    diag = float(np.linalg.norm(hi - lo))
+    radius = radius_frac * diag
+    n_ev = {"1": 1, "2": 2, "half": max(1, N // 2)}[str(evidence)]
+    match_area, match_depth = cfg.get("match_area", 0.3), cfg.get("match_depth", 0.15)
+    min_sep = cfg.get("match_min_sep", 2.5) * radius
+    seen_m, _, _ = support_matrix(depths, Kd, E, cfg.get("vis_tol", 0.03))        # (N,N,h,w): j sees pixel of i
+    ang = _view_angles(E)
+
+    def inside_of(c):
+        return np.stack([(np.linalg.norm(Pws[i] - c, axis=-1) < radius) & valid[i] for i in range(N)])
+
+    def inside_frac_ok(ins):
+        return cfg["min_U_frac"] <= ins[ref].sum() / max(valid[ref].sum(), 1) <= cfg["max_U_frac"]
+
+    def matched_candidate(exclude_centres, sep, tol_area):
+        """A sphere with A's reference area and depth, at least `sep` from the given centres (centre distance, so
+        2 radii means tangent patches). Returns (centre, inside) or None."""
+        cand = np.where(np.abs(dep_ref - dA) / dA < match_depth)[0]
+        rng.shuffle(cand)
+        for k in cand[: cfg["max_tries"] * 6]:
+            c = pts_ref[k]
+            if any(np.linalg.norm(c - e) < sep for e in exclude_centres):
+                continue
+            ins = inside_of(c)
+            a = int(ins[ref].sum())
+            if a == 0 or abs(a - areaA) / max(areaA, 1) > tol_area:
+                continue
+            return c, ins
+        return None
+
+    # sphere A as in build_masks, then B with its evidence set; when A leaves no room for a matched B (small
+    # objects), A is drawn again, and the separation and area tolerance relax one step before giving up
+    found = False
+    for _ in range(cfg["max_tries"]):
+        k = rng.integers(len(pts_ref))
+        cA, dA = pts_ref[k], float(dep_ref[k])
+        inA = inside_of(cA)
+        if not inside_frac_ok(inA):
+            continue
+        areaA = int(inA[ref].sum())
+        for sep_f, tol_area in ((2.5, match_area), (2.2, match_area), (2.2, match_area * 1.5)):
+            for _b in range(6):
+                cand = matched_candidate([cA], sep_f * radius, tol_area)
+                if cand is None:
+                    break
+                cB, inB = cand
+                sees_B = [i for i in range(N) if i != ref and inB[i].sum() >= 0.2 * areaA]
+                if len(sees_B) >= n_ev + 1:
+                    Ev = sorted(int(x) for x in rng.choice(sees_B, n_ev, replace=False))
+                    found = True
+                    break
+            if found:
+                break
+        if found:
+            break
+    if not found:
+        raise RuntimeError(f"scan {data['scan']} seed {seed} r{radius_frac} ev{evidence}: no matched spheres A and B after {cfg['max_tries']} tries")
+    # sphere D: hidden only in the evidence views
+    candD = matched_candidate([cA, cB], 2.5 * radius, match_area) or matched_candidate([cA, cB], 2.2 * radius, match_area * 1.5)
+    has_D = candD is not None
+    if has_D:
+        cD, inD = candD
+    notEv = [i for i in range(N) if i not in Ev]
+
+    hide = np.zeros((N, H, W), bool)
+    U = np.zeros((N, h, w), bool)
+    S = np.zeros((N, h, w), bool)
+    Sm = np.zeros((N, h, w), bool)
+    ev_count = np.zeros((N, h, w), np.int16)
+    ev_par = np.full((N, h, w), np.nan, np.float32)
+    kd = cfg["dilate_px"] * 2 + 1
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kd, kd))
+
+    def core(up, ins):
+        blk = up.reshape(h, sy, w, sx).mean(axis=(1, 3))
+        return (blk >= 0.999) & valid[i] & ins
+
+    for i in range(N):
+        upA = _hide_from_inside(inA[i], H, W, sx, sy)
+        upB = _hide_from_inside(inB[i], H, W, sx, sy) if i not in Ev else np.zeros((H, W), bool)
+        upD = _hide_from_inside(inD[i], H, W, sx, sy) if (has_D and i in Ev) else np.zeros((H, W), bool)
+        hide[i] = upA | upB | upD
+        U[i] = core(upA, inA[i])
+        # observed-but-filled pixels: B in the hidden views (evidence = Ev), D in the evidence views (evidence = the rest)
+        if i not in Ev:
+            cB_i, clean = core(upB, inB[i]), Ev
+        elif has_D:
+            cB_i, clean = core(upD, inD[i]), notEv
+        else:
+            cB_i, clean = np.zeros((h, w), bool), []
+        if cB_i.any() and clean:
+            seen_by = np.stack([seen_m[i, j] for j in clean])                      # (n_clean, h, w)
+            cnt = seen_by.sum(0)
+            Sm[i] = cB_i & (cnt > 0)
+            ev_count[i][Sm[i]] = cnt[Sm[i]]
+            a = np.where(seen_by, np.array([ang[i, j] for j in clean])[:, None, None], np.inf).min(0)
+            ev_par[i][Sm[i]] = a[Sm[i]]
+        dil = cv2.dilate(hide[i].astype(np.uint8), kernel) > 0
+        dil_blk = dil.reshape(h, sy, w, sx).mean(axis=(1, 3))
+        S[i] = (dil_blk <= 0.0) & valid[i]
+    return dict(hide=hide, U=U, S=S, Sm=Sm, ev_count=ev_count, ev_par=ev_par, evidence_views=Ev, has_D=has_D,
+                center=cA, center_B=cB, center_D=(cD if has_D else None), radius=radius, diag=diag,
+                area_A=areaA, area_B=int(inB[ref].sum()), area_D=(int(inD[ref].sum()) if has_D else 0),
+                depth_A=dA)
+
+
+def compute_metrics_matched(pred_depth, conf, gt, masks, cfg, ctrl_depth=None, ctrl_conf=None, min_bucket=30):
+    """The usual metrics (U against clean S) plus the matched columns: auroc_m / cur_m score U against the
+    filled-but-observed pixels Sm (same patch, same fill), auroc_patch scores clean S against Sm (how much the
+    score reacts to a patch that hides nothing), and auroc_m per evidence bucket: Sm pixels seen by exactly one
+    clean view at low parallax (below the cell's median angle), one view at high parallax, two views, three or more."""
+    U, S, Sm = masks["U"], masks["S"], masks["Sm"]
+    out = compute_metrics(pred_depth, conf, gt, U, S, cfg, ctrl_depth, ctrl_conf)
+    cU, cS, cM = conf[U], conf[S], conf[Sm]
+    out["n_Sm"] = int(Sm.sum())
+    out["auroc_m"] = auroc(cM, cU)
+    if len(cM):
+        tau_m = np.quantile(cM, 1 - cfg["tau_keep"])
+        out["cur_m"] = float(np.mean(cU >= tau_m))
+        out["keep_S_at_tau_m"] = float(np.mean(cS >= tau_m)) if len(cS) else float("nan")
+    else:
+        out["cur_m"] = out["keep_S_at_tau_m"] = float("nan")
+    out["auroc_patch"] = auroc(cS, cM)
+    s = out["scale"]
+    out["absrel_Sm"], _ = depth_metrics(pred_depth * s, gt, Sm)
+    ev, par = masks["ev_count"], masks["ev_par"]
+    one = Sm & (ev == 1)
+    med = float(np.nanmedian(par[one])) if one.any() else float("nan")
+    buckets = {"ev1lo": one & (par <= med), "ev1hi": one & (par > med), "ev2": Sm & (ev == 2), "ev3p": Sm & (ev >= 3)}
+    for k, m in buckets.items():
+        n = int(m.sum())
+        out[f"n_{k}"] = n
+        out[f"auroc_m_{k}"] = auroc(conf[m], cU) if n >= min_bucket and len(cU) else float("nan")
+    out["par_median_ev1"] = med
+    out["n_evidence_views"] = len(masks["evidence_views"])
+    out["has_D"] = bool(masks["has_D"])
+    if ctrl_conf is not None:
+        out["auroc_m_ctrl"] = auroc(ctrl_conf[Sm], ctrl_conf[U])
+    return out
+
+
+def run_matched(root, model_names, cfg=None, out_csv="matched_results.csv", model_factory=None, verbose=True):
+    """The matched-patch protocol for a list of detectors (P11-matched). One row per (model, scene, seed, radius,
+    fill, evidence); rows are keyed like benchmark rows with fill "m<evidence>_<fill>" so that summarize and the
+    statistics work unchanged. Masks are cached per (scene, seed, radius, evidence) next to the CSV."""
+    import pandas as pd
+    cfg = {**DEFAULT_CFG, "seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"],
+           "evidence": ["1", "2", "half"], **(cfg or {})}
+    model_factory = model_factory or make_model
+    done = set()
+    if os.path.exists(out_csv):
+        prev = pd.read_csv(out_csv)
+        done = {_key(r) for r in prev.to_dict("records")}
+        print(f"resuming: {len(done)} rows already in {out_csv}")
+    json.dump(cfg, open(os.path.splitext(out_csv)[0] + "_cfg.json", "w"), indent=2)
+    is_co3d = cfg.get("dataset", "dtu") == "co3d"
+    if is_co3d:
+        try:
+            import co3d
+        except ImportError:
+            import sys
+            co3d = sys.modules[__name__]
+    cache_dir = cfg.get("label_cache") or os.path.join(os.path.dirname(os.path.abspath(out_csv)), "masks_cache")
+
+    def _load(scan):
+        if is_co3d:
+            views = select_views(cfg["n_views"], total=co3d.n_frames(root, scan), mode=cfg.get("view_mode", "spread"))
+            return co3d.load_co3d_scene(root, scan, views)
+        return load_scan(root, scan, select_views(cfg["n_views"], mode=cfg.get("view_mode", "spread")), cfg["light"])
+
+    def _masks(scan, data, seed, rf, ev):
+        p = os.path.join(cache_dir, f"{scan}__s{seed}__r{rf}__e{ev}.npz")
+        if os.path.exists(p):
+            z = np.load(p, allow_pickle=True)
+            if bool(z["failed"]):
+                return None
+            return dict(hide=z["hide"], U=z["U"], S=z["S"], Sm=z["Sm"], ev_count=z["ev_count"], ev_par=z["ev_par"],
+                        evidence_views=list(z["evidence_views"]), has_D=bool(z["has_D"]))
+        os.makedirs(cache_dir, exist_ok=True)
+        try:
+            m = build_masks_matched(data, seed, rf, cfg, ev)
+        except RuntimeError as e:
+            print(f"[masks] {scan} seed {seed} ev {ev}: {e}")
+            np.savez_compressed(p, failed=True)
+            return None
+        np.savez_compressed(p, failed=False, hide=m["hide"], U=m["U"], S=m["S"], Sm=m["Sm"], ev_count=m["ev_count"],
+                            ev_par=m["ev_par"], evidence_views=np.array(m["evidence_views"]), has_D=m["has_D"])
+        return m
+
+    for mname in model_names:
+        todo = [(sc, sd, rf, ev, fl) for sc in cfg["scans"] for sd in cfg["seeds"] for rf in cfg["radius_fracs"]
+                for ev in cfg["evidence"] for fl in cfg["fills"] if (mname, sc, sd, rf, f"m{ev}_{fl}") not in done]
+        if not todo:
+            print(f"[{mname}] all done"); continue
+        model = model_factory(mname)
+        t0 = time.time()
+        for scan in cfg["scans"]:
+            scan_todo = [t for t in todo if t[0] == scan]
+            if not scan_todo:
+                continue
+            data = _load(scan)
+            out_hw = data["depths"].shape[1:]
+            model_hw = tuple(data.get("model_hw", cfg["model_hw"]))
+            ctrl_d, ctrl_c = model.predict(data["imgs"], model_hw, out_hw)
+            rows = []
+            for (_, seed, rf, ev, fill) in scan_todo:
+                masks = _masks(scan, data, seed, rf, ev)
+                key = dict(model=mname, scan=scan, seed=seed, radius_frac=rf, fill=f"m{ev}_{fill}", evidence=ev, fill_kind=fill)
+                if masks is None or masks["Sm"].sum() < cfg.get("min_Sm", 30) or masks["U"].sum() < cfg.get("min_Sm", 30):
+                    rows.append(dict(**key, skipped=True)); continue
+                imgs_m = apply_fill(data["imgs"], masks["hide"], fill, seed)
+                d, c = model.predict(imgs_m, model_hw, out_hw)
+                m = compute_metrics_matched(d, c, data["depths"], masks, cfg, ctrl_d, ctrl_c)
+                rows.append(dict(**key, skipped=False, **m))
+            df = pd.DataFrame(rows)
+            df.to_csv(out_csv, mode="a", header=not os.path.exists(out_csv), index=False)
+            if verbose:
+                g = df[~df.skipped.astype(bool)]
+                if len(g):
+                    print(f"[{mname}] {scan}  auroc={g.auroc.mean():.3f} auroc_m={g.auroc_m.mean():.3f} "
+                          f"cur={g.cur.mean():.3f} cur_m={g.cur_m.mean():.3f} patch={g.auroc_patch.mean():.3f}  "
+                          f"ev1lo={g.auroc_m_ev1lo.mean():.3f}  {time.time() - t0:.0f}s", flush=True)
+                else:
+                    print(f"[{mname}] {scan}: every cell skipped", flush=True)
+        if hasattr(model, "free") and not cfg.get("keep_model", False):
+            model.free()
+    return out_csv
+
+
 def _fit_intrinsics(local_points, hw):
     """Pinhole intrinsics from camera-frame points (h,w,3) by least squares: u = fx * x/z + cx, v = fy * y/z + cy."""
     h, w = hw

@@ -838,6 +838,84 @@ def stage_stats(args):
     print("\n".join(lines)); print(f"-> {out}")
 
 
+
+# ----------------------------------------------------------------------------- P11: the matched-patch protocol
+MATCHED_CFG = {"seeds": [0, 1], "radius_fracs": [0.18], "fills": ["gray", "blur", "noise"], "evidence": ["1", "2", "half"]}
+MATCHED_NATIVE = ("vggt", "pi3x", "pi3", "da3", "mapanything")
+# heads scored on the matched split when their checkpoints are complete: the matched heads with their controls and
+# probes (both label sources) and, for the record, the label-free visibility head and its control
+MATCHED_DETECTORS = ("oiamatch", "oiamatchpatch", "oiamatchlin", "oiamatchself", "oiamatchselfpatch", "oiamatchselflin",
+                     "oiavisself", "oiavisselfpatch")
+
+
+def _matched_models(args):
+    ms = list(MATCHED_NATIVE)
+    for b in MATCHED_NATIVE:
+        if b in ("vggt", "pi3x", "pi3", "da3"):
+            ms.append(f"{b}_reproj")
+    for b in args.bases:
+        ms += [f"{b}_{v}" for v in MATCHED_DETECTORS if _have(args, f"{b}_{v}")]
+    return ms
+
+
+def _run_matched(args, run_name, models, cfg, root):
+    d = os.path.join(args.out, run_name)
+    os.makedirs(d, exist_ok=True)
+    log = Log(os.path.join(d, f"{run_name}.log"))
+    csv = os.path.join(d, f"{run_name}.csv")
+    log(f"== {run_name}: models {models}, cfg {json.dumps({k: v for k, v in cfg.items() if k != 'scans'})}")
+    for m in models:
+        try:
+            t0 = time.time()
+            H.run_matched(root, [m], cfg=cfg, out_csv=csv)
+            log(f"   {m}: {time.time() - t0:.0f}s")
+        except Exception:
+            log(f"!! {m} failed:\n{traceback.format_exc()}")
+    if os.path.exists(csv):
+        import pandas as pd
+        x = pd.read_csv(csv)
+        x = x[~x.skipped.astype(bool)] if "skipped" in x else x
+        tmp = csv.replace(".csv", "_rows.csv"); x.to_csv(tmp, index=False)
+        H.summarize(tmp, cols=("auroc", "cur", "auroc_m", "cur_m", "auroc_patch", "auroc_m_ev1lo", "auroc_m_ev1hi",
+                               "auroc_m_ev2", "auroc_m_ev3p", "absrel_S", "absrel_U", "absrel_Sm")
+                    ).to_csv(os.path.join(d, f"{run_name}_summary.csv"), index=False)
+        os.remove(tmp)
+    return csv
+
+
+def stage_trainmatch(args):
+    """Matched-patch heads (Gate 7): <base>_oiamatch with its per-image control and probe (ground-truth placement),
+    then the label-free triple <base>_oiamatchself*. One joint run per label source and backbone."""
+    for base in args.bases:
+        _train_heads(args, base, ["oiamatch", "oiamatchpatch", "oiamatchlin"], "oiamatch")
+        _train_heads(args, base, ["oiamatchself", "oiamatchselfpatch", "oiamatchselflin"], "oiamatchself")
+
+
+def stage_matched(args):
+    """P11-matched on the 18 DTU benchmark scans: the five native models, the reprojection detectors and every
+    matched head whose checkpoint is complete (Gate 6 for the natives, Gate 7 for the heads)."""
+    _ckpt_env(args)
+    _run_matched(args, "P11-matched", _matched_models(args), MATCHED_CFG, args.dtu_root)
+
+
+def stage_matched_co3d(args):
+    _ckpt_env(args)
+    _run_matched(args, "P11-matched-co3d", _matched_models(args), co3d_cfg(args, MATCHED_CFG), args.co3d_root)
+
+
+def stage_realocc(args):
+    """P12-realocc (Gate 8): where do the backbones put geometry that no input view saw, against the 49-view scan."""
+    _ckpt_env(args)
+    bases = [b for b in args.bases if b in ("vggt", "pi3x", "pi3", "da3")]
+    models = []
+    for b in bases:
+        models += [b, f"{b}_reproj"] + ([f"{b}_oiavisself"] if _have(args, f"{b}_oiavisself") else [])
+    cmd = [sys.executable, os.path.join(ROOT, "scripts", "realocc_eval.py"), "--dtu", args.dtu_root,
+           "--models", ",".join(models), "--out", os.path.join(args.out, "P12-realocc")]
+    print("[realocc]", " ".join(cmd), flush=True)
+    subprocess.run(cmd, check=False)
+
+
 STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": stage_co3d, "stress": stage_stress,
           "baselines": stage_baselines, "pvfull": stage_pvfull, "ablate": stage_ablate, "dtuext": stage_dtuext,
           "eth3d": stage_eth3d, "gs": stage_gs, "stats": stage_stats,
@@ -845,7 +923,8 @@ STAGES = {"check": stage_check, "train": stage_train, "dtu": stage_dtu, "co3d": 
           "trainvisself": stage_trainvisself, "trainvisprobe": stage_trainvisprobe,
           "adapt_co3d": stage_adapt_co3d, "adapt_eth3d": stage_adapt_eth3d, "vis_ext": stage_vis_ext, "dump": stage_dump,
           "vis_on_fill": stage_vis_on_fill, "vis_imc": stage_vis_imc, "adapt_imc": stage_adapt_imc, "xmodel": stage_xmodel,
-          "trainprov": stage_trainprov, "prov": stage_prov}
+          "trainprov": stage_trainprov, "prov": stage_prov,
+          "trainmatch": stage_trainmatch, "matched": stage_matched, "matched_co3d": stage_matched_co3d, "realocc": stage_realocc}
 
 
 def main():
@@ -876,7 +955,7 @@ def main():
     a.dtu_root = None
     if a.stage != "stats":
         a.dtu_root = H.find_dtu_root((a.dtu,)) if a.dtu else H.find_dtu_root()
-    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump", "vis_on_fill", "xmodel", "prov") else None
+    a.co3d_root = (co3d.find_co3d_root((a.co3d,)) if a.co3d else None) if a.stage in ("all", "co3d", "check", "gs", "vis_co3d", "adapt_co3d", "dump", "vis_on_fill", "xmodel", "prov", "matched_co3d") else None
     a.eth3d_root = co3d.find_co3d_root((a.eth3d,)) if (a.eth3d and a.stage in ("all", "eth3d", "vis_eth3d", "adapt_eth3d", "dump", "prov")) else None
     a.imc_root = co3d.find_co3d_root((a.imc,)) if (a.imc and a.stage in ("all", "vis_imc", "adapt_imc", "dump", "prov")) else None
     stages = list(STAGES) if a.stage == "all" else [a.stage]

@@ -93,6 +93,18 @@ VARIANTS = {
     # the per-view visibility bits of the ground truth (oiaprov) or of the backbone's own prediction (oiaprovself).
     "oiaprov":     ("agg",   "prov",   "vis"),
     "oiaprovself": ("agg",   "prov",   "visself"),
+    # matched-patch labels (P11-matched, Gate 7): every training scene carries three identical patches (same fill,
+    # size and depth), one hidden in every view (imagined) and two left visible in some views (observed, filled):
+    # from one image the patches cannot be told apart, so the head must read cross-view evidence. Negatives are the
+    # filled-but-observed pixels together with the clean supported pixels (equal weight, so a patch cue is
+    # penalised). `match`: placement and visibility from the ground truth; `matchself`: from the backbone's own
+    # prediction, no ground truth. The per-image control is the pipeline check (it should sit near chance).
+    "oiamatch":          ("agg",   "conv",   "match"),
+    "oiamatchpatch":     ("patch", "conv",   "match"),
+    "oiamatchlin":       ("agg",   "linear", "match"),
+    "oiamatchself":      ("agg",   "conv",   "matchself"),
+    "oiamatchselfpatch": ("patch", "conv",   "matchself"),
+    "oiamatchselflin":   ("agg",   "linear", "matchself"),
 }
 LAYER_PICK = {"oiavislin4": 0, "oiavislin11": 1, "oiavislin17": 2, "oiavislin23": 3}
 
@@ -517,7 +529,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         data = C.load_co3d_scene(dtu_root, scan, views) if is_co3d else H.load_scan(dtu_root, scan, views, light)
         hw = tuple(data.get("model_hw", model_hw))     # CO3D-format scenes carry their own (portrait / landscape)
         pred, F = None, None
-        if labels in ("self", "visself") and not gt:
+        if labels in ("self", "visself", "matchself") and not gt:
             d, c, F, K, E = forward(data["imgs"], feats_mode if labels == "visself" else "agg", hw)
             pred = (d.cpu().numpy(), c.cpu().numpy(), K.cpu().numpy(), E.cpu().numpy())
         md = model_res_data(data, hw, pred, tc["conf_floor_q"])
@@ -550,7 +562,9 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         print(f"[oia] {hd['variant']} head params: {sum(p.numel() for p in hd['head'].parameters()) / 1e6:.2f} M, "
               f"feature dims {[f.shape[1] for f in F]}", flush=True)
 
-    def step_loss(hd, F, U, S, pairs=None):
+    def step_loss(hd, F, U, S, pairs=None, S2=None):
+        """S2: a second negative group (the filled-but-observed pixels of the matched protocol); it shares the
+        negative weight equally with S, so the head is penalised for calling a patch imagined on appearance."""
         if hd["head"] is None:
             build(hd, F)
         hw = tuple(U.shape[1:])
@@ -565,7 +579,12 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
         w = torch.zeros_like(tgt)
         nU, nS = max(int(U_t.sum()), 1), max(int(S_t.sum()), 1)
         w[U_t] = 0.5 / nU
-        w[S_t] = 0.5 / nS
+        if S2 is not None and S2.any():
+            S2_t = torch.from_numpy(S2).to(device)
+            w[S_t] = 0.25 / nS
+            w[S2_t] = 0.25 / max(int(S2_t.sum()), 1)
+        else:
+            w[S_t] = 0.5 / nS
         loss = (bce(logit, tgt) * w).sum()
         if pair_logit is not None and pairs is not None:
             # per-view term: does view j corroborate pixel p of view i? Decided pixels only (known depth in view i,
@@ -602,6 +621,19 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
                         for hd in heads:
                             lg = upsample_logit(torch, hd["head"](_pick(hd["variant"], F[hd["feats"]])), tuple(m["U"].shape[1:])).cpu().numpy()
                             aucs[hd["out"]].append(H.auroc(-lg[m["S"]], -lg[m["U"]]))
+                    continue
+                if labels in ("match", "matchself"):   # validated on ground-truth placement: AUROC of U against the
+                    md = scene(s, H.select_views(tc["n_views"]), 3, gt=True)   # filled-but-observed pixels (auroc_m)
+                    for sd in tc["val_seeds"]:
+                        try:
+                            m = H.build_masks_matched(md, 1000 + sd, 0.18, cfg, evidence="1")
+                        except RuntimeError:
+                            continue
+                        imgs_in = H.apply_fill(md["imgs"], m["hide"], "blur", 1000 + sd)
+                        _, _, F, _, _ = forward(imgs_in, feats_mode)
+                        for hd in heads:
+                            lg = upsample_logit(torch, hd["head"](_pick(hd["variant"], F[hd["feats"]])), tuple(m["U"].shape[1:])).cpu().numpy()
+                            aucs[hd["out"]].append(H.auroc(-lg[m["Sm"]], -lg[m["U"]]))
                     continue
                 md = scene(s, H.select_views(tc["n_views"]), 3)
                 for sd in tc["val_seeds"]:
@@ -647,7 +679,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             if fails >= 20:
                 raise RuntimeError(f"20 consecutive scene failures, last: {e}")
             continue
-        pairs = None
+        pairs, S2 = None, None
         if labels in ("vis", "visself"):  # clean images; labels from the ground-truth support count (vis) or from
             imgs_in = md["imgs"]          # the support count of the backbone's own prediction (visself, no GT)
             m = H.vis_labels(md, vis_cfg)
@@ -660,6 +692,17 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             imgs_in = md["imgs"]
             U = np.zeros(md["depths"].shape, bool)
             S = md["depths"] > 0
+        elif labels in ("match", "matchself"):
+            try:                          # three identical patches: imagined (U), observed-filled (Sm), clean S
+                m = H.build_masks_matched(md, s, float(rng.uniform(*tc["radius_range"])), cfg,
+                                          evidence=str(rng.choice(["1", "2", "half"])))
+            except RuntimeError as e:
+                print(f"[oia] skip matched sample: {e}", flush=True)
+                continue
+            imgs_in = H.apply_fill(md["imgs"], m["hide"], str(rng.choice(tc["fills"])), s)
+            U, S, S2 = m["U"], m["S"], m["Sm"]
+            if S2.sum() < tc["vis_min_pixels"]:
+                continue
         else:
             try:
                 imgs_in, m = make_sample(md, s, float(rng.uniform(*tc["radius_range"])), str(rng.choice(tc["fills"])), cfg)
@@ -672,7 +715,7 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             _, _, F, _, _ = forward(imgs_in, feats_mode)
         s += 1
         for hd in heads:
-            loss, logit = step_loss(hd, F[hd["feats"]], U, S, pairs if hd["arch"] == "prov" else None)
+            loss, logit = step_loss(hd, F[hd["feats"]], U, S, pairs if hd["arch"] == "prov" else None, S2)
             hd["opt"].zero_grad(set_to_none=True)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(hd["head"].parameters(), 1.0)
@@ -680,9 +723,11 @@ def train_multi(base, dtu_root, specs, steps=None, device="cuda", scans=None, wr
             if s % tc["log_every"] == 0 or s == 1:
                 lg = logit.detach().cpu().numpy()
                 a = H.auroc(-lg[S], -lg[U]) if U.any() else float("nan")
-                print(f"[oia] step {s:5d} {hd['variant']:8s} loss {loss.item():.4f} train-auroc {a:.3f} "
+                am = H.auroc(-lg[S2], -lg[U]) if (S2 is not None and S2.any() and U.any()) else float("nan")
+                extra = f" train-auroc-m {am:.3f}" if S2 is not None else ""
+                print(f"[oia] step {s:5d} {hd['variant']:8s} loss {loss.item():.4f} train-auroc {a:.3f}{extra} "
                       f"lr {hd['sched'].get_last_lr()[0]:.2e} {time.time() - t0:.0f}s", flush=True)
-                hd["hist"].append(dict(step=s, loss=float(loss.item()), auroc=a))
+                hd["hist"].append(dict(step=s, loss=float(loss.item()), auroc=a, auroc_m=am))
         if s % tc["val_every"] == 0 or s == tc["steps"]:
             va = val_auroc()
             for hd in heads:

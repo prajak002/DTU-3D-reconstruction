@@ -301,6 +301,30 @@ checks.update({
     "run_vis dumps per-view maps when asked": set(["P", "seen", "unknown", "inframe", "rgb", "gt", "U", "S", "conf", "depth"]) <= set(dumped_p.files)
         and dumped_p["P"].shape[:2] == (3, 3),
 })
+# ---------------------------------------------------------------- P11: matched-patch labels (Gate 7)
+cks_m = O.train_multi("fake", root, [("oiamatch", 0, os.path.join(WORK, "ckpt", "fake_oiamatch.pt")),
+                                     ("oiamatchpatch", 0, os.path.join(WORK, "ckpt", "fake_oiamatchpatch.pt")),
+                                     ("oiamatchlin", 0, os.path.join(WORK, "ckpt", "fake_oiamatchlin.pt"))],
+                      steps=12, device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, lr=2e-3, warmup=5,
+                      log_every=4, val_every=6, val_scans=[3], val_seeds=[0], random_light=False, p_clean=0.0)
+cks_ms = O.train_multi("fake", root, [("oiamatchself", 0, os.path.join(WORK, "ckpt", "fake_oiamatchself.pt"))],
+                       steps=6, device="cpu", scans=[3], wrap=FakeWrap(), model_hw=MODEL_HW, lr=2e-3, warmup=5,
+                       log_every=3, val_every=6, val_scans=[], random_light=False, p_clean=0.0)
+ckm = torch.load(cks_m[0], map_location="cpu", weights_only=False)
+GT_BY_N.clear(); GT.update(data)
+mcsv = os.path.join(WORK, "matched.csv")
+if os.path.exists(mcsv):
+    os.remove(mcsv)
+H.run_matched(root, ["fake_oiamatch", "fake_oiamatchpatch"], {"scans": [3], "seeds": [0], "fills": ["blur"], "evidence": ["1"],
+                                                            "model_hw": MODEL_HW}, out_csv=mcsv)
+dmm = pd.read_csv(mcsv)
+print(dmm[["model", "fill", "auroc", "auroc_m", "cur_m", "auroc_patch", "n_Sm"]].to_string())
+checks.update({
+    "matched heads train jointly (conv, per-image control, probe) with labels match": all(os.path.exists(c) for c in cks_m) and ckm["labels"] == "match",
+    "label-free matched head trains (labels matchself)": os.path.exists(cks_ms[0])
+        and torch.load(cks_ms[0], map_location="cpu", weights_only=False)["labels"] == "matchself",
+    "run_matched scores the heads with the matched columns": len(dmm) == 2 and dmm.auroc_m.notna().all() and dmm.auroc_patch.notna().all(),
+})
 failed = [k for k, ok in checks.items() if not ok]
 print("checks:", "all passed" if not failed else "FAILED " + ", ".join(failed))
 print("scratch dir:", WORK)

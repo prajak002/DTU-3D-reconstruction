@@ -115,6 +115,38 @@ reproj_S = float(score_gt[masks["S"]].mean())
 reproj_auroc = H.auroc(score_blind[masks["S"]], score_blind[masks["U"]])
 print(f"reproj score: mean on S (GT depth) = {reproj_S:.3f}; AUROC S vs U on blind-guess depth = {reproj_auroc:.3f}")
 
+# -------- matched-patch protocol (P11-matched): three identical patches, one imagined and two observed in a clean view
+mm = H.build_masks_matched(data, 0, 0.15, cfg, evidence="1")
+mm2 = H.build_masks_matched(data, 0, 0.15, cfg, evidence="1")
+mh = H.build_masks_matched(data, 1, 0.15, cfg, evidence="half")
+ev = mm["evidence_views"]
+hid_blk_m = mm["hide"].reshape(len(data["imgs"]), h, 4, w, 4).mean((2, 4)) > 0.5
+# a per-image score (low wherever the input pixels are filled) cannot separate U from Sm; a cross-view score can
+conf_perimage = np.where(hid_blk_m, 0.1, 5.0) + rng.random(hid_blk_m.shape) * 0.01
+conf_xview = np.where(mm["U"], 0.1, 5.0) + rng.random(hid_blk_m.shape) * 0.01
+mt_img = H.compute_metrics_matched(data["depths"] * 2.0, conf_perimage.astype(np.float32), data["depths"], mm, cfg)
+mt_x = H.compute_metrics_matched(data["depths"] * 2.0, conf_xview.astype(np.float32), data["depths"], mm, cfg)
+print(f"matched: U {int(mm['U'].sum())}  Sm {int(mm['Sm'].sum())}  S {int(mm['S'].sum())}  evidence views {ev}  has_D {mm['has_D']}  "
+      f"ev_count of Sm: min {int(mm['ev_count'][mm['Sm']].min())} max {int(mm['ev_count'][mm['Sm']].max())}")
+print(f"matched metrics, per-image score: auroc {mt_img['auroc']:.3f} auroc_m {mt_img['auroc_m']:.3f} patch {mt_img['auroc_patch']:.3f}; "
+      f"cross-view score: auroc_m {mt_x['auroc_m']:.3f} cur_m {mt_x['cur_m']:.3f}")
+mcsv = os.path.join(WORK, "matched_results.csv")
+if os.path.exists(mcsv): os.remove(mcsv)
+H.run_matched(root, ["oracle"], {**cfg, "seeds": [0], "fills": ["gray"], "evidence": ["1", "half"], "radius_fracs": [0.15]},
+              out_csv=mcsv, model_factory=Fake)
+dm = pd.read_csv(mcsv)
+print(dm[["model", "fill", "auroc", "auroc_m", "cur_m", "auroc_patch", "n_Sm", "auroc_m_ev1lo", "auroc_m_ev3p"]].to_string())
+checks_matched = {
+    "matched: U, Sm and S pairwise disjoint": not (mm["U"] & mm["Sm"]).any() and not (mm["U"] & mm["S"]).any() and not (mm["Sm"] & mm["S"]).any(),
+    "matched: Sm non-empty and every Sm pixel seen by a clean view": mm["Sm"].sum() > 50 and (mm["ev_count"][mm["Sm"]] >= 1).all(),
+    "matched: deterministic": np.array_equal(mm["Sm"], mm2["Sm"]) and np.array_equal(mm["hide"], mm2["hide"]),
+    "matched: half-evidence set has N//2 views": len(mh["evidence_views"]) == len(data["imgs"]) // 2,
+    "matched: a per-image score is at chance on U vs Sm (0.4..0.6) while scoring ~1 on U vs clean S": 0.4 <= mt_img["auroc_m"] <= 0.6 and mt_img["auroc"] >= 0.99,
+    "matched: a per-image score reacts to the patch (auroc_patch ~1)": mt_img["auroc_patch"] >= 0.99,
+    "matched: a cross-view score separates U from Sm (auroc_m ~1, cur_m ~0)": mt_x["auroc_m"] >= 0.99 and mt_x["cur_m"] <= 0.01,
+    "run_matched writes the matched columns (the per-image oracle sits near chance on auroc_m)": len(dm) == 2 and dm.auroc_m.between(0.35, 0.65).all() and dm.auroc.min() >= 0.99,
+}
+
 # -------- pass / fail (the README promises these numbers; make the script say so with its exit code)
 mean = df.groupby("model")[["auroc", "cur", "absrel_S"]].mean()
 checks = {
@@ -128,6 +160,7 @@ checks = {
     "blind cur >= 0.85": mean.loc["blind", "cur"] >= 0.85,
     "absrel_S ~ 0 after scaling": (mean["absrel_S"] < 1e-3).all(),
 }
+checks.update(checks_matched)
 failed = [k for k, ok in checks.items() if not ok]
 print("checks:", "all passed" if not failed else "FAILED " + ", ".join(failed))
 print("scratch dir:", WORK)
