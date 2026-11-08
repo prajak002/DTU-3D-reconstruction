@@ -169,6 +169,23 @@ def numbers():
                 if c in x and x[c].notna().any():
                     e[c] = ci(x.dropna(subset=[c]), m, c)
             N["prov"][key][m] = e
+    # matched-patch split (P11-matched): the same patch under two labels; blur and noise pooled, as the leak tables
+    N["matched"] = {}
+    for key, run in (("dtu", "P11-matched"), ("co3d", "P11-matched-co3d")):
+        p = os.path.join(RES, run, f"{run}.csv")
+        if not os.path.exists(p):
+            continue
+        d = pd.read_csv(p)
+        d = d[~d.skipped.astype(bool)] if "skipped" in d else d
+        d = d[d.fill_kind.isin(["blur", "noise"])]
+        N["matched"][key] = {}
+        for m in d.model.unique():
+            x = d[d.model == m].dropna(subset=["auroc_m"])
+            e = {c: ci(x, m, c) for c in ("auroc", "cur", "auroc_m", "cur_m", "auroc_patch")}
+            for c in ("auroc_m_ev1lo", "auroc_m_ev1hi", "auroc_m_ev2", "auroc_m_ev3p"):
+                if c in x and x[c].notna().any():
+                    e[c] = ci(x.dropna(subset=[c]), m, c)
+            N["matched"][key][m] = e
     # operating points
     for key, *_ in DATASETS:
         p = os.path.join(RES, "P6-dump", f"P6-dump-{key}_curves.csv")
@@ -405,6 +422,39 @@ def chart_refill(N, theme, out):
     fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
 
 
+def chart_matched(N, theme, out):
+    """The same patch under two labels: AUROC of native confidence against clean supported pixels (the benchmark's
+    original number) and against filled-but-observed pixels (the matched number), per model and dataset; with the
+    matched heads where they exist."""
+    plt, T = _style(theme)
+    M = N.get("matched", {})
+    keys = [k for k in ("dtu", "co3d") if k in M]
+    if not keys:
+        return
+    models = [b for b in ("vggt", "pi3", "pi3x", "mapanything", "da3") if any(b in M[k] for k in keys)]
+    fig, axes = plt.subplots(1, len(keys), figsize=(5.2 * len(keys), 4.4), sharey=True)
+    axes = np.atleast_1d(axes)
+    for ax, k in zip(axes, keys):
+        x = np.arange(len(models)); w = 0.2
+        series = [("auroc", "native confidence vs clean pixels (the original benchmark)", T["muted"]),
+                  ("auroc_m", "native confidence vs filled-but-observed pixels (matched)", T["c"][1])]
+        for i, (col, lab, colr) in enumerate(series):
+            vals = [M[k].get(b, {}).get(col) for b in models]
+            ax.bar(x + (i - 1.5) * w, [v[0] if v else 0 for v in vals], w * 0.92, color=colr, label=lab,
+                   yerr=[[v[0] - v[1] if v else 0 for v in vals], [v[2] - v[0] if v else 0 for v in vals]], ecolor=T["muted"], capsize=2)
+        for i, (suf, lab, colr) in enumerate((("_oiamatchselfpatch", "matched per-image control", T["c"][3]), ("_oiamatchself", "matched head, label-free", T["c"][2]))):
+            vals = [M[k].get(f"{b}{suf}", {}).get("auroc_m") for b in models]
+            if any(vals):
+                ax.bar(x + (i + 0.5) * w, [v[0] if v else 0 for v in vals], w * 0.92, color=colr, label=lab,
+                       yerr=[[v[0] - v[1] if v else 0 for v in vals], [v[2] - v[0] if v else 0 for v in vals]], ecolor=T["muted"], capsize=2)
+        ax.set_xticks(x); ax.set_xticklabels([NAME[b] for b in models], fontsize=9); ax.set_ylim(0.2, 1.0)
+        ax.axhline(0.5, color=T["muted"], lw=0.8, ls=":")
+        ax.set_title(dict(DATASETS_LABEL)[k], fontsize=12); _clean(ax, T)
+    axes[0].set_ylabel("AUROC"); axes[0].legend(fontsize=8, loc="lower left")
+    fig.suptitle("The same patch under two labels: native confidence reads the patch, not the missing support (run P11-matched)", fontsize=11)
+    fig.tight_layout(); fig.savefig(out, dpi=160); plt.close(fig)
+
+
 def chart_prov(N, theme, out):
     """Provenance: attribution AUROC (does the per-view score rank the views that see a point above those that do not)
     of the label-free provenance head against the reprojection test with the model's own cameras, per backbone and dataset."""
@@ -487,6 +537,7 @@ def main():
         chart_fuse(N, theme, os.path.join(a.out, f"fuse_{theme}.png"))
         chart_refill(N, theme, os.path.join(a.out, f"refill_{theme}.png"))
         chart_prov(N, theme, os.path.join(a.out, f"prov_{theme}.png"))
+        chart_matched(N, theme, os.path.join(a.out, f"matched_{theme}.png"))
         print("charts written for", theme)
 
 

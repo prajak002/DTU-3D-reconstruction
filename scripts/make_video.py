@@ -156,6 +156,12 @@ def main():
          lines=["The imagined depth on DTU is as accurate as the observed depth: the failure is 'cannot tell', not 'wrong'.",
                 "An inpainted fill raises the leak rather than lowering it. Dropping views or adding a distractor changes nothing."])
 
+    # 4b. the matched split: the same patch under two labels
+    if os.path.exists(os.path.join(CH, "matched_dark.png")):
+        chart(reel, os.path.join(CH, "matched_dark.png"), "The same patch under two labels",
+              f"Hide identical patches, one in every view (imagined) and one that another view still sees (observed). Native confidence cannot tell them apart: "
+              f"AUROC {g('matched/dtu/vggt/auroc_m')} to {g('matched/dtu/da3/auroc_m')} on DTU against {g('matched/dtu/vggt/auroc')} to {g('matched/dtu/da3/auroc')} for clean pixels. "
+              "It reacts to the patch, not to the missing support.", 10, chapter="03 / THE FINDING")
     # 5. cheap fixes and the fill-trained head
     chart(reel, os.path.join(CH, "compare_dark.png"), "Cheap fixes fail, and a head trained on the fill learns the fill",
           "Left: perturbation variance and reprojection consistency are no better than native confidence on the filled patch; a head trained on the fills scores 1.00, "

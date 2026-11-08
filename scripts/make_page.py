@@ -196,6 +196,27 @@ def single_sentence():
             """the invented surface follows the pixels of the view it is drawn in, with a weaker pull from the other views.""")
 
 
+def matched_block():
+    """The matched-patch split (run P11-matched), if its rows exist."""
+    if v('matched/dtu/vggt/auroc_m') == "--":
+        return ""
+    models = [b for b in ("vggt", "pi3", "pi3x", "mapanything", "da3") if v(f'matched/dtu/{b}/auroc_m') != "--"]
+    orig = rng([f'matched/dtu/{b}/auroc' for b in models]); matched = rng([f'matched/dtu/{b}/auroc_m' for b in models])
+    curm = rng([f'matched/dtu/{b}/cur_m' for b in models]); patch = rng([f'matched/dtu/{b}/auroc_patch' for b in models])
+    heads = [b for b in ("vggt", "pi3x", "pi3", "da3") if v(f'matched/dtu/{b}_oiamatchself/auroc_m') != "--"]
+    head_txt = ""
+    if heads:
+        hm = rng([f'matched/dtu/{b}_oiamatchself/auroc_m' for b in heads]); cm = rng([f'matched/dtu/{b}_oiamatchselfpatch/auroc_m' for b in heads])
+        head_txt = (f" A head trained on the same three-patch protocol with no ground truth separates the imagined patch from the "
+                    f"observed one at AUROC {hm}; the same head on per-image tokens, the pipeline check, sits at {cm}.")
+    return f"""
+<section class="measure" id="matched">
+  <h2><span class="num">02b / THE CONTROL</span>The same patch under two labels</h2>
+  <p>Every unsupported pixel of the benchmark sits under a filled patch and no supported pixel does, so a confidence that reacts to the patch would look as if it knew about missing support. The matched split removes the confound: three spheres of the same size, depth and fill are hidden in every scene, one in every input view (imagined) and two in only some views, so that their filled pixels stay visible in a clean view (observed). From a single image the patches are identical. Native confidence separates the imagined patch from clean pixels at AUROC {orig} and from the observed patch at {matched}: it reacts to the patch (AUROC {patch} for clean against filled-but-observed pixels), not to the missing support, and lets {curm} of the imagined pixels through a threshold that keeps 90% of the observed, filled ones.{head_txt}</p>
+</section>
+<figure class="fig"><img src="assets/charts/matched_light.png" alt="Matched split: native confidence against clean and against filled-but-observed pixels"><figcaption>Run P11-matched: the benchmark's original AUROC (grey) and the matched AUROC (orange) for the five models; the matched heads where trained. 95% cluster-bootstrap intervals over scenes.</figcaption></figure>"""
+
+
 def prov_block():
     """Provenance head (run P10-prov), if its rows exist."""
     if v('prov/dtu/vggt_oiaprovself/prov_auroc') == "--":
@@ -314,6 +335,7 @@ def page():
 <figure class="fig"><img src="assets/fig2_pipeline.png" alt="The masking protocol: sphere placed on the ground-truth surface, hidden in every view, fills, labels, controls"><figcaption>The protocol. Everything downstream of the sphere is computed from the ground truth and the cameras; no model is involved in the labels.</figcaption></figure>
 <figure class="fig"><img src="assets/charts/compare_light.png" alt="AUROC of every detector on the filled patch and on real single-view geometry"><figcaption>Left: on the benchmark's filled patch, the only detectors that score are the ones trained on the fill, and their per-image control scores the same, so they found the patch, not the missing support. Right: on real single-view geometry from clean views, the cross-view tokens carry the answer, a per-image head does not, and the fill-trained head scores below native confidence.</figcaption></figure>
 
+{matched_block()}
 <section class="measure" id="method">
   <h2><span class="num">03 / THE METHOD</span>Change what the detector must learn</h2>
   <p>A head trained on the benchmark's fills learns to see the fill, which a single image reveals even when inpainted. So the label was changed to the thing the patch imitates, multi-view support, and the input to clean views: a pixel that only one view supports is the positive class, a pixel two or more views support is the negative class. The decisive control is the same head on per-image tokens, before any cross-view attention.</p>
