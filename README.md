@@ -17,7 +17,7 @@ Feed-forward 3D models (VGGT, Pi3, Pi3X, MapAnything, Depth Anything 3) take a h
 | Project page | https://prajak002.github.io/DTU-3D-reconstruction/ |
 | Paper and supplement | [`docs/assets/paper.pdf`](docs/assets/paper.pdf), [`docs/assets/supp.pdf`](docs/assets/supp.pdf) (CVPR 2027 submission, anonymous) |
 | Per-scene explorer | https://prajak002.github.io/DTU-3D-reconstruction/explorer.html |
-| Downloads | [release `v1.0-cvpr2027-submission`](https://github.com/prajak002/DTU-3D-reconstruction/releases/tag/v1.0-cvpr2027-submission): PDFs, Overleaf project, every result CSV, the 56 head checkpoints, the overview video |
+| Downloads | [release `v1.0-cvpr2027-submission`](https://github.com/prajak002/DTU-3D-reconstruction/releases/tag/v1.0-cvpr2027-submission): PDFs, Overleaf project, every result CSV, the head checkpoints (support, provenance and matched heads), the overview video |
 | Videos | `docs/assets/overview.mp4` (3.5 min), `paper/demo/demo.mp4` (protocol on real data, 3 min), `paper/demo/walkthrough.mp4` (end to end, 5 min) |
 
 ---
@@ -27,12 +27,14 @@ Feed-forward 3D models (VGGT, Pi3, Pi3X, MapAnything, Depth Anything 3) take a h
 - [The question](#the-question)
 - [The benchmark](#the-benchmark)
 - [Finding 1: native confidence leaks](#finding-1-native-confidence-leaks)
-- [Finding 2: cheap fixes fail, and a head trained on the fill learns the fill](#finding-2-cheap-fixes-fail-and-a-head-trained-on-the-fill-learns-the-fill)
+- [Finding 2: the confidence reads the patch, not the missing support](#finding-2-the-confidence-reads-the-patch-not-the-missing-support)
+- [Finding 3: cheap fixes fail, and a head trained on the fill learns the fill](#finding-3-cheap-fixes-fail-and-a-head-trained-on-the-fill-learns-the-fill)
 - [The detector: a label-free support head](#the-detector-a-label-free-support-head)
 - [Results on four datasets the head never saw](#results-on-four-datasets-the-head-never-saw)
 - [Which view saw it: the provenance head](#which-view-saw-it-the-provenance-head)
 - [What abstaining buys downstream](#what-abstaining-buys-downstream)
 - [The limit](#the-limit)
+- [Real occlusion against the dense scan](#real-occlusion-against-the-dense-scan)
 - [Repository layout](#repository-layout)
 - [Reproduce](#reproduce)
 - [How the work was run](#how-the-work-was-run)
@@ -110,7 +112,30 @@ What this says:
   <br><sub>Recorded outputs, left to right: masked input, ground-truth depth, the model's depth, the model's confidence. Cyan outline: the hidden region. Each panel shows the CSV row it came from.</sub>
 </p>
 
-## Finding 2: cheap fixes fail, and a head trained on the fill learns the fill
+## Finding 2: the confidence reads the patch, not the missing support
+
+Every unsupported pixel of the benchmark sits under a filled patch, and no supported pixel does. A confidence that merely reacts to a patch would therefore look as if it knew about missing support. The **matched split** removes that confound. Three spheres of the same radius, fill, depth and local texture are placed in every scene: one is hidden in every input view (imagined), one is hidden in every view except an evidence set of one, two or half the views, so that its filled pixels stay visible in a clean view (observed), and a third is hidden only in the evidence views so that every view carries two patches. From a single image the patches are identical. Only cross-view evidence tells them apart.
+
+<p align="center">
+  <img src="docs/assets/fig_matched.png" width="100%" alt="Two identical gray patches on a DTU scan: native confidence and the per-image control score both alike, the matched head separates them">
+  <br><sub>Two identical gray patches: red is hidden in every view (imagined), green is hidden here but visible in the clean view beside it (observed). Native confidence and the per-image control score both alike; the matched head, trained label-free, separates them.</sub></p>
+
+AUROC and CUR of the imagined patch against clean supported pixels (the benchmark's original number) and, in bold, against the identical observed patch (the matched number). Blur and noise pooled, seeds 0 and 1, radius 0.18.
+
+| model | DTU AUROC | DTU AUROC, matched | DTU CUR | DTU CUR, matched | CO3Dv2 AUROC | CO3Dv2 AUROC, matched | CO3Dv2 CUR | CO3Dv2 CUR, matched |
+|---|---|---|---|---|---|---|---|---|
+| VGGT-1B | 0.940 | **0.551** | 0.168 | **0.802** | 0.665 | **0.486** | 0.682 | **0.852** |
+| Pi3 | 0.922 | **0.495** | 0.258 | **0.828** | 0.903 | **0.494** | 0.257 | **0.808** |
+| Pi3X | 0.819 | **0.474** | 0.532 | **0.870** | 0.771 | **0.500** | 0.512 | **0.806** |
+| MapAnything | 0.752 | **0.515** | 0.590 | **0.837** | 0.579 | **0.493** | 0.804 | **0.836** |
+| Depth Anything 3 | 0.718 | **0.425** | 0.676 | **0.854** | 0.655 | **0.482** | 0.744 | **0.839** |
+
+- Against an identical patch that another view sees, every model is at chance. The benchmark's original AUROC was the confidence dropping under a patch, whichever label the patch carried.
+- Measured without the confound, the leak is 80 to 87 percent: a threshold that keeps 90 percent of the observed, filled pixels keeps that share of the imagined ones.
+- The reprojection test with the model's own cameras is at chance on the matched pixels too: the invented surface is cross-view consistent.
+- This was pre-registered as Gate 6. Its rule called a model patch-inflated when the matched AUROC fell more than 0.10 below the original; it does for every model on DTU and for four of five on CO3Dv2, so the matched numbers are the headline and Table 1 of the paper is the lower bound it is.
+
+## Finding 3: cheap fixes fail, and a head trained on the fill learns the fill
 
 Two training-free alternatives, scored on the same rows:
 
@@ -134,6 +159,15 @@ The fix was to change what the detector must learn, not the head. Same head, sam
 **Output.** The score is 1 minus P(imagined). Three bands, fixed in advance: **observed** above 0.7, **imagined** below 0.3, **abstain** in between. Every metric uses the continuous score.
 
 **Controls.** The decisive one is the **per-image head**: the same head, same labels, on per-image encoder tokens before any cross-view attention. If it did as well, the signal would be an image cue (borders, depth edges) rather than multi-view support. Further controls: a linear probe on the same features and on each cross-view layer alone, the distance to the image border, the depth gradient, two extra initialisation seeds, a head trained on ground-truth visibility as the upper bound.
+
+**The matched head and its built-in check.** The matched split of Finding 2 is also a training protocol: positives are the pixels of the sphere hidden everywhere, negatives the filled-but-observed pixels and clean pixels at equal weight, so a patch cue is penalised. Trained this way, the per-image head must stay near chance on the matched pixels, or the pipeline leaks. It did catch one: a first placement that matched area and depth but not texture let the observed sphere land on the rig's white backdrop, the control rose to 0.62, and the run was repeated with a texture constraint (Gate 7, pre-registered bound 0.60). Matched AUROC on DTU, blur and noise pooled; the last two columns are CO3Dv2 without retraining.
+
+| backbone | native | per-image control | **matched head, label-free** | matched head, GT placement | label-free, one clean view at low parallax | label-free, three or more views | CO3Dv2 control | **CO3Dv2 label-free head** |
+|---|---|---|---|---|---|---|---|---|
+| VGGT-1B | 0.551 | 0.562 | **0.754** | 0.763 | 0.707 | 0.889 | 0.538 | **0.681** |
+| Pi3X | 0.474 | 0.614 | **0.693** | 0.730 | 0.680 | 0.801 | 0.565 | **0.675** |
+
+The head reads cross-view evidence where native confidence and the per-image control read nothing, and more evidence helps. The gain is moderate, and the gate's clauses that fail (0.75 on the hardest bucket; the label-free Pi3X head 0.037 from its ground-truth twin) are reported as written.
 
 <p align="center">
   <img src="docs/assets/readme/detector.gif" width="92%" alt="Overview video chapter on the method and results">
@@ -216,6 +250,10 @@ The head certifies agreement between views, not truth. Put back to the benchmark
 
 What does move it is the pixels it was drawn from. With the same hidden sphere filled three ways and the backbone run on each, the spread of the invented depth over the fills separates the patch from supported geometry at AUROC 0.82 to 0.98 on DTU, above native confidence; refilling one view only moves the surface in that view. A real capture offers no second fill, so this is a diagnosis rather than a detector, but it says where the invented surface comes from: the model reads the hole and draws what its pixels suggest.
 
+## Real occlusion against the dense scan
+
+How often does a backbone put geometry on a surface its inputs never showed, on a real capture? Against the full 49-view DTU scan, every predicted point is matched to the nearest ground-truth point, and that point is either observed by some input view or not (run P12-realocc, Gate 8). The share of predicted points on unobserved surfaces is small and falls with the view count (3 views: VGGT-1B 1.35%, Pi3X 1.09%; 5 views: VGGT-1B 0.82%, Pi3X 0.53%; 10 views: VGGT-1B 0.36%, Pi3X 0.17%). The models do not invent geometry where their inputs showed none; the hallucination the benchmark measures arises when the pixels force it, a filled or occluded region, and the natural case on real captures is single-view geometry, which the true-visibility protocol scores. No detection claim is made from real occlusion.
+
 ## Repository layout
 
 ```
@@ -226,10 +264,12 @@ scripts/
   oia_head.py             the support head (conv, linear probe, per-image control, provenance): training and wrappers
   run_h100.py             the GPU plan: every stage from training the heads to the dumps, stats and tables
   refill_eval.py  fuse_eval.py  analyze_dumps.py   fill sensitivity, fused point clouds, per-pixel analysis
+  realocc_eval.py         real occlusion against the 49-view scan (P12-realocc)
   kaggle_driver*.py  kaggle_prelude.py  kaggle_p3_stages.py   single-file Kaggle kernels for the benchmark runs
   test_synthetic.py  test_oia.py  test_co3d.py     CPU tests (oracle / blind models, head plumbing, CO3D path)
   make_figures.py  make_fig_vis.py  make_fig_qual.py  make_fig_prov.py  make_fig_heritage.py  make_fig_threeway.py
-  make_tab_vis.py  make_tab_leak.py  make_tab_prov.py          generated LaTeX tables
+  make_tab_vis.py  make_tab_leak.py  make_tab_prov.py  make_tab_matched.py   generated LaTeX tables and statistics
+  make_fig_matched.py     the matched-split figure (runs the backbone on one scene)
   make_assets.py  make_page.py  make_site.py  make_video.py  make_demo.py  make_walkthrough.py
                           numbers.json, charts, project page, explorer, results bundle, the three videos
   make_overleaf.py  make_supp_archive.py  merge_rows.py  compute_cost.py
@@ -237,7 +277,8 @@ scripts/
 results/                  one folder per run: CSV, config JSON, run log, kernel log, example composites
                           P1/P2: benchmark   P3: heads and baselines   P4: true-visibility protocol
                           P6/P7: adaptation, dumps, landmarks   P8: fused clouds, cross-model   P9: refill   P10: provenance
-                          P3-stats.md, P10-prov-stats.md: every paired test
+                          P11: the matched split and matched heads   P12: real occlusion against the scan
+                          P3-stats.md, P10-prov-stats.md, P11-matched-stats.md: every paired test
 paper/
   tex/                    LaTeX sources (CVPR 2027 kit): main.tex, supp.tex, preamble.tex, generated tab_*.tex
   figures/                every figure, PDF and PNG, plus the per-dataset panels
@@ -283,13 +324,14 @@ H.run_benchmark(root, ["vggt", "pi3x"], cfg={"seeds": [0], "fills": ["blur"]}, o
 print(H.summarize("out.csv"))
 ```
 
-Model names: `vggt`, `pi3`, `pi3x`, `da3`, `mapanything`, `mapanything_mv`, `<model>_pv<K>` (perturbation variance), `<model>_reproj` (reprojection consistency), `<model>_oiavisself` (label-free head), `<model>_oiavis` (ground-truth-visibility head), `<model>_oiavisselfpatch` (per-image control), `<model>_oiaprovself` (provenance head).
+Model names: `vggt`, `pi3`, `pi3x`, `da3`, `mapanything`, `mapanything_mv`, `<model>_pv<K>` (perturbation variance), `<model>_reproj` (reprojection consistency), `<model>_oiavisself` (label-free head), `<model>_oiavis` (ground-truth-visibility head), `<model>_oiavisselfpatch` (per-image control), `<model>_oiamatchself` (matched head, label-free), `<model>_oiamatchselfpatch` (its per-image control), `<model>_oiaprovself` (provenance head).
 
 **Heads, protocols, statistics (GPU, one H200 or an L4)**
 
 ```
 python scripts/run_h100.py all --dtu <DTU incl. training scans> --co3d <co3d_prep> --eth3d <eth3d_prep> --imc <imc_prep>
-# stages can be run one at a time: trainvisself, vis, vis_co3d, vis_eth3d, vis_imc, adapt, dump, trainprov, prov, stats ...
+# stages can be run one at a time: trainvisself, vis, vis_co3d, vis_eth3d, vis_imc, adapt, dump, trainprov, prov,
+# trainmatch, matched, matched_co3d, realocc, stats ...
 ```
 
 The data: DTU from the public Kaggle dataset `tobyzhou/dtu-training` (MVSNet layout); CO3Dv2 preprocessed by `co3d.preprocess_co3d()` from the official single-sequence zips; ETH3D by `scripts/box/eth3d_prep.sh`; the landmarks by `scripts/imc.py` from the Kaggle redistribution of the IMC 2020 phototourism set. Pretrained heads are in the release; put them in `checkpoints/` (or point `OIA_CKPT_DIR` at them) and the training stages become no-ops.
@@ -309,7 +351,7 @@ cd paper/tex && tectonic main.tex && tectonic supp.tex                          
 ## How the work was run
 
 - **No fabricated numbers.** Every number in the paper, on the page and in this file maps to a CSV and a config in `results/`. While a run was pending its place in the paper was marked `pending`, never estimated.
-- **Pre-registration.** Every pass condition for a detector was written into `EXPERIMENTS.md`, with a date and a commit, before the detector was trained. Five gates were set; the outcomes are recorded as written, including the one that passed only by the letter (and is not counted) and the one whose attribution clause failed.
+- **Pre-registration.** Every pass condition was written into `EXPERIMENTS.md`, with a date and a commit, before the run it judges. Eight gates were set; the outcomes are recorded as written, including the one that passed only by the letter (and is not counted), the one whose attribution clause failed, and the pipeline check that caught a placement flaw and forced a repeat.
 - **Everything reported.** Failed runs, the fill-trained head that learned the fill, the one CO3Dv2 scene that narrowly missed a geometry guard, and every correction to a reported number are in `LOG.md`.
 - **Controls on identical rows.** Native confidence, perturbation variance, reprojection consistency, two hand-crafted cues, a linear probe and a per-image head are scored on the same pixels as the proposed head, with paired tests.
 - **Hyperparameters frozen early.** Fixed on the DTU training split before any benchmark scan was evaluated, then unchanged for CO3Dv2, ETH3D and the landmarks.

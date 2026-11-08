@@ -1,0 +1,343 @@
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[oia] base=pi3 variant=oiamatchself feats=agg arch=conv labels=matchself seed=0 train scans=77 val scans=[2, 6] steps=1500 -> checkpoints/pi3_oiamatchself.pt
+[oia] base=pi3 variant=oiamatchselfpatch feats=patch arch=conv labels=matchself seed=0 train scans=77 val scans=[2, 6] steps=1500 -> checkpoints/pi3_oiamatchselfpatch.pt
+[oia] base=pi3 variant=oiamatchselflin feats=agg arch=linear labels=matchself seed=0 train scans=77 val scans=[2, 6] steps=1500 -> checkpoints/pi3_oiamatchselflin.pt
+[oia] oiamatchself head params: 1.71 M, feature dims [2048]
+[oia] step     1 oiamatchself loss 0.3651 train-auroc nan lr 2.00e-05 3s
+[oia] oiamatchselfpatch head params: 1.44 M, feature dims [1024]
+[oia] step     1 oiamatchselfpatch loss 0.3365 train-auroc nan lr 2.00e-05 3s
+[oia] oiamatchselflin head params: 0.53 M, feature dims [2048]
+[oia] step     1 oiamatchselflin loss 0.4502 train-auroc nan lr 2.00e-05 3s
+[oia] skip matched sample: scan 8 seed 6 r0.23486819038794338 evhalf: no matched spheres A and B
+[oia] step    25 oiamatchself loss 0.6604 train-auroc 0.867 train-auroc-m 0.405 lr 2.60e-04 46s
+[oia] step    25 oiamatchselfpatch loss 0.6060 train-auroc 0.991 train-auroc-m 0.362 lr 2.60e-04 46s
+[oia] step    25 oiamatchselflin loss 0.6166 train-auroc 0.941 train-auroc-m 0.420 lr 2.60e-04 46s
+[oia] skip matched sample: scan 7 seed 25 r0.17439369482392492 evhalf: no matched spheres A and B
+[oia] step    50 oiamatchself loss 0.4726 train-auroc 0.996 train-auroc-m 0.583 lr 5.09e-04 90s
+[oia] step    50 oiamatchselfpatch loss 0.4742 train-auroc 0.997 train-auroc-m 0.652 lr 5.09e-04 90s
+[oia] step    50 oiamatchselflin loss 0.3287 train-auroc 0.999 train-auroc-m 0.880 lr 5.09e-04 90s
+[oia] skip matched sample: scan 89 seed 50 r0.21629717977689816 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 39 seed 55 r0.19779741055159272 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 55 r0.2305181945165507 evhalf: no matched spheres A and B
+[oia] step    75 oiamatchself loss 0.6356 train-auroc 0.982 train-auroc-m 0.528 lr 7.55e-04 140s
+[oia] step    75 oiamatchselfpatch loss 0.5790 train-auroc 0.997 train-auroc-m 0.526 lr 7.55e-04 140s
+[oia] step    75 oiamatchselflin loss 0.6898 train-auroc 0.990 train-auroc-m 0.862 lr 7.55e-04 140s
+[oia] skip matched sample: scan 93 seed 79 r0.21311712690705015 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 124 seed 82 r0.22443573342585782 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 90 seed 91 r0.2100996989505044 ev2: no matched spheres A and B
+[oia] step   100 oiamatchself loss 0.6142 train-auroc 0.949 train-auroc-m 0.612 lr 9.89e-04 192s
+[oia] step   100 oiamatchselfpatch loss 1.3021 train-auroc 0.988 train-auroc-m 0.396 lr 9.89e-04 192s
+[oia] step   100 oiamatchselflin loss 0.5448 train-auroc 0.873 train-auroc-m 0.762 lr 9.89e-04 192s
+[oia] skip matched sample: scan 121 seed 107 r0.09497216488523524 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 125 seed 109 r0.20048979123117644 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 97 seed 120 r0.2161419332700154 evhalf: no matched spheres A and B
+[oia] step   125 oiamatchself loss 0.4271 train-auroc 0.999 train-auroc-m 0.762 lr 9.83e-04 245s
+[oia] step   125 oiamatchselfpatch loss 0.4890 train-auroc 0.999 train-auroc-m 0.562 lr 9.83e-04 245s
+[oia] step   125 oiamatchselflin loss 0.5088 train-auroc 0.996 train-auroc-m 0.666 lr 9.83e-04 245s
+[oia] step   150 oiamatchself loss 0.6138 train-auroc 0.992 train-auroc-m 0.161 lr 9.76e-04 296s
+[oia] step   150 oiamatchselfpatch loss 0.5123 train-auroc 0.996 train-auroc-m 0.226 lr 9.76e-04 296s
+[oia] step   150 oiamatchselflin loss 0.5933 train-auroc 0.998 train-auroc-m 0.460 lr 9.76e-04 296s
+[oia] skip matched sample: scan 99 seed 169 r0.22937314079921622 ev2: no matched spheres A and B
+[oia] step   175 oiamatchself loss 0.0002 train-auroc nan lr 9.67e-04 339s
+[oia] step   175 oiamatchselfpatch loss 0.0000 train-auroc nan lr 9.67e-04 339s
+[oia] step   175 oiamatchselflin loss 0.0024 train-auroc nan lr 9.67e-04 339s
+[oia] skip matched sample: scan 89 seed 187 r0.1954061386849489 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 98 seed 187 r0.2261171156305128 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 87 seed 193 r0.11103285994399277: no valid sphere A after 50 tries
+[oia] step   200 oiamatchself loss 1.1345 train-auroc 0.970 train-auroc-m 0.615 lr 9.57e-04 393s
+[oia] step   200 oiamatchselfpatch loss 0.6466 train-auroc 0.997 train-auroc-m 0.716 lr 9.57e-04 393s
+[oia] step   200 oiamatchselflin loss 0.8902 train-auroc 0.950 train-auroc-m 0.610 lr 9.57e-04 393s
+[oia] skip matched sample: scan 42 seed 205 r0.20543186357882237 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 64 seed 211 r0.23232912535756756 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 45 seed 216 r0.22678198777383285 ev1: no matched spheres A and B
+[oia] step   225 oiamatchself loss 0.2809 train-auroc 1.000 train-auroc-m 0.966 lr 9.46e-04 454s
+[oia] step   225 oiamatchselfpatch loss 0.4318 train-auroc 0.999 train-auroc-m 0.818 lr 9.46e-04 454s
+[oia] step   225 oiamatchselflin loss 0.2769 train-auroc 0.998 train-auroc-m 0.978 lr 9.46e-04 454s
+[oia] skip matched sample: scan 42 seed 230 r0.2353725027254227 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 85 seed 233 r0.19287768033963978 ev2: no matched spheres A and B
+[oia] step   250 oiamatchself loss 0.5254 train-auroc 0.998 train-auroc-m 0.639 lr 9.33e-04 514s
+[oia] step   250 oiamatchselfpatch loss 0.5055 train-auroc 0.983 train-auroc-m 0.487 lr 9.33e-04 514s
+[oia] step   250 oiamatchselflin loss 0.7455 train-auroc 0.999 train-auroc-m 0.540 lr 9.33e-04 514s
+[oia] step   250 oiamatchself val-auroc 0.732
+[oia] step   250 oiamatchselfpatch val-auroc 0.269
+[oia] step   250 oiamatchselflin val-auroc 0.764
+[oia] skip matched sample: scan 90 seed 269 r0.20799813776473308 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 41 seed 270 r0.201690117085772 ev1: no matched spheres A and B
+[oia] step   275 oiamatchself loss 0.0007 train-auroc nan lr 9.19e-04 566s
+[oia] step   275 oiamatchselfpatch loss 0.0000 train-auroc nan lr 9.19e-04 566s
+[oia] step   275 oiamatchselflin loss 0.0571 train-auroc nan lr 9.19e-04 566s
+[oia] skip matched sample: scan 121 seed 283 r0.23099124816114092 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 292 r0.19837627471534652 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 297 r0.19411710344654237 ev1: no matched spheres A and B
+[oia] step   300 oiamatchself loss 0.0046 train-auroc nan lr 9.05e-04 620s
+[oia] step   300 oiamatchselfpatch loss 0.0475 train-auroc nan lr 9.05e-04 620s
+[oia] step   300 oiamatchselflin loss 0.0437 train-auroc nan lr 9.05e-04 620s
+[oia] skip matched sample: scan 45 seed 302 r0.21069524198544293 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 307 r0.15133811262883395 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 60 seed 315 r0.19206001462279781 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 8 seed 315 r0.21764341193809278 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 7 seed 315 r0.19201132049163283 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 60 seed 316 r0.23204350818286967 evhalf: no matched spheres A and B
+[oia] step   325 oiamatchself loss 0.0162 train-auroc nan lr 8.89e-04 687s
+[oia] step   325 oiamatchselfpatch loss 0.0002 train-auroc nan lr 8.89e-04 687s
+[oia] step   325 oiamatchselflin loss 0.0309 train-auroc nan lr 8.89e-04 687s
+[oia] skip matched sample: scan 50 seed 326 r0.1958106542516929 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 58 seed 329 r0.13576322165158822 evhalf: no matched spheres A and B
+[oia] step   350 oiamatchself loss 0.3096 train-auroc 1.000 train-auroc-m 0.974 lr 8.72e-04 746s
+[oia] step   350 oiamatchselfpatch loss 0.4740 train-auroc 0.999 train-auroc-m 0.798 lr 8.72e-04 746s
+[oia] step   350 oiamatchselflin loss 0.3069 train-auroc 1.000 train-auroc-m 0.975 lr 8.72e-04 746s
+[oia] skip matched sample: scan 69 seed 369 r0.22704824418019132 evhalf: no matched spheres A and B
+[oia] step   375 oiamatchself loss 0.6145 train-auroc 0.992 train-auroc-m 0.086 lr 8.54e-04 795s
+[oia] step   375 oiamatchselfpatch loss 0.5027 train-auroc 0.994 train-auroc-m 0.327 lr 8.54e-04 795s
+[oia] step   375 oiamatchselflin loss 0.6162 train-auroc 0.984 train-auroc-m 0.424 lr 8.54e-04 795s
+[oia] skip matched sample: scan 96 seed 375 r0.235760391294554 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 115 seed 384 r0.2048931292348644 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 89 seed 384 r0.21023489301471432 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 105 seed 396 r0.21146268900029863 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 7 seed 398 r0.18109190025636124 evhalf: no matched spheres A and B
+[oia] step   400 oiamatchself loss 0.6577 train-auroc 0.990 train-auroc-m 0.190 lr 8.35e-04 850s
+[oia] step   400 oiamatchselfpatch loss 0.5721 train-auroc 0.997 train-auroc-m 0.425 lr 8.35e-04 850s
+[oia] step   400 oiamatchselflin loss 0.6044 train-auroc 0.992 train-auroc-m 0.376 lr 8.35e-04 850s
+[oia] skip matched sample: scan 53 seed 404 r0.23669862331259167 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 412 r0.2376004490777231: no valid sphere A after 50 tries
+[oia] skip matched sample: scan 127 seed 423 r0.12236065613561511 evhalf: no matched spheres A and B
+[oia] step   425 oiamatchself loss 0.3050 train-auroc 0.998 train-auroc-m 0.997 lr 8.15e-04 916s
+[oia] step   425 oiamatchselfpatch loss 0.4492 train-auroc 1.000 train-auroc-m 0.790 lr 8.15e-04 916s
+[oia] step   425 oiamatchselflin loss 0.2346 train-auroc 0.999 train-auroc-m 0.994 lr 8.15e-04 916s
+[oia] step   450 oiamatchself loss 0.0045 train-auroc nan lr 7.94e-04 964s
+[oia] step   450 oiamatchselfpatch loss 0.0000 train-auroc nan lr 7.94e-04 965s
+[oia] step   450 oiamatchselflin loss 0.0178 train-auroc nan lr 7.94e-04 965s
+[oia] skip matched sample: scan 89 seed 450 r0.19413536358604622 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 124 seed 472 r0.2246934597643514 evhalf: no matched spheres A and B
+[oia] step   475 oiamatchself loss 0.9084 train-auroc 0.987 train-auroc-m 0.244 lr 7.72e-04 1015s
+[oia] step   475 oiamatchselfpatch loss 0.4930 train-auroc 0.998 train-auroc-m 0.340 lr 7.72e-04 1015s
+[oia] step   475 oiamatchselflin loss 0.6671 train-auroc 0.993 train-auroc-m 0.549 lr 7.72e-04 1015s
+[oia] skip matched sample: scan 121 seed 498 r0.16627726389876368 ev1: no matched spheres A and B
+[oia] step   500 oiamatchself loss 0.4686 train-auroc 1.000 train-auroc-m 0.739 lr 7.50e-04 1075s
+[oia] step   500 oiamatchselfpatch loss 0.4532 train-auroc 1.000 train-auroc-m 0.844 lr 7.50e-04 1075s
+[oia] step   500 oiamatchselflin loss 0.3212 train-auroc 1.000 train-auroc-m 0.933 lr 7.50e-04 1075s
+[oia] step   500 oiamatchself val-auroc 0.670
+[oia] step   500 oiamatchselfpatch val-auroc 0.566
+[oia] step   500 oiamatchselflin val-auroc 0.540
+[oia] skip matched sample: scan 90 seed 504 r0.22799237517826548 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 60 seed 504 r0.2234217852923971 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 122 seed 518 r0.22337103246650702 evhalf: no matched spheres A and B
+[oia] step   525 oiamatchself loss 0.3606 train-auroc 0.999 train-auroc-m 0.987 lr 7.27e-04 1137s
+[oia] step   525 oiamatchselfpatch loss 0.4736 train-auroc 0.999 train-auroc-m 0.785 lr 7.27e-04 1137s
+[oia] step   525 oiamatchselflin loss 0.3779 train-auroc 0.992 train-auroc-m 0.842 lr 7.27e-04 1137s
+[oia] skip matched sample: scan 92 seed 541 r0.21509240757070797: no valid sphere A after 50 tries
+[oia] step   550 oiamatchself loss 1.2526 train-auroc 0.981 train-auroc-m 0.051 lr 7.03e-04 1193s
+[oia] step   550 oiamatchselfpatch loss 0.6421 train-auroc 0.993 train-auroc-m 0.049 lr 7.03e-04 1193s
+[oia] step   550 oiamatchselflin loss 0.9180 train-auroc 0.970 train-auroc-m 0.621 lr 7.03e-04 1193s
+[oia] skip matched sample: scan 53 seed 555 r0.22197246480432958 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 89 seed 573 r0.19161552656151093 evhalf: no matched spheres A and B
+[oia] step   575 oiamatchself loss 0.4779 train-auroc 0.999 train-auroc-m 0.601 lr 6.79e-04 1253s
+[oia] step   575 oiamatchselfpatch loss 0.4776 train-auroc 1.000 train-auroc-m 0.546 lr 6.79e-04 1253s
+[oia] step   575 oiamatchselflin loss 0.3800 train-auroc 0.996 train-auroc-m 0.869 lr 6.79e-04 1253s
+[oia] skip matched sample: scan 102 seed 595 r0.21136403586068703 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 20 seed 596 r0.2329284840119607 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 45 seed 596 r0.22454789241206757 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 93 seed 597 r0.23072291293786135 evhalf: no matched spheres A and B
+[oia] step   600 oiamatchself loss 0.5075 train-auroc 0.997 train-auroc-m 0.621 lr 6.55e-04 1312s
+[oia] step   600 oiamatchselfpatch loss 0.4739 train-auroc 0.999 train-auroc-m 0.607 lr 6.55e-04 1312s
+[oia] step   600 oiamatchselflin loss 0.7028 train-auroc 0.991 train-auroc-m 0.409 lr 6.55e-04 1312s
+[oia] skip matched sample: scan 7 seed 619 r0.19978803965328396 evhalf: no matched spheres A and B
+[oia] step   625 oiamatchself loss 0.3634 train-auroc 0.995 train-auroc-m 0.913 lr 6.29e-04 1366s
+[oia] step   625 oiamatchselfpatch loss 0.4663 train-auroc 1.000 train-auroc-m 0.735 lr 6.29e-04 1366s
+[oia] step   625 oiamatchselflin loss 0.3082 train-auroc 0.993 train-auroc-m 0.930 lr 6.29e-04 1366s
+[oia] skip matched sample: scan 61 seed 634 r0.23625750404701223 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 89 seed 641 r0.2220723722351612 ev1: no matched spheres A and B
+[oia] step   650 oiamatchself loss 0.4865 train-auroc 0.998 train-auroc-m 0.547 lr 6.04e-04 1420s
+[oia] step   650 oiamatchselfpatch loss 0.4932 train-auroc 0.998 train-auroc-m 0.417 lr 6.04e-04 1420s
+[oia] step   650 oiamatchselflin loss 0.4319 train-auroc 0.993 train-auroc-m 0.770 lr 6.04e-04 1420s
+[oia] skip matched sample: scan 85 seed 655 r0.2387404609178979 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 60 seed 660 r0.21128871399287297 ev1: no matched spheres A and B
+[oia] step   675 oiamatchself loss 0.4104 train-auroc 1.000 train-auroc-m 0.929 lr 5.78e-04 1483s
+[oia] step   675 oiamatchselfpatch loss 0.4575 train-auroc 1.000 train-auroc-m 0.801 lr 5.78e-04 1483s
+[oia] step   675 oiamatchselflin loss 0.3135 train-auroc 1.000 train-auroc-m 0.968 lr 5.78e-04 1483s
+[oia] skip matched sample: scan 85 seed 684 r0.20266782946682865 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 97 seed 684 r0.2307960749670131 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 87 seed 684 r0.15689034006345004: no valid sphere A after 50 tries
+[oia] skip matched sample: scan 89 seed 694 r0.23996381149055818 ev1: no matched spheres A and B
+[oia] step   700 oiamatchself loss 0.4951 train-auroc 0.995 train-auroc-m 0.488 lr 5.52e-04 1539s
+[oia] step   700 oiamatchselfpatch loss 0.5103 train-auroc 0.998 train-auroc-m 0.298 lr 5.52e-04 1539s
+[oia] step   700 oiamatchselflin loss 0.5908 train-auroc 0.993 train-auroc-m 0.415 lr 5.52e-04 1539s
+[oia] skip matched sample: scan 7 seed 705 r0.23762116733369076 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 65 seed 717 r0.1702204283916678 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 111 seed 719 r0.23434539007891592 evhalf: no matched spheres A and B
+[oia] step   725 oiamatchself loss 0.4137 train-auroc 0.997 train-auroc-m 0.849 lr 5.26e-04 1595s
+[oia] step   725 oiamatchselfpatch loss 0.4973 train-auroc 0.996 train-auroc-m 0.443 lr 5.26e-04 1595s
+[oia] step   725 oiamatchselflin loss 0.4008 train-auroc 0.990 train-auroc-m 0.826 lr 5.26e-04 1595s
+[oia] skip matched sample: scan 47 seed 744 r0.11347835175514197 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 18 seed 746 r0.23451693369863197 evhalf: no matched spheres A and B
+[oia] step   750 oiamatchself loss 0.4674 train-auroc 0.997 train-auroc-m 0.635 lr 5.00e-04 1650s
+[oia] step   750 oiamatchselfpatch loss 0.4984 train-auroc 0.998 train-auroc-m 0.286 lr 5.00e-04 1650s
+[oia] step   750 oiamatchselflin loss 0.5059 train-auroc 0.999 train-auroc-m 0.729 lr 5.00e-04 1650s
+[oia] step   750 oiamatchself val-auroc 0.722
+[oia] step   750 oiamatchselfpatch val-auroc 0.644
+[oia] step   750 oiamatchselflin val-auroc 0.651
+[oia] skip matched sample: scan 85 seed 773 r0.23137729688954822: no valid sphere A after 50 tries
+[oia] step   775 oiamatchself loss 0.3320 train-auroc 0.999 train-auroc-m 0.902 lr 4.74e-04 1711s
+[oia] step   775 oiamatchselfpatch loss 0.4292 train-auroc 0.998 train-auroc-m 0.864 lr 4.74e-04 1711s
+[oia] step   775 oiamatchselflin loss 0.3619 train-auroc 0.996 train-auroc-m 0.827 lr 4.74e-04 1711s
+[oia] skip matched sample: scan 120 seed 789 r0.18835491112336905 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 127 seed 795 r0.23539976212596897 evhalf: no matched spheres A and B
+[oia] step   800 oiamatchself loss 0.0013 train-auroc nan lr 4.48e-04 1760s
+[oia] step   800 oiamatchselfpatch loss 0.0000 train-auroc nan lr 4.48e-04 1760s
+[oia] step   800 oiamatchselflin loss 0.0408 train-auroc nan lr 4.48e-04 1760s
+[oia] skip matched sample: scan 96 seed 808 r0.23884354192993068 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 99 seed 812 r0.22560667282322117 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 88 seed 824 r0.22160747011776488 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 88 seed 824 r0.22317537689299666 ev1: no matched spheres A and B
+[oia] step   825 oiamatchself loss 0.6974 train-auroc 0.997 train-auroc-m 0.083 lr 4.22e-04 1819s
+[oia] step   825 oiamatchselfpatch loss 0.5382 train-auroc 0.997 train-auroc-m 0.115 lr 4.22e-04 1819s
+[oia] step   825 oiamatchselflin loss 0.6636 train-auroc 0.994 train-auroc-m 0.311 lr 4.22e-04 1819s
+[oia] skip matched sample: scan 115 seed 834 r0.19961908892474892 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 95 seed 847 r0.14612073746089688 ev2: no matched spheres A and B
+[oia] step   850 oiamatchself loss 0.0068 train-auroc nan lr 3.96e-04 1871s
+[oia] step   850 oiamatchselfpatch loss 0.0005 train-auroc nan lr 3.96e-04 1871s
+[oia] step   850 oiamatchselflin loss 0.0226 train-auroc nan lr 3.96e-04 1871s
+[oia] skip matched sample: scan 30 seed 852 r0.21819765655104434 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 112 seed 858 r0.17151541547725183 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 860 r0.2125791165743287 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 8 seed 867 r0.1290443440232218 evhalf: no matched spheres A and B
+[oia] step   875 oiamatchself loss 0.6441 train-auroc 1.000 train-auroc-m 0.838 lr 3.71e-04 1929s
+[oia] step   875 oiamatchselfpatch loss 0.4629 train-auroc 1.000 train-auroc-m 0.735 lr 3.71e-04 1929s
+[oia] step   875 oiamatchselflin loss 0.5630 train-auroc 1.000 train-auroc-m 0.786 lr 3.71e-04 1929s
+[oia] step   900 oiamatchself loss 0.8305 train-auroc 0.989 train-auroc-m 0.181 lr 3.45e-04 1980s
+[oia] step   900 oiamatchselfpatch loss 0.5836 train-auroc 0.991 train-auroc-m 0.234 lr 3.45e-04 1980s
+[oia] step   900 oiamatchselflin loss 0.9011 train-auroc 0.960 train-auroc-m 0.181 lr 3.45e-04 1980s
+[oia] skip matched sample: scan 111 seed 918 r0.20920568194347716 ev2: no matched spheres A and B
+[oia] step   925 oiamatchself loss 0.1704 train-auroc 0.996 train-auroc-m 0.989 lr 3.21e-04 2030s
+[oia] step   925 oiamatchselfpatch loss 0.5002 train-auroc 0.999 train-auroc-m 0.476 lr 3.21e-04 2030s
+[oia] step   925 oiamatchselflin loss 0.2186 train-auroc 0.997 train-auroc-m 0.975 lr 3.21e-04 2030s
+[oia] skip matched sample: scan 121 seed 939 r0.23841780500529897 ev2: no matched spheres A and B
+[oia] step   950 oiamatchself loss 0.5017 train-auroc 0.993 train-auroc-m 0.687 lr 2.97e-04 2081s
+[oia] step   950 oiamatchselfpatch loss 0.5551 train-auroc 0.998 train-auroc-m 0.310 lr 2.97e-04 2082s
+[oia] step   950 oiamatchselflin loss 0.6292 train-auroc 0.982 train-auroc-m 0.608 lr 2.97e-04 2082s
+[oia] step   975 oiamatchself loss 0.1240 train-auroc 0.999 train-auroc-m 0.999 lr 2.73e-04 2129s
+[oia] step   975 oiamatchselfpatch loss 0.4142 train-auroc 0.999 train-auroc-m 0.838 lr 2.73e-04 2129s
+[oia] step   975 oiamatchselflin loss 0.1408 train-auroc 0.999 train-auroc-m 0.996 lr 2.73e-04 2129s
+[oia] skip matched sample: scan 92 seed 976 r0.2394333929248202 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 7 seed 982 r0.15750485069194659 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 93 seed 985 r0.2264924214256845 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 101 seed 995 r0.22721622261232144 evhalf: no matched spheres A and B
+[oia] step  1000 oiamatchself loss 1.3268 train-auroc 0.987 train-auroc-m 0.136 lr 2.50e-04 2182s
+[oia] step  1000 oiamatchselfpatch loss 0.5121 train-auroc 0.999 train-auroc-m 0.383 lr 2.50e-04 2182s
+[oia] step  1000 oiamatchselflin loss 0.9881 train-auroc 0.948 train-auroc-m 0.219 lr 2.50e-04 2182s
+[oia] step  1000 oiamatchself val-auroc 0.824
+[oia] step  1000 oiamatchselfpatch val-auroc 0.711
+[oia] step  1000 oiamatchselflin val-auroc 0.791
+[oia] skip matched sample: scan 42 seed 1005 r0.23900856029858852 ev2: no matched spheres A and B
+[oia] step  1025 oiamatchself loss 1.2612 train-auroc 0.988 train-auroc-m 0.046 lr 2.28e-04 2230s
+[oia] step  1025 oiamatchselfpatch loss 0.6908 train-auroc 0.998 train-auroc-m 0.086 lr 2.28e-04 2230s
+[oia] step  1025 oiamatchselflin loss 1.0418 train-auroc 0.955 train-auroc-m 0.068 lr 2.28e-04 2230s
+[oia] skip matched sample: scan 107 seed 1027 r0.2028160512461042 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 85 seed 1029 r0.2299326774004138 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 95 seed 1042 r0.20405761253014815 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 31 seed 1043 r0.17400078826506216 ev1: no matched spheres A and B
+[oia] step  1050 oiamatchself loss 0.4608 train-auroc 0.996 train-auroc-m 0.672 lr 2.06e-04 2286s
+[oia] step  1050 oiamatchselfpatch loss 0.5036 train-auroc 0.999 train-auroc-m 0.544 lr 2.06e-04 2286s
+[oia] step  1050 oiamatchselflin loss 0.6109 train-auroc 0.995 train-auroc-m 0.531 lr 2.06e-04 2286s
+[oia] skip matched sample: scan 89 seed 1050 r0.2316380901894456 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 124 seed 1050 r0.2318606175848676 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 104 seed 1056 r0.1853270227667863 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 7 seed 1061 r0.1980965964217674 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 95 seed 1065 r0.2244987782158397 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 45 seed 1070 r0.19410904197669804 evhalf: no matched spheres A and B
+[oia] step  1075 oiamatchself loss 0.2178 train-auroc 0.999 train-auroc-m 0.977 lr 1.85e-04 2341s
+[oia] step  1075 oiamatchselfpatch loss 0.3828 train-auroc 1.000 train-auroc-m 0.970 lr 1.85e-04 2341s
+[oia] step  1075 oiamatchselflin loss 0.3162 train-auroc 0.998 train-auroc-m 0.886 lr 1.85e-04 2341s
+[oia] skip matched sample: scan 101 seed 1075 r0.18711136221182167 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 85 seed 1095 r0.23087702874549687 ev1: no matched spheres A and B
+[oia] step  1100 oiamatchself loss 0.3448 train-auroc 0.998 train-auroc-m 0.841 lr 1.65e-04 2392s
+[oia] step  1100 oiamatchselfpatch loss 0.4936 train-auroc 0.999 train-auroc-m 0.442 lr 1.65e-04 2392s
+[oia] step  1100 oiamatchselflin loss 0.3960 train-auroc 0.993 train-auroc-m 0.797 lr 1.65e-04 2392s
+[oia] skip matched sample: scan 53 seed 1101 r0.17661403256887376 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 1111 r0.23520407045455743: no valid sphere A after 50 tries
+[oia] step  1125 oiamatchself loss 0.2350 train-auroc 0.999 train-auroc-m 0.988 lr 1.46e-04 2440s
+[oia] step  1125 oiamatchselfpatch loss 0.4938 train-auroc 0.997 train-auroc-m 0.516 lr 1.46e-04 2440s
+[oia] step  1125 oiamatchselflin loss 0.2920 train-auroc 0.997 train-auroc-m 0.963 lr 1.46e-04 2440s
+[oia] skip matched sample: scan 107 seed 1130 r0.23224465589787674 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 89 seed 1130 r0.2084215716069691 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 1144 r0.22965528461948548 ev1: no matched spheres A and B
+[oia] step  1150 oiamatchself loss 0.0009 train-auroc nan lr 1.28e-04 2482s
+[oia] step  1150 oiamatchselfpatch loss 0.0002 train-auroc nan lr 1.28e-04 2482s
+[oia] step  1150 oiamatchselflin loss 0.0181 train-auroc nan lr 1.28e-04 2482s
+[oia] step  1175 oiamatchself loss 0.8733 train-auroc 0.983 train-auroc-m 0.273 lr 1.11e-04 2528s
+[oia] step  1175 oiamatchselfpatch loss 0.4190 train-auroc 0.998 train-auroc-m 0.941 lr 1.11e-04 2529s
+[oia] step  1175 oiamatchselflin loss 0.5322 train-auroc 0.996 train-auroc-m 0.521 lr 1.11e-04 2529s
+[oia] skip matched sample: scan 57 seed 1189 r0.19247654522963759 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 1194 r0.20584179567583433 ev2: no matched spheres A and B
+[oia] step  1200 oiamatchself loss 0.1523 train-auroc 0.998 train-auroc-m 0.994 lr 9.55e-05 2576s
+[oia] step  1200 oiamatchselfpatch loss 0.4226 train-auroc 1.000 train-auroc-m 0.954 lr 9.55e-05 2576s
+[oia] step  1200 oiamatchselflin loss 0.2203 train-auroc 0.998 train-auroc-m 0.963 lr 9.55e-05 2576s
+[oia] skip matched sample: scan 50 seed 1220 r0.23734230383580296 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 102 seed 1222 r0.20440401333748637 ev2: no matched spheres A and B
+[oia] step  1225 oiamatchself loss 0.0008 train-auroc nan lr 8.07e-05 2620s
+[oia] step  1225 oiamatchselfpatch loss 0.0000 train-auroc nan lr 8.07e-05 2620s
+[oia] step  1225 oiamatchselflin loss 0.0192 train-auroc nan lr 8.07e-05 2620s
+[oia] skip matched sample: scan 90 seed 1225 r0.20092891918480163 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 90 seed 1229 r0.19302812540697994 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 1233 r0.1949064626516039 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 88 seed 1241 r0.1485085535249432 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 95 seed 1247 r0.1852219998543994 evhalf: no matched spheres A and B
+[oia] step  1250 oiamatchself loss 0.1763 train-auroc 1.000 train-auroc-m 0.997 lr 6.70e-05 2669s
+[oia] step  1250 oiamatchselfpatch loss 0.4063 train-auroc 1.000 train-auroc-m 0.930 lr 6.70e-05 2669s
+[oia] step  1250 oiamatchselflin loss 0.2379 train-auroc 0.999 train-auroc-m 0.979 lr 6.70e-05 2669s
+[oia] step  1250 oiamatchself val-auroc 0.759
+[oia] step  1250 oiamatchselfpatch val-auroc 0.702
+[oia] step  1250 oiamatchselflin val-auroc 0.710
+[oia] skip matched sample: scan 7 seed 1254 r0.21689790320508545 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 91 seed 1268 r0.2058399732013465 ev1: no matched spheres A and B
+[oia] step  1275 oiamatchself loss 0.0020 train-auroc nan lr 5.45e-05 2712s
+[oia] step  1275 oiamatchselfpatch loss 0.0000 train-auroc nan lr 5.45e-05 2712s
+[oia] step  1275 oiamatchselflin loss 0.0101 train-auroc nan lr 5.45e-05 2712s
+[oia] step  1300 oiamatchself loss 0.2715 train-auroc 0.999 train-auroc-m 0.931 lr 4.32e-05 2751s
+[oia] step  1300 oiamatchselfpatch loss 0.4972 train-auroc 1.000 train-auroc-m 0.328 lr 4.32e-05 2751s
+[oia] step  1300 oiamatchselflin loss 0.3105 train-auroc 0.999 train-auroc-m 0.931 lr 4.32e-05 2751s
+[oia] skip matched sample: scan 60 seed 1307 r0.2220865534557281 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 127 seed 1320 r0.1787933216836832 ev2: no matched spheres A and B
+[oia] step  1325 oiamatchself loss 0.2986 train-auroc 0.995 train-auroc-m 0.906 lr 3.32e-05 2790s
+[oia] step  1325 oiamatchselfpatch loss 0.5390 train-auroc 0.998 train-auroc-m 0.154 lr 3.32e-05 2790s
+[oia] step  1325 oiamatchselflin loss 0.3189 train-auroc 0.996 train-auroc-m 0.893 lr 3.32e-05 2790s
+[oia] skip matched sample: scan 119 seed 1325 r0.1831780912627824 ev2: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 1326 r0.19113182368172887 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 1334 r0.1879211268886724 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 47 seed 1334 r0.21138220165735805 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 68 seed 1344 r0.2162813698767233 evhalf: no matched spheres A and B
+[oia] step  1350 oiamatchself loss 0.8220 train-auroc 0.991 train-auroc-m 0.749 lr 2.45e-05 2833s
+[oia] step  1350 oiamatchselfpatch loss 0.6471 train-auroc 0.978 train-auroc-m 0.088 lr 2.45e-05 2833s
+[oia] step  1350 oiamatchselflin loss 0.6901 train-auroc 0.979 train-auroc-m 0.795 lr 2.45e-05 2833s
+[oia] skip matched sample: scan 55 seed 1351 r0.15461473785826363 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 89 seed 1353 r0.2255635930995552 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 116 seed 1353 r0.16331266930644378 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 105 seed 1368 r0.22992732351885864 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 92 seed 1374 r0.21850123263696525 ev2: no matched spheres A and B
+[oia] step  1375 oiamatchself loss 0.3871 train-auroc 0.998 train-auroc-m 0.796 lr 1.70e-05 2873s
+[oia] step  1375 oiamatchselfpatch loss 0.4243 train-auroc 1.000 train-auroc-m 0.952 lr 1.70e-05 2873s
+[oia] step  1375 oiamatchselflin loss 0.4980 train-auroc 0.996 train-auroc-m 0.667 lr 1.70e-05 2873s
+[oia] skip matched sample: scan 112 seed 1381 r0.10025160754169907 evhalf: no matched spheres A and B
+[oia] step  1400 oiamatchself loss 0.2431 train-auroc 0.999 train-auroc-m 0.973 lr 1.09e-05 2911s
+[oia] step  1400 oiamatchselfpatch loss 0.4398 train-auroc 1.000 train-auroc-m 0.814 lr 1.09e-05 2911s
+[oia] step  1400 oiamatchselflin loss 0.3000 train-auroc 0.999 train-auroc-m 0.916 lr 1.09e-05 2911s
+[oia] skip matched sample: scan 115 seed 1412 r0.18221029840954392 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 39 seed 1414 r0.19264789599337684 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 83 seed 1415 r0.1919462655075539 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 42 seed 1421 r0.2261866331425712 ev2: no matched spheres A and B
+[oia] step  1425 oiamatchself loss 0.7102 train-auroc 0.981 train-auroc-m 0.671 lr 6.16e-06 2963s
+[oia] step  1425 oiamatchselfpatch loss 0.4764 train-auroc 0.988 train-auroc-m 0.610 lr 6.16e-06 2963s
+[oia] step  1425 oiamatchselflin loss 0.5176 train-auroc 0.976 train-auroc-m 0.747 lr 6.16e-06 2963s
+[oia] skip matched sample: scan 123 seed 1436 r0.20732325744317587 ev1: no matched spheres A and B
+[oia] skip matched sample: scan 127 seed 1437 r0.22293198587517993 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 7 seed 1447 r0.15397966537600816 evhalf: no matched spheres A and B
+[oia] step  1450 oiamatchself loss 0.2072 train-auroc 0.999 train-auroc-m 0.976 lr 2.74e-06 3012s
+[oia] step  1450 oiamatchselfpatch loss 0.3757 train-auroc 1.000 train-auroc-m 0.986 lr 2.74e-06 3012s
+[oia] step  1450 oiamatchselflin loss 0.2752 train-auroc 0.999 train-auroc-m 0.932 lr 2.74e-06 3012s
+[oia] skip matched sample: scan 41 seed 1459 r0.1741368860467738 evhalf: no matched spheres A and B
+[oia] skip matched sample: scan 60 seed 1468 r0.22275243799041355 ev1: no matched spheres A and B
+[oia] step  1475 oiamatchself loss 0.3471 train-auroc 0.998 train-auroc-m 0.868 lr 6.85e-07 3053s
+[oia] step  1475 oiamatchselfpatch loss 0.4402 train-auroc 1.000 train-auroc-m 0.810 lr 6.85e-07 3053s
+[oia] step  1475 oiamatchselflin loss 0.4078 train-auroc 0.999 train-auroc-m 0.756 lr 6.85e-07 3053s
+[oia] skip matched sample: scan 92 seed 1478 r0.18677965125203913 ev2: no matched spheres A and B
