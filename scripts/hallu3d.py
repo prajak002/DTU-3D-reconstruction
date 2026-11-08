@@ -968,57 +968,83 @@ def build_masks_matched(data, seed, radius_frac, cfg, evidence="1"):
     def inside_of(c):
         return np.stack([(np.linalg.norm(Pws[i] - c, axis=-1) < radius) & valid[i] for i in range(N)])
 
+    P_all = np.stack(Pws).reshape(-1, 3)                      # (N*h*w, 3): one distance pass per candidate sphere
+    valid_flat = valid.reshape(-1)
+
+    def inside_of(c):
+        return ((np.linalg.norm(P_all - c, axis=-1) < radius) & valid_flat).reshape(N, h, w)
+
     def inside_frac_ok(ins):
         return cfg["min_U_frac"] <= ins[ref].sum() / max(valid[ref].sum(), 1) <= cfg["max_U_frac"]
 
-    def matched_candidate(exclude_centres, sep, tol_area):
+    pool_size = int(cfg.get("match_pool", 240))
+
+    def candidate_pool(dA):
+        """Depth-matched reference points, shuffled and capped; their inside masks are computed once each."""
+        idx = np.where(np.abs(dep_ref - dA) / dA < match_depth)[0]
+        rng.shuffle(idx)
+        return list(idx[:pool_size]), {}
+
+    def matched_candidate(pool, cache, exclude_centres, sep, tol_area):
         """A sphere with A's reference area and depth, at least `sep` from the given centres (centre distance, so
-        2 radii means tangent patches). Returns (centre, inside) or None."""
-        cand = np.where(np.abs(dep_ref - dA) / dA < match_depth)[0]
-        rng.shuffle(cand)
-        for k in cand[: cfg["max_tries"] * 6]:
+        2 radii means tangent patches). Returns (centre, inside) or None; inside masks are cached per candidate."""
+        for k in pool:
             c = pts_ref[k]
             if any(np.linalg.norm(c - e) < sep for e in exclude_centres):
                 continue
-            ins = inside_of(c)
+            if k not in cache:
+                cache[k] = inside_of(c)
+            ins = cache[k]
             a = int(ins[ref].sum())
             if a == 0 or abs(a - areaA) / max(areaA, 1) > tol_area:
                 continue
-            return c, ins
+            return k, c, ins
         return None
 
-    # sphere A as in build_masks, then B with its evidence set; when A leaves no room for a matched B (small
-    # objects), A is drawn again, and the separation and area tolerance relax one step before giving up
+    # sphere A as in build_masks, then B with its evidence set from one bounded candidate pool; when A leaves no
+    # room for a matched B (small objects), A is drawn again a few times, with the separation and the area
+    # tolerance relaxing one step before giving up
     found = False
-    for _ in range(cfg["max_tries"]):
-        k = rng.integers(len(pts_ref))
-        cA, dA = pts_ref[k], float(dep_ref[k])
-        inA = inside_of(cA)
-        if not inside_frac_ok(inA):
-            continue
+    for _a in range(int(cfg.get("match_A_tries", 6))):
+        inA = None
+        for _ in range(cfg["max_tries"]):
+            k = rng.integers(len(pts_ref))
+            cA, dA = pts_ref[k], float(dep_ref[k])
+            ins = inside_of(cA)
+            if inside_frac_ok(ins):
+                inA = ins
+                break
+        if inA is None:
+            raise RuntimeError(f"scan {data['scan']} seed {seed} r{radius_frac}: no valid sphere A after {cfg['max_tries']} tries")
         areaA = int(inA[ref].sum())
+        pool, cache = candidate_pool(dA)
         for sep_f, tol_area in ((2.5, match_area), (2.2, match_area), (2.2, match_area * 1.5)):
-            for _b in range(6):
-                cand = matched_candidate([cA], sep_f * radius, tol_area)
+            used = []
+            while True:
+                cand = matched_candidate([k for k in pool if k not in used], cache, [cA], sep_f * radius, tol_area)
                 if cand is None:
                     break
-                cB, inB = cand
+                kB, cB, inB = cand
+                used.append(kB)
                 sees_B = [i for i in range(N) if i != ref and inB[i].sum() >= 0.2 * areaA]
                 if len(sees_B) >= n_ev + 1:
                     Ev = sorted(int(x) for x in rng.choice(sees_B, n_ev, replace=False))
                     found = True
+                    break
+                if len(used) >= 8:
                     break
             if found:
                 break
         if found:
             break
     if not found:
-        raise RuntimeError(f"scan {data['scan']} seed {seed} r{radius_frac} ev{evidence}: no matched spheres A and B after {cfg['max_tries']} tries")
+        raise RuntimeError(f"scan {data['scan']} seed {seed} r{radius_frac} ev{evidence}: no matched spheres A and B")
     # sphere D: hidden only in the evidence views
-    candD = matched_candidate([cA, cB], 2.5 * radius, match_area) or matched_candidate([cA, cB], 2.2 * radius, match_area * 1.5)
+    candD = (matched_candidate(pool, cache, [cA, cB], 2.5 * radius, match_area)
+             or matched_candidate(pool, cache, [cA, cB], 2.2 * radius, match_area * 1.5))
     has_D = candD is not None
     if has_D:
-        cD, inD = candD
+        _, cD, inD = candD
     notEv = [i for i in range(N) if i not in Ev]
 
     hide = np.zeros((N, H, W), bool)
