@@ -23,7 +23,7 @@ Notes:
 - Every number in the paper comes from a logged run in results/ of the code repository; there are no
   pending cells. The pre-registered pass conditions, with dates and commit hashes, are in the supplement.
 - The body must end on page 8; the LLM Usage Statement and the references do not count toward the limit.
-  The build of 2026-11-08 ends the body on page 8 with TeX Live 2023 (pdfLaTeX); if a different TeX Live
+  The build of 2026-11-10 ends the body on page 8 with TeX Live 2023 (pdfLaTeX); if a different TeX Live
   shifts a line, the two narrowest places are the Table 3 caption and the limitations paragraph.
 - cvpr.sty with the [review] option prints line numbers and hides the authors; for the camera-ready, change
   \usepackage[review]{cvpr} to \usepackage[pagenumbers]{cvpr} in preamble.tex and fill in the author block.

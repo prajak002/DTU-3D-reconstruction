@@ -115,7 +115,7 @@ class Canvas:
 
 
 # ----------------------------------------------------------------------------- teaser
-def fig_teaser(N, M, out):
+def fig_teaser(N, M, out, P14=None):
     c = Canvas(6.875, 1.42)
     iw, ih, yb = 1.0, 1.0 * 286 / 361, 0.42
     x_in1, x_in2, x_nat, x_ours = 0.04, 1.10, 2.92, 3.99
@@ -147,7 +147,10 @@ def fig_teaser(N, M, out):
             ("ours", [MC[d][f"{b}_oiamatchself"]["auroc_m"][0] for d in MC for b in bases if f"{b}_oiamatchself" in MC[d]], OBS),
             ("single-view geometry, unseen data", None, None),
             ("native", [V[d][b]["auroc"][0] for d in V for b in bases if b in V[d]], BASE),
-            ("ours", [V[d][f"{b}_oiavisself"]["auroc"][0] for d in V for b in bases if f"{b}_oiavisself" in V[d]], OBS)]
+            ("ours", [V[d][f"{b}_oiavisself"]["auroc"][0] for d in V for b in bases if f"{b}_oiavisself" in V[d]], OBS),
+            ("real unseen surfaces, 40 DTU scans", None, None),
+            ("native", [c["native"] for k, c in P14["cells"].items() if k.startswith("DTU") and c["qualifies"]], BASE),
+            ("ours", [c["head"] for k, c in P14["cells"].items() if k.startswith("DTU") and c["qualifies"]], OBS)]
     yt, yl = [], []
     y = len(rows)
     for lab, vals, col in rows:
@@ -427,29 +430,32 @@ def fig_abstain(N, out):
     _save(fig, out)
 
 
-def fig_realocc(P13, out):
-    """Real occlusion against the dense reference (Gates 8 and 10): (a) share of predicted points on surfaces no input
-    view saw, per dataset, backbone and view count; (b) the head's AUROC gain over native confidence on those points,
-    filled where the pre-registered claim holds, hollow where the cell does not qualify or the test fails."""
-    g = P13.get("gate10", {})
+def fig_realocc(P14, out):
+    """Real occlusion against dense references: (a) share of predicted points on surfaces no input view saw, per
+    dataset, backbone and view count; (b) the head's AUROC gain over native confidence on those points, filled where
+    the share is at least 0.5% and the gain is significant (p < 0.05), hollow otherwise. ETH3D is not drawn: its laser
+    depth leaves too many camera-visible surfaces without depth for the observed test (supplement)."""
+    g = P14["cells"]
     views = [3, 5, 10]
     cols = {"vggt": "#4F6584", "pi3x": "#8FA3BF", "pi3": "#C9D3E2", "da3": "#E3B8A0"}
-    groups = [("DTU", b) for b in ("vggt", "pi3x", "pi3", "da3")] + [("ETH3D", b) for b in ("vggt", "pi3x")]
-    fig, (a, b) = plt.subplots(1, 2, figsize=(3.3, 1.6))
-    fig.subplots_adjust(left=0.1, right=0.99, top=0.74, bottom=0.21, wspace=0.42)
-    w = 0.8 / len(groups)
+    dsets = [("DTU benchmark", "o", None), ("DTU test", "D", "...."), ("CO3Dv2", "s", "////")]
+    groups = [(ds, b) for ds, _, _ in dsets for b in ("vggt", "pi3x", "pi3", "da3")]
+    fig, (a, b) = plt.subplots(1, 2, figsize=(3.3, 1.7))
+    fig.subplots_adjust(left=0.1, right=0.99, top=0.70, bottom=0.2, wspace=0.42)
+    w = 0.84 / len(groups)
+    mk = {d: m for d, m, _ in dsets}; ht = {d: h for d, _, h in dsets}
     for i, (ds, bb) in enumerate(groups):
         x = np.arange(3) + (i - (len(groups) - 1) / 2) * w
         v = [100 * g.get(f"{ds}:{n}:{bb}", {}).get("share", np.nan) for n in views]
-        a.bar(x, v, w * 0.92, color=cols[bb], hatch="////" if ds == "ETH3D" else None, edgecolor="white", lw=0.3)
-        d = [g.get(f"{ds}:{n}:{bb}", {}) for n in views]
-        for xi, c in zip(x, d):
+        a.bar(x, v, w * 0.92, color=cols[bb], hatch=ht[ds], edgecolor="white", lw=0.25)
+        ec = cols[bb] if bb != "pi3" else "#9AA8BD"
+        for xi, n in zip(x, views):
+            c = g.get(f"{ds}:{n}:{bb}")
             if not c:
                 continue
-            ok = c.get("holds")
-            b.plot([xi], [c["diff"][0]], marker="s" if ds == "ETH3D" else "o", ms=3.0, color=cols[bb] if bb != "pi3" else "#9AA8BD",
-                   mfc=(cols[bb] if bb != "pi3" else "#9AA8BD") if ok else "white", mew=0.9, ls="none")
-    a.axhline(0.5, color=IMAG, lw=0.7, ls="--"); a.text(-0.5, 0.75, "0.5%", fontsize=5.4, color=IMAG, ha="left", va="bottom", bbox=dict(fc="white", ec="none", pad=0.4))
+            b.plot([xi], [c["diff"][0]], marker=mk[ds], ms=2.6, color=ec, mfc=ec if c["holds"] else "white", mew=0.8, ls="none")
+    a.axhline(0.5, color=IMAG, lw=0.7, ls="--")
+    a.text(2.45, 0.6, "0.5%", fontsize=5.4, color=IMAG, ha="right", va="bottom", bbox=dict(fc="white", ec="none", pad=0.3))
     a.set_xticks(range(3)); a.set_xticklabels([f"{n} views" for n in views], fontsize=6.0)
     a.set_ylabel("% of points unobserved", fontsize=5.8, labelpad=1)
     a.set_title("(a) how often", fontsize=6.3, weight="bold", loc="left", pad=2)
@@ -460,11 +466,10 @@ def fig_realocc(P13, out):
     for x in (a, b):
         _axstyle(x)
     hs = [Patch(color=cols[bb], label=NAMES[bb]) for bb in ("vggt", "pi3x", "pi3", "da3")]
-    hs += [Patch(facecolor="white", edgecolor=MUTED, hatch="////", label="ETH3D (bars)")]
-    fig.legend(handles=hs, loc="upper center", ncol=5, fontsize=5.3, frameon=False, bbox_to_anchor=(0.55, 1.02), handlelength=1.0,
-               columnspacing=0.7)
-    fig.text(0.55, 0.835, "(b): filled = claim holds (share >= 0.5%, p < 0.05); circles DTU, squares ETH3D", fontsize=5.1, color=MUTED,
-             ha="center")
+    hs += [Line2D([], [], marker=m, ls="none", color=MUTED, mfc="white", ms=3, label=d) for d, m, _ in dsets]
+    fig.legend(handles=hs, loc="upper center", ncol=4, fontsize=5.2, frameon=False, bbox_to_anchor=(0.55, 1.03), handlelength=1.0,
+               columnspacing=0.7, labelspacing=0.2)
+    fig.text(0.55, 0.815, "(b) filled: share >= 0.5% and gain significant (p < 0.05)", fontsize=5.0, color=MUTED, ha="center")
     _save(fig, out)
 
 
@@ -526,7 +531,8 @@ def main():
     a = ap.parse_args()
     N = json.load(open(os.path.join(ROOT, "docs", "assets", "numbers.json"), encoding="utf-8"))
     M = json.load(open(os.path.join(ROOT, "docs", "assets", "matched.json"), encoding="utf-8"))
-    fig_teaser(N, M, os.path.join(a.out, "fig_teaser"))
+    P14 = json.load(open(os.path.join(ROOT, "docs", "assets", "p14.json"), encoding="utf-8"))
+    fig_teaser(N, M, os.path.join(a.out, "fig_teaser"), P14)
     fig_arch(os.path.join(a.out, "fig_arch"))
     fig_protocol(os.path.join(a.out, "fig_protocol"))
     fig_results(N, os.path.join(a.out, "fig_results"))
@@ -534,8 +540,7 @@ def main():
     fig_layers(N, os.path.join(a.out, "fig_layers"))
     fig_evidence(M, os.path.join(a.out, "fig_evidence"))
     fig_abstain(N, os.path.join(a.out, "fig_abstain"))
-    P13 = json.load(open(os.path.join(ROOT, "docs", "assets", "p13.json"), encoding="utf-8"))
-    fig_realocc(P13, os.path.join(a.out, "fig_realocc"))
+    fig_realocc(P14, os.path.join(a.out, "fig_realocc"))
     fig_limit(N, os.path.join(a.out, "fig_limit"))
     fig_stress(os.path.join(a.out, "fig_stress"))
     print("-> fig_teaser, fig_arch, fig_protocol, fig_results, fig_leak, fig_layers, fig_evidence, fig_abstain, fig_realocc, fig_limit in", a.out)
