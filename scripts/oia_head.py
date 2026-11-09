@@ -78,6 +78,9 @@ VARIANTS = {
     "oiavisself":      ("agg",   "conv",   "visself"),
     "oiavisselfpatch": ("patch", "conv",   "visself"),
     "oiavisselflin":   ("agg",   "linear", "visself"),
+    # capacity (P15-capacity, Gate 13): the same label-free labels and features, two cross-view transformer blocks
+    # over the tokens of all views instead of the conv head (the larger end of linear probe < conv head < transformer)
+    "oiavisselfattn":  ("agg",   "attn",   "visself"),
     # where visibility lives (mechanism): a linear probe on ONE aggregator layer each (VGGT layers 4 / 11 / 17 / 23,
     # LAYER_PICK indexes the hook's layer list) and on the per-image encoder tokens, true-visibility labels.
     "oiavislin4":     ("agg",   "linear", "vis"),
