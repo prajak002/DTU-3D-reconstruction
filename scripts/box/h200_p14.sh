@@ -5,7 +5,7 @@
 # dext_a/b     DTU test scans (22), VGGT + Pi3X / Pi3 + DA3
 # eth          ETH3D, Pi3 + DA3
 # co3d_a/b     CO3Dv2 benchmark scenes (18), VGGT + Pi3X / Pi3 + DA3
-# Every job writes its own folder under results/P14-realocc/ (no two jobs append to one CSV).
+# CO3Dv2 uses --align points (Gate 12 amendment, 2026-11-09 08:46 UTC). Every job writes its own folder under results/P14-realocc/ (no two jobs append to one CSV).
 source ${ROOT:-/home}/env.sh
 export HF_HUB_OFFLINE=0
 cd ${ROOT:-/home}/hallu
@@ -30,6 +30,6 @@ holes)
 dext_a) python scripts/realocc_eval.py --dtu $DTU --scans $DEXT --models $A --out $O/dext_a; echo "== P14_dext_a_DONE $(date -u)" ;;
 dext_b) python scripts/realocc_eval.py --dtu $DTU --scans $DEXT --models $B --out $O/dext_b; echo "== P14_dext_b_DONE $(date -u)" ;;
 eth)    python scripts/realocc_eval.py --co3d-format $ETH3D --models $B --out $O/eth; echo "== P14_eth_DONE $(date -u)" ;;
-co3d_a) python scripts/realocc_eval.py --co3d-format $CO3D --scans $CO3D_SC --models $A --out $O/co3d_a; echo "== P14_co3d_a_DONE $(date -u)" ;;
-co3d_b) python scripts/realocc_eval.py --co3d-format $CO3D --scans $CO3D_SC --models $B --out $O/co3d_b; echo "== P14_co3d_b_DONE $(date -u)" ;;
+co3d_a) python scripts/realocc_eval.py --co3d-format $CO3D --scans $CO3D_SC --models $A --align points --out $O/co3d_a; echo "== P14_co3d_a_DONE $(date -u)" ;;
+co3d_b) python scripts/realocc_eval.py --co3d-format $CO3D --scans $CO3D_SC --models $B --align points --out $O/co3d_b; echo "== P14_co3d_b_DONE $(date -u)" ;;
 esac

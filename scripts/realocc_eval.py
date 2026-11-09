@@ -135,6 +135,10 @@ def main():
     ap.add_argument("--out", default=os.path.join(ROOT, "results", "P12-realocc"))
     ap.add_argument("--max-gt", type=int, default=600000)
     ap.add_argument("--tol", type=float, default=0.03)
+    ap.add_argument("--align", default="cams", choices=["cams", "points"],
+                    help="cams: similarity on camera centres (P12/P13 protocol); points: similarity on the input pixels "
+                         "with ground-truth depth (Gate 12 amendment for CO3Dv2, whose adjacent orbit frames make the "
+                         "camera-centre fit degenerate)")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     if a.dtu:
@@ -191,8 +195,17 @@ def main():
             Km = np.asarray(Km.float().cpu().numpy(), np.float64).copy(); Em = np.asarray(Em.float().cpu().numpy(), np.float64)
             Km[:, 0] *= out_hw[1] / model_hw[1]; Km[:, 1] *= out_hw[0] / model_hw[0]
             C_pred = np.stack([-E[:3, :3].T @ E[:3, 3] for E in Em]); C_gt = np.stack([-E[:3, :3].T @ E[:3, 3] for E in data["E"]])
-            s, R, t = umeyama(C_pred, C_gt)
             pred = np.concatenate([H.backproject(d[i], Km[i], Em[i]).reshape(-1, 3) for i in range(len(d))])
+            Kg = data["K_dep"] if "K_dep" in data else data["K"]
+            gt_pix = np.concatenate([H.backproject(data["depths"][i], Kg[i], data["E"][i]).reshape(-1, 3)
+                                     for i in range(len(d))])
+            gvalid = (data["depths"] > 0).reshape(-1)
+            if a.align == "points":
+                k = np.flatnonzero(gvalid)
+                k = k if len(k) <= 50000 else np.random.default_rng(sd).choice(k, 50000, replace=False)
+                s, R, t = umeyama(pred[k], gt_pix[k])
+            else:
+                s, R, t = umeyama(C_pred, C_gt)
             pred = (s * (R @ pred.T)).T + t
             score = c.reshape(-1).astype(np.float64)
             valid_in = data["depths"] > 0
@@ -204,7 +217,9 @@ def main():
             cls_obs = on & obs[idx]
             cls_unobs = on & ~obs[idx]
             cls_off = ~on
-            row = dict(model=mname, scan=sc, seed=sd, n_views=n, n_pred=len(pred), n_gt=len(gt_pts), tau=tau,
+            onsurf_valid = float(on[gvalid].mean()) if gvalid.any() else float("nan")
+            row = dict(model=mname, scan=sc, seed=sd, n_views=n, align=a.align, onsurf_valid=onsurf_valid,
+                       n_pred=len(pred), n_gt=len(gt_pts), tau=tau,
                        frac_gt_unobserved=float((~obs).mean()),
                        frac_obs=float(cls_obs.mean()), frac_unobs=float(cls_unobs.mean()), frac_off=float(cls_off.mean()),
                        n_unobs=int(cls_unobs.sum()),
