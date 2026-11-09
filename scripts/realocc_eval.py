@@ -70,8 +70,62 @@ def observed_flags(gt_pts, src_view, in_views, depths_all, Ks, Es, tol=0.03):
     return obs
 
 
+def hole_rate(gt_pts, src_view, in_views, depths_all, Ks, Es, tol=0.03):
+    """Validity check of the observed test (P14, Gate 12). The depth test calls a ground-truth point observed only
+    where an input view's own ground-truth depth exists; a hole in that depth (sparse MVS on CO3Dv2) would label a
+    surface the camera does see as unobserved. Independent visibility: render every ground-truth point into each
+    input view as a z-buffer (3x3 minimum filter) and call a point z-visible when it lies within tol of the front
+    surface. Returns the share of z-visible points (not from an input view) that the depth test calls unobserved."""
+    from scipy.ndimage import minimum_filter
+    cand = ~np.isin(src_view, in_views)
+    zvis = np.zeros(len(gt_pts), bool)
+    for i in in_views:
+        u, v, z = H.project(gt_pts, Ks[i], Es[i])
+        h, w = depths_all[i].shape
+        ui, vi = np.round(u).astype(int), np.round(v).astype(int)
+        inside = (z > 0) & (ui >= 0) & (ui < w) & (vi >= 0) & (vi < h)
+        zb = np.full((h, w), np.inf)
+        np.minimum.at(zb, (vi[inside], ui[inside]), z[inside])
+        zb = minimum_filter(zb, size=3)
+        ok = np.zeros(len(gt_pts), bool)
+        ok[inside] = z[inside] <= zb[vi[inside], ui[inside]] * (1 + tol)
+        zvis |= ok
+    obs = observed_flags(gt_pts, src_view, in_views, depths_all, Ks, Es, tol)
+    sel = cand & zvis
+    return float((~obs[sel]).mean()) if sel.any() else float("nan"), int(sel.sum())
+
+
+def holes_main(a, root, scans):
+    """--holes: the validity check alone (no model), one row per (scan, seed, views)."""
+    tag = "dtu" if a.dtu else os.path.basename(os.path.normpath(a.co3d_format))
+    csv = os.path.join(a.out, f"P14-holes-{tag}.csv")
+    rng = np.random.default_rng(0)
+    rows = []
+    for sc in scans:
+        D, Ks, Es = load_gt_all(root, sc) if a.dtu else load_gt_all_co3d(root, sc)
+        pts, src = [], []
+        for v in range(len(D)):
+            m = D[v] > 0
+            pts.append(H.backproject(D[v], Ks[v], Es[v])[m]); src.append(np.full(int(m.sum()), v))
+        pts, src = np.concatenate(pts), np.concatenate(src)
+        if len(pts) > a.max_gt:
+            k = rng.choice(len(pts), a.max_gt, replace=False); pts, src = pts[k], src[k]
+        for sd in a.seeds.split(","):
+            for n in a.views.split(","):
+                n, sd = int(n), int(sd)
+                if not a.dtu and n >= len(D):
+                    continue
+                views = H.vis_views(n, sd) if a.dtu else H.vis_views(n, sd, total=len(D), mode="adjacent")
+                hr, nz = hole_rate(pts, src, views, D, Ks, Es, a.tol)
+                rows.append(dict(dataset=tag, scan=sc, seed=sd, n_views=n, hole_rate=hr, n_zvisible=nz))
+                print(f"[holes {tag}] {sc} views {n} seed {sd}: {hr:.4f} of {nz}", flush=True)
+    df = pd.DataFrame(rows); df.to_csv(csv, index=False)
+    print(df.groupby("n_views")["hole_rate"].mean().round(4).to_string())
+
+
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--holes", action="store_true", help="validity check of the observed test only (no model)")
     ap.add_argument("--dtu", default=None)
     ap.add_argument("--co3d-format", default=None)
     ap.add_argument("--scans", default=None)
@@ -91,6 +145,8 @@ def main():
         root = co3d.find_co3d_root((a.co3d_format,))
         scans = a.scans.split(",") if a.scans else co3d.list_co3d_scenes(root)
         csv = os.path.join(a.out, f"P12-realocc-{os.path.basename(os.path.normpath(a.co3d_format))}.csv")
+    if a.holes:
+        return holes_main(a, root, scans)
     done = set()
     if os.path.exists(csv):
         prev = pd.read_csv(csv)
