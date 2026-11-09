@@ -1,0 +1,825 @@
+{
+ "cells": {
+  "DTU benchmark:3:vggt": {
+   "gate": 10,
+   "hole_rate": 0.004,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.01349,
+   "qualifies": true,
+   "native": 0.7972,
+   "reproj": 0.7572,
+   "head": 0.8145,
+   "diff": [
+    0.0173,
+    0.29439
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "DTU benchmark:3:pi3x": {
+   "gate": 10,
+   "hole_rate": 0.004,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.01089,
+   "qualifies": true,
+   "native": 0.6825,
+   "reproj": 0.6284,
+   "head": 0.7762,
+   "diff": [
+    0.0938,
+    0.00025
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU benchmark:3:pi3": {
+   "gate": 10,
+   "hole_rate": 0.004,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.01143,
+   "qualifies": true,
+   "native": 0.6581,
+   "reproj": 0.6506,
+   "head": 0.7587,
+   "diff": [
+    0.1006,
+    0.00495
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU benchmark:3:da3": {
+   "gate": 10,
+   "hole_rate": 0.004,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.017,
+   "qualifies": true,
+   "native": 0.6054,
+   "reproj": 0.6135,
+   "head": 0.7069,
+   "diff": [
+    0.1015,
+    0.00025
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU benchmark:5:vggt": {
+   "gate": 10,
+   "hole_rate": 0.0022,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00815,
+   "qualifies": true,
+   "native": 0.797,
+   "reproj": 0.811,
+   "head": 0.8957,
+   "diff": [
+    0.0987,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU benchmark:5:pi3x": {
+   "gate": 10,
+   "hole_rate": 0.0022,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00528,
+   "qualifies": true,
+   "native": 0.6959,
+   "reproj": 0.6755,
+   "head": 0.8224,
+   "diff": [
+    0.1265,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU benchmark:5:pi3": {
+   "gate": 10,
+   "hole_rate": 0.0022,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00637,
+   "qualifies": true,
+   "native": 0.7425,
+   "reproj": 0.7066,
+   "head": 0.849,
+   "diff": [
+    0.1066,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU benchmark:5:da3": {
+   "gate": 10,
+   "hole_rate": 0.0022,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00691,
+   "qualifies": true,
+   "native": 0.6748,
+   "reproj": 0.6333,
+   "head": 0.7746,
+   "diff": [
+    0.0998,
+    0.00035
+   ],
+   "holds": true,
+   "n_scenes": 18
+  },
+  "DTU benchmark:10:vggt": {
+   "gate": 10,
+   "hole_rate": 0.0008,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00358,
+   "qualifies": false,
+   "native": 0.7822,
+   "reproj": 0.7173,
+   "head": 0.9176,
+   "diff": [
+    0.1354,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "DTU benchmark:10:pi3x": {
+   "gate": 10,
+   "hole_rate": 0.0008,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00167,
+   "qualifies": false,
+   "native": 0.7104,
+   "reproj": 0.5997,
+   "head": 0.8943,
+   "diff": [
+    0.184,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "DTU benchmark:10:pi3": {
+   "gate": 10,
+   "hole_rate": 0.0008,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00203,
+   "qualifies": false,
+   "native": 0.797,
+   "reproj": 0.6623,
+   "head": 0.8912,
+   "diff": [
+    0.0942,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "DTU benchmark:10:da3": {
+   "gate": 10,
+   "hole_rate": 0.0008,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00226,
+   "qualifies": false,
+   "native": 0.7469,
+   "reproj": 0.618,
+   "head": 0.8862,
+   "diff": [
+    0.1393,
+    0.0001
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "ETH3D:3:vggt": {
+   "gate": "10/12",
+   "hole_rate": 0.3486,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.06698,
+   "qualifies": false,
+   "native": 0.5512,
+   "reproj": 0.6039,
+   "head": 0.616,
+   "diff": [
+    0.0648,
+    0.02655
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:3:pi3x": {
+   "gate": "10/12",
+   "hole_rate": 0.3486,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.07995,
+   "qualifies": false,
+   "native": 0.6372,
+   "reproj": 0.629,
+   "head": 0.6395,
+   "diff": [
+    0.0023,
+    0.952
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:3:pi3": {
+   "gate": "10/12",
+   "hole_rate": 0.3486,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.05588,
+   "qualifies": false,
+   "native": 0.623,
+   "reproj": 0.6173,
+   "head": 0.6384,
+   "diff": [
+    0.0154,
+    0.62617
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:3:da3": {
+   "gate": "10/12",
+   "hole_rate": 0.3486,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.04438,
+   "qualifies": false,
+   "native": 0.4491,
+   "reproj": 0.5916,
+   "head": 0.6288,
+   "diff": [
+    0.1797,
+    0.00395
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:5:vggt": {
+   "gate": "10/12",
+   "hole_rate": 0.3202,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.06688,
+   "qualifies": false,
+   "native": 0.5795,
+   "reproj": 0.6028,
+   "head": 0.6555,
+   "diff": [
+    0.076,
+    0.0023
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:5:pi3x": {
+   "gate": "10/12",
+   "hole_rate": 0.3202,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.06561,
+   "qualifies": false,
+   "native": 0.6572,
+   "reproj": 0.6005,
+   "head": 0.6597,
+   "diff": [
+    0.0026,
+    0.86391
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:5:pi3": {
+   "gate": "10/12",
+   "hole_rate": 0.3202,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.05865,
+   "qualifies": false,
+   "native": 0.6093,
+   "reproj": 0.6194,
+   "head": 0.6582,
+   "diff": [
+    0.0489,
+    0.26984
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:5:da3": {
+   "gate": "10/12",
+   "hole_rate": 0.3202,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.05498,
+   "qualifies": false,
+   "native": 0.5214,
+   "reproj": 0.5722,
+   "head": 0.6248,
+   "diff": [
+    0.1035,
+    0.01285
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:10:vggt": {
+   "gate": "10/12",
+   "hole_rate": 0.3088,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.0386,
+   "qualifies": false,
+   "native": 0.604,
+   "reproj": 0.5925,
+   "head": 0.684,
+   "diff": [
+    0.0799,
+    0.00385
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:10:pi3x": {
+   "gate": "10/12",
+   "hole_rate": 0.3088,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.05488,
+   "qualifies": false,
+   "native": 0.6431,
+   "reproj": 0.5874,
+   "head": 0.676,
+   "diff": [
+    0.0329,
+    0.22194
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:10:pi3": {
+   "gate": "10/12",
+   "hole_rate": 0.3088,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.04072,
+   "qualifies": false,
+   "native": 0.6548,
+   "reproj": 0.5773,
+   "head": 0.6849,
+   "diff": [
+    0.03,
+    0.15239
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "ETH3D:10:da3": {
+   "gate": "10/12",
+   "hole_rate": 0.3088,
+   "onsurf": NaN,
+   "valid": false,
+   "share": 0.02176,
+   "qualifies": false,
+   "native": 0.5275,
+   "reproj": 0.5497,
+   "head": 0.6334,
+   "diff": [
+    0.1059,
+    0.0178
+   ],
+   "holds": false,
+   "n_scenes": 12
+  },
+  "DTU test:3:vggt": {
+   "gate": 12,
+   "hole_rate": 0.003,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.01043,
+   "qualifies": true,
+   "native": 0.8071,
+   "reproj": 0.7625,
+   "head": 0.849,
+   "diff": [
+    0.0419,
+    0.0686
+   ],
+   "holds": false,
+   "n_scenes": 22
+  },
+  "DTU test:3:pi3x": {
+   "gate": 12,
+   "hole_rate": 0.003,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00946,
+   "qualifies": true,
+   "native": 0.6718,
+   "reproj": 0.6558,
+   "head": 0.7534,
+   "diff": [
+    0.0816,
+    0.00025
+   ],
+   "holds": true,
+   "n_scenes": 22
+  },
+  "DTU test:3:pi3": {
+   "gate": 12,
+   "hole_rate": 0.003,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.01163,
+   "qualifies": true,
+   "native": 0.6332,
+   "reproj": 0.6466,
+   "head": 0.7437,
+   "diff": [
+    0.1105,
+    0.0011
+   ],
+   "holds": true,
+   "n_scenes": 22
+  },
+  "DTU test:3:da3": {
+   "gate": 12,
+   "hole_rate": 0.003,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.01109,
+   "qualifies": true,
+   "native": 0.5976,
+   "reproj": 0.627,
+   "head": 0.7368,
+   "diff": [
+    0.1392,
+    0.0001
+   ],
+   "holds": true,
+   "n_scenes": 22
+  },
+  "DTU test:5:vggt": {
+   "gate": 12,
+   "hole_rate": 0.0016,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00681,
+   "qualifies": true,
+   "native": 0.8198,
+   "reproj": 0.8112,
+   "head": 0.904,
+   "diff": [
+    0.0842,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 22
+  },
+  "DTU test:5:pi3x": {
+   "gate": 12,
+   "hole_rate": 0.0016,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00526,
+   "qualifies": true,
+   "native": 0.7231,
+   "reproj": 0.675,
+   "head": 0.8234,
+   "diff": [
+    0.1003,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 22
+  },
+  "DTU test:5:pi3": {
+   "gate": 12,
+   "hole_rate": 0.0016,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00551,
+   "qualifies": true,
+   "native": 0.7274,
+   "reproj": 0.701,
+   "head": 0.8584,
+   "diff": [
+    0.131,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 22
+  },
+  "DTU test:5:da3": {
+   "gate": 12,
+   "hole_rate": 0.0016,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00556,
+   "qualifies": true,
+   "native": 0.7217,
+   "reproj": 0.6714,
+   "head": 0.8233,
+   "diff": [
+    0.1017,
+    5e-05
+   ],
+   "holds": true,
+   "n_scenes": 22
+  },
+  "DTU test:10:vggt": {
+   "gate": 12,
+   "hole_rate": 0.0007,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00303,
+   "qualifies": false,
+   "native": 0.8062,
+   "reproj": 0.7273,
+   "head": 0.9276,
+   "diff": [
+    0.1214,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 22
+  },
+  "DTU test:10:pi3x": {
+   "gate": 12,
+   "hole_rate": 0.0007,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00189,
+   "qualifies": false,
+   "native": 0.7457,
+   "reproj": 0.6373,
+   "head": 0.9116,
+   "diff": [
+    0.1659,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 22
+  },
+  "DTU test:10:pi3": {
+   "gate": 12,
+   "hole_rate": 0.0007,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00197,
+   "qualifies": false,
+   "native": 0.8187,
+   "reproj": 0.6623,
+   "head": 0.9082,
+   "diff": [
+    0.0895,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 22
+  },
+  "DTU test:10:da3": {
+   "gate": 12,
+   "hole_rate": 0.0007,
+   "onsurf": NaN,
+   "valid": true,
+   "share": 0.00167,
+   "qualifies": false,
+   "native": 0.7702,
+   "reproj": 0.6288,
+   "head": 0.9116,
+   "diff": [
+    0.1414,
+    5e-05
+   ],
+   "holds": false,
+   "n_scenes": 22
+  },
+  "CO3Dv2:3:vggt": {
+   "gate": 12,
+   "hole_rate": 0.081,
+   "onsurf": 0.8553,
+   "valid": true,
+   "share": 0.03735,
+   "qualifies": true,
+   "native": 0.64,
+   "reproj": 0.5154,
+   "head": 0.6482,
+   "diff": [
+    0.0082,
+    0.74291
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:3:pi3x": {
+   "gate": 12,
+   "hole_rate": 0.081,
+   "onsurf": 0.8553,
+   "valid": true,
+   "share": 0.04194,
+   "qualifies": true,
+   "native": 0.5316,
+   "reproj": 0.5133,
+   "head": 0.6001,
+   "diff": [
+    0.0684,
+    0.07735
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:3:pi3": {
+   "gate": 12,
+   "hole_rate": 0.081,
+   "onsurf": 0.8553,
+   "valid": true,
+   "share": 0.04068,
+   "qualifies": true,
+   "native": 0.5922,
+   "reproj": 0.5144,
+   "head": 0.6098,
+   "diff": [
+    0.0176,
+    0.66802
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:3:da3": {
+   "gate": 12,
+   "hole_rate": 0.081,
+   "onsurf": 0.8553,
+   "valid": true,
+   "share": 0.03767,
+   "qualifies": true,
+   "native": 0.6242,
+   "reproj": 0.5251,
+   "head": 0.5751,
+   "diff": [
+    -0.0491,
+    0.12484
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:5:vggt": {
+   "gate": 12,
+   "hole_rate": 0.0555,
+   "onsurf": 0.8662,
+   "valid": true,
+   "share": 0.0316,
+   "qualifies": true,
+   "native": 0.6598,
+   "reproj": 0.5195,
+   "head": 0.6682,
+   "diff": [
+    0.0084,
+    0.74851
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:5:pi3x": {
+   "gate": 12,
+   "hole_rate": 0.0555,
+   "onsurf": 0.8662,
+   "valid": true,
+   "share": 0.03287,
+   "qualifies": true,
+   "native": 0.5554,
+   "reproj": 0.5227,
+   "head": 0.613,
+   "diff": [
+    0.0576,
+    0.13709
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:5:pi3": {
+   "gate": 12,
+   "hole_rate": 0.0555,
+   "onsurf": 0.8662,
+   "valid": true,
+   "share": 0.03516,
+   "qualifies": true,
+   "native": 0.6205,
+   "reproj": 0.5247,
+   "head": 0.6151,
+   "diff": [
+    -0.0054,
+    0.90055
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:5:da3": {
+   "gate": 12,
+   "hole_rate": 0.0555,
+   "onsurf": 0.8662,
+   "valid": true,
+   "share": 0.03382,
+   "qualifies": true,
+   "native": 0.6547,
+   "reproj": 0.5375,
+   "head": 0.5873,
+   "diff": [
+    -0.0674,
+    0.0425
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:10:vggt": {
+   "gate": 12,
+   "hole_rate": 0.0342,
+   "onsurf": 0.8799,
+   "valid": true,
+   "share": 0.02276,
+   "qualifies": true,
+   "native": 0.6758,
+   "reproj": 0.5252,
+   "head": 0.6755,
+   "diff": [
+    -0.0002,
+    0.99415
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:10:pi3x": {
+   "gate": 12,
+   "hole_rate": 0.0342,
+   "onsurf": 0.8799,
+   "valid": true,
+   "share": 0.02404,
+   "qualifies": true,
+   "native": 0.618,
+   "reproj": 0.5421,
+   "head": 0.6384,
+   "diff": [
+    0.0204,
+    0.56007
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:10:pi3": {
+   "gate": 12,
+   "hole_rate": 0.0342,
+   "onsurf": 0.8799,
+   "valid": true,
+   "share": 0.02701,
+   "qualifies": true,
+   "native": 0.6805,
+   "reproj": 0.5447,
+   "head": 0.6372,
+   "diff": [
+    -0.0433,
+    0.34943
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "CO3Dv2:10:da3": {
+   "gate": 12,
+   "hole_rate": 0.0342,
+   "onsurf": 0.8799,
+   "valid": true,
+   "share": 0.02225,
+   "qualifies": true,
+   "native": 0.7192,
+   "reproj": 0.5571,
+   "head": 0.6053,
+   "diff": [
+    -0.1139,
+    0.0004
+   ],
+   "holds": false,
+   "n_scenes": 18
+  }
+ },
+ "total": {
+  "qualifying": 28,
+  "holds": 14,
+  "invalid": 12
+ }
+}

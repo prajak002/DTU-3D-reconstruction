@@ -1,0 +1,15 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] scan apple_110_13051_23361 views 3 seed 0: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  6s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] scan apple_110_13051_23361 views 5 seed 0: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  10s
+[vggt] scan apple_110_13051_23361 views 10 seed 0: obs 0.003 unobs 0.0012 off 0.995  auroc obs/unobs 0.571  16s
+[vggt] scan apple_110_13051_23361 views 3 seed 1: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  20s
+[vggt] scan apple_110_13051_23361 views 5 seed 1: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  24s
+[vggt] scan apple_110_13051_23361 views 10 seed 1: obs 0.003 unobs 0.0004 off 0.997  auroc obs/unobs 0.838  29s
+[vggt] scan apple_189_20393_38136 views 3 seed 0: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  32s
+[vggt] scan apple_189_20393_38136 views 5 seed 0: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  35s
+[vggt] scan apple_189_20393_38136 views 10 seed 0: obs 0.027 unobs 0.0073 off 0.966  auroc obs/unobs 0.278  38s
+[vggt] scan apple_189_20393_38136 views 3 seed 1: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  41s

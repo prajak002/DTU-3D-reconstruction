@@ -1,0 +1,19 @@
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[pi3] scan apple_110_13051_23361 views 3 seed 0: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  4s
+[pi3] scan apple_110_13051_23361 views 5 seed 0: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  7s
+[pi3] scan apple_110_13051_23361 views 10 seed 0: obs 0.001 unobs 0.0004 off 0.998  auroc obs/unobs 0.559  11s
+[pi3] scan apple_110_13051_23361 views 3 seed 1: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  15s
+[pi3] scan apple_110_13051_23361 views 5 seed 1: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  20s
+[pi3] scan apple_110_13051_23361 views 10 seed 1: obs 0.002 unobs 0.0002 off 0.997  auroc obs/unobs 0.697  24s
+[pi3] scan apple_189_20393_38136 views 3 seed 0: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  27s
+[pi3] scan apple_189_20393_38136 views 5 seed 0: obs 0.054 unobs 0.0003 off 0.946  auroc obs/unobs 0.267  30s
+[pi3] scan apple_189_20393_38136 views 10 seed 0: obs 0.016 unobs 0.0039 off 0.980  auroc obs/unobs 0.867  33s
+[pi3] scan apple_189_20393_38136 views 3 seed 1: obs 0.000 unobs 0.0000 off 1.000  auroc obs/unobs nan  37s
+[pi3] scan apple_189_20393_38136 views 5 seed 1: obs 0.019 unobs 0.0067 off 0.974  auroc obs/unobs 0.560  41s
+[pi3] scan apple_189_20393_38136 views 10 seed 1: obs 0.019 unobs 0.0064 off 0.975  auroc obs/unobs 0.483  45s
+[pi3] scan ball_123_14363_28981 views 3 seed 0: obs 0.005 unobs 0.0032 off 0.991  auroc obs/unobs 0.913  49s
+[pi3] scan ball_123_14363_28981 views 5 seed 0: obs 0.003 unobs 0.0002 off 0.997  auroc obs/unobs 0.643  53s
+[pi3] scan ball_123_14363_28981 views 10 seed 0: obs 0.069 unobs 0.0048 off 0.926  auroc obs/unobs 0.739  57s
+[pi3] scan ball_123_14363_28981 views 3 seed 1: obs 0.030 unobs 0.0063 off 0.964  auroc obs/unobs 0.666  59s
+[pi3] scan ball_123_14363_28981 views 5 seed 1: obs 0.131 unobs 0.0076 off 0.861  auroc obs/unobs 0.632  62s
