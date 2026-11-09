@@ -1,5 +1,15 @@
 # LOG
 
+## 2026-11-09
+
+### Seventh and eighth passes: real occlusion on three real datasets, capacity, three-view fusion; paper rewritten
+
+- **H200.** The paused instance 566718 was gone; a fresh instance (567680) was rebuilt from scratch (backbones, DTU and CO3Dv2 from Kaggle, ETH3D from eth3d.net, preprocessed and reordered by co-visibility; a VGGT row on ETH3D reproduced its logged tau exactly). About 1054 INR for the day; paused after every result and checkpoint was fetched and md5-verified.
+- **Gate 12** (pre-registered 90bb170; amendment d60b084 before any CO3Dv2 cell was scored: the camera-centre similarity is degenerate on adjacent orbit frames, so CO3Dv2 aligns on pixels with ground-truth depth). Real occlusion holds in 7 of 8 qualifying cells on the 22 DTU test scans (14 of 16 over both DTU sets, four backbones), in 0 of 12 on CO3Dv2; ETH3D fails the new validity check (hole rate 0.31 to 0.35), which also removes the ETH3D cells Gate 10 counted.
+- **Gate 13** (09f116b): a cross-view transformer head beats the conv head in 0 of 12 real-occlusion cells; the linear probe is within 0.03 in 11; the conv head beats the per-image control in 11 of 12.
+- **Gate 14**: at three views the head's fused cloud is not more accurate than native confidence's (fails); it keeps 18% to 39% less single-view geometry in every cell.
+- **Paper** (bcb9ddd): abstract, findings, contributions and teaser lead with the real-scan and capacity results; real-occlusion section and figure rebuilt; gates table, gate references and run ids removed from paper and supplement at the author's request; supplement gains the real-occlusion protocol, the validity check and full tables. Body ends on page 7; no links in either PDF.
+
 ## 2026-11-08
 
 ### Sixth pass: four-backbone matched heads, a one-view retry, real occlusion on ETH3D, a downstream test
