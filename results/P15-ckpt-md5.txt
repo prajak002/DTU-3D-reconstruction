@@ -1,0 +1,6 @@
+14e4d08261dd6a57ea11d8f45d132684  checkpoints/pi3x_oiavisselfattn.pt
+01f26c2ea742f0d7a8c8850c1c13b81f  checkpoints/pi3x_oiavisselfattn_best.pt
+a7135cc4d15e8c391113ab8459d5f465  checkpoints/pi3x_oiavisselfattn_hist.json
+817e57c1fcc01a90efdfd04d2d8f6825  checkpoints/vggt_oiavisselfattn.pt
+c6b3342a6703592b46d6b35b4faeacb5  checkpoints/vggt_oiavisselfattn_best.pt
+487fdaa2581d6ae4b5c38e3fc660323b  checkpoints/vggt_oiavisselfattn_hist.json

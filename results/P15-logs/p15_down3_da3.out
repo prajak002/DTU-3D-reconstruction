@@ -1,0 +1,1408 @@
+[93m[WARN ] Dependency `gsplat` is required for rendering 3DGS. Install via: pip install git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70[0m
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[97m[INFO ] using MLP layer as FFN[0m
+[97m[INFO ] Processed Images Done taking 0.06579947471618652 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.9350728988647461 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0034220218658447266 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 3 views 3 seed 0: acc@0.8 0.081 comp 0.094  5s
+[97m[INFO ] Processed Images Done taking 0.11886048316955566 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06311559677124023 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006604194641113281 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 3 views 3 seed 1: acc@0.8 0.024 comp 0.025  27s
+[97m[INFO ] Processed Images Done taking 0.06152677536010742 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08828091621398926 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001020669937133789 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 5 views 3 seed 0: acc@0.8 0.115 comp 0.356  34s
+[97m[INFO ] Processed Images Done taking 0.051445722579956055 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14177489280700684 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008759498596191406 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 5 views 3 seed 1: acc@0.8 0.077 comp 0.119  38s
+[97m[INFO ] Processed Images Done taking 0.03952145576477051 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1552894115447998 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009660720825195312 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 17 views 3 seed 0: acc@0.8 0.021 comp 0.041  41s
+[97m[INFO ] Processed Images Done taking 0.04035782814025879 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14926743507385254 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006935596466064453 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 17 views 3 seed 1: acc@0.8 0.001 comp 0.001  46s
+[97m[INFO ] Processed Images Done taking 0.07390666007995605 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0776360034942627 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007202625274658203 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 21 views 3 seed 0: acc@0.8 0.212 comp 0.346  48s
+[97m[INFO ] Processed Images Done taking 0.06944847106933594 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10570645332336426 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011105537414550781 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 21 views 3 seed 1: acc@0.8 0.244 comp 0.318  50s
+[97m[INFO ] Processed Images Done taking 0.03695559501647949 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13756918907165527 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007915496826171875 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 28 views 3 seed 0: acc@0.8 0.633 comp 0.888  52s
+[97m[INFO ] Processed Images Done taking 0.050527095794677734 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13291358947753906 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001374959945678711 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 28 views 3 seed 1: acc@0.8 0.071 comp 0.109  55s
+[97m[INFO ] Processed Images Done taking 0.05904841423034668 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.174835205078125 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010647773742675781 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 35 views 3 seed 0: acc@0.8 0.520 comp 0.777  57s
+[97m[INFO ] Processed Images Done taking 0.07273006439208984 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12766027450561523 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008168220520019531 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 35 views 3 seed 1: acc@0.8 0.000 comp 0.000  61s
+[97m[INFO ] Processed Images Done taking 0.06057929992675781 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.17484736442565918 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008928775787353516 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 37 views 3 seed 0: acc@0.8 0.073 comp 0.155  65s
+[97m[INFO ] Processed Images Done taking 0.11043787002563477 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09559202194213867 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0016291141510009766 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 37 views 3 seed 1: acc@0.8 0.101 comp 0.189  68s
+[97m[INFO ] Processed Images Done taking 0.05965852737426758 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10183835029602051 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007712841033935547 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 38 views 3 seed 0: acc@0.8 0.177 comp 0.268  72s
+[97m[INFO ] Processed Images Done taking 0.09482192993164062 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1323835849761963 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009317398071289062 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 38 views 3 seed 1: acc@0.8 0.268 comp 0.341  76s
+[97m[INFO ] Processed Images Done taking 0.058771610260009766 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14461827278137207 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.000637054443359375 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 40 views 3 seed 0: acc@0.8 0.200 comp 0.348  80s
+[97m[INFO ] Processed Images Done taking 0.05286216735839844 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11580133438110352 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010111331939697266 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 40 views 3 seed 1: acc@0.8 0.082 comp 0.164  83s
+[97m[INFO ] Processed Images Done taking 0.06383085250854492 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1874830722808838 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006663799285888672 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 43 views 3 seed 0: acc@0.8 0.526 comp 0.837  85s
+[97m[INFO ] Processed Images Done taking 0.04619193077087402 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11111259460449219 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006263256072998047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 43 views 3 seed 1: acc@0.8 0.098 comp 0.098  89s
+[97m[INFO ] Processed Images Done taking 0.03351926803588867 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09294891357421875 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007176399230957031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 56 views 3 seed 0: acc@0.8 0.051 comp 0.082  96s
+[97m[INFO ] Processed Images Done taking 0.06293320655822754 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.17174863815307617 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.000911712646484375 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 56 views 3 seed 1: acc@0.8 0.119 comp 0.115  99s
+[97m[INFO ] Processed Images Done taking 0.05881929397583008 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1470201015472412 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007395744323730469 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 59 views 3 seed 0: acc@0.8 0.350 comp 0.617  102s
+[97m[INFO ] Processed Images Done taking 0.06661677360534668 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07822942733764648 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011599063873291016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 59 views 3 seed 1: acc@0.8 0.171 comp 0.202  105s
+[97m[INFO ] Processed Images Done taking 0.05860495567321777 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.16025853157043457 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007371902465820312 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 66 views 3 seed 0: acc@0.8 0.385 comp 0.618  107s
+[97m[INFO ] Processed Images Done taking 0.07021903991699219 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10079145431518555 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007314682006835938 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 66 views 3 seed 1: acc@0.8 0.087 comp 0.140  110s
+[97m[INFO ] Processed Images Done taking 0.04407310485839844 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09682512283325195 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008132457733154297 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 67 views 3 seed 0: acc@0.8 0.153 comp 0.268  112s
+[97m[INFO ] Processed Images Done taking 0.05137062072753906 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12124514579772949 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011022090911865234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 67 views 3 seed 1: acc@0.8 0.039 comp 0.081  115s
+[97m[INFO ] Processed Images Done taking 0.04644584655761719 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09215855598449707 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006959438323974609 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 82 views 3 seed 0: acc@0.8 0.408 comp 0.502  118s
+[97m[INFO ] Processed Images Done taking 0.0460052490234375 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14043021202087402 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007307529449462891 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 82 views 3 seed 1: acc@0.8 0.213 comp 0.244  120s
+[97m[INFO ] Processed Images Done taking 0.05536818504333496 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0807650089263916 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007927417755126953 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 86 views 3 seed 0: acc@0.8 0.046 comp 0.120  122s
+[97m[INFO ] Processed Images Done taking 0.0589447021484375 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05557107925415039 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006699562072753906 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 86 views 3 seed 1: acc@0.8 0.020 comp 0.055  126s
+[97m[INFO ] Processed Images Done taking 0.09101462364196777 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14036893844604492 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007479190826416016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 106 views 3 seed 0: acc@0.8 0.171 comp 0.377  128s
+[97m[INFO ] Processed Images Done taking 0.02000260353088379 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.16075539588928223 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008251667022705078 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 106 views 3 seed 1: acc@0.8 0.167 comp 0.275  130s
+[97m[INFO ] Processed Images Done taking 0.03890585899353027 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.15534138679504395 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008213520050048828 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 117 views 3 seed 0: acc@0.8 0.289 comp 0.593  133s
+[97m[INFO ] Processed Images Done taking 0.05798912048339844 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.20397257804870605 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0033288002014160156 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 117 views 3 seed 1: acc@0.8 0.095 comp 0.125  135s
+[97m[INFO ] using MLP layer as FFN[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 3 views 3 seed 0: acc@0.8 0.025 comp 0.030  3s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 3 views 3 seed 1: acc@0.8 0.028 comp 0.021  8s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 5 views 3 seed 0: acc@0.8 0.273 comp 0.453  10s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 5 views 3 seed 1: acc@0.8 0.071 comp 0.093  14s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 17 views 3 seed 0: acc@0.8 0.025 comp 0.042  21s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 17 views 3 seed 1: acc@0.8 0.002 comp 0.009  34s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 21 views 3 seed 0: acc@0.8 0.221 comp 0.343  36s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 21 views 3 seed 1: acc@0.8 0.242 comp 0.319  39s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 28 views 3 seed 0: acc@0.8 0.318 comp 0.462  42s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 28 views 3 seed 1: acc@0.8 0.211 comp 0.224  45s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 35 views 3 seed 0: acc@0.8 0.488 comp 0.769  49s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 35 views 3 seed 1: acc@0.8 0.000 comp 0.000  54s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 37 views 3 seed 0: acc@0.8 0.071 comp 0.134  57s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 37 views 3 seed 1: acc@0.8 0.090 comp 0.183  60s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 38 views 3 seed 0: acc@0.8 0.280 comp 0.299  63s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 38 views 3 seed 1: acc@0.8 0.321 comp 0.376  65s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 40 views 3 seed 0: acc@0.8 0.167 comp 0.300  68s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 40 views 3 seed 1: acc@0.8 0.067 comp 0.115  71s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 43 views 3 seed 0: acc@0.8 0.297 comp 0.362  73s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 43 views 3 seed 1: acc@0.8 0.122 comp 0.120  77s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 56 views 3 seed 0: acc@0.8 0.345 comp 0.607  80s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 56 views 3 seed 1: acc@0.8 0.114 comp 0.108  85s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 59 views 3 seed 0: acc@0.8 0.458 comp 0.747  87s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 59 views 3 seed 1: acc@0.8 0.140 comp 0.154  90s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 66 views 3 seed 0: acc@0.8 0.376 comp 0.608  92s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 66 views 3 seed 1: acc@0.8 0.076 comp 0.125  95s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 67 views 3 seed 0: acc@0.8 0.165 comp 0.242  98s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 67 views 3 seed 1: acc@0.8 0.038 comp 0.080  101s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 82 views 3 seed 0: acc@0.8 0.385 comp 0.465  103s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 82 views 3 seed 1: acc@0.8 0.190 comp 0.220  106s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 86 views 3 seed 0: acc@0.8 0.045 comp 0.118  109s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 86 views 3 seed 1: acc@0.8 0.017 comp 0.033  112s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 106 views 3 seed 0: acc@0.8 0.207 comp 0.473  114s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 106 views 3 seed 1: acc@0.8 0.194 comp 0.331  117s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 117 views 3 seed 0: acc@0.8 0.319 comp 0.665  119s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 117 views 3 seed 1: acc@0.8 0.101 comp 0.137  122s
+[97m[INFO ] using MLP layer as FFN[0m
+[da3_oiavisself] head from /home/hallu/checkpoints/da3_oiavisself.pt (step 1500, val-auroc 0.993)
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 3 views 3 seed 0: acc@0.8 0.034 comp 0.035  3s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 3 views 3 seed 1: acc@0.8 0.028 comp 0.021  6s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 5 views 3 seed 0: acc@0.8 0.280 comp 0.457  9s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 5 views 3 seed 1: acc@0.8 0.072 comp 0.100  12s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 17 views 3 seed 0: acc@0.8 0.026 comp 0.061  17s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 17 views 3 seed 1: acc@0.8 0.000 comp 0.009  22s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 21 views 3 seed 0: acc@0.8 0.235 comp 0.359  26s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 21 views 3 seed 1: acc@0.8 0.261 comp 0.354  32s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 28 views 3 seed 0: acc@0.8 0.319 comp 0.464  37s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 28 views 3 seed 1: acc@0.8 0.215 comp 0.250  39s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 35 views 3 seed 0: acc@0.8 0.500 comp 0.775  43s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 35 views 3 seed 1: acc@0.8 0.000 comp 0.000  48s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 37 views 3 seed 0: acc@0.8 0.074 comp 0.151  53s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 37 views 3 seed 1: acc@0.8 0.097 comp 0.198  56s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 38 views 3 seed 0: acc@0.8 0.289 comp 0.311  58s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 38 views 3 seed 1: acc@0.8 0.327 comp 0.385  60s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 40 views 3 seed 0: acc@0.8 0.198 comp 0.341  63s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 40 views 3 seed 1: acc@0.8 0.079 comp 0.179  66s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 43 views 3 seed 0: acc@0.8 0.265 comp 0.338  68s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 43 views 3 seed 1: acc@0.8 0.120 comp 0.148  71s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 56 views 3 seed 0: acc@0.8 0.353 comp 0.616  74s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 56 views 3 seed 1: acc@0.8 0.101 comp 0.088  79s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 59 views 3 seed 0: acc@0.8 0.478 comp 0.771  82s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 59 views 3 seed 1: acc@0.8 0.160 comp 0.180  88s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 66 views 3 seed 0: acc@0.8 0.382 comp 0.622  90s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 66 views 3 seed 1: acc@0.8 0.086 comp 0.145  93s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 67 views 3 seed 0: acc@0.8 0.156 comp 0.246  95s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 67 views 3 seed 1: acc@0.8 0.038 comp 0.079  99s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 82 views 3 seed 0: acc@0.8 0.362 comp 0.447  102s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 82 views 3 seed 1: acc@0.8 0.203 comp 0.237  106s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 86 views 3 seed 0: acc@0.8 0.046 comp 0.130  109s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 86 views 3 seed 1: acc@0.8 0.019 comp 0.041  112s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 106 views 3 seed 0: acc@0.8 0.247 comp 0.522  114s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 106 views 3 seed 1: acc@0.8 0.185 comp 0.291  117s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 117 views 3 seed 0: acc@0.8 0.343 comp 0.687  119s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 117 views 3 seed 1: acc@0.8 0.105 comp 0.141  121s
+                                accuracy  completeness      f1  single_view_kept
+model                 coverage                                                  
+da3                   0.6         0.1949        0.2417  0.2129            0.1079
+                      0.7         0.1874        0.2622  0.2158            0.1244
+                      0.8         0.1746        0.2746  0.2111            0.1420
+                      0.9         0.1584        0.2827  0.2008            0.1523
+                      1.0         0.1433        0.2864  0.1889            0.1452
+da3_oiavisself        0.6         0.2126        0.2508  0.2271            0.0465
+                      0.7         0.2000        0.2692  0.2269            0.0789
+                      0.8         0.1857        0.2827  0.2217            0.1140
+                      0.9         0.1700        0.2899  0.2121            0.1403
+                      1.0         0.1545        0.2923  0.2000            0.1452
+da3_oiavisself_oracle 0.6         0.1678        0.2355  0.1923            0.0000
+                      0.7         0.1557        0.2447  0.1871            0.0000
+                      0.8         0.1571        0.2576  0.1922            0.0115
+                      0.9         0.1567        0.2717  0.1962            0.0573
+                      1.0         0.1545        0.2923  0.2000            0.1452
+da3_oiavisself_random 0.6         0.1547        0.2827  0.1978            0.1450
+                      0.7         0.1547        0.2861  0.1987            0.1450
+                      0.8         0.1547        0.2885  0.1993            0.1451
+                      0.9         0.1545        0.2905  0.1996            0.1451
+                      1.0         0.1545        0.2923  0.2000            0.1452
+da3_oracle            0.6         0.1470        0.2234  0.1738            0.0000
+                      0.7         0.1374        0.2325  0.1696            0.0000
+                      0.8         0.1422        0.2501  0.1785            0.0115
+                      0.9         0.1443        0.2661  0.1845            0.0573
+                      1.0         0.1433        0.2864  0.1889            0.1452
+da3_random            0.6         0.1432        0.2767  0.1868            0.1451
+                      0.7         0.1431        0.2800  0.1874            0.1451
+                      0.8         0.1432        0.2826  0.1881            0.1451
+                      0.9         0.1433        0.2846  0.1886            0.1451
+                      1.0         0.1433        0.2864  0.1889            0.1452
+da3_reproj            0.6         0.2080        0.2441  0.2220            0.0485
+                      0.7         0.1935        0.2567  0.2179            0.0825
+                      0.8         0.1803        0.2713  0.2140            0.1160
+                      0.9         0.1657        0.2811  0.2062            0.1281
+                      1.0         0.1546        0.2919  0.2000            0.1452
+da3_reproj_oracle     0.6         0.1679        0.2350  0.1921            0.0000
+                      0.7         0.1558        0.2442  0.1870            0.0000
+                      0.8         0.1572        0.2571  0.1921            0.0115
+                      0.9         0.1568        0.2712  0.1962            0.0573
+                      1.0         0.1546        0.2919  0.2000            0.1452
+da3_reproj_random     0.6         0.1544        0.2825  0.1976            0.1451
+                      0.7         0.1545        0.2855  0.1984            0.1451
+                      0.8         0.1544        0.2880  0.1990            0.1452
+                      0.9         0.1544        0.2902  0.1995            0.1451
+                      1.0         0.1546        0.2919  0.2000            0.1452
+[93m[WARN ] Dependency `gsplat` is required for rendering 3DGS. Install via: pip install git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70[0m
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[97m[INFO ] using MLP layer as FFN[0m
+[97m[INFO ] Processed Images Done taking 0.07179665565490723 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 1.047644853591919 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.003468036651611328 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 1 views 3 seed 0: acc@0.8 0.130 comp 0.245  3s
+[97m[INFO ] Processed Images Done taking 0.07374119758605957 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1414811611175537 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008308887481689453 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 1 views 3 seed 1: acc@0.8 0.078 comp 0.115  7s
+[97m[INFO ] Processed Images Done taking 0.07788491249084473 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09610295295715332 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008089542388916016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 4 views 3 seed 0: acc@0.8 0.590 comp 0.897  9s
+[97m[INFO ] Processed Images Done taking 0.04632234573364258 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07832932472229004 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007874965667724609 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 4 views 3 seed 1: acc@0.8 0.141 comp 0.168  12s
+[97m[INFO ] Processed Images Done taking 0.05772662162780762 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11490941047668457 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007231235504150391 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 9 views 3 seed 0: acc@0.8 0.449 comp 0.704  15s
+[97m[INFO ] Processed Images Done taking 0.05360150337219238 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13269877433776855 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007727146148681641 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 9 views 3 seed 1: acc@0.8 0.279 comp 0.372  17s
+[97m[INFO ] Processed Images Done taking 0.06575536727905273 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11391758918762207 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006971359252929688 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 10 views 3 seed 0: acc@0.8 0.236 comp 0.563  21s
+[97m[INFO ] Processed Images Done taking 0.15092873573303223 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1119089126586914 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0014467239379882812 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 10 views 3 seed 1: acc@0.8 0.208 comp 0.335  24s
+[97m[INFO ] Processed Images Done taking 0.04494524002075195 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08359527587890625 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007545948028564453 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 11 views 3 seed 0: acc@0.8 0.350 comp 0.398  26s
+[97m[INFO ] Processed Images Done taking 0.041681528091430664 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09603166580200195 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006856918334960938 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 11 views 3 seed 1: acc@0.8 0.028 comp 0.064  37s
+[97m[INFO ] Processed Images Done taking 0.0778648853302002 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06957840919494629 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0035529136657714844 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 12 views 3 seed 0: acc@0.8 0.012 comp 0.055  42s
+[97m[INFO ] Processed Images Done taking 0.044261932373046875 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06299614906311035 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006518363952636719 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 12 views 3 seed 1: acc@0.8 0.053 comp 0.160  47s
+[97m[INFO ] Processed Images Done taking 0.05919957160949707 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08664655685424805 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006556510925292969 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 13 views 3 seed 0: acc@0.8 0.149 comp 0.205  49s
+[97m[INFO ] Processed Images Done taking 0.06893110275268555 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10861706733703613 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006821155548095703 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 13 views 3 seed 1: acc@0.8 0.042 comp 0.040  53s
+[97m[INFO ] Processed Images Done taking 0.05612301826477051 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10969185829162598 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007715225219726562 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 15 views 3 seed 0: acc@0.8 0.086 comp 0.121  56s
+[97m[INFO ] Processed Images Done taking 0.06249880790710449 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12108945846557617 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010106563568115234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 15 views 3 seed 1: acc@0.8 0.151 comp 0.220  59s
+[97m[INFO ] Processed Images Done taking 0.09046626091003418 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0587458610534668 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009725093841552734 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 23 views 3 seed 0: acc@0.8 0.406 comp 0.514  63s
+[97m[INFO ] Processed Images Done taking 0.05169510841369629 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12497925758361816 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007648468017578125 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 23 views 3 seed 1: acc@0.8 0.151 comp 0.230  69s
+[97m[INFO ] Processed Images Done taking 0.08602571487426758 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10833978652954102 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001096487045288086 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 24 views 3 seed 0: acc@0.8 0.194 comp 0.251  71s
+[97m[INFO ] Processed Images Done taking 0.048285722732543945 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10409045219421387 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0012311935424804688 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 24 views 3 seed 1: acc@0.8 0.220 comp 0.338  73s
+[97m[INFO ] Processed Images Done taking 0.042083740234375 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06657266616821289 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006902217864990234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 29 views 3 seed 0: acc@0.8 0.260 comp 0.299  76s
+[97m[INFO ] Processed Images Done taking 0.04687905311584473 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1529521942138672 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006809234619140625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 29 views 3 seed 1: acc@0.8 0.092 comp 0.145  79s
+[97m[INFO ] Processed Images Done taking 0.049094438552856445 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05209827423095703 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006780624389648438 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 32 views 3 seed 0: acc@0.8 0.113 comp 0.171  82s
+[97m[INFO ] Processed Images Done taking 0.06006741523742676 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07743692398071289 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007708072662353516 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 32 views 3 seed 1: acc@0.8 0.000 comp 0.000  85s
+[97m[INFO ] Processed Images Done taking 0.04500126838684082 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10625863075256348 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001010894775390625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 33 views 3 seed 0: acc@0.8 0.227 comp 0.296  88s
+[97m[INFO ] Processed Images Done taking 0.047019243240356445 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1656966209411621 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007338523864746094 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 33 views 3 seed 1: acc@0.8 0.072 comp 0.135  90s
+[97m[INFO ] Processed Images Done taking 0.037064313888549805 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10488486289978027 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006701946258544922 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 34 views 3 seed 0: acc@0.8 0.211 comp 0.256  93s
+[97m[INFO ] Processed Images Done taking 0.06921625137329102 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07573699951171875 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0015387535095214844 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 34 views 3 seed 1: acc@0.8 0.390 comp 0.445  96s
+[97m[INFO ] Processed Images Done taking 0.033480167388916016 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11048221588134766 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001180410385131836 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 48 views 3 seed 0: acc@0.8 0.309 comp 0.615  99s
+[97m[INFO ] Processed Images Done taking 0.038004398345947266 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11137628555297852 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006792545318603516 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 48 views 3 seed 1: acc@0.8 0.038 comp 0.098  102s
+[97m[INFO ] Processed Images Done taking 0.05233049392700195 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09206485748291016 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013537406921386719 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 49 views 3 seed 0: acc@0.8 0.307 comp 0.412  104s
+[97m[INFO ] Processed Images Done taking 0.04305624961853027 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.20008182525634766 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006673336029052734 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 49 views 3 seed 1: acc@0.8 0.073 comp 0.060  108s
+[97m[INFO ] Processed Images Done taking 0.08172440528869629 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.19189906120300293 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0012884140014648438 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 62 views 3 seed 0: acc@0.8 0.572 comp 0.652  112s
+[97m[INFO ] Processed Images Done taking 0.05238151550292969 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08076143264770508 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006859302520751953 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 62 views 3 seed 1: acc@0.8 0.016 comp 0.008  117s
+[97m[INFO ] Processed Images Done taking 0.12505459785461426 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08320045471191406 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011320114135742188 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 75 views 3 seed 0: acc@0.8 0.271 comp 0.510  121s
+[97m[INFO ] Processed Images Done taking 0.06309652328491211 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13990092277526855 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006511211395263672 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 75 views 3 seed 1: acc@0.8 0.117 comp 0.222  124s
+[97m[INFO ] Processed Images Done taking 0.049896240234375 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1483922004699707 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006849765777587891 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 77 views 3 seed 0: acc@0.8 0.074 comp 0.205  126s
+[97m[INFO ] Processed Images Done taking 0.053408145904541016 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08854150772094727 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006604194641113281 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 77 views 3 seed 1: acc@0.8 0.103 comp 0.197  129s
+[97m[INFO ] Processed Images Done taking 0.04368901252746582 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1685936450958252 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0021147727966308594 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 110 views 3 seed 0: acc@0.8 0.049 comp 0.072  131s
+[97m[INFO ] Processed Images Done taking 0.07486724853515625 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09667348861694336 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009951591491699219 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 110 views 3 seed 1: acc@0.8 0.052 comp 0.086  134s
+[97m[INFO ] Processed Images Done taking 0.05029916763305664 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07718992233276367 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006821155548095703 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 114 views 3 seed 0: acc@0.8 0.370 comp 0.704  136s
+[97m[INFO ] Processed Images Done taking 0.05411267280578613 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.19610953330993652 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007507801055908203 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 114 views 3 seed 1: acc@0.8 0.113 comp 0.153  140s
+[97m[INFO ] Processed Images Done taking 0.089324951171875 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1254739761352539 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007510185241699219 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 118 views 3 seed 0: acc@0.8 0.260 comp 0.450  143s
+[97m[INFO ] Processed Images Done taking 0.07982873916625977 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13314318656921387 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011241436004638672 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] 118 views 3 seed 1: acc@0.8 0.104 comp 0.137  146s
+[97m[INFO ] using MLP layer as FFN[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 1 views 3 seed 0: acc@0.8 0.077 comp 0.119  3s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 1 views 3 seed 1: acc@0.8 0.074 comp 0.105  6s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 4 views 3 seed 0: acc@0.8 0.606 comp 0.911  9s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 4 views 3 seed 1: acc@0.8 0.137 comp 0.153  12s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 9 views 3 seed 0: acc@0.8 0.357 comp 0.617  14s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 9 views 3 seed 1: acc@0.8 0.243 comp 0.346  17s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 10 views 3 seed 0: acc@0.8 0.352 comp 0.541  20s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 10 views 3 seed 1: acc@0.8 0.217 comp 0.336  23s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 11 views 3 seed 0: acc@0.8 0.348 comp 0.388  25s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 11 views 3 seed 1: acc@0.8 0.024 comp 0.058  31s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 12 views 3 seed 0: acc@0.8 0.218 comp 0.459  34s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 12 views 3 seed 1: acc@0.8 0.050 comp 0.154  45s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 13 views 3 seed 0: acc@0.8 0.224 comp 0.497  49s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 13 views 3 seed 1: acc@0.8 0.038 comp 0.029  53s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 15 views 3 seed 0: acc@0.8 0.090 comp 0.127  56s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 15 views 3 seed 1: acc@0.8 0.174 comp 0.234  59s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 23 views 3 seed 0: acc@0.8 0.419 comp 0.523  62s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 23 views 3 seed 1: acc@0.8 0.159 comp 0.176  65s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 24 views 3 seed 0: acc@0.8 0.269 comp 0.301  68s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 24 views 3 seed 1: acc@0.8 0.218 comp 0.257  71s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 29 views 3 seed 0: acc@0.8 0.293 comp 0.337  73s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 29 views 3 seed 1: acc@0.8 0.074 comp 0.120  76s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 32 views 3 seed 0: acc@0.8 0.155 comp 0.148  79s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 32 views 3 seed 1: acc@0.8 0.000 comp 0.000  86s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 33 views 3 seed 0: acc@0.8 0.214 comp 0.286  88s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 33 views 3 seed 1: acc@0.8 0.070 comp 0.141  92s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 34 views 3 seed 0: acc@0.8 0.192 comp 0.224  95s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 34 views 3 seed 1: acc@0.8 0.381 comp 0.452  97s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 48 views 3 seed 0: acc@0.8 0.378 comp 0.612  99s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 48 views 3 seed 1: acc@0.8 0.022 comp 0.056  102s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 49 views 3 seed 0: acc@0.8 0.280 comp 0.385  104s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 49 views 3 seed 1: acc@0.8 0.068 comp 0.059  108s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 62 views 3 seed 0: acc@0.8 0.558 comp 0.612  110s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 62 views 3 seed 1: acc@0.8 0.011 comp 0.006  116s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 75 views 3 seed 0: acc@0.8 0.272 comp 0.482  118s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 75 views 3 seed 1: acc@0.8 0.111 comp 0.189  121s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 77 views 3 seed 0: acc@0.8 0.172 comp 0.290  124s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 77 views 3 seed 1: acc@0.8 0.099 comp 0.183  127s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 110 views 3 seed 0: acc@0.8 0.047 comp 0.069  129s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 110 views 3 seed 1: acc@0.8 0.052 comp 0.054  133s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 114 views 3 seed 0: acc@0.8 0.432 comp 0.802  135s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 114 views 3 seed 1: acc@0.8 0.021 comp 0.012  139s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 118 views 3 seed 0: acc@0.8 0.252 comp 0.430  141s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] 118 views 3 seed 1: acc@0.8 0.093 comp 0.113  144s
+[97m[INFO ] using MLP layer as FFN[0m
+[da3_oiavisself] head from /home/hallu/checkpoints/da3_oiavisself.pt (step 1500, val-auroc 0.993)
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 1 views 3 seed 0: acc@0.8 0.080 comp 0.119  2s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 1 views 3 seed 1: acc@0.8 0.077 comp 0.111  8s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 4 views 3 seed 0: acc@0.8 0.608 comp 0.912  11s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 4 views 3 seed 1: acc@0.8 0.146 comp 0.172  16s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 9 views 3 seed 0: acc@0.8 0.391 comp 0.636  19s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 9 views 3 seed 1: acc@0.8 0.251 comp 0.365  22s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 10 views 3 seed 0: acc@0.8 0.352 comp 0.541  24s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 10 views 3 seed 1: acc@0.8 0.209 comp 0.324  26s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 11 views 3 seed 0: acc@0.8 0.359 comp 0.404  29s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 11 views 3 seed 1: acc@0.8 0.026 comp 0.059  37s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 12 views 3 seed 0: acc@0.8 0.219 comp 0.458  40s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 12 views 3 seed 1: acc@0.8 0.053 comp 0.156  54s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 13 views 3 seed 0: acc@0.8 0.247 comp 0.522  62s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 13 views 3 seed 1: acc@0.8 0.038 comp 0.028  69s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 15 views 3 seed 0: acc@0.8 0.092 comp 0.130  73s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 15 views 3 seed 1: acc@0.8 0.183 comp 0.252  78s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 23 views 3 seed 0: acc@0.8 0.333 comp 0.453  81s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 23 views 3 seed 1: acc@0.8 0.161 comp 0.180  87s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 24 views 3 seed 0: acc@0.8 0.225 comp 0.273  90s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 24 views 3 seed 1: acc@0.8 0.228 comp 0.288  93s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 29 views 3 seed 0: acc@0.8 0.292 comp 0.332  96s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 29 views 3 seed 1: acc@0.8 0.086 comp 0.132  102s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 32 views 3 seed 0: acc@0.8 0.155 comp 0.152  106s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 32 views 3 seed 1: acc@0.8 0.000 comp 0.000  112s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 33 views 3 seed 0: acc@0.8 0.222 comp 0.291  116s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 33 views 3 seed 1: acc@0.8 0.086 comp 0.157  119s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 34 views 3 seed 0: acc@0.8 0.195 comp 0.231  123s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 34 views 3 seed 1: acc@0.8 0.374 comp 0.435  126s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 48 views 3 seed 0: acc@0.8 0.386 comp 0.643  130s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 48 views 3 seed 1: acc@0.8 0.039 comp 0.101  138s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 49 views 3 seed 0: acc@0.8 0.274 comp 0.397  143s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 49 views 3 seed 1: acc@0.8 0.073 comp 0.067  151s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 62 views 3 seed 0: acc@0.8 0.536 comp 0.592  155s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 62 views 3 seed 1: acc@0.8 0.013 comp 0.009  161s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 75 views 3 seed 0: acc@0.8 0.267 comp 0.479  164s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 75 views 3 seed 1: acc@0.8 0.116 comp 0.223  168s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 77 views 3 seed 0: acc@0.8 0.175 comp 0.296  172s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 77 views 3 seed 1: acc@0.8 0.104 comp 0.187  176s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 110 views 3 seed 0: acc@0.8 0.051 comp 0.073  180s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 110 views 3 seed 1: acc@0.8 0.046 comp 0.047  186s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 114 views 3 seed 0: acc@0.8 0.436 comp 0.805  190s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 114 views 3 seed 1: acc@0.8 0.022 comp 0.015  199s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 118 views 3 seed 0: acc@0.8 0.259 comp 0.440  202s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] 118 views 3 seed 1: acc@0.8 0.104 comp 0.136  209s
+                                accuracy  completeness      f1  single_view_kept
+model                 coverage                                                  
+da3                   0.6         0.2018        0.2441  0.2181            0.0998
+                      0.7         0.1974        0.2667  0.2238            0.1246
+                      0.8         0.1851        0.2801  0.2199            0.1467
+                      0.9         0.1690        0.2875  0.2102            0.1581
+                      1.0         0.1528        0.2888  0.1974            0.1487
+da3_oiavisself        0.6         0.2239        0.2561  0.2357            0.0474
+                      0.7         0.2097        0.2746  0.2348            0.0828
+                      0.8         0.1952        0.2869  0.2296            0.1214
+                      0.9         0.1796        0.2940  0.2205            0.1476
+                      1.0         0.1639        0.2966  0.2088            0.1487
+da3_oiavisself_oracle 0.6         0.1791        0.2415  0.2017            0.0000
+                      0.7         0.1685        0.2501  0.1979            0.0000
+                      0.8         0.1695        0.2665  0.2040            0.0120
+                      0.9         0.1685        0.2817  0.2083            0.0650
+                      1.0         0.1639        0.2966  0.2088            0.1487
+da3_oiavisself_random 0.6         0.1640        0.2874  0.2065            0.1487
+                      0.7         0.1640        0.2904  0.2072            0.1489
+                      0.8         0.1640        0.2928  0.2078            0.1488
+                      0.9         0.1640        0.2949  0.2084            0.1489
+                      1.0         0.1639        0.2966  0.2088            0.1487
+da3_oracle            0.6         0.1615        0.2276  0.1850            0.0000
+                      0.7         0.1536        0.2396  0.1836            0.0000
+                      0.8         0.1560        0.2564  0.1909            0.0120
+                      0.9         0.1557        0.2726  0.1955            0.0650
+                      1.0         0.1528        0.2888  0.1974            0.1487
+da3_random            0.6         0.1527        0.2799  0.1952            0.1487
+                      0.7         0.1528        0.2826  0.1959            0.1487
+                      0.8         0.1528        0.2851  0.1965            0.1487
+                      0.9         0.1527        0.2872  0.1970            0.1487
+                      1.0         0.1528        0.2888  0.1974            0.1487
+da3_reproj            0.6         0.2160        0.2514  0.2288            0.0563
+                      0.7         0.2060        0.2676  0.2297            0.0890
+                      0.8         0.1942        0.2816  0.2269            0.1277
+                      0.9         0.1772        0.2877  0.2166            0.1366
+                      1.0         0.1640        0.2960  0.2086            0.1487
+da3_reproj_oracle     0.6         0.1792        0.2410  0.2015            0.0000
+                      0.7         0.1686        0.2496  0.1978            0.0000
+                      0.8         0.1695        0.2661  0.2039            0.0120
+                      0.9         0.1686        0.2812  0.2081            0.0650
+                      1.0         0.1640        0.2960  0.2086            0.1487
+da3_reproj_random     0.6         0.1640        0.2872  0.2064            0.1487
+                      0.7         0.1642        0.2901  0.2073            0.1487
+                      0.8         0.1641        0.2926  0.2079            0.1486
+                      0.9         0.1640        0.2944  0.2082            0.1487
+                      1.0         0.1640        0.2960  0.2086            0.1487
+[93m[WARN ] Dependency `gsplat` is required for rendering 3DGS. Install via: pip install git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70[0m
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[97m[INFO ] using MLP layer as FFN[0m
+[97m[INFO ] Processed Images Done taking 0.04613542556762695 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 1.1795718669891357 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0029218196868896484 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] courtyard views 3 seed 0: acc@0.8 0.218 comp 0.290  7s
+[97m[INFO ] Processed Images Done taking 0.10136151313781738 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1294546127319336 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0019698143005371094 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] courtyard views 3 seed 1: acc@0.8 0.178 comp 0.246  12s
+[97m[INFO ] Processed Images Done taking 0.04538106918334961 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.17528176307678223 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006282329559326172 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] delivery_area views 3 seed 0: acc@0.8 0.004 comp 0.006  21s
+[97m[INFO ] Processed Images Done taking 0.13953542709350586 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07570838928222656 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008668899536132812 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] delivery_area views 3 seed 1: acc@0.8 0.008 comp 0.027  24s
+[97m[INFO ] Processed Images Done taking 0.03894853591918945 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11922955513000488 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007021427154541016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] electro views 3 seed 0: acc@0.8 0.088 comp 0.202  33s
+[97m[INFO ] Processed Images Done taking 0.11250472068786621 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14486265182495117 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005729198455810547 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] electro views 3 seed 1: acc@0.8 0.080 comp 0.170  41s
+[97m[INFO ] Processed Images Done taking 0.09927582740783691 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05917692184448242 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006487369537353516 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] facade views 3 seed 0: acc@0.8 0.261 comp 0.420  56s
+[97m[INFO ] Processed Images Done taking 0.1929774284362793 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0720973014831543 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.000690460205078125 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] facade views 3 seed 1: acc@0.8 0.011 comp 0.018  71s
+[97m[INFO ] Processed Images Done taking 0.13457727432250977 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.054379940032958984 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013589859008789062 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] kicker views 3 seed 0: acc@0.8 0.247 comp 0.304  77s
+[97m[INFO ] Processed Images Done taking 0.06107974052429199 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05287790298461914 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011587142944335938 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] kicker views 3 seed 1: acc@0.8 0.002 comp 0.003  95s
+[97m[INFO ] Processed Images Done taking 0.08948707580566406 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12372589111328125 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008611679077148438 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] meadow views 3 seed 0: acc@0.8 0.323 comp 0.864  103s
+[97m[INFO ] Processed Images Done taking 0.1386852264404297 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1191411018371582 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006837844848632812 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] meadow views 3 seed 1: acc@0.8 0.204 comp 0.380  111s
+[97m[INFO ] Processed Images Done taking 0.08461952209472656 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12790966033935547 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006566047668457031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] pipes views 3 seed 0: acc@0.8 0.011 comp 0.032  119s
+[97m[INFO ] Processed Images Done taking 0.06188225746154785 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09052753448486328 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007832050323486328 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] pipes views 3 seed 1: acc@0.8 0.040 comp 0.095  125s
+[97m[INFO ] Processed Images Done taking 0.0636439323425293 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06974601745605469 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007011890411376953 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] playground views 3 seed 0: acc@0.8 0.051 comp 0.286  130s
+[97m[INFO ] Processed Images Done taking 0.1325855255126953 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12186431884765625 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006618499755859375 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] playground views 3 seed 1: acc@0.8 0.045 comp 0.245  135s
+[97m[INFO ] Processed Images Done taking 0.08610343933105469 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07329416275024414 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006861686706542969 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] relief views 3 seed 0: acc@0.8 0.306 comp 0.389  141s
+[97m[INFO ] Processed Images Done taking 0.14751935005187988 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10857796669006348 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006716251373291016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] relief views 3 seed 1: acc@0.8 0.434 comp 0.377  150s
+[97m[INFO ] Processed Images Done taking 0.04474616050720215 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1300194263458252 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006873607635498047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] relief_2 views 3 seed 0: acc@0.8 0.003 comp 0.007  163s
+[97m[INFO ] Processed Images Done taking 0.07186079025268555 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.04605221748352051 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011835098266601562 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] relief_2 views 3 seed 1: acc@0.8 0.106 comp 0.189  172s
+[97m[INFO ] Processed Images Done taking 0.13657903671264648 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10439705848693848 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006811618804931641 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] terrace views 3 seed 0: acc@0.8 0.015 comp 0.033  185s
+[97m[INFO ] Processed Images Done taking 0.11691594123840332 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05637621879577637 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.00070953369140625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] terrace views 3 seed 1: acc@0.8 0.001 comp 0.002  197s
+[97m[INFO ] Processed Images Done taking 0.03835296630859375 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0462183952331543 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006921291351318359 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] terrains views 3 seed 0: acc@0.8 0.214 comp 0.322  204s
+[97m[INFO ] Processed Images Done taking 0.08607935905456543 seconds. Shape:  torch.Size([3, 3, 350, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07607173919677734 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006871223449707031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] terrains views 3 seed 1: acc@0.8 0.008 comp 0.018  210s
+[97m[INFO ] using MLP layer as FFN[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] courtyard views 3 seed 0: acc@0.8 0.271 comp 0.355  7s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] courtyard views 3 seed 1: acc@0.8 0.185 comp 0.238  13s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] delivery_area views 3 seed 0: acc@0.8 0.003 comp 0.006  30s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] delivery_area views 3 seed 1: acc@0.8 0.017 comp 0.082  36s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] electro views 3 seed 0: acc@0.8 0.073 comp 0.186  51s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] electro views 3 seed 1: acc@0.8 0.086 comp 0.183  60s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] facade views 3 seed 0: acc@0.8 0.248 comp 0.441  69s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] facade views 3 seed 1: acc@0.8 0.011 comp 0.024  82s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] kicker views 3 seed 0: acc@0.8 0.244 comp 0.319  91s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] kicker views 3 seed 1: acc@0.8 0.219 comp 0.329  97s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] meadow views 3 seed 0: acc@0.8 0.297 comp 0.825  113s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] meadow views 3 seed 1: acc@0.8 0.211 comp 0.460  125s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] pipes views 3 seed 0: acc@0.8 0.155 comp 0.131  131s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] pipes views 3 seed 1: acc@0.8 0.040 comp 0.082  136s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] playground views 3 seed 0: acc@0.8 0.038 comp 0.193  142s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] playground views 3 seed 1: acc@0.8 0.037 comp 0.198  151s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] relief views 3 seed 0: acc@0.8 0.383 comp 0.394  163s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] relief views 3 seed 1: acc@0.8 0.275 comp 0.339  171s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] relief_2 views 3 seed 0: acc@0.8 0.450 comp 0.540  178s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] relief_2 views 3 seed 1: acc@0.8 0.107 comp 0.154  188s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] terrace views 3 seed 0: acc@0.8 0.032 comp 0.112  195s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] terrace views 3 seed 1: acc@0.8 0.001 comp 0.001  206s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] terrains views 3 seed 0: acc@0.8 0.177 comp 0.311  214s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_reproj] terrains views 3 seed 1: acc@0.8 0.103 comp 0.125  221s
+[97m[INFO ] using MLP layer as FFN[0m
+[da3_oiavisself] head from /home/hallu/checkpoints/da3_oiavisself.pt (step 1500, val-auroc 0.993)
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] courtyard views 3 seed 0: acc@0.8 0.273 comp 0.364  8s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] courtyard views 3 seed 1: acc@0.8 0.191 comp 0.259  17s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] delivery_area views 3 seed 0: acc@0.8 0.004 comp 0.006  34s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] delivery_area views 3 seed 1: acc@0.8 0.012 comp 0.043  39s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] electro views 3 seed 0: acc@0.8 0.075 comp 0.189  48s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] electro views 3 seed 1: acc@0.8 0.084 comp 0.183  58s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] facade views 3 seed 0: acc@0.8 0.268 comp 0.472  68s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] facade views 3 seed 1: acc@0.8 0.011 comp 0.025  85s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] kicker views 3 seed 0: acc@0.8 0.259 comp 0.327  93s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] kicker views 3 seed 1: acc@0.8 0.218 comp 0.335  100s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] meadow views 3 seed 0: acc@0.8 0.303 comp 0.826  112s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] meadow views 3 seed 1: acc@0.8 0.201 comp 0.451  121s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] pipes views 3 seed 0: acc@0.8 0.169 comp 0.133  127s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] pipes views 3 seed 1: acc@0.8 0.041 comp 0.088  134s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] playground views 3 seed 0: acc@0.8 0.038 comp 0.194  142s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] playground views 3 seed 1: acc@0.8 0.038 comp 0.201  150s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] relief views 3 seed 0: acc@0.8 0.398 comp 0.395  162s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] relief views 3 seed 1: acc@0.8 0.315 comp 0.331  176s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] relief_2 views 3 seed 0: acc@0.8 0.490 comp 0.542  183s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] relief_2 views 3 seed 1: acc@0.8 0.112 comp 0.168  193s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] terrace views 3 seed 0: acc@0.8 0.032 comp 0.116  203s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] terrace views 3 seed 1: acc@0.8 0.001 comp 0.001  217s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] terrains views 3 seed 0: acc@0.8 0.187 comp 0.329  232s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] terrains views 3 seed 1: acc@0.8 0.097 comp 0.123  240s
+                                accuracy  completeness      f1  single_view_kept
+model                 coverage                                                  
+da3                   0.6         0.1388        0.1854  0.1509            0.0338
+                      0.7         0.1286        0.1975  0.1487            0.0350
+                      0.8         0.1190        0.2053  0.1442            0.0360
+                      0.9         0.1103        0.2114  0.1390            0.0363
+                      1.0         0.1013        0.2157  0.1324            0.0356
+da3_oiavisself        0.6         0.1776        0.2272  0.1907            0.0132
+                      0.7         0.1681        0.2432  0.1906            0.0184
+                      0.8         0.1590        0.2542  0.1878            0.0247
+                      0.9         0.1486        0.2616  0.1823            0.0305
+                      1.0         0.1377        0.2661  0.1744            0.0356
+da3_oiavisself_oracle 0.6         0.1356        0.2197  0.1616            0.0000
+                      0.7         0.1315        0.2309  0.1621            0.0000
+                      0.8         0.1296        0.2428  0.1634            0.0010
+                      0.9         0.1341        0.2579  0.1694            0.0061
+                      1.0         0.1377        0.2661  0.1744            0.0356
+da3_oiavisself_random 0.6         0.1378        0.2511  0.1714            0.0355
+                      0.7         0.1378        0.2562  0.1725            0.0356
+                      0.8         0.1378        0.2602  0.1733            0.0356
+                      0.9         0.1378        0.2634  0.1740            0.0356
+                      1.0         0.1377        0.2661  0.1744            0.0356
+da3_oracle            0.6         0.0973        0.1790  0.1208            0.0000
+                      0.7         0.0972        0.1907  0.1237            0.0000
+                      0.8         0.0942        0.1976  0.1226            0.0010
+                      0.9         0.0965        0.2091  0.1270            0.0061
+                      1.0         0.1013        0.2157  0.1324            0.0356
+da3_random            0.6         0.1010        0.2028  0.1297            0.0356
+                      0.7         0.1012        0.2073  0.1307            0.0356
+                      0.8         0.1013        0.2107  0.1315            0.0356
+                      0.9         0.1014        0.2137  0.1321            0.0356
+                      1.0         0.1013        0.2157  0.1324            0.0356
+da3_reproj            0.6         0.1572        0.2294  0.1819            0.0145
+                      0.7         0.1545        0.2413  0.1824            0.0170
+                      0.8         0.1526        0.2512  0.1828            0.0242
+                      0.9         0.1431        0.2574  0.1768            0.0290
+                      1.0         0.1379        0.2661  0.1745            0.0356
+da3_reproj_oracle     0.6         0.1357        0.2197  0.1616            0.0000
+                      0.7         0.1316        0.2309  0.1621            0.0000
+                      0.8         0.1298        0.2429  0.1635            0.0010
+                      0.9         0.1342        0.2578  0.1694            0.0061
+                      1.0         0.1379        0.2661  0.1745            0.0356
+da3_reproj_random     0.6         0.1379        0.2515  0.1716            0.0355
+                      0.7         0.1379        0.2565  0.1726            0.0356
+                      0.8         0.1379        0.2606  0.1734            0.0356
+                      0.9         0.1379        0.2636  0.1740            0.0356
+                      1.0         0.1379        0.2661  0.1745            0.0356
+== P15_down3_da3_DONE Mon Nov  9 10:17:19 UTC 2026

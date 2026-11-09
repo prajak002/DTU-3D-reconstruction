@@ -1,0 +1,463 @@
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[pi3] 3 views 3 seed 0: acc@0.8 0.179 comp 0.283  14s
+[pi3] 3 views 3 seed 1: acc@0.8 0.053 comp 0.057  18s
+[pi3] 5 views 3 seed 0: acc@0.8 0.683 comp 0.943  20s
+[pi3] 5 views 3 seed 1: acc@0.8 0.573 comp 0.686  23s
+[pi3] 17 views 3 seed 0: acc@0.8 0.231 comp 0.375  26s
+[pi3] 17 views 3 seed 1: acc@0.8 0.385 comp 0.415  28s
+[pi3] 21 views 3 seed 0: acc@0.8 0.331 comp 0.413  30s
+[pi3] 21 views 3 seed 1: acc@0.8 0.082 comp 0.119  33s
+[pi3] 28 views 3 seed 0: acc@0.8 0.175 comp 0.275  36s
+[pi3] 28 views 3 seed 1: acc@0.8 0.436 comp 0.469  38s
+[pi3] 35 views 3 seed 0: acc@0.8 0.221 comp 0.311  41s
+[pi3] 35 views 3 seed 1: acc@0.8 0.013 comp 0.008  47s
+[pi3] 37 views 3 seed 0: acc@0.8 0.084 comp 0.218  51s
+[pi3] 37 views 3 seed 1: acc@0.8 0.000 comp 0.000  59s
+[pi3] 38 views 3 seed 0: acc@0.8 0.220 comp 0.250  62s
+[pi3] 38 views 3 seed 1: acc@0.8 0.148 comp 0.167  65s
+[pi3] 40 views 3 seed 0: acc@0.8 0.195 comp 0.252  68s
+[pi3] 40 views 3 seed 1: acc@0.8 0.516 comp 0.523  72s
+[pi3] 43 views 3 seed 0: acc@0.8 0.646 comp 0.688  76s
+[pi3] 43 views 3 seed 1: acc@0.8 0.151 comp 0.129  80s
+[pi3] 56 views 3 seed 0: acc@0.8 0.214 comp 0.334  83s
+[pi3] 56 views 3 seed 1: acc@0.8 0.074 comp 0.087  86s
+[pi3] 59 views 3 seed 0: acc@0.8 0.087 comp 0.110  89s
+[pi3] 59 views 3 seed 1: acc@0.8 0.322 comp 0.375  92s
+[pi3] 66 views 3 seed 0: acc@0.8 0.145 comp 0.240  95s
+[pi3] 66 views 3 seed 1: acc@0.8 0.118 comp 0.144  98s
+[pi3] 67 views 3 seed 0: acc@0.8 0.185 comp 0.348  101s
+[pi3] 67 views 3 seed 1: acc@0.8 0.131 comp 0.265  104s
+[pi3] 82 views 3 seed 0: acc@0.8 0.194 comp 0.247  107s
+[pi3] 82 views 3 seed 1: acc@0.8 0.054 comp 0.064  110s
+[pi3] 86 views 3 seed 0: acc@0.8 0.034 comp 0.153  113s
+[pi3] 86 views 3 seed 1: acc@0.8 0.107 comp 0.299  116s
+[pi3] 106 views 3 seed 0: acc@0.8 0.242 comp 0.408  119s
+[pi3] 106 views 3 seed 1: acc@0.8 0.128 comp 0.323  123s
+[pi3] 117 views 3 seed 0: acc@0.8 0.095 comp 0.166  126s
+[pi3] 117 views 3 seed 1: acc@0.8 0.080 comp 0.145  131s
+[pi3_reproj] 3 views 3 seed 0: acc@0.8 0.165 comp 0.256  5s
+[pi3_reproj] 3 views 3 seed 1: acc@0.8 0.052 comp 0.057  9s
+[pi3_reproj] 5 views 3 seed 0: acc@0.8 0.655 comp 0.919  12s
+[pi3_reproj] 5 views 3 seed 1: acc@0.8 0.574 comp 0.696  15s
+[pi3_reproj] 17 views 3 seed 0: acc@0.8 0.236 comp 0.347  20s
+[pi3_reproj] 17 views 3 seed 1: acc@0.8 0.381 comp 0.404  24s
+[pi3_reproj] 21 views 3 seed 0: acc@0.8 0.314 comp 0.362  26s
+[pi3_reproj] 21 views 3 seed 1: acc@0.8 0.094 comp 0.105  30s
+[pi3_reproj] 28 views 3 seed 0: acc@0.8 0.173 comp 0.259  32s
+[pi3_reproj] 28 views 3 seed 1: acc@0.8 0.352 comp 0.401  35s
+[pi3_reproj] 35 views 3 seed 0: acc@0.8 0.210 comp 0.297  38s
+[pi3_reproj] 35 views 3 seed 1: acc@0.8 0.011 comp 0.007  43s
+[pi3_reproj] 37 views 3 seed 0: acc@0.8 0.081 comp 0.210  46s
+[pi3_reproj] 37 views 3 seed 1: acc@0.8 0.000 comp 0.000  54s
+[pi3_reproj] 38 views 3 seed 0: acc@0.8 0.228 comp 0.249  56s
+[pi3_reproj] 38 views 3 seed 1: acc@0.8 0.143 comp 0.159  60s
+[pi3_reproj] 40 views 3 seed 0: acc@0.8 0.181 comp 0.231  63s
+[pi3_reproj] 40 views 3 seed 1: acc@0.8 0.511 comp 0.525  67s
+[pi3_reproj] 43 views 3 seed 0: acc@0.8 0.633 comp 0.678  69s
+[pi3_reproj] 43 views 3 seed 1: acc@0.8 0.148 comp 0.124  72s
+[pi3_reproj] 56 views 3 seed 0: acc@0.8 0.213 comp 0.327  76s
+[pi3_reproj] 56 views 3 seed 1: acc@0.8 0.072 comp 0.079  80s
+[pi3_reproj] 59 views 3 seed 0: acc@0.8 0.086 comp 0.105  83s
+[pi3_reproj] 59 views 3 seed 1: acc@0.8 0.305 comp 0.353  86s
+[pi3_reproj] 66 views 3 seed 0: acc@0.8 0.141 comp 0.227  89s
+[pi3_reproj] 66 views 3 seed 1: acc@0.8 0.115 comp 0.141  92s
+[pi3_reproj] 67 views 3 seed 0: acc@0.8 0.166 comp 0.324  94s
+[pi3_reproj] 67 views 3 seed 1: acc@0.8 0.125 comp 0.261  98s
+[pi3_reproj] 82 views 3 seed 0: acc@0.8 0.188 comp 0.231  101s
+[pi3_reproj] 82 views 3 seed 1: acc@0.8 0.051 comp 0.054  105s
+[pi3_reproj] 86 views 3 seed 0: acc@0.8 0.030 comp 0.130  108s
+[pi3_reproj] 86 views 3 seed 1: acc@0.8 0.111 comp 0.292  111s
+[pi3_reproj] 106 views 3 seed 0: acc@0.8 0.236 comp 0.392  115s
+[pi3_reproj] 106 views 3 seed 1: acc@0.8 0.118 comp 0.272  119s
+[pi3_reproj] 117 views 3 seed 0: acc@0.8 0.091 comp 0.167  127s
+[pi3_reproj] 117 views 3 seed 1: acc@0.8 0.078 comp 0.141  134s
+[pi3_oiavisself] head from /home/hallu/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)
+[pi3_oiavisself] 3 views 3 seed 0: acc@0.8 0.176 comp 0.289  3s
+[pi3_oiavisself] 3 views 3 seed 1: acc@0.8 0.053 comp 0.057  6s
+[pi3_oiavisself] 5 views 3 seed 0: acc@0.8 0.667 comp 0.925  9s
+[pi3_oiavisself] 5 views 3 seed 1: acc@0.8 0.562 comp 0.676  12s
+[pi3_oiavisself] 17 views 3 seed 0: acc@0.8 0.244 comp 0.386  14s
+[pi3_oiavisself] 17 views 3 seed 1: acc@0.8 0.388 comp 0.419  17s
+[pi3_oiavisself] 21 views 3 seed 0: acc@0.8 0.323 comp 0.395  20s
+[pi3_oiavisself] 21 views 3 seed 1: acc@0.8 0.096 comp 0.111  25s
+[pi3_oiavisself] 28 views 3 seed 0: acc@0.8 0.172 comp 0.267  28s
+[pi3_oiavisself] 28 views 3 seed 1: acc@0.8 0.381 comp 0.426  34s
+[pi3_oiavisself] 35 views 3 seed 0: acc@0.8 0.222 comp 0.332  37s
+[pi3_oiavisself] 35 views 3 seed 1: acc@0.8 0.012 comp 0.007  41s
+[pi3_oiavisself] 37 views 3 seed 0: acc@0.8 0.065 comp 0.197  45s
+[pi3_oiavisself] 37 views 3 seed 1: acc@0.8 0.000 comp 0.000  52s
+[pi3_oiavisself] 38 views 3 seed 0: acc@0.8 0.227 comp 0.249  55s
+[pi3_oiavisself] 38 views 3 seed 1: acc@0.8 0.139 comp 0.163  58s
+[pi3_oiavisself] 40 views 3 seed 0: acc@0.8 0.185 comp 0.246  62s
+[pi3_oiavisself] 40 views 3 seed 1: acc@0.8 0.512 comp 0.527  64s
+[pi3_oiavisself] 43 views 3 seed 0: acc@0.8 0.651 comp 0.682  67s
+[pi3_oiavisself] 43 views 3 seed 1: acc@0.8 0.146 comp 0.130  69s
+[pi3_oiavisself] 56 views 3 seed 0: acc@0.8 0.210 comp 0.329  72s
+[pi3_oiavisself] 56 views 3 seed 1: acc@0.8 0.074 comp 0.085  75s
+[pi3_oiavisself] 59 views 3 seed 0: acc@0.8 0.086 comp 0.108  79s
+[pi3_oiavisself] 59 views 3 seed 1: acc@0.8 0.296 comp 0.338  83s
+[pi3_oiavisself] 66 views 3 seed 0: acc@0.8 0.151 comp 0.259  86s
+[pi3_oiavisself] 66 views 3 seed 1: acc@0.8 0.118 comp 0.145  90s
+[pi3_oiavisself] 67 views 3 seed 0: acc@0.8 0.180 comp 0.342  92s
+[pi3_oiavisself] 67 views 3 seed 1: acc@0.8 0.128 comp 0.263  95s
+[pi3_oiavisself] 82 views 3 seed 0: acc@0.8 0.201 comp 0.263  100s
+[pi3_oiavisself] 82 views 3 seed 1: acc@0.8 0.054 comp 0.060  103s
+[pi3_oiavisself] 86 views 3 seed 0: acc@0.8 0.034 comp 0.152  110s
+[pi3_oiavisself] 86 views 3 seed 1: acc@0.8 0.114 comp 0.304  118s
+[pi3_oiavisself] 106 views 3 seed 0: acc@0.8 0.246 comp 0.422  121s
+[pi3_oiavisself] 106 views 3 seed 1: acc@0.8 0.124 comp 0.294  125s
+[pi3_oiavisself] 117 views 3 seed 0: acc@0.8 0.094 comp 0.183  128s
+[pi3_oiavisself] 117 views 3 seed 1: acc@0.8 0.079 comp 0.144  131s
+                                accuracy  completeness      f1  single_view_kept
+model                 coverage                                                  
+pi3                   0.6         0.2393        0.2616  0.2458            0.1223
+                      0.7         0.2262        0.2779  0.2452            0.1403
+                      0.8         0.2093        0.2858  0.2374            0.1502
+                      0.9         0.1917        0.2936  0.2279            0.1535
+                      1.0         0.1742        0.2968  0.2159            0.1452
+pi3_oiavisself        0.6         0.2400        0.2528  0.2424            0.0355
+                      0.7         0.2242        0.2704  0.2410            0.0610
+                      0.8         0.2058        0.2826  0.2339            0.0924
+                      0.9         0.1887        0.2909  0.2249            0.1224
+                      1.0         0.1742        0.2968  0.2159            0.1452
+pi3_oiavisself_oracle 0.6         0.1887        0.2484  0.2093            0.0000
+                      0.7         0.1832        0.2567  0.2085            0.0000
+                      0.8         0.1851        0.2706  0.2153            0.0115
+                      0.9         0.1805        0.2814  0.2162            0.0573
+                      1.0         0.1742        0.2968  0.2159            0.1452
+pi3_oiavisself_random 0.6         0.1746        0.2859  0.2134            0.1450
+                      0.7         0.1745        0.2894  0.2142            0.1450
+                      0.8         0.1744        0.2919  0.2148            0.1451
+                      0.9         0.1742        0.2945  0.2153            0.1451
+                      1.0         0.1742        0.2968  0.2159            0.1452
+pi3_oracle            0.6         0.1887        0.2484  0.2093            0.0000
+                      0.7         0.1832        0.2567  0.2085            0.0000
+                      0.8         0.1851        0.2706  0.2153            0.0115
+                      0.9         0.1805        0.2814  0.2162            0.0573
+                      1.0         0.1742        0.2968  0.2159            0.1452
+pi3_random            0.6         0.1739        0.2859  0.2130            0.1451
+                      0.7         0.1740        0.2895  0.2139            0.1451
+                      0.8         0.1741        0.2922  0.2146            0.1451
+                      0.9         0.1742        0.2947  0.2153            0.1451
+                      1.0         0.1742        0.2968  0.2159            0.1452
+pi3_reproj            0.6         0.2321        0.2464  0.2356            0.0350
+                      0.7         0.2210        0.2591  0.2347            0.0647
+                      0.8         0.2019        0.2717  0.2278            0.1043
+                      0.9         0.1864        0.2834  0.2212            0.1242
+                      1.0         0.1742        0.2958  0.2156            0.1452
+pi3_reproj_oracle     0.6         0.1887        0.2477  0.2092            0.0000
+                      0.7         0.1832        0.2559  0.2083            0.0000
+                      0.8         0.1851        0.2698  0.2151            0.0115
+                      0.9         0.1805        0.2807  0.2160            0.0573
+                      1.0         0.1742        0.2958  0.2156            0.1452
+pi3_reproj_random     0.6         0.1744        0.2853  0.2130            0.1451
+                      0.7         0.1744        0.2885  0.2139            0.1451
+                      0.8         0.1742        0.2914  0.2145            0.1452
+                      0.9         0.1742        0.2939  0.2151            0.1451
+                      1.0         0.1742        0.2958  0.2156            0.1452
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[pi3] 1 views 3 seed 0: acc@0.8 0.428 comp 0.547  3s
+[pi3] 1 views 3 seed 1: acc@0.8 0.616 comp 0.894  6s
+[pi3] 4 views 3 seed 0: acc@0.8 0.682 comp 0.863  9s
+[pi3] 4 views 3 seed 1: acc@0.8 0.653 comp 0.702  12s
+[pi3] 9 views 3 seed 0: acc@0.8 0.302 comp 0.397  15s
+[pi3] 9 views 3 seed 1: acc@0.8 0.210 comp 0.277  17s
+[pi3] 10 views 3 seed 0: acc@0.8 0.400 comp 0.718  20s
+[pi3] 10 views 3 seed 1: acc@0.8 0.061 comp 0.069  24s
+[pi3] 11 views 3 seed 0: acc@0.8 0.285 comp 0.326  27s
+[pi3] 11 views 3 seed 1: acc@0.8 0.150 comp 0.179  30s
+[pi3] 12 views 3 seed 0: acc@0.8 0.026 comp 0.088  33s
+[pi3] 12 views 3 seed 1: acc@0.8 0.268 comp 0.476  37s
+[pi3] 13 views 3 seed 0: acc@0.8 0.091 comp 0.134  41s
+[pi3] 13 views 3 seed 1: acc@0.8 0.419 comp 0.643  44s
+[pi3] 15 views 3 seed 0: acc@0.8 0.241 comp 0.294  49s
+[pi3] 15 views 3 seed 1: acc@0.8 0.222 comp 0.293  52s
+[pi3] 23 views 3 seed 0: acc@0.8 0.166 comp 0.191  55s
+[pi3] 23 views 3 seed 1: acc@0.8 0.174 comp 0.194  59s
+[pi3] 24 views 3 seed 0: acc@0.8 0.268 comp 0.368  61s
+[pi3] 24 views 3 seed 1: acc@0.8 0.197 comp 0.225  64s
+[pi3] 29 views 3 seed 0: acc@0.8 0.081 comp 0.123  68s
+[pi3] 29 views 3 seed 1: acc@0.8 0.031 comp 0.051  72s
+[pi3] 32 views 3 seed 0: acc@0.8 0.097 comp 0.118  75s
+[pi3] 32 views 3 seed 1: acc@0.8 0.086 comp 0.052  80s
+[pi3] 33 views 3 seed 0: acc@0.8 0.297 comp 0.351  83s
+[pi3] 33 views 3 seed 1: acc@0.8 0.331 comp 0.417  86s
+[pi3] 34 views 3 seed 0: acc@0.8 0.137 comp 0.168  89s
+[pi3] 34 views 3 seed 1: acc@0.8 0.145 comp 0.158  92s
+[pi3] 48 views 3 seed 0: acc@0.8 0.095 comp 0.088  96s
+[pi3] 48 views 3 seed 1: acc@0.8 0.152 comp 0.233  100s
+[pi3] 49 views 3 seed 0: acc@0.8 0.300 comp 0.460  103s
+[pi3] 49 views 3 seed 1: acc@0.8 0.130 comp 0.109  107s
+[pi3] 62 views 3 seed 0: acc@0.8 0.548 comp 0.728  110s
+[pi3] 62 views 3 seed 1: acc@0.8 0.050 comp 0.025  116s
+[pi3] 75 views 3 seed 0: acc@0.8 0.163 comp 0.361  124s
+[pi3] 75 views 3 seed 1: acc@0.8 0.137 comp 0.157  130s
+[pi3] 77 views 3 seed 0: acc@0.8 0.111 comp 0.239  133s
+[pi3] 77 views 3 seed 1: acc@0.8 0.062 comp 0.125  137s
+[pi3] 110 views 3 seed 0: acc@0.8 0.215 comp 0.400  139s
+[pi3] 110 views 3 seed 1: acc@0.8 0.023 comp 0.049  143s
+[pi3] 114 views 3 seed 0: acc@0.8 0.225 comp 0.329  147s
+[pi3] 114 views 3 seed 1: acc@0.8 0.040 comp 0.023  150s
+[pi3] 118 views 3 seed 0: acc@0.8 0.133 comp 0.336  154s
+[pi3] 118 views 3 seed 1: acc@0.8 0.129 comp 0.300  158s
+[pi3_reproj] 1 views 3 seed 0: acc@0.8 0.415 comp 0.542  3s
+[pi3_reproj] 1 views 3 seed 1: acc@0.8 0.621 comp 0.896  5s
+[pi3_reproj] 4 views 3 seed 0: acc@0.8 0.655 comp 0.841  8s
+[pi3_reproj] 4 views 3 seed 1: acc@0.8 0.612 comp 0.656  10s
+[pi3_reproj] 9 views 3 seed 0: acc@0.8 0.287 comp 0.374  13s
+[pi3_reproj] 9 views 3 seed 1: acc@0.8 0.213 comp 0.258  16s
+[pi3_reproj] 10 views 3 seed 0: acc@0.8 0.428 comp 0.762  19s
+[pi3_reproj] 10 views 3 seed 1: acc@0.8 0.028 comp 0.048  25s
+[pi3_reproj] 11 views 3 seed 0: acc@0.8 0.282 comp 0.331  28s
+[pi3_reproj] 11 views 3 seed 1: acc@0.8 0.137 comp 0.141  31s
+[pi3_reproj] 12 views 3 seed 0: acc@0.8 0.022 comp 0.082  34s
+[pi3_reproj] 12 views 3 seed 1: acc@0.8 0.266 comp 0.480  37s
+[pi3_reproj] 13 views 3 seed 0: acc@0.8 0.096 comp 0.158  41s
+[pi3_reproj] 13 views 3 seed 1: acc@0.8 0.393 comp 0.602  44s
+[pi3_reproj] 15 views 3 seed 0: acc@0.8 0.238 comp 0.288  46s
+[pi3_reproj] 15 views 3 seed 1: acc@0.8 0.208 comp 0.277  49s
+[pi3_reproj] 23 views 3 seed 0: acc@0.8 0.126 comp 0.125  52s
+[pi3_reproj] 23 views 3 seed 1: acc@0.8 0.143 comp 0.150  57s
+[pi3_reproj] 24 views 3 seed 0: acc@0.8 0.260 comp 0.356  59s
+[pi3_reproj] 24 views 3 seed 1: acc@0.8 0.192 comp 0.196  64s
+[pi3_reproj] 29 views 3 seed 0: acc@0.8 0.078 comp 0.120  68s
+[pi3_reproj] 29 views 3 seed 1: acc@0.8 0.033 comp 0.050  75s
+[pi3_reproj] 32 views 3 seed 0: acc@0.8 0.095 comp 0.110  79s
+[pi3_reproj] 32 views 3 seed 1: acc@0.8 0.084 comp 0.050  82s
+[pi3_reproj] 33 views 3 seed 0: acc@0.8 0.288 comp 0.335  85s
+[pi3_reproj] 33 views 3 seed 1: acc@0.8 0.329 comp 0.400  90s
+[pi3_reproj] 34 views 3 seed 0: acc@0.8 0.137 comp 0.166  95s
+[pi3_reproj] 34 views 3 seed 1: acc@0.8 0.141 comp 0.152  102s
+[pi3_reproj] 48 views 3 seed 0: acc@0.8 0.094 comp 0.084  115s
+[pi3_reproj] 48 views 3 seed 1: acc@0.8 0.138 comp 0.224  123s
+[pi3_reproj] 49 views 3 seed 0: acc@0.8 0.308 comp 0.459  127s
+[pi3_reproj] 49 views 3 seed 1: acc@0.8 0.125 comp 0.103  132s
+[pi3_reproj] 62 views 3 seed 0: acc@0.8 0.512 comp 0.703  136s
+[pi3_reproj] 62 views 3 seed 1: acc@0.8 0.048 comp 0.023  143s
+[pi3_reproj] 75 views 3 seed 0: acc@0.8 0.163 comp 0.360  147s
+[pi3_reproj] 75 views 3 seed 1: acc@0.8 0.130 comp 0.140  151s
+[pi3_reproj] 77 views 3 seed 0: acc@0.8 0.105 comp 0.228  156s
+[pi3_reproj] 77 views 3 seed 1: acc@0.8 0.060 comp 0.100  161s
+[pi3_reproj] 110 views 3 seed 0: acc@0.8 0.215 comp 0.403  166s
+[pi3_reproj] 110 views 3 seed 1: acc@0.8 0.021 comp 0.047  172s
+[pi3_reproj] 114 views 3 seed 0: acc@0.8 0.224 comp 0.334  176s
+[pi3_reproj] 114 views 3 seed 1: acc@0.8 0.039 comp 0.022  181s
+[pi3_reproj] 118 views 3 seed 0: acc@0.8 0.121 comp 0.308  186s
+[pi3_reproj] 118 views 3 seed 1: acc@0.8 0.109 comp 0.237  193s
+[pi3_oiavisself] head from /home/hallu/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)
+[pi3_oiavisself] 1 views 3 seed 0: acc@0.8 0.419 comp 0.560  4s
+[pi3_oiavisself] 1 views 3 seed 1: acc@0.8 0.612 comp 0.887  8s
+[pi3_oiavisself] 4 views 3 seed 0: acc@0.8 0.650 comp 0.824  11s
+[pi3_oiavisself] 4 views 3 seed 1: acc@0.8 0.632 comp 0.688  15s
+[pi3_oiavisself] 9 views 3 seed 0: acc@0.8 0.307 comp 0.435  18s
+[pi3_oiavisself] 9 views 3 seed 1: acc@0.8 0.219 comp 0.276  22s
+[pi3_oiavisself] 10 views 3 seed 0: acc@0.8 0.402 comp 0.750  26s
+[pi3_oiavisself] 10 views 3 seed 1: acc@0.8 0.044 comp 0.058  34s
+[pi3_oiavisself] 11 views 3 seed 0: acc@0.8 0.293 comp 0.378  40s
+[pi3_oiavisself] 11 views 3 seed 1: acc@0.8 0.142 comp 0.157  45s
+[pi3_oiavisself] 12 views 3 seed 0: acc@0.8 0.020 comp 0.080  51s
+[pi3_oiavisself] 12 views 3 seed 1: acc@0.8 0.263 comp 0.476  56s
+[pi3_oiavisself] 13 views 3 seed 0: acc@0.8 0.032 comp 0.094  62s
+[pi3_oiavisself] 13 views 3 seed 1: acc@0.8 0.397 comp 0.612  67s
+[pi3_oiavisself] 15 views 3 seed 0: acc@0.8 0.247 comp 0.312  71s
+[pi3_oiavisself] 15 views 3 seed 1: acc@0.8 0.215 comp 0.286  75s
+[pi3_oiavisself] 23 views 3 seed 0: acc@0.8 0.138 comp 0.151  79s
+[pi3_oiavisself] 23 views 3 seed 1: acc@0.8 0.152 comp 0.166  86s
+[pi3_oiavisself] 24 views 3 seed 0: acc@0.8 0.281 comp 0.382  90s
+[pi3_oiavisself] 24 views 3 seed 1: acc@0.8 0.195 comp 0.207  97s
+[pi3_oiavisself] 29 views 3 seed 0: acc@0.8 0.085 comp 0.148  102s
+[pi3_oiavisself] 29 views 3 seed 1: acc@0.8 0.033 comp 0.049  124s
+[pi3_oiavisself] 32 views 3 seed 0: acc@0.8 0.096 comp 0.115  132s
+[pi3_oiavisself] 32 views 3 seed 1: acc@0.8 0.084 comp 0.051  142s
+[pi3_oiavisself] 33 views 3 seed 0: acc@0.8 0.296 comp 0.351  152s
+[pi3_oiavisself] 33 views 3 seed 1: acc@0.8 0.345 comp 0.411  163s
+[pi3_oiavisself] 34 views 3 seed 0: acc@0.8 0.102 comp 0.143  171s
+[pi3_oiavisself] 34 views 3 seed 1: acc@0.8 0.143 comp 0.156  178s
+[pi3_oiavisself] 48 views 3 seed 0: acc@0.8 0.088 comp 0.084  187s
+[pi3_oiavisself] 48 views 3 seed 1: acc@0.8 0.152 comp 0.234  195s
+[pi3_oiavisself] 49 views 3 seed 0: acc@0.8 0.315 comp 0.478  200s
+[pi3_oiavisself] 49 views 3 seed 1: acc@0.8 0.129 comp 0.104  205s
+[pi3_oiavisself] 62 views 3 seed 0: acc@0.8 0.520 comp 0.702  208s
+[pi3_oiavisself] 62 views 3 seed 1: acc@0.8 0.051 comp 0.027  218s
+[pi3_oiavisself] 75 views 3 seed 0: acc@0.8 0.161 comp 0.361  224s
+[pi3_oiavisself] 75 views 3 seed 1: acc@0.8 0.135 comp 0.153  233s
+[pi3_oiavisself] 77 views 3 seed 0: acc@0.8 0.111 comp 0.240  244s
+[pi3_oiavisself] 77 views 3 seed 1: acc@0.8 0.061 comp 0.121  256s
+[pi3_oiavisself] 110 views 3 seed 0: acc@0.8 0.216 comp 0.418  262s
+[pi3_oiavisself] 110 views 3 seed 1: acc@0.8 0.023 comp 0.053  270s
+[pi3_oiavisself] 114 views 3 seed 0: acc@0.8 0.213 comp 0.355  276s
+[pi3_oiavisself] 114 views 3 seed 1: acc@0.8 0.040 comp 0.030  285s
+[pi3_oiavisself] 118 views 3 seed 0: acc@0.8 0.127 comp 0.330  291s
+[pi3_oiavisself] 118 views 3 seed 1: acc@0.8 0.125 comp 0.291  302s
+                                accuracy  completeness      f1  single_view_kept
+model                 coverage                                                  
+pi3                   0.6         0.2447        0.2716  0.2532            0.1208
+                      0.7         0.2331        0.2894  0.2543            0.1370
+                      0.8         0.2176        0.3017  0.2494            0.1533
+                      0.9         0.2002        0.3136  0.2411            0.1570
+                      1.0         0.1837        0.3226  0.2312            0.1487
+pi3_oiavisself        0.6         0.2464        0.2613  0.2489            0.0370
+                      0.7         0.2294        0.2841  0.2496            0.0641
+                      0.8         0.2116        0.2996  0.2443            0.0974
+                      0.9         0.1959        0.3121  0.2374            0.1285
+                      1.0         0.1837        0.3226  0.2312            0.1487
+pi3_oiavisself_oracle 0.6         0.1959        0.2492  0.2161            0.0000
+                      0.7         0.1887        0.2695  0.2188            0.0000
+                      0.8         0.1867        0.2858  0.2223            0.0120
+                      0.9         0.1848        0.2998  0.2254            0.0650
+                      1.0         0.1837        0.3226  0.2312            0.1487
+pi3_oiavisself_random 0.6         0.1838        0.3108  0.2283            0.1487
+                      0.7         0.1837        0.3147  0.2293            0.1489
+                      0.8         0.1835        0.3178  0.2299            0.1488
+                      0.9         0.1837        0.3203  0.2307            0.1489
+                      1.0         0.1837        0.3226  0.2312            0.1487
+pi3_oracle            0.6         0.1959        0.2492  0.2161            0.0000
+                      0.7         0.1887        0.2695  0.2188            0.0000
+                      0.8         0.1867        0.2858  0.2223            0.0120
+                      0.9         0.1848        0.2998  0.2254            0.0650
+                      1.0         0.1837        0.3226  0.2312            0.1487
+pi3_random            0.6         0.1838        0.3108  0.2283            0.1487
+                      0.7         0.1837        0.3149  0.2293            0.1487
+                      0.8         0.1837        0.3181  0.2301            0.1487
+                      0.9         0.1838        0.3205  0.2308            0.1487
+                      1.0         0.1837        0.3226  0.2312            0.1487
+pi3_reproj            0.6         0.2378        0.2621  0.2456            0.0407
+                      0.7         0.2253        0.2761  0.2443            0.0757
+                      0.8         0.2095        0.2891  0.2394            0.1189
+                      0.9         0.1931        0.2997  0.2316            0.1341
+                      1.0         0.1837        0.3216  0.2310            0.1487
+pi3_reproj_oracle     0.6         0.1959        0.2484  0.2159            0.0000
+                      0.7         0.1886        0.2684  0.2185            0.0000
+                      0.8         0.1867        0.2848  0.2220            0.0120
+                      0.9         0.1848        0.2988  0.2251            0.0650
+                      1.0         0.1837        0.3216  0.2310            0.1487
+pi3_reproj_random     0.6         0.1839        0.3098  0.2282            0.1487
+                      0.7         0.1838        0.3138  0.2291            0.1487
+                      0.8         0.1838        0.3168  0.2298            0.1486
+                      0.9         0.1837        0.3196  0.2304            0.1487
+                      1.0         0.1837        0.3216  0.2310            0.1487
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[pi3] courtyard views 3 seed 0: acc@0.8 0.445 comp 0.626  12s
+[pi3] courtyard views 3 seed 1: acc@0.8 0.109 comp 0.101  18s
+[pi3] delivery_area views 3 seed 0: acc@0.8 0.089 comp 0.048  29s
+[pi3] delivery_area views 3 seed 1: acc@0.8 0.038 comp 0.170  35s
+[pi3] electro views 3 seed 0: acc@0.8 0.411 comp 0.714  47s
+[pi3] electro views 3 seed 1: acc@0.8 0.519 comp 0.870  55s
+[pi3] facade views 3 seed 0: acc@0.8 0.242 comp 0.399  73s
+[pi3] facade views 3 seed 1: acc@0.8 0.071 comp 0.119  82s
+[pi3] kicker views 3 seed 0: acc@0.8 0.472 comp 0.424  89s
+[pi3] kicker views 3 seed 1: acc@0.8 0.256 comp 0.380  94s
+[pi3] meadow views 3 seed 0: acc@0.8 0.327 comp 0.823  106s
+[pi3] meadow views 3 seed 1: acc@0.8 0.124 comp 0.205  118s
+[pi3] pipes views 3 seed 0: acc@0.8 0.101 comp 0.212  124s
+[pi3] pipes views 3 seed 1: acc@0.8 0.001 comp 0.002  133s
+[pi3] playground views 3 seed 0: acc@0.8 0.043 comp 0.250  140s
+[pi3] playground views 3 seed 1: acc@0.8 0.044 comp 0.206  145s
+[pi3] relief views 3 seed 0: acc@0.8 0.446 comp 0.481  152s
+[pi3] relief views 3 seed 1: acc@0.8 0.026 comp 0.021  164s
+[pi3] relief_2 views 3 seed 0: acc@0.8 0.123 comp 0.083  174s
+[pi3] relief_2 views 3 seed 1: acc@0.8 0.041 comp 0.032  190s
+[pi3] terrace views 3 seed 0: acc@0.8 0.122 comp 0.214  204s
+[pi3] terrace views 3 seed 1: acc@0.8 0.002 comp 0.002  224s
+[pi3] terrains views 3 seed 0: acc@0.8 0.159 comp 0.211  232s
+[pi3] terrains views 3 seed 1: acc@0.8 0.000 comp 0.000  248s
+[pi3_reproj] courtyard views 3 seed 0: acc@0.8 0.445 comp 0.593  8s
+[pi3_reproj] courtyard views 3 seed 1: acc@0.8 0.098 comp 0.080  16s
+[pi3_reproj] delivery_area views 3 seed 0: acc@0.8 0.089 comp 0.047  30s
+[pi3_reproj] delivery_area views 3 seed 1: acc@0.8 0.036 comp 0.184  34s
+[pi3_reproj] electro views 3 seed 0: acc@0.8 0.359 comp 0.644  46s
+[pi3_reproj] electro views 3 seed 1: acc@0.8 0.465 comp 0.765  54s
+[pi3_reproj] facade views 3 seed 0: acc@0.8 0.192 comp 0.352  68s
+[pi3_reproj] facade views 3 seed 1: acc@0.8 0.054 comp 0.104  80s
+[pi3_reproj] kicker views 3 seed 0: acc@0.8 0.393 comp 0.370  90s
+[pi3_reproj] kicker views 3 seed 1: acc@0.8 0.244 comp 0.357  97s
+[pi3_reproj] meadow views 3 seed 0: acc@0.8 0.317 comp 0.820  106s
+[pi3_reproj] meadow views 3 seed 1: acc@0.8 0.126 comp 0.208  118s
+[pi3_reproj] pipes views 3 seed 0: acc@0.8 0.113 comp 0.230  124s
+[pi3_reproj] pipes views 3 seed 1: acc@0.8 0.001 comp 0.005  133s
+[pi3_reproj] playground views 3 seed 0: acc@0.8 0.043 comp 0.247  143s
+[pi3_reproj] playground views 3 seed 1: acc@0.8 0.043 comp 0.205  149s
+[pi3_reproj] relief views 3 seed 0: acc@0.8 0.336 comp 0.463  157s
+[pi3_reproj] relief views 3 seed 1: acc@0.8 0.033 comp 0.041  175s
+[pi3_reproj] relief_2 views 3 seed 0: acc@0.8 0.112 comp 0.088  183s
+[pi3_reproj] relief_2 views 3 seed 1: acc@0.8 0.040 comp 0.031  197s
+[pi3_reproj] terrace views 3 seed 0: acc@0.8 0.107 comp 0.200  204s
+[pi3_reproj] terrace views 3 seed 1: acc@0.8 0.002 comp 0.002  224s
+[pi3_reproj] terrains views 3 seed 0: acc@0.8 0.151 comp 0.211  231s
+[pi3_reproj] terrains views 3 seed 1: acc@0.8 0.000 comp 0.000  247s
+[pi3_oiavisself] head from /home/hallu/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)
+[pi3_oiavisself] courtyard views 3 seed 0: acc@0.8 0.452 comp 0.615  8s
+[pi3_oiavisself] courtyard views 3 seed 1: acc@0.8 0.060 comp 0.066  15s
+[pi3_oiavisself] delivery_area views 3 seed 0: acc@0.8 0.091 comp 0.049  28s
+[pi3_oiavisself] delivery_area views 3 seed 1: acc@0.8 0.037 comp 0.170  35s
+[pi3_oiavisself] electro views 3 seed 0: acc@0.8 0.385 comp 0.684  44s
+[pi3_oiavisself] electro views 3 seed 1: acc@0.8 0.487 comp 0.818  52s
+[pi3_oiavisself] facade views 3 seed 0: acc@0.8 0.205 comp 0.354  63s
+[pi3_oiavisself] facade views 3 seed 1: acc@0.8 0.050 comp 0.073  69s
+[pi3_oiavisself] kicker views 3 seed 0: acc@0.8 0.449 comp 0.418  74s
+[pi3_oiavisself] kicker views 3 seed 1: acc@0.8 0.257 comp 0.372  79s
+[pi3_oiavisself] meadow views 3 seed 0: acc@0.8 0.320 comp 0.817  87s
+[pi3_oiavisself] meadow views 3 seed 1: acc@0.8 0.127 comp 0.210  95s
+[pi3_oiavisself] pipes views 3 seed 0: acc@0.8 0.108 comp 0.229  100s
+[pi3_oiavisself] pipes views 3 seed 1: acc@0.8 0.001 comp 0.005  108s
+[pi3_oiavisself] playground views 3 seed 0: acc@0.8 0.038 comp 0.222  113s
+[pi3_oiavisself] playground views 3 seed 1: acc@0.8 0.043 comp 0.203  119s
+[pi3_oiavisself] relief views 3 seed 0: acc@0.8 0.351 comp 0.448  128s
+[pi3_oiavisself] relief views 3 seed 1: acc@0.8 0.035 comp 0.042  144s
+[pi3_oiavisself] relief_2 views 3 seed 0: acc@0.8 0.122 comp 0.089  156s
+[pi3_oiavisself] relief_2 views 3 seed 1: acc@0.8 0.038 comp 0.025  171s
+[pi3_oiavisself] terrace views 3 seed 0: acc@0.8 0.110 comp 0.201  182s
+[pi3_oiavisself] terrace views 3 seed 1: acc@0.8 0.003 comp 0.002  196s
+[pi3_oiavisself] terrains views 3 seed 0: acc@0.8 0.160 comp 0.213  203s
+[pi3_oiavisself] terrains views 3 seed 1: acc@0.8 0.000 comp 0.000  215s
+                                accuracy  completeness      f1  single_view_kept
+model                 coverage                                                  
+pi3                   0.6         0.2000        0.2548  0.2147            0.0390
+                      0.7         0.1888        0.2659  0.2117            0.0392
+                      0.8         0.1754        0.2748  0.2055            0.0389
+                      0.9         0.1619        0.2805  0.1970            0.0379
+                      1.0         0.1485        0.2848  0.1875            0.0356
+pi3_oiavisself        0.6         0.1832        0.2353  0.1981            0.0204
+                      0.7         0.1729        0.2494  0.1964            0.0229
+                      0.8         0.1636        0.2635  0.1942            0.0260
+                      0.9         0.1562        0.2764  0.1920            0.0301
+                      1.0         0.1485        0.2848  0.1875            0.0356
+pi3_oiavisself_oracle 0.6         0.1426        0.2344  0.1690            0.0000
+                      0.7         0.1447        0.2495  0.1758            0.0000
+                      0.8         0.1399        0.2578  0.1739            0.0010
+                      0.9         0.1386        0.2673  0.1750            0.0061
+                      1.0         0.1485        0.2848  0.1875            0.0356
+pi3_oiavisself_random 0.6         0.1483        0.2689  0.1839            0.0355
+                      0.7         0.1485        0.2744  0.1852            0.0356
+                      0.8         0.1485        0.2788  0.1862            0.0356
+                      0.9         0.1485        0.2822  0.1869            0.0356
+                      1.0         0.1485        0.2848  0.1875            0.0356
+pi3_oracle            0.6         0.1426        0.2344  0.1690            0.0000
+                      0.7         0.1447        0.2495  0.1758            0.0000
+                      0.8         0.1399        0.2578  0.1739            0.0010
+                      0.9         0.1386        0.2673  0.1750            0.0061
+                      1.0         0.1485        0.2848  0.1875            0.0356
+pi3_random            0.6         0.1483        0.2690  0.1839            0.0356
+                      0.7         0.1484        0.2744  0.1851            0.0356
+                      0.8         0.1483        0.2786  0.1861            0.0356
+                      0.9         0.1484        0.2822  0.1868            0.0356
+                      1.0         0.1485        0.2848  0.1875            0.0356
+pi3_reproj            0.6         0.1718        0.2406  0.1928            0.0075
+                      0.7         0.1664        0.2492  0.1916            0.0124
+                      0.8         0.1583        0.2602  0.1891            0.0217
+                      0.9         0.1513        0.2699  0.1860            0.0287
+                      1.0         0.1487        0.2849  0.1877            0.0356
+pi3_reproj_oracle     0.6         0.1428        0.2351  0.1692            0.0000
+                      0.7         0.1449        0.2499  0.1760            0.0000
+                      0.8         0.1401        0.2581  0.1741            0.0010
+                      0.9         0.1388        0.2676  0.1752            0.0061
+                      1.0         0.1487        0.2849  0.1877            0.0356
+pi3_reproj_random     0.6         0.1490        0.2693  0.1844            0.0355
+                      0.7         0.1489        0.2749  0.1856            0.0356
+                      0.8         0.1488        0.2790  0.1865            0.0356
+                      0.9         0.1487        0.2824  0.1872            0.0356
+                      1.0         0.1487        0.2849  0.1877            0.0356
+== P15_down3_pi3_DONE Mon Nov  9 10:22:47 UTC 2026

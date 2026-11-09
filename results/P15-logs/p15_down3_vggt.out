@@ -1,0 +1,472 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] 3 views 3 seed 0: acc@0.8 0.285 comp 0.449  4s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] 3 views 3 seed 1: acc@0.8 0.038 comp 0.084  8s
+[vggt] 5 views 3 seed 0: acc@0.8 0.624 comp 0.788  10s
+[vggt] 5 views 3 seed 1: acc@0.8 0.600 comp 0.655  13s
+[vggt] 17 views 3 seed 0: acc@0.8 0.719 comp 0.759  15s
+[vggt] 17 views 3 seed 1: acc@0.8 0.978 comp 0.949  18s
+[vggt] 21 views 3 seed 0: acc@0.8 0.539 comp 0.575  20s
+[vggt] 21 views 3 seed 1: acc@0.8 0.531 comp 0.468  22s
+[vggt] 28 views 3 seed 0: acc@0.8 0.945 comp 0.920  25s
+[vggt] 28 views 3 seed 1: acc@0.8 0.798 comp 0.706  28s
+[vggt] 35 views 3 seed 0: acc@0.8 0.483 comp 0.516  32s
+[vggt] 35 views 3 seed 1: acc@0.8 0.306 comp 0.233  35s
+[vggt] 37 views 3 seed 0: acc@0.8 0.726 comp 0.886  39s
+[vggt] 37 views 3 seed 1: acc@0.8 0.955 comp 0.880  43s
+[vggt] 38 views 3 seed 0: acc@0.8 0.553 comp 0.498  45s
+[vggt] 38 views 3 seed 1: acc@0.8 0.565 comp 0.471  48s
+[vggt] 40 views 3 seed 0: acc@0.8 0.484 comp 0.538  51s
+[vggt] 40 views 3 seed 1: acc@0.8 0.296 comp 0.332  58s
+[vggt] 43 views 3 seed 0: acc@0.8 0.599 comp 0.603  60s
+[vggt] 43 views 3 seed 1: acc@0.8 0.981 comp 0.888  62s
+[vggt] 56 views 3 seed 0: acc@0.8 0.878 comp 0.978  65s
+[vggt] 56 views 3 seed 1: acc@0.8 0.809 comp 0.744  68s
+[vggt] 59 views 3 seed 0: acc@0.8 0.848 comp 0.943  71s
+[vggt] 59 views 3 seed 1: acc@0.8 0.873 comp 0.823  73s
+[vggt] 66 views 3 seed 0: acc@0.8 0.366 comp 0.563  76s
+[vggt] 66 views 3 seed 1: acc@0.8 0.201 comp 0.307  79s
+[vggt] 67 views 3 seed 0: acc@0.8 0.592 comp 0.728  81s
+[vggt] 67 views 3 seed 1: acc@0.8 0.268 comp 0.287  84s
+[vggt] 82 views 3 seed 0: acc@0.8 0.883 comp 0.974  87s
+[vggt] 82 views 3 seed 1: acc@0.8 0.615 comp 0.537  89s
+[vggt] 86 views 3 seed 0: acc@0.8 0.156 comp 0.273  92s
+[vggt] 86 views 3 seed 1: acc@0.8 0.230 comp 0.186  95s
+[vggt] 106 views 3 seed 0: acc@0.8 0.820 comp 0.944  98s
+[vggt] 106 views 3 seed 1: acc@0.8 0.934 comp 0.987  100s
+[vggt] 117 views 3 seed 0: acc@0.8 0.551 comp 0.781  104s
+[vggt] 117 views 3 seed 1: acc@0.8 0.444 comp 0.532  106s
+[vggt_reproj] 3 views 3 seed 0: acc@0.8 0.246 comp 0.418  4s
+[vggt_reproj] 3 views 3 seed 1: acc@0.8 0.034 comp 0.090  7s
+[vggt_reproj] 5 views 3 seed 0: acc@0.8 0.586 comp 0.758  9s
+[vggt_reproj] 5 views 3 seed 1: acc@0.8 0.564 comp 0.641  15s
+[vggt_reproj] 17 views 3 seed 0: acc@0.8 0.670 comp 0.675  17s
+[vggt_reproj] 17 views 3 seed 1: acc@0.8 0.974 comp 0.897  19s
+[vggt_reproj] 21 views 3 seed 0: acc@0.8 0.528 comp 0.567  21s
+[vggt_reproj] 21 views 3 seed 1: acc@0.8 0.531 comp 0.465  24s
+[vggt_reproj] 28 views 3 seed 0: acc@0.8 0.904 comp 0.872  26s
+[vggt_reproj] 28 views 3 seed 1: acc@0.8 0.792 comp 0.699  28s
+[vggt_reproj] 35 views 3 seed 0: acc@0.8 0.469 comp 0.483  31s
+[vggt_reproj] 35 views 3 seed 1: acc@0.8 0.329 comp 0.260  34s
+[vggt_reproj] 37 views 3 seed 0: acc@0.8 0.711 comp 0.866  37s
+[vggt_reproj] 37 views 3 seed 1: acc@0.8 0.899 comp 0.826  39s
+[vggt_reproj] 38 views 3 seed 0: acc@0.8 0.547 comp 0.508  42s
+[vggt_reproj] 38 views 3 seed 1: acc@0.8 0.574 comp 0.483  46s
+[vggt_reproj] 40 views 3 seed 0: acc@0.8 0.444 comp 0.504  49s
+[vggt_reproj] 40 views 3 seed 1: acc@0.8 0.288 comp 0.330  51s
+[vggt_reproj] 43 views 3 seed 0: acc@0.8 0.594 comp 0.598  53s
+[vggt_reproj] 43 views 3 seed 1: acc@0.8 0.987 comp 0.842  55s
+[vggt_reproj] 56 views 3 seed 0: acc@0.8 0.813 comp 0.932  58s
+[vggt_reproj] 56 views 3 seed 1: acc@0.8 0.792 comp 0.738  61s
+[vggt_reproj] 59 views 3 seed 0: acc@0.8 0.812 comp 0.899  64s
+[vggt_reproj] 59 views 3 seed 1: acc@0.8 0.849 comp 0.807  66s
+[vggt_reproj] 66 views 3 seed 0: acc@0.8 0.337 comp 0.539  69s
+[vggt_reproj] 66 views 3 seed 1: acc@0.8 0.185 comp 0.295  72s
+[vggt_reproj] 67 views 3 seed 0: acc@0.8 0.542 comp 0.691  75s
+[vggt_reproj] 67 views 3 seed 1: acc@0.8 0.261 comp 0.293  78s
+[vggt_reproj] 82 views 3 seed 0: acc@0.8 0.833 comp 0.924  80s
+[vggt_reproj] 82 views 3 seed 1: acc@0.8 0.560 comp 0.508  83s
+[vggt_reproj] 86 views 3 seed 0: acc@0.8 0.149 comp 0.269  85s
+[vggt_reproj] 86 views 3 seed 1: acc@0.8 0.183 comp 0.154  89s
+[vggt_reproj] 106 views 3 seed 0: acc@0.8 0.755 comp 0.898  91s
+[vggt_reproj] 106 views 3 seed 1: acc@0.8 0.848 comp 0.940  94s
+[vggt_reproj] 117 views 3 seed 0: acc@0.8 0.489 comp 0.717  97s
+[vggt_reproj] 117 views 3 seed 1: acc@0.8 0.421 comp 0.526  100s
+[vggt_oiavisself] head from /home/hallu/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)
+[vggt_oiavisself] 3 views 3 seed 0: acc@0.8 0.258 comp 0.417  5s
+[vggt_oiavisself] 3 views 3 seed 1: acc@0.8 0.033 comp 0.124  8s
+[vggt_oiavisself] 5 views 3 seed 0: acc@0.8 0.586 comp 0.754  13s
+[vggt_oiavisself] 5 views 3 seed 1: acc@0.8 0.570 comp 0.649  15s
+[vggt_oiavisself] 17 views 3 seed 0: acc@0.8 0.646 comp 0.678  17s
+[vggt_oiavisself] 17 views 3 seed 1: acc@0.8 0.972 comp 0.903  20s
+[vggt_oiavisself] 21 views 3 seed 0: acc@0.8 0.530 comp 0.570  22s
+[vggt_oiavisself] 21 views 3 seed 1: acc@0.8 0.546 comp 0.471  24s
+[vggt_oiavisself] 28 views 3 seed 0: acc@0.8 0.906 comp 0.887  26s
+[vggt_oiavisself] 28 views 3 seed 1: acc@0.8 0.774 comp 0.686  29s
+[vggt_oiavisself] 35 views 3 seed 0: acc@0.8 0.485 comp 0.506  32s
+[vggt_oiavisself] 35 views 3 seed 1: acc@0.8 0.327 comp 0.271  35s
+[vggt_oiavisself] 37 views 3 seed 0: acc@0.8 0.710 comp 0.878  39s
+[vggt_oiavisself] 37 views 3 seed 1: acc@0.8 0.919 comp 0.837  42s
+[vggt_oiavisself] 38 views 3 seed 0: acc@0.8 0.538 comp 0.495  47s
+[vggt_oiavisself] 38 views 3 seed 1: acc@0.8 0.559 comp 0.490  50s
+[vggt_oiavisself] 40 views 3 seed 0: acc@0.8 0.441 comp 0.527  52s
+[vggt_oiavisself] 40 views 3 seed 1: acc@0.8 0.303 comp 0.350  55s
+[vggt_oiavisself] 43 views 3 seed 0: acc@0.8 0.566 comp 0.587  58s
+[vggt_oiavisself] 43 views 3 seed 1: acc@0.8 0.983 comp 0.845  60s
+[vggt_oiavisself] 56 views 3 seed 0: acc@0.8 0.839 comp 0.945  63s
+[vggt_oiavisself] 56 views 3 seed 1: acc@0.8 0.773 comp 0.737  67s
+[vggt_oiavisself] 59 views 3 seed 0: acc@0.8 0.799 comp 0.898  70s
+[vggt_oiavisself] 59 views 3 seed 1: acc@0.8 0.835 comp 0.803  72s
+[vggt_oiavisself] 66 views 3 seed 0: acc@0.8 0.312 comp 0.509  75s
+[vggt_oiavisself] 66 views 3 seed 1: acc@0.8 0.200 comp 0.316  78s
+[vggt_oiavisself] 67 views 3 seed 0: acc@0.8 0.575 comp 0.715  80s
+[vggt_oiavisself] 67 views 3 seed 1: acc@0.8 0.258 comp 0.293  83s
+[vggt_oiavisself] 82 views 3 seed 0: acc@0.8 0.834 comp 0.934  85s
+[vggt_oiavisself] 82 views 3 seed 1: acc@0.8 0.578 comp 0.532  88s
+[vggt_oiavisself] 86 views 3 seed 0: acc@0.8 0.161 comp 0.291  91s
+[vggt_oiavisself] 86 views 3 seed 1: acc@0.8 0.200 comp 0.212  94s
+[vggt_oiavisself] 106 views 3 seed 0: acc@0.8 0.771 comp 0.905  97s
+[vggt_oiavisself] 106 views 3 seed 1: acc@0.8 0.875 comp 0.939  99s
+[vggt_oiavisself] 117 views 3 seed 0: acc@0.8 0.521 comp 0.761  103s
+[vggt_oiavisself] 117 views 3 seed 1: acc@0.8 0.428 comp 0.539  105s
+                                 accuracy  completeness      f1  single_view_kept
+model                  coverage                                                  
+vggt                   0.6         0.6299        0.5421  0.5799            0.1235
+                       0.7         0.6205        0.5907  0.6020            0.1403
+                       0.8         0.5965        0.6330  0.6101            0.1540
+                       0.9         0.5559        0.6558  0.5973            0.1563
+                       1.0         0.5082        0.6651  0.5719            0.1452
+vggt_oiavisself        0.6         0.6049        0.5245  0.5575            0.0361
+                       0.7         0.5932        0.5768  0.5801            0.0664
+                       0.8         0.5725        0.6182  0.5897            0.1013
+                       0.9         0.5446        0.6501  0.5881            0.1306
+                       1.0         0.5082        0.6651  0.5719            0.1452
+vggt_oiavisself_oracle 0.6         0.5117        0.5264  0.5133            0.0000
+                       0.7         0.4816        0.5423  0.5052            0.0000
+                       0.8         0.4839        0.5660  0.5164            0.0115
+                       0.9         0.4968        0.6108  0.5429            0.0573
+                       1.0         0.5082        0.6651  0.5719            0.1452
+vggt_oiavisself_random 0.6         0.5080        0.6540  0.5680            0.1450
+                       0.7         0.5080        0.6578  0.5693            0.1450
+                       0.8         0.5081        0.6609  0.5705            0.1451
+                       0.9         0.5080        0.6631  0.5711            0.1451
+                       1.0         0.5082        0.6651  0.5719            0.1452
+vggt_oracle            0.6         0.5117        0.5264  0.5133            0.0000
+                       0.7         0.4816        0.5423  0.5052            0.0000
+                       0.8         0.4839        0.5660  0.5164            0.0115
+                       0.9         0.4968        0.6108  0.5429            0.0573
+                       1.0         0.5082        0.6651  0.5719            0.1452
+vggt_random            0.6         0.5079        0.6539  0.5678            0.1451
+                       0.7         0.5080        0.6578  0.5693            0.1451
+                       0.8         0.5079        0.6607  0.5702            0.1451
+                       0.9         0.5080        0.6631  0.5711            0.1451
+                       1.0         0.5082        0.6651  0.5719            0.1452
+vggt_reproj            0.6         0.6030        0.5376  0.5648            0.0312
+                       0.7         0.5892        0.5728  0.5768            0.0606
+                       0.8         0.5694        0.6087  0.5836            0.1005
+                       0.9         0.5328        0.6352  0.5750            0.1236
+                       1.0         0.5086        0.6648  0.5721            0.1452
+vggt_reproj_oracle     0.6         0.5122        0.5259  0.5133            0.0000
+                       0.7         0.4821        0.5417  0.5052            0.0000
+                       0.8         0.4844        0.5655  0.5165            0.0115
+                       0.9         0.4973        0.6102  0.5429            0.0573
+                       1.0         0.5086        0.6648  0.5721            0.1452
+vggt_reproj_random     0.6         0.5087        0.6538  0.5684            0.1451
+                       0.7         0.5087        0.6577  0.5697            0.1451
+                       0.8         0.5087        0.6606  0.5707            0.1452
+                       0.9         0.5085        0.6629  0.5714            0.1451
+                       1.0         0.5086        0.6648  0.5721            0.1452
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] 1 views 3 seed 0: acc@0.8 0.758 comp 0.923  4s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] 1 views 3 seed 1: acc@0.8 0.451 comp 0.463  7s
+[vggt] 4 views 3 seed 0: acc@0.8 0.781 comp 0.914  9s
+[vggt] 4 views 3 seed 1: acc@0.8 0.764 comp 0.761  12s
+[vggt] 9 views 3 seed 0: acc@0.8 0.252 comp 0.311  14s
+[vggt] 9 views 3 seed 1: acc@0.8 0.147 comp 0.174  19s
+[vggt] 10 views 3 seed 0: acc@0.8 0.438 comp 0.459  21s
+[vggt] 10 views 3 seed 1: acc@0.8 0.693 comp 0.615  25s
+[vggt] 11 views 3 seed 0: acc@0.8 0.563 comp 0.648  27s
+[vggt] 11 views 3 seed 1: acc@0.8 0.864 comp 0.877  30s
+[vggt] 12 views 3 seed 0: acc@0.8 0.723 comp 0.829  33s
+[vggt] 12 views 3 seed 1: acc@0.8 0.095 comp 0.108  36s
+[vggt] 13 views 3 seed 0: acc@0.8 0.755 comp 0.759  38s
+[vggt] 13 views 3 seed 1: acc@0.8 0.209 comp 0.176  41s
+[vggt] 15 views 3 seed 0: acc@0.8 0.489 comp 0.539  44s
+[vggt] 15 views 3 seed 1: acc@0.8 0.697 comp 0.715  46s
+[vggt] 23 views 3 seed 0: acc@0.8 0.968 comp 0.948  48s
+[vggt] 23 views 3 seed 1: acc@0.8 0.841 comp 0.792  51s
+[vggt] 24 views 3 seed 0: acc@0.8 0.476 comp 0.498  53s
+[vggt] 24 views 3 seed 1: acc@0.8 0.982 comp 0.911  55s
+[vggt] 29 views 3 seed 0: acc@0.8 0.211 comp 0.248  59s
+[vggt] 29 views 3 seed 1: acc@0.8 0.908 comp 0.768  61s
+[vggt] 32 views 3 seed 0: acc@0.8 0.532 comp 0.622  64s
+[vggt] 32 views 3 seed 1: acc@0.8 0.147 comp 0.124  69s
+[vggt] 33 views 3 seed 0: acc@0.8 0.249 comp 0.311  72s
+[vggt] 33 views 3 seed 1: acc@0.8 0.445 comp 0.400  77s
+[vggt] 34 views 3 seed 0: acc@0.8 0.578 comp 0.629  80s
+[vggt] 34 views 3 seed 1: acc@0.8 0.388 comp 0.381  83s
+[vggt] 48 views 3 seed 0: acc@0.8 0.363 comp 0.447  86s
+[vggt] 48 views 3 seed 1: acc@0.8 0.524 comp 0.494  88s
+[vggt] 49 views 3 seed 0: acc@0.8 0.765 comp 0.828  91s
+[vggt] 49 views 3 seed 1: acc@0.8 0.499 comp 0.473  93s
+[vggt] 62 views 3 seed 0: acc@0.8 0.866 comp 0.846  96s
+[vggt] 62 views 3 seed 1: acc@0.8 0.045 comp 0.090  100s
+[vggt] 75 views 3 seed 0: acc@0.8 0.128 comp 0.297  103s
+[vggt] 75 views 3 seed 1: acc@0.8 0.389 comp 0.444  107s
+[vggt] 77 views 3 seed 0: acc@0.8 0.665 comp 0.797  110s
+[vggt] 77 views 3 seed 1: acc@0.8 0.572 comp 0.570  113s
+[vggt] 110 views 3 seed 0: acc@0.8 0.037 comp 0.151  115s
+[vggt] 110 views 3 seed 1: acc@0.8 0.445 comp 0.567  118s
+[vggt] 114 views 3 seed 0: acc@0.8 0.147 comp 0.252  122s
+[vggt] 114 views 3 seed 1: acc@0.8 0.498 comp 0.513  124s
+[vggt] 118 views 3 seed 0: acc@0.8 0.792 comp 0.978  127s
+[vggt] 118 views 3 seed 1: acc@0.8 0.564 comp 0.603  130s
+[vggt_reproj] 1 views 3 seed 0: acc@0.8 0.725 comp 0.891  3s
+[vggt_reproj] 1 views 3 seed 1: acc@0.8 0.450 comp 0.466  6s
+[vggt_reproj] 4 views 3 seed 0: acc@0.8 0.751 comp 0.882  8s
+[vggt_reproj] 4 views 3 seed 1: acc@0.8 0.715 comp 0.717  10s
+[vggt_reproj] 9 views 3 seed 0: acc@0.8 0.253 comp 0.317  13s
+[vggt_reproj] 9 views 3 seed 1: acc@0.8 0.163 comp 0.202  16s
+[vggt_reproj] 10 views 3 seed 0: acc@0.8 0.446 comp 0.463  18s
+[vggt_reproj] 10 views 3 seed 1: acc@0.8 0.683 comp 0.586  22s
+[vggt_reproj] 11 views 3 seed 0: acc@0.8 0.520 comp 0.620  24s
+[vggt_reproj] 11 views 3 seed 1: acc@0.8 0.825 comp 0.824  26s
+[vggt_reproj] 12 views 3 seed 0: acc@0.8 0.696 comp 0.801  31s
+[vggt_reproj] 12 views 3 seed 1: acc@0.8 0.094 comp 0.110  34s
+[vggt_reproj] 13 views 3 seed 0: acc@0.8 0.691 comp 0.758  38s
+[vggt_reproj] 13 views 3 seed 1: acc@0.8 0.115 comp 0.098  41s
+[vggt_reproj] 15 views 3 seed 0: acc@0.8 0.471 comp 0.526  43s
+[vggt_reproj] 15 views 3 seed 1: acc@0.8 0.684 comp 0.694  45s
+[vggt_reproj] 23 views 3 seed 0: acc@0.8 0.963 comp 0.878  48s
+[vggt_reproj] 23 views 3 seed 1: acc@0.8 0.852 comp 0.750  50s
+[vggt_reproj] 24 views 3 seed 0: acc@0.8 0.469 comp 0.509  52s
+[vggt_reproj] 24 views 3 seed 1: acc@0.8 0.976 comp 0.847  55s
+[vggt_reproj] 29 views 3 seed 0: acc@0.8 0.188 comp 0.218  57s
+[vggt_reproj] 29 views 3 seed 1: acc@0.8 0.872 comp 0.737  60s
+[vggt_reproj] 32 views 3 seed 0: acc@0.8 0.505 comp 0.599  64s
+[vggt_reproj] 32 views 3 seed 1: acc@0.8 0.142 comp 0.119  67s
+[vggt_reproj] 33 views 3 seed 0: acc@0.8 0.239 comp 0.306  69s
+[vggt_reproj] 33 views 3 seed 1: acc@0.8 0.435 comp 0.430  72s
+[vggt_reproj] 34 views 3 seed 0: acc@0.8 0.562 comp 0.604  75s
+[vggt_reproj] 34 views 3 seed 1: acc@0.8 0.404 comp 0.391  78s
+[vggt_reproj] 48 views 3 seed 0: acc@0.8 0.350 comp 0.436  81s
+[vggt_reproj] 48 views 3 seed 1: acc@0.8 0.526 comp 0.493  84s
+[vggt_reproj] 49 views 3 seed 0: acc@0.8 0.731 comp 0.793  86s
+[vggt_reproj] 49 views 3 seed 1: acc@0.8 0.484 comp 0.471  89s
+[vggt_reproj] 62 views 3 seed 0: acc@0.8 0.822 comp 0.812  91s
+[vggt_reproj] 62 views 3 seed 1: acc@0.8 0.052 comp 0.099  94s
+[vggt_reproj] 75 views 3 seed 0: acc@0.8 0.117 comp 0.279  98s
+[vggt_reproj] 75 views 3 seed 1: acc@0.8 0.382 comp 0.425  101s
+[vggt_reproj] 77 views 3 seed 0: acc@0.8 0.663 comp 0.796  105s
+[vggt_reproj] 77 views 3 seed 1: acc@0.8 0.535 comp 0.514  108s
+[vggt_reproj] 110 views 3 seed 0: acc@0.8 0.033 comp 0.140  111s
+[vggt_reproj] 110 views 3 seed 1: acc@0.8 0.440 comp 0.546  116s
+[vggt_reproj] 114 views 3 seed 0: acc@0.8 0.127 comp 0.219  120s
+[vggt_reproj] 114 views 3 seed 1: acc@0.8 0.468 comp 0.478  122s
+[vggt_reproj] 118 views 3 seed 0: acc@0.8 0.731 comp 0.926  125s
+[vggt_reproj] 118 views 3 seed 1: acc@0.8 0.510 comp 0.568  127s
+[vggt_oiavisself] head from /home/hallu/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)
+[vggt_oiavisself] 1 views 3 seed 0: acc@0.8 0.721 comp 0.886  3s
+[vggt_oiavisself] 1 views 3 seed 1: acc@0.8 0.434 comp 0.448  7s
+[vggt_oiavisself] 4 views 3 seed 0: acc@0.8 0.734 comp 0.872  10s
+[vggt_oiavisself] 4 views 3 seed 1: acc@0.8 0.734 comp 0.727  13s
+[vggt_oiavisself] 9 views 3 seed 0: acc@0.8 0.269 comp 0.336  17s
+[vggt_oiavisself] 9 views 3 seed 1: acc@0.8 0.167 comp 0.207  22s
+[vggt_oiavisself] 10 views 3 seed 0: acc@0.8 0.426 comp 0.451  25s
+[vggt_oiavisself] 10 views 3 seed 1: acc@0.8 0.715 comp 0.628  28s
+[vggt_oiavisself] 11 views 3 seed 0: acc@0.8 0.518 comp 0.603  32s
+[vggt_oiavisself] 11 views 3 seed 1: acc@0.8 0.838 comp 0.860  36s
+[vggt_oiavisself] 12 views 3 seed 0: acc@0.8 0.676 comp 0.794  39s
+[vggt_oiavisself] 12 views 3 seed 1: acc@0.8 0.092 comp 0.112  45s
+[vggt_oiavisself] 13 views 3 seed 0: acc@0.8 0.754 comp 0.768  47s
+[vggt_oiavisself] 13 views 3 seed 1: acc@0.8 0.112 comp 0.100  51s
+[vggt_oiavisself] 15 views 3 seed 0: acc@0.8 0.431 comp 0.508  54s
+[vggt_oiavisself] 15 views 3 seed 1: acc@0.8 0.687 comp 0.714  57s
+[vggt_oiavisself] 23 views 3 seed 0: acc@0.8 0.957 comp 0.885  60s
+[vggt_oiavisself] 23 views 3 seed 1: acc@0.8 0.857 comp 0.753  63s
+[vggt_oiavisself] 24 views 3 seed 0: acc@0.8 0.434 comp 0.519  68s
+[vggt_oiavisself] 24 views 3 seed 1: acc@0.8 0.970 comp 0.864  72s
+[vggt_oiavisself] 29 views 3 seed 0: acc@0.8 0.217 comp 0.265  80s
+[vggt_oiavisself] 29 views 3 seed 1: acc@0.8 0.875 comp 0.733  83s
+[vggt_oiavisself] 32 views 3 seed 0: acc@0.8 0.490 comp 0.578  89s
+[vggt_oiavisself] 32 views 3 seed 1: acc@0.8 0.147 comp 0.129  94s
+[vggt_oiavisself] 33 views 3 seed 0: acc@0.8 0.247 comp 0.310  98s
+[vggt_oiavisself] 33 views 3 seed 1: acc@0.8 0.425 comp 0.421  101s
+[vggt_oiavisself] 34 views 3 seed 0: acc@0.8 0.505 comp 0.557  105s
+[vggt_oiavisself] 34 views 3 seed 1: acc@0.8 0.408 comp 0.410  109s
+[vggt_oiavisself] 48 views 3 seed 0: acc@0.8 0.362 comp 0.446  112s
+[vggt_oiavisself] 48 views 3 seed 1: acc@0.8 0.537 comp 0.503  116s
+[vggt_oiavisself] 49 views 3 seed 0: acc@0.8 0.729 comp 0.797  121s
+[vggt_oiavisself] 49 views 3 seed 1: acc@0.8 0.496 comp 0.491  124s
+[vggt_oiavisself] 62 views 3 seed 0: acc@0.8 0.789 comp 0.799  129s
+[vggt_oiavisself] 62 views 3 seed 1: acc@0.8 0.065 comp 0.125  135s
+[vggt_oiavisself] 75 views 3 seed 0: acc@0.8 0.125 comp 0.293  140s
+[vggt_oiavisself] 75 views 3 seed 1: acc@0.8 0.364 comp 0.411  145s
+[vggt_oiavisself] 77 views 3 seed 0: acc@0.8 0.646 comp 0.784  149s
+[vggt_oiavisself] 77 views 3 seed 1: acc@0.8 0.544 comp 0.527  151s
+[vggt_oiavisself] 110 views 3 seed 0: acc@0.8 0.039 comp 0.154  156s
+[vggt_oiavisself] 110 views 3 seed 1: acc@0.8 0.444 comp 0.571  160s
+[vggt_oiavisself] 114 views 3 seed 0: acc@0.8 0.137 comp 0.243  164s
+[vggt_oiavisself] 114 views 3 seed 1: acc@0.8 0.477 comp 0.494  167s
+[vggt_oiavisself] 118 views 3 seed 0: acc@0.8 0.765 comp 0.954  171s
+[vggt_oiavisself] 118 views 3 seed 1: acc@0.8 0.543 comp 0.589  175s
+                                 accuracy  completeness      f1  single_view_kept
+model                  coverage                                                  
+vggt                   0.6         0.5430        0.4678  0.5000            0.1258
+                       0.7         0.5343        0.5125  0.5201            0.1449
+                       0.8         0.5159        0.5512  0.5297            0.1604
+                       0.9         0.4837        0.5734  0.5212            0.1616
+                       1.0         0.4410        0.5786  0.4969            0.1487
+vggt_oiavisself        0.6         0.5318        0.4577  0.4886            0.0384
+                       0.7         0.5201        0.5050  0.5089            0.0693
+                       0.8         0.4978        0.5368  0.5129            0.1037
+                       0.9         0.4706        0.5635  0.5092            0.1337
+                       1.0         0.4410        0.5786  0.4969            0.1487
+vggt_oiavisself_oracle 0.6         0.4501        0.4662  0.4538            0.0000
+                       0.7         0.4271        0.4757  0.4459            0.0000
+                       0.8         0.4257        0.4946  0.4530            0.0120
+                       0.9         0.4330        0.5308  0.4730            0.0650
+                       1.0         0.4410        0.5786  0.4969            0.1487
+vggt_oiavisself_random 0.6         0.4411        0.5689  0.4937            0.1487
+                       0.7         0.4411        0.5724  0.4949            0.1489
+                       0.8         0.4412        0.5750  0.4959            0.1488
+                       0.9         0.4410        0.5770  0.4964            0.1489
+                       1.0         0.4410        0.5786  0.4969            0.1487
+vggt_oracle            0.6         0.4501        0.4662  0.4538            0.0000
+                       0.7         0.4271        0.4757  0.4459            0.0000
+                       0.8         0.4257        0.4946  0.4530            0.0120
+                       0.9         0.4330        0.5308  0.4730            0.0650
+                       1.0         0.4410        0.5786  0.4969            0.1487
+vggt_random            0.6         0.4409        0.5688  0.4936            0.1487
+                       0.7         0.4410        0.5722  0.4948            0.1487
+                       0.8         0.4409        0.5748  0.4957            0.1487
+                       0.9         0.4410        0.5768  0.4964            0.1487
+                       1.0         0.4410        0.5786  0.4969            0.1487
+vggt_reproj            0.6         0.5199        0.4674  0.4892            0.0330
+                       0.7         0.5110        0.4909  0.4975            0.0670
+                       0.8         0.4967        0.5304  0.5094            0.1135
+                       0.9         0.4648        0.5529  0.5014            0.1319
+                       1.0         0.4412        0.5785  0.4970            0.1487
+vggt_reproj_oracle     0.6         0.4505        0.4658  0.4538            0.0000
+                       0.7         0.4274        0.4754  0.4459            0.0000
+                       0.8         0.4260        0.4944  0.4531            0.0120
+                       0.9         0.4332        0.5305  0.4730            0.0650
+                       1.0         0.4412        0.5785  0.4970            0.1487
+vggt_reproj_random     0.6         0.4413        0.5685  0.4936            0.1487
+                       0.7         0.4412        0.5718  0.4947            0.1487
+                       0.8         0.4412        0.5746  0.4957            0.1486
+                       0.9         0.4410        0.5767  0.4963            0.1487
+                       1.0         0.4412        0.5785  0.4970            0.1487
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] courtyard views 3 seed 0: acc@0.8 0.473 comp 0.615  11s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] courtyard views 3 seed 1: acc@0.8 0.088 comp 0.209  17s
+[vggt] delivery_area views 3 seed 0: acc@0.8 0.035 comp 0.049  36s
+[vggt] delivery_area views 3 seed 1: acc@0.8 0.077 comp 0.135  40s
+[vggt] electro views 3 seed 0: acc@0.8 0.149 comp 0.321  51s
+[vggt] electro views 3 seed 1: acc@0.8 0.142 comp 0.259  58s
+[vggt] facade views 3 seed 0: acc@0.8 0.192 comp 0.327  67s
+[vggt] facade views 3 seed 1: acc@0.8 0.047 comp 0.076  73s
+[vggt] kicker views 3 seed 0: acc@0.8 0.576 comp 0.580  78s
+[vggt] kicker views 3 seed 1: acc@0.8 0.377 comp 0.508  85s
+[vggt] meadow views 3 seed 0: acc@0.8 0.317 comp 0.799  93s
+[vggt] meadow views 3 seed 1: acc@0.8 0.189 comp 0.288  102s
+[vggt] pipes views 3 seed 0: acc@0.8 0.241 comp 0.578  109s
+[vggt] pipes views 3 seed 1: acc@0.8 0.046 comp 0.138  119s
+[vggt] playground views 3 seed 0: acc@0.8 0.077 comp 0.329  126s
+[vggt] playground views 3 seed 1: acc@0.8 0.090 comp 0.356  132s
+[vggt] relief views 3 seed 0: acc@0.8 0.160 comp 0.184  141s
+[vggt] relief views 3 seed 1: acc@0.8 0.360 comp 0.293  150s
+[vggt] relief_2 views 3 seed 0: acc@0.8 0.350 comp 0.336  158s
+[vggt] relief_2 views 3 seed 1: acc@0.8 0.015 comp 0.010  176s
+[vggt] terrace views 3 seed 0: acc@0.8 0.323 comp 0.452  186s
+[vggt] terrace views 3 seed 1: acc@0.8 0.004 comp 0.014  210s
+[vggt] terrains views 3 seed 0: acc@0.8 0.368 comp 0.430  217s
+[vggt] terrains views 3 seed 1: acc@0.8 0.000 comp 0.000  233s
+[vggt_reproj] courtyard views 3 seed 0: acc@0.8 0.500 comp 0.620  6s
+[vggt_reproj] courtyard views 3 seed 1: acc@0.8 0.061 comp 0.096  12s
+[vggt_reproj] delivery_area views 3 seed 0: acc@0.8 0.035 comp 0.038  30s
+[vggt_reproj] delivery_area views 3 seed 1: acc@0.8 0.038 comp 0.107  36s
+[vggt_reproj] electro views 3 seed 0: acc@0.8 0.142 comp 0.311  46s
+[vggt_reproj] electro views 3 seed 1: acc@0.8 0.123 comp 0.211  54s
+[vggt_reproj] facade views 3 seed 0: acc@0.8 0.167 comp 0.299  63s
+[vggt_reproj] facade views 3 seed 1: acc@0.8 0.047 comp 0.076  71s
+[vggt_reproj] kicker views 3 seed 0: acc@0.8 0.527 comp 0.544  77s
+[vggt_reproj] kicker views 3 seed 1: acc@0.8 0.354 comp 0.478  84s
+[vggt_reproj] meadow views 3 seed 0: acc@0.8 0.307 comp 0.796  91s
+[vggt_reproj] meadow views 3 seed 1: acc@0.8 0.190 comp 0.288  101s
+[vggt_reproj] pipes views 3 seed 0: acc@0.8 0.264 comp 0.628  108s
+[vggt_reproj] pipes views 3 seed 1: acc@0.8 0.046 comp 0.113  117s
+[vggt_reproj] playground views 3 seed 0: acc@0.8 0.077 comp 0.324  127s
+[vggt_reproj] playground views 3 seed 1: acc@0.8 0.089 comp 0.351  135s
+[vggt_reproj] relief views 3 seed 0: acc@0.8 0.199 comp 0.239  144s
+[vggt_reproj] relief views 3 seed 1: acc@0.8 0.338 comp 0.297  157s
+[vggt_reproj] relief_2 views 3 seed 0: acc@0.8 0.344 comp 0.361  168s
+[vggt_reproj] relief_2 views 3 seed 1: acc@0.8 0.014 comp 0.009  190s
+[vggt_reproj] terrace views 3 seed 0: acc@0.8 0.347 comp 0.476  198s
+[vggt_reproj] terrace views 3 seed 1: acc@0.8 0.000 comp 0.001  218s
+[vggt_reproj] terrains views 3 seed 0: acc@0.8 0.364 comp 0.429  224s
+[vggt_reproj] terrains views 3 seed 1: acc@0.8 0.000 comp 0.000  237s
+[vggt_oiavisself] head from /home/hallu/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)
+[vggt_oiavisself] courtyard views 3 seed 0: acc@0.8 0.503 comp 0.637  7s
+[vggt_oiavisself] courtyard views 3 seed 1: acc@0.8 0.063 comp 0.119  15s
+[vggt_oiavisself] delivery_area views 3 seed 0: acc@0.8 0.039 comp 0.049  30s
+[vggt_oiavisself] delivery_area views 3 seed 1: acc@0.8 0.066 comp 0.138  34s
+[vggt_oiavisself] electro views 3 seed 0: acc@0.8 0.153 comp 0.320  48s
+[vggt_oiavisself] electro views 3 seed 1: acc@0.8 0.137 comp 0.249  56s
+[vggt_oiavisself] facade views 3 seed 0: acc@0.8 0.186 comp 0.319  68s
+[vggt_oiavisself] facade views 3 seed 1: acc@0.8 0.056 comp 0.082  78s
+[vggt_oiavisself] kicker views 3 seed 0: acc@0.8 0.560 comp 0.568  85s
+[vggt_oiavisself] kicker views 3 seed 1: acc@0.8 0.326 comp 0.437  90s
+[vggt_oiavisself] meadow views 3 seed 0: acc@0.8 0.316 comp 0.799  98s
+[vggt_oiavisself] meadow views 3 seed 1: acc@0.8 0.190 comp 0.290  108s
+[vggt_oiavisself] pipes views 3 seed 0: acc@0.8 0.242 comp 0.582  114s
+[vggt_oiavisself] pipes views 3 seed 1: acc@0.8 0.047 comp 0.132  123s
+[vggt_oiavisself] playground views 3 seed 0: acc@0.8 0.074 comp 0.312  132s
+[vggt_oiavisself] playground views 3 seed 1: acc@0.8 0.089 comp 0.353  136s
+[vggt_oiavisself] relief views 3 seed 0: acc@0.8 0.191 comp 0.233  148s
+[vggt_oiavisself] relief views 3 seed 1: acc@0.8 0.383 comp 0.300  161s
+[vggt_oiavisself] relief_2 views 3 seed 0: acc@0.8 0.344 comp 0.348  167s
+[vggt_oiavisself] relief_2 views 3 seed 1: acc@0.8 0.014 comp 0.008  184s
+[vggt_oiavisself] terrace views 3 seed 0: acc@0.8 0.345 comp 0.477  189s
+[vggt_oiavisself] terrace views 3 seed 1: acc@0.8 0.001 comp 0.002  210s
+[vggt_oiavisself] terrains views 3 seed 0: acc@0.8 0.335 comp 0.415  218s
+[vggt_oiavisself] terrains views 3 seed 1: acc@0.8 0.000 comp 0.000  232s
+                                 accuracy  completeness      f1  single_view_kept
+model                  coverage                                                  
+vggt                   0.6         0.2119        0.2618  0.2247            0.0344
+                       0.7         0.2032        0.2845  0.2277            0.0374
+                       0.8         0.1956        0.3037  0.2285            0.0375
+                       0.9         0.1860        0.3160  0.2247            0.0367
+                       1.0         0.1757        0.3227  0.2181            0.0356
+vggt_oiavisself        0.6         0.2138        0.2625  0.2266            0.0114
+                       0.7         0.2029        0.2803  0.2264            0.0168
+                       0.8         0.1942        0.2987  0.2263            0.0236
+                       0.9         0.1861        0.3124  0.2240            0.0292
+                       1.0         0.1757        0.3227  0.2181            0.0356
+vggt_oiavisself_oracle 0.6         0.1749        0.2684  0.2038            0.0000
+                       0.7         0.1751        0.2841  0.2090            0.0000
+                       0.8         0.1736        0.2924  0.2100            0.0010
+                       0.9         0.1715        0.3017  0.2102            0.0061
+                       1.0         0.1757        0.3227  0.2181            0.0356
+vggt_oiavisself_random 0.6         0.1755        0.3043  0.2140            0.0355
+                       0.7         0.1755        0.3106  0.2154            0.0356
+                       0.8         0.1755        0.3156  0.2165            0.0356
+                       0.9         0.1756        0.3196  0.2174            0.0356
+                       1.0         0.1757        0.3227  0.2181            0.0356
+vggt_oracle            0.6         0.1749        0.2684  0.2038            0.0000
+                       0.7         0.1751        0.2841  0.2090            0.0000
+                       0.8         0.1736        0.2924  0.2100            0.0010
+                       0.9         0.1715        0.3017  0.2102            0.0061
+                       1.0         0.1757        0.3227  0.2181            0.0356
+vggt_random            0.6         0.1755        0.3043  0.2139            0.0356
+                       0.7         0.1756        0.3109  0.2155            0.0356
+                       0.8         0.1757        0.3157  0.2166            0.0356
+                       0.9         0.1757        0.3195  0.2175            0.0356
+                       1.0         0.1757        0.3227  0.2181            0.0356
+vggt_reproj            0.6         0.2056        0.2703  0.2264            0.0091
+                       0.7         0.1950        0.2798  0.2221            0.0153
+                       0.8         0.1906        0.2954  0.2231            0.0233
+                       0.9         0.1831        0.3072  0.2200            0.0286
+                       1.0         0.1760        0.3233  0.2186            0.0356
+vggt_reproj_oracle     0.6         0.1752        0.2692  0.2041            0.0000
+                       0.7         0.1753        0.2847  0.2094            0.0000
+                       0.8         0.1738        0.2928  0.2103            0.0010
+                       0.9         0.1718        0.3022  0.2106            0.0061
+                       1.0         0.1760        0.3233  0.2186            0.0356
+vggt_reproj_random     0.6         0.1760        0.3048  0.2146            0.0355
+                       0.7         0.1760        0.3113  0.2160            0.0356
+                       0.8         0.1759        0.3164  0.2171            0.0356
+                       0.9         0.1759        0.3203  0.2179            0.0356
+                       1.0         0.1760        0.3233  0.2186            0.0356
+== P15_down3_vggt_DONE Mon Nov  9 10:20:12 UTC 2026
