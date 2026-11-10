@@ -70,6 +70,20 @@ def observed_flags(gt_pts, src_view, in_views, depths_all, Ks, Es, tol=0.03):
     return obs
 
 
+def oneside_views(Es, n, seed, pool=12):
+    """One-sided capture (P16, Gate 16): the n input views are spread over the `pool` rig views at one end of the
+    rig's main axis (first principal axis of the 49 camera centres); seed 0 takes one end, seed 1 the other. Much
+    more of the object faces away from every input view than with the spread selection."""
+    C = np.stack([-E[:3, :3].T @ E[:3, 3] for E in Es])
+    Cc = C - C.mean(0)
+    axis = np.linalg.svd(Cc, full_matrices=False)[2][0]
+    order = np.argsort(Cc @ axis)
+    block = order[:pool] if int(seed) % 2 == 0 else order[::-1][:pool]
+    block = np.sort(block)
+    pos = np.round(np.linspace(0, pool - 1, n)).astype(int)
+    return sorted(int(v) for v in block[pos])
+
+
 def hole_rate(gt_pts, src_view, in_views, depths_all, Ks, Es, tol=0.03):
     """Validity check of the observed test (P14, Gate 12). The depth test calls a ground-truth point observed only
     where an input view's own ground-truth depth exists; a hole in that depth (sparse MVS on CO3Dv2) would label a
@@ -139,6 +153,8 @@ def main():
                     help="cams: similarity on camera centres (P12/P13 protocol); points: similarity on the input pixels "
                          "with ground-truth depth (Gate 12 amendment for CO3Dv2, whose adjacent orbit frames make the "
                          "camera-centre fit degenerate)")
+    ap.add_argument("--view-mode", default="spread", choices=["spread", "oneside"],
+                    help="spread: the vis protocol's view sets; oneside: views from one end of the DTU rig (Gate 16)")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     if a.dtu:
@@ -178,7 +194,7 @@ def main():
                 gt_cache = {sc: (D, Ks, Es, pts, src)}
             D, Ks, Es, gt_pts, src = gt_cache[sc]
             if a.dtu:
-                views = H.vis_views(n, sd)
+                views = oneside_views(Es, n, sd) if a.view_mode == "oneside" else H.vis_views(n, sd)
                 data = H.load_scan(root, sc, views, 3)
             else:
                 if n >= len(D):
@@ -218,7 +234,8 @@ def main():
             cls_unobs = on & ~obs[idx]
             cls_off = ~on
             onsurf_valid = float(on[gvalid].mean()) if gvalid.any() else float("nan")
-            row = dict(model=mname, scan=sc, seed=sd, n_views=n, align=a.align, onsurf_valid=onsurf_valid,
+            row = dict(model=mname, scan=sc, seed=sd, n_views=n, align=a.align, view_mode=a.view_mode,
+                       onsurf_valid=onsurf_valid,
                        n_pred=len(pred), n_gt=len(gt_pts), tau=tau,
                        frac_gt_unobserved=float((~obs).mean()),
                        frac_obs=float(cls_obs.mean()), frac_unobs=float(cls_unobs.mean()), frac_off=float(cls_off.mean()),
