@@ -194,15 +194,16 @@ def preprocess_eth3d(raw_root, out_root, scenes=None, img_w=IMG_W, depth_div=DEP
     return done
 
 
-def covisibility(depth, K, E, tol=0.03):
+def covisibility(depth, K, E, tol=0.03, stride=1):
     """overlap[i, j] = share of valid pixels of frame i whose point lands inside frame j, in front of it, and within
-    tol of frame j's own depth (occlusion-aware). Uses hallu3d.backproject / project on the stored depth grid."""
+    tol of frame j's own depth (occlusion-aware). Uses hallu3d.backproject / project on the stored depth grid.
+    stride > 1 tests every stride-th pixel of frame i in both directions (long video captures)."""
     import hallu3d as H
     N, h, w = depth.shape
     ov = np.zeros((N, N))
     for i in range(N):
-        Pw = H.backproject(depth[i], K[i], E[i])
-        vi = depth[i] > 0
+        Pw = H.backproject(depth[i], K[i], E[i])[::stride, ::stride]
+        vi = (depth[i] > 0)[::stride, ::stride]
         if vi.sum() == 0:
             continue
         for j in range(N):
@@ -211,13 +212,13 @@ def covisibility(depth, K, E, tol=0.03):
             u, v, z = H.project(Pw, K[j], E[j])
             ui, vj = np.round(u).astype(int), np.round(v).astype(int)
             ok = vi & (z > 0) & (ui >= 0) & (ui < w) & (vj >= 0) & (vj < h)
-            dj = np.zeros((h, w)); dj[ok] = depth[j][vj[ok], ui[ok]]
+            dj = np.zeros(ok.shape); dj[ok] = depth[j][vj[ok], ui[ok]]
             ok &= dj > 0
             ov[i, j] = (ok & (np.abs(dj - z) / np.maximum(dj, 1e-9) < tol)).sum() / vi.sum()
     return ov
 
 
-def reorder_by_covisibility(prep_root, n_views=10, scenes=None, verbose=True):
+def reorder_by_covisibility(prep_root, n_views=10, scenes=None, verbose=True, stride=1):
     """Store the frames of every scene so that the first n_views are a reference frame and the frames that overlap
     with it most; the benchmark then takes them with view_mode "adjacent". ETH3D captures walk around large scenes, so
     frames spread evenly over the capture share little surface and a hidden region would be seen by one or two of
@@ -231,7 +232,7 @@ def reorder_by_covisibility(prep_root, n_views=10, scenes=None, verbose=True):
         m = dict(np.load(mp))
         if "covis_order" in m:
             out[scene] = m["covis_order"].tolist(); continue
-        ov = covisibility(m["depth"], m["K_dep"], m["E"])
+        ov = covisibility(m["depth"], m["K_dep"], m["E"], stride=stride)
         sym = 0.5 * (ov + ov.T)
         score = np.sort(sym, axis=1)[:, ::-1][:, : n_views - 1].sum(1)
         ref = int(np.argmax(score))
@@ -255,10 +256,11 @@ if __name__ == "__main__":
     ap.add_argument("out_root", nargs="?", default=None)
     ap.add_argument("--scenes", default=None)
     ap.add_argument("--reorder", action="store_true", help="order the frames of each preprocessed scene by co-visibility")
+    ap.add_argument("--stride", type=int, default=1, help="pixel stride of the co-visibility test (--reorder)")
     a = ap.parse_args()
     sc = a.scenes.split(",") if a.scenes else None
     if a.reorder:
         sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-        reorder_by_covisibility(a.raw_root, scenes=sc)
+        reorder_by_covisibility(a.raw_root, scenes=sc, stride=a.stride)
     else:
         print(preprocess_eth3d(a.raw_root, a.out_root, sc))
