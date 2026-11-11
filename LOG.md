@@ -40,6 +40,11 @@
   - **Reading.** On a third real dataset of a different kind (handheld indoor video, sensor depth) the claim holds for the two backbones whose native confidence is weakest there (VGGT 0.54 to 0.61, DA3 0.66 to 0.71) and not for Pi3X, whose native confidence is already at 0.81 to 0.82 and matches the head (0.79 to 0.84). Over DTU, ETH3D and TUM RGB-D the claim holds in 19 of 28 qualifying cells; Pi3X holds on DTU only. CO3Dv2 stays at 1 of 9.
   - **Cost.** None: Kaggle GPUs, about 55 minutes per kernel. The H200 was not resumed (balance 869.75 INR).
 
+### Novel-view test: pipeline pilot (not a gate, not scored)
+
+- **What.** `scripts/nvs_eval.py`: the predicted points of the N input views, aligned to the rig on the input camera centres, start Gaussian splatting in four variants that differ only in the point set (all points; without the 20% with the lowest native confidence; without the 20% with the lowest support score; without a random 20%); identical optimisation on the input images (2000 steps, no densification); eight rig views that are not inputs are rendered and scored (PSNR, SSIM, LPIPS on the full image; PSNR and LPIPS on the pixels all four variants cover).
+- **Pilot, declared before it runs.** VGGT, DTU benchmark scans 3, 5 and 17, seed 0, 3 and 6 views, on a Kaggle GPU (`scripts/kaggle_p19_nvs.py`). Its only purpose is to check that the pipeline works (the rasterizer builds, the renders of the input views match the photographs). Its numbers are exploration, are not counted in any gate, and those three scans are excluded from the gate that follows; the gate, its rule and its settings are written here before the full run.
+
 ## 2026-11-09
 
 ### Seventh and eighth passes: real occlusion on three real datasets, capacity, three-view fusion; paper rewritten
