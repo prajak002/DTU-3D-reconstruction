@@ -1,0 +1,5 @@
+backbone,n_views,frac_gt_unobserved,gain_head,gain_native,gain_farthest,gain_random,gain_oracle
+pi3x,3,0.1122,0.1939,0.1103,0.3483,0.2839,0.6849
+pi3x,5,0.0533,0.1739,0.0575,0.6828,0.2135,0.7272
+vggt,3,0.1121,0.2062,0.1792,0.3483,0.284,0.6848
+vggt,5,0.0532,0.1684,0.1965,0.6827,0.2136,0.7271

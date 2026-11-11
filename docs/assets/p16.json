@@ -1,0 +1,379 @@
+{
+ "gate15": {
+  "vggt:3": {
+   "head": 0.2062,
+   "native": 0.1792,
+   "random": 0.284,
+   "farthest": 0.3483,
+   "oracle": 0.6848,
+   "unseen": 0.1121,
+   "head_native": [
+    0.027,
+    0.59377
+   ],
+   "head_random": [
+    -0.0777,
+    0.01345
+   ],
+   "head_farthest": [
+    -0.1421,
+    0.00115
+   ],
+   "passes": false,
+   "n_scans": 18
+  },
+  "vggt:5": {
+   "head": 0.1684,
+   "native": 0.1965,
+   "random": 0.2136,
+   "farthest": 0.6827,
+   "oracle": 0.7271,
+   "unseen": 0.0532,
+   "head_native": [
+    -0.0282,
+    0.61747
+   ],
+   "head_random": [
+    -0.0452,
+    0.12289
+   ],
+   "head_farthest": [
+    -0.5143,
+    5e-05
+   ],
+   "passes": false,
+   "n_scans": 18
+  },
+  "pi3x:3": {
+   "head": 0.1939,
+   "native": 0.1103,
+   "random": 0.2839,
+   "farthest": 0.3483,
+   "oracle": 0.6849,
+   "unseen": 0.1122,
+   "head_native": [
+    0.0836,
+    0.00785
+   ],
+   "head_random": [
+    -0.0901,
+    0.01235
+   ],
+   "head_farthest": [
+    -0.1544,
+    0.0002
+   ],
+   "passes": false,
+   "n_scans": 18
+  },
+  "pi3x:5": {
+   "head": 0.1739,
+   "native": 0.0575,
+   "random": 0.2135,
+   "farthest": 0.6828,
+   "oracle": 0.7272,
+   "unseen": 0.0533,
+   "head_native": [
+    0.1164,
+    0.0027
+   ],
+   "head_random": [
+    -0.0396,
+    0.22129
+   ],
+   "head_farthest": [
+    -0.5088,
+    5e-05
+   ],
+   "passes": false,
+   "n_scans": 18
+  },
+  "pi3:3": {
+   "head": 0.2095,
+   "native": 0.1986,
+   "random": 0.284,
+   "farthest": 0.3483,
+   "oracle": 0.6848,
+   "unseen": 0.1121,
+   "head_native": [
+    0.0109,
+    0.76621
+   ],
+   "head_random": [
+    -0.0745,
+    0.0201
+   ],
+   "head_farthest": [
+    -0.1388,
+    0.00015
+   ],
+   "passes": false,
+   "n_scans": 18
+  },
+  "pi3:5": {
+   "head": 0.1451,
+   "native": 0.0825,
+   "random": 0.2136,
+   "farthest": 0.6827,
+   "oracle": 0.7271,
+   "unseen": 0.0532,
+   "head_native": [
+    0.0626,
+    0.0776
+   ],
+   "head_random": [
+    -0.0684,
+    0.04685
+   ],
+   "head_farthest": [
+    -0.5375,
+    5e-05
+   ],
+   "passes": false,
+   "n_scans": 18
+  },
+  "da3:3": {
+   "head": 0.1222,
+   "native": 0.093,
+   "random": 0.2839,
+   "farthest": 0.3483,
+   "oracle": 0.6849,
+   "unseen": 0.1122,
+   "head_native": [
+    0.0292,
+    0.21404
+   ],
+   "head_random": [
+    -0.1618,
+    5e-05
+   ],
+   "head_farthest": [
+    -0.2261,
+    5e-05
+   ],
+   "passes": false,
+   "n_scans": 18
+  },
+  "da3:5": {
+   "head": 0.1435,
+   "native": 0.0544,
+   "random": 0.2135,
+   "farthest": 0.6828,
+   "oracle": 0.7272,
+   "unseen": 0.0533,
+   "head_native": [
+    0.0891,
+    0.00485
+   ],
+   "head_random": [
+    -0.07,
+    0.0345
+   ],
+   "head_farthest": [
+    -0.5392,
+    5e-05
+   ],
+   "passes": false,
+   "n_scans": 18
+  }
+ },
+ "gate15_total": {
+  "cells": 8,
+  "pass_cells": 0,
+  "verdict": "fails"
+ },
+ "gate16": {
+  "vggt:3": {
+   "share": 0.01504,
+   "spread_share": 0.01349,
+   "ratio": 1.11,
+   "native": 0.7569,
+   "head": 0.7879,
+   "diff": [
+    0.031,
+    0.0342
+   ],
+   "holds": true
+  },
+  "vggt:5": {
+   "share": 0.00684,
+   "spread_share": 0.00815,
+   "ratio": 0.84,
+   "native": 0.7972,
+   "head": 0.8608,
+   "diff": [
+    0.0635,
+    0.00015
+   ],
+   "holds": true
+  },
+  "pi3x:3": {
+   "share": 0.01064,
+   "spread_share": 0.01089,
+   "ratio": 0.98,
+   "native": 0.6951,
+   "head": 0.7594,
+   "diff": [
+    0.0643,
+    0.00845
+   ],
+   "holds": true
+  },
+  "pi3x:5": {
+   "share": 0.01102,
+   "spread_share": 0.00528,
+   "ratio": 2.09,
+   "native": 0.6634,
+   "head": 0.7491,
+   "diff": [
+    0.0857,
+    0.0006
+   ],
+   "holds": true
+  },
+  "pi3:3": {
+   "share": 0.01404,
+   "spread_share": 0.01143,
+   "ratio": 1.23,
+   "native": 0.6259,
+   "head": 0.7134,
+   "diff": [
+    0.0875,
+    0.002
+   ],
+   "holds": true
+  },
+  "pi3:5": {
+   "share": 0.01576,
+   "spread_share": 0.00637,
+   "ratio": 2.47,
+   "native": 0.6497,
+   "head": 0.7857,
+   "diff": [
+    0.136,
+    5e-05
+   ],
+   "holds": true
+  },
+  "da3:3": {
+   "share": 0.01673,
+   "spread_share": 0.017,
+   "ratio": 0.98,
+   "native": 0.5506,
+   "head": 0.7227,
+   "diff": [
+    0.1722,
+    5e-05
+   ],
+   "holds": true
+  },
+  "da3:5": {
+   "share": 0.00771,
+   "spread_share": 0.00691,
+   "ratio": 1.12,
+   "native": 0.5933,
+   "head": 0.7502,
+   "diff": [
+    0.1569,
+    5e-05
+   ],
+   "holds": true
+  }
+ },
+ "gate16_total": {
+  "cells": 8,
+  "holds": 8,
+  "min_ratio": 0.84,
+  "verdict": "partial"
+ },
+ "gate17": {
+  "vggt:3": {
+   "hole_rate": 0.081,
+   "onsurf": 0.6991,
+   "share": 0.0373,
+   "qualifies": true,
+   "native": 0.6417,
+   "head": 0.6016,
+   "diff": [
+    -0.0401,
+    0.33688
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "vggt:5": {
+   "hole_rate": 0.0555,
+   "onsurf": 0.6881,
+   "share": 0.03158,
+   "qualifies": true,
+   "native": 0.6608,
+   "head": 0.6071,
+   "diff": [
+    -0.0536,
+    0.15489
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "vggt:10": {
+   "hole_rate": 0.0342,
+   "onsurf": 0.6744,
+   "share": 0.02274,
+   "qualifies": true,
+   "native": 0.6762,
+   "head": 0.6111,
+   "diff": [
+    -0.0651,
+    0.10769
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "pi3x:3": {
+   "hole_rate": 0.081,
+   "onsurf": 0.9407,
+   "share": 0.04186,
+   "qualifies": true,
+   "native": 0.5317,
+   "head": 0.5866,
+   "diff": [
+    0.0549,
+    0.17189
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "pi3x:5": {
+   "hole_rate": 0.0555,
+   "onsurf": 0.9512,
+   "share": 0.03283,
+   "qualifies": true,
+   "native": 0.5546,
+   "head": 0.5938,
+   "diff": [
+    0.0392,
+    0.32418
+   ],
+   "holds": false,
+   "n_scenes": 18
+  },
+  "pi3x:10": {
+   "hole_rate": 0.0342,
+   "onsurf": 0.9663,
+   "share": 0.02406,
+   "qualifies": true,
+   "native": 0.6157,
+   "head": 0.6099,
+   "diff": [
+    -0.0058,
+    0.88686
+   ],
+   "holds": false,
+   "n_scenes": 18
+  }
+ },
+ "gate17_total": {
+  "holds": 0,
+  "verdict": "fails"
+ }
+}

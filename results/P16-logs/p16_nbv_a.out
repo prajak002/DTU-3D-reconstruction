@@ -1,0 +1,159 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[vggt_oiavisself] head from /home/hallu/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] scan 3 views 3 seed 0: unseen 0.058  gain head 0.112 native 0.795 far 0.696 rand 0.394 oracle 0.833  3s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] scan 3 views 5 seed 0: unseen 0.010  gain head 0.099 native 0.095 far 0.730 rand 0.181 oracle 0.771  5s
+[vggt] scan 3 views 3 seed 1: unseen 0.028  gain head 0.138 native 0.495 far 0.152 rand 0.231 oracle 0.670  6s
+[vggt] scan 3 views 5 seed 1: unseen 0.021  gain head 0.021 native 0.610 far 0.735 rand 0.213 oracle 0.817  8s
+[vggt] scan 5 views 3 seed 0: unseen 0.061  gain head 0.349 native 0.644 far 0.765 rand 0.419 oracle 0.925  10s
+[vggt] scan 5 views 5 seed 0: unseen 0.011  gain head 0.052 native 0.185 far 0.867 rand 0.183 oracle 0.883  12s
+[vggt] scan 5 views 3 seed 1: unseen 0.028  gain head 0.053 native 0.123 far 0.013 rand 0.236 oracle 0.841  14s
+[vggt] scan 5 views 5 seed 1: unseen 0.026  gain head 0.002 native 0.813 far 0.856 rand 0.226 oracle 0.856  16s
+[vggt] scan 17 views 3 seed 0: unseen 0.046  gain head 0.089 native 0.080 far 0.481 rand 0.381 oracle 0.899  18s
+[vggt] scan 17 views 5 seed 0: unseen 0.019  gain head 0.112 native 0.049 far 0.876 rand 0.249 oracle 0.883  21s
+[vggt] scan 17 views 3 seed 1: unseen 0.077  gain head 0.015 native 0.015 far 0.317 rand 0.223 oracle 0.683  23s
+[vggt] scan 17 views 5 seed 1: unseen 0.060  gain head 0.421 native 0.143 far 0.728 rand 0.218 oracle 0.728  27s
+[vggt] scan 21 views 3 seed 0: unseen 0.115  gain head 0.707 native 0.041 far 0.416 rand 0.332 oracle 0.784  29s
+[vggt] scan 21 views 5 seed 0: unseen 0.040  gain head 0.245 native 0.771 far 0.782 rand 0.260 oracle 0.813  31s
+[vggt] scan 21 views 3 seed 1: unseen 0.071  gain head 0.070 native 0.070 far 0.310 rand 0.274 oracle 0.626  32s
+[vggt] scan 21 views 5 seed 1: unseen 0.047  gain head 0.194 native 0.171 far 0.766 rand 0.241 oracle 0.788  34s
+[vggt] scan 28 views 3 seed 0: unseen 0.232  gain head 0.110 native 0.110 far 0.460 rand 0.317 oracle 0.716  36s
+[vggt] scan 28 views 5 seed 0: unseen 0.078  gain head 0.240 native 0.101 far 0.493 rand 0.207 oracle 0.545  39s
+[vggt] scan 28 views 3 seed 1: unseen 0.133  gain head 0.175 native 0.175 far 0.221 rand 0.216 oracle 0.424  41s
+[vggt] scan 28 views 5 seed 1: unseen 0.078  gain head 0.045 native 0.045 far 0.719 rand 0.188 oracle 0.719  43s
+[vggt] scan 35 views 3 seed 0: unseen 0.099  gain head 0.035 native 0.003 far 0.835 rand 0.353 oracle 0.945  45s
+[vggt] scan 35 views 5 seed 0: unseen 0.024  gain head 0.274 native 0.004 far 0.729 rand 0.157 oracle 0.883  47s
+[vggt] scan 35 views 3 seed 1: unseen 0.053  gain head 0.515 native 0.301 far 0.259 rand 0.216 oracle 0.609  49s
+[vggt] scan 35 views 5 seed 1: unseen 0.038  gain head 0.004 native 0.003 far 0.831 rand 0.203 oracle 0.831  50s
+[vggt] scan 37 views 3 seed 0: unseen 0.241  gain head 0.105 native 0.101 far 0.194 rand 0.259 oracle 0.677  53s
+[vggt] scan 37 views 5 seed 0: unseen 0.091  gain head 0.199 native 0.145 far 0.600 rand 0.216 oracle 0.622  56s
+[vggt] scan 37 views 3 seed 1: unseen 0.188  gain head 0.175 native 0.175 far 0.131 rand 0.222 oracle 0.384  58s
+[vggt] scan 37 views 5 seed 1: unseen 0.117  gain head 0.106 native 0.189 far 0.559 rand 0.189 oracle 0.575  60s
+[vggt] scan 38 views 3 seed 0: unseen 0.127  gain head 0.105 native 0.013 far 0.262 rand 0.251 oracle 0.655  62s
+[vggt] scan 38 views 5 seed 0: unseen 0.049  gain head 0.038 native 0.038 far 0.519 rand 0.190 oracle 0.569  64s
+[vggt] scan 38 views 3 seed 1: unseen 0.093  gain head 0.198 native 0.198 far 0.260 rand 0.203 oracle 0.388  66s
+[vggt] scan 38 views 5 seed 1: unseen 0.067  gain head 0.073 native 0.083 far 0.513 rand 0.191 oracle 0.534  68s
+[vggt] scan 40 views 3 seed 0: unseen 0.203  gain head 0.101 native 0.508 far 0.404 rand 0.300 oracle 0.663  70s
+[vggt] scan 40 views 5 seed 0: unseen 0.084  gain head 0.598 native 0.217 far 0.585 rand 0.187 oracle 0.598  73s
+[vggt] scan 40 views 3 seed 1: unseen 0.121  gain head 0.046 native 0.085 far 0.104 rand 0.178 oracle 0.454  75s
+[vggt] scan 40 views 5 seed 1: unseen 0.091  gain head 0.010 native 0.072 far 0.603 rand 0.169 oracle 0.603  77s
+[vggt] scan 43 views 3 seed 0: unseen 0.119  gain head 0.020 native 0.020 far 0.276 rand 0.250 oracle 0.716  79s
+[vggt] scan 43 views 5 seed 0: unseen 0.056  gain head 0.018 native 0.018 far 0.654 rand 0.206 oracle 0.727  81s
+[vggt] scan 43 views 3 seed 1: unseen 0.078  gain head 0.184 native 0.063 far 0.155 rand 0.193 oracle 0.581  83s
+[vggt] scan 43 views 5 seed 1: unseen 0.063  gain head 0.010 native 0.010 far 0.688 rand 0.187 oracle 0.688  85s
+[vggt] scan 56 views 3 seed 0: unseen 0.161  gain head 0.303 native 0.064 far 0.392 rand 0.330 oracle 0.818  87s
+[vggt] scan 56 views 5 seed 0: unseen 0.059  gain head 0.413 native 0.175 far 0.564 rand 0.239 oracle 0.632  90s
+[vggt] scan 56 views 3 seed 1: unseen 0.079  gain head 0.268 native 0.121 far 0.138 rand 0.250 oracle 0.657  91s
+[vggt] scan 56 views 5 seed 1: unseen 0.056  gain head 0.265 native 0.015 far 0.768 rand 0.241 oracle 0.781  94s
+[vggt] scan 59 views 3 seed 0: unseen 0.168  gain head 0.014 native 0.076 far 0.433 rand 0.301 oracle 0.868  96s
+[vggt] scan 59 views 5 seed 0: unseen 0.064  gain head 0.009 native 0.022 far 0.720 rand 0.210 oracle 0.786  98s
+[vggt] scan 59 views 3 seed 1: unseen 0.092  gain head 0.087 native 0.018 far 0.163 rand 0.186 oracle 0.636  99s
+[vggt] scan 59 views 5 seed 1: unseen 0.073  gain head 0.101 native 0.631 far 0.793 rand 0.193 oracle 0.793  101s
+[vggt] scan 66 views 3 seed 0: unseen 0.152  gain head 0.622 native 0.018 far 0.669 rand 0.357 oracle 0.821  103s
+[vggt] scan 66 views 5 seed 0: unseen 0.037  gain head 0.245 native 0.009 far 0.687 rand 0.225 oracle 0.718  105s
+[vggt] scan 66 views 3 seed 1: unseen 0.076  gain head 0.038 native 0.506 far 0.216 rand 0.273 oracle 0.568  107s
+[vggt] scan 66 views 5 seed 1: unseen 0.045  gain head 0.076 native 0.179 far 0.758 rand 0.253 oracle 0.761  109s
+[vggt] scan 67 views 3 seed 0: unseen 0.138  gain head 0.535 native 0.124 far 0.598 rand 0.358 oracle 0.743  111s
+[vggt] scan 67 views 5 seed 0: unseen 0.043  gain head 0.149 native 0.204 far 0.536 rand 0.191 oracle 0.595  113s
+[vggt] scan 67 views 3 seed 1: unseen 0.065  gain head 0.102 native 0.486 far 0.173 rand 0.225 oracle 0.564  115s
+[vggt] scan 67 views 5 seed 1: unseen 0.047  gain head 0.073 native 0.264 far 0.603 rand 0.221 oracle 0.677  118s
+[vggt] scan 82 views 3 seed 0: unseen 0.236  gain head 0.038 native 0.042 far 0.356 rand 0.287 oracle 0.702  120s
+[vggt] scan 82 views 5 seed 0: unseen 0.108  gain head 0.067 native 0.292 far 0.495 rand 0.230 oracle 0.646  122s
+[vggt] scan 82 views 3 seed 1: unseen 0.170  gain head 0.213 native 0.072 far 0.142 rand 0.228 oracle 0.457  124s
+[vggt] scan 82 views 5 seed 1: unseen 0.108  gain head 0.260 native 0.395 far 0.658 rand 0.223 oracle 0.658  126s
+[vggt] scan 86 views 3 seed 0: unseen 0.098  gain head 0.285 native 0.171 far 0.473 rand 0.330 oracle 0.723  128s
+[vggt] scan 86 views 5 seed 0: unseen 0.037  gain head 0.215 native 0.250 far 0.452 rand 0.211 oracle 0.775  130s
+[vggt] scan 86 views 3 seed 1: unseen 0.070  gain head 0.404 native 0.452 far 0.477 rand 0.350 oracle 0.601  131s
+[vggt] scan 86 views 5 seed 1: unseen 0.025  gain head 0.249 native 0.137 far 0.576 rand 0.228 oracle 0.671  132s
+[vggt] scan 106 views 3 seed 0: unseen 0.110  gain head 0.059 native 0.059 far 0.701 rand 0.352 oracle 0.835  134s
+[vggt] scan 106 views 5 seed 0: unseen 0.029  gain head 0.062 native 0.520 far 0.846 rand 0.209 oracle 0.860  136s
+[vggt] scan 106 views 3 seed 1: unseen 0.066  gain head 0.127 native 0.127 far 0.284 rand 0.312 oracle 0.557  137s
+[vggt] scan 106 views 5 seed 1: unseen 0.030  gain head 0.073 native 0.174 far 0.701 rand 0.253 oracle 0.762  139s
+[vggt] scan 117 views 3 seed 0: unseen 0.140  gain head 0.779 native 0.054 far 0.567 rand 0.375 oracle 0.896  141s
+[vggt] scan 117 views 5 seed 0: unseen 0.045  gain head 0.785 native 0.021 far 0.853 rand 0.229 oracle 0.853  143s
+[vggt] scan 117 views 3 seed 1: unseen 0.045  gain head 0.250 native 0.046 far 0.046 rand 0.259 oracle 0.731  145s
+[vggt] scan 117 views 5 seed 1: unseen 0.041  gain head 0.258 native 0.023 far 0.733 rand 0.270 oracle 0.775  147s
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+[pi3x_oiavisself] head from /home/hallu/checkpoints/pi3x_oiavisself.pt (step 1500, val-auroc 0.996)
+[pi3x] scan 3 views 3 seed 0: unseen 0.058  gain head 0.779 native 0.697 far 0.697 rand 0.394 oracle 0.834  4s
+[pi3x] scan 3 views 5 seed 0: unseen 0.010  gain head 0.120 native 0.120 far 0.731 rand 0.180 oracle 0.771  7s
+[pi3x] scan 3 views 3 seed 1: unseen 0.028  gain head 0.148 native 0.128 far 0.152 rand 0.230 oracle 0.668  9s
+[pi3x] scan 3 views 5 seed 1: unseen 0.021  gain head 0.028 native 0.028 far 0.733 rand 0.212 oracle 0.813  12s
+[pi3x] scan 5 views 3 seed 0: unseen 0.060  gain head 0.023 native 0.013 far 0.763 rand 0.419 oracle 0.925  15s
+[pi3x] scan 5 views 5 seed 0: unseen 0.011  gain head 0.010 native 0.009 far 0.866 rand 0.182 oracle 0.881  17s
+[pi3x] scan 5 views 3 seed 1: unseen 0.028  gain head 0.275 native 0.035 far 0.012 rand 0.236 oracle 0.841  20s
+[pi3x] scan 5 views 5 seed 1: unseen 0.026  gain head 0.022 native 0.022 far 0.855 rand 0.226 oracle 0.855  22s
+[pi3x] scan 17 views 3 seed 0: unseen 0.046  gain head 0.082 native 0.088 far 0.480 rand 0.380 oracle 0.900  24s
+[pi3x] scan 17 views 5 seed 0: unseen 0.020  gain head 0.109 native 0.109 far 0.877 rand 0.248 oracle 0.884  26s
+[pi3x] scan 17 views 3 seed 1: unseen 0.077  gain head 0.393 native 0.393 far 0.319 rand 0.223 oracle 0.685  29s
+[pi3x] scan 17 views 5 seed 1: unseen 0.060  gain head 0.215 native 0.005 far 0.730 rand 0.218 oracle 0.730  32s
+[pi3x] scan 21 views 3 seed 0: unseen 0.115  gain head 0.029 native 0.096 far 0.417 rand 0.332 oracle 0.786  34s
+[pi3x] scan 21 views 5 seed 0: unseen 0.040  gain head 0.243 native 0.069 far 0.783 rand 0.260 oracle 0.816  37s
+[pi3x] scan 21 views 3 seed 1: unseen 0.071  gain head 0.313 native 0.213 far 0.310 rand 0.274 oracle 0.626  39s
+[pi3x] scan 21 views 5 seed 1: unseen 0.047  gain head 0.196 native 0.021 far 0.765 rand 0.241 oracle 0.788  42s
+[pi3x] scan 28 views 3 seed 0: unseen 0.232  gain head 0.072 native 0.009 far 0.459 rand 0.317 oracle 0.716  45s
+[pi3x] scan 28 views 5 seed 0: unseen 0.078  gain head 0.044 native 0.082 far 0.493 rand 0.207 oracle 0.543  47s
+[pi3x] scan 28 views 3 seed 1: unseen 0.133  gain head 0.041 native 0.152 far 0.221 rand 0.216 oracle 0.424  50s
+[pi3x] scan 28 views 5 seed 1: unseen 0.078  gain head 0.045 native 0.026 far 0.719 rand 0.188 oracle 0.719  53s
+[pi3x] scan 35 views 3 seed 0: unseen 0.099  gain head 0.003 native 0.004 far 0.835 rand 0.353 oracle 0.945  56s
+[pi3x] scan 35 views 5 seed 0: unseen 0.024  gain head 0.003 native 0.004 far 0.729 rand 0.157 oracle 0.880  59s
+[pi3x] scan 35 views 3 seed 1: unseen 0.053  gain head 0.423 native 0.202 far 0.261 rand 0.216 oracle 0.607  61s
+[pi3x] scan 35 views 5 seed 1: unseen 0.038  gain head 0.276 native 0.003 far 0.830 rand 0.204 oracle 0.830  64s
+[pi3x] scan 37 views 3 seed 0: unseen 0.241  gain head 0.104 native 0.022 far 0.193 rand 0.259 oracle 0.678  67s
+[pi3x] scan 37 views 5 seed 0: unseen 0.090  gain head 0.105 native 0.010 far 0.602 rand 0.216 oracle 0.624  70s
+[pi3x] scan 37 views 3 seed 1: unseen 0.188  gain head 0.047 native 0.047 far 0.131 rand 0.222 oracle 0.384  72s
+[pi3x] scan 37 views 5 seed 1: unseen 0.116  gain head 0.059 native 0.059 far 0.559 rand 0.189 oracle 0.575  75s
+[pi3x] scan 38 views 3 seed 0: unseen 0.127  gain head 0.013 native 0.013 far 0.263 rand 0.252 oracle 0.655  78s
+[pi3x] scan 38 views 5 seed 0: unseen 0.050  gain head 0.039 native 0.324 far 0.520 rand 0.189 oracle 0.568  81s
+[pi3x] scan 38 views 3 seed 1: unseen 0.094  gain head 0.027 native 0.087 far 0.259 rand 0.203 oracle 0.389  83s
+[pi3x] scan 38 views 5 seed 1: unseen 0.067  gain head 0.070 native 0.059 far 0.514 rand 0.191 oracle 0.536  86s
+[pi3x] scan 40 views 3 seed 0: unseen 0.203  gain head 0.102 native 0.009 far 0.404 rand 0.301 oracle 0.664  89s
+[pi3x] scan 40 views 5 seed 0: unseen 0.085  gain head 0.586 native 0.011 far 0.586 rand 0.188 oracle 0.600  92s
+[pi3x] scan 40 views 3 seed 1: unseen 0.121  gain head 0.029 native 0.029 far 0.103 rand 0.178 oracle 0.456  93s
+[pi3x] scan 40 views 5 seed 1: unseen 0.091  gain head 0.009 native 0.012 far 0.605 rand 0.170 oracle 0.605  97s
+[pi3x] scan 43 views 3 seed 0: unseen 0.120  gain head 0.023 native 0.037 far 0.276 rand 0.249 oracle 0.716  99s
+[pi3x] scan 43 views 5 seed 0: unseen 0.056  gain head 0.017 native 0.018 far 0.652 rand 0.205 oracle 0.725  101s
+[pi3x] scan 43 views 3 seed 1: unseen 0.078  gain head 0.161 native 0.169 far 0.154 rand 0.194 oracle 0.582  103s
+[pi3x] scan 43 views 5 seed 1: unseen 0.063  gain head 0.011 native 0.075 far 0.689 rand 0.187 oracle 0.689  105s
+[pi3x] scan 56 views 3 seed 0: unseen 0.161  gain head 0.034 native 0.012 far 0.391 rand 0.330 oracle 0.819  107s
+[pi3x] scan 56 views 5 seed 0: unseen 0.059  gain head 0.325 native 0.006 far 0.564 rand 0.239 oracle 0.635  109s
+[pi3x] scan 56 views 3 seed 1: unseen 0.079  gain head 0.270 native 0.116 far 0.137 rand 0.251 oracle 0.657  111s
+[pi3x] scan 56 views 5 seed 1: unseen 0.056  gain head 0.012 native 0.041 far 0.767 rand 0.241 oracle 0.783  113s
+[pi3x] scan 59 views 3 seed 0: unseen 0.168  gain head 0.011 native 0.011 far 0.434 rand 0.301 oracle 0.868  115s
+[pi3x] scan 59 views 5 seed 0: unseen 0.064  gain head 0.021 native 0.021 far 0.719 rand 0.210 oracle 0.786  117s
+[pi3x] scan 59 views 3 seed 1: unseen 0.092  gain head 0.087 native 0.018 far 0.164 rand 0.186 oracle 0.636  119s
+[pi3x] scan 59 views 5 seed 1: unseen 0.073  gain head 0.041 native 0.041 far 0.794 rand 0.193 oracle 0.794  121s
+[pi3x] scan 66 views 3 seed 0: unseen 0.152  gain head 0.053 native 0.018 far 0.669 rand 0.357 oracle 0.821  123s
+[pi3x] scan 66 views 5 seed 0: unseen 0.037  gain head 0.464 native 0.019 far 0.685 rand 0.225 oracle 0.716  125s
+[pi3x] scan 66 views 3 seed 1: unseen 0.076  gain head 0.081 native 0.038 far 0.213 rand 0.273 oracle 0.569  126s
+[pi3x] scan 66 views 5 seed 1: unseen 0.045  gain head 0.076 native 0.017 far 0.759 rand 0.253 oracle 0.761  127s
+[pi3x] scan 67 views 3 seed 0: unseen 0.138  gain head 0.596 native 0.056 far 0.599 rand 0.359 oracle 0.743  129s
+[pi3x] scan 67 views 5 seed 0: unseen 0.043  gain head 0.100 native 0.015 far 0.536 rand 0.191 oracle 0.594  131s
+[pi3x] scan 67 views 3 seed 1: unseen 0.065  gain head 0.285 native 0.102 far 0.174 rand 0.226 oracle 0.563  133s
+[pi3x] scan 67 views 5 seed 1: unseen 0.047  gain head 0.232 native 0.050 far 0.603 rand 0.221 oracle 0.676  135s
+[pi3x] scan 82 views 3 seed 0: unseen 0.236  gain head 0.016 native 0.016 far 0.355 rand 0.287 oracle 0.703  137s
+[pi3x] scan 82 views 5 seed 0: unseen 0.108  gain head 0.246 native 0.020 far 0.496 rand 0.229 oracle 0.648  139s
+[pi3x] scan 82 views 3 seed 1: unseen 0.170  gain head 0.071 native 0.071 far 0.143 rand 0.228 oracle 0.456  141s
+[pi3x] scan 82 views 5 seed 1: unseen 0.108  gain head 0.035 native 0.075 far 0.660 rand 0.223 oracle 0.660  143s
+[pi3x] scan 86 views 3 seed 0: unseen 0.098  gain head 0.401 native 0.630 far 0.473 rand 0.330 oracle 0.723  145s
+[pi3x] scan 86 views 5 seed 0: unseen 0.037  gain head 0.452 native 0.048 far 0.452 rand 0.211 oracle 0.775  147s
+[pi3x] scan 86 views 3 seed 1: unseen 0.070  gain head 0.387 native 0.281 far 0.477 rand 0.350 oracle 0.601  148s
+[pi3x] scan 86 views 5 seed 1: unseen 0.025  gain head 0.582 native 0.137 far 0.576 rand 0.228 oracle 0.671  150s
+[pi3x] scan 106 views 3 seed 0: unseen 0.111  gain head 0.740 native 0.014 far 0.701 rand 0.352 oracle 0.835  152s
+[pi3x] scan 106 views 5 seed 0: unseen 0.029  gain head 0.475 native 0.278 far 0.845 rand 0.210 oracle 0.859  155s
+[pi3x] scan 106 views 3 seed 1: unseen 0.066  gain head 0.105 native 0.105 far 0.284 rand 0.312 oracle 0.555  157s
+[pi3x] scan 106 views 5 seed 1: unseen 0.030  gain head 0.129 native 0.035 far 0.702 rand 0.253 oracle 0.763  160s
+[pi3x] scan 117 views 3 seed 0: unseen 0.140  gain head 0.429 native 0.003 far 0.567 rand 0.375 oracle 0.896  162s
+[pi3x] scan 117 views 5 seed 0: unseen 0.045  gain head 0.852 native 0.189 far 0.852 rand 0.229 oracle 0.852  164s
+[pi3x] scan 117 views 3 seed 1: unseen 0.045  gain head 0.330 native 0.037 far 0.046 rand 0.259 oracle 0.731  166s
+[pi3x] scan 117 views 5 seed 1: unseen 0.041  gain head 0.008 native 0.010 far 0.732 rand 0.270 oracle 0.775  168s
+                  frac_gt_unobserved  gain_head  gain_native  gain_farthest  gain_random  gain_oracle
+backbone n_views                                                                                     
+pi3x     3                    0.1122     0.1939       0.1103         0.3483       0.2839       0.6849
+         5                    0.0533     0.1739       0.0575         0.6828       0.2135       0.7272
+vggt     3                    0.1121     0.2062       0.1792         0.3483       0.2840       0.6848
+         5                    0.0532     0.1684       0.1965         0.6827       0.2136       0.7271
+== P16_nbv_a_DONE Wed Nov 11 05:12:51 UTC 2026

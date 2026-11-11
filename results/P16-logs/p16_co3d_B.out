@@ -1,0 +1,239 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] scan apple_189_20393_38136 views 3 seed 0: obs 0.085 unobs 0.0062 off 0.908  auroc obs/unobs 0.621  3s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt] scan apple_189_20393_38136 views 5 seed 0: obs 0.088 unobs 0.0042 off 0.908  auroc obs/unobs 0.657  4s
+[vggt] scan apple_189_20393_38136 views 10 seed 0: obs 0.089 unobs 0.0022 off 0.908  auroc obs/unobs 0.729  6s
+[vggt] scan apple_189_20393_38136 views 3 seed 1: obs 0.085 unobs 0.0051 off 0.910  auroc obs/unobs 0.652  8s
+[vggt] scan apple_189_20393_38136 views 5 seed 1: obs 0.088 unobs 0.0033 off 0.909  auroc obs/unobs 0.749  9s
+[vggt] scan apple_189_20393_38136 views 10 seed 1: obs 0.092 unobs 0.0016 off 0.907  auroc obs/unobs 0.855  12s
+[vggt] scan ball_375_42693_85518 views 3 seed 0: obs 0.067 unobs 0.0059 off 0.927  auroc obs/unobs 0.866  14s
+[vggt] scan ball_375_42693_85518 views 5 seed 0: obs 0.068 unobs 0.0029 off 0.930  auroc obs/unobs 0.859  17s
+[vggt] scan ball_375_42693_85518 views 10 seed 0: obs 0.066 unobs 0.0020 off 0.932  auroc obs/unobs 0.899  20s
+[vggt] scan ball_375_42693_85518 views 3 seed 1: obs 0.078 unobs 0.0058 off 0.916  auroc obs/unobs 0.886  22s
+[vggt] scan ball_375_42693_85518 views 5 seed 1: obs 0.076 unobs 0.0047 off 0.919  auroc obs/unobs 0.899  24s
+[vggt] scan ball_375_42693_85518 views 10 seed 1: obs 0.067 unobs 0.0029 off 0.930  auroc obs/unobs 0.900  27s
+[vggt] scan bench_415_57121_110109 views 3 seed 0: obs 0.071 unobs 0.0123 off 0.917  auroc obs/unobs 0.713  30s
+[vggt] scan bench_415_57121_110109 views 5 seed 0: obs 0.076 unobs 0.0074 off 0.916  auroc obs/unobs 0.746  32s
+[vggt] scan bench_415_57121_110109 views 10 seed 0: obs 0.086 unobs 0.0061 off 0.908  auroc obs/unobs 0.804  34s
+[vggt] scan bench_415_57121_110109 views 3 seed 1: obs 0.073 unobs 0.0241 off 0.903  auroc obs/unobs 0.668  37s
+[vggt] scan bench_415_57121_110109 views 5 seed 1: obs 0.087 unobs 0.0160 off 0.897  auroc obs/unobs 0.683  38s
+[vggt] scan bench_415_57121_110109 views 10 seed 1: obs 0.105 unobs 0.0063 off 0.888  auroc obs/unobs 0.801  42s
+[vggt] scan hydrant_411_56064_108483 views 3 seed 0: obs 0.050 unobs 0.0088 off 0.942  auroc obs/unobs 0.411  45s
+[vggt] scan hydrant_411_56064_108483 views 5 seed 0: obs 0.048 unobs 0.0062 off 0.946  auroc obs/unobs 0.475  48s
+[vggt] scan hydrant_411_56064_108483 views 10 seed 0: obs 0.049 unobs 0.0048 off 0.946  auroc obs/unobs 0.463  53s
+[vggt] scan hydrant_411_56064_108483 views 3 seed 1: obs 0.051 unobs 0.0076 off 0.942  auroc obs/unobs 0.518  56s
+[vggt] scan hydrant_411_56064_108483 views 5 seed 1: obs 0.051 unobs 0.0064 off 0.943  auroc obs/unobs 0.514  60s
+[vggt] scan hydrant_411_56064_108483 views 10 seed 1: obs 0.053 unobs 0.0038 off 0.943  auroc obs/unobs 0.477  66s
+[vggt] scan mouse_377_43416_86289 views 3 seed 0: obs 0.061 unobs 0.0670 off 0.872  auroc obs/unobs 0.804  68s
+[vggt] scan mouse_377_43416_86289 views 5 seed 0: obs 0.065 unobs 0.0605 off 0.875  auroc obs/unobs 0.770  69s
+[vggt] scan mouse_377_43416_86289 views 10 seed 0: obs 0.068 unobs 0.0583 off 0.874  auroc obs/unobs 0.695  74s
+[vggt] scan mouse_377_43416_86289 views 3 seed 1: obs 0.053 unobs 0.0580 off 0.889  auroc obs/unobs 0.755  76s
+[vggt] scan mouse_377_43416_86289 views 5 seed 1: obs 0.058 unobs 0.0542 off 0.888  auroc obs/unobs 0.679  78s
+[vggt] scan mouse_377_43416_86289 views 10 seed 1: obs 0.068 unobs 0.0465 off 0.885  auroc obs/unobs 0.617  80s
+[vggt] scan teddybear_34_1479_4753 views 3 seed 0: obs 0.073 unobs 0.0186 off 0.909  auroc obs/unobs 0.518  85s
+[vggt] scan teddybear_34_1479_4753 views 5 seed 0: obs 0.076 unobs 0.0166 off 0.907  auroc obs/unobs 0.500  88s
+[vggt] scan teddybear_34_1479_4753 views 10 seed 0: obs 0.077 unobs 0.0127 off 0.911  auroc obs/unobs 0.629  94s
+[vggt] scan teddybear_34_1479_4753 views 3 seed 1: obs 0.072 unobs 0.0168 off 0.911  auroc obs/unobs 0.578  96s
+[vggt] scan teddybear_34_1479_4753 views 5 seed 1: obs 0.076 unobs 0.0136 off 0.910  auroc obs/unobs 0.638  99s
+[vggt] scan teddybear_34_1479_4753 views 10 seed 1: obs 0.082 unobs 0.0111 off 0.907  auroc obs/unobs 0.710  104s
+[vggt] scan toytrain_399_51323_100753 views 3 seed 0: obs 0.107 unobs 0.2072 off 0.686  auroc obs/unobs 0.854  105s
+[vggt] scan toytrain_399_51323_100753 views 5 seed 0: obs 0.117 unobs 0.2018 off 0.681  auroc obs/unobs 0.861  106s
+[vggt] scan toytrain_399_51323_100753 views 10 seed 0: obs 0.133 unobs 0.1174 off 0.750  auroc obs/unobs 0.791  108s
+[vggt] scan toytrain_399_51323_100753 views 3 seed 1: obs 0.131 unobs 0.2600 off 0.609  auroc obs/unobs 0.780  109s
+[vggt] scan toytrain_399_51323_100753 views 5 seed 1: obs 0.157 unobs 0.2576 off 0.586  auroc obs/unobs 0.744  110s
+[vggt] scan toytrain_399_51323_100753 views 10 seed 1: obs 0.211 unobs 0.2301 off 0.559  auroc obs/unobs 0.697  112s
+[vggt] scan toytruck_346_36113_66551 views 3 seed 0: obs 0.157 unobs 0.0233 off 0.820  auroc obs/unobs 0.724  114s
+[vggt] scan toytruck_346_36113_66551 views 5 seed 0: obs 0.166 unobs 0.0191 off 0.815  auroc obs/unobs 0.724  117s
+[vggt] scan toytruck_346_36113_66551 views 10 seed 0: obs 0.170 unobs 0.0095 off 0.820  auroc obs/unobs 0.637  121s
+[vggt] scan toytruck_346_36113_66551 views 3 seed 1: obs 0.161 unobs 0.0193 off 0.819  auroc obs/unobs 0.659  123s
+[vggt] scan toytruck_346_36113_66551 views 5 seed 1: obs 0.174 unobs 0.0108 off 0.815  auroc obs/unobs 0.636  125s
+[vggt] scan toytruck_346_36113_66551 views 10 seed 1: obs 0.158 unobs 0.0074 off 0.835  auroc obs/unobs 0.591  130s
+[vggt] scan vase_380_44863_89631 views 3 seed 0: obs 0.041 unobs 0.0274 off 0.932  auroc obs/unobs 0.681  132s
+[vggt] scan vase_380_44863_89631 views 5 seed 0: obs 0.043 unobs 0.0247 off 0.933  auroc obs/unobs 0.687  135s
+[vggt] scan vase_380_44863_89631 views 10 seed 0: obs 0.049 unobs 0.0253 off 0.926  auroc obs/unobs 0.713  139s
+[vggt] scan vase_380_44863_89631 views 3 seed 1: obs 0.038 unobs 0.0310 off 0.931  auroc obs/unobs 0.663  141s
+[vggt] scan vase_380_44863_89631 views 5 seed 1: obs 0.040 unobs 0.0307 off 0.930  auroc obs/unobs 0.580  144s
+[vggt] scan vase_380_44863_89631 views 10 seed 1: obs 0.049 unobs 0.0221 off 0.929  auroc obs/unobs 0.546  148s
+[vggt_oiavisself_xco3dA] head from /home/hallu/checkpoints/vggt_oiavisself_xco3dA.pt (step 1500, val-auroc nan)
+[vggt_oiavisself_xco3dA] scan apple_189_20393_38136 views 3 seed 0: obs 0.085 unobs 0.0062 off 0.908  auroc obs/unobs 0.678  1s
+[vggt_oiavisself_xco3dA] scan apple_189_20393_38136 views 5 seed 0: obs 0.088 unobs 0.0042 off 0.908  auroc obs/unobs 0.658  2s
+[vggt_oiavisself_xco3dA] scan apple_189_20393_38136 views 10 seed 0: obs 0.089 unobs 0.0022 off 0.908  auroc obs/unobs 0.638  4s
+[vggt_oiavisself_xco3dA] scan apple_189_20393_38136 views 3 seed 1: obs 0.085 unobs 0.0051 off 0.910  auroc obs/unobs 0.694  5s
+[vggt_oiavisself_xco3dA] scan apple_189_20393_38136 views 5 seed 1: obs 0.088 unobs 0.0033 off 0.909  auroc obs/unobs 0.740  6s
+[vggt_oiavisself_xco3dA] scan apple_189_20393_38136 views 10 seed 1: obs 0.092 unobs 0.0016 off 0.907  auroc obs/unobs 0.805  9s
+[vggt_oiavisself_xco3dA] scan ball_375_42693_85518 views 3 seed 0: obs 0.067 unobs 0.0059 off 0.927  auroc obs/unobs 0.801  11s
+[vggt_oiavisself_xco3dA] scan ball_375_42693_85518 views 5 seed 0: obs 0.068 unobs 0.0026 off 0.929  auroc obs/unobs 0.845  13s
+[vggt_oiavisself_xco3dA] scan ball_375_42693_85518 views 10 seed 0: obs 0.067 unobs 0.0019 off 0.932  auroc obs/unobs 0.844  17s
+[vggt_oiavisself_xco3dA] scan ball_375_42693_85518 views 3 seed 1: obs 0.078 unobs 0.0061 off 0.916  auroc obs/unobs 0.793  19s
+[vggt_oiavisself_xco3dA] scan ball_375_42693_85518 views 5 seed 1: obs 0.077 unobs 0.0046 off 0.919  auroc obs/unobs 0.788  21s
+[vggt_oiavisself_xco3dA] scan ball_375_42693_85518 views 10 seed 1: obs 0.067 unobs 0.0031 off 0.930  auroc obs/unobs 0.738  25s
+[vggt_oiavisself_xco3dA] scan bench_415_57121_110109 views 3 seed 0: obs 0.071 unobs 0.0123 off 0.917  auroc obs/unobs 0.435  26s
+[vggt_oiavisself_xco3dA] scan bench_415_57121_110109 views 5 seed 0: obs 0.076 unobs 0.0074 off 0.916  auroc obs/unobs 0.479  28s
+[vggt_oiavisself_xco3dA] scan bench_415_57121_110109 views 10 seed 0: obs 0.086 unobs 0.0061 off 0.908  auroc obs/unobs 0.423  32s
+[vggt_oiavisself_xco3dA] scan bench_415_57121_110109 views 3 seed 1: obs 0.073 unobs 0.0241 off 0.903  auroc obs/unobs 0.421  33s
+[vggt_oiavisself_xco3dA] scan bench_415_57121_110109 views 5 seed 1: obs 0.087 unobs 0.0160 off 0.897  auroc obs/unobs 0.414  36s
+[vggt_oiavisself_xco3dA] scan bench_415_57121_110109 views 10 seed 1: obs 0.105 unobs 0.0063 off 0.888  auroc obs/unobs 0.446  38s
+[vggt_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 3 seed 0: obs 0.050 unobs 0.0088 off 0.942  auroc obs/unobs 0.684  41s
+[vggt_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 5 seed 0: obs 0.048 unobs 0.0062 off 0.946  auroc obs/unobs 0.707  45s
+[vggt_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 10 seed 0: obs 0.049 unobs 0.0048 off 0.946  auroc obs/unobs 0.674  50s
+[vggt_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 3 seed 1: obs 0.051 unobs 0.0077 off 0.942  auroc obs/unobs 0.626  53s
+[vggt_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 5 seed 1: obs 0.051 unobs 0.0065 off 0.943  auroc obs/unobs 0.630  56s
+[vggt_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 10 seed 1: obs 0.053 unobs 0.0038 off 0.943  auroc obs/unobs 0.646  63s
+[vggt_oiavisself_xco3dA] scan mouse_377_43416_86289 views 3 seed 0: obs 0.061 unobs 0.0670 off 0.872  auroc obs/unobs 0.590  65s
+[vggt_oiavisself_xco3dA] scan mouse_377_43416_86289 views 5 seed 0: obs 0.065 unobs 0.0605 off 0.875  auroc obs/unobs 0.618  66s
+[vggt_oiavisself_xco3dA] scan mouse_377_43416_86289 views 10 seed 0: obs 0.068 unobs 0.0583 off 0.874  auroc obs/unobs 0.606  68s
+[vggt_oiavisself_xco3dA] scan mouse_377_43416_86289 views 3 seed 1: obs 0.053 unobs 0.0580 off 0.889  auroc obs/unobs 0.600  71s
+[vggt_oiavisself_xco3dA] scan mouse_377_43416_86289 views 5 seed 1: obs 0.058 unobs 0.0542 off 0.888  auroc obs/unobs 0.637  72s
+[vggt_oiavisself_xco3dA] scan mouse_377_43416_86289 views 10 seed 1: obs 0.068 unobs 0.0465 off 0.885  auroc obs/unobs 0.582  77s
+[vggt_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 3 seed 0: obs 0.073 unobs 0.0191 off 0.908  auroc obs/unobs 0.634  80s
+[vggt_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 5 seed 0: obs 0.077 unobs 0.0169 off 0.906  auroc obs/unobs 0.647  87s
+[vggt_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 10 seed 0: obs 0.077 unobs 0.0129 off 0.911  auroc obs/unobs 0.615  93s
+[vggt_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 3 seed 1: obs 0.072 unobs 0.0168 off 0.911  auroc obs/unobs 0.638  96s
+[vggt_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 5 seed 1: obs 0.076 unobs 0.0140 off 0.909  auroc obs/unobs 0.629  99s
+[vggt_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 10 seed 1: obs 0.082 unobs 0.0115 off 0.906  auroc obs/unobs 0.626  104s
+[vggt_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 3 seed 0: obs 0.107 unobs 0.2072 off 0.686  auroc obs/unobs 0.376  105s
+[vggt_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 5 seed 0: obs 0.117 unobs 0.2018 off 0.681  auroc obs/unobs 0.386  106s
+[vggt_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 10 seed 0: obs 0.133 unobs 0.1174 off 0.750  auroc obs/unobs 0.524  108s
+[vggt_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 3 seed 1: obs 0.131 unobs 0.2600 off 0.609  auroc obs/unobs 0.400  109s
+[vggt_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 5 seed 1: obs 0.157 unobs 0.2576 off 0.586  auroc obs/unobs 0.452  110s
+[vggt_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 10 seed 1: obs 0.211 unobs 0.2301 off 0.559  auroc obs/unobs 0.496  112s
+[vggt_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 3 seed 0: obs 0.156 unobs 0.0230 off 0.821  auroc obs/unobs 0.683  115s
+[vggt_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 5 seed 0: obs 0.166 unobs 0.0187 off 0.816  auroc obs/unobs 0.693  117s
+[vggt_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 10 seed 0: obs 0.170 unobs 0.0093 off 0.820  auroc obs/unobs 0.699  122s
+[vggt_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 3 seed 1: obs 0.160 unobs 0.0194 off 0.820  auroc obs/unobs 0.608  124s
+[vggt_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 5 seed 1: obs 0.174 unobs 0.0107 off 0.815  auroc obs/unobs 0.557  127s
+[vggt_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 10 seed 1: obs 0.158 unobs 0.0072 off 0.835  auroc obs/unobs 0.498  130s
+[vggt_oiavisself_xco3dA] scan vase_380_44863_89631 views 3 seed 0: obs 0.041 unobs 0.0274 off 0.932  auroc obs/unobs 0.651  132s
+[vggt_oiavisself_xco3dA] scan vase_380_44863_89631 views 5 seed 0: obs 0.043 unobs 0.0247 off 0.933  auroc obs/unobs 0.674  135s
+[vggt_oiavisself_xco3dA] scan vase_380_44863_89631 views 10 seed 0: obs 0.049 unobs 0.0253 off 0.926  auroc obs/unobs 0.658  140s
+[vggt_oiavisself_xco3dA] scan vase_380_44863_89631 views 3 seed 1: obs 0.038 unobs 0.0310 off 0.931  auroc obs/unobs 0.649  142s
+[vggt_oiavisself_xco3dA] scan vase_380_44863_89631 views 5 seed 1: obs 0.040 unobs 0.0307 off 0.930  auroc obs/unobs 0.592  144s
+[vggt_oiavisself_xco3dA] scan vase_380_44863_89631 views 10 seed 1: obs 0.049 unobs 0.0221 off 0.929  auroc obs/unobs 0.536  149s
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+[pi3x] scan apple_189_20393_38136 views 3 seed 0: obs 0.084 unobs 0.0065 off 0.910  auroc obs/unobs 0.398  3s
+[pi3x] scan apple_189_20393_38136 views 5 seed 0: obs 0.087 unobs 0.0045 off 0.909  auroc obs/unobs 0.416  5s
+[pi3x] scan apple_189_20393_38136 views 10 seed 0: obs 0.088 unobs 0.0022 off 0.910  auroc obs/unobs 0.583  7s
+[pi3x] scan apple_189_20393_38136 views 3 seed 1: obs 0.083 unobs 0.0055 off 0.911  auroc obs/unobs 0.531  9s
+[pi3x] scan apple_189_20393_38136 views 5 seed 1: obs 0.088 unobs 0.0032 off 0.909  auroc obs/unobs 0.713  11s
+[pi3x] scan apple_189_20393_38136 views 10 seed 1: obs 0.092 unobs 0.0015 off 0.907  auroc obs/unobs 0.818  14s
+[pi3x] scan ball_375_42693_85518 views 3 seed 0: obs 0.151 unobs 0.0090 off 0.840  auroc obs/unobs 0.451  16s
+[pi3x] scan ball_375_42693_85518 views 5 seed 0: obs 0.156 unobs 0.0049 off 0.839  auroc obs/unobs 0.518  18s
+[pi3x] scan ball_375_42693_85518 views 10 seed 0: obs 0.171 unobs 0.0034 off 0.825  auroc obs/unobs 0.687  21s
+[pi3x] scan ball_375_42693_85518 views 3 seed 1: obs 0.169 unobs 0.0134 off 0.818  auroc obs/unobs 0.452  23s
+[pi3x] scan ball_375_42693_85518 views 5 seed 1: obs 0.195 unobs 0.0091 off 0.795  auroc obs/unobs 0.623  25s
+[pi3x] scan ball_375_42693_85518 views 10 seed 1: obs 0.218 unobs 0.0050 off 0.777  auroc obs/unobs 0.870  28s
+[pi3x] scan bench_415_57121_110109 views 3 seed 0: obs 0.069 unobs 0.0117 off 0.919  auroc obs/unobs 0.421  30s
+[pi3x] scan bench_415_57121_110109 views 5 seed 0: obs 0.076 unobs 0.0070 off 0.917  auroc obs/unobs 0.397  32s
+[pi3x] scan bench_415_57121_110109 views 10 seed 0: obs 0.085 unobs 0.0054 off 0.910  auroc obs/unobs 0.465  35s
+[pi3x] scan bench_415_57121_110109 views 3 seed 1: obs 0.072 unobs 0.0243 off 0.903  auroc obs/unobs 0.472  37s
+[pi3x] scan bench_415_57121_110109 views 5 seed 1: obs 0.087 unobs 0.0152 off 0.897  auroc obs/unobs 0.438  39s
+[pi3x] scan bench_415_57121_110109 views 10 seed 1: obs 0.105 unobs 0.0062 off 0.889  auroc obs/unobs 0.491  44s
+[pi3x] scan hydrant_411_56064_108483 views 3 seed 0: obs 0.084 unobs 0.0105 off 0.905  auroc obs/unobs 0.665  46s
+[pi3x] scan hydrant_411_56064_108483 views 5 seed 0: obs 0.086 unobs 0.0082 off 0.905  auroc obs/unobs 0.561  50s
+[pi3x] scan hydrant_411_56064_108483 views 10 seed 0: obs 0.083 unobs 0.0067 off 0.910  auroc obs/unobs 0.673  57s
+[pi3x] scan hydrant_411_56064_108483 views 3 seed 1: obs 0.080 unobs 0.0089 off 0.911  auroc obs/unobs 0.596  59s
+[pi3x] scan hydrant_411_56064_108483 views 5 seed 1: obs 0.084 unobs 0.0074 off 0.909  auroc obs/unobs 0.652  64s
+[pi3x] scan hydrant_411_56064_108483 views 10 seed 1: obs 0.092 unobs 0.0064 off 0.902  auroc obs/unobs 0.676  70s
+[pi3x] scan mouse_377_43416_86289 views 3 seed 0: obs 0.055 unobs 0.0437 off 0.901  auroc obs/unobs 0.746  72s
+[pi3x] scan mouse_377_43416_86289 views 5 seed 0: obs 0.060 unobs 0.0398 off 0.900  auroc obs/unobs 0.730  74s
+[pi3x] scan mouse_377_43416_86289 views 10 seed 0: obs 0.075 unobs 0.0293 off 0.896  auroc obs/unobs 0.794  79s
+[pi3x] scan mouse_377_43416_86289 views 3 seed 1: obs 0.065 unobs 0.0325 off 0.902  auroc obs/unobs 0.713  81s
+[pi3x] scan mouse_377_43416_86289 views 5 seed 1: obs 0.069 unobs 0.0292 off 0.901  auroc obs/unobs 0.750  83s
+[pi3x] scan mouse_377_43416_86289 views 10 seed 1: obs 0.075 unobs 0.0233 off 0.902  auroc obs/unobs 0.799  86s
+[pi3x] scan teddybear_34_1479_4753 views 3 seed 0: obs 0.131 unobs 0.0183 off 0.850  auroc obs/unobs 0.365  91s
+[pi3x] scan teddybear_34_1479_4753 views 5 seed 0: obs 0.143 unobs 0.0143 off 0.843  auroc obs/unobs 0.347  95s
+[pi3x] scan teddybear_34_1479_4753 views 10 seed 0: obs 0.176 unobs 0.0093 off 0.815  auroc obs/unobs 0.280  102s
+[pi3x] scan teddybear_34_1479_4753 views 3 seed 1: obs 0.155 unobs 0.0178 off 0.827  auroc obs/unobs 0.337  104s
+[pi3x] scan teddybear_34_1479_4753 views 5 seed 1: obs 0.165 unobs 0.0132 off 0.822  auroc obs/unobs 0.314  108s
+[pi3x] scan teddybear_34_1479_4753 views 10 seed 1: obs 0.179 unobs 0.0093 off 0.812  auroc obs/unobs 0.289  114s
+[pi3x] scan toytrain_399_51323_100753 views 3 seed 0: obs 0.116 unobs 0.2751 off 0.609  auroc obs/unobs 0.764  115s
+[pi3x] scan toytrain_399_51323_100753 views 5 seed 0: obs 0.117 unobs 0.2237 off 0.659  auroc obs/unobs 0.694  116s
+[pi3x] scan toytrain_399_51323_100753 views 10 seed 0: obs 0.158 unobs 0.1709 off 0.671  auroc obs/unobs 0.576  118s
+[pi3x] scan toytrain_399_51323_100753 views 3 seed 1: obs 0.146 unobs 0.2999 off 0.554  auroc obs/unobs 0.585  119s
+[pi3x] scan toytrain_399_51323_100753 views 5 seed 1: obs 0.168 unobs 0.2932 off 0.538  auroc obs/unobs 0.582  120s
+[pi3x] scan toytrain_399_51323_100753 views 10 seed 1: obs 0.232 unobs 0.2753 off 0.492  auroc obs/unobs 0.564  121s
+[pi3x] scan toytruck_346_36113_66551 views 3 seed 0: obs 0.176 unobs 0.0191 off 0.805  auroc obs/unobs 0.534  125s
+[pi3x] scan toytruck_346_36113_66551 views 5 seed 0: obs 0.191 unobs 0.0163 off 0.792  auroc obs/unobs 0.532  128s
+[pi3x] scan toytruck_346_36113_66551 views 10 seed 0: obs 0.210 unobs 0.0106 off 0.780  auroc obs/unobs 0.505  133s
+[pi3x] scan toytruck_346_36113_66551 views 3 seed 1: obs 0.203 unobs 0.0176 off 0.779  auroc obs/unobs 0.522  136s
+[pi3x] scan toytruck_346_36113_66551 views 5 seed 1: obs 0.217 unobs 0.0107 off 0.773  auroc obs/unobs 0.595  138s
+[pi3x] scan toytruck_346_36113_66551 views 10 seed 1: obs 0.206 unobs 0.0062 off 0.788  auroc obs/unobs 0.688  141s
+[pi3x] scan vase_380_44863_89631 views 3 seed 0: obs 0.097 unobs 0.0358 off 0.868  auroc obs/unobs 0.609  144s
+[pi3x] scan vase_380_44863_89631 views 5 seed 0: obs 0.102 unobs 0.0302 off 0.868  auroc obs/unobs 0.614  146s
+[pi3x] scan vase_380_44863_89631 views 10 seed 0: obs 0.109 unobs 0.0256 off 0.866  auroc obs/unobs 0.680  151s
+[pi3x] scan vase_380_44863_89631 views 3 seed 1: obs 0.086 unobs 0.0434 off 0.870  auroc obs/unobs 0.676  153s
+[pi3x] scan vase_380_44863_89631 views 5 seed 1: obs 0.088 unobs 0.0352 off 0.877  auroc obs/unobs 0.725  156s
+[pi3x] scan vase_380_44863_89631 views 10 seed 1: obs 0.104 unobs 0.0220 off 0.874  auroc obs/unobs 0.755  162s
+[pi3x_oiavisself_xco3dA] head from /home/hallu/checkpoints/pi3x_oiavisself_xco3dA.pt (step 1500, val-auroc nan)
+[pi3x_oiavisself_xco3dA] scan apple_189_20393_38136 views 3 seed 0: obs 0.084 unobs 0.0065 off 0.910  auroc obs/unobs 0.706  2s
+[pi3x_oiavisself_xco3dA] scan apple_189_20393_38136 views 5 seed 0: obs 0.087 unobs 0.0045 off 0.909  auroc obs/unobs 0.710  3s
+[pi3x_oiavisself_xco3dA] scan apple_189_20393_38136 views 10 seed 0: obs 0.088 unobs 0.0022 off 0.910  auroc obs/unobs 0.684  5s
+[pi3x_oiavisself_xco3dA] scan apple_189_20393_38136 views 3 seed 1: obs 0.083 unobs 0.0055 off 0.911  auroc obs/unobs 0.744  6s
+[pi3x_oiavisself_xco3dA] scan apple_189_20393_38136 views 5 seed 1: obs 0.088 unobs 0.0032 off 0.909  auroc obs/unobs 0.763  8s
+[pi3x_oiavisself_xco3dA] scan apple_189_20393_38136 views 10 seed 1: obs 0.092 unobs 0.0015 off 0.907  auroc obs/unobs 0.831  10s
+[pi3x_oiavisself_xco3dA] scan ball_375_42693_85518 views 3 seed 0: obs 0.151 unobs 0.0089 off 0.840  auroc obs/unobs 0.802  12s
+[pi3x_oiavisself_xco3dA] scan ball_375_42693_85518 views 5 seed 0: obs 0.156 unobs 0.0048 off 0.839  auroc obs/unobs 0.888  15s
+[pi3x_oiavisself_xco3dA] scan ball_375_42693_85518 views 10 seed 0: obs 0.171 unobs 0.0034 off 0.826  auroc obs/unobs 0.924  18s
+[pi3x_oiavisself_xco3dA] scan ball_375_42693_85518 views 3 seed 1: obs 0.169 unobs 0.0134 off 0.818  auroc obs/unobs 0.780  20s
+[pi3x_oiavisself_xco3dA] scan ball_375_42693_85518 views 5 seed 1: obs 0.195 unobs 0.0089 off 0.796  auroc obs/unobs 0.827  23s
+[pi3x_oiavisself_xco3dA] scan ball_375_42693_85518 views 10 seed 1: obs 0.218 unobs 0.0049 off 0.778  auroc obs/unobs 0.927  26s
+[pi3x_oiavisself_xco3dA] scan bench_415_57121_110109 views 3 seed 0: obs 0.069 unobs 0.0117 off 0.919  auroc obs/unobs 0.451  28s
+[pi3x_oiavisself_xco3dA] scan bench_415_57121_110109 views 5 seed 0: obs 0.076 unobs 0.0070 off 0.917  auroc obs/unobs 0.492  30s
+[pi3x_oiavisself_xco3dA] scan bench_415_57121_110109 views 10 seed 0: obs 0.085 unobs 0.0054 off 0.910  auroc obs/unobs 0.434  33s
+[pi3x_oiavisself_xco3dA] scan bench_415_57121_110109 views 3 seed 1: obs 0.072 unobs 0.0243 off 0.903  auroc obs/unobs 0.383  35s
+[pi3x_oiavisself_xco3dA] scan bench_415_57121_110109 views 5 seed 1: obs 0.087 unobs 0.0152 off 0.897  auroc obs/unobs 0.394  37s
+[pi3x_oiavisself_xco3dA] scan bench_415_57121_110109 views 10 seed 1: obs 0.105 unobs 0.0062 off 0.889  auroc obs/unobs 0.546  40s
+[pi3x_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 3 seed 0: obs 0.084 unobs 0.0105 off 0.905  auroc obs/unobs 0.675  43s
+[pi3x_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 5 seed 0: obs 0.086 unobs 0.0082 off 0.905  auroc obs/unobs 0.656  46s
+[pi3x_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 10 seed 0: obs 0.083 unobs 0.0066 off 0.910  auroc obs/unobs 0.679  53s
+[pi3x_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 3 seed 1: obs 0.080 unobs 0.0089 off 0.911  auroc obs/unobs 0.602  55s
+[pi3x_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 5 seed 1: obs 0.084 unobs 0.0074 off 0.909  auroc obs/unobs 0.675  58s
+[pi3x_oiavisself_xco3dA] scan hydrant_411_56064_108483 views 10 seed 1: obs 0.092 unobs 0.0064 off 0.902  auroc obs/unobs 0.680  64s
+[pi3x_oiavisself_xco3dA] scan mouse_377_43416_86289 views 3 seed 0: obs 0.055 unobs 0.0437 off 0.901  auroc obs/unobs 0.405  67s
+[pi3x_oiavisself_xco3dA] scan mouse_377_43416_86289 views 5 seed 0: obs 0.060 unobs 0.0398 off 0.900  auroc obs/unobs 0.474  69s
+[pi3x_oiavisself_xco3dA] scan mouse_377_43416_86289 views 10 seed 0: obs 0.075 unobs 0.0293 off 0.896  auroc obs/unobs 0.405  72s
+[pi3x_oiavisself_xco3dA] scan mouse_377_43416_86289 views 3 seed 1: obs 0.065 unobs 0.0325 off 0.902  auroc obs/unobs 0.382  73s
+[pi3x_oiavisself_xco3dA] scan mouse_377_43416_86289 views 5 seed 1: obs 0.069 unobs 0.0292 off 0.901  auroc obs/unobs 0.367  76s
+[pi3x_oiavisself_xco3dA] scan mouse_377_43416_86289 views 10 seed 1: obs 0.075 unobs 0.0233 off 0.902  auroc obs/unobs 0.417  80s
+[pi3x_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 3 seed 0: obs 0.131 unobs 0.0184 off 0.850  auroc obs/unobs 0.535  85s
+[pi3x_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 5 seed 0: obs 0.143 unobs 0.0144 off 0.843  auroc obs/unobs 0.501  91s
+[pi3x_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 10 seed 0: obs 0.176 unobs 0.0089 off 0.815  auroc obs/unobs 0.419  100s
+[pi3x_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 3 seed 1: obs 0.155 unobs 0.0178 off 0.827  auroc obs/unobs 0.539  103s
+[pi3x_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 5 seed 1: obs 0.165 unobs 0.0129 off 0.822  auroc obs/unobs 0.483  106s
+[pi3x_oiavisself_xco3dA] scan teddybear_34_1479_4753 views 10 seed 1: obs 0.179 unobs 0.0089 off 0.812  auroc obs/unobs 0.425  113s
+[pi3x_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 3 seed 0: obs 0.116 unobs 0.2751 off 0.609  auroc obs/unobs 0.680  114s
+[pi3x_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 5 seed 0: obs 0.117 unobs 0.2237 off 0.659  auroc obs/unobs 0.509  115s
+[pi3x_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 10 seed 0: obs 0.158 unobs 0.1709 off 0.671  auroc obs/unobs 0.479  117s
+[pi3x_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 3 seed 1: obs 0.146 unobs 0.2999 off 0.554  auroc obs/unobs 0.495  118s
+[pi3x_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 5 seed 1: obs 0.168 unobs 0.2932 off 0.538  auroc obs/unobs 0.462  120s
+[pi3x_oiavisself_xco3dA] scan toytrain_399_51323_100753 views 10 seed 1: obs 0.232 unobs 0.2753 off 0.492  auroc obs/unobs 0.476  122s
+[pi3x_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 3 seed 0: obs 0.176 unobs 0.0195 off 0.805  auroc obs/unobs 0.510  124s
+[pi3x_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 5 seed 0: obs 0.191 unobs 0.0167 off 0.792  auroc obs/unobs 0.473  128s
+[pi3x_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 10 seed 0: obs 0.209 unobs 0.0107 off 0.780  auroc obs/unobs 0.360  133s
+[pi3x_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 3 seed 1: obs 0.203 unobs 0.0175 off 0.779  auroc obs/unobs 0.424  135s
+[pi3x_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 5 seed 1: obs 0.217 unobs 0.0107 off 0.773  auroc obs/unobs 0.364  138s
+[pi3x_oiavisself_xco3dA] scan toytruck_346_36113_66551 views 10 seed 1: obs 0.206 unobs 0.0062 off 0.788  auroc obs/unobs 0.339  143s
+[pi3x_oiavisself_xco3dA] scan vase_380_44863_89631 views 3 seed 0: obs 0.097 unobs 0.0358 off 0.868  auroc obs/unobs 0.485  145s
+[pi3x_oiavisself_xco3dA] scan vase_380_44863_89631 views 5 seed 0: obs 0.102 unobs 0.0302 off 0.868  auroc obs/unobs 0.477  148s
+[pi3x_oiavisself_xco3dA] scan vase_380_44863_89631 views 10 seed 0: obs 0.109 unobs 0.0256 off 0.866  auroc obs/unobs 0.495  153s
+[pi3x_oiavisself_xco3dA] scan vase_380_44863_89631 views 3 seed 1: obs 0.086 unobs 0.0434 off 0.870  auroc obs/unobs 0.574  155s
+[pi3x_oiavisself_xco3dA] scan vase_380_44863_89631 views 5 seed 1: obs 0.088 unobs 0.0352 off 0.877  auroc obs/unobs 0.534  158s
+[pi3x_oiavisself_xco3dA] scan vase_380_44863_89631 views 10 seed 1: obs 0.104 unobs 0.0220 off 0.874  auroc obs/unobs 0.547  163s
+                                frac_obs  frac_unobs  frac_off  frac_gt_unobserved  auroc_obs_unobs  auroc_obs_off
+model                  n_views                                                                                    
+pi3x                   3          0.1125      0.0496    0.8379              0.2869           0.5465         0.7156
+                       5          0.1211      0.0425    0.8364              0.2593           0.5666         0.7039
+                       10         0.1365      0.0344    0.8292              0.2174           0.6219         0.6931
+pi3x_oiavisself_xco3dA 3          0.1125      0.0496    0.8379              0.2867           0.5650         0.5987
+                       5          0.1211      0.0425    0.8364              0.2592           0.5583         0.5751
+                       10         0.1365      0.0343    0.8292              0.2173           0.5592         0.5492
+vggt                   3          0.0808      0.0447    0.8745              0.2867           0.6862         0.8680
+                       5          0.0864      0.0412    0.8725              0.2592           0.6890         0.8732
+                       10         0.0929      0.0317    0.8755              0.2173           0.6975         0.8684
+vggt_oiavisself_xco3dA 3          0.0807      0.0447    0.8746              0.2867           0.6089         0.6111
+                       5          0.0864      0.0412    0.8724              0.2592           0.6193         0.6328
+                       10         0.0929      0.0317    0.8754              0.2173           0.6142         0.6451
+== P16_co3d_B_DONE Tue Nov 10 20:52:22 UTC 2026

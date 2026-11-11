@@ -1,0 +1,662 @@
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[pi3_oiavisself] head from /home/hallu/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)
+[pi3] scan 3 views 3 seed 0: unseen 0.058  gain head 0.777 native 0.696 far 0.696 rand 0.394 oracle 0.833  3s
+[pi3] scan 3 views 5 seed 0: unseen 0.010  gain head 0.118 native 0.099 far 0.730 rand 0.181 oracle 0.771  5s
+[pi3] scan 3 views 3 seed 1: unseen 0.028  gain head 0.138 native 0.138 far 0.152 rand 0.231 oracle 0.670  7s
+[pi3] scan 3 views 5 seed 1: unseen 0.021  gain head 0.029 native 0.029 far 0.735 rand 0.213 oracle 0.817  9s
+[pi3] scan 5 views 3 seed 0: unseen 0.061  gain head 0.118 native 0.022 far 0.765 rand 0.419 oracle 0.925  12s
+[pi3] scan 5 views 5 seed 0: unseen 0.011  gain head 0.027 native 0.014 far 0.867 rand 0.183 oracle 0.883  14s
+[pi3] scan 5 views 3 seed 1: unseen 0.028  gain head 0.450 native 0.273 far 0.013 rand 0.236 oracle 0.841  15s
+[pi3] scan 5 views 5 seed 1: unseen 0.026  gain head 0.002 native 0.196 far 0.856 rand 0.226 oracle 0.856  17s
+[pi3] scan 17 views 3 seed 0: unseen 0.046  gain head 0.089 native 0.890 far 0.481 rand 0.381 oracle 0.899  19s
+[pi3] scan 17 views 5 seed 0: unseen 0.019  gain head 0.122 native 0.218 far 0.876 rand 0.249 oracle 0.883  21s
+[pi3] scan 17 views 3 seed 1: unseen 0.077  gain head 0.396 native 0.396 far 0.317 rand 0.223 oracle 0.683  23s
+[pi3] scan 17 views 5 seed 1: unseen 0.060  gain head 0.570 native 0.003 far 0.728 rand 0.218 oracle 0.728  26s
+[pi3] scan 21 views 3 seed 0: unseen 0.115  gain head 0.028 native 0.028 far 0.416 rand 0.332 oracle 0.784  28s
+[pi3] scan 21 views 5 seed 0: unseen 0.040  gain head 0.245 native 0.037 far 0.782 rand 0.260 oracle 0.813  31s
+[pi3] scan 21 views 3 seed 1: unseen 0.071  gain head 0.215 native 0.215 far 0.310 rand 0.274 oracle 0.626  33s
+[pi3] scan 21 views 5 seed 1: unseen 0.047  gain head 0.194 native 0.022 far 0.766 rand 0.241 oracle 0.788  36s
+[pi3] scan 28 views 3 seed 0: unseen 0.232  gain head 0.284 native 0.009 far 0.460 rand 0.317 oracle 0.716  39s
+[pi3] scan 28 views 5 seed 0: unseen 0.078  gain head 0.044 native 0.044 far 0.493 rand 0.207 oracle 0.545  43s
+[pi3] scan 28 views 3 seed 1: unseen 0.133  gain head 0.041 native 0.151 far 0.221 rand 0.216 oracle 0.424  44s
+[pi3] scan 28 views 5 seed 1: unseen 0.078  gain head 0.045 native 0.045 far 0.719 rand 0.188 oracle 0.719  47s
+[pi3] scan 35 views 3 seed 0: unseen 0.099  gain head 0.007 native 0.007 far 0.835 rand 0.353 oracle 0.945  49s
+[pi3] scan 35 views 5 seed 0: unseen 0.024  gain head 0.274 native 0.004 far 0.729 rand 0.157 oracle 0.883  51s
+[pi3] scan 35 views 3 seed 1: unseen 0.053  gain head 0.580 native 0.515 far 0.259 rand 0.216 oracle 0.609  53s
+[pi3] scan 35 views 5 seed 1: unseen 0.038  gain head 0.404 native 0.024 far 0.831 rand 0.203 oracle 0.831  55s
+[pi3] scan 37 views 3 seed 0: unseen 0.241  gain head 0.131 native 0.022 far 0.194 rand 0.259 oracle 0.677  57s
+[pi3] scan 37 views 5 seed 0: unseen 0.091  gain head 0.010 native 0.080 far 0.600 rand 0.216 oracle 0.622  60s
+[pi3] scan 37 views 3 seed 1: unseen 0.188  gain head 0.167 native 0.073 far 0.131 rand 0.222 oracle 0.384  62s
+[pi3] scan 37 views 5 seed 1: unseen 0.117  gain head 0.008 native 0.021 far 0.559 rand 0.189 oracle 0.575  64s
+[pi3] scan 38 views 3 seed 0: unseen 0.127  gain head 0.019 native 0.013 far 0.262 rand 0.251 oracle 0.655  66s
+[pi3] scan 38 views 5 seed 0: unseen 0.049  gain head 0.151 native 0.006 far 0.519 rand 0.190 oracle 0.569  69s
+[pi3] scan 38 views 3 seed 1: unseen 0.093  gain head 0.139 native 0.233 far 0.260 rand 0.203 oracle 0.388  71s
+[pi3] scan 38 views 5 seed 1: unseen 0.067  gain head 0.073 native 0.061 far 0.513 rand 0.191 oracle 0.534  74s
+[pi3] scan 40 views 3 seed 0: unseen 0.203  gain head 0.101 native 0.023 far 0.404 rand 0.300 oracle 0.663  76s
+[pi3] scan 40 views 5 seed 0: unseen 0.084  gain head 0.598 native 0.011 far 0.585 rand 0.187 oracle 0.598  79s
+[pi3] scan 40 views 3 seed 1: unseen 0.121  gain head 0.029 native 0.122 far 0.104 rand 0.178 oracle 0.454  81s
+[pi3] scan 40 views 5 seed 1: unseen 0.091  gain head 0.010 native 0.013 far 0.603 rand 0.169 oracle 0.603  84s
+[pi3] scan 43 views 3 seed 0: unseen 0.119  gain head 0.022 native 0.022 far 0.276 rand 0.250 oracle 0.716  86s
+[pi3] scan 43 views 5 seed 0: unseen 0.056  gain head 0.016 native 0.016 far 0.654 rand 0.206 oracle 0.727  89s
+[pi3] scan 43 views 3 seed 1: unseen 0.078  gain head 0.110 native 0.108 far 0.155 rand 0.193 oracle 0.581  91s
+[pi3] scan 43 views 5 seed 1: unseen 0.063  gain head 0.010 native 0.010 far 0.688 rand 0.187 oracle 0.688  93s
+[pi3] scan 56 views 3 seed 0: unseen 0.161  gain head 0.034 native 0.012 far 0.392 rand 0.330 oracle 0.818  95s
+[pi3] scan 56 views 5 seed 0: unseen 0.059  gain head 0.325 native 0.009 far 0.564 rand 0.239 oracle 0.632  98s
+[pi3] scan 56 views 3 seed 1: unseen 0.079  gain head 0.114 native 0.114 far 0.138 rand 0.250 oracle 0.657  100s
+[pi3] scan 56 views 5 seed 1: unseen 0.056  gain head 0.012 native 0.025 far 0.768 rand 0.241 oracle 0.781  103s
+[pi3] scan 59 views 3 seed 0: unseen 0.168  gain head 0.011 native 0.011 far 0.433 rand 0.301 oracle 0.868  105s
+[pi3] scan 59 views 5 seed 0: unseen 0.064  gain head 0.021 native 0.006 far 0.720 rand 0.210 oracle 0.786  108s
+[pi3] scan 59 views 3 seed 1: unseen 0.092  gain head 0.018 native 0.018 far 0.163 rand 0.186 oracle 0.636  109s
+[pi3] scan 59 views 5 seed 1: unseen 0.073  gain head 0.001 native 0.042 far 0.793 rand 0.193 oracle 0.793  112s
+[pi3] scan 66 views 3 seed 0: unseen 0.152  gain head 0.303 native 0.014 far 0.669 rand 0.357 oracle 0.821  114s
+[pi3] scan 66 views 5 seed 0: unseen 0.037  gain head 0.190 native 0.025 far 0.687 rand 0.225 oracle 0.718  116s
+[pi3] scan 66 views 3 seed 1: unseen 0.076  gain head 0.038 native 0.038 far 0.216 rand 0.273 oracle 0.568  118s
+[pi3] scan 66 views 5 seed 1: unseen 0.045  gain head 0.076 native 0.011 far 0.758 rand 0.253 oracle 0.761  120s
+[pi3] scan 67 views 3 seed 0: unseen 0.138  gain head 0.595 native 0.729 far 0.598 rand 0.358 oracle 0.743  121s
+[pi3] scan 67 views 5 seed 0: unseen 0.043  gain head 0.099 native 0.018 far 0.536 rand 0.191 oracle 0.595  124s
+[pi3] scan 67 views 3 seed 1: unseen 0.065  gain head 0.285 native 0.102 far 0.173 rand 0.225 oracle 0.564  126s
+[pi3] scan 67 views 5 seed 1: unseen 0.047  gain head 0.073 native 0.264 far 0.603 rand 0.221 oracle 0.677  129s
+[pi3] scan 82 views 3 seed 0: unseen 0.236  gain head 0.337 native 0.016 far 0.356 rand 0.287 oracle 0.702  131s
+[pi3] scan 82 views 5 seed 0: unseen 0.108  gain head 0.246 native 0.020 far 0.495 rand 0.230 oracle 0.646  134s
+[pi3] scan 82 views 3 seed 1: unseen 0.170  gain head 0.072 native 0.072 far 0.142 rand 0.228 oracle 0.457  137s
+[pi3] scan 82 views 5 seed 1: unseen 0.108  gain head 0.041 native 0.050 far 0.658 rand 0.223 oracle 0.658  139s
+[pi3] scan 86 views 3 seed 0: unseen 0.098  gain head 0.473 native 0.494 far 0.473 rand 0.330 oracle 0.723  141s
+[pi3] scan 86 views 5 seed 0: unseen 0.037  gain head 0.452 native 0.035 far 0.452 rand 0.211 oracle 0.775  143s
+[pi3] scan 86 views 3 seed 1: unseen 0.070  gain head 0.389 native 0.389 far 0.477 rand 0.350 oracle 0.601  144s
+[pi3] scan 86 views 5 seed 1: unseen 0.025  gain head 0.402 native 0.582 far 0.576 rand 0.228 oracle 0.671  146s
+[pi3] scan 106 views 3 seed 0: unseen 0.110  gain head 0.169 native 0.701 far 0.701 rand 0.352 oracle 0.835  148s
+[pi3] scan 106 views 5 seed 0: unseen 0.029  gain head 0.127 native 0.472 far 0.846 rand 0.209 oracle 0.860  150s
+[pi3] scan 106 views 3 seed 1: unseen 0.066  gain head 0.105 native 0.105 far 0.284 rand 0.312 oracle 0.557  151s
+[pi3] scan 106 views 5 seed 1: unseen 0.030  gain head 0.168 native 0.035 far 0.701 rand 0.253 oracle 0.762  153s
+[pi3] scan 117 views 3 seed 0: unseen 0.140  gain head 0.429 native 0.301 far 0.567 rand 0.375 oracle 0.896  155s
+[pi3] scan 117 views 5 seed 0: unseen 0.045  gain head 0.034 native 0.418 far 0.853 rand 0.229 oracle 0.853  157s
+[pi3] scan 117 views 3 seed 1: unseen 0.045  gain head 0.330 native 0.073 far 0.046 rand 0.259 oracle 0.731  159s
+[pi3] scan 117 views 5 seed 1: unseen 0.041  gain head 0.008 native 0.010 far 0.733 rand 0.270 oracle 0.775  162s
+[93m[WARN ] Dependency `gsplat` is required for rendering 3DGS. Install via: pip install git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70[0m
+[97m[INFO ] using MLP layer as FFN[0m
+[da3_oiavisself] head from /home/hallu/checkpoints/da3_oiavisself.pt (step 1500, val-auroc 0.993)
+[97m[INFO ] using MLP layer as FFN[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.09469056129455566 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08367037773132324 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011327266693115234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 3 views 3 seed 0: unseen 0.058  gain head 0.021 native 0.021 far 0.697 rand 0.394 oracle 0.834  2s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.0664527416229248 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12521886825561523 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008182525634765625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 3 views 5 seed 0: unseen 0.010  gain head 0.731 native 0.018 far 0.731 rand 0.180 oracle 0.771  3s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.03229236602783203 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08943414688110352 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005698204040527344 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 3 views 3 seed 1: unseen 0.028  gain head 0.148 native 0.128 far 0.152 rand 0.230 oracle 0.668  4s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.20519065856933594 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.058635711669921875 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009183883666992188 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 3 views 5 seed 1: unseen 0.021  gain head 0.115 native 0.028 far 0.733 rand 0.212 oracle 0.813  6s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.09514069557189941 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07608270645141602 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006818771362304688 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 5 views 3 seed 0: unseen 0.060  gain head 0.023 native 0.023 far 0.763 rand 0.419 oracle 0.925  7s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.23426580429077148 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10069727897644043 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007345676422119141 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 5 views 5 seed 0: unseen 0.011  gain head 0.010 native 0.010 far 0.866 rand 0.182 oracle 0.881  9s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.23113369941711426 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05295920372009277 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007455348968505859 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 5 views 3 seed 1: unseen 0.028  gain head 0.035 native 0.035 far 0.012 rand 0.236 oracle 0.841  11s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.1262953281402588 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06025362014770508 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007429122924804688 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 5 views 5 seed 1: unseen 0.026  gain head 0.022 native 0.022 far 0.855 rand 0.226 oracle 0.855  13s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.03289031982421875 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.04663872718811035 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006768703460693359 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 17 views 3 seed 0: unseen 0.046  gain head 0.088 native 0.088 far 0.480 rand 0.380 oracle 0.900  14s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.18341279029846191 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0617067813873291 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007374286651611328 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 17 views 5 seed 0: unseen 0.020  gain head 0.109 native 0.109 far 0.877 rand 0.248 oracle 0.884  17s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.0891122817993164 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.04928874969482422 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005319118499755859 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 17 views 3 seed 1: unseen 0.077  gain head 0.620 native 0.274 far 0.319 rand 0.223 oracle 0.685  18s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.17673015594482422 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0747227668762207 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007357597351074219 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 17 views 5 seed 1: unseen 0.060  gain head 0.215 native 0.337 far 0.730 rand 0.218 oracle 0.730  20s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.09955120086669922 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.04634833335876465 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005924701690673828 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 21 views 3 seed 0: unseen 0.115  gain head 0.162 native 0.157 far 0.417 rand 0.332 oracle 0.786  22s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.21465063095092773 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09125995635986328 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007719993591308594 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 21 views 5 seed 0: unseen 0.040  gain head 0.783 native 0.030 far 0.783 rand 0.260 oracle 0.816  24s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.09190821647644043 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09008216857910156 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.00054168701171875 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 21 views 3 seed 1: unseen 0.071  gain head 0.313 native 0.213 far 0.310 rand 0.274 oracle 0.626  26s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.15289759635925293 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06313061714172363 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009036064147949219 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 21 views 5 seed 1: unseen 0.047  gain head 0.196 native 0.021 far 0.765 rand 0.241 oracle 0.788  28s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.11643409729003906 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09002900123596191 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007498264312744141 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 28 views 3 seed 0: unseen 0.232  gain head 0.050 native 0.050 far 0.459 rand 0.317 oracle 0.716  29s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.06696796417236328 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05889177322387695 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007610321044921875 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 28 views 5 seed 0: unseen 0.078  gain head 0.082 native 0.082 far 0.493 rand 0.207 oracle 0.543  31s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.05004167556762695 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08433270454406738 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005128383636474609 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 28 views 3 seed 1: unseen 0.133  gain head 0.239 native 0.239 far 0.221 rand 0.216 oracle 0.424  32s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.27882862091064453 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06455087661743164 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007426738739013672 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 28 views 5 seed 1: unseen 0.078  gain head 0.045 native 0.066 far 0.719 rand 0.188 oracle 0.719  34s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.0423579216003418 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.15937447547912598 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006337165832519531 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 35 views 3 seed 0: unseen 0.099  gain head 0.003 native 0.077 far 0.835 rand 0.353 oracle 0.945  36s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.2416820526123047 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13976573944091797 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.000774383544921875 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 35 views 5 seed 0: unseen 0.024  gain head 0.003 native 0.003 far 0.729 rand 0.157 oracle 0.880  38s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.04384326934814453 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12149548530578613 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005202293395996094 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 35 views 3 seed 1: unseen 0.053  gain head 0.261 native 0.261 far 0.261 rand 0.216 oracle 0.607  39s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.11489987373352051 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05869793891906738 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007617473602294922 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 35 views 5 seed 1: unseen 0.038  gain head 0.209 native 0.055 far 0.830 rand 0.204 oracle 0.830  41s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.03950095176696777 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13059329986572266 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.000640869140625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 37 views 3 seed 0: unseen 0.241  gain head 0.022 native 0.022 far 0.193 rand 0.259 oracle 0.678  43s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.21614599227905273 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0945577621459961 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007731914520263672 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 37 views 5 seed 0: unseen 0.090  gain head 0.146 native 0.034 far 0.602 rand 0.216 oracle 0.624  45s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.045264244079589844 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09133267402648926 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.006524085998535156 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 37 views 3 seed 1: unseen 0.188  gain head 0.047 native 0.168 far 0.131 rand 0.222 oracle 0.384  47s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.14869976043701172 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12115812301635742 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007467269897460938 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 37 views 5 seed 1: unseen 0.116  gain head 0.059 native 0.106 far 0.559 rand 0.189 oracle 0.575  49s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.03133344650268555 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13950729370117188 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006184577941894531 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 38 views 3 seed 0: unseen 0.127  gain head 0.013 native 0.013 far 0.263 rand 0.252 oracle 0.655  50s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.08651280403137207 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06935715675354004 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007336139678955078 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 38 views 5 seed 0: unseen 0.050  gain head 0.324 native 0.006 far 0.520 rand 0.189 oracle 0.568  52s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.12061119079589844 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.04603147506713867 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005452632904052734 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 38 views 3 seed 1: unseen 0.094  gain head 0.197 native 0.230 far 0.259 rand 0.203 oracle 0.389  53s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.05083584785461426 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.20587801933288574 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007512569427490234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 38 views 5 seed 1: unseen 0.067  gain head 0.007 native 0.070 far 0.514 rand 0.191 oracle 0.536  55s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.08352231979370117 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09679603576660156 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006608963012695312 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 40 views 3 seed 0: unseen 0.203  gain head 0.102 native 0.009 far 0.404 rand 0.301 oracle 0.664  57s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.13836908340454102 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13074469566345215 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007398128509521484 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 40 views 5 seed 0: unseen 0.085  gain head 0.052 native 0.052 far 0.586 rand 0.188 oracle 0.600  59s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.034295082092285156 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.15333223342895508 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007688999176025391 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 40 views 3 seed 1: unseen 0.121  gain head 0.029 native 0.029 far 0.103 rand 0.178 oracle 0.456  61s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.23143935203552246 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1149752140045166 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.003772735595703125 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 40 views 5 seed 1: unseen 0.091  gain head 0.009 native 0.009 far 0.605 rand 0.170 oracle 0.605  62s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.13650131225585938 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.048177242279052734 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006244182586669922 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 43 views 3 seed 0: unseen 0.120  gain head 0.023 native 0.023 far 0.276 rand 0.249 oracle 0.716  64s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.0664830207824707 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14850401878356934 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007393360137939453 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 43 views 5 seed 0: unseen 0.056  gain head 0.016 native 0.017 far 0.652 rand 0.205 oracle 0.725  66s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.13944101333618164 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09398555755615234 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005347728729248047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 43 views 3 seed 1: unseen 0.078  gain head 0.169 native 0.169 far 0.154 rand 0.194 oracle 0.582  67s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.13191747665405273 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10345578193664551 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.00075531005859375 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 43 views 5 seed 1: unseen 0.063  gain head 0.011 native 0.011 far 0.689 rand 0.187 oracle 0.689  69s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.03982877731323242 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12023782730102539 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006844997406005859 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 56 views 3 seed 0: unseen 0.161  gain head 0.030 native 0.030 far 0.391 rand 0.330 oracle 0.819  71s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.2725958824157715 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0591130256652832 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007407665252685547 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 56 views 5 seed 0: unseen 0.059  gain head 0.009 native 0.310 far 0.564 rand 0.239 oracle 0.635  72s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.05780982971191406 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0710756778717041 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007338523864746094 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 56 views 3 seed 1: unseen 0.079  gain head 0.116 native 0.116 far 0.137 rand 0.251 oracle 0.657  74s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.24232077598571777 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08806252479553223 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011186599731445312 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 56 views 5 seed 1: unseen 0.056  gain head 0.383 native 0.025 far 0.767 rand 0.241 oracle 0.783  76s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.040363311767578125 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12479734420776367 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006754398345947266 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 59 views 3 seed 0: unseen 0.168  gain head 0.011 native 0.011 far 0.434 rand 0.301 oracle 0.868  78s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.4116933345794678 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.21121764183044434 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.012776374816894531 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 59 views 5 seed 0: unseen 0.064  gain head 0.006 native 0.006 far 0.719 rand 0.210 oracle 0.786  80s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.10710549354553223 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07151556015014648 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005984306335449219 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 59 views 3 seed 1: unseen 0.092  gain head 0.018 native 0.018 far 0.164 rand 0.186 oracle 0.636  81s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.2797074317932129 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11021947860717773 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007622241973876953 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 59 views 5 seed 1: unseen 0.073  gain head 0.010 native 0.041 far 0.794 rand 0.193 oracle 0.794  83s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.12924861907958984 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05251049995422363 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006215572357177734 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 66 views 3 seed 0: unseen 0.152  gain head 0.018 native 0.018 far 0.669 rand 0.357 oracle 0.821  85s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.1730659008026123 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0995490550994873 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007543563842773438 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 66 views 5 seed 0: unseen 0.037  gain head 0.188 native 0.019 far 0.685 rand 0.225 oracle 0.716  88s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.04923272132873535 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1254127025604248 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005376338958740234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 66 views 3 seed 1: unseen 0.076  gain head 0.038 native 0.038 far 0.213 rand 0.273 oracle 0.569  89s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.20668864250183105 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09262728691101074 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007696151733398438 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 66 views 5 seed 1: unseen 0.045  gain head 0.017 native 0.010 far 0.759 rand 0.253 oracle 0.761  91s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.22626519203186035 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05449628829956055 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0035190582275390625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 67 views 3 seed 0: unseen 0.138  gain head 0.716 native 0.056 far 0.599 rand 0.359 oracle 0.743  93s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.13485360145568848 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1365189552307129 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007512569427490234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 67 views 5 seed 0: unseen 0.043  gain head 0.015 native 0.015 far 0.536 rand 0.191 oracle 0.594  95s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.11682558059692383 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0577242374420166 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005373954772949219 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 67 views 3 seed 1: unseen 0.065  gain head 0.102 native 0.102 far 0.174 rand 0.226 oracle 0.563  96s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.1417534351348877 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11257767677307129 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007832050323486328 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 67 views 5 seed 1: unseen 0.047  gain head 0.232 native 0.050 far 0.603 rand 0.221 oracle 0.676  98s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.06244969367980957 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09038114547729492 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005435943603515625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 82 views 3 seed 0: unseen 0.236  gain head 0.037 native 0.037 far 0.355 rand 0.287 oracle 0.703  101s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.09340834617614746 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05893135070800781 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007441043853759766 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 82 views 5 seed 0: unseen 0.108  gain head 0.020 native 0.020 far 0.496 rand 0.229 oracle 0.648  103s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.08395051956176758 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07794857025146484 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011074542999267578 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 82 views 3 seed 1: unseen 0.170  gain head 0.071 native 0.071 far 0.143 rand 0.228 oracle 0.456  104s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.11173653602600098 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.16656041145324707 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007498264312744141 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 82 views 5 seed 1: unseen 0.108  gain head 0.040 native 0.049 far 0.660 rand 0.223 oracle 0.660  106s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.1306321620941162 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0741264820098877 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006234645843505859 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 86 views 3 seed 0: unseen 0.098  gain head 0.173 native 0.113 far 0.473 rand 0.330 oracle 0.723  107s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.1774294376373291 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10054564476013184 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007958412170410156 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 86 views 5 seed 0: unseen 0.037  gain head 0.041 native 0.027 far 0.452 rand 0.211 oracle 0.775  109s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.0447535514831543 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09567928314208984 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005381107330322266 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 86 views 3 seed 1: unseen 0.070  gain head 0.281 native 0.281 far 0.477 rand 0.350 oracle 0.601  111s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.32429957389831543 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13828349113464355 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007631778717041016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 86 views 5 seed 1: unseen 0.025  gain head 0.339 native 0.097 far 0.576 rand 0.228 oracle 0.671  112s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.029425621032714844 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07293891906738281 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011909008026123047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 106 views 3 seed 0: unseen 0.111  gain head 0.014 native 0.014 far 0.701 rand 0.352 oracle 0.835  114s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.20140528678894043 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05963540077209473 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.000751495361328125 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 106 views 5 seed 0: unseen 0.029  gain head 0.126 native 0.069 far 0.845 rand 0.210 oracle 0.859  115s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.11499643325805664 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10379242897033691 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005888938903808594 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 106 views 3 seed 1: unseen 0.066  gain head 0.134 native 0.134 far 0.284 rand 0.312 oracle 0.555  117s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.13980317115783691 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07723331451416016 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007328987121582031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 106 views 5 seed 1: unseen 0.030  gain head 0.042 native 0.078 far 0.702 rand 0.253 oracle 0.763  119s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.13759636878967285 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05801987648010254 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006017684936523438 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 117 views 3 seed 0: unseen 0.140  gain head 0.003 native 0.009 far 0.567 rand 0.375 oracle 0.896  120s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.1680009365081787 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0896000862121582 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008270740509033203 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 117 views 5 seed 0: unseen 0.045  gain head 0.296 native 0.034 far 0.852 rand 0.229 oracle 0.852  122s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.09917736053466797 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08365201950073242 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005478858947753906 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 117 views 3 seed 1: unseen 0.045  gain head 0.073 native 0.073 far 0.046 rand 0.259 oracle 0.731  124s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Processed Images Done taking 0.06056928634643555 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1631779670715332 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007722377777099609 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 117 views 5 seed 1: unseen 0.041  gain head 0.258 native 0.020 far 0.732 rand 0.270 oracle 0.775  126s
+                  frac_gt_unobserved  gain_head  gain_native  gain_farthest  gain_random  gain_oracle
+backbone n_views                                                                                     
+da3      3                    0.1122     0.1222       0.0930         0.3483       0.2839       0.6849
+         5                    0.0533     0.1435       0.0544         0.6828       0.2135       0.7272
+pi3      3                    0.1121     0.2095       0.1986         0.3483       0.2840       0.6848
+         5                    0.0532     0.1451       0.0825         0.6827       0.2136       0.7271
+== P16_nbv_b_DONE Wed Nov 11 05:11:40 UTC 2026
