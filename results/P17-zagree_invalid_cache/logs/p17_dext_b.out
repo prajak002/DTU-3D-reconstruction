@@ -1,0 +1,1374 @@
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[pi3] scan 62 views 5 seed 1: obs 0.134 unobs 0.0029 amb 0.0016 off 0.862  auroc obs/unobs 0.669  3s
+[pi3] scan 62 views 10 seed 1: obs 0.257 unobs 0.0008 amb 0.0007 off 0.742  auroc obs/unobs 0.847  8s
+[pi3] scan 75 views 3 seed 0: obs 0.132 unobs 0.0000 amb 0.0022 off 0.866  auroc obs/unobs nan  11s
+[pi3] scan 75 views 5 seed 0: obs 0.446 unobs 0.0027 amb 0.0041 off 0.547  auroc obs/unobs 0.800  16s
+[pi3] scan 75 views 10 seed 0: obs 0.314 unobs 0.0019 amb 0.0011 off 0.683  auroc obs/unobs 0.884  24s
+[pi3] scan 75 views 3 seed 1: obs 0.115 unobs 0.0115 amb 0.0055 off 0.868  auroc obs/unobs 0.750  26s
+[pi3] scan 75 views 5 seed 1: obs 0.350 unobs 0.0029 amb 0.0028 off 0.644  auroc obs/unobs 0.689  32s
+[pi3] scan 75 views 10 seed 1: obs 0.395 unobs 0.0029 amb 0.0011 off 0.601  auroc obs/unobs 0.946  40s
+[pi3] scan 77 views 3 seed 0: obs 0.088 unobs 0.0012 amb 0.0026 off 0.908  auroc obs/unobs 0.856  43s
+[pi3] scan 77 views 5 seed 0: obs 0.144 unobs 0.0004 amb 0.0017 off 0.854  auroc obs/unobs 0.887  47s
+[pi3] scan 77 views 10 seed 0: obs 0.040 unobs 0.0001 amb 0.0001 off 0.960  auroc obs/unobs nan  54s
+[pi3] scan 77 views 3 seed 1: obs 0.049 unobs 0.0051 amb 0.0012 off 0.944  auroc obs/unobs 0.775  57s
+[pi3] scan 77 views 5 seed 1: obs 0.026 unobs 0.0085 amb 0.0001 off 0.966  auroc obs/unobs 0.648  61s
+[pi3] scan 77 views 10 seed 1: obs 0.037 unobs 0.0011 amb 0.0000 off 0.962  auroc obs/unobs 0.685  67s
+[pi3] scan 110 views 3 seed 0: obs 0.175 unobs 0.0021 amb 0.0050 off 0.817  auroc obs/unobs 0.459  70s
+[pi3] scan 110 views 5 seed 0: obs 0.347 unobs 0.0093 amb 0.0039 off 0.640  auroc obs/unobs 0.903  74s
+[pi3] scan 110 views 10 seed 0: obs 0.248 unobs 0.0000 amb 0.0001 off 0.752  auroc obs/unobs nan  78s
+[pi3] scan 110 views 3 seed 1: obs 0.020 unobs 0.0024 amb 0.0003 off 0.978  auroc obs/unobs 0.159  80s
+[pi3] scan 110 views 5 seed 1: obs 0.162 unobs 0.0004 amb 0.0011 off 0.837  auroc obs/unobs 0.671  85s
+[pi3] scan 110 views 10 seed 1: obs 0.357 unobs 0.0015 amb 0.0007 off 0.641  auroc obs/unobs 0.914  90s
+[pi3] scan 114 views 3 seed 0: obs 0.190 unobs 0.0147 amb 0.0007 off 0.794  auroc obs/unobs 0.848  93s
+[pi3] scan 114 views 5 seed 0: obs 0.462 unobs 0.0073 amb 0.0016 off 0.529  auroc obs/unobs 0.932  97s
+[pi3] scan 114 views 10 seed 0: obs 0.579 unobs 0.0002 amb 0.0019 off 0.419  auroc obs/unobs 0.904  105s
+[pi3] scan 114 views 3 seed 1: obs 0.034 unobs 0.0105 amb 0.0009 off 0.954  auroc obs/unobs 0.543  107s
+[pi3] scan 114 views 5 seed 1: obs 0.437 unobs 0.0010 amb 0.0028 off 0.559  auroc obs/unobs 0.958  113s
+[pi3] scan 114 views 10 seed 1: obs 0.439 unobs 0.0024 amb 0.0019 off 0.557  auroc obs/unobs 0.916  120s
+[pi3] scan 118 views 3 seed 0: obs 0.110 unobs 0.0102 amb 0.0027 off 0.877  auroc obs/unobs 0.524  124s
+[pi3] scan 118 views 5 seed 0: obs 0.206 unobs 0.0008 amb 0.0007 off 0.793  auroc obs/unobs 0.889  126s
+[pi3] scan 118 views 10 seed 0: obs 0.242 unobs 0.0007 amb 0.0003 off 0.757  auroc obs/unobs 0.778  136s
+[pi3] scan 118 views 3 seed 1: obs 0.109 unobs 0.0059 amb 0.0020 off 0.883  auroc obs/unobs 0.533  138s
+[pi3] scan 118 views 5 seed 1: obs 0.139 unobs 0.0008 amb 0.0005 off 0.860  auroc obs/unobs 0.599  142s
+[pi3] scan 118 views 10 seed 1: obs 0.229 unobs 0.0001 amb 0.0001 off 0.771  auroc obs/unobs nan  147s
+[pi3_oiavisself] head from /home/hallu/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)
+[pi3_oiavisself] scan 1 views 3 seed 0: obs 0.349 unobs 0.0105 amb 0.0036 off 0.637  auroc obs/unobs 0.961  7s
+[pi3_oiavisself] scan 1 views 5 seed 0: obs 0.223 unobs 0.0024 amb 0.0011 off 0.774  auroc obs/unobs 0.971  12s
+[pi3_oiavisself] scan 1 views 10 seed 0: obs 0.450 unobs 0.0000 amb 0.0006 off 0.549  auroc obs/unobs nan  23s
+[pi3_oiavisself] scan 1 views 3 seed 1: obs 0.530 unobs 0.0005 amb 0.0064 off 0.464  auroc obs/unobs nan  25s
+[pi3_oiavisself] scan 1 views 5 seed 1: obs 0.271 unobs 0.0093 amb 0.0016 off 0.718  auroc obs/unobs 0.973  33s
+[pi3_oiavisself] scan 1 views 10 seed 1: obs 0.593 unobs 0.0001 amb 0.0009 off 0.406  auroc obs/unobs nan  49s
+[pi3_oiavisself] scan 4 views 3 seed 0: obs 0.550 unobs 0.0151 amb 0.0055 off 0.429  auroc obs/unobs 0.853  54s
+[pi3_oiavisself] scan 4 views 5 seed 0: obs 0.218 unobs 0.0020 amb 0.0021 off 0.778  auroc obs/unobs 0.891  59s
+[pi3_oiavisself] scan 4 views 10 seed 0: obs 0.200 unobs 0.0004 amb 0.0011 off 0.799  auroc obs/unobs 0.932  66s
+[pi3_oiavisself] scan 4 views 3 seed 1: obs 0.520 unobs 0.0185 amb 0.0087 off 0.453  auroc obs/unobs 0.667  70s
+[pi3_oiavisself] scan 4 views 5 seed 1: obs 0.201 unobs 0.0031 amb 0.0008 off 0.795  auroc obs/unobs 0.911  73s
+[pi3_oiavisself] scan 4 views 10 seed 1: obs 0.294 unobs 0.0016 amb 0.0009 off 0.704  auroc obs/unobs 0.987  80s
+[pi3_oiavisself] scan 9 views 3 seed 0: obs 0.266 unobs 0.0056 amb 0.0040 off 0.725  auroc obs/unobs 0.956  83s
+[pi3_oiavisself] scan 9 views 5 seed 0: obs 0.577 unobs 0.0035 amb 0.0044 off 0.415  auroc obs/unobs 0.954  88s
+[pi3_oiavisself] scan 9 views 10 seed 0: obs 0.430 unobs 0.0005 amb 0.0013 off 0.568  auroc obs/unobs 0.954  94s
+[pi3_oiavisself] scan 9 views 3 seed 1: obs 0.208 unobs 0.0027 amb 0.0042 off 0.785  auroc obs/unobs 0.891  98s
+[pi3_oiavisself] scan 9 views 5 seed 1: obs 0.231 unobs 0.0059 amb 0.0020 off 0.762  auroc obs/unobs 0.918  104s
+[pi3_oiavisself] scan 9 views 10 seed 1: obs 0.529 unobs 0.0001 amb 0.0010 off 0.470  auroc obs/unobs nan  110s
+[pi3_oiavisself] scan 10 views 3 seed 0: obs 0.351 unobs 0.0043 amb 0.0037 off 0.641  auroc obs/unobs 0.727  112s
+[pi3_oiavisself] scan 10 views 5 seed 0: obs 0.375 unobs 0.0019 amb 0.0013 off 0.622  auroc obs/unobs 0.765  120s
+[pi3_oiavisself] scan 10 views 10 seed 0: obs 0.306 unobs 0.0001 amb 0.0006 off 0.693  auroc obs/unobs nan  130s
+[pi3_oiavisself] scan 10 views 3 seed 1: obs 0.050 unobs 0.0014 amb 0.0000 off 0.948  auroc obs/unobs 0.614  136s
+[pi3_oiavisself] scan 10 views 5 seed 1: obs 0.174 unobs 0.0008 amb 0.0006 off 0.825  auroc obs/unobs 0.936  142s
+[pi3_oiavisself] scan 10 views 10 seed 1: obs 0.656 unobs 0.0001 amb 0.0015 off 0.342  auroc obs/unobs nan  148s
+[pi3_oiavisself] scan 11 views 3 seed 0: obs 0.245 unobs 0.0041 amb 0.0020 off 0.749  auroc obs/unobs 0.895  150s
+[pi3_oiavisself] scan 11 views 5 seed 0: obs 0.215 unobs 0.0007 amb 0.0008 off 0.783  auroc obs/unobs 0.974  156s
+[pi3_oiavisself] scan 11 views 10 seed 0: obs 0.313 unobs 0.0005 amb 0.0004 off 0.686  auroc obs/unobs 0.945  161s
+[pi3_oiavisself] scan 11 views 3 seed 1: obs 0.122 unobs 0.0087 amb 0.0003 off 0.869  auroc obs/unobs 0.594  163s
+[pi3_oiavisself] scan 11 views 5 seed 1: obs 0.502 unobs 0.0018 amb 0.0007 off 0.495  auroc obs/unobs 0.941  168s
+[pi3_oiavisself] scan 11 views 10 seed 1: obs 0.524 unobs 0.0003 amb 0.0011 off 0.475  auroc obs/unobs 0.980  174s
+[pi3_oiavisself] scan 12 views 3 seed 0: obs 0.022 unobs 0.0012 amb 0.0008 off 0.976  auroc obs/unobs 0.673  180s
+[pi3_oiavisself] scan 12 views 5 seed 0: obs 0.494 unobs 0.0017 amb 0.0035 off 0.500  auroc obs/unobs 0.975  185s
+[pi3_oiavisself] scan 12 views 10 seed 0: obs 0.381 unobs 0.0019 amb 0.0017 off 0.615  auroc obs/unobs 0.891  192s
+[pi3_oiavisself] scan 12 views 3 seed 1: obs 0.218 unobs 0.0169 amb 0.0041 off 0.761  auroc obs/unobs 0.918  195s
+[pi3_oiavisself] scan 12 views 5 seed 1: obs 0.544 unobs 0.0165 amb 0.0047 off 0.434  auroc obs/unobs 0.933  199s
+[pi3_oiavisself] scan 12 views 10 seed 1: obs 0.151 unobs 0.0005 amb 0.0009 off 0.847  auroc obs/unobs 0.862  212s
+[pi3_oiavisself] scan 13 views 3 seed 0: obs 0.082 unobs 0.0024 amb 0.0008 off 0.915  auroc obs/unobs 0.321  220s
+[pi3_oiavisself] scan 13 views 5 seed 0: obs 0.039 unobs 0.0006 amb 0.0005 off 0.960  auroc obs/unobs 0.776  226s
+[pi3_oiavisself] scan 13 views 10 seed 0: obs 0.037 unobs 0.0000 amb 0.0001 off 0.963  auroc obs/unobs nan  237s
+[pi3_oiavisself] scan 13 views 3 seed 1: obs 0.428 unobs 0.0046 amb 0.0063 off 0.561  auroc obs/unobs 0.816  241s
+[pi3_oiavisself] scan 13 views 5 seed 1: obs 0.133 unobs 0.0000 amb 0.0006 off 0.867  auroc obs/unobs nan  248s
+[pi3_oiavisself] scan 13 views 10 seed 1: obs 0.605 unobs 0.0006 amb 0.0014 off 0.393  auroc obs/unobs 0.984  256s
+[pi3_oiavisself] scan 15 views 3 seed 0: obs 0.199 unobs 0.0575 amb 0.0016 off 0.742  auroc obs/unobs 0.741  259s
+[pi3_oiavisself] scan 15 views 5 seed 0: obs 0.565 unobs 0.0009 amb 0.0025 off 0.431  auroc obs/unobs 0.933  265s
+[pi3_oiavisself] scan 15 views 10 seed 0: obs 0.654 unobs 0.0002 amb 0.0021 off 0.344  auroc obs/unobs 0.970  273s
+[pi3_oiavisself] scan 15 views 3 seed 1: obs 0.187 unobs 0.0072 amb 0.0010 off 0.805  auroc obs/unobs 0.878  277s
+[pi3_oiavisself] scan 15 views 5 seed 1: obs 0.184 unobs 0.0015 amb 0.0011 off 0.814  auroc obs/unobs 0.909  282s
+[pi3_oiavisself] scan 15 views 10 seed 1: obs 0.375 unobs 0.0001 amb 0.0011 off 0.623  auroc obs/unobs nan  288s
+[pi3_oiavisself] scan 23 views 3 seed 0: obs 0.151 unobs 0.0256 amb 0.0024 off 0.821  auroc obs/unobs 0.619  294s
+[pi3_oiavisself] scan 23 views 5 seed 0: obs 0.629 unobs 0.0071 amb 0.0049 off 0.359  auroc obs/unobs 0.895  300s
+[pi3_oiavisself] scan 23 views 10 seed 0: obs 0.594 unobs 0.0000 amb 0.0019 off 0.404  auroc obs/unobs nan  307s
+[pi3_oiavisself] scan 23 views 3 seed 1: obs 0.166 unobs 0.0139 amb 0.0049 off 0.815  auroc obs/unobs 0.278  310s
+[pi3_oiavisself] scan 23 views 5 seed 1: obs 0.847 unobs 0.0017 amb 0.0038 off 0.147  auroc obs/unobs 0.928  314s
+[pi3_oiavisself] scan 23 views 10 seed 1: obs 0.549 unobs 0.0004 amb 0.0023 off 0.449  auroc obs/unobs 0.949  319s
+[pi3_oiavisself] scan 24 views 3 seed 0: obs 0.237 unobs 0.0057 amb 0.0002 off 0.757  auroc obs/unobs 0.898  322s
+[pi3_oiavisself] scan 24 views 5 seed 0: obs 0.489 unobs 0.0015 amb 0.0016 off 0.508  auroc obs/unobs 0.902  326s
+[pi3_oiavisself] scan 24 views 10 seed 0: obs 0.485 unobs 0.0003 amb 0.0005 off 0.514  auroc obs/unobs 0.947  334s
+[pi3_oiavisself] scan 24 views 3 seed 1: obs 0.176 unobs 0.0293 amb 0.0014 off 0.793  auroc obs/unobs 0.632  339s
+[pi3_oiavisself] scan 24 views 5 seed 1: obs 0.803 unobs 0.0044 amb 0.0042 off 0.188  auroc obs/unobs 0.935  343s
+[pi3_oiavisself] scan 24 views 10 seed 1: obs 0.508 unobs 0.0004 amb 0.0003 off 0.492  auroc obs/unobs 0.968  351s
+[pi3_oiavisself] scan 29 views 3 seed 0: obs 0.074 unobs 0.0071 amb 0.0001 off 0.918  auroc obs/unobs 0.972  354s
+[pi3_oiavisself] scan 29 views 5 seed 0: obs 0.146 unobs 0.0016 amb 0.0004 off 0.852  auroc obs/unobs 0.847  359s
+[pi3_oiavisself] scan 29 views 10 seed 0: obs 0.621 unobs 0.0034 amb 0.0010 off 0.374  auroc obs/unobs 0.924  367s
+[pi3_oiavisself] scan 29 views 3 seed 1: obs 0.034 unobs 0.0024 amb 0.0000 off 0.964  auroc obs/unobs 0.817  371s
+[pi3_oiavisself] scan 29 views 5 seed 1: obs 0.074 unobs 0.0030 amb 0.0006 off 0.923  auroc obs/unobs 0.927  378s
+[pi3_oiavisself] scan 29 views 10 seed 1: obs 0.627 unobs 0.0015 amb 0.0018 off 0.370  auroc obs/unobs 0.941  388s
+[pi3_oiavisself] scan 32 views 3 seed 0: obs 0.080 unobs 0.0046 amb 0.0024 off 0.913  auroc obs/unobs 0.828  393s
+[pi3_oiavisself] scan 32 views 5 seed 0: obs 0.152 unobs 0.0009 amb 0.0019 off 0.845  auroc obs/unobs 0.920  401s
+[pi3_oiavisself] scan 32 views 10 seed 0: obs 0.491 unobs 0.0019 amb 0.0013 off 0.506  auroc obs/unobs 0.918  419s
+[pi3_oiavisself] scan 32 views 3 seed 1: obs 0.070 unobs 0.0066 amb 0.0023 off 0.921  auroc obs/unobs 0.752  425s
+[pi3_oiavisself] scan 32 views 5 seed 1: obs 0.436 unobs 0.0143 amb 0.0039 off 0.546  auroc obs/unobs 0.859  434s
+[pi3_oiavisself] scan 32 views 10 seed 1: obs 0.442 unobs 0.0059 amb 0.0016 off 0.551  auroc obs/unobs 0.960  440s
+[pi3_oiavisself] scan 33 views 3 seed 0: obs 0.249 unobs 0.0058 amb 0.0040 off 0.741  auroc obs/unobs 0.790  445s
+[pi3_oiavisself] scan 33 views 5 seed 0: obs 0.232 unobs 0.0027 amb 0.0009 off 0.764  auroc obs/unobs 0.938  449s
+[pi3_oiavisself] scan 33 views 10 seed 0: obs 0.188 unobs 0.0009 amb 0.0005 off 0.811  auroc obs/unobs 0.932  456s
+[pi3_oiavisself] scan 33 views 3 seed 1: obs 0.284 unobs 0.0096 amb 0.0052 off 0.702  auroc obs/unobs 0.876  463s
+[pi3_oiavisself] scan 33 views 5 seed 1: obs 0.395 unobs 0.0036 amb 0.0010 off 0.601  auroc obs/unobs 0.939  473s
+[pi3_oiavisself] scan 33 views 10 seed 1: obs 0.298 unobs 0.0001 amb 0.0006 off 0.701  auroc obs/unobs nan  484s
+[pi3_oiavisself] scan 34 views 3 seed 0: obs 0.117 unobs 0.0065 amb 0.0008 off 0.875  auroc obs/unobs 0.742  490s
+[pi3_oiavisself] scan 34 views 5 seed 0: obs 0.268 unobs 0.0033 amb 0.0012 off 0.727  auroc obs/unobs 0.742  499s
+[pi3_oiavisself] scan 34 views 10 seed 0: obs 0.421 unobs 0.0022 amb 0.0008 off 0.576  auroc obs/unobs 0.881  506s
+[pi3_oiavisself] scan 34 views 3 seed 1: obs 0.120 unobs 0.0117 amb 0.0003 off 0.868  auroc obs/unobs 0.741  510s
+[pi3_oiavisself] scan 34 views 5 seed 1: obs 0.799 unobs 0.0022 amb 0.0016 off 0.197  auroc obs/unobs 0.938  512s
+[pi3_oiavisself] scan 34 views 10 seed 1: obs 0.798 unobs 0.0012 amb 0.0010 off 0.199  auroc obs/unobs 0.962  518s
+[pi3_oiavisself] scan 48 views 3 seed 0: obs 0.077 unobs 0.0110 amb 0.0001 off 0.912  auroc obs/unobs 0.758  520s
+[pi3_oiavisself] scan 48 views 5 seed 0: obs 0.118 unobs 0.0007 amb 0.0004 off 0.881  auroc obs/unobs 0.967  524s
+[pi3_oiavisself] scan 48 views 10 seed 0: obs 0.702 unobs 0.0018 amb 0.0019 off 0.295  auroc obs/unobs 0.960  531s
+[pi3_oiavisself] scan 48 views 3 seed 1: obs 0.130 unobs 0.0114 amb 0.0002 off 0.858  auroc obs/unobs 0.640  535s
+[pi3_oiavisself] scan 48 views 5 seed 1: obs 0.082 unobs 0.0069 amb 0.0001 off 0.911  auroc obs/unobs 0.564  539s
+[pi3_oiavisself] scan 48 views 10 seed 1: obs 0.177 unobs 0.0001 amb 0.0001 off 0.823  auroc obs/unobs nan  547s
+[pi3_oiavisself] scan 49 views 3 seed 0: obs 0.267 unobs 0.0041 amb 0.0043 off 0.725  auroc obs/unobs 0.953  550s
+[pi3_oiavisself] scan 49 views 5 seed 0: obs 0.275 unobs 0.0059 amb 0.0020 off 0.717  auroc obs/unobs 0.963  555s
+[pi3_oiavisself] scan 49 views 10 seed 0: obs 0.419 unobs 0.0003 amb 0.0012 off 0.580  auroc obs/unobs 0.950  564s
+[pi3_oiavisself] scan 49 views 3 seed 1: obs 0.105 unobs 0.0088 amb 0.0068 off 0.879  auroc obs/unobs 0.835  567s
+[pi3_oiavisself] scan 49 views 5 seed 1: obs 0.278 unobs 0.0043 amb 0.0025 off 0.716  auroc obs/unobs 0.888  576s
+[pi3_oiavisself] scan 49 views 10 seed 1: obs 0.537 unobs 0.0025 amb 0.0021 off 0.459  auroc obs/unobs 0.911  585s
+[pi3_oiavisself] scan 62 views 3 seed 0: obs 0.457 unobs 0.0026 amb 0.0022 off 0.538  auroc obs/unobs 0.958  590s
+[pi3_oiavisself] scan 62 views 5 seed 0: obs 0.654 unobs 0.0048 amb 0.0027 off 0.338  auroc obs/unobs 0.931  594s
+[pi3_oiavisself] scan 62 views 10 seed 0: obs 0.432 unobs 0.0014 amb 0.0003 off 0.566  auroc obs/unobs 0.948  604s
+[pi3_oiavisself] scan 62 views 3 seed 1: obs 0.042 unobs 0.0039 amb 0.0021 off 0.952  auroc obs/unobs 0.871  609s
+[pi3_oiavisself] scan 62 views 5 seed 1: obs 0.128 unobs 0.0100 amb 0.0002 off 0.862  auroc obs/unobs 0.487  611s
+[pi3_oiavisself] scan 62 views 10 seed 1: obs 0.256 unobs 0.0020 amb 0.0001 off 0.742  auroc obs/unobs 0.481  615s
+[pi3_oiavisself] scan 75 views 3 seed 0: obs 0.132 unobs 0.0000 amb 0.0022 off 0.866  auroc obs/unobs nan  618s
+[pi3_oiavisself] scan 75 views 5 seed 0: obs 0.446 unobs 0.0027 amb 0.0041 off 0.547  auroc obs/unobs 0.888  620s
+[pi3_oiavisself] scan 75 views 10 seed 0: obs 0.314 unobs 0.0019 amb 0.0011 off 0.683  auroc obs/unobs 0.910  626s
+[pi3_oiavisself] scan 75 views 3 seed 1: obs 0.115 unobs 0.0115 amb 0.0055 off 0.868  auroc obs/unobs 0.799  629s
+[pi3_oiavisself] scan 75 views 5 seed 1: obs 0.350 unobs 0.0029 amb 0.0028 off 0.644  auroc obs/unobs 0.778  633s
+[pi3_oiavisself] scan 75 views 10 seed 1: obs 0.395 unobs 0.0029 amb 0.0011 off 0.601  auroc obs/unobs 0.973  643s
+[pi3_oiavisself] scan 77 views 3 seed 0: obs 0.069 unobs 0.0233 amb 0.0002 off 0.908  auroc obs/unobs 0.505  649s
+[pi3_oiavisself] scan 77 views 5 seed 0: obs 0.132 unobs 0.0140 amb 0.0004 off 0.853  auroc obs/unobs 0.492  655s
+[pi3_oiavisself] scan 77 views 10 seed 0: obs 0.040 unobs 0.0002 amb 0.0000 off 0.960  auroc obs/unobs 0.537  665s
+[pi3_oiavisself] scan 77 views 3 seed 1: obs 0.043 unobs 0.0129 amb 0.0000 off 0.944  auroc obs/unobs 0.518  670s
+[pi3_oiavisself] scan 77 views 5 seed 1: obs 0.030 unobs 0.0038 amb 0.0000 off 0.966  auroc obs/unobs 0.511  677s
+[pi3_oiavisself] scan 77 views 10 seed 1: obs 0.038 unobs 0.0002 amb 0.0001 off 0.962  auroc obs/unobs 0.513  683s
+[pi3_oiavisself] scan 110 views 3 seed 0: obs 0.175 unobs 0.0021 amb 0.0050 off 0.817  auroc obs/unobs 0.944  687s
+[pi3_oiavisself] scan 110 views 5 seed 0: obs 0.347 unobs 0.0093 amb 0.0039 off 0.640  auroc obs/unobs 0.967  692s
+[pi3_oiavisself] scan 110 views 10 seed 0: obs 0.248 unobs 0.0000 amb 0.0001 off 0.752  auroc obs/unobs nan  697s
+[pi3_oiavisself] scan 110 views 3 seed 1: obs 0.020 unobs 0.0024 amb 0.0003 off 0.978  auroc obs/unobs 0.475  701s
+[pi3_oiavisself] scan 110 views 5 seed 1: obs 0.162 unobs 0.0004 amb 0.0011 off 0.837  auroc obs/unobs 0.741  704s
+[pi3_oiavisself] scan 110 views 10 seed 1: obs 0.357 unobs 0.0015 amb 0.0007 off 0.641  auroc obs/unobs 0.984  710s
+[pi3_oiavisself] scan 114 views 3 seed 0: obs 0.188 unobs 0.0173 amb 0.0006 off 0.795  auroc obs/unobs 0.497  712s
+[pi3_oiavisself] scan 114 views 5 seed 0: obs 0.458 unobs 0.0128 amb 0.0007 off 0.529  auroc obs/unobs 0.496  715s
+[pi3_oiavisself] scan 114 views 10 seed 0: obs 0.579 unobs 0.0014 amb 0.0003 off 0.419  auroc obs/unobs 0.504  721s
+[pi3_oiavisself] scan 114 views 3 seed 1: obs 0.044 unobs 0.0013 amb 0.0001 off 0.954  auroc obs/unobs 0.578  725s
+[pi3_oiavisself] scan 114 views 5 seed 1: obs 0.431 unobs 0.0100 amb 0.0005 off 0.559  auroc obs/unobs 0.485  729s
+[pi3_oiavisself] scan 114 views 10 seed 1: obs 0.442 unobs 0.0010 amb 0.0001 off 0.557  auroc obs/unobs 0.486  735s
+[pi3_oiavisself] scan 118 views 3 seed 0: obs 0.108 unobs 0.0143 amb 0.0007 off 0.877  auroc obs/unobs 0.493  737s
+[pi3_oiavisself] scan 118 views 5 seed 0: obs 0.201 unobs 0.0056 amb 0.0005 off 0.793  auroc obs/unobs 0.505  739s
+[pi3_oiavisself] scan 118 views 10 seed 0: obs 0.243 unobs 0.0003 amb 0.0001 off 0.757  auroc obs/unobs 0.481  741s
+[pi3_oiavisself] scan 118 views 3 seed 1: obs 0.111 unobs 0.0054 amb 0.0007 off 0.883  auroc obs/unobs 0.530  744s
+[pi3_oiavisself] scan 118 views 5 seed 1: obs 0.136 unobs 0.0035 amb 0.0003 off 0.860  auroc obs/unobs 0.526  745s
+[pi3_oiavisself] scan 118 views 10 seed 1: obs 0.229 unobs 0.0008 amb 0.0001 off 0.771  auroc obs/unobs 0.492  748s
+[93m[WARN ] Dependency `gsplat` is required for rendering 3DGS. Install via: pip install git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70[0m
+[97m[INFO ] using MLP layer as FFN[0m
+[97m[INFO ] Processed Images Done taking 0.030532121658325195 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.46598196029663086 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005910396575927734 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 1 views 3 seed 0: obs 0.102 unobs 0.0061 amb 0.0003 off 0.892  auroc obs/unobs 0.510  2s
+[97m[INFO ] Processed Images Done taking 0.4709300994873047 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 1.070310115814209 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007679462432861328 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 1 views 5 seed 0: obs 0.227 unobs 0.0018 amb 0.0003 off 0.771  auroc obs/unobs 0.522  7s
+[97m[INFO ] Processed Images Done taking 1.2959532737731934 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 1.6777024269104004 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0014069080352783203 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 1 views 10 seed 0: obs 0.187 unobs 0.0001 amb 0.0001 off 0.813  auroc obs/unobs nan  17s
+[97m[INFO ] Processed Images Done taking 0.40721559524536133 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1966087818145752 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007009506225585938 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 1 views 3 seed 1: obs 0.063 unobs 0.0020 amb 0.0001 off 0.935  auroc obs/unobs 0.488  21s
+[97m[INFO ] Processed Images Done taking 0.43833279609680176 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.26113057136535645 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008633136749267578 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 1 views 5 seed 1: obs 0.447 unobs 0.0110 amb 0.0005 off 0.542  auroc obs/unobs 0.497  30s
+[97m[INFO ] Processed Images Done taking 0.3608572483062744 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1605091094970703 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0031096935272216797 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 1 views 10 seed 1: obs 0.175 unobs 0.0005 amb 0.0000 off 0.825  auroc obs/unobs 0.528  39s
+[97m[INFO ] Processed Images Done taking 0.21526551246643066 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05156135559082031 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006902217864990234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 4 views 3 seed 0: obs 0.405 unobs 0.0830 amb 0.0019 off 0.510  auroc obs/unobs 0.497  41s
+[97m[INFO ] Processed Images Done taking 0.026346445083618164 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11967349052429199 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009350776672363281 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 4 views 5 seed 0: obs 0.410 unobs 0.0132 amb 0.0007 off 0.576  auroc obs/unobs 0.504  43s
+[97m[INFO ] Processed Images Done taking 0.5353548526763916 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2560241222381592 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0018389225006103516 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 4 views 10 seed 0: obs 0.200 unobs 0.0009 amb 0.0002 off 0.798  auroc obs/unobs 0.574  47s
+[97m[INFO ] Processed Images Done taking 0.17009925842285156 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0950462818145752 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0014753341674804688 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 4 views 3 seed 1: obs 0.114 unobs 0.0098 amb 0.0006 off 0.875  auroc obs/unobs 0.493  48s
+[97m[INFO ] Processed Images Done taking 0.019043684005737305 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.3053092956542969 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010578632354736328 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 4 views 5 seed 1: obs 0.322 unobs 0.0207 amb 0.0008 off 0.656  auroc obs/unobs 0.490  51s
+[97m[INFO ] Processed Images Done taking 0.34639811515808105 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13623428344726562 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013279914855957031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 4 views 10 seed 1: obs 0.418 unobs 0.0032 amb 0.0003 off 0.579  auroc obs/unobs 0.489  53s
+[97m[INFO ] Processed Images Done taking 0.01074671745300293 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0704202651977539 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007245540618896484 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 9 views 3 seed 0: obs 0.346 unobs 0.0258 amb 0.0010 off 0.627  auroc obs/unobs 0.510  55s
+[97m[INFO ] Processed Images Done taking 0.48934173583984375 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.28157830238342285 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007627010345458984 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 9 views 5 seed 0: obs 0.144 unobs 0.0039 amb 0.0003 off 0.851  auroc obs/unobs 0.496  58s
+[97m[INFO ] Processed Images Done taking 0.26648902893066406 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11400008201599121 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0019998550415039062 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 9 views 10 seed 0: obs 0.371 unobs 0.0005 amb 0.0001 off 0.628  auroc obs/unobs 0.604  62s
+[97m[INFO ] Processed Images Done taking 0.37616539001464844 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2264549732208252 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006902217864990234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 9 views 3 seed 1: obs 0.271 unobs 0.0178 amb 0.0009 off 0.710  auroc obs/unobs 0.499  66s
+[97m[INFO ] Processed Images Done taking 0.15964460372924805 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13216328620910645 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008985996246337891 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 9 views 5 seed 1: obs 0.482 unobs 0.0247 amb 0.0006 off 0.493  auroc obs/unobs 0.508  67s
+[97m[INFO ] Processed Images Done taking 0.03547263145446777 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.31923556327819824 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0015497207641601562 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 9 views 10 seed 1: obs 0.398 unobs 0.0007 amb 0.0002 off 0.601  auroc obs/unobs 0.471  70s
+[97m[INFO ] Processed Images Done taking 0.13187241554260254 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2567481994628906 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006139278411865234 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 10 views 3 seed 0: obs 0.170 unobs 0.0252 amb 0.0003 off 0.804  auroc obs/unobs 0.501  72s
+[97m[INFO ] Processed Images Done taking 0.033478736877441406 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.23778843879699707 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.000993490219116211 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 10 views 5 seed 0: obs 0.483 unobs 0.0158 amb 0.0008 off 0.500  auroc obs/unobs 0.516  74s
+[97m[INFO ] Processed Images Done taking 0.40280961990356445 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1866614818572998 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0014297962188720703 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 10 views 10 seed 0: obs 0.394 unobs 0.0004 amb 0.0002 off 0.605  auroc obs/unobs 0.492  75s
+[97m[INFO ] Processed Images Done taking 0.15389227867126465 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12213277816772461 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006875991821289062 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 10 views 3 seed 1: obs 0.185 unobs 0.0153 amb 0.0005 off 0.800  auroc obs/unobs 0.501  77s
+[97m[INFO ] Processed Images Done taking 0.02675771713256836 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.24716520309448242 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008809566497802734 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 10 views 5 seed 1: obs 0.390 unobs 0.0243 amb 0.0003 off 0.585  auroc obs/unobs 0.494  79s
+[97m[INFO ] Processed Images Done taking 0.5291669368743896 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10506868362426758 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013511180877685547 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 10 views 10 seed 1: obs 0.496 unobs 0.0012 amb 0.0003 off 0.503  auroc obs/unobs 0.450  82s
+[97m[INFO ] Processed Images Done taking 0.23496747016906738 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05406904220581055 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0017039775848388672 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 11 views 3 seed 0: obs 0.287 unobs 0.0118 amb 0.0007 off 0.700  auroc obs/unobs 0.498  84s
+[97m[INFO ] Processed Images Done taking 0.5831501483917236 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.25165653228759766 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010225772857666016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 11 views 5 seed 0: obs 0.252 unobs 0.0046 amb 0.0004 off 0.743  auroc obs/unobs 0.491  86s
+[97m[INFO ] Processed Images Done taking 0.2506704330444336 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2229931354522705 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0031232833862304688 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 11 views 10 seed 0: obs 0.603 unobs 0.0008 amb 0.0001 off 0.396  auroc obs/unobs 0.473  92s
+[97m[INFO ] Processed Images Done taking 0.06740975379943848 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08855748176574707 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007491111755371094 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 11 views 3 seed 1: obs 0.028 unobs 0.0016 amb 0.0000 off 0.971  auroc obs/unobs 0.486  94s
+[97m[INFO ] Processed Images Done taking 0.1324465274810791 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.21818995475769043 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009319782257080078 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 11 views 5 seed 1: obs 0.192 unobs 0.0075 amb 0.0001 off 0.800  auroc obs/unobs 0.490  96s
+[97m[INFO ] Processed Images Done taking 0.9165971279144287 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.3230936527252197 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.016626358032226562 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 11 views 10 seed 1: obs 0.524 unobs 0.0013 amb 0.0003 off 0.474  auroc obs/unobs 0.482  99s
+[97m[INFO ] Processed Images Done taking 0.012621879577636719 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14663171768188477 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007078647613525391 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 12 views 3 seed 0: obs 0.010 unobs 0.0011 amb 0.0000 off 0.989  auroc obs/unobs 0.513  104s
+[97m[INFO ] Processed Images Done taking 0.44066929817199707 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2170705795288086 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0016937255859375 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 12 views 5 seed 0: obs 0.184 unobs 0.0108 amb 0.0002 off 0.805  auroc obs/unobs 0.511  106s
+[97m[INFO ] Processed Images Done taking 0.07260441780090332 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.23469281196594238 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.008451223373413086 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 12 views 10 seed 0: obs 0.481 unobs 0.0062 amb 0.0003 off 0.513  auroc obs/unobs 0.478  111s
+[97m[INFO ] Processed Images Done taking 0.019089937210083008 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.08018708229064941 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007481575012207031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 12 views 3 seed 1: obs 0.039 unobs 0.0046 amb 0.0000 off 0.957  auroc obs/unobs 0.489  117s
+[97m[INFO ] Processed Images Done taking 0.4681527614593506 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.20405912399291992 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008625984191894531 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 12 views 5 seed 1: obs 0.145 unobs 0.0177 amb 0.0002 off 0.838  auroc obs/unobs 0.497  121s
+[97m[INFO ] Processed Images Done taking 0.7847931385040283 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1199650764465332 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0025529861450195312 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 12 views 10 seed 1: obs 0.399 unobs 0.0042 amb 0.0005 off 0.597  auroc obs/unobs 0.506  128s
+[97m[INFO ] Processed Images Done taking 0.3622140884399414 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.17995047569274902 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007355213165283203 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 13 views 3 seed 0: obs 0.124 unobs 0.0055 amb 0.0003 off 0.870  auroc obs/unobs 0.518  131s
+[97m[INFO ] Processed Images Done taking 0.027633190155029297 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.15227460861206055 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0020737648010253906 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 13 views 5 seed 0: obs 0.048 unobs 0.0015 amb 0.0000 off 0.950  auroc obs/unobs 0.502  132s
+[97m[INFO ] Processed Images Done taking 0.09852480888366699 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.3552243709564209 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.003332376480102539 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 13 views 10 seed 0: obs 0.428 unobs 0.0012 amb 0.0002 off 0.571  auroc obs/unobs 0.490  135s
+[97m[INFO ] Processed Images Done taking 0.01577615737915039 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.19293785095214844 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007364749908447266 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 13 views 3 seed 1: obs 0.042 unobs 0.0030 amb 0.0000 off 0.955  auroc obs/unobs 0.498  137s
+[97m[INFO ] Processed Images Done taking 0.23319697380065918 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10692930221557617 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0012545585632324219 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 13 views 5 seed 1: obs 0.540 unobs 0.0356 amb 0.0007 off 0.424  auroc obs/unobs 0.502  139s
+[97m[INFO ] Processed Images Done taking 0.22956109046936035 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2141733169555664 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0015223026275634766 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 13 views 10 seed 1: obs 0.099 unobs 0.0004 amb 0.0000 off 0.900  auroc obs/unobs 0.542  141s
+[97m[INFO ] Processed Images Done taking 0.1316826343536377 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0905454158782959 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005571842193603516 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 15 views 3 seed 0: obs 0.065 unobs 0.0074 amb 0.0001 off 0.927  auroc obs/unobs 0.517  142s
+[97m[INFO ] Processed Images Done taking 0.13183188438415527 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.138136625289917 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.002415895462036133 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 15 views 5 seed 0: obs 0.076 unobs 0.0020 amb 0.0001 off 0.922  auroc obs/unobs 0.471  146s
+[97m[INFO ] Processed Images Done taking 0.4434666633605957 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14104413986206055 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001451730728149414 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 15 views 10 seed 0: obs 0.409 unobs 0.0001 amb 0.0002 off 0.591  auroc obs/unobs nan  149s
+[97m[INFO ] Processed Images Done taking 0.12259101867675781 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.04779386520385742 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008764266967773438 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 15 views 3 seed 1: obs 0.127 unobs 0.0087 amb 0.0002 off 0.865  auroc obs/unobs 0.496  150s
+[97m[INFO ] Processed Images Done taking 0.32320737838745117 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10415005683898926 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.004113435745239258 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 15 views 5 seed 1: obs 0.458 unobs 0.0256 amb 0.0005 off 0.516  auroc obs/unobs 0.501  153s
+[97m[INFO ] Processed Images Done taking 0.041143178939819336 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.4858973026275635 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0015952587127685547 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 15 views 10 seed 1: obs 0.657 unobs 0.0014 amb 0.0003 off 0.341  auroc obs/unobs 0.494  157s
+[97m[INFO ] Processed Images Done taking 0.1581099033355713 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11454582214355469 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006897449493408203 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 23 views 3 seed 0: obs 0.339 unobs 0.0382 amb 0.0007 off 0.622  auroc obs/unobs 0.509  158s
+[97m[INFO ] Processed Images Done taking 0.019114017486572266 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.28335118293762207 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011661052703857422 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 23 views 5 seed 0: obs 0.341 unobs 0.0096 amb 0.0004 off 0.649  auroc obs/unobs 0.500  160s
+[97m[INFO ] Processed Images Done taking 0.17813467979431152 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2781088352203369 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0012362003326416016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 23 views 10 seed 0: obs 0.273 unobs 0.0000 amb 0.0001 off 0.727  auroc obs/unobs nan  162s
+[97m[INFO ] Processed Images Done taking 0.35364198684692383 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2658252716064453 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008745193481445312 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 23 views 3 seed 1: obs 0.123 unobs 0.0100 amb 0.0002 off 0.867  auroc obs/unobs 0.517  166s
+[97m[INFO ] Processed Images Done taking 0.13854527473449707 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2623124122619629 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0026395320892333984 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 23 views 5 seed 1: obs 0.253 unobs 0.0170 amb 0.0003 off 0.730  auroc obs/unobs 0.499  168s
+[97m[INFO ] Processed Images Done taking 1.1489830017089844 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.4615049362182617 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.02226567268371582 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 23 views 10 seed 1: obs 0.680 unobs 0.0009 amb 0.0004 off 0.319  auroc obs/unobs 0.460  173s
+[97m[INFO ] Processed Images Done taking 0.2512526512145996 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2339320182800293 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006372928619384766 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 24 views 3 seed 0: obs 0.177 unobs 0.0261 amb 0.0003 off 0.797  auroc obs/unobs 0.502  177s
+[97m[INFO ] Processed Images Done taking 0.08354330062866211 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12265706062316895 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008828639984130859 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 24 views 5 seed 0: obs 0.267 unobs 0.0134 amb 0.0003 off 0.719  auroc obs/unobs 0.501  179s
+[97m[INFO ] Processed Images Done taking 0.24532198905944824 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.16288971900939941 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0014171600341796875 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 24 views 10 seed 0: obs 0.193 unobs 0.0010 amb 0.0001 off 0.806  auroc obs/unobs 0.498  184s
+[97m[INFO ] Processed Images Done taking 0.14669203758239746 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07810163497924805 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007278919219970703 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 24 views 3 seed 1: obs 0.210 unobs 0.0174 amb 0.0002 off 0.772  auroc obs/unobs 0.499  186s
+[97m[INFO ] Processed Images Done taking 0.14172053337097168 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.06870365142822266 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009548664093017578 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 24 views 5 seed 1: obs 0.000 unobs 0.0000 amb 0.0000 off 1.000  auroc obs/unobs nan  189s
+[97m[INFO ] Processed Images Done taking 0.4660985469818115 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.21034026145935059 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.006438732147216797 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 24 views 10 seed 1: obs 0.275 unobs 0.0015 amb 0.0000 off 0.723  auroc obs/unobs 0.541  193s
+[97m[INFO ] Processed Images Done taking 0.11005973815917969 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09248948097229004 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0015091896057128906 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 29 views 3 seed 0: obs 0.174 unobs 0.0492 amb 0.0002 off 0.776  auroc obs/unobs 0.505  195s
+[97m[INFO ] Processed Images Done taking 0.2414689064025879 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11054778099060059 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008230209350585938 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 29 views 5 seed 0: obs 0.309 unobs 0.0196 amb 0.0004 off 0.671  auroc obs/unobs 0.499  196s
+[97m[INFO ] Processed Images Done taking 0.2124319076538086 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1415257453918457 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0012640953063964844 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 29 views 10 seed 0: obs 0.014 unobs 0.0002 amb 0.0000 off 0.986  auroc obs/unobs 0.439  201s
+[97m[INFO ] Processed Images Done taking 0.25837087631225586 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12607169151306152 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006837844848632812 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 29 views 3 seed 1: obs 0.074 unobs 0.0177 amb 0.0001 off 0.908  auroc obs/unobs 0.513  203s
+[97m[INFO ] Processed Images Done taking 0.05726361274719238 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.3030669689178467 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0012738704681396484 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 29 views 5 seed 1: obs 0.297 unobs 0.0273 amb 0.0004 off 0.675  auroc obs/unobs 0.519  204s
+[97m[INFO ] Processed Images Done taking 0.12100434303283691 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2762908935546875 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.004917621612548828 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 29 views 10 seed 1: obs 0.533 unobs 0.0073 amb 0.0003 off 0.460  auroc obs/unobs 0.520  207s
+[97m[INFO ] Processed Images Done taking 0.012063264846801758 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.16724610328674316 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007352828979492188 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 32 views 3 seed 0: obs 0.092 unobs 0.0170 amb 0.0005 off 0.890  auroc obs/unobs 0.513  208s
+[97m[INFO ] Processed Images Done taking 0.19960618019104004 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.21506810188293457 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001070261001586914 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 32 views 5 seed 0: obs 0.182 unobs 0.0134 amb 0.0004 off 0.804  auroc obs/unobs 0.502  210s
+[97m[INFO ] Processed Images Done taking 0.07600069046020508 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.3320310115814209 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013539791107177734 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 32 views 10 seed 0: obs 0.378 unobs 0.0015 amb 0.0002 off 0.620  auroc obs/unobs 0.502  213s
+[97m[INFO ] Processed Images Done taking 0.34241461753845215 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1647484302520752 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007216930389404297 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 32 views 3 seed 1: obs 0.003 unobs 0.0002 amb 0.0000 off 0.997  auroc obs/unobs nan  215s
+[97m[INFO ] Processed Images Done taking 0.015921831130981445 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2780013084411621 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009291172027587891 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 32 views 5 seed 1: obs 0.092 unobs 0.0067 amb 0.0002 off 0.901  auroc obs/unobs 0.511  218s
+[97m[INFO ] Processed Images Done taking 0.7611563205718994 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.30176281929016113 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.002497434616088867 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 32 views 10 seed 1: obs 0.489 unobs 0.0034 amb 0.0002 off 0.508  auroc obs/unobs 0.491  221s
+[97m[INFO ] Processed Images Done taking 0.04278206825256348 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.047419071197509766 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0007574558258056641 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 33 views 3 seed 0: obs 0.162 unobs 0.0338 amb 0.0013 off 0.803  auroc obs/unobs 0.513  224s
+[97m[INFO ] Processed Images Done taking 0.01977396011352539 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.3193995952606201 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010547637939453125 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 33 views 5 seed 0: obs 0.181 unobs 0.0166 amb 0.0003 off 0.802  auroc obs/unobs 0.512  225s
+[97m[INFO ] Processed Images Done taking 0.31810951232910156 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.15865421295166016 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.002039670944213867 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 33 views 10 seed 0: obs 0.384 unobs 0.0064 amb 0.0003 off 0.609  auroc obs/unobs 0.498  228s
+[97m[INFO ] Processed Images Done taking 0.1688859462738037 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09432172775268555 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013425350189208984 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 33 views 3 seed 1: obs 0.073 unobs 0.0114 amb 0.0004 off 0.915  auroc obs/unobs 0.487  229s
+[97m[INFO ] Processed Images Done taking 0.055474281311035156 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.20917820930480957 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0009334087371826172 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 33 views 5 seed 1: obs 0.227 unobs 0.0261 amb 0.0007 off 0.746  auroc obs/unobs 0.506  231s
+[97m[INFO ] Processed Images Done taking 0.3569822311401367 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2418365478515625 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0026903152465820312 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 33 views 10 seed 1: obs 0.389 unobs 0.0053 amb 0.0002 off 0.606  auroc obs/unobs 0.492  234s
+[97m[INFO ] Processed Images Done taking 0.021538496017456055 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07387971878051758 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001186370849609375 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 34 views 3 seed 0: obs 0.161 unobs 0.0217 amb 0.0001 off 0.817  auroc obs/unobs 0.506  236s
+[97m[INFO ] Processed Images Done taking 0.25697946548461914 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13895034790039062 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008003711700439453 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 34 views 5 seed 0: obs 0.176 unobs 0.0103 amb 0.0007 off 0.813  auroc obs/unobs 0.481  238s
+[97m[INFO ] Processed Images Done taking 0.24379968643188477 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2632732391357422 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0032203197479248047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 34 views 10 seed 0: obs 0.162 unobs 0.0005 amb 0.0001 off 0.837  auroc obs/unobs 0.508  243s
+[97m[INFO ] Processed Images Done taking 0.01365208625793457 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1341855525970459 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001474618911743164 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 34 views 3 seed 1: obs 0.319 unobs 0.0233 amb 0.0003 off 0.657  auroc obs/unobs 0.495  244s
+[97m[INFO ] Processed Images Done taking 0.03960609436035156 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14029192924499512 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011444091796875 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 34 views 5 seed 1: obs 0.265 unobs 0.0148 amb 0.0002 off 0.720  auroc obs/unobs 0.495  246s
+[97m[INFO ] Processed Images Done taking 0.04531288146972656 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.23369812965393066 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.012437582015991211 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 34 views 10 seed 1: obs 0.274 unobs 0.0013 amb 0.0002 off 0.725  auroc obs/unobs 0.478  250s
+[97m[INFO ] Processed Images Done taking 0.3084855079650879 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.19945621490478516 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006930828094482422 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 48 views 3 seed 0: obs 0.222 unobs 0.0346 amb 0.0005 off 0.743  auroc obs/unobs 0.494  254s
+[97m[INFO ] Processed Images Done taking 0.3883633613586426 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.23729586601257324 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008022785186767578 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 48 views 5 seed 0: obs 0.246 unobs 0.0189 amb 0.0003 off 0.735  auroc obs/unobs 0.492  256s
+[97m[INFO ] Processed Images Done taking 0.035239219665527344 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.3306882381439209 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0016939640045166016 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 48 views 10 seed 0: obs 0.249 unobs 0.0030 amb 0.0002 off 0.747  auroc obs/unobs 0.496  258s
+[97m[INFO ] Processed Images Done taking 0.39653968811035156 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.156724214553833 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006568431854248047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 48 views 3 seed 1: obs 0.031 unobs 0.0036 amb 0.0000 off 0.965  auroc obs/unobs 0.525  261s
+[97m[INFO ] Processed Images Done taking 0.028258323669433594 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10131669044494629 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001470804214477539 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 48 views 5 seed 1: obs 0.097 unobs 0.0085 amb 0.0000 off 0.895  auroc obs/unobs 0.499  264s
+[97m[INFO ] Processed Images Done taking 0.23923707008361816 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.16039061546325684 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013585090637207031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 48 views 10 seed 1: obs 0.241 unobs 0.0032 amb 0.0001 off 0.756  auroc obs/unobs 0.498  266s
+[97m[INFO ] Processed Images Done taking 0.07712197303771973 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.1659867763519287 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.003074169158935547 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 49 views 3 seed 0: obs 0.218 unobs 0.0535 amb 0.0010 off 0.727  auroc obs/unobs 0.498  268s
+[97m[INFO ] Processed Images Done taking 0.17545843124389648 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.23566293716430664 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.006295919418334961 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 49 views 5 seed 0: obs 0.251 unobs 0.0203 amb 0.0005 off 0.728  auroc obs/unobs 0.495  270s
+[97m[INFO ] Processed Images Done taking 0.21881604194641113 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.23378753662109375 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0014958381652832031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 49 views 10 seed 0: obs 0.291 unobs 0.0014 amb 0.0003 off 0.707  auroc obs/unobs 0.524  273s
+[97m[INFO ] Processed Images Done taking 0.07524347305297852 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.0681004524230957 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.002444028854370117 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 49 views 3 seed 1: obs 0.060 unobs 0.0117 amb 0.0002 off 0.928  auroc obs/unobs 0.473  274s
+[97m[INFO ] Processed Images Done taking 0.26528477668762207 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.17448949813842773 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013928413391113281 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 49 views 5 seed 1: obs 0.158 unobs 0.0150 amb 0.0005 off 0.826  auroc obs/unobs 0.499  276s
+[97m[INFO ] Processed Images Done taking 0.7423481941223145 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.17778563499450684 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.008563518524169922 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 49 views 10 seed 1: obs 0.358 unobs 0.0042 amb 0.0002 off 0.638  auroc obs/unobs 0.504  281s
+[97m[INFO ] Processed Images Done taking 0.15579795837402344 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.054595232009887695 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008006095886230469 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 62 views 3 seed 0: obs 0.407 unobs 0.0660 amb 0.0007 off 0.527  auroc obs/unobs 0.509  283s
+[97m[INFO ] Processed Images Done taking 0.18433356285095215 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07334089279174805 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013453960418701172 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 62 views 5 seed 0: obs 0.277 unobs 0.0178 amb 0.0004 off 0.705  auroc obs/unobs 0.498  284s
+[97m[INFO ] Processed Images Done taking 0.0342710018157959 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.3725008964538574 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0014488697052001953 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 62 views 10 seed 0: obs 0.290 unobs 0.0018 amb 0.0001 off 0.708  auroc obs/unobs 0.510  288s
+[97m[INFO ] Processed Images Done taking 0.2571988105773926 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.05787825584411621 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010349750518798828 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 62 views 3 seed 1: obs 0.021 unobs 0.0016 amb 0.0001 off 0.978  auroc obs/unobs 0.632  290s
+[97m[INFO ] Processed Images Done taking 0.1831529140472412 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2716701030731201 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.001989126205444336 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 62 views 5 seed 1: obs 0.074 unobs 0.0050 amb 0.0001 off 0.921  auroc obs/unobs 0.502  293s
+[97m[INFO ] Processed Images Done taking 0.5779285430908203 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.13943719863891602 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013275146484375 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 62 views 10 seed 1: obs 0.195 unobs 0.0014 amb 0.0001 off 0.803  auroc obs/unobs 0.516  295s
+[97m[INFO ] Processed Images Done taking 0.0193328857421875 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2272040843963623 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0006468296051025391 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 75 views 3 seed 0: obs 0.219 unobs 0.0013 amb 0.0018 off 0.778  auroc obs/unobs 0.603  298s
+[97m[INFO ] Processed Images Done taking 0.3798513412475586 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.16835975646972656 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0015454292297363281 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 75 views 5 seed 0: obs 0.345 unobs 0.0028 amb 0.0035 off 0.649  auroc obs/unobs 0.681  300s
+[97m[INFO ] Processed Images Done taking 0.039321184158325195 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2404038906097412 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0034601688385009766 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 75 views 10 seed 0: obs 0.108 unobs 0.0008 amb 0.0003 off 0.891  auroc obs/unobs 0.931  304s
+[97m[INFO ] Processed Images Done taking 0.2606184482574463 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11559247970581055 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011696815490722656 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 75 views 3 seed 1: obs 0.103 unobs 0.0038 amb 0.0015 off 0.892  auroc obs/unobs 0.379  306s
+[97m[INFO ] Processed Images Done taking 0.020209789276123047 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2743082046508789 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010986328125 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 75 views 5 seed 1: obs 0.120 unobs 0.0032 amb 0.0012 off 0.876  auroc obs/unobs 0.874  307s
+[97m[INFO ] Processed Images Done taking 0.19956421852111816 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.16950511932373047 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0026662349700927734 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 75 views 10 seed 1: obs 0.310 unobs 0.0002 amb 0.0011 off 0.689  auroc obs/unobs 0.642  312s
+[97m[INFO ] Processed Images Done taking 0.42654943466186523 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.19087791442871094 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.002580404281616211 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 77 views 3 seed 0: obs 0.049 unobs 0.0146 amb 0.0001 off 0.937  auroc obs/unobs 0.498  315s
+[97m[INFO ] Processed Images Done taking 0.05956888198852539 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.10293197631835938 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011298656463623047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 77 views 5 seed 0: obs 0.162 unobs 0.0190 amb 0.0002 off 0.819  auroc obs/unobs 0.501  319s
+[97m[INFO ] Processed Images Done taking 0.32846593856811523 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.15577125549316406 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.003010988235473633 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 77 views 10 seed 0: obs 0.095 unobs 0.0003 amb 0.0001 off 0.904  auroc obs/unobs 0.530  326s
+[97m[INFO ] Processed Images Done taking 0.14582562446594238 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09350824356079102 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0018148422241210938 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 77 views 3 seed 1: obs 0.079 unobs 0.0233 amb 0.0001 off 0.898  auroc obs/unobs 0.508  327s
+[97m[INFO ] Processed Images Done taking 0.017316579818725586 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.2753417491912842 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0023071765899658203 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 77 views 5 seed 1: obs 0.105 unobs 0.0129 amb 0.0002 off 0.882  auroc obs/unobs 0.508  335s
+[97m[INFO ] Processed Images Done taking 0.45801496505737305 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.23129010200500488 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0022284984588623047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 77 views 10 seed 1: obs 0.364 unobs 0.0023 amb 0.0002 off 0.633  auroc obs/unobs 0.519  337s
+[97m[INFO ] Processed Images Done taking 0.20879101753234863 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12773895263671875 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0005745887756347656 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 110 views 3 seed 0: obs 0.038 unobs 0.0054 amb 0.0035 off 0.954  auroc obs/unobs 0.430  339s
+[97m[INFO ] Processed Images Done taking 0.020252466201782227 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.26317286491394043 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0011980533599853516 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 110 views 5 seed 0: obs 0.289 unobs 0.0045 amb 0.0026 off 0.704  auroc obs/unobs 0.906  340s
+[97m[INFO ] Processed Images Done taking 0.042006492614746094 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.34487056732177734 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0016491413116455078 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 110 views 10 seed 0: obs 0.392 unobs 0.0004 amb 0.0013 off 0.606  auroc obs/unobs 0.973  342s
+[97m[INFO ] Processed Images Done taking 0.04924273490905762 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.09248518943786621 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013279914855957031 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 110 views 3 seed 1: obs 0.037 unobs 0.0224 amb 0.0007 off 0.940  auroc obs/unobs 0.166  344s
+[97m[INFO ] Processed Images Done taking 0.43139100074768066 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.257174015045166 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.00101470947265625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 110 views 5 seed 1: obs 0.080 unobs 0.0010 amb 0.0019 off 0.917  auroc obs/unobs 0.125  346s
+[97m[INFO ] Processed Images Done taking 0.03929495811462402 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.22926664352416992 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0013039112091064453 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 110 views 10 seed 1: obs 0.441 unobs 0.0005 amb 0.0013 off 0.557  auroc obs/unobs 0.917  348s
+[97m[INFO ] Processed Images Done taking 0.3276078701019287 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14174485206604004 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.009808778762817383 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 114 views 3 seed 0: obs 0.281 unobs 0.0245 amb 0.0009 off 0.694  auroc obs/unobs 0.486  350s
+[97m[INFO ] Processed Images Done taking 0.034440040588378906 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.14436793327331543 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0016117095947265625 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 114 views 5 seed 0: obs 0.385 unobs 0.0100 amb 0.0005 off 0.605  auroc obs/unobs 0.514  353s
+[97m[INFO ] Processed Images Done taking 0.3246440887451172 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.11640048027038574 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.005057334899902344 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 114 views 10 seed 0: obs 0.047 unobs 0.0001 amb 0.0000 off 0.953  auroc obs/unobs nan  356s
+[97m[INFO ] Processed Images Done taking 0.26616859436035156 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12624001502990723 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008158683776855469 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 114 views 3 seed 1: obs 0.101 unobs 0.0033 amb 0.0000 off 0.896  auroc obs/unobs 0.550  359s
+[97m[INFO ] Processed Images Done taking 0.19637107849121094 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07198572158813477 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0015501976013183594 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 114 views 5 seed 1: obs 0.049 unobs 0.0013 amb 0.0000 off 0.950  auroc obs/unobs 0.519  362s
+[97m[INFO ] Processed Images Done taking 0.06548643112182617 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.22022342681884766 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.005786418914794922 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 114 views 10 seed 1: obs 0.094 unobs 0.0003 amb 0.0000 off 0.905  auroc obs/unobs 0.473  369s
+[97m[INFO ] Processed Images Done taking 0.02538442611694336 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.12498855590820312 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0008215904235839844 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 118 views 3 seed 0: obs 0.197 unobs 0.0259 amb 0.0010 off 0.777  auroc obs/unobs 0.506  369s
+[97m[INFO ] Processed Images Done taking 0.2180957794189453 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.18831634521484375 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010993480682373047 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 118 views 5 seed 0: obs 0.205 unobs 0.0052 amb 0.0007 off 0.789  auroc obs/unobs 0.474  372s
+[97m[INFO ] Processed Images Done taking 0.20218443870544434 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.15443062782287598 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0035848617553710938 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 118 views 10 seed 0: obs 0.454 unobs 0.0005 amb 0.0002 off 0.545  auroc obs/unobs 0.449  375s
+[97m[INFO ] Processed Images Done taking 0.22228646278381348 seconds. Shape:  torch.Size([3, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.07860374450683594 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0010118484497070312 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 118 views 3 seed 1: obs 0.103 unobs 0.0050 amb 0.0006 off 0.892  auroc obs/unobs 0.482  376s
+[97m[INFO ] Processed Images Done taking 0.09115743637084961 seconds. Shape:  torch.Size([5, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.17087650299072266 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.0016248226165771484 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 118 views 5 seed 1: obs 0.154 unobs 0.0044 amb 0.0003 off 0.841  auroc obs/unobs 0.510  378s
+[97m[INFO ] Processed Images Done taking 0.8302459716796875 seconds. Shape:  torch.Size([10, 3, 420, 518])[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Model Forward Pass Done. Time: 0.17012715339660645 seconds[0m
+[97m[INFO ] Conversion to Prediction Done. Time: 0.007049083709716797 seconds[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3] scan 118 views 10 seed 1: obs 0.566 unobs 0.0022 amb 0.0002 off 0.431  auroc obs/unobs 0.502  382s
+[97m[INFO ] using MLP layer as FFN[0m
+[da3_oiavisself] head from /home/hallu/checkpoints/da3_oiavisself.pt (step 1500, val-auroc 0.993)
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 1 views 3 seed 0: obs 0.062 unobs 0.0039 amb 0.0003 off 0.934  auroc obs/unobs 0.520  2s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 1 views 5 seed 0: obs 0.245 unobs 0.0023 amb 0.0003 off 0.753  auroc obs/unobs 0.527  4s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 1 views 10 seed 0: obs 0.181 unobs 0.0002 amb 0.0000 off 0.819  auroc obs/unobs 0.575  11s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 1 views 3 seed 1: obs 0.063 unobs 0.0016 amb 0.0001 off 0.935  auroc obs/unobs 0.533  13s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 1 views 5 seed 1: obs 0.537 unobs 0.0139 amb 0.0006 off 0.449  auroc obs/unobs 0.518  15s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 1 views 10 seed 1: obs 0.190 unobs 0.0005 amb 0.0000 off 0.810  auroc obs/unobs 0.516  20s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 4 views 3 seed 0: obs 0.423 unobs 0.0854 amb 0.0018 off 0.489  auroc obs/unobs 0.498  20s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 4 views 5 seed 0: obs 0.376 unobs 0.0114 amb 0.0010 off 0.612  auroc obs/unobs 0.511  22s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 4 views 10 seed 0: obs 0.187 unobs 0.0008 amb 0.0002 off 0.812  auroc obs/unobs 0.462  23s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 4 views 3 seed 1: obs 0.123 unobs 0.0097 amb 0.0006 off 0.867  auroc obs/unobs 0.490  25s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 4 views 5 seed 1: obs 0.370 unobs 0.0239 amb 0.0010 off 0.605  auroc obs/unobs 0.489  26s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 4 views 10 seed 1: obs 0.432 unobs 0.0036 amb 0.0003 off 0.564  auroc obs/unobs 0.481  27s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 9 views 3 seed 0: obs 0.310 unobs 0.0251 amb 0.0007 off 0.664  auroc obs/unobs 0.486  28s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 9 views 5 seed 0: obs 0.348 unobs 0.0110 amb 0.0004 off 0.641  auroc obs/unobs 0.507  30s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 9 views 10 seed 0: obs 0.375 unobs 0.0005 amb 0.0001 off 0.625  auroc obs/unobs 0.501  33s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 9 views 3 seed 1: obs 0.229 unobs 0.0126 amb 0.0009 off 0.758  auroc obs/unobs 0.492  34s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 9 views 5 seed 1: obs 0.454 unobs 0.0233 amb 0.0003 off 0.522  auroc obs/unobs 0.502  35s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 9 views 10 seed 1: obs 0.408 unobs 0.0007 amb 0.0002 off 0.591  auroc obs/unobs 0.485  37s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 10 views 3 seed 0: obs 0.249 unobs 0.0382 amb 0.0007 off 0.712  auroc obs/unobs 0.501  38s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 10 views 5 seed 0: obs 0.518 unobs 0.0177 amb 0.0008 off 0.463  auroc obs/unobs 0.503  39s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 10 views 10 seed 0: obs 0.509 unobs 0.0005 amb 0.0004 off 0.490  auroc obs/unobs 0.481  41s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 10 views 3 seed 1: obs 0.187 unobs 0.0149 amb 0.0004 off 0.797  auroc obs/unobs 0.499  42s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 10 views 5 seed 1: obs 0.387 unobs 0.0252 amb 0.0004 off 0.587  auroc obs/unobs 0.506  44s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 10 views 10 seed 1: obs 0.462 unobs 0.0011 amb 0.0002 off 0.537  auroc obs/unobs 0.475  46s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 11 views 3 seed 0: obs 0.293 unobs 0.0126 amb 0.0008 off 0.694  auroc obs/unobs 0.498  46s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 11 views 5 seed 0: obs 0.308 unobs 0.0057 amb 0.0003 off 0.686  auroc obs/unobs 0.480  47s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 11 views 10 seed 0: obs 0.591 unobs 0.0007 amb 0.0002 off 0.408  auroc obs/unobs 0.493  50s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 11 views 3 seed 1: obs 0.027 unobs 0.0012 amb 0.0002 off 0.972  auroc obs/unobs 0.514  51s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 11 views 5 seed 1: obs 0.146 unobs 0.0060 amb 0.0001 off 0.848  auroc obs/unobs 0.504  52s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 11 views 10 seed 1: obs 0.606 unobs 0.0012 amb 0.0003 off 0.392  auroc obs/unobs 0.474  54s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 12 views 3 seed 0: obs 0.168 unobs 0.0176 amb 0.0003 off 0.814  auroc obs/unobs 0.503  55s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 12 views 5 seed 0: obs 0.240 unobs 0.0148 amb 0.0003 off 0.745  auroc obs/unobs 0.504  57s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 12 views 10 seed 0: obs 0.202 unobs 0.0028 amb 0.0002 off 0.795  auroc obs/unobs 0.512  59s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 12 views 3 seed 1: obs 0.038 unobs 0.0056 amb 0.0000 off 0.956  auroc obs/unobs 0.507  61s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 12 views 5 seed 1: obs 0.095 unobs 0.0123 amb 0.0001 off 0.892  auroc obs/unobs 0.499  63s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 12 views 10 seed 1: obs 0.396 unobs 0.0044 amb 0.0004 off 0.600  auroc obs/unobs 0.512  67s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 13 views 3 seed 0: obs 0.201 unobs 0.0096 amb 0.0004 off 0.789  auroc obs/unobs 0.514  68s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 13 views 5 seed 0: obs 0.067 unobs 0.0024 amb 0.0001 off 0.930  auroc obs/unobs 0.467  71s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 13 views 10 seed 0: obs 0.441 unobs 0.0012 amb 0.0003 off 0.558  auroc obs/unobs 0.515  74s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 13 views 3 seed 1: obs 0.038 unobs 0.0029 amb 0.0000 off 0.959  auroc obs/unobs 0.507  79s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 13 views 5 seed 1: obs 0.552 unobs 0.0365 amb 0.0010 off 0.410  auroc obs/unobs 0.506  81s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 13 views 10 seed 1: obs 0.411 unobs 0.0017 amb 0.0001 off 0.587  auroc obs/unobs 0.496  83s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 15 views 3 seed 0: obs 0.068 unobs 0.0092 amb 0.0002 off 0.923  auroc obs/unobs 0.531  84s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 15 views 5 seed 0: obs 0.127 unobs 0.0036 amb 0.0001 off 0.870  auroc obs/unobs 0.484  86s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 15 views 10 seed 0: obs 0.346 unobs 0.0001 amb 0.0001 off 0.654  auroc obs/unobs nan  88s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 15 views 3 seed 1: obs 0.147 unobs 0.0104 amb 0.0001 off 0.842  auroc obs/unobs 0.524  89s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 15 views 5 seed 1: obs 0.429 unobs 0.0217 amb 0.0006 off 0.549  auroc obs/unobs 0.507  91s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 15 views 10 seed 1: obs 0.556 unobs 0.0013 amb 0.0003 off 0.442  auroc obs/unobs 0.554  94s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 23 views 3 seed 0: obs 0.342 unobs 0.0392 amb 0.0006 off 0.619  auroc obs/unobs 0.500  97s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 23 views 5 seed 0: obs 0.470 unobs 0.0131 amb 0.0005 off 0.516  auroc obs/unobs 0.492  97s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 23 views 10 seed 0: obs 0.375 unobs 0.0000 amb 0.0002 off 0.625  auroc obs/unobs nan  99s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 23 views 3 seed 1: obs 0.137 unobs 0.0106 amb 0.0002 off 0.852  auroc obs/unobs 0.505  101s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 23 views 5 seed 1: obs 0.241 unobs 0.0158 amb 0.0002 off 0.743  auroc obs/unobs 0.513  104s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 23 views 10 seed 1: obs 0.678 unobs 0.0011 amb 0.0005 off 0.320  auroc obs/unobs 0.482  106s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 24 views 3 seed 0: obs 0.236 unobs 0.0346 amb 0.0008 off 0.729  auroc obs/unobs 0.504  109s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 24 views 5 seed 0: obs 0.133 unobs 0.0065 amb 0.0003 off 0.861  auroc obs/unobs 0.510  111s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 24 views 10 seed 0: obs 0.244 unobs 0.0011 amb 0.0001 off 0.755  auroc obs/unobs 0.532  117s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 24 views 3 seed 1: obs 0.225 unobs 0.0188 amb 0.0001 off 0.756  auroc obs/unobs 0.481  118s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 24 views 5 seed 1: obs 0.000 unobs 0.0000 amb 0.0000 off 1.000  auroc obs/unobs nan  119s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 24 views 10 seed 1: obs 0.352 unobs 0.0020 amb 0.0001 off 0.646  auroc obs/unobs 0.542  123s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 29 views 3 seed 0: obs 0.194 unobs 0.0549 amb 0.0003 off 0.751  auroc obs/unobs 0.500  124s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 29 views 5 seed 0: obs 0.287 unobs 0.0187 amb 0.0003 off 0.694  auroc obs/unobs 0.503  125s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 29 views 10 seed 0: obs 0.389 unobs 0.0054 amb 0.0002 off 0.605  auroc obs/unobs 0.489  127s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 29 views 3 seed 1: obs 0.066 unobs 0.0150 amb 0.0001 off 0.919  auroc obs/unobs 0.503  127s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 29 views 5 seed 1: obs 0.350 unobs 0.0311 amb 0.0005 off 0.618  auroc obs/unobs 0.492  128s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 29 views 10 seed 1: obs 0.550 unobs 0.0073 amb 0.0004 off 0.443  auroc obs/unobs 0.497  130s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 32 views 3 seed 0: obs 0.119 unobs 0.0213 amb 0.0006 off 0.859  auroc obs/unobs 0.506  131s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 32 views 5 seed 0: obs 0.360 unobs 0.0242 amb 0.0007 off 0.615  auroc obs/unobs 0.496  133s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 32 views 10 seed 0: obs 0.410 unobs 0.0018 amb 0.0003 off 0.588  auroc obs/unobs 0.459  135s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 32 views 3 seed 1: obs 0.003 unobs 0.0006 amb 0.0000 off 0.996  auroc obs/unobs 0.339  136s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 32 views 5 seed 1: obs 0.102 unobs 0.0086 amb 0.0001 off 0.889  auroc obs/unobs 0.484  137s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 32 views 10 seed 1: obs 0.501 unobs 0.0035 amb 0.0002 off 0.496  auroc obs/unobs 0.512  139s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 33 views 3 seed 0: obs 0.160 unobs 0.0349 amb 0.0012 off 0.804  auroc obs/unobs 0.492  140s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 33 views 5 seed 0: obs 0.210 unobs 0.0195 amb 0.0002 off 0.771  auroc obs/unobs 0.496  141s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 33 views 10 seed 0: obs 0.367 unobs 0.0059 amb 0.0002 off 0.627  auroc obs/unobs 0.520  144s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 33 views 3 seed 1: obs 0.079 unobs 0.0119 amb 0.0003 off 0.909  auroc obs/unobs 0.483  145s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 33 views 5 seed 1: obs 0.269 unobs 0.0324 amb 0.0008 off 0.697  auroc obs/unobs 0.499  146s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 33 views 10 seed 1: obs 0.400 unobs 0.0062 amb 0.0002 off 0.593  auroc obs/unobs 0.509  148s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 34 views 3 seed 0: obs 0.149 unobs 0.0181 amb 0.0001 off 0.833  auroc obs/unobs 0.499  150s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 34 views 5 seed 0: obs 0.182 unobs 0.0098 amb 0.0002 off 0.808  auroc obs/unobs 0.523  151s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 34 views 10 seed 0: obs 0.218 unobs 0.0008 amb 0.0001 off 0.781  auroc obs/unobs 0.498  154s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 34 views 3 seed 1: obs 0.332 unobs 0.0250 amb 0.0005 off 0.642  auroc obs/unobs 0.496  155s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 34 views 5 seed 1: obs 0.192 unobs 0.0109 amb 0.0002 off 0.797  auroc obs/unobs 0.482  157s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 34 views 10 seed 1: obs 0.236 unobs 0.0009 amb 0.0001 off 0.763  auroc obs/unobs 0.471  161s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 48 views 3 seed 0: obs 0.276 unobs 0.0425 amb 0.0005 off 0.681  auroc obs/unobs 0.498  162s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 48 views 5 seed 0: obs 0.237 unobs 0.0187 amb 0.0003 off 0.744  auroc obs/unobs 0.494  163s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 48 views 10 seed 0: obs 0.218 unobs 0.0025 amb 0.0002 off 0.779  auroc obs/unobs 0.493  165s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 48 views 3 seed 1: obs 0.035 unobs 0.0035 amb 0.0000 off 0.962  auroc obs/unobs 0.517  167s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 48 views 5 seed 1: obs 0.112 unobs 0.0103 amb 0.0001 off 0.878  auroc obs/unobs 0.521  169s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 48 views 10 seed 1: obs 0.246 unobs 0.0029 amb 0.0002 off 0.751  auroc obs/unobs 0.500  171s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 49 views 3 seed 0: obs 0.205 unobs 0.0487 amb 0.0013 off 0.745  auroc obs/unobs 0.497  172s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 49 views 5 seed 0: obs 0.280 unobs 0.0228 amb 0.0005 off 0.697  auroc obs/unobs 0.487  172s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 49 views 10 seed 0: obs 0.490 unobs 0.0022 amb 0.0004 off 0.507  auroc obs/unobs 0.515  175s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 49 views 3 seed 1: obs 0.062 unobs 0.0098 amb 0.0004 off 0.928  auroc obs/unobs 0.518  177s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 49 views 5 seed 1: obs 0.137 unobs 0.0133 amb 0.0004 off 0.849  auroc obs/unobs 0.482  178s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 49 views 10 seed 1: obs 0.428 unobs 0.0048 amb 0.0003 off 0.567  auroc obs/unobs 0.515  180s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 62 views 3 seed 0: obs 0.410 unobs 0.0634 amb 0.0008 off 0.526  auroc obs/unobs 0.508  182s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 62 views 5 seed 0: obs 0.239 unobs 0.0153 amb 0.0003 off 0.746  auroc obs/unobs 0.481  183s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 62 views 10 seed 0: obs 0.356 unobs 0.0022 amb 0.0001 off 0.641  auroc obs/unobs 0.465  184s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 62 views 3 seed 1: obs 0.019 unobs 0.0027 amb 0.0001 off 0.978  auroc obs/unobs 0.462  186s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 62 views 5 seed 1: obs 0.062 unobs 0.0046 amb 0.0000 off 0.933  auroc obs/unobs 0.471  188s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 62 views 10 seed 1: obs 0.471 unobs 0.0037 amb 0.0003 off 0.525  auroc obs/unobs 0.500  192s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 75 views 3 seed 0: obs 0.220 unobs 0.0012 amb 0.0021 off 0.777  auroc obs/unobs 0.807  193s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 75 views 5 seed 0: obs 0.364 unobs 0.0022 amb 0.0035 off 0.630  auroc obs/unobs 0.968  196s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 75 views 10 seed 0: obs 0.118 unobs 0.0008 amb 0.0003 off 0.881  auroc obs/unobs 0.893  200s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 75 views 3 seed 1: obs 0.095 unobs 0.0035 amb 0.0012 off 0.901  auroc obs/unobs 0.796  200s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 75 views 5 seed 1: obs 0.133 unobs 0.0056 amb 0.0011 off 0.861  auroc obs/unobs 0.848  203s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 75 views 10 seed 1: obs 0.321 unobs 0.0008 amb 0.0008 off 0.677  auroc obs/unobs 0.960  204s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 77 views 3 seed 0: obs 0.107 unobs 0.0374 amb 0.0005 off 0.855  auroc obs/unobs 0.501  206s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 77 views 5 seed 0: obs 0.172 unobs 0.0208 amb 0.0002 off 0.807  auroc obs/unobs 0.509  210s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 77 views 10 seed 0: obs 0.495 unobs 0.0016 amb 0.0003 off 0.503  auroc obs/unobs 0.517  217s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 77 views 3 seed 1: obs 0.079 unobs 0.0244 amb 0.0002 off 0.896  auroc obs/unobs 0.501  220s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 77 views 5 seed 1: obs 0.102 unobs 0.0128 amb 0.0001 off 0.885  auroc obs/unobs 0.502  222s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 77 views 10 seed 1: obs 0.353 unobs 0.0022 amb 0.0003 off 0.644  auroc obs/unobs 0.489  224s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 110 views 3 seed 0: obs 0.039 unobs 0.0053 amb 0.0034 off 0.952  auroc obs/unobs 0.987  224s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 110 views 5 seed 0: obs 0.173 unobs 0.0020 amb 0.0038 off 0.822  auroc obs/unobs 0.979  225s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 110 views 10 seed 0: obs 0.255 unobs 0.0001 amb 0.0007 off 0.744  auroc obs/unobs nan  226s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 110 views 3 seed 1: obs 0.035 unobs 0.0223 amb 0.0014 off 0.941  auroc obs/unobs 0.144  227s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 110 views 5 seed 1: obs 0.088 unobs 0.0007 amb 0.0018 off 0.909  auroc obs/unobs 0.755  228s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 110 views 10 seed 1: obs 0.294 unobs 0.0002 amb 0.0008 off 0.705  auroc obs/unobs 0.944  229s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 114 views 3 seed 0: obs 0.326 unobs 0.0299 amb 0.0012 off 0.643  auroc obs/unobs 0.496  230s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 114 views 5 seed 0: obs 0.389 unobs 0.0111 amb 0.0004 off 0.600  auroc obs/unobs 0.492  231s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 114 views 10 seed 0: obs 0.455 unobs 0.0010 amb 0.0001 off 0.544  auroc obs/unobs 0.478  233s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 114 views 3 seed 1: obs 0.024 unobs 0.0009 amb 0.0000 off 0.975  auroc obs/unobs 0.412  234s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 114 views 5 seed 1: obs 0.211 unobs 0.0051 amb 0.0002 off 0.784  auroc obs/unobs 0.502  235s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 114 views 10 seed 1: obs 0.092 unobs 0.0003 amb 0.0000 off 0.908  auroc obs/unobs 0.455  239s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 118 views 3 seed 0: obs 0.195 unobs 0.0250 amb 0.0009 off 0.779  auroc obs/unobs 0.513  240s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 118 views 5 seed 0: obs 0.204 unobs 0.0057 amb 0.0004 off 0.790  auroc obs/unobs 0.532  241s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 118 views 10 seed 0: obs 0.470 unobs 0.0006 amb 0.0002 off 0.529  auroc obs/unobs 0.508  242s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 118 views 3 seed 1: obs 0.102 unobs 0.0049 amb 0.0003 off 0.893  auroc obs/unobs 0.483  243s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 118 views 5 seed 1: obs 0.167 unobs 0.0041 amb 0.0004 off 0.828  auroc obs/unobs 0.542  244s
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[97m[INFO ] Selecting reference view using strategy: saddle_balanced[0m
+[da3_oiavisself] scan 118 views 10 seed 1: obs 0.566 unobs 0.0020 amb 0.0004 off 0.432  auroc obs/unobs 0.485  246s
+                        frac_obs  frac_unobs  frac_off  frac_gt_unobserved  auroc_obs_unobs  auroc_obs_off
+model          n_views                                                                                    
+da3            3          0.1466      0.0181    0.8348              0.1119           0.4956         0.6261
+               5          0.2360      0.0124    0.7510              0.0581           0.5143         0.7111
+               10         0.3359      0.0017    0.6621              0.0061           0.5371         0.7306
+da3_oiavisself 3          0.1567      0.0198    0.8229              0.1119           0.5128         0.6556
+               5          0.2515      0.0131    0.7348              0.0581           0.5365         0.7310
+               10         0.3782      0.0019    0.6196              0.0061           0.5307         0.7564
+pi3            3          0.1860      0.0090    0.8023              0.1119           0.6180         0.6799
+               5          0.3290      0.0036    0.6655              0.0581           0.7408         0.7391
+               10         0.4073      0.0010    0.5907              0.0061           0.8225         0.7153
+pi3_oiavisself 3          0.1856      0.0096    0.8023              0.1119           0.7336         0.6686
+               5          0.3283      0.0045    0.6655              0.0581           0.8306         0.7268
+               10         0.4074      0.0010    0.5907              0.0061           0.8490         0.7268
+== P17_dext_b_DONE Wed Nov 11 07:31:00 UTC 2026

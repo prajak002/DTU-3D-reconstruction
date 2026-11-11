@@ -1,0 +1,56 @@
+== depth electro: 45 files
+== depth facade: 76 files
+== jpg calibration: 0
+== undistorted: 0
+/dev/rbd4       100G   83G   18G  83% /home
+courtyard: depth 38 images 38 calib 3
+delivery_area: depth 44 images 44 calib 3
+electro: depth 45 images 45 calib 3
+facade: depth 76 images 76 calib 3
+kicker: depth 31 images 31 calib 3
+meadow: depth 15 images 15 calib 3
+pipes: depth 14 images 14 calib 3
+playground: depth 38 images 38 calib 3
+relief: depth 31 images 31 calib 3
+relief_2: depth 31 images 31 calib 3
+terrace: depth 23 images 23 calib 3
+terrains: depth 42 images 42 calib 3
+[eth3d] pipes: 14 frames at (426, 640), depth valid 0.104
+['pipes']
+[eth3d] meadow: 11 frames at (427, 640), depth valid 0.221
+['meadow']
+[eth3d] terrace: 21 frames at (426, 640), depth valid 0.307
+['terrace']
+[eth3d] kicker: 30 frames at (426, 640), depth valid 0.208
+['kicker']
+[eth3d] courtyard: 38 frames at (426, 640), depth valid 0.154
+['courtyard']
+[eth3d] relief: 31 frames at (427, 640), depth valid 0.397
+['relief']
+[eth3d] relief_2: 31 frames at (426, 640), depth valid 0.354
+['relief_2']
+[eth3d] terrains: 40 frames at (427, 640), depth valid 0.181
+['terrains']
+[eth3d] delivery_area: 44 frames at (426, 640), depth valid 0.088
+['delivery_area']
+[eth3d] playground: 32 frames at (426, 640), depth valid 0.098
+['playground']
+[eth3d] electro: 44 frames at (427, 640), depth valid 0.245
+['electro']
+[eth3d] facade: 70 frames at (426, 640), depth valid 0.155
+['facade']
+[eth3d] courtyard: reference frame 37, overlap of the next 9 frames [0.7, 0.63, 0.63, 0.6, 0.59, 0.48, 0.46, 0.46, 0.46]
+[eth3d] delivery_area: reference frame 36, overlap of the next 9 frames [0.66, 0.65, 0.62, 0.19, 0.19, 0.16, 0.13, 0.13, 0.07]
+[eth3d] electro: reference frame 27, overlap of the next 9 frames [0.67, 0.64, 0.63, 0.62, 0.58, 0.58, 0.54, 0.53, 0.52]
+[eth3d] facade: reference frame 65, overlap of the next 9 frames [0.6, 0.59, 0.59, 0.39, 0.38, 0.36, 0.35, 0.35, 0.35]
+[eth3d] kicker: reference frame 11, overlap of the next 9 frames [0.69, 0.66, 0.54, 0.51, 0.5, 0.49, 0.47, 0.35, 0.28]
+[eth3d] meadow: reference frame 5, overlap of the next 9 frames [0.83, 0.8, 0.79, 0.67, 0.66, 0.61, 0.52, 0.5, 0.36]
+[eth3d] pipes: reference frame 13, overlap of the next 9 frames [0.42, 0.12, 0.11, 0.09, 0.04, 0.04, 0.02, 0.02, 0.02]
+[eth3d] playground: reference frame 31, overlap of the next 9 frames [0.62, 0.56, 0.51, 0.42, 0.4, 0.39, 0.36, 0.36, 0.34]
+[eth3d] relief: reference frame 16, overlap of the next 9 frames [0.76, 0.74, 0.72, 0.7, 0.57, 0.48, 0.47, 0.46, 0.46]
+[eth3d] relief_2: reference frame 0, overlap of the next 9 frames [0.53, 0.51, 0.51, 0.51, 0.49, 0.49, 0.46, 0.46, 0.46]
+[eth3d] terrace: reference frame 7, overlap of the next 9 frames [0.76, 0.75, 0.7, 0.65, 0.64, 0.56, 0.52, 0.37, 0.35]
+[eth3d] terrains: reference frame 37, overlap of the next 9 frames [0.76, 0.76, 0.72, 0.71, 0.6, 0.43, 0.4, 0.38, 0.37]
+12
+/dev/rbd4       100G   83G   18G  83% /home
+== P17_eth3d_DONE Wed Nov 11 07:22:36 UTC 2026

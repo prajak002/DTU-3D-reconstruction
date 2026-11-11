@@ -13,8 +13,9 @@ O=results/P17-zagree
 DEXT=1,4,9,10,11,12,13,15,23,24,29,32,33,34,48,49,62,75,77,110,114,118
 CO3D_SC=apple_110_13051_23361,apple_189_20393_38136,ball_123_14363_28981,ball_375_42693_85518,bench_415_57112_110099,bench_415_57121_110109,hydrant_167_18184_34441,hydrant_411_56064_108483,mouse_107_12753_23606,mouse_377_43416_86289,teddybear_187_20215_38541,teddybear_34_1479_4753,toytrain_240_25394_51994,toytrain_399_51323_100753,toytruck_190_20494_39385,toytruck_346_36113_66551,vase_374_41862_83720,vase_380_44863_89631
 ETH_SC=courtyard,delivery_area,electro,facade,kicker,meadow,pipes,playground,relief,relief_2,terrace,terrains   # the 12 scenes of Gate 10
-A=vggt,vggt_reproj,vggt_oiavisself,pi3x,pi3x_reproj,pi3x_oiavisself
-B=pi3,pi3_reproj,pi3_oiavisself,da3,da3_reproj,da3_oiavisself
+A=vggt,vggt_oiavisself,pi3x,pi3x_oiavisself   # native confidence and the label-free head (the gate compares these two)
+B=pi3,pi3_oiavisself,da3,da3_oiavisself
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
 Z="--label-mode zagree"
 case $job in
 eth3d)

@@ -201,6 +201,9 @@ def main():
         done = {(r.model, str(r.scan), int(r.seed), int(r.n_views)) for r in prev.itertuples()}
     rng = np.random.default_rng(0)
     gt_cache = {}
+    lab_cache = {}   # (scan, seed, views) -> labels of the ground-truth points; the same for every detector
+    sub_idx = {}     # scan -> subsample of its ground-truth points, drawn once so that every detector of a job is
+                     # scored against the same points and the cached labels stay aligned with them
     for mname in a.models.split(","):
         todo = [(sc, int(sd), int(n)) for sc in scans for sd in a.seeds.split(",") for n in a.views.split(",")
                 if (mname, str(sc), int(sd), int(n)) not in done]
@@ -219,7 +222,9 @@ def main():
                 pts, src = np.concatenate(pts), np.concatenate(src)
                 pts_all = pts
                 if len(pts) > a.max_gt:
-                    k = rng.choice(len(pts), a.max_gt, replace=False); pts, src = pts[k], src[k]
+                    if sc not in sub_idx:
+                        sub_idx[sc] = rng.choice(len(pts), a.max_gt, replace=False)
+                    k = sub_idx[sc]; pts, src = pts[k], src[k]
                 gt_cache = {sc: (D, Ks, Es, pts, src, pts_all)}
             D, Ks, Es, gt_pts, src, gt_all = gt_cache[sc]
             if a.dtu:
@@ -255,14 +260,17 @@ def main():
             score = c.reshape(-1).astype(np.float64)
             valid_in = data["depths"] > 0
             tau = 0.01 * float(np.median(data["depths"][valid_in]))
-            obs = observed_flags(gt_pts, src, views, D, Ks, Es, a.tol)
+            if (sc, sd, n) not in lab_cache:
+                o_ = observed_flags(gt_pts, src, views, D, Ks, Es, a.tol)
+                a_ = np.zeros(len(gt_pts), bool)
+                if a.label_mode == "zagree":
+                    a_ = ~o_ & zvisible_flags(gt_pts, gt_all, views, D, Ks, Es, a.tol)
+                lab_cache[(sc, sd, n)] = (o_, a_, float(gt_pts[::9973].sum()))
+            obs, amb, fp = lab_cache[(sc, sd, n)]
+            assert len(obs) == len(gt_pts) and fp == float(gt_pts[::9973].sum()), "cached labels do not match the points"
             from scipy.spatial import cKDTree
             dist, idx = cKDTree(gt_pts).query(pred, k=1, workers=-1)
             on = dist < tau
-            if a.label_mode == "zagree":
-                amb = ~obs & zvisible_flags(gt_pts, gt_all, views, D, Ks, Es, a.tol)
-            else:
-                amb = np.zeros(len(gt_pts), bool)
             cls_obs = on & obs[idx]
             cls_unobs = on & ~obs[idx] & ~amb[idx]
             cls_amb = on & amb[idx]
