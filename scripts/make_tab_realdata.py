@@ -1,5 +1,6 @@
 """Supplementary tables of the real-data experiments, generated from the run CSVs:
-  tab_realocc.tex   real occlusion against dense references, every dataset, backbone and view count (docs/assets/p14.json)
+  tab_realocc.tex   real occlusion against dense references with hole-robust labels, every dataset, backbone and
+                    view count (docs/assets/p17.json)
   tab_capacity.tex  linear probe, conv head, cross-view transformer head and per-image control on real occlusion
   tab_down3.tex     fused reconstruction at 3 views, native confidence, reprojection and the head at coverage 0.8 / 0.9
 
@@ -25,18 +26,18 @@ def p_str(p):
 
 
 def realocc():
-    J = json.load(open(os.path.join(ROOT, "docs", "assets", "p14.json"), encoding="utf-8"))["cells"]
-    L = [r"\begin{tabular}{llrccccccc}", r"\toprule",
-         r"dataset & backbone & views & hole rate & unobs.\ share & native & reproj. & head & head $-$ native ($p$) & claim \\", r"\midrule"]
-    for ds in ("DTU benchmark", "DTU test", "CO3Dv2", "ETH3D"):
+    J = json.load(open(os.path.join(ROOT, "docs", "assets", "p17.json"), encoding="utf-8"))["cells"]
+    L = [r"\begin{tabular}{llrcccccc}", r"\toprule",
+         r"dataset & backbone & views & ambiguous & unobs.\ share & native & head & head $-$ native ($p$) & claim \\", r"\midrule"]
+    for ds in ("DTU benchmark", "DTU test", "ETH3D", "CO3Dv2"):
         for b in BASES:
             for n in (3, 5, 10):
                 c = J.get(f"{ds}:{n}:{b}")
                 if not c:
                     continue
-                claim = "yes" if c["holds"] else ("no" if c["qualifies"] else ("invalid" if c["valid"] is False else "--"))
-                L.append(f"{ds} & {NAMES[b]} & {n} & {c['hole_rate']:.3f} & {100 * c['share']:.2f}\\% & {c['native']:.3f} & "
-                         f"{c['reproj']:.3f} & {c['head']:.3f} & ${c['diff'][0]:+.3f}$ ({p_str(c['diff'][1])}) & {claim} \\\\")
+                claim = "yes" if c["holds"] else ("no" if c["qualifies"] else "--")
+                L.append(f"{ds} & {NAMES[b]} & {n} & {100 * c['amb']:.2f}\\% & {100 * c['share']:.2f}\\% & {c['native']:.3f} & "
+                         f"{c['head']:.3f} & ${c['diff']:+.3f}$ ({p_str(c['p'])}) & {claim} \\\\")
         L.append(r"\midrule")
     L[-1] = r"\bottomrule"
     L.append(r"\end{tabular}")

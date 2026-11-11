@@ -148,9 +148,9 @@ def fig_teaser(N, M, out, P14=None):
             ("single-view geometry, unseen data", None, None),
             ("native", [V[d][b]["auroc"][0] for d in V for b in bases if b in V[d]], BASE),
             ("ours", [V[d][f"{b}_oiavisself"]["auroc"][0] for d in V for b in bases if f"{b}_oiavisself" in V[d]], OBS),
-            ("real unseen surfaces, 40 DTU scans", None, None),
-            ("native", [c["native"] for k, c in P14["cells"].items() if k.startswith("DTU") and c["qualifies"]], BASE),
-            ("ours", [c["head"] for k, c in P14["cells"].items() if k.startswith("DTU") and c["qualifies"]], OBS)]
+            ("real unseen surfaces, DTU and ETH3D", None, None),
+            ("native", [c["native"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D")) and c["qualifies"]], BASE),
+            ("ours", [c["head"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D")) and c["qualifies"]], OBS)]
     yt, yl = [], []
     y = len(rows)
     for lab, vals, col in rows:
@@ -433,12 +433,12 @@ def fig_abstain(N, out):
 def fig_realocc(P14, out):
     """Real occlusion against dense references: (a) share of predicted points on surfaces no input view saw, per
     dataset, backbone and view count; (b) the head's AUROC gain over native confidence on those points, filled where
-    the share is at least 0.5% and the gain is significant (p < 0.05), hollow otherwise. ETH3D is not drawn: its laser
-    depth leaves too many camera-visible surfaces without depth for the observed test (supplement)."""
+    the share is at least 0.5% and the gain is significant (p < 0.05), hollow otherwise. Hole-robust labels (P17,
+    Gate 18): points in a gap of the reference depth are left out, which lets ETH3D be drawn with the other datasets."""
     g = P14["cells"]
     views = [3, 5, 10]
     cols = {"vggt": "#4F6584", "pi3x": "#8FA3BF", "pi3": "#C9D3E2", "da3": "#E3B8A0"}
-    dsets = [("DTU benchmark", "o", None), ("DTU test", "D", "...."), ("CO3Dv2", "s", "////")]
+    dsets = [("DTU benchmark", "o", None), ("DTU test", "D", "...."), ("ETH3D", "^", "xxxx"), ("CO3Dv2", "s", "////")]
     groups = [(ds, b) for ds, _, _ in dsets for b in ("vggt", "pi3x", "pi3", "da3")]
     fig, (a, b) = plt.subplots(1, 2, figsize=(3.3, 1.7))
     fig.subplots_adjust(left=0.1, right=0.99, top=0.70, bottom=0.2, wspace=0.42)
@@ -453,7 +453,7 @@ def fig_realocc(P14, out):
             c = g.get(f"{ds}:{n}:{bb}")
             if not c:
                 continue
-            b.plot([xi], [c["diff"][0]], marker=mk[ds], ms=2.6, color=ec, mfc=ec if c["holds"] else "white", mew=0.8, ls="none")
+            b.plot([xi], [c["diff"][0]], marker=mk[ds], ms=2.3, color=ec, mfc=ec if c["holds"] else "white", mew=0.7, ls="none")
     a.axhline(0.5, color=IMAG, lw=0.7, ls="--")
     a.text(2.45, 0.6, "0.5%", fontsize=5.4, color=IMAG, ha="right", va="bottom", bbox=dict(fc="white", ec="none", pad=0.3))
     a.set_xticks(range(3)); a.set_xticklabels([f"{n} views" for n in views], fontsize=6.0)
@@ -531,7 +531,9 @@ def main():
     a = ap.parse_args()
     N = json.load(open(os.path.join(ROOT, "docs", "assets", "numbers.json"), encoding="utf-8"))
     M = json.load(open(os.path.join(ROOT, "docs", "assets", "matched.json"), encoding="utf-8"))
-    P14 = json.load(open(os.path.join(ROOT, "docs", "assets", "p14.json"), encoding="utf-8"))
+    # real occlusion with the hole-robust labels (scripts/make_stats_p17.py); same cell layout as the earlier p14.json
+    P17 = json.load(open(os.path.join(ROOT, "docs", "assets", "p17.json"), encoding="utf-8"))["cells"]
+    P14 = {"cells": {k: dict(v, diff=[v["diff"], v["p"]]) for k, v in P17.items() if "adapted" not in k}}
     fig_teaser(N, M, os.path.join(a.out, "fig_teaser"), P14)
     fig_arch(os.path.join(a.out, "fig_arch"))
     fig_protocol(os.path.join(a.out, "fig_protocol"))
