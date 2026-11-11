@@ -1,0 +1,971 @@
+[{"stream_name":"stdout","time":0.83869456,"data":"\n"}
+,{"stream_name":"stdout","time":0.838736949,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":0.838741676,"data":"== clone  [0s]\n"}
+,{"stream_name":"stdout","time":0.83874432,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":22.316024063,"data":"commit 6ef7b63\n"}
+,{"stream_name":"stdout","time":22.316080199,"data":"\n"}
+,{"stream_name":"stdout","time":22.316086563,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":22.316091307,"data":"== heads  [21s]\n"}
+,{"stream_name":"stdout","time":22.316095452,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":22.821439705,"data":"pi3 f1d947f9a0c3f53bc8169e73b7cb729f /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/pi3_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":23.075350576,"data":"da3 abdedb64f2069477b9011980e86a2f4c /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/da3_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":23.075384981,"data":"\n"}
+,{"stream_name":"stdout","time":23.07539203,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":23.075398528,"data":"== install backbones (kaggle_prelude.py)  [22s]\n"}
+,{"stream_name":"stdout","time":23.075403498,"data":"====================================================================================================\n"}
+,{"stream_name":"stderr","time":35.665373757,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":35.665401701,"data":"mne 1.13.2 requires decorator\u003e=5.1, but you have decorator 4.4.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":46.372617561,"data":"ERROR: Package 'depth-anything-3' requires a different Python: 3.13.16 not in '\u003c=3.13,\u003e=3.9'\n"}
+,{"stream_name":"stdout","time":46.454218678,"data":"\n"}
+,{"stream_name":"stdout","time":46.454252639,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":46.454259291,"data":"== TUM RGB-D: download, preprocess, order by co-visibility  [46s]\n"}
+,{"stream_name":"stdout","time":46.454264446,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":61.978992244,"data":"freiburg1_desk ok 61s\n"}
+,{"stream_name":"stdout","time":61.97902576,"data":"\n"}
+,{"stream_name":"stdout","time":61.979032032,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_desk\n"}
+,{"stream_name":"stdout","time":65.379828404,"data":"[tum] freiburg1_desk: 80 of 596 frames, depth valid 0.753\n"}
+,{"stream_name":"stdout","time":65.443665695,"data":"[exit 0, 65s]\n"}
+,{"stream_name":"stdout","time":69.464360679,"data":"[eth3d] freiburg1_desk: reference frame 77, overlap of the next 9 frames [0.91, 0.9, 0.89, 0.84, 0.83, 0.82, 0.77, 0.74, 0.66]\n"}
+,{"stream_name":"stdout","time":80.927624881,"data":"freiburg1_desk2 ok 80s\n"}
+,{"stream_name":"stdout","time":80.927654958,"data":"\n"}
+,{"stream_name":"stdout","time":80.927694902,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_desk2\n"}
+,{"stream_name":"stdout","time":83.787955465,"data":"[tum] freiburg1_desk2: 80 of 631 frames, depth valid 0.756\n"}
+,{"stream_name":"stdout","time":83.821029409,"data":"[exit 0, 83s]\n"}
+,{"stream_name":"stdout","time":87.754363768,"data":"[eth3d] freiburg1_desk2: reference frame 79, overlap of the next 9 frames [0.94, 0.91, 0.88, 0.85, 0.8, 0.69, 0.64, 0.62, 0.6]\n"}
+,{"stream_name":"stdout","time":122.270045779,"data":"freiburg1_room ok 121s\n"}
+,{"stream_name":"stdout","time":122.270074985,"data":"\n"}
+,{"stream_name":"stdout","time":122.270081015,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_room\n"}
+,{"stream_name":"stdout","time":125.232090917,"data":"[tum] freiburg1_room: 80 of 1362 frames, depth valid 0.760\n"}
+,{"stream_name":"stdout","time":125.268401527,"data":"[exit 0, 124s]\n"}
+,{"stream_name":"stdout","time":129.161843046,"data":"[eth3d] freiburg1_room: reference frame 78, overlap of the next 9 frames [0.87, 0.75, 0.62, 0.62, 0.6, 0.58, 0.53, 0.51, 0.39]\n"}
+,{"stream_name":"stdout","time":153.39243061,"data":"freiburg1_plant ok 153s\n"}
+,{"stream_name":"stdout","time":153.392462054,"data":"\n"}
+,{"stream_name":"stdout","time":153.392467947,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_plant\n"}
+,{"stream_name":"stdout","time":156.341479745,"data":"[tum] freiburg1_plant: 80 of 1135 frames, depth valid 0.735\n"}
+,{"stream_name":"stdout","time":156.376796211,"data":"[exit 0, 156s]\n"}
+,{"stream_name":"stdout","time":160.406658483,"data":"[eth3d] freiburg1_plant: reference frame 13, overlap of the next 9 frames [0.68, 0.62, 0.61, 0.56, 0.54, 0.44, 0.43, 0.41, 0.37]\n"}
+,{"stream_name":"stdout","time":191.975750358,"data":"freiburg1_teddy ok 191s\n"}
+,{"stream_name":"stdout","time":191.975784614,"data":"\n"}
+,{"stream_name":"stdout","time":191.975788791,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_teddy\n"}
+,{"stream_name":"stdout","time":194.881723496,"data":"[tum] freiburg1_teddy: 80 of 1418 frames, depth valid 0.763\n"}
+,{"stream_name":"stdout","time":194.91671943,"data":"[exit 0, 194s]\n"}
+,{"stream_name":"stdout","time":198.9692535,"data":"[eth3d] freiburg1_teddy: reference frame 9, overlap of the next 9 frames [0.8, 0.67, 0.65, 0.53, 0.49, 0.48, 0.45, 0.41, 0.4]\n"}
+,{"stream_name":"stdout","time":212.154220748,"data":"freiburg1_360 ok 211s\n"}
+,{"stream_name":"stdout","time":212.154251996,"data":"\n"}
+,{"stream_name":"stdout","time":212.15425765,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_360\n"}
+,{"stream_name":"stdout","time":215.249582895,"data":"[tum] freiburg1_360: 80 of 756 frames, depth valid 0.785\n"}
+,{"stream_name":"stdout","time":215.285617867,"data":"[exit 0, 214s]\n"}
+,{"stream_name":"stdout","time":219.335679274,"data":"[eth3d] freiburg1_360: reference frame 67, overlap of the next 9 frames [0.69, 0.64, 0.64, 0.64, 0.58, 0.57, 0.43, 0.43, 0.32]\n"}
+,{"stream_name":"stdout","time":289.617458641,"data":"freiburg2_desk ok 289s\n"}
+,{"stream_name":"stdout","time":289.617491912,"data":"\n"}
+,{"stream_name":"stdout","time":289.617497497,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg2_desk\n"}
+,{"stream_name":"stdout","time":292.896756371,"data":"[tum] freiburg2_desk: 80 of 2260 frames, depth valid 0.737\n"}
+,{"stream_name":"stdout","time":292.939492424,"data":"[exit 0, 292s]\n"}
+,{"stream_name":"stdout","time":297.657079803,"data":"[eth3d] freiburg2_desk: reference frame 38, overlap of the next 9 frames [0.89, 0.84, 0.83, 0.81, 0.78, 0.71, 0.61, 0.6, 0.58]\n"}
+,{"stream_name":"stdout","time":352.908723539,"data":"freiburg3_long_office_household ok 352s\n"}
+,{"stream_name":"stdout","time":352.908782773,"data":"\n"}
+,{"stream_name":"stdout","time":352.908790637,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_long_office_household\n"}
+,{"stream_name":"stdout","time":356.170321238,"data":"[tum] freiburg3_long_office_household: 80 of 2486 frames, depth valid 0.786\n"}
+,{"stream_name":"stdout","time":356.205988679,"data":"[exit 0, 355s]\n"}
+,{"stream_name":"stdout","time":360.507620303,"data":"[eth3d] freiburg3_long_office_household: reference frame 78, overlap of the next 9 frames [0.87, 0.82, 0.81, 0.8, 0.79, 0.69, 0.68, 0.68, 0.68]\n"}
+,{"stream_name":"stdout","time":413.345153595,"data":"freiburg3_teddy ok 413s\n"}
+,{"stream_name":"stdout","time":413.345184947,"data":"\n"}
+,{"stream_name":"stdout","time":413.345212651,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_teddy\n"}
+,{"stream_name":"stdout","time":418.452039682,"data":"[tum] freiburg3_teddy: 80 of 2323 frames, depth valid 0.553\n"}
+,{"stream_name":"stdout","time":418.486105589,"data":"[exit 0, 418s]\n"}
+,{"stream_name":"stdout","time":423.091361184,"data":"[eth3d] freiburg3_teddy: reference frame 78, overlap of the next 9 frames [0.96, 0.96, 0.93, 0.9, 0.9, 0.78, 0.76, 0.73, 0.62]\n"}
+,{"stream_name":"stdout","time":440.754904533,"data":"freiburg3_cabinet ok 440s\n"}
+,{"stream_name":"stdout","time":440.754933826,"data":"\n"}
+,{"stream_name":"stdout","time":440.754939031,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_cabinet\n"}
+,{"stream_name":"stdout","time":443.584399301,"data":"[tum] freiburg3_cabinet: 80 of 1109 frames, depth valid 0.852\n"}
+,{"stream_name":"stdout","time":443.616885987,"data":"[exit 0, 443s]\n"}
+,{"stream_name":"stdout","time":447.8206645,"data":"[eth3d] freiburg3_cabinet: reference frame 74, overlap of the next 9 frames [0.94, 0.91, 0.88, 0.88, 0.86, 0.84, 0.84, 0.84, 0.82]\n"}
+,{"stream_name":"stdout","time":464.645746142,"data":"freiburg3_large_cabinet ok 464s\n"}
+,{"stream_name":"stdout","time":464.645784698,"data":"\n"}
+,{"stream_name":"stdout","time":464.645789263,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_large_cabinet\n"}
+,{"stream_name":"stdout","time":467.45187944,"data":"[tum] freiburg3_large_cabinet: 80 of 979 frames, depth valid 0.514\n"}
+,{"stream_name":"stdout","time":467.487959349,"data":"[exit 0, 467s]\n"}
+,{"stream_name":"stdout","time":471.368287905,"data":"[eth3d] freiburg3_large_cabinet: reference frame 74, overlap of the next 9 frames [0.97, 0.96, 0.96, 0.95, 0.95, 0.95, 0.89, 0.88, 0.87]\n"}
+,{"stream_name":"stdout","time":489.225169564,"data":"freiburg3_structure_texture_far ok 488s\n"}
+,{"stream_name":"stdout","time":489.225222803,"data":"\n"}
+,{"stream_name":"stdout","time":489.225245489,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_structure_texture_far\n"}
+,{"stream_name":"stdout","time":492.159286455,"data":"[tum] freiburg3_structure_texture_far: 80 of 904 frames, depth valid 0.827\n"}
+,{"stream_name":"stdout","time":492.190854109,"data":"[exit 0, 491s]\n"}
+,{"stream_name":"stdout","time":496.213329921,"data":"[eth3d] freiburg3_structure_texture_far: reference frame 27, overlap of the next 9 frames [0.98, 0.97, 0.96, 0.95, 0.94, 0.93, 0.92, 0.91, 0.9]\n"}
+,{"stream_name":"stdout","time":496.243746757,"data":"reorder exit codes [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] 495s\n"}
+,{"stream_name":"stdout","time":496.243816797,"data":"['freiburg1_360', 'freiburg1_desk', 'freiburg1_desk2', 'freiburg1_plant', 'freiburg1_room', 'freiburg1_teddy', 'freiburg2_desk', 'freiburg3_cabinet', 'freiburg3_large_cabinet', 'freiburg3_long_office_household', 'freiburg3_structure_texture_far', 'freiburg3_teddy']\n"}
+,{"stream_name":"stdout","time":496.243832675,"data":"\n"}
+,{"stream_name":"stdout","time":496.243835762,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":496.2438497,"data":"== real occlusion: pi3  [495s]\n"}
+,{"stream_name":"stdout","time":496.243852022,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":496.243854478,"data":"\n"}
+,{"stream_name":"stdout","time":496.243856918,"data":"$ /usr/bin/python3 scripts/realocc_eval.py --co3d-format /kaggle/tmp/tum --scans freiburg1_desk,freiburg1_desk2,freiburg1_room,freiburg1_plant,freiburg1_teddy,freiburg1_360,freiburg2_desk,freiburg3_long_office_household,freiburg3_teddy,freiburg3_cabinet,freiburg3_large_cabinet,freiburg3_structure_texture_far --models pi3,pi3_oiavisself --align points --label-mode zagree --out /kaggle/working/results/P18-tum/pi3\n"}
+,{"stream_name":"stdout","time":506.50077139,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":506.606459031,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":555.137235742,"data":"[pi3] scan freiburg1_desk views 3 seed 0: obs 0.780 unobs 0.0843 amb 0.0090 off 0.127  auroc obs/unobs 0.895  12s\n"}
+,{"stream_name":"stdout","time":561.419302689,"data":"[pi3] scan freiburg1_desk views 5 seed 0: obs 0.792 unobs 0.0714 amb 0.0054 off 0.131  auroc obs/unobs 0.907  19s\n"}
+,{"stream_name":"stdout","time":573.830010718,"data":"[pi3] scan freiburg1_desk views 10 seed 0: obs 0.825 unobs 0.0377 amb 0.0124 off 0.125  auroc obs/unobs 0.832  31s\n"}
+,{"stream_name":"stdout","time":577.848160728,"data":"[pi3] scan freiburg1_desk views 3 seed 1: obs 0.653 unobs 0.0896 amb 0.0356 off 0.222  auroc obs/unobs 0.748  35s\n"}
+,{"stream_name":"stdout","time":584.442609472,"data":"[pi3] scan freiburg1_desk views 5 seed 1: obs 0.690 unobs 0.0951 amb 0.0341 off 0.181  auroc obs/unobs 0.779  42s\n"}
+,{"stream_name":"stdout","time":597.645382317,"data":"[pi3] scan freiburg1_desk views 10 seed 1: obs 0.667 unobs 0.0319 amb 0.0117 off 0.290  auroc obs/unobs 0.891  55s\n"}
+,{"stream_name":"stdout","time":602.227142126,"data":"[pi3] scan freiburg1_desk2 views 3 seed 0: obs 0.735 unobs 0.1101 amb 0.0353 off 0.119  auroc obs/unobs 0.888  59s\n"}
+,{"stream_name":"stdout","time":608.442166722,"data":"[pi3] scan freiburg1_desk2 views 5 seed 0: obs 0.740 unobs 0.0900 amb 0.0271 off 0.143  auroc obs/unobs 0.829  66s\n"}
+,{"stream_name":"stdout","time":620.758120487,"data":"[pi3] scan freiburg1_desk2 views 10 seed 0: obs 0.816 unobs 0.0336 amb 0.0070 off 0.143  auroc obs/unobs 0.884  78s\n"}
+,{"stream_name":"stdout","time":624.798821085,"data":"[pi3] scan freiburg1_desk2 views 3 seed 1: obs 0.660 unobs 0.1383 amb 0.0135 off 0.188  auroc obs/unobs 0.799  82s\n"}
+,{"stream_name":"stdout","time":631.251241412,"data":"[pi3] scan freiburg1_desk2 views 5 seed 1: obs 0.677 unobs 0.1149 amb 0.0139 off 0.194  auroc obs/unobs 0.846  88s\n"}
+,{"stream_name":"stdout","time":644.135790749,"data":"[pi3] scan freiburg1_desk2 views 10 seed 1: obs 0.705 unobs 0.0668 amb 0.0069 off 0.222  auroc obs/unobs 0.826  101s\n"}
+,{"stream_name":"stdout","time":648.457369741,"data":"[pi3] scan freiburg1_room views 3 seed 0: obs 0.529 unobs 0.0603 amb 0.0299 off 0.381  auroc obs/unobs 0.834  106s\n"}
+,{"stream_name":"stdout","time":654.435638166,"data":"[pi3] scan freiburg1_room views 5 seed 0: obs 0.614 unobs 0.0388 amb 0.0212 off 0.326  auroc obs/unobs 0.881  112s\n"}
+,{"stream_name":"stdout","time":666.426401268,"data":"[pi3] scan freiburg1_room views 10 seed 0: obs 0.568 unobs 0.0303 amb 0.0137 off 0.388  auroc obs/unobs 0.899  124s\n"}
+,{"stream_name":"stdout","time":670.270356994,"data":"[pi3] scan freiburg1_room views 3 seed 1: obs 0.311 unobs 0.0844 amb 0.0299 off 0.575  auroc obs/unobs 0.839  127s\n"}
+,{"stream_name":"stdout","time":676.280298384,"data":"[pi3] scan freiburg1_room views 5 seed 1: obs 0.428 unobs 0.0615 amb 0.0172 off 0.494  auroc obs/unobs 0.873  133s\n"}
+,{"stream_name":"stdout","time":688.506721937,"data":"[pi3] scan freiburg1_room views 10 seed 1: obs 0.565 unobs 0.0165 amb 0.0141 off 0.404  auroc obs/unobs 0.732  146s\n"}
+,{"stream_name":"stdout","time":693.01569035,"data":"[pi3] scan freiburg1_plant views 3 seed 0: obs 0.696 unobs 0.0853 amb 0.0211 off 0.197  auroc obs/unobs 0.863  150s\n"}
+,{"stream_name":"stdout","time":699.122970127,"data":"[pi3] scan freiburg1_plant views 5 seed 0: obs 0.767 unobs 0.0584 amb 0.0166 off 0.158  auroc obs/unobs 0.849  156s\n"}
+,{"stream_name":"stdout","time":711.793920782,"data":"[pi3] scan freiburg1_plant views 10 seed 0: obs 0.772 unobs 0.0397 amb 0.0136 off 0.175  auroc obs/unobs 0.761  169s\n"}
+,{"stream_name":"stdout","time":715.756908888,"data":"[pi3] scan freiburg1_plant views 3 seed 1: obs 0.644 unobs 0.1112 amb 0.0508 off 0.194  auroc obs/unobs 0.693  173s\n"}
+,{"stream_name":"stdout","time":722.028447532,"data":"[pi3] scan freiburg1_plant views 5 seed 1: obs 0.702 unobs 0.0780 amb 0.0419 off 0.178  auroc obs/unobs 0.662  179s\n"}
+,{"stream_name":"stdout","time":734.533256174,"data":"[pi3] scan freiburg1_plant views 10 seed 1: obs 0.739 unobs 0.0362 amb 0.0193 off 0.206  auroc obs/unobs 0.695  192s\n"}
+,{"stream_name":"stdout","time":739.139265222,"data":"[pi3] scan freiburg1_teddy views 3 seed 0: obs 0.674 unobs 0.1499 amb 0.0549 off 0.122  auroc obs/unobs 0.669  196s\n"}
+,{"stream_name":"stdout","time":745.44000599,"data":"[pi3] scan freiburg1_teddy views 5 seed 0: obs 0.800 unobs 0.0724 amb 0.0285 off 0.099  auroc obs/unobs 0.770  203s\n"}
+,{"stream_name":"stdout","time":758.260914952,"data":"[pi3] scan freiburg1_teddy views 10 seed 0: obs 0.832 unobs 0.0412 amb 0.0213 off 0.106  auroc obs/unobs 0.750  215s\n"}
+,{"stream_name":"stdout","time":762.326303908,"data":"[pi3] scan freiburg1_teddy views 3 seed 1: obs 0.575 unobs 0.1955 amb 0.0752 off 0.154  auroc obs/unobs 0.715  219s\n"}
+,{"stream_name":"stdout","time":768.635997523,"data":"[pi3] scan freiburg1_teddy views 5 seed 1: obs 0.753 unobs 0.1190 amb 0.0357 off 0.092  auroc obs/unobs 0.721  226s\n"}
+,{"stream_name":"stdout","time":781.315610911,"data":"[pi3] scan freiburg1_teddy views 10 seed 1: obs 0.816 unobs 0.0661 amb 0.0215 off 0.097  auroc obs/unobs 0.718  238s\n"}
+,{"stream_name":"stdout","time":785.6203236,"data":"[pi3] scan freiburg1_360 views 3 seed 0: obs 0.819 unobs 0.0116 amb 0.0253 off 0.144  auroc obs/unobs 0.851  243s\n"}
+,{"stream_name":"stdout","time":791.727768666,"data":"[pi3] scan freiburg1_360 views 5 seed 0: obs 0.843 unobs 0.0114 amb 0.0146 off 0.131  auroc obs/unobs 0.869  249s\n"}
+,{"stream_name":"stdout","time":804.133702186,"data":"[pi3] scan freiburg1_360 views 10 seed 0: obs 0.808 unobs 0.0058 amb 0.0048 off 0.182  auroc obs/unobs 0.932  261s\n"}
+,{"stream_name":"stdout","time":807.986698253,"data":"[pi3] scan freiburg1_360 views 3 seed 1: obs 0.714 unobs 0.0447 amb 0.0647 off 0.177  auroc obs/unobs 0.837  265s\n"}
+,{"stream_name":"stdout","time":814.17586718,"data":"[pi3] scan freiburg1_360 views 5 seed 1: obs 0.733 unobs 0.0310 amb 0.0517 off 0.185  auroc obs/unobs 0.839  271s\n"}
+,{"stream_name":"stdout","time":826.826570806,"data":"[pi3] scan freiburg1_360 views 10 seed 1: obs 0.649 unobs 0.0172 amb 0.0245 off 0.310  auroc obs/unobs 0.820  284s\n"}
+,{"stream_name":"stdout","time":831.388843717,"data":"[pi3] scan freiburg2_desk views 3 seed 0: obs 0.702 unobs 0.1716 amb 0.0052 off 0.121  auroc obs/unobs 0.815  288s\n"}
+,{"stream_name":"stdout","time":837.704447022,"data":"[pi3] scan freiburg2_desk views 5 seed 0: obs 0.793 unobs 0.0995 amb 0.0028 off 0.105  auroc obs/unobs 0.850  295s\n"}
+,{"stream_name":"stdout","time":850.749623163,"data":"[pi3] scan freiburg2_desk views 10 seed 0: obs 0.837 unobs 0.0390 amb 0.0019 off 0.122  auroc obs/unobs 0.861  308s\n"}
+,{"stream_name":"stdout","time":854.86543976,"data":"[pi3] scan freiburg2_desk views 3 seed 1: obs 0.722 unobs 0.1111 amb 0.0047 off 0.163  auroc obs/unobs 0.838  312s\n"}
+,{"stream_name":"stdout","time":861.380736822,"data":"[pi3] scan freiburg2_desk views 5 seed 1: obs 0.758 unobs 0.0741 amb 0.0033 off 0.165  auroc obs/unobs 0.862  318s\n"}
+,{"stream_name":"stdout","time":874.610577961,"data":"[pi3] scan freiburg2_desk views 10 seed 1: obs 0.760 unobs 0.0444 amb 0.0032 off 0.192  auroc obs/unobs 0.884  332s\n"}
+,{"stream_name":"stdout","time":879.551952791,"data":"[pi3] scan freiburg3_long_office_household views 3 seed 0: obs 0.734 unobs 0.0393 amb 0.0163 off 0.210  auroc obs/unobs 0.879  337s\n"}
+,{"stream_name":"stdout","time":886.858575687,"data":"[pi3] scan freiburg3_long_office_household views 5 seed 0: obs 0.752 unobs 0.0281 amb 0.0079 off 0.212  auroc obs/unobs 0.853  344s\n"}
+,{"stream_name":"stdout","time":901.806275508,"data":"[pi3] scan freiburg3_long_office_household views 10 seed 0: obs 0.753 unobs 0.0161 amb 0.0048 off 0.226  auroc obs/unobs 0.805  359s\n"}
+,{"stream_name":"stdout","time":906.410980866,"data":"[pi3] scan freiburg3_long_office_household views 3 seed 1: obs 0.719 unobs 0.0452 amb 0.0170 off 0.219  auroc obs/unobs 0.862  363s\n"}
+,{"stream_name":"stdout","time":913.502527906,"data":"[pi3] scan freiburg3_long_office_household views 5 seed 1: obs 0.748 unobs 0.0327 amb 0.0177 off 0.202  auroc obs/unobs 0.858  371s\n"}
+,{"stream_name":"stdout","time":927.737230004,"data":"[pi3] scan freiburg3_long_office_household views 10 seed 1: obs 0.803 unobs 0.0195 amb 0.0084 off 0.169  auroc obs/unobs 0.759  385s\n"}
+,{"stream_name":"stdout","time":931.959496151,"data":"[pi3] scan freiburg3_teddy views 3 seed 0: obs 0.471 unobs 0.1349 amb 0.0163 off 0.378  auroc obs/unobs 0.514  389s\n"}
+,{"stream_name":"stdout","time":937.915443103,"data":"[pi3] scan freiburg3_teddy views 5 seed 0: obs 0.471 unobs 0.1204 amb 0.0131 off 0.395  auroc obs/unobs 0.509  395s\n"}
+,{"stream_name":"stdout","time":949.801965941,"data":"[pi3] scan freiburg3_teddy views 10 seed 0: obs 0.586 unobs 0.0424 amb 0.0069 off 0.364  auroc obs/unobs 0.535  407s\n"}
+,{"stream_name":"stdout","time":953.536949082,"data":"[pi3] scan freiburg3_teddy views 3 seed 1: obs 0.427 unobs 0.1481 amb 0.0200 off 0.404  auroc obs/unobs 0.316  411s\n"}
+,{"stream_name":"stdout","time":966.267569072,"data":"[pi3] scan freiburg3_teddy views 5 seed 1: obs 0.426 unobs 0.0423 amb 0.0049 off 0.527  auroc obs/unobs 0.590  423s\n"}
+,{"stream_name":"stdout","time":989.953870239,"data":"[pi3] scan freiburg3_teddy views 10 seed 1: obs 0.302 unobs 0.0559 amb 0.0043 off 0.638  auroc obs/unobs 0.479  447s\n"}
+,{"stream_name":"stdout","time":994.963765781,"data":"[pi3] scan freiburg3_cabinet views 3 seed 0: obs 0.858 unobs 0.0136 amb 0.0233 off 0.105  auroc obs/unobs 0.810  452s\n"}
+,{"stream_name":"stdout","time":1002.08076959,"data":"[pi3] scan freiburg3_cabinet views 5 seed 0: obs 0.867 unobs 0.0158 amb 0.0272 off 0.090  auroc obs/unobs 0.747  459s\n"}
+,{"stream_name":"stdout","time":1016.354153859,"data":"[pi3] scan freiburg3_cabinet views 10 seed 0: obs 0.905 unobs 0.0093 amb 0.0130 off 0.073  auroc obs/unobs 0.770  473s\n"}
+,{"stream_name":"stdout","time":1020.768355564,"data":"[pi3] scan freiburg3_cabinet views 3 seed 1: obs 0.881 unobs 0.0185 amb 0.0296 off 0.070  auroc obs/unobs 0.738  478s\n"}
+,{"stream_name":"stdout","time":1027.831789415,"data":"[pi3] scan freiburg3_cabinet views 5 seed 1: obs 0.905 unobs 0.0094 amb 0.0190 off 0.067  auroc obs/unobs 0.784  485s\n"}
+,{"stream_name":"stdout","time":1042.45503404,"data":"[pi3] scan freiburg3_cabinet views 10 seed 1: obs 0.907 unobs 0.0084 amb 0.0076 off 0.077  auroc obs/unobs 0.749  500s\n"}
+,{"stream_name":"stdout","time":1046.981393337,"data":"[pi3] scan freiburg3_large_cabinet views 3 seed 0: obs 0.566 unobs 0.0402 amb 0.0326 off 0.361  auroc obs/unobs 0.828  504s\n"}
+,{"stream_name":"stdout","time":1053.503501608,"data":"[pi3] scan freiburg3_large_cabinet views 5 seed 0: obs 0.567 unobs 0.0385 amb 0.0310 off 0.363  auroc obs/unobs 0.842  511s\n"}
+,{"stream_name":"stdout","time":1066.483286897,"data":"[pi3] scan freiburg3_large_cabinet views 10 seed 0: obs 0.618 unobs 0.0116 amb 0.0110 off 0.360  auroc obs/unobs 0.883  524s\n"}
+,{"stream_name":"stdout","time":1070.608931825,"data":"[pi3] scan freiburg3_large_cabinet views 3 seed 1: obs 0.592 unobs 0.0270 amb 0.0206 off 0.361  auroc obs/unobs 0.834  528s\n"}
+,{"stream_name":"stdout","time":1077.322159589,"data":"[pi3] scan freiburg3_large_cabinet views 5 seed 1: obs 0.616 unobs 0.0164 amb 0.0119 off 0.356  auroc obs/unobs 0.839  534s\n"}
+,{"stream_name":"stdout","time":1092.162807773,"data":"[pi3] scan freiburg3_large_cabinet views 10 seed 1: obs 0.609 unobs 0.0073 amb 0.0056 off 0.378  auroc obs/unobs 0.847  549s\n"}
+,{"stream_name":"stdout","time":1097.073538419,"data":"[pi3] scan freiburg3_structure_texture_far views 3 seed 0: obs 0.871 unobs 0.0304 amb 0.0307 off 0.068  auroc obs/unobs 0.842  554s\n"}
+,{"stream_name":"stdout","time":1104.125933616,"data":"[pi3] scan freiburg3_structure_texture_far views 5 seed 0: obs 0.891 unobs 0.0222 amb 0.0234 off 0.063  auroc obs/unobs 0.856  561s\n"}
+,{"stream_name":"stdout","time":1118.474968218,"data":"[pi3] scan freiburg3_structure_texture_far views 10 seed 0: obs 0.916 unobs 0.0102 amb 0.0129 off 0.061  auroc obs/unobs 0.854  576s\n"}
+,{"stream_name":"stdout","time":1123.041898412,"data":"[pi3] scan freiburg3_structure_texture_far views 3 seed 1: obs 0.907 unobs 0.0165 amb 0.0146 off 0.062  auroc obs/unobs 0.816  580s\n"}
+,{"stream_name":"stdout","time":1129.961336733,"data":"[pi3] scan freiburg3_structure_texture_far views 5 seed 1: obs 0.909 unobs 0.0122 amb 0.0140 off 0.065  auroc obs/unobs 0.874  587s\n"}
+,{"stream_name":"stdout","time":1144.515759039,"data":"[pi3] scan freiburg3_structure_texture_far views 10 seed 1: obs 0.913 unobs 0.0047 amb 0.0089 off 0.073  auroc obs/unobs 0.885  602s\n"}
+,{"stream_name":"stdout","time":1155.356735585,"data":"[pi3_oiavisself] head from /kaggle/tmp/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stdout","time":1158.421225363,"data":"[pi3_oiavisself] scan freiburg1_desk views 3 seed 0: obs 0.780 unobs 0.0843 amb 0.0090 off 0.127  auroc obs/unobs 0.824  3s\n"}
+,{"stream_name":"stdout","time":1162.141273907,"data":"[pi3_oiavisself] scan freiburg1_desk views 5 seed 0: obs 0.792 unobs 0.0714 amb 0.0054 off 0.131  auroc obs/unobs 0.845  7s\n"}
+,{"stream_name":"stdout","time":1169.398281712,"data":"[pi3_oiavisself] scan freiburg1_desk views 10 seed 0: obs 0.825 unobs 0.0377 amb 0.0124 off 0.125  auroc obs/unobs 0.844  14s\n"}
+,{"stream_name":"stdout","time":1171.814555257,"data":"[pi3_oiavisself] scan freiburg1_desk views 3 seed 1: obs 0.653 unobs 0.0896 amb 0.0356 off 0.222  auroc obs/unobs 0.870  16s\n"}
+,{"stream_name":"stdout","time":1175.622638728,"data":"[pi3_oiavisself] scan freiburg1_desk views 5 seed 1: obs 0.690 unobs 0.0951 amb 0.0341 off 0.181  auroc obs/unobs 0.801  20s\n"}
+,{"stream_name":"stdout","time":1183.107978515,"data":"[pi3_oiavisself] scan freiburg1_desk views 10 seed 1: obs 0.667 unobs 0.0319 amb 0.0117 off 0.290  auroc obs/unobs 0.781  28s\n"}
+,{"stream_name":"stdout","time":1186.022082071,"data":"[pi3_oiavisself] scan freiburg1_desk2 views 3 seed 0: obs 0.735 unobs 0.1101 amb 0.0353 off 0.119  auroc obs/unobs 0.847  31s\n"}
+,{"stream_name":"stdout","time":1189.758677849,"data":"[pi3_oiavisself] scan freiburg1_desk2 views 5 seed 0: obs 0.740 unobs 0.0900 amb 0.0271 off 0.143  auroc obs/unobs 0.831  34s\n"}
+,{"stream_name":"stdout","time":1197.013839107,"data":"[pi3_oiavisself] scan freiburg1_desk2 views 10 seed 0: obs 0.816 unobs 0.0336 amb 0.0070 off 0.143  auroc obs/unobs 0.925  42s\n"}
+,{"stream_name":"stdout","time":1199.378557805,"data":"[pi3_oiavisself] scan freiburg1_desk2 views 3 seed 1: obs 0.660 unobs 0.1383 amb 0.0135 off 0.188  auroc obs/unobs 0.809  44s\n"}
+,{"stream_name":"stdout","time":1202.984462125,"data":"[pi3_oiavisself] scan freiburg1_desk2 views 5 seed 1: obs 0.677 unobs 0.1149 amb 0.0139 off 0.194  auroc obs/unobs 0.759  48s\n"}
+,{"stream_name":"stdout","time":1210.074255086,"data":"[pi3_oiavisself] scan freiburg1_desk2 views 10 seed 1: obs 0.705 unobs 0.0668 amb 0.0069 off 0.222  auroc obs/unobs 0.714  55s\n"}
+,{"stream_name":"stdout","time":1212.972690106,"data":"[pi3_oiavisself] scan freiburg1_room views 3 seed 0: obs 0.529 unobs 0.0603 amb 0.0299 off 0.381  auroc obs/unobs 0.803  58s\n"}
+,{"stream_name":"stdout","time":1216.530960917,"data":"[pi3_oiavisself] scan freiburg1_room views 5 seed 0: obs 0.614 unobs 0.0388 amb 0.0212 off 0.326  auroc obs/unobs 0.865  61s\n"}
+,{"stream_name":"stdout","time":1223.578105167,"data":"[pi3_oiavisself] scan freiburg1_room views 10 seed 0: obs 0.568 unobs 0.0303 amb 0.0137 off 0.388  auroc obs/unobs 0.902  68s\n"}
+,{"stream_name":"stdout","time":1225.894841529,"data":"[pi3_oiavisself] scan freiburg1_room views 3 seed 1: obs 0.311 unobs 0.0844 amb 0.0299 off 0.575  auroc obs/unobs 0.752  71s\n"}
+,{"stream_name":"stdout","time":1229.511064481,"data":"[pi3_oiavisself] scan freiburg1_room views 5 seed 1: obs 0.428 unobs 0.0615 amb 0.0172 off 0.494  auroc obs/unobs 0.769  74s\n"}
+,{"stream_name":"stdout","time":1236.695270084,"data":"[pi3_oiavisself] scan freiburg1_room views 10 seed 1: obs 0.565 unobs 0.0165 amb 0.0141 off 0.404  auroc obs/unobs 0.852  81s\n"}
+,{"stream_name":"stdout","time":1239.571552756,"data":"[pi3_oiavisself] scan freiburg1_plant views 3 seed 0: obs 0.696 unobs 0.0853 amb 0.0211 off 0.197  auroc obs/unobs 0.784  84s\n"}
+,{"stream_name":"stdout","time":1243.214724511,"data":"[pi3_oiavisself] scan freiburg1_plant views 5 seed 0: obs 0.767 unobs 0.0584 amb 0.0166 off 0.158  auroc obs/unobs 0.775  88s\n"}
+,{"stream_name":"stdout","time":1250.452576625,"data":"[pi3_oiavisself] scan freiburg1_plant views 10 seed 0: obs 0.772 unobs 0.0397 amb 0.0136 off 0.175  auroc obs/unobs 0.821  95s\n"}
+,{"stream_name":"stdout","time":1252.847562848,"data":"[pi3_oiavisself] scan freiburg1_plant views 3 seed 1: obs 0.644 unobs 0.1112 amb 0.0508 off 0.194  auroc obs/unobs 0.744  97s\n"}
+,{"stream_name":"stdout","time":1256.4602940730001,"data":"[pi3_oiavisself] scan freiburg1_plant views 5 seed 1: obs 0.702 unobs 0.0780 amb 0.0419 off 0.178  auroc obs/unobs 0.783  101s\n"}
+,{"stream_name":"stdout","time":1263.706918271,"data":"[pi3_oiavisself] scan freiburg1_plant views 10 seed 1: obs 0.739 unobs 0.0362 amb 0.0193 off 0.206  auroc obs/unobs 0.836  108s\n"}
+,{"stream_name":"stdout","time":1266.591813012,"data":"[pi3_oiavisself] scan freiburg1_teddy views 3 seed 0: obs 0.674 unobs 0.1499 amb 0.0549 off 0.122  auroc obs/unobs 0.628  111s\n"}
+,{"stream_name":"stdout","time":1270.221389243,"data":"[pi3_oiavisself] scan freiburg1_teddy views 5 seed 0: obs 0.800 unobs 0.0724 amb 0.0285 off 0.099  auroc obs/unobs 0.759  115s\n"}
+,{"stream_name":"stdout","time":1277.621635787,"data":"[pi3_oiavisself] scan freiburg1_teddy views 10 seed 0: obs 0.832 unobs 0.0412 amb 0.0213 off 0.106  auroc obs/unobs 0.768  122s\n"}
+,{"stream_name":"stdout","time":1279.956284345,"data":"[pi3_oiavisself] scan freiburg1_teddy views 3 seed 1: obs 0.575 unobs 0.1955 amb 0.0752 off 0.154  auroc obs/unobs 0.646  125s\n"}
+,{"stream_name":"stdout","time":1283.54761455,"data":"[pi3_oiavisself] scan freiburg1_teddy views 5 seed 1: obs 0.753 unobs 0.1190 amb 0.0357 off 0.092  auroc obs/unobs 0.731  128s\n"}
+,{"stream_name":"stdout","time":1290.653458692,"data":"[pi3_oiavisself] scan freiburg1_teddy views 10 seed 1: obs 0.816 unobs 0.0661 amb 0.0215 off 0.097  auroc obs/unobs 0.803  135s\n"}
+,{"stream_name":"stdout","time":1293.503415121,"data":"[pi3_oiavisself] scan freiburg1_360 views 3 seed 0: obs 0.819 unobs 0.0116 amb 0.0253 off 0.144  auroc obs/unobs 0.928  138s\n"}
+,{"stream_name":"stdout","time":1297.033340533,"data":"[pi3_oiavisself] scan freiburg1_360 views 5 seed 0: obs 0.843 unobs 0.0114 amb 0.0146 off 0.131  auroc obs/unobs 0.961  142s\n"}
+,{"stream_name":"stdout","time":1304.07880528,"data":"[pi3_oiavisself] scan freiburg1_360 views 10 seed 0: obs 0.808 unobs 0.0058 amb 0.0048 off 0.182  auroc obs/unobs 0.971  149s\n"}
+,{"stream_name":"stdout","time":1306.371643484,"data":"[pi3_oiavisself] scan freiburg1_360 views 3 seed 1: obs 0.714 unobs 0.0447 amb 0.0647 off 0.177  auroc obs/unobs 0.840  151s\n"}
+,{"stream_name":"stdout","time":1309.943737049,"data":"[pi3_oiavisself] scan freiburg1_360 views 5 seed 1: obs 0.733 unobs 0.0310 amb 0.0517 off 0.185  auroc obs/unobs 0.903  155s\n"}
+,{"stream_name":"stdout","time":1317.268530219,"data":"[pi3_oiavisself] scan freiburg1_360 views 10 seed 1: obs 0.649 unobs 0.0172 amb 0.0245 off 0.310  auroc obs/unobs 0.866  162s\n"}
+,{"stream_name":"stdout","time":1320.129022238,"data":"[pi3_oiavisself] scan freiburg2_desk views 3 seed 0: obs 0.702 unobs 0.1716 amb 0.0052 off 0.121  auroc obs/unobs 0.848  165s\n"}
+,{"stream_name":"stdout","time":1323.715700195,"data":"[pi3_oiavisself] scan freiburg2_desk views 5 seed 0: obs 0.793 unobs 0.0995 amb 0.0028 off 0.105  auroc obs/unobs 0.882  168s\n"}
+,{"stream_name":"stdout","time":1330.936304403,"data":"[pi3_oiavisself] scan freiburg2_desk views 10 seed 0: obs 0.837 unobs 0.0390 amb 0.0019 off 0.122  auroc obs/unobs 0.892  176s\n"}
+,{"stream_name":"stdout","time":1333.314116068,"data":"[pi3_oiavisself] scan freiburg2_desk views 3 seed 1: obs 0.722 unobs 0.1111 amb 0.0047 off 0.163  auroc obs/unobs 0.824  178s\n"}
+,{"stream_name":"stdout","time":1336.908594734,"data":"[pi3_oiavisself] scan freiburg2_desk views 5 seed 1: obs 0.758 unobs 0.0741 amb 0.0033 off 0.165  auroc obs/unobs 0.862  182s\n"}
+,{"stream_name":"stdout","time":1344.042794475,"data":"[pi3_oiavisself] scan freiburg2_desk views 10 seed 1: obs 0.760 unobs 0.0444 amb 0.0032 off 0.192  auroc obs/unobs 0.887  189s\n"}
+,{"stream_name":"stdout","time":1347.178274712,"data":"[pi3_oiavisself] scan freiburg3_long_office_household views 3 seed 0: obs 0.734 unobs 0.0393 amb 0.0163 off 0.210  auroc obs/unobs 0.865  192s\n"}
+,{"stream_name":"stdout","time":1351.275684431,"data":"[pi3_oiavisself] scan freiburg3_long_office_household views 5 seed 0: obs 0.752 unobs 0.0281 amb 0.0079 off 0.212  auroc obs/unobs 0.859  196s\n"}
+,{"stream_name":"stdout","time":1359.357259173,"data":"[pi3_oiavisself] scan freiburg3_long_office_household views 10 seed 0: obs 0.753 unobs 0.0161 amb 0.0048 off 0.226  auroc obs/unobs 0.871  204s\n"}
+,{"stream_name":"stdout","time":1362.047184536,"data":"[pi3_oiavisself] scan freiburg3_long_office_household views 3 seed 1: obs 0.719 unobs 0.0452 amb 0.0170 off 0.219  auroc obs/unobs 0.794  207s\n"}
+,{"stream_name":"stdout","time":1365.92418348,"data":"[pi3_oiavisself] scan freiburg3_long_office_household views 5 seed 1: obs 0.748 unobs 0.0327 amb 0.0177 off 0.202  auroc obs/unobs 0.801  211s\n"}
+,{"stream_name":"stdout","time":1373.666709913,"data":"[pi3_oiavisself] scan freiburg3_long_office_household views 10 seed 1: obs 0.803 unobs 0.0195 amb 0.0084 off 0.169  auroc obs/unobs 0.710  218s\n"}
+,{"stream_name":"stdout","time":1376.476249931,"data":"[pi3_oiavisself] scan freiburg3_teddy views 3 seed 0: obs 0.471 unobs 0.1349 amb 0.0163 off 0.378  auroc obs/unobs 0.612  221s\n"}
+,{"stream_name":"stdout","time":1380.118094353,"data":"[pi3_oiavisself] scan freiburg3_teddy views 5 seed 0: obs 0.471 unobs 0.1204 amb 0.0131 off 0.395  auroc obs/unobs 0.636  225s\n"}
+,{"stream_name":"stdout","time":1387.518403239,"data":"[pi3_oiavisself] scan freiburg3_teddy views 10 seed 0: obs 0.586 unobs 0.0424 amb 0.0069 off 0.364  auroc obs/unobs 0.707  232s\n"}
+,{"stream_name":"stdout","time":1389.966266414,"data":"[pi3_oiavisself] scan freiburg3_teddy views 3 seed 1: obs 0.427 unobs 0.1481 amb 0.0200 off 0.404  auroc obs/unobs 0.462  235s\n"}
+,{"stream_name":"stdout","time":1401.996896174,"data":"[pi3_oiavisself] scan freiburg3_teddy views 5 seed 1: obs 0.426 unobs 0.0423 amb 0.0049 off 0.527  auroc obs/unobs 0.707  247s\n"}
+,{"stream_name":"stdout","time":1423.63856104,"data":"[pi3_oiavisself] scan freiburg3_teddy views 10 seed 1: obs 0.302 unobs 0.0559 amb 0.0043 off 0.638  auroc obs/unobs 0.498  268s\n"}
+,{"stream_name":"stdout","time":1426.520871114,"data":"[pi3_oiavisself] scan freiburg3_cabinet views 3 seed 0: obs 0.858 unobs 0.0136 amb 0.0233 off 0.105  auroc obs/unobs 0.846  271s\n"}
+,{"stream_name":"stdout","time":1430.088108461,"data":"[pi3_oiavisself] scan freiburg3_cabinet views 5 seed 0: obs 0.867 unobs 0.0158 amb 0.0272 off 0.090  auroc obs/unobs 0.933  275s\n"}
+,{"stream_name":"stdout","time":1437.280018628,"data":"[pi3_oiavisself] scan freiburg3_cabinet views 10 seed 0: obs 0.905 unobs 0.0093 amb 0.0130 off 0.073  auroc obs/unobs 0.925  282s\n"}
+,{"stream_name":"stdout","time":1439.619194863,"data":"[pi3_oiavisself] scan freiburg3_cabinet views 3 seed 1: obs 0.881 unobs 0.0185 amb 0.0296 off 0.070  auroc obs/unobs 0.824  284s\n"}
+,{"stream_name":"stdout","time":1443.333664151,"data":"[pi3_oiavisself] scan freiburg3_cabinet views 5 seed 1: obs 0.905 unobs 0.0094 amb 0.0190 off 0.067  auroc obs/unobs 0.917  288s\n"}
+,{"stream_name":"stdout","time":1450.717678574,"data":"[pi3_oiavisself] scan freiburg3_cabinet views 10 seed 1: obs 0.907 unobs 0.0084 amb 0.0076 off 0.077  auroc obs/unobs 0.925  295s\n"}
+,{"stream_name":"stdout","time":1453.942931073,"data":"[pi3_oiavisself] scan freiburg3_large_cabinet views 3 seed 0: obs 0.566 unobs 0.0402 amb 0.0326 off 0.361  auroc obs/unobs 0.739  299s\n"}
+,{"stream_name":"stdout","time":1458.311454182,"data":"[pi3_oiavisself] scan freiburg3_large_cabinet views 5 seed 0: obs 0.567 unobs 0.0385 amb 0.0310 off 0.363  auroc obs/unobs 0.741  303s\n"}
+,{"stream_name":"stdout","time":1467.003867814,"data":"[pi3_oiavisself] scan freiburg3_large_cabinet views 10 seed 0: obs 0.618 unobs 0.0116 amb 0.0110 off 0.360  auroc obs/unobs 0.847  312s\n"}
+,{"stream_name":"stdout","time":1469.824003867,"data":"[pi3_oiavisself] scan freiburg3_large_cabinet views 3 seed 1: obs 0.592 unobs 0.0270 amb 0.0206 off 0.361  auroc obs/unobs 0.857  314s\n"}
+,{"stream_name":"stdout","time":1474.23392266,"data":"[pi3_oiavisself] scan freiburg3_large_cabinet views 5 seed 1: obs 0.616 unobs 0.0164 amb 0.0119 off 0.356  auroc obs/unobs 0.901  319s\n"}
+,{"stream_name":"stdout","time":1484.48734735,"data":"[pi3_oiavisself] scan freiburg3_large_cabinet views 10 seed 1: obs 0.609 unobs 0.0073 amb 0.0056 off 0.378  auroc obs/unobs 0.930  329s\n"}
+,{"stream_name":"stdout","time":1487.236084638,"data":"[pi3_oiavisself] scan freiburg3_structure_texture_far views 3 seed 0: obs 0.871 unobs 0.0304 amb 0.0307 off 0.068  auroc obs/unobs 0.934  332s\n"}
+,{"stream_name":"stdout","time":1490.701229281,"data":"[pi3_oiavisself] scan freiburg3_structure_texture_far views 5 seed 0: obs 0.891 unobs 0.0222 amb 0.0234 off 0.063  auroc obs/unobs 0.941  335s\n"}
+,{"stream_name":"stdout","time":1497.753332203,"data":"[pi3_oiavisself] scan freiburg3_structure_texture_far views 10 seed 0: obs 0.916 unobs 0.0102 amb 0.0129 off 0.061  auroc obs/unobs 0.958  342s\n"}
+,{"stream_name":"stdout","time":1500.027263818,"data":"[pi3_oiavisself] scan freiburg3_structure_texture_far views 3 seed 1: obs 0.907 unobs 0.0165 amb 0.0146 off 0.062  auroc obs/unobs 0.953  345s\n"}
+,{"stream_name":"stdout","time":1503.579027698,"data":"[pi3_oiavisself] scan freiburg3_structure_texture_far views 5 seed 1: obs 0.909 unobs 0.0122 amb 0.0140 off 0.065  auroc obs/unobs 0.961  348s\n"}
+,{"stream_name":"stdout","time":1510.927497963,"data":"[pi3_oiavisself] scan freiburg3_structure_texture_far views 10 seed 1: obs 0.913 unobs 0.0047 amb 0.0089 off 0.073  auroc obs/unobs 0.963  356s\n"}
+,{"stream_name":"stdout","time":1511.151860306,"data":"                        frac_obs  frac_unobs  frac_off  frac_gt_unobserved  auroc_obs_unobs  auroc_obs_off\n"}
+,{"stream_name":"stdout","time":1511.151886403,"data":"model          n_views                                                                                    \n"}
+,{"stream_name":"stdout","time":1511.151909752,"data":"pi3            3          0.6767      0.0817    0.2134              0.6163           0.7801         0.8657\n"}
+,{"stream_name":"stdout","time":1511.151915007,"data":"               5          0.7184      0.0564    0.2050              0.5675           0.8038         0.8702\n"}
+,{"stream_name":"stdout","time":1511.151920442,"data":"               10         0.7363      0.0288    0.2241              0.4685           0.7938         0.8485\n"}
+,{"stream_name":"stdout","time":1511.151925936,"data":"pi3_oiavisself 3          0.6767      0.0817    0.2134              0.6163           0.7930         0.8364\n"}
+,{"stream_name":"stdout","time":1511.151931381,"data":"               5          0.7184      0.0564    0.2050              0.5675           0.8301         0.8505\n"}
+,{"stream_name":"stdout","time":1511.151936727,"data":"               10         0.7363      0.0288    0.2241              0.4685           0.8415         0.8575\n"}
+,{"stream_name":"stdout","time":1516.358324382,"data":"[exit 0, 1516s]\n"}
+,{"stream_name":"stdout","time":1516.35836677,"data":"\n"}
+,{"stream_name":"stdout","time":1516.358371635,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1516.358392111,"data":"== real occlusion: da3  [1516s]\n"}
+,{"stream_name":"stdout","time":1516.358409994,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1516.358416282,"data":"\n"}
+,{"stream_name":"stdout","time":1516.358423291,"data":"$ /usr/bin/python3 scripts/realocc_eval.py --co3d-format /kaggle/tmp/tum --scans freiburg1_desk,freiburg1_desk2,freiburg1_room,freiburg1_plant,freiburg1_teddy,freiburg1_360,freiburg2_desk,freiburg3_long_office_household,freiburg3_teddy,freiburg3_cabinet,freiburg3_large_cabinet,freiburg3_structure_texture_far --models da3,da3_oiavisself --align points --label-mode zagree --out /kaggle/working/results/P18-tum/da3\n"}
+,{"stream_name":"stderr","time":1519.352936038,"data":"/kaggle/tmp/da3/src/depth_anything_3/cfg.py:25: UserWarning: register_new_resolver() is deprecated and will be removed in a future release.\n"}
+,{"stream_name":"stderr","time":1519.352968409,"data":"Use register_resolver() instead.\n"}
+,{"stream_name":"stderr","time":1519.352980232,"data":"See https://github.com/hydra-ecosystem/omegaconf/issues/426 for migration instructions.\n"}
+,{"stream_name":"stderr","time":1519.352996261,"data":"\n"}
+,{"stream_name":"stderr","time":1519.353000252,"data":"  OmegaConf.register_new_resolver(\"eval\", eval)\n"}
+,{"stream_name":"stderr","time":1519.450412608,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/config_defaults.py:47: SyntaxWarning: invalid escape sequence '\\P'\n"}
+,{"stream_name":"stderr","time":1519.450452926,"data":"  IMAGEMAGICK_BINARY = r\"C:\\Program Files\\ImageMagick-6.8.8-Q16\\magick.exe\"\n"}
+,{"stream_name":"stderr","time":1519.612637276,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:294: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":1519.612661335,"data":"  lines_video = [l for l in lines if ' Video: ' in l and re.search('\\d+x\\d+', l)]\n"}
+,{"stream_name":"stderr","time":1519.61299768,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:367: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":1519.613007689,"data":"  rotation_lines = [l for l in lines if 'rotate          :' in l and re.search('\\d+$', l)]\n"}
+,{"stream_name":"stderr","time":1519.6130531,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:370: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":1519.613059046,"data":"  match = re.search('\\d+$', rotation_line)\n"}
+,{"stream_name":"stderr","time":1522.365601338,"data":"error: XDG_RUNTIME_DIR is invalid or not set in the environment.\n"}
+,{"stream_name":"stderr","time":1522.489166327,"data":"ALSA lib confmisc.c:855:(parse_card) cannot find card '0'\n"}
+,{"stream_name":"stderr","time":1522.489193709,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":1522.489199145,"data":"ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings\n"}
+,{"stream_name":"stderr","time":1522.489223132,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":1522.489228185,"data":"ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name\n"}
+,{"stream_name":"stderr","time":1522.489232135,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":1522.489236095,"data":"ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory\n"}
+,{"stream_name":"stderr","time":1522.489239729,"data":"ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default\n"}
+,{"stream_name":"stderr","time":1522.598042881,"data":"ALSA lib confmisc.c:855:(parse_card) cannot find card '0'\n"}
+,{"stream_name":"stderr","time":1522.598069948,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":1522.598074889,"data":"ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings\n"}
+,{"stream_name":"stderr","time":1522.598079026,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":1522.598083087,"data":"ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name\n"}
+,{"stream_name":"stderr","time":1522.598090837,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":1522.598093773,"data":"ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory\n"}
+,{"stream_name":"stderr","time":1522.598105627,"data":"ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default\n"}
+,{"stream_name":"stdout","time":1522.814617613,"data":"\u001b[93m[WARN ] Dependency `gsplat` is required for rendering 3DGS. Install via: pip install git+https://github.com/nerfstudio-project/gsplat.git@0b4dddf04cb687367602c01196913cde6a743d70\u001b[0m\n"}
+,{"stream_name":"stderr","time":1530.940494764,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":1530.997071227,"data":"\u001b[97m[INFO ] using MLP layer as FFN\u001b[0m\n"}
+,{"stream_name":"stdout","time":1548.926081708,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07032561302185059 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1549.318604342,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1550.880190199,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.9518723487854004 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1550.88509873,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004869937896728516 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1550.951488193,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1554.723150174,"data":"[da3] scan freiburg1_desk views 3 seed 0: obs 0.692 unobs 0.0985 amb 0.0116 off 0.198  auroc obs/unobs 0.839  7s\n"}
+,{"stream_name":"stdout","time":1555.080144772,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.04336714744567871 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1555.132305169,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1556.803082951,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7199208736419678 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1556.805569122,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0025277137756347656 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1556.897204722,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1562.309376491,"data":"[da3] scan freiburg1_desk views 5 seed 0: obs 0.723 unobs 0.0891 amb 0.0084 off 0.180  auroc obs/unobs 0.852  14s\n"}
+,{"stream_name":"stdout","time":1562.762511449,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.08035659790039062 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1562.820758251,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1566.418256797,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.6499440670013428 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1566.422513747,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004182577133178711 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1566.591045042,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1577.474506421,"data":"[da3] scan freiburg1_desk views 10 seed 0: obs 0.830 unobs 0.0350 amb 0.0033 off 0.132  auroc obs/unobs 0.924  29s\n"}
+,{"stream_name":"stdout","time":1577.833752798,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.025585174560546875 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1577.87935257,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1579.005074809,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1691832542419434 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1579.006923405,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018427371978759766 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1579.059793728,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1582.537876577,"data":"[da3] scan freiburg1_desk views 3 seed 1: obs 0.735 unobs 0.0669 amb 0.0115 off 0.186  auroc obs/unobs 0.836  35s\n"}
+,{"stream_name":"stdout","time":1582.912265523,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03999829292297363 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1582.961126104,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1584.679065537,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7634260654449463 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1584.681668462,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0025644302368164062 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1584.769773791,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1590.411860581,"data":"[da3] scan freiburg1_desk views 5 seed 1: obs 0.696 unobs 0.0500 amb 0.0229 off 0.231  auroc obs/unobs 0.805  42s\n"}
+,{"stream_name":"stdout","time":1590.837298047,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07728409767150879 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1590.893767032,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1594.579797811,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7364838123321533 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1594.584538045,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004775524139404297 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1594.744343028,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1606.103881504,"data":"[da3] scan freiburg1_desk views 10 seed 1: obs 0.700 unobs 0.0151 amb 0.0198 off 0.265  auroc obs/unobs 0.903  58s\n"}
+,{"stream_name":"stdout","time":1607.048485981,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.022189617156982422 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1607.094330477,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1608.238091911,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1874845027923584 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1608.239683365,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.001796722412109375 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1608.294536877,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1611.74516691,"data":"[da3] scan freiburg1_desk2 views 3 seed 0: obs 0.550 unobs 0.1198 amb 0.0389 off 0.292  auroc obs/unobs 0.754  64s\n"}
+,{"stream_name":"stdout","time":1612.112939388,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.033919334411621094 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1612.161667185,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1613.91543641,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7993319034576416 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1613.918365736,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0030553340911865234 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1613.9939814,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1619.360118023,"data":"[da3] scan freiburg1_desk2 views 5 seed 0: obs 0.594 unobs 0.0994 amb 0.0324 off 0.274  auroc obs/unobs 0.790  71s\n"}
+,{"stream_name":"stdout","time":1619.802591183,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06683659553527832 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1619.858260167,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1623.631894074,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.8234457969665527 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1623.636524875,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004700183868408203 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1623.801324572,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1634.784060379,"data":"[da3] scan freiburg1_desk2 views 10 seed 0: obs 0.824 unobs 0.0314 amb 0.0059 off 0.139  auroc obs/unobs 0.897  87s\n"}
+,{"stream_name":"stdout","time":1635.116639175,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.021344423294067383 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1635.162480458,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1636.332163988,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2136144638061523 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1636.334003331,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.001825571060180664 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1636.394156021,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1639.999721415,"data":"[da3] scan freiburg1_desk2 views 3 seed 1: obs 0.692 unobs 0.1083 amb 0.0139 off 0.186  auroc obs/unobs 0.769  92s\n"}
+,{"stream_name":"stdout","time":1640.377786905,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.029877424240112305 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1640.426239145,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1642.14468966,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7639029026031494 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1642.147207579,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0024840831756591797 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1642.229518988,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1647.877067854,"data":"[da3] scan freiburg1_desk2 views 5 seed 1: obs 0.722 unobs 0.0725 amb 0.0228 off 0.182  auroc obs/unobs 0.728  100s\n"}
+,{"stream_name":"stdout","time":1648.294140855,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06157732009887695 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1648.349820303,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1651.974638475,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.6746160984039307 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1651.978928443,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004233837127685547 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1652.149839379,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1663.500021442,"data":"[da3] scan freiburg1_desk2 views 10 seed 1: obs 0.740 unobs 0.0385 amb 0.0143 off 0.207  auroc obs/unobs 0.742  116s\n"}
+,{"stream_name":"stdout","time":1664.428929074,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02207016944885254 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1664.474764933,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1665.616276545,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.185316562652588 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1665.61811201,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018362998962402344 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1665.672382357,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1668.932480932,"data":"[da3] scan freiburg1_room views 3 seed 0: obs 0.481 unobs 0.0609 amb 0.0429 off 0.415  auroc obs/unobs 0.748  121s\n"}
+,{"stream_name":"stdout","time":1669.278995892,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.033605337142944336 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1669.328177964,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1671.056226678,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7740929126739502 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1671.058763931,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002544403076171875 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1671.135813589,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1676.280481655,"data":"[da3] scan freiburg1_room views 5 seed 0: obs 0.508 unobs 0.0367 amb 0.0235 off 0.431  auroc obs/unobs 0.823  128s\n"}
+,{"stream_name":"stdout","time":1676.705740425,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06372475624084473 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1676.761247051,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1680.491962367,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.780090093612671 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1680.496104214,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004239797592163086 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1680.634277818,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1691.174179683,"data":"[da3] scan freiburg1_room views 10 seed 0: obs 0.526 unobs 0.0197 amb 0.0164 off 0.438  auroc obs/unobs 0.844  143s\n"}
+,{"stream_name":"stdout","time":1691.539705498,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.022223234176635742 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1691.585547759,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1692.760170592,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2185008525848389 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1692.76191106,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018634796142578125 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1692.823760604,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1696.179377449,"data":"[da3] scan freiburg1_room views 3 seed 1: obs 0.220 unobs 0.0604 amb 0.0631 off 0.657  auroc obs/unobs 0.749  148s\n"}
+,{"stream_name":"stdout","time":1696.555931722,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03334546089172363 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1696.60435073,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1698.347432104,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7883331775665283 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1698.349833664,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002483844757080078 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1698.424320434,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1703.638757137,"data":"[da3] scan freiburg1_room views 5 seed 1: obs 0.355 unobs 0.0340 amb 0.0546 off 0.556  auroc obs/unobs 0.665  156s\n"}
+,{"stream_name":"stdout","time":1704.057806272,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06433606147766113 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1704.113306303,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1707.784157529,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.720562219619751 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1707.788565983,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004349231719970703 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1707.931894613,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1718.488627716,"data":"[da3] scan freiburg1_room views 10 seed 1: obs 0.518 unobs 0.0172 amb 0.0150 off 0.449  auroc obs/unobs 0.775  171s\n"}
+,{"stream_name":"stdout","time":1719.399696156,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.021454811096191406 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1719.445626191,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1720.586121624,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.184450387954712 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1720.58803869,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018992424011230469 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1720.642964596,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1724.032622672,"data":"[da3] scan freiburg1_plant views 3 seed 0: obs 0.134 unobs 0.1632 amb 0.0173 off 0.685  auroc obs/unobs 0.346  176s\n"}
+,{"stream_name":"stdout","time":1724.405166277,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0320892333984375 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1724.453616526,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1726.191929174,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7835934162139893 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1726.194510301,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0025141239166259766 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1726.272705238,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1731.535881962,"data":"[da3] scan freiburg1_plant views 5 seed 0: obs 0.195 unobs 0.1177 amb 0.0304 off 0.657  auroc obs/unobs 0.305  184s\n"}
+,{"stream_name":"stdout","time":1731.96602523,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06481623649597168 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1732.021466209,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1735.706884262,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7350308895111084 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1735.711294798,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004328727722167969 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1735.8501666,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1746.195876416,"data":"[da3] scan freiburg1_plant views 10 seed 0: obs 0.476 unobs 0.0556 amb 0.0229 off 0.446  auroc obs/unobs 0.549  198s\n"}
+,{"stream_name":"stdout","time":1746.554820236,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.023560762405395508 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1746.600674137,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1747.75951213,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2026000022888184 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1747.761226888,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018002986907958984 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1747.814016753,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1751.195570314,"data":"[da3] scan freiburg1_plant views 3 seed 1: obs 0.169 unobs 0.1243 amb 0.0194 off 0.687  auroc obs/unobs 0.636  203s\n"}
+,{"stream_name":"stdout","time":1751.587107334,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.031064987182617188 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1751.635844389,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1753.379638189,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.789339542388916 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1753.382097854,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002432584762573242 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1753.456012875,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1758.635474785,"data":"[da3] scan freiburg1_plant views 5 seed 1: obs 0.264 unobs 0.1020 amb 0.0188 off 0.615  auroc obs/unobs 0.432  211s\n"}
+,{"stream_name":"stdout","time":1759.050937112,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06508040428161621 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1759.107011204,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1762.792792165,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.735832691192627 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1762.797012884,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.00433659553527832 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1762.938521618,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1773.565280948,"data":"[da3] scan freiburg1_plant views 10 seed 1: obs 0.207 unobs 0.0530 amb 0.0094 off 0.730  auroc obs/unobs 0.421  226s\n"}
+,{"stream_name":"stdout","time":1774.445898908,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.022131681442260742 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1774.49188193,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1775.6327531,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1848692893981934 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1775.634500162,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018100738525390625 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1775.694458568,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1779.090107302,"data":"[da3] scan freiburg1_teddy views 3 seed 0: obs 0.681 unobs 0.1476 amb 0.0561 off 0.116  auroc obs/unobs 0.563  231s\n"}
+,{"stream_name":"stdout","time":1779.449858747,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03092217445373535 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1779.498609231,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1781.221941958,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7691364288330078 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1781.224701429,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0026922225952148438 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1781.303197443,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1786.563850705,"data":"[da3] scan freiburg1_teddy views 5 seed 0: obs 0.807 unobs 0.0660 amb 0.0260 off 0.101  auroc obs/unobs 0.654  239s\n"}
+,{"stream_name":"stdout","time":1786.976955879,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06831145286560059 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1787.032779005,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1790.732122516,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7491815090179443 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1790.736438769,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.00416874885559082 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1790.875609518,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1801.597432398,"data":"[da3] scan freiburg1_teddy views 10 seed 0: obs 0.827 unobs 0.0390 amb 0.0221 off 0.112  auroc obs/unobs 0.494  254s\n"}
+,{"stream_name":"stdout","time":1801.945086627,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.023477554321289062 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1801.990995192,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1803.152570915,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.205298900604248 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1803.154276136,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.001825094223022461 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1803.209129244,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1806.53971901,"data":"[da3] scan freiburg1_teddy views 3 seed 1: obs 0.549 unobs 0.1951 amb 0.1011 off 0.155  auroc obs/unobs 0.673  259s\n"}
+,{"stream_name":"stdout","time":1806.893553185,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03485417366027832 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1806.942112901,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1808.663484986,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7665631771087646 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1808.665829347,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0024538040161132812 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1808.741852465,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1813.882350908,"data":"[da3] scan freiburg1_teddy views 5 seed 1: obs 0.663 unobs 0.1410 amb 0.0437 off 0.152  auroc obs/unobs 0.400  266s\n"}
+,{"stream_name":"stdout","time":1814.280510931,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07065987586975098 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1814.336572289,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1818.007673628,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7212140560150146 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1818.012023084,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004326581954956055 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1818.152492241,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1828.540837989,"data":"[da3] scan freiburg1_teddy views 10 seed 1: obs 0.763 unobs 0.0666 amb 0.0364 off 0.134  auroc obs/unobs 0.480  281s\n"}
+,{"stream_name":"stdout","time":1829.433583596,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.020699024200439453 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1829.479095086,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1830.614027819,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.178492546081543 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1830.61596152,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0019707679748535156 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1830.672783778,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1833.702635131,"data":"[da3] scan freiburg1_360 views 3 seed 0: obs 0.732 unobs 0.0057 amb 0.0472 off 0.215  auroc obs/unobs 0.641  286s\n"}
+,{"stream_name":"stdout","time":1834.025729276,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.032530784606933594 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1834.074371714,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1835.798261653,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7694635391235352 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1835.800688759,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0024847984313964844 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1835.882180292,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1840.57649971,"data":"[da3] scan freiburg1_360 views 5 seed 0: obs 0.822 unobs 0.0100 amb 0.0153 off 0.153  auroc obs/unobs 0.652  293s\n"}
+,{"stream_name":"stdout","time":1840.977337756,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06182289123535156 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1841.032690462,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1844.754561093,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.771498680114746 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1844.758883377,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004324913024902344 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1844.895470931,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1854.69188362,"data":"[da3] scan freiburg1_360 views 10 seed 0: obs 0.817 unobs 0.0103 amb 0.0047 off 0.168  auroc obs/unobs 0.813  307s\n"}
+,{"stream_name":"stdout","time":1855.012314217,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.020391225814819336 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1855.058076736,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1856.201618246,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1873066425323486 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1856.203428917,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018122196197509766 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1856.258082226,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1859.394287008,"data":"[da3] scan freiburg1_360 views 3 seed 1: obs 0.713 unobs 0.0534 amb 0.0241 off 0.209  auroc obs/unobs 0.699  311s\n"}
+,{"stream_name":"stdout","time":1859.749754676,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.035877227783203125 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1859.79830786,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1861.543661131,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7908837795257568 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1861.54622427,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0025360584259033203 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1861.623417523,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1866.393754811,"data":"[da3] scan freiburg1_360 views 5 seed 1: obs 0.767 unobs 0.0315 amb 0.0186 off 0.182  auroc obs/unobs 0.636  318s\n"}
+,{"stream_name":"stdout","time":1866.811710867,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0745384693145752 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1866.867283122,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1870.538236434,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7205755710601807 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1870.542406652,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004155874252319336 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1870.674690655,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1880.357566044,"data":"[da3] scan freiburg1_360 views 10 seed 1: obs 0.651 unobs 0.0249 amb 0.0165 off 0.308  auroc obs/unobs 0.768  332s\n"}
+,{"stream_name":"stdout","time":1881.242847928,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02724933624267578 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1881.288918252,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1882.43118094,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1862642765045166 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1882.432867208,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018038749694824219 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1882.487978388,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1885.973866294,"data":"[da3] scan freiburg2_desk views 3 seed 0: obs 0.675 unobs 0.1518 amb 0.0115 off 0.162  auroc obs/unobs 0.862  338s\n"}
+,{"stream_name":"stdout","time":1886.319885468,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.035540103912353516 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1886.368392807,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1888.123932302,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.801168441772461 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1888.126620741,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0026383399963378906 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1888.208785985,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1893.612180315,"data":"[da3] scan freiburg2_desk views 5 seed 0: obs 0.747 unobs 0.0970 amb 0.0189 off 0.137  auroc obs/unobs 0.889  346s\n"}
+,{"stream_name":"stdout","time":1894.052297812,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07288932800292969 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1894.107777288,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1897.808982631,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.750896692276001 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1897.813340939,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004362583160400391 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1897.978278217,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1908.958031287,"data":"[da3] scan freiburg2_desk views 10 seed 0: obs 0.773 unobs 0.0616 amb 0.0089 off 0.157  auroc obs/unobs 0.872  361s\n"}
+,{"stream_name":"stdout","time":1909.300618802,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02293848991394043 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1909.346287349,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1910.522918415,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.220233678817749 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1910.524750186,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018377304077148438 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1910.579478819,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1914.171146459,"data":"[da3] scan freiburg2_desk views 3 seed 1: obs 0.686 unobs 0.1211 amb 0.0120 off 0.181  auroc obs/unobs 0.858  366s\n"}
+,{"stream_name":"stdout","time":1914.535430501,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03202247619628906 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1914.584046649,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1916.326297576,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7875537872314453 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1916.328865926,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0026922225952148438 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1916.405638799,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1922.050277113,"data":"[da3] scan freiburg2_desk views 5 seed 1: obs 0.679 unobs 0.1009 amb 0.0105 off 0.210  auroc obs/unobs 0.839  374s\n"}
+,{"stream_name":"stdout","time":1922.463284184,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0688467025756836 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1922.518926332,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1926.186139751,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.716925859451294 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1926.190374937,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004212856292724609 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1926.350989085,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1937.558057121,"data":"[da3] scan freiburg2_desk views 10 seed 1: obs 0.708 unobs 0.0606 amb 0.0069 off 0.225  auroc obs/unobs 0.868  390s\n"}
+,{"stream_name":"stdout","time":1938.456004688,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.021181344985961914 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1938.501826705,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1939.648696099,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.190711498260498 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1939.650567631,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.001880645751953125 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1939.704888746,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1943.54572358,"data":"[da3] scan freiburg3_long_office_household views 3 seed 0: obs 0.583 unobs 0.0427 amb 0.0192 off 0.355  auroc obs/unobs 0.774  396s\n"}
+,{"stream_name":"stdout","time":1943.918010902,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.034837961196899414 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1943.966423771,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1945.703366825,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7822058200836182 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1945.705856171,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0025398731231689453 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1945.77944542,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1951.904731179,"data":"[da3] scan freiburg3_long_office_household views 5 seed 0: obs 0.459 unobs 0.0412 amb 0.0145 off 0.485  auroc obs/unobs 0.725  404s\n"}
+,{"stream_name":"stdout","time":1952.326433449,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06470870971679688 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1952.381708905,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1956.071753766,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7396228313446045 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1956.075971329,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.00416111946105957 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1956.21426695,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1968.571762377,"data":"[da3] scan freiburg3_long_office_household views 10 seed 0: obs 0.440 unobs 0.0290 amb 0.0124 off 0.519  auroc obs/unobs 0.733  421s\n"}
+,{"stream_name":"stdout","time":1968.914542038,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.023174762725830078 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1968.960134225,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1970.133808352,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2172000408172607 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1970.135736933,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018398761749267578 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1970.190153872,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1973.992112152,"data":"[da3] scan freiburg3_long_office_household views 3 seed 1: obs 0.650 unobs 0.0577 amb 0.0133 off 0.279  auroc obs/unobs 0.806  426s\n"}
+,{"stream_name":"stdout","time":1974.365573069,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.032604217529296875 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1974.41410449,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1976.157351459,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7886722087860107 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1976.159851012,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0024843215942382812 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1976.234206395,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1982.224805562,"data":"[da3] scan freiburg3_long_office_household views 5 seed 1: obs 0.709 unobs 0.0432 amb 0.0168 off 0.231  auroc obs/unobs 0.861  434s\n"}
+,{"stream_name":"stdout","time":1982.640886864,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07216405868530273 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1982.696823831,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1986.364715435,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.717487096786499 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1986.368938582,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0042705535888671875 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":1986.510679045,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":1998.562490561,"data":"[da3] scan freiburg3_long_office_household views 10 seed 1: obs 0.762 unobs 0.0253 amb 0.0090 off 0.204  auroc obs/unobs 0.874  451s\n"}
+,{"stream_name":"stdout","time":1999.34461435,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.022936105728149414 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":1999.390880428,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2000.549994786,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2031986713409424 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2000.551782824,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017614364624023438 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2000.607679104,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2003.886801266,"data":"[da3] scan freiburg3_teddy views 3 seed 0: obs 0.093 unobs 0.0723 amb 0.0255 off 0.809  auroc obs/unobs 0.220  456s\n"}
+,{"stream_name":"stdout","time":2004.234293703,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03606390953063965 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2004.282826358,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2006.006690495,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7693488597869873 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2006.009266855,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002558469772338867 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2006.085916111,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2011.228100769,"data":"[da3] scan freiburg3_teddy views 5 seed 0: obs 0.090 unobs 0.0603 amb 0.0224 off 0.828  auroc obs/unobs 0.243  463s\n"}
+,{"stream_name":"stdout","time":2011.644902444,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06758713722229004 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2011.700548058,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2015.414177198,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7636008262634277 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2015.418495342,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0042877197265625 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2015.554869619,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2025.997633123,"data":"[da3] scan freiburg3_teddy views 10 seed 0: obs 0.143 unobs 0.0740 amb 0.0315 off 0.751  auroc obs/unobs 0.267  478s\n"}
+,{"stream_name":"stdout","time":2026.328146226,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02158498764038086 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2026.374065187,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2027.544414763,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2142231464385986 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2027.546145759,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017757415771484375 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2027.60126348,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2031.190812879,"data":"[da3] scan freiburg3_teddy views 3 seed 1: obs 0.076 unobs 0.0873 amb 0.0040 off 0.833  auroc obs/unobs 0.140  483s\n"}
+,{"stream_name":"stdout","time":2031.535340336,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03299903869628906 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2031.581344537,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2033.339358043,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.8032968044281006 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2033.341874027,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0025482177734375 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2033.425169144,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2044.909419659,"data":"[da3] scan freiburg3_teddy views 5 seed 1: obs 0.085 unobs 0.0552 amb 0.0115 off 0.848  auroc obs/unobs 0.502  497s\n"}
+,{"stream_name":"stdout","time":2045.316404434,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06452369689941406 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2045.372108334,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2048.994655145,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.6722443103790283 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2048.99884486,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004345893859863281 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2049.127831976,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2075.987286862,"data":"[da3] scan freiburg3_teddy views 10 seed 1: obs 0.084 unobs 0.0375 amb 0.0113 off 0.867  auroc obs/unobs 0.566  528s\n"}
+,{"stream_name":"stdout","time":2076.924816233,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.022399187088012695 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2076.970421423,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2078.117318903,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1903774738311768 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2078.119049664,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018157958984375 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2078.173588528,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2082.038906921,"data":"[da3] scan freiburg3_cabinet views 3 seed 0: obs 0.814 unobs 0.0365 amb 0.0342 off 0.115  auroc obs/unobs 0.539  534s\n"}
+,{"stream_name":"stdout","time":2082.388341468,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03384041786193848 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2082.436826087,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2084.187320981,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7959516048431396 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2084.189775703,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0025527477264404297 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2084.26500996,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2090.208249029,"data":"[da3] scan freiburg3_cabinet views 5 seed 0: obs 0.846 unobs 0.0263 amb 0.0241 off 0.103  auroc obs/unobs 0.599  542s\n"}
+,{"stream_name":"stdout","time":2090.615104768,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06641697883605957 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2090.670806727,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2094.392235333,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7712793350219727 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2094.396518207,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004286050796508789 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2094.560131203,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2106.995771286,"data":"[da3] scan freiburg3_cabinet views 10 seed 0: obs 0.864 unobs 0.0174 amb 0.0155 off 0.103  auroc obs/unobs 0.543  559s\n"}
+,{"stream_name":"stdout","time":2107.310143309,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.022627830505371094 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2107.356043775,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2108.511133825,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1989834308624268 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2108.512897339,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018107891082763672 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2108.56822704,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2112.371880216,"data":"[da3] scan freiburg3_cabinet views 3 seed 1: obs 0.865 unobs 0.0279 amb 0.0331 off 0.074  auroc obs/unobs 0.577  564s\n"}
+,{"stream_name":"stdout","time":2112.710994751,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03395533561706543 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2112.759985526,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2114.501305207,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7870399951934814 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2114.503956316,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0026526451110839844 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2114.580837989,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2120.512237261,"data":"[da3] scan freiburg3_cabinet views 5 seed 1: obs 0.892 unobs 0.0136 amb 0.0247 off 0.070  auroc obs/unobs 0.713  573s\n"}
+,{"stream_name":"stdout","time":2120.927618655,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.07366085052490234 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2120.983397716,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2124.689065678,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7558541297912598 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2124.693448575,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0043849945068359375 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2124.836852045,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2137.3663434,"data":"[da3] scan freiburg3_cabinet views 10 seed 1: obs 0.907 unobs 0.0112 amb 0.0116 off 0.070  auroc obs/unobs 0.716  589s\n"}
+,{"stream_name":"stdout","time":2138.096807548,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.021966934204101562 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2138.142553468,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2139.276209957,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1771793365478516 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2139.277808546,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.001794576644897461 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2139.332081408,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2143.00800986,"data":"[da3] scan freiburg3_large_cabinet views 3 seed 0: obs 0.419 unobs 0.0503 amb 0.0099 off 0.521  auroc obs/unobs 0.295  595s\n"}
+,{"stream_name":"stdout","time":2143.295765958,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03339862823486328 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2143.34449311,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2145.058553836,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7597723007202148 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2145.060994086,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002559661865234375 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2145.138001214,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2150.820593205,"data":"[da3] scan freiburg3_large_cabinet views 5 seed 0: obs 0.364 unobs 0.0612 amb 0.0043 off 0.570  auroc obs/unobs 0.289  603s\n"}
+,{"stream_name":"stdout","time":2151.183136497,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06971001625061035 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2151.241354552,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2154.904424025,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7149364948272705 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2154.908600159,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004305839538574219 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2155.068889255,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2166.477377068,"data":"[da3] scan freiburg3_large_cabinet views 10 seed 0: obs 0.201 unobs 0.1029 amb 0.0084 off 0.688  auroc obs/unobs 0.592  618s\n"}
+,{"stream_name":"stdout","time":2166.745248381,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.021636486053466797 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2166.791050637,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2167.95198767,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.204958200454712 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2167.953906328,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017979145050048828 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2168.009399515,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2171.930640939,"data":"[da3] scan freiburg3_large_cabinet views 3 seed 1: obs 0.204 unobs 0.0490 amb 0.0138 off 0.733  auroc obs/unobs 0.661  624s\n"}
+,{"stream_name":"stdout","time":2172.223483844,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03547787666320801 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2172.271943666,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2174.037797943,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.8112447261810303 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2174.040271283,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002509593963623047 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2174.12260139,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2180.070533174,"data":"[da3] scan freiburg3_large_cabinet views 5 seed 1: obs 0.269 unobs 0.0536 amb 0.0118 off 0.665  auroc obs/unobs 0.580  632s\n"}
+,{"stream_name":"stdout","time":2180.421214824,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06658101081848145 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2180.476831088,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2184.169373166,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.7422797679901123 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2184.173514182,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.004168510437011719 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2184.342399251,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2197.025528269,"data":"[da3] scan freiburg3_large_cabinet views 10 seed 1: obs 0.341 unobs 0.0215 amb 0.0115 off 0.626  auroc obs/unobs 0.553  649s\n"}
+,{"stream_name":"stdout","time":2197.91010156,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02095937728881836 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2197.955756912,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2199.094055938,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1819090843200684 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2199.095818452,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.001802682876586914 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2199.150183307,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2203.014116254,"data":"[da3] scan freiburg3_structure_texture_far views 3 seed 0: obs 0.860 unobs 0.0183 amb 0.0134 off 0.109  auroc obs/unobs 0.867  655s\n"}
+,{"stream_name":"stdout","time":2203.337104851,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03337740898132324 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2203.385851229,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2205.102890256,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.7626399993896484 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2205.105473176,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0025560855865478516 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2205.181630834,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2211.148228915,"data":"[da3] scan freiburg3_structure_texture_far views 5 seed 0: obs 0.872 unobs 0.0130 amb 0.0175 off 0.098  auroc obs/unobs 0.898  663s\n"}
+,{"stream_name":"stdout","time":2211.56281535,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06828498840332031 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2211.618746925,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2215.289360577,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.720501184463501 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2215.29364548,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.00428009033203125 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2215.432970382,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2227.629686886,"data":"[da3] scan freiburg3_structure_texture_far views 10 seed 0: obs 0.907 unobs 0.0060 amb 0.0076 off 0.080  auroc obs/unobs 0.917  680s\n"}
+,{"stream_name":"stdout","time":2227.916729657,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.024042844772338867 seconds. Shape:  torch.Size([3, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2227.962558819,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2229.103434779,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.1845088005065918 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2229.105228964,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.001852273941040039 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2229.160492165,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2232.999524677,"data":"[da3] scan freiburg3_structure_texture_far views 3 seed 1: obs 0.799 unobs 0.0060 amb 0.0060 off 0.189  auroc obs/unobs 0.892  685s\n"}
+,{"stream_name":"stdout","time":2233.306389693,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03478074073791504 seconds. Shape:  torch.Size([5, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2233.355060442,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2235.083382584,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.773733139038086 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2235.085767799,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002475738525390625 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2235.158979557,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2241.094905877,"data":"[da3] scan freiburg3_structure_texture_far views 5 seed 1: obs 0.904 unobs 0.0065 amb 0.0061 off 0.083  auroc obs/unobs 0.933  693s\n"}
+,{"stream_name":"stdout","time":2241.493279238,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06612920761108398 seconds. Shape:  torch.Size([10, 3, 392, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":2241.549028487,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2245.262443913,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 3.763218402862549 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2245.266697637,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0043315887451171875 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":2245.427722591,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2257.846957942,"data":"[da3] scan freiburg3_structure_texture_far views 10 seed 1: obs 0.903 unobs 0.0042 amb 0.0051 off 0.088  auroc obs/unobs 0.953  710s\n"}
+,{"stream_name":"stdout","time":2258.18783047,"data":"\u001b[97m[INFO ] using MLP layer as FFN\u001b[0m\n"}
+,{"stream_name":"stdout","time":2261.96844695,"data":"[da3_oiavisself] head from /kaggle/tmp/checkpoints/da3_oiavisself.pt (step 1500, val-auroc 0.993)\n"}
+,{"stream_name":"stdout","time":2262.843877196,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2264.075350189,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2265.798986443,"data":"[da3_oiavisself] scan freiburg1_desk views 3 seed 0: obs 0.687 unobs 0.0990 amb 0.0120 off 0.202  auroc obs/unobs 0.857  4s\n"}
+,{"stream_name":"stdout","time":2266.194566758,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2267.959228364,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2270.414036875,"data":"[da3_oiavisself] scan freiburg1_desk views 5 seed 0: obs 0.721 unobs 0.0889 amb 0.0087 off 0.182  auroc obs/unobs 0.863  8s\n"}
+,{"stream_name":"stdout","time":2270.852117531,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2274.63559614,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2279.502005944,"data":"[da3_oiavisself] scan freiburg1_desk views 10 seed 0: obs 0.835 unobs 0.0343 amb 0.0032 off 0.127  auroc obs/unobs 0.919  18s\n"}
+,{"stream_name":"stdout","time":2279.859164649,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2281.052010643,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2282.827025775,"data":"[da3_oiavisself] scan freiburg1_desk views 3 seed 1: obs 0.734 unobs 0.0678 amb 0.0117 off 0.187  auroc obs/unobs 0.897  21s\n"}
+,{"stream_name":"stdout","time":2283.207718944,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2285.006480076,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2287.525283205,"data":"[da3_oiavisself] scan freiburg1_desk views 5 seed 1: obs 0.694 unobs 0.0502 amb 0.0222 off 0.233  auroc obs/unobs 0.867  26s\n"}
+,{"stream_name":"stdout","time":2287.966517976,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2291.836527348,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2296.712812267,"data":"[da3_oiavisself] scan freiburg1_desk views 10 seed 1: obs 0.701 unobs 0.0153 amb 0.0201 off 0.264  auroc obs/unobs 0.870  35s\n"}
+,{"stream_name":"stdout","time":2297.586516784,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2298.817742356,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2300.476408316,"data":"[da3_oiavisself] scan freiburg1_desk2 views 3 seed 0: obs 0.558 unobs 0.1178 amb 0.0392 off 0.285  auroc obs/unobs 0.780  39s\n"}
+,{"stream_name":"stdout","time":2300.86948493,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2302.637139723,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2305.016743025,"data":"[da3_oiavisself] scan freiburg1_desk2 views 5 seed 0: obs 0.606 unobs 0.0981 amb 0.0327 off 0.263  auroc obs/unobs 0.857  43s\n"}
+,{"stream_name":"stdout","time":2305.427360259,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2309.168542354,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2313.88242688,"data":"[da3_oiavisself] scan freiburg1_desk2 views 10 seed 0: obs 0.823 unobs 0.0312 amb 0.0059 off 0.140  auroc obs/unobs 0.877  52s\n"}
+,{"stream_name":"stdout","time":2314.258321609,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2315.410915287,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2317.08171944,"data":"[da3_oiavisself] scan freiburg1_desk2 views 3 seed 1: obs 0.696 unobs 0.1068 amb 0.0146 off 0.183  auroc obs/unobs 0.763  55s\n"}
+,{"stream_name":"stdout","time":2317.492187603,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2319.222905389,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2321.655985155,"data":"[da3_oiavisself] scan freiburg1_desk2 views 5 seed 1: obs 0.728 unobs 0.0695 amb 0.0239 off 0.179  auroc obs/unobs 0.783  60s\n"}
+,{"stream_name":"stdout","time":2322.07686144,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2325.810497092,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2330.516871604,"data":"[da3_oiavisself] scan freiburg1_desk2 views 10 seed 1: obs 0.748 unobs 0.0357 amb 0.0163 off 0.200  auroc obs/unobs 0.769  69s\n"}
+,{"stream_name":"stdout","time":2331.438956774,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2332.624147789,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2334.317522892,"data":"[da3_oiavisself] scan freiburg1_room views 3 seed 0: obs 0.494 unobs 0.0643 amb 0.0388 off 0.403  auroc obs/unobs 0.675  72s\n"}
+,{"stream_name":"stdout","time":2334.684481769,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2336.432543181,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2338.876103695,"data":"[da3_oiavisself] scan freiburg1_room views 5 seed 0: obs 0.506 unobs 0.0375 amb 0.0243 off 0.432  auroc obs/unobs 0.773  77s\n"}
+,{"stream_name":"stdout","time":2339.305480325,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2343.073517975,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2347.906273136,"data":"[da3_oiavisself] scan freiburg1_room views 10 seed 0: obs 0.527 unobs 0.0199 amb 0.0165 off 0.436  auroc obs/unobs 0.739  86s\n"}
+,{"stream_name":"stdout","time":2348.25411064,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2349.418614227,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2351.206958888,"data":"[da3_oiavisself] scan freiburg1_room views 3 seed 1: obs 0.223 unobs 0.0611 amb 0.0639 off 0.652  auroc obs/unobs 0.623  89s\n"}
+,{"stream_name":"stdout","time":2351.599756782,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2353.357821161,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2355.865551667,"data":"[da3_oiavisself] scan freiburg1_room views 5 seed 1: obs 0.359 unobs 0.0324 amb 0.0595 off 0.549  auroc obs/unobs 0.738  94s\n"}
+,{"stream_name":"stdout","time":2356.273005915,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2360.069673978,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2364.932302985,"data":"[da3_oiavisself] scan freiburg1_room views 10 seed 1: obs 0.540 unobs 0.0158 amb 0.0156 off 0.429  auroc obs/unobs 0.848  103s\n"}
+,{"stream_name":"stdout","time":2365.810847594,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2367.006713905,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2368.890612831,"data":"[da3_oiavisself] scan freiburg1_plant views 3 seed 0: obs 0.135 unobs 0.1624 amb 0.0175 off 0.685  auroc obs/unobs 0.518  107s\n"}
+,{"stream_name":"stdout","time":2369.262726186,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2371.018903332,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2373.685971644,"data":"[da3_oiavisself] scan freiburg1_plant views 5 seed 0: obs 0.164 unobs 0.1070 amb 0.0202 off 0.709  auroc obs/unobs 0.485  112s\n"}
+,{"stream_name":"stdout","time":2374.131297888,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2377.901621633,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2382.726057843,"data":"[da3_oiavisself] scan freiburg1_plant views 10 seed 0: obs 0.449 unobs 0.0717 amb 0.0195 off 0.460  auroc obs/unobs 0.701  121s\n"}
+,{"stream_name":"stdout","time":2383.07680082,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2384.23900136,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2386.026954459,"data":"[da3_oiavisself] scan freiburg1_plant views 3 seed 1: obs 0.146 unobs 0.1232 amb 0.0125 off 0.718  auroc obs/unobs 0.642  124s\n"}
+,{"stream_name":"stdout","time":2386.423837371,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2388.181009043,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2390.699427777,"data":"[da3_oiavisself] scan freiburg1_plant views 5 seed 1: obs 0.252 unobs 0.1029 amb 0.0190 off 0.626  auroc obs/unobs 0.533  129s\n"}
+,{"stream_name":"stdout","time":2391.126963642,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2394.884918128,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2400.042267754,"data":"[da3_oiavisself] scan freiburg1_plant views 10 seed 1: obs 0.185 unobs 0.0494 amb 0.0084 off 0.757  auroc obs/unobs 0.490  138s\n"}
+,{"stream_name":"stdout","time":2400.913093647,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2402.098696104,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2403.84004998,"data":"[da3_oiavisself] scan freiburg1_teddy views 3 seed 0: obs 0.682 unobs 0.1462 amb 0.0561 off 0.116  auroc obs/unobs 0.702  142s\n"}
+,{"stream_name":"stdout","time":2404.218911545,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2405.964291501,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2408.405228675,"data":"[da3_oiavisself] scan freiburg1_teddy views 5 seed 0: obs 0.827 unobs 0.0577 amb 0.0260 off 0.089  auroc obs/unobs 0.810  146s\n"}
+,{"stream_name":"stdout","time":2408.832333132,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2412.574303696,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2417.332101759,"data":"[da3_oiavisself] scan freiburg1_teddy views 10 seed 0: obs 0.824 unobs 0.0394 amb 0.0214 off 0.115  auroc obs/unobs 0.778  155s\n"}
+,{"stream_name":"stdout","time":2417.684097751,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2418.85025994,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2420.564623779,"data":"[da3_oiavisself] scan freiburg1_teddy views 3 seed 1: obs 0.549 unobs 0.1930 amb 0.0990 off 0.159  auroc obs/unobs 0.627  159s\n"}
+,{"stream_name":"stdout","time":2420.950806784,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2422.709290132,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2425.125022522,"data":"[da3_oiavisself] scan freiburg1_teddy views 5 seed 1: obs 0.642 unobs 0.1415 amb 0.0457 off 0.171  auroc obs/unobs 0.659  163s\n"}
+,{"stream_name":"stdout","time":2425.541801356,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2429.324375477,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2434.107221135,"data":"[da3_oiavisself] scan freiburg1_teddy views 10 seed 1: obs 0.763 unobs 0.0669 amb 0.0311 off 0.139  auroc obs/unobs 0.742  172s\n"}
+,{"stream_name":"stdout","time":2434.947659683,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2436.172020744,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2437.860691065,"data":"[da3_oiavisself] scan freiburg1_360 views 3 seed 0: obs 0.720 unobs 0.0056 amb 0.0441 off 0.230  auroc obs/unobs 0.833  176s\n"}
+,{"stream_name":"stdout","time":2438.185283072,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2439.955464898,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2442.342277816,"data":"[da3_oiavisself] scan freiburg1_360 views 5 seed 0: obs 0.816 unobs 0.0099 amb 0.0137 off 0.161  auroc obs/unobs 0.910  180s\n"}
+,{"stream_name":"stdout","time":2442.735852776,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2446.521187525,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2451.343292756,"data":"[da3_oiavisself] scan freiburg1_360 views 10 seed 0: obs 0.823 unobs 0.0100 amb 0.0048 off 0.163  auroc obs/unobs 0.909  189s\n"}
+,{"stream_name":"stdout","time":2451.689848726,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2452.848920223,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2454.54463747,"data":"[da3_oiavisself] scan freiburg1_360 views 3 seed 1: obs 0.708 unobs 0.0530 amb 0.0245 off 0.214  auroc obs/unobs 0.768  193s\n"}
+,{"stream_name":"stdout","time":2454.882389228,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2456.646449893,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2459.095006076,"data":"[da3_oiavisself] scan freiburg1_360 views 5 seed 1: obs 0.786 unobs 0.0309 amb 0.0202 off 0.163  auroc obs/unobs 0.864  197s\n"}
+,{"stream_name":"stdout","time":2459.477124559,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2463.239902262,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2467.990647939,"data":"[da3_oiavisself] scan freiburg1_360 views 10 seed 1: obs 0.650 unobs 0.0248 amb 0.0164 off 0.309  auroc obs/unobs 0.899  206s\n"}
+,{"stream_name":"stdout","time":2468.844879137,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2470.070069875,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2471.755719865,"data":"[da3_oiavisself] scan freiburg2_desk views 3 seed 0: obs 0.681 unobs 0.1472 amb 0.0111 off 0.160  auroc obs/unobs 0.830  210s\n"}
+,{"stream_name":"stdout","time":2472.122095423,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2473.863504832,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2476.240133646,"data":"[da3_oiavisself] scan freiburg2_desk views 5 seed 0: obs 0.751 unobs 0.0930 amb 0.0182 off 0.137  auroc obs/unobs 0.856  214s\n"}
+,{"stream_name":"stdout","time":2476.645134624,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2480.412073917,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2485.133037346,"data":"[da3_oiavisself] scan freiburg2_desk views 10 seed 0: obs 0.771 unobs 0.0614 amb 0.0088 off 0.159  auroc obs/unobs 0.874  223s\n"}
+,{"stream_name":"stdout","time":2485.498145281,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2486.661598417,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2488.326550255,"data":"[da3_oiavisself] scan freiburg2_desk views 3 seed 1: obs 0.682 unobs 0.1217 amb 0.0118 off 0.185  auroc obs/unobs 0.794  226s\n"}
+,{"stream_name":"stdout","time":2488.711341169,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2490.47308699,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2492.863305684,"data":"[da3_oiavisself] scan freiburg2_desk views 5 seed 1: obs 0.675 unobs 0.1006 amb 0.0106 off 0.214  auroc obs/unobs 0.835  231s\n"}
+,{"stream_name":"stdout","time":2493.294807148,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2497.077136057,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2501.813044285,"data":"[da3_oiavisself] scan freiburg2_desk views 10 seed 1: obs 0.704 unobs 0.0607 amb 0.0071 off 0.228  auroc obs/unobs 0.891  240s\n"}
+,{"stream_name":"stdout","time":2502.670702816,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2503.878881309,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2505.796837845,"data":"[da3_oiavisself] scan freiburg3_long_office_household views 3 seed 0: obs 0.566 unobs 0.0422 amb 0.0202 off 0.372  auroc obs/unobs 0.770  244s\n"}
+,{"stream_name":"stdout","time":2506.16731591,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2507.940341445,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2510.930291008,"data":"[da3_oiavisself] scan freiburg3_long_office_household views 5 seed 0: obs 0.422 unobs 0.0410 amb 0.0158 off 0.521  auroc obs/unobs 0.737  249s\n"}
+,{"stream_name":"stdout","time":2511.35881323,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2515.124126765,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2520.778941269,"data":"[da3_oiavisself] scan freiburg3_long_office_household views 10 seed 0: obs 0.479 unobs 0.0266 amb 0.0092 off 0.485  auroc obs/unobs 0.794  259s\n"}
+,{"stream_name":"stdout","time":2521.144786145,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2522.356355919,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2524.180628864,"data":"[da3_oiavisself] scan freiburg3_long_office_household views 3 seed 1: obs 0.657 unobs 0.0537 amb 0.0152 off 0.275  auroc obs/unobs 0.749  262s\n"}
+,{"stream_name":"stdout","time":2524.558975048,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2526.317394413,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2528.938356557,"data":"[da3_oiavisself] scan freiburg3_long_office_household views 5 seed 1: obs 0.716 unobs 0.0407 amb 0.0170 off 0.226  auroc obs/unobs 0.745  267s\n"}
+,{"stream_name":"stdout","time":2529.359065648,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2533.136269277,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2538.391773089,"data":"[da3_oiavisself] scan freiburg3_long_office_household views 10 seed 1: obs 0.765 unobs 0.0243 amb 0.0090 off 0.202  auroc obs/unobs 0.660  276s\n"}
+,{"stream_name":"stdout","time":2539.168094676,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2540.390294953,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2542.36660303,"data":"[da3_oiavisself] scan freiburg3_teddy views 3 seed 0: obs 0.087 unobs 0.0717 amb 0.0213 off 0.820  auroc obs/unobs 0.364  280s\n"}
+,{"stream_name":"stdout","time":2542.712351174,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2544.4769936,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2547.456394233,"data":"[da3_oiavisself] scan freiburg3_teddy views 5 seed 0: obs 0.095 unobs 0.0581 amb 0.0231 off 0.824  auroc obs/unobs 0.489  285s\n"}
+,{"stream_name":"stdout","time":2547.840199926,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2551.604647387,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2557.251600569,"data":"[da3_oiavisself] scan freiburg3_teddy views 10 seed 0: obs 0.148 unobs 0.0755 amb 0.0311 off 0.745  auroc obs/unobs 0.409  295s\n"}
+,{"stream_name":"stdout","time":2557.5985501,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2558.799411042,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2561.097524832,"data":"[da3_oiavisself] scan freiburg3_teddy views 3 seed 1: obs 0.079 unobs 0.0892 amb 0.0047 off 0.827  auroc obs/unobs 0.201  299s\n"}
+,{"stream_name":"stdout","time":2561.46865064,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2563.236598769,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2573.974668052,"data":"[da3_oiavisself] scan freiburg3_teddy views 5 seed 1: obs 0.088 unobs 0.0540 amb 0.0115 off 0.847  auroc obs/unobs 0.494  312s\n"}
+,{"stream_name":"stdout","time":2574.404019362,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2578.159217549,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2603.548010333,"data":"[da3_oiavisself] scan freiburg3_teddy views 10 seed 1: obs 0.087 unobs 0.0385 amb 0.0115 off 0.863  auroc obs/unobs 0.555  342s\n"}
+,{"stream_name":"stdout","time":2604.401957214,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2605.608820064,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2607.274482341,"data":"[da3_oiavisself] scan freiburg3_cabinet views 3 seed 0: obs 0.803 unobs 0.0396 amb 0.0356 off 0.122  auroc obs/unobs 0.705  345s\n"}
+,{"stream_name":"stdout","time":2607.629673349,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2609.393959843,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2611.801037932,"data":"[da3_oiavisself] scan freiburg3_cabinet views 5 seed 0: obs 0.845 unobs 0.0258 amb 0.0247 off 0.104  auroc obs/unobs 0.847  350s\n"}
+,{"stream_name":"stdout","time":2612.181286672,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2615.984157816,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2620.780813053,"data":"[da3_oiavisself] scan freiburg3_cabinet views 10 seed 0: obs 0.865 unobs 0.0166 amb 0.0154 off 0.103  auroc obs/unobs 0.797  359s\n"}
+,{"stream_name":"stdout","time":2621.10748036,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2622.297136193,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2624.005223101,"data":"[da3_oiavisself] scan freiburg3_cabinet views 3 seed 1: obs 0.865 unobs 0.0261 amb 0.0328 off 0.076  auroc obs/unobs 0.716  362s\n"}
+,{"stream_name":"stdout","time":2624.365280408,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2626.164737633,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2628.60085119,"data":"[da3_oiavisself] scan freiburg3_cabinet views 5 seed 1: obs 0.894 unobs 0.0177 amb 0.0241 off 0.064  auroc obs/unobs 0.793  367s\n"}
+,{"stream_name":"stdout","time":2629.003824134,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2632.891685437,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2637.675121207,"data":"[da3_oiavisself] scan freiburg3_cabinet views 10 seed 1: obs 0.906 unobs 0.0107 amb 0.0115 off 0.071  auroc obs/unobs 0.846  376s\n"}
+,{"stream_name":"stdout","time":2638.370076952,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2639.552416069,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2641.887367147,"data":"[da3_oiavisself] scan freiburg3_large_cabinet views 3 seed 0: obs 0.394 unobs 0.0461 amb 0.0099 off 0.550  auroc obs/unobs 0.593  380s\n"}
+,{"stream_name":"stdout","time":2642.194521187,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2643.953378561,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2647.390910367,"data":"[da3_oiavisself] scan freiburg3_large_cabinet views 5 seed 0: obs 0.337 unobs 0.0552 amb 0.0070 off 0.601  auroc obs/unobs 0.599  385s\n"}
+,{"stream_name":"stdout","time":2647.763759896,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2651.525565382,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2658.451540013,"data":"[da3_oiavisself] scan freiburg3_large_cabinet views 10 seed 0: obs 0.217 unobs 0.0912 amb 0.0089 off 0.683  auroc obs/unobs 0.487  396s\n"}
+,{"stream_name":"stdout","time":2658.742499641,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2659.940345253,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2662.453434928,"data":"[da3_oiavisself] scan freiburg3_large_cabinet views 3 seed 1: obs 0.203 unobs 0.0535 amb 0.0114 off 0.732  auroc obs/unobs 0.589  400s\n"}
+,{"stream_name":"stdout","time":2662.753339289,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2664.474985236,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2668.173836251,"data":"[da3_oiavisself] scan freiburg3_large_cabinet views 5 seed 1: obs 0.256 unobs 0.0571 amb 0.0119 off 0.675  auroc obs/unobs 0.559  406s\n"}
+,{"stream_name":"stdout","time":2668.542604961,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2672.279646961,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2680.131847557,"data":"[da3_oiavisself] scan freiburg3_large_cabinet views 10 seed 1: obs 0.336 unobs 0.0213 amb 0.0118 off 0.631  auroc obs/unobs 0.718  418s\n"}
+,{"stream_name":"stdout","time":2680.937586333,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2682.134899581,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2683.794224576,"data":"[da3_oiavisself] scan freiburg3_structure_texture_far views 3 seed 0: obs 0.861 unobs 0.0187 amb 0.0143 off 0.106  auroc obs/unobs 0.962  422s\n"}
+,{"stream_name":"stdout","time":2684.126602558,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2685.875634439,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2688.255112925,"data":"[da3_oiavisself] scan freiburg3_structure_texture_far views 5 seed 0: obs 0.861 unobs 0.0135 amb 0.0171 off 0.108  auroc obs/unobs 0.957  426s\n"}
+,{"stream_name":"stdout","time":2688.607881367,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2692.406928294,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2697.158910558,"data":"[da3_oiavisself] scan freiburg3_structure_texture_far views 10 seed 0: obs 0.905 unobs 0.0061 amb 0.0076 off 0.081  auroc obs/unobs 0.973  435s\n"}
+,{"stream_name":"stdout","time":2697.4729546,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2698.664810037,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2700.366760758,"data":"[da3_oiavisself] scan freiburg3_structure_texture_far views 3 seed 1: obs 0.798 unobs 0.0061 amb 0.0061 off 0.190  auroc obs/unobs 0.939  438s\n"}
+,{"stream_name":"stdout","time":2700.694515854,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2702.490393512,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2704.9090037,"data":"[da3_oiavisself] scan freiburg3_structure_texture_far views 5 seed 1: obs 0.901 unobs 0.0066 amb 0.0061 off 0.086  auroc obs/unobs 0.977  443s\n"}
+,{"stream_name":"stdout","time":2705.291357223,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2709.17323497,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":2713.977906208,"data":"[da3_oiavisself] scan freiburg3_structure_texture_far views 10 seed 1: obs 0.899 unobs 0.0040 amb 0.0048 off 0.092  auroc obs/unobs 0.992  452s\n"}
+,{"stream_name":"stdout","time":2714.15870129,"data":"                        frac_obs  frac_unobs  frac_off  frac_gt_unobserved  auroc_obs_unobs  auroc_obs_off\n"}
+,{"stream_name":"stdout","time":2714.15873883,"data":"model          n_views                                                                                    \n"}
+,{"stream_name":"stdout","time":2714.158759546,"data":"da3            3          0.5446      0.0802    0.3484              0.6163           0.6561         0.7841\n"}
+,{"stream_name":"stdout","time":2714.158764047,"data":"               5          0.5847      0.0592    0.3352              0.5675           0.6589         0.7894\n"}
+,{"stream_name":"stdout","time":2714.158767663,"data":"               10         0.6213      0.0357    0.3294              0.4685           0.7110         0.8314\n"}
+,{"stream_name":"stdout","time":2714.158771244,"data":"da3_oiavisself 3          0.5420      0.0798    0.3519              0.6163           0.7041         0.7682\n"}
+,{"stream_name":"stdout","time":2714.158774735,"data":"               5          0.5810      0.0579    0.3402              0.5675           0.7512         0.7935\n"}
+,{"stream_name":"stdout","time":2714.158778259,"data":"               10         0.6230      0.0355    0.3284              0.4685           0.7723         0.8224\n"}
+,{"stream_name":"stdout","time":2715.879343225,"data":"[exit 0, 2715s]\n"}
+,{"stream_name":"stdout","time":2715.87937641,"data":"\n"}
+,{"stream_name":"stdout","time":2715.879383019,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2715.879391673,"data":"== done  [2715s]\n"}
+,{"stream_name":"stdout","time":2715.879394292,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2715.88055997,"data":"/kaggle/working/results/P18-tum/da3/P12-realocc-tum.csv 45002 ecf067341e4df459971bd163e42d6486\n"}
+,{"stream_name":"stdout","time":2715.880638455,"data":"/kaggle/working/results/P18-tum/da3/P12-realocc-tum_summary.csv 411 6b3415aa3fc81fffaa12dd765bfde1bb\n"}
+,{"stream_name":"stdout","time":2715.880859615,"data":"/kaggle/working/results/P18-tum/pi3/P12-realocc-tum.csv 45248 94a6ab24cb5f4eb65877fd8653f41eb4\n"}
+,{"stream_name":"stdout","time":2715.880927519,"data":"/kaggle/working/results/P18-tum/pi3/P12-realocc-tum_summary.csv 412 3f55afac15617c1bb27445567313af8a\n"}
+,{"stream_name":"stderr","time":2717.959515448,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":2717.959543759,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":2718.233693066,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":2718.233719779,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":2719.105672405,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":2719.643785329,"data":"[NbConvertApp] Writing 295226 bytes to __results__.html\n"}
+]

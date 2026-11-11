@@ -1,0 +1,435 @@
+[{"stream_name":"stdout","time":0.723453648,"data":"\n"}
+,{"stream_name":"stdout","time":0.723488668,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":0.723492669,"data":"== clone  [0s]\n"}
+,{"stream_name":"stdout","time":0.723495076,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":38.25088671,"data":"commit 6ef7b63\n"}
+,{"stream_name":"stdout","time":38.250917339,"data":"\n"}
+,{"stream_name":"stdout","time":38.250922663,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":38.25092725,"data":"== heads  [38s]\n"}
+,{"stream_name":"stdout","time":38.250931499000004,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":38.667427198,"data":"vggt cf9589698a1509ec727dd9988d39cb2f /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/vggt_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":38.82634581,"data":"pi3x fd9bcab8d3507c121b744898c0e2b18e /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/pi3x_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":38.826372709,"data":"\n"}
+,{"stream_name":"stdout","time":38.826379031,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":38.826383677,"data":"== install backbones (kaggle_prelude.py)  [38s]\n"}
+,{"stream_name":"stdout","time":38.826388582,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":53.209512609,"data":"\n"}
+,{"stream_name":"stdout","time":53.209541437,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":53.20954714,"data":"== TUM RGB-D: download, preprocess, order by co-visibility  [52s]\n"}
+,{"stream_name":"stdout","time":53.209551641,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":124.48359871,"data":"freiburg1_desk ok 124s\n"}
+,{"stream_name":"stdout","time":124.483630191,"data":"\n"}
+,{"stream_name":"stdout","time":124.483635547,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_desk\n"}
+,{"stream_name":"stdout","time":127.547153116,"data":"[tum] freiburg1_desk: 80 of 596 frames, depth valid 0.753\n"}
+,{"stream_name":"stdout","time":127.605710694,"data":"[exit 0, 127s]\n"}
+,{"stream_name":"stdout","time":131.229372493,"data":"[eth3d] freiburg1_desk: reference frame 77, overlap of the next 9 frames [0.91, 0.9, 0.89, 0.84, 0.83, 0.82, 0.77, 0.74, 0.66]\n"}
+,{"stream_name":"stdout","time":149.380888494,"data":"freiburg1_desk2 ok 149s\n"}
+,{"stream_name":"stdout","time":149.380914307,"data":"\n"}
+,{"stream_name":"stdout","time":149.380919414,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_desk2\n"}
+,{"stream_name":"stdout","time":152.263277491,"data":"[tum] freiburg1_desk2: 80 of 631 frames, depth valid 0.756\n"}
+,{"stream_name":"stdout","time":152.299043623,"data":"[exit 0, 152s]\n"}
+,{"stream_name":"stdout","time":156.004188324,"data":"[eth3d] freiburg1_desk2: reference frame 79, overlap of the next 9 frames [0.94, 0.91, 0.88, 0.85, 0.8, 0.69, 0.64, 0.62, 0.6]\n"}
+,{"stream_name":"stdout","time":195.194223917,"data":"freiburg1_room ok 194s\n"}
+,{"stream_name":"stdout","time":195.194265115,"data":"\n"}
+,{"stream_name":"stdout","time":195.194269767,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_room\n"}
+,{"stream_name":"stdout","time":197.87116779,"data":"[tum] freiburg1_room: 80 of 1362 frames, depth valid 0.760\n"}
+,{"stream_name":"stdout","time":197.902087896,"data":"[exit 0, 197s]\n"}
+,{"stream_name":"stdout","time":201.707156674,"data":"[eth3d] freiburg1_room: reference frame 78, overlap of the next 9 frames [0.87, 0.75, 0.62, 0.62, 0.6, 0.58, 0.53, 0.51, 0.39]\n"}
+,{"stream_name":"stdout","time":241.07106892,"data":"freiburg1_plant ok 240s\n"}
+,{"stream_name":"stdout","time":241.071094599,"data":"\n"}
+,{"stream_name":"stdout","time":241.071099435,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_plant\n"}
+,{"stream_name":"stdout","time":243.743018593,"data":"[tum] freiburg1_plant: 80 of 1135 frames, depth valid 0.735\n"}
+,{"stream_name":"stdout","time":243.77432868,"data":"[exit 0, 243s]\n"}
+,{"stream_name":"stdout","time":247.46733942,"data":"[eth3d] freiburg1_plant: reference frame 13, overlap of the next 9 frames [0.68, 0.62, 0.61, 0.56, 0.54, 0.44, 0.43, 0.41, 0.37]\n"}
+,{"stream_name":"stdout","time":296.131193677,"data":"freiburg1_teddy ok 295s\n"}
+,{"stream_name":"stdout","time":296.131224446,"data":"\n"}
+,{"stream_name":"stdout","time":296.131229466,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_teddy\n"}
+,{"stream_name":"stdout","time":298.981904704,"data":"[tum] freiburg1_teddy: 80 of 1418 frames, depth valid 0.763\n"}
+,{"stream_name":"stdout","time":299.013411073,"data":"[exit 0, 298s]\n"}
+,{"stream_name":"stdout","time":302.818704973,"data":"[eth3d] freiburg1_teddy: reference frame 9, overlap of the next 9 frames [0.8, 0.67, 0.65, 0.53, 0.49, 0.48, 0.45, 0.41, 0.4]\n"}
+,{"stream_name":"stdout","time":328.89931751,"data":"freiburg1_360 ok 328s\n"}
+,{"stream_name":"stdout","time":328.899346667,"data":"\n"}
+,{"stream_name":"stdout","time":328.89935174,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg1_360\n"}
+,{"stream_name":"stdout","time":331.537742329,"data":"[tum] freiburg1_360: 80 of 756 frames, depth valid 0.785\n"}
+,{"stream_name":"stdout","time":331.569063467,"data":"[exit 0, 331s]\n"}
+,{"stream_name":"stdout","time":334.875307295,"data":"[eth3d] freiburg1_360: reference frame 67, overlap of the next 9 frames [0.69, 0.64, 0.64, 0.64, 0.58, 0.57, 0.43, 0.43, 0.32]\n"}
+,{"stream_name":"stdout","time":446.324425366,"data":"freiburg2_desk ok 446s\n"}
+,{"stream_name":"stdout","time":446.324460253,"data":"\n"}
+,{"stream_name":"stdout","time":446.324464498,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg2_desk\n"}
+,{"stream_name":"stdout","time":449.430326494,"data":"[tum] freiburg2_desk: 80 of 2260 frames, depth valid 0.737\n"}
+,{"stream_name":"stdout","time":449.468850139,"data":"[exit 0, 449s]\n"}
+,{"stream_name":"stdout","time":453.761647582,"data":"[eth3d] freiburg2_desk: reference frame 38, overlap of the next 9 frames [0.89, 0.84, 0.83, 0.81, 0.78, 0.71, 0.61, 0.6, 0.58]\n"}
+,{"stream_name":"stdout","time":541.86208304,"data":"freiburg3_long_office_household ok 541s\n"}
+,{"stream_name":"stdout","time":541.862124123,"data":"\n"}
+,{"stream_name":"stdout","time":541.862129254,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_long_office_household\n"}
+,{"stream_name":"stdout","time":544.608793549,"data":"[tum] freiburg3_long_office_household: 80 of 2486 frames, depth valid 0.786\n"}
+,{"stream_name":"stdout","time":544.641180229,"data":"[exit 0, 544s]\n"}
+,{"stream_name":"stdout","time":548.622681859,"data":"[eth3d] freiburg3_long_office_household: reference frame 78, overlap of the next 9 frames [0.87, 0.82, 0.81, 0.8, 0.79, 0.69, 0.68, 0.68, 0.68]\n"}
+,{"stream_name":"stdout","time":618.196119542,"data":"freiburg3_teddy ok 617s\n"}
+,{"stream_name":"stdout","time":618.196165291,"data":"\n"}
+,{"stream_name":"stdout","time":618.196170642,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_teddy\n"}
+,{"stream_name":"stdout","time":620.69775803,"data":"[tum] freiburg3_teddy: 80 of 2323 frames, depth valid 0.553\n"}
+,{"stream_name":"stdout","time":620.730372773,"data":"[exit 0, 620s]\n"}
+,{"stream_name":"stdout","time":624.362282745,"data":"[eth3d] freiburg3_teddy: reference frame 78, overlap of the next 9 frames [0.96, 0.96, 0.93, 0.9, 0.9, 0.78, 0.76, 0.73, 0.62]\n"}
+,{"stream_name":"stdout","time":657.221154095,"data":"freiburg3_cabinet ok 656s\n"}
+,{"stream_name":"stdout","time":657.221185654,"data":"\n"}
+,{"stream_name":"stdout","time":657.221191206,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_cabinet\n"}
+,{"stream_name":"stdout","time":659.802515807,"data":"[tum] freiburg3_cabinet: 80 of 1109 frames, depth valid 0.852\n"}
+,{"stream_name":"stdout","time":659.833884994,"data":"[exit 0, 659s]\n"}
+,{"stream_name":"stdout","time":663.592388711,"data":"[eth3d] freiburg3_cabinet: reference frame 74, overlap of the next 9 frames [0.94, 0.91, 0.88, 0.88, 0.86, 0.84, 0.84, 0.84, 0.82]\n"}
+,{"stream_name":"stdout","time":690.23067676,"data":"freiburg3_large_cabinet ok 690s\n"}
+,{"stream_name":"stdout","time":690.230706236,"data":"\n"}
+,{"stream_name":"stdout","time":690.230712009,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_large_cabinet\n"}
+,{"stream_name":"stdout","time":692.774363814,"data":"[tum] freiburg3_large_cabinet: 80 of 979 frames, depth valid 0.514\n"}
+,{"stream_name":"stdout","time":692.805614466,"data":"[exit 0, 692s]\n"}
+,{"stream_name":"stdout","time":696.132733609,"data":"[eth3d] freiburg3_large_cabinet: reference frame 74, overlap of the next 9 frames [0.97, 0.96, 0.96, 0.95, 0.95, 0.95, 0.89, 0.88, 0.87]\n"}
+,{"stream_name":"stdout","time":722.816846435,"data":"freiburg3_structure_texture_far ok 722s\n"}
+,{"stream_name":"stdout","time":722.816873209,"data":"\n"}
+,{"stream_name":"stdout","time":722.816878019,"data":"$ /usr/bin/python3 scripts/tum.py /kaggle/tmp/tum_raw /kaggle/tmp/tum --scenes freiburg3_structure_texture_far\n"}
+,{"stream_name":"stdout","time":725.471655651,"data":"[tum] freiburg3_structure_texture_far: 80 of 904 frames, depth valid 0.827\n"}
+,{"stream_name":"stdout","time":725.501668021,"data":"[exit 0, 725s]\n"}
+,{"stream_name":"stdout","time":729.108274815,"data":"[eth3d] freiburg3_structure_texture_far: reference frame 27, overlap of the next 9 frames [0.98, 0.97, 0.96, 0.95, 0.94, 0.93, 0.92, 0.91, 0.9]\n"}
+,{"stream_name":"stdout","time":729.136653379,"data":"reorder exit codes [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] 728s\n"}
+,{"stream_name":"stdout","time":729.136687134,"data":"['freiburg1_360', 'freiburg1_desk', 'freiburg1_desk2', 'freiburg1_plant', 'freiburg1_room', 'freiburg1_teddy', 'freiburg2_desk', 'freiburg3_cabinet', 'freiburg3_large_cabinet', 'freiburg3_long_office_household', 'freiburg3_structure_texture_far', 'freiburg3_teddy']\n"}
+,{"stream_name":"stdout","time":729.136696234,"data":"\n"}
+,{"stream_name":"stdout","time":729.136701128,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":729.136716054,"data":"== real occlusion: vggt  [728s]\n"}
+,{"stream_name":"stdout","time":729.136719901,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":729.136742856,"data":"\n"}
+,{"stream_name":"stdout","time":729.136750002,"data":"$ /usr/bin/python3 scripts/realocc_eval.py --co3d-format /kaggle/tmp/tum --scans freiburg1_desk,freiburg1_desk2,freiburg1_room,freiburg1_plant,freiburg1_teddy,freiburg1_360,freiburg2_desk,freiburg3_long_office_household,freiburg3_teddy,freiburg3_cabinet,freiburg3_large_cabinet,freiburg3_structure_texture_far --models vggt,vggt_oiavisself --align points --label-mode zagree --out /kaggle/working/results/P18-tum/vggt\n"}
+,{"stream_name":"stderr","time":737.605377841,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stderr","time":786.329827398,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":786.32986769,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":791.983286984,"data":"[vggt] scan freiburg1_desk views 3 seed 0: obs 0.783 unobs 0.0892 amb 0.0061 off 0.122  auroc obs/unobs 0.800  11s\n"}
+,{"stream_name":"stderr","time":793.393584143,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":793.393615562,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":799.765874257,"data":"[vggt] scan freiburg1_desk views 5 seed 0: obs 0.752 unobs 0.0925 amb 0.0090 off 0.147  auroc obs/unobs 0.750  19s\n"}
+,{"stream_name":"stdout","time":815.643603795,"data":"[vggt] scan freiburg1_desk views 10 seed 0: obs 0.793 unobs 0.0464 amb 0.0098 off 0.151  auroc obs/unobs 0.796  35s\n"}
+,{"stream_name":"stdout","time":820.878016226,"data":"[vggt] scan freiburg1_desk views 3 seed 1: obs 0.617 unobs 0.0995 amb 0.0228 off 0.260  auroc obs/unobs 0.665  40s\n"}
+,{"stream_name":"stdout","time":828.953265004,"data":"[vggt] scan freiburg1_desk views 5 seed 1: obs 0.709 unobs 0.0853 amb 0.0137 off 0.192  auroc obs/unobs 0.729  48s\n"}
+,{"stream_name":"stdout","time":845.487881828,"data":"[vggt] scan freiburg1_desk views 10 seed 1: obs 0.666 unobs 0.0333 amb 0.0081 off 0.293  auroc obs/unobs 0.837  65s\n"}
+,{"stream_name":"stdout","time":851.096254781,"data":"[vggt] scan freiburg1_desk2 views 3 seed 0: obs 0.698 unobs 0.0934 amb 0.0400 off 0.168  auroc obs/unobs 0.868  70s\n"}
+,{"stream_name":"stdout","time":858.82039542,"data":"[vggt] scan freiburg1_desk2 views 5 seed 0: obs 0.755 unobs 0.0776 amb 0.0368 off 0.131  auroc obs/unobs 0.861  78s\n"}
+,{"stream_name":"stdout","time":874.790762231,"data":"[vggt] scan freiburg1_desk2 views 10 seed 0: obs 0.774 unobs 0.0408 amb 0.0124 off 0.173  auroc obs/unobs 0.881  94s\n"}
+,{"stream_name":"stdout","time":880.076205009,"data":"[vggt] scan freiburg1_desk2 views 3 seed 1: obs 0.457 unobs 0.1975 amb 0.0217 off 0.324  auroc obs/unobs 0.667  99s\n"}
+,{"stream_name":"stdout","time":888.12877608,"data":"[vggt] scan freiburg1_desk2 views 5 seed 1: obs 0.653 unobs 0.0889 amb 0.0176 off 0.240  auroc obs/unobs 0.797  107s\n"}
+,{"stream_name":"stdout","time":905.082008411,"data":"[vggt] scan freiburg1_desk2 views 10 seed 1: obs 0.676 unobs 0.0494 amb 0.0131 off 0.262  auroc obs/unobs 0.819  124s\n"}
+,{"stream_name":"stdout","time":910.766676017,"data":"[vggt] scan freiburg1_room views 3 seed 0: obs 0.604 unobs 0.0738 amb 0.0179 off 0.304  auroc obs/unobs 0.874  130s\n"}
+,{"stream_name":"stdout","time":918.736422896,"data":"[vggt] scan freiburg1_room views 5 seed 0: obs 0.599 unobs 0.0433 amb 0.0111 off 0.347  auroc obs/unobs 0.894  138s\n"}
+,{"stream_name":"stdout","time":935.312026299,"data":"[vggt] scan freiburg1_room views 10 seed 0: obs 0.606 unobs 0.0362 amb 0.0076 off 0.350  auroc obs/unobs 0.906  154s\n"}
+,{"stream_name":"stdout","time":940.554705885,"data":"[vggt] scan freiburg1_room views 3 seed 1: obs 0.332 unobs 0.0852 amb 0.0218 off 0.561  auroc obs/unobs 0.708  160s\n"}
+,{"stream_name":"stdout","time":948.807816137,"data":"[vggt] scan freiburg1_room views 5 seed 1: obs 0.388 unobs 0.0629 amb 0.0206 off 0.528  auroc obs/unobs 0.713  168s\n"}
+,{"stream_name":"stdout","time":966.126716517,"data":"[vggt] scan freiburg1_room views 10 seed 1: obs 0.578 unobs 0.0228 amb 0.0115 off 0.388  auroc obs/unobs 0.766  185s\n"}
+,{"stream_name":"stdout","time":972.002787251,"data":"[vggt] scan freiburg1_plant views 3 seed 0: obs 0.623 unobs 0.1314 amb 0.0123 off 0.233  auroc obs/unobs 0.526  191s\n"}
+,{"stream_name":"stdout","time":980.085298952,"data":"[vggt] scan freiburg1_plant views 5 seed 0: obs 0.663 unobs 0.0798 amb 0.0129 off 0.244  auroc obs/unobs 0.594  199s\n"}
+,{"stream_name":"stdout","time":996.844518327,"data":"[vggt] scan freiburg1_plant views 10 seed 0: obs 0.694 unobs 0.0506 amb 0.0091 off 0.246  auroc obs/unobs 0.622  216s\n"}
+,{"stream_name":"stdout","time":1002.032636784,"data":"[vggt] scan freiburg1_plant views 3 seed 1: obs 0.597 unobs 0.1553 amb 0.0584 off 0.190  auroc obs/unobs 0.595  221s\n"}
+,{"stream_name":"stdout","time":1010.009756417,"data":"[vggt] scan freiburg1_plant views 5 seed 1: obs 0.648 unobs 0.1164 amb 0.0374 off 0.198  auroc obs/unobs 0.680  229s\n"}
+,{"stream_name":"stdout","time":1026.657651696,"data":"[vggt] scan freiburg1_plant views 10 seed 1: obs 0.719 unobs 0.0555 amb 0.0210 off 0.204  auroc obs/unobs 0.671  246s\n"}
+,{"stream_name":"stdout","time":1032.692875442,"data":"[vggt] scan freiburg1_teddy views 3 seed 0: obs 0.525 unobs 0.2163 amb 0.0515 off 0.207  auroc obs/unobs 0.417  252s\n"}
+,{"stream_name":"stdout","time":1040.978446936,"data":"[vggt] scan freiburg1_teddy views 5 seed 0: obs 0.684 unobs 0.1271 amb 0.0156 off 0.173  auroc obs/unobs 0.332  260s\n"}
+,{"stream_name":"stdout","time":1058.011104345,"data":"[vggt] scan freiburg1_teddy views 10 seed 0: obs 0.764 unobs 0.0653 amb 0.0131 off 0.158  auroc obs/unobs 0.350  277s\n"}
+,{"stream_name":"stdout","time":1063.269597811,"data":"[vggt] scan freiburg1_teddy views 3 seed 1: obs 0.540 unobs 0.2395 amb 0.0328 off 0.188  auroc obs/unobs 0.377  282s\n"}
+,{"stream_name":"stdout","time":1071.511874262,"data":"[vggt] scan freiburg1_teddy views 5 seed 1: obs 0.655 unobs 0.1738 amb 0.0306 off 0.140  auroc obs/unobs 0.385  291s\n"}
+,{"stream_name":"stdout","time":1088.665644753,"data":"[vggt] scan freiburg1_teddy views 10 seed 1: obs 0.779 unobs 0.0797 amb 0.0131 off 0.128  auroc obs/unobs 0.576  308s\n"}
+,{"stream_name":"stdout","time":1094.348611448,"data":"[vggt] scan freiburg1_360 views 3 seed 0: obs 0.677 unobs 0.0124 amb 0.0413 off 0.269  auroc obs/unobs 0.661  313s\n"}
+,{"stream_name":"stdout","time":1102.183204867,"data":"[vggt] scan freiburg1_360 views 5 seed 0: obs 0.654 unobs 0.0123 amb 0.0212 off 0.313  auroc obs/unobs 0.627  321s\n"}
+,{"stream_name":"stdout","time":1118.476278054,"data":"[vggt] scan freiburg1_360 views 10 seed 0: obs 0.710 unobs 0.0101 amb 0.0084 off 0.271  auroc obs/unobs 0.494  338s\n"}
+,{"stream_name":"stdout","time":1123.516544473,"data":"[vggt] scan freiburg1_360 views 3 seed 1: obs 0.629 unobs 0.0562 amb 0.0384 off 0.277  auroc obs/unobs 0.390  343s\n"}
+,{"stream_name":"stdout","time":1131.329115881,"data":"[vggt] scan freiburg1_360 views 5 seed 1: obs 0.682 unobs 0.0465 amb 0.0329 off 0.238  auroc obs/unobs 0.518  350s\n"}
+,{"stream_name":"stdout","time":1147.559908108,"data":"[vggt] scan freiburg1_360 views 10 seed 1: obs 0.650 unobs 0.0315 amb 0.0168 off 0.302  auroc obs/unobs 0.517  367s\n"}
+,{"stream_name":"stdout","time":1153.342431788,"data":"[vggt] scan freiburg2_desk views 3 seed 0: obs 0.761 unobs 0.1217 amb 0.0049 off 0.113  auroc obs/unobs 0.656  372s\n"}
+,{"stream_name":"stdout","time":1161.553640181,"data":"[vggt] scan freiburg2_desk views 5 seed 0: obs 0.814 unobs 0.0816 amb 0.0022 off 0.102  auroc obs/unobs 0.655  381s\n"}
+,{"stream_name":"stdout","time":1178.536013384,"data":"[vggt] scan freiburg2_desk views 10 seed 0: obs 0.679 unobs 0.0868 amb 0.0014 off 0.233  auroc obs/unobs 0.582  398s\n"}
+,{"stream_name":"stdout","time":1183.97019041,"data":"[vggt] scan freiburg2_desk views 3 seed 1: obs 0.592 unobs 0.1457 amb 0.0023 off 0.260  auroc obs/unobs 0.578  403s\n"}
+,{"stream_name":"stdout","time":1192.376481334,"data":"[vggt] scan freiburg2_desk views 5 seed 1: obs 0.661 unobs 0.1066 amb 0.0031 off 0.230  auroc obs/unobs 0.627  412s\n"}
+,{"stream_name":"stdout","time":1209.705893748,"data":"[vggt] scan freiburg2_desk views 10 seed 1: obs 0.650 unobs 0.0716 amb 0.0058 off 0.273  auroc obs/unobs 0.704  429s\n"}
+,{"stream_name":"stdout","time":1215.988243536,"data":"[vggt] scan freiburg3_long_office_household views 3 seed 0: obs 0.623 unobs 0.0684 amb 0.0093 off 0.299  auroc obs/unobs 0.503  435s\n"}
+,{"stream_name":"stdout","time":1225.035645569,"data":"[vggt] scan freiburg3_long_office_household views 5 seed 0: obs 0.623 unobs 0.0599 amb 0.0090 off 0.308  auroc obs/unobs 0.474  444s\n"}
+,{"stream_name":"stdout","time":1243.305557258,"data":"[vggt] scan freiburg3_long_office_household views 10 seed 0: obs 0.655 unobs 0.0349 amb 0.0062 off 0.303  auroc obs/unobs 0.513  462s\n"}
+,{"stream_name":"stdout","time":1249.148402431,"data":"[vggt] scan freiburg3_long_office_household views 3 seed 1: obs 0.517 unobs 0.0779 amb 0.0132 off 0.392  auroc obs/unobs 0.479  468s\n"}
+,{"stream_name":"stdout","time":1257.952181179,"data":"[vggt] scan freiburg3_long_office_household views 5 seed 1: obs 0.612 unobs 0.0576 amb 0.0150 off 0.315  auroc obs/unobs 0.589  477s\n"}
+,{"stream_name":"stdout","time":1276.069008099,"data":"[vggt] scan freiburg3_long_office_household views 10 seed 1: obs 0.637 unobs 0.0413 amb 0.0096 off 0.312  auroc obs/unobs 0.668  495s\n"}
+,{"stream_name":"stdout","time":1286.059851762,"data":"[vggt] scan freiburg3_teddy views 3 seed 0: obs 0.045 unobs 0.0458 amb 0.0112 off 0.898  auroc obs/unobs 0.155  505s\n"}
+,{"stream_name":"stdout","time":1300.442354533,"data":"[vggt] scan freiburg3_teddy views 5 seed 0: obs 0.063 unobs 0.0484 amb 0.0117 off 0.876  auroc obs/unobs 0.196  520s\n"}
+,{"stream_name":"stdout","time":1317.418087511,"data":"[vggt] scan freiburg3_teddy views 10 seed 0: obs 0.149 unobs 0.1235 amb 0.0104 off 0.718  auroc obs/unobs 0.194  537s\n"}
+,{"stream_name":"stdout","time":1322.882183008,"data":"[vggt] scan freiburg3_teddy views 3 seed 1: obs 0.250 unobs 0.1608 amb 0.0242 off 0.565  auroc obs/unobs 0.192  542s\n"}
+,{"stream_name":"stdout","time":1342.897218574,"data":"[vggt] scan freiburg3_teddy views 5 seed 1: obs 0.112 unobs 0.0804 amb 0.0058 off 0.802  auroc obs/unobs 0.249  562s\n"}
+,{"stream_name":"stdout","time":1373.878626503,"data":"[vggt] scan freiburg3_teddy views 10 seed 1: obs 0.113 unobs 0.0543 amb 0.0054 off 0.828  auroc obs/unobs 0.421  593s\n"}
+,{"stream_name":"stdout","time":1380.152899467,"data":"[vggt] scan freiburg3_cabinet views 3 seed 0: obs 0.592 unobs 0.0561 amb 0.0058 off 0.346  auroc obs/unobs 0.194  599s\n"}
+,{"stream_name":"stdout","time":1389.240339044,"data":"[vggt] scan freiburg3_cabinet views 5 seed 0: obs 0.628 unobs 0.0375 amb 0.0042 off 0.331  auroc obs/unobs 0.273  608s\n"}
+,{"stream_name":"stdout","time":1408.207509586,"data":"[vggt] scan freiburg3_cabinet views 10 seed 0: obs 0.720 unobs 0.0187 amb 0.0026 off 0.259  auroc obs/unobs 0.355  627s\n"}
+,{"stream_name":"stdout","time":1414.062109451,"data":"[vggt] scan freiburg3_cabinet views 3 seed 1: obs 0.652 unobs 0.0389 amb 0.0190 off 0.290  auroc obs/unobs 0.355  633s\n"}
+,{"stream_name":"stdout","time":1423.126889859,"data":"[vggt] scan freiburg3_cabinet views 5 seed 1: obs 0.683 unobs 0.0291 amb 0.0089 off 0.279  auroc obs/unobs 0.251  642s\n"}
+,{"stream_name":"stdout","time":1441.542366658,"data":"[vggt] scan freiburg3_cabinet views 10 seed 1: obs 0.663 unobs 0.0353 amb 0.0031 off 0.299  auroc obs/unobs 0.282  661s\n"}
+,{"stream_name":"stdout","time":1447.411999,"data":"[vggt] scan freiburg3_large_cabinet views 3 seed 0: obs 0.375 unobs 0.1095 amb 0.0144 off 0.502  auroc obs/unobs 0.248  667s\n"}
+,{"stream_name":"stdout","time":1456.05719558,"data":"[vggt] scan freiburg3_large_cabinet views 5 seed 0: obs 0.314 unobs 0.0770 amb 0.0091 off 0.600  auroc obs/unobs 0.274  675s\n"}
+,{"stream_name":"stdout","time":1475.186184836,"data":"[vggt] scan freiburg3_large_cabinet views 10 seed 0: obs 0.148 unobs 0.0506 amb 0.0035 off 0.798  auroc obs/unobs 0.471  694s\n"}
+,{"stream_name":"stdout","time":1481.911931483,"data":"[vggt] scan freiburg3_large_cabinet views 3 seed 1: obs 0.081 unobs 0.0704 amb 0.0070 off 0.841  auroc obs/unobs 0.474  701s\n"}
+,{"stream_name":"stdout","time":1492.271615719,"data":"[vggt] scan freiburg3_large_cabinet views 5 seed 1: obs 0.076 unobs 0.0370 amb 0.0078 off 0.879  auroc obs/unobs 0.485  711s\n"}
+,{"stream_name":"stdout","time":1514.78978009,"data":"[vggt] scan freiburg3_large_cabinet views 10 seed 1: obs 0.178 unobs 0.0308 amb 0.0052 off 0.786  auroc obs/unobs 0.523  734s\n"}
+,{"stream_name":"stdout","time":1520.887364124,"data":"[vggt] scan freiburg3_structure_texture_far views 3 seed 0: obs 0.849 unobs 0.0312 amb 0.0254 off 0.095  auroc obs/unobs 0.742  740s\n"}
+,{"stream_name":"stdout","time":1529.632877766,"data":"[vggt] scan freiburg3_structure_texture_far views 5 seed 0: obs 0.861 unobs 0.0249 amb 0.0206 off 0.094  auroc obs/unobs 0.746  749s\n"}
+,{"stream_name":"stdout","time":1547.99861614,"data":"[vggt] scan freiburg3_structure_texture_far views 10 seed 0: obs 0.877 unobs 0.0110 amb 0.0129 off 0.099  auroc obs/unobs 0.775  767s\n"}
+,{"stream_name":"stdout","time":1553.764284531,"data":"[vggt] scan freiburg3_structure_texture_far views 3 seed 1: obs 0.868 unobs 0.0210 amb 0.0171 off 0.094  auroc obs/unobs 0.761  773s\n"}
+,{"stream_name":"stdout","time":1562.904477238,"data":"[vggt] scan freiburg3_structure_texture_far views 5 seed 1: obs 0.879 unobs 0.0140 amb 0.0157 off 0.092  auroc obs/unobs 0.758  782s\n"}
+,{"stream_name":"stdout","time":1583.68294208,"data":"[vggt] scan freiburg3_structure_texture_far views 10 seed 1: obs 0.892 unobs 0.0055 amb 0.0080 off 0.094  auroc obs/unobs 0.798  803s\n"}
+,{"stream_name":"stdout","time":1597.478600079,"data":"[vggt_oiavisself] head from /kaggle/tmp/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stdout","time":1601.33360506,"data":"[vggt_oiavisself] scan freiburg1_desk views 3 seed 0: obs 0.783 unobs 0.0892 amb 0.0061 off 0.122  auroc obs/unobs 0.780  4s\n"}
+,{"stream_name":"stdout","time":1606.39712447,"data":"[vggt_oiavisself] scan freiburg1_desk views 5 seed 0: obs 0.752 unobs 0.0925 amb 0.0090 off 0.147  auroc obs/unobs 0.746  9s\n"}
+,{"stream_name":"stdout","time":1617.009696022,"data":"[vggt_oiavisself] scan freiburg1_desk views 10 seed 0: obs 0.793 unobs 0.0464 amb 0.0098 off 0.151  auroc obs/unobs 0.809  20s\n"}
+,{"stream_name":"stdout","time":1620.475061734,"data":"[vggt_oiavisself] scan freiburg1_desk views 3 seed 1: obs 0.617 unobs 0.0995 amb 0.0228 off 0.260  auroc obs/unobs 0.830  23s\n"}
+,{"stream_name":"stdout","time":1625.729879446,"data":"[vggt_oiavisself] scan freiburg1_desk views 5 seed 1: obs 0.709 unobs 0.0853 amb 0.0137 off 0.192  auroc obs/unobs 0.826  28s\n"}
+,{"stream_name":"stdout","time":1636.653167309,"data":"[vggt_oiavisself] scan freiburg1_desk views 10 seed 1: obs 0.666 unobs 0.0333 amb 0.0081 off 0.293  auroc obs/unobs 0.877  39s\n"}
+,{"stream_name":"stdout","time":1640.477332977,"data":"[vggt_oiavisself] scan freiburg1_desk2 views 3 seed 0: obs 0.698 unobs 0.0934 amb 0.0400 off 0.168  auroc obs/unobs 0.863  43s\n"}
+,{"stream_name":"stdout","time":1645.544564954,"data":"[vggt_oiavisself] scan freiburg1_desk2 views 5 seed 0: obs 0.755 unobs 0.0776 amb 0.0368 off 0.131  auroc obs/unobs 0.847  48s\n"}
+,{"stream_name":"stdout","time":1655.898990002,"data":"[vggt_oiavisself] scan freiburg1_desk2 views 10 seed 0: obs 0.774 unobs 0.0408 amb 0.0124 off 0.173  auroc obs/unobs 0.912  58s\n"}
+,{"stream_name":"stdout","time":1659.177095659,"data":"[vggt_oiavisself] scan freiburg1_desk2 views 3 seed 1: obs 0.457 unobs 0.1975 amb 0.0217 off 0.324  auroc obs/unobs 0.749  62s\n"}
+,{"stream_name":"stdout","time":1664.163364176,"data":"[vggt_oiavisself] scan freiburg1_desk2 views 5 seed 1: obs 0.653 unobs 0.0889 amb 0.0176 off 0.240  auroc obs/unobs 0.864  67s\n"}
+,{"stream_name":"stdout","time":1674.387558213,"data":"[vggt_oiavisself] scan freiburg1_desk2 views 10 seed 1: obs 0.676 unobs 0.0494 amb 0.0131 off 0.262  auroc obs/unobs 0.849  77s\n"}
+,{"stream_name":"stdout","time":1678.159383747,"data":"[vggt_oiavisself] scan freiburg1_room views 3 seed 0: obs 0.604 unobs 0.0738 amb 0.0179 off 0.304  auroc obs/unobs 0.722  81s\n"}
+,{"stream_name":"stdout","time":1683.157164478,"data":"[vggt_oiavisself] scan freiburg1_room views 5 seed 0: obs 0.599 unobs 0.0433 amb 0.0111 off 0.347  auroc obs/unobs 0.838  86s\n"}
+,{"stream_name":"stdout","time":1693.571186704,"data":"[vggt_oiavisself] scan freiburg1_room views 10 seed 0: obs 0.606 unobs 0.0362 amb 0.0076 off 0.350  auroc obs/unobs 0.892  96s\n"}
+,{"stream_name":"stdout","time":1696.963391091,"data":"[vggt_oiavisself] scan freiburg1_room views 3 seed 1: obs 0.332 unobs 0.0852 amb 0.0218 off 0.561  auroc obs/unobs 0.684  99s\n"}
+,{"stream_name":"stdout","time":1702.176620717,"data":"[vggt_oiavisself] scan freiburg1_room views 5 seed 1: obs 0.388 unobs 0.0629 amb 0.0206 off 0.528  auroc obs/unobs 0.757  105s\n"}
+,{"stream_name":"stdout","time":1712.813659855,"data":"[vggt_oiavisself] scan freiburg1_room views 10 seed 1: obs 0.578 unobs 0.0228 amb 0.0115 off 0.388  auroc obs/unobs 0.805  115s\n"}
+,{"stream_name":"stdout","time":1716.675954679,"data":"[vggt_oiavisself] scan freiburg1_plant views 3 seed 0: obs 0.623 unobs 0.1314 amb 0.0123 off 0.233  auroc obs/unobs 0.578  119s\n"}
+,{"stream_name":"stdout","time":1721.804883443,"data":"[vggt_oiavisself] scan freiburg1_plant views 5 seed 0: obs 0.663 unobs 0.0798 amb 0.0129 off 0.244  auroc obs/unobs 0.695  124s\n"}
+,{"stream_name":"stdout","time":1732.299412344,"data":"[vggt_oiavisself] scan freiburg1_plant views 10 seed 0: obs 0.694 unobs 0.0506 amb 0.0091 off 0.246  auroc obs/unobs 0.796  135s\n"}
+,{"stream_name":"stdout","time":1735.595993154,"data":"[vggt_oiavisself] scan freiburg1_plant views 3 seed 1: obs 0.597 unobs 0.1553 amb 0.0584 off 0.190  auroc obs/unobs 0.706  138s\n"}
+,{"stream_name":"stdout","time":1740.61958945,"data":"[vggt_oiavisself] scan freiburg1_plant views 5 seed 1: obs 0.648 unobs 0.1164 amb 0.0374 off 0.198  auroc obs/unobs 0.768  143s\n"}
+,{"stream_name":"stdout","time":1750.976060088,"data":"[vggt_oiavisself] scan freiburg1_plant views 10 seed 1: obs 0.719 unobs 0.0555 amb 0.0210 off 0.204  auroc obs/unobs 0.787  153s\n"}
+,{"stream_name":"stdout","time":1754.898298095,"data":"[vggt_oiavisself] scan freiburg1_teddy views 3 seed 0: obs 0.525 unobs 0.2163 amb 0.0515 off 0.207  auroc obs/unobs 0.477  157s\n"}
+,{"stream_name":"stdout","time":1759.969535016,"data":"[vggt_oiavisself] scan freiburg1_teddy views 5 seed 0: obs 0.684 unobs 0.1271 amb 0.0156 off 0.173  auroc obs/unobs 0.496  162s\n"}
+,{"stream_name":"stdout","time":1770.427710482,"data":"[vggt_oiavisself] scan freiburg1_teddy views 10 seed 0: obs 0.764 unobs 0.0653 amb 0.0131 off 0.158  auroc obs/unobs 0.559  173s\n"}
+,{"stream_name":"stdout","time":1773.806092438,"data":"[vggt_oiavisself] scan freiburg1_teddy views 3 seed 1: obs 0.540 unobs 0.2395 amb 0.0328 off 0.188  auroc obs/unobs 0.492  176s\n"}
+,{"stream_name":"stdout","time":1778.916794008,"data":"[vggt_oiavisself] scan freiburg1_teddy views 5 seed 1: obs 0.655 unobs 0.1738 amb 0.0306 off 0.140  auroc obs/unobs 0.542  181s\n"}
+,{"stream_name":"stdout","time":1789.404067534,"data":"[vggt_oiavisself] scan freiburg1_teddy views 10 seed 1: obs 0.779 unobs 0.0797 amb 0.0131 off 0.128  auroc obs/unobs 0.773  192s\n"}
+,{"stream_name":"stdout","time":1793.209150299,"data":"[vggt_oiavisself] scan freiburg1_360 views 3 seed 0: obs 0.677 unobs 0.0124 amb 0.0413 off 0.269  auroc obs/unobs 0.827  196s\n"}
+,{"stream_name":"stdout","time":1798.247516784,"data":"[vggt_oiavisself] scan freiburg1_360 views 5 seed 0: obs 0.654 unobs 0.0123 amb 0.0212 off 0.313  auroc obs/unobs 0.860  201s\n"}
+,{"stream_name":"stdout","time":1808.665323873,"data":"[vggt_oiavisself] scan freiburg1_360 views 10 seed 0: obs 0.710 unobs 0.0101 amb 0.0084 off 0.271  auroc obs/unobs 0.888  211s\n"}
+,{"stream_name":"stdout","time":1811.951688376,"data":"[vggt_oiavisself] scan freiburg1_360 views 3 seed 1: obs 0.629 unobs 0.0562 amb 0.0384 off 0.277  auroc obs/unobs 0.724  214s\n"}
+,{"stream_name":"stdout","time":1816.977699855,"data":"[vggt_oiavisself] scan freiburg1_360 views 5 seed 1: obs 0.682 unobs 0.0465 amb 0.0329 off 0.238  auroc obs/unobs 0.806  219s\n"}
+,{"stream_name":"stdout","time":1827.34398924,"data":"[vggt_oiavisself] scan freiburg1_360 views 10 seed 1: obs 0.650 unobs 0.0315 amb 0.0168 off 0.302  auroc obs/unobs 0.781  230s\n"}
+,{"stream_name":"stdout","time":1831.204121951,"data":"[vggt_oiavisself] scan freiburg2_desk views 3 seed 0: obs 0.761 unobs 0.1217 amb 0.0049 off 0.113  auroc obs/unobs 0.851  234s\n"}
+,{"stream_name":"stdout","time":1836.28099241,"data":"[vggt_oiavisself] scan freiburg2_desk views 5 seed 0: obs 0.814 unobs 0.0816 amb 0.0022 off 0.102  auroc obs/unobs 0.874  239s\n"}
+,{"stream_name":"stdout","time":1846.708137724,"data":"[vggt_oiavisself] scan freiburg2_desk views 10 seed 0: obs 0.679 unobs 0.0868 amb 0.0014 off 0.233  auroc obs/unobs 0.829  249s\n"}
+,{"stream_name":"stdout","time":1850.082718689,"data":"[vggt_oiavisself] scan freiburg2_desk views 3 seed 1: obs 0.592 unobs 0.1457 amb 0.0023 off 0.260  auroc obs/unobs 0.753  253s\n"}
+,{"stream_name":"stdout","time":1855.205878798,"data":"[vggt_oiavisself] scan freiburg2_desk views 5 seed 1: obs 0.661 unobs 0.1066 amb 0.0031 off 0.230  auroc obs/unobs 0.829  258s\n"}
+,{"stream_name":"stdout","time":1865.702101519,"data":"[vggt_oiavisself] scan freiburg2_desk views 10 seed 1: obs 0.650 unobs 0.0716 amb 0.0058 off 0.273  auroc obs/unobs 0.886  268s\n"}
+,{"stream_name":"stdout","time":1869.623423411,"data":"[vggt_oiavisself] scan freiburg3_long_office_household views 3 seed 0: obs 0.623 unobs 0.0684 amb 0.0093 off 0.299  auroc obs/unobs 0.644  272s\n"}
+,{"stream_name":"stdout","time":1874.934905746,"data":"[vggt_oiavisself] scan freiburg3_long_office_household views 5 seed 0: obs 0.623 unobs 0.0599 amb 0.0090 off 0.308  auroc obs/unobs 0.636  277s\n"}
+,{"stream_name":"stdout","time":1885.782736777,"data":"[vggt_oiavisself] scan freiburg3_long_office_household views 10 seed 0: obs 0.655 unobs 0.0349 amb 0.0062 off 0.303  auroc obs/unobs 0.704  288s\n"}
+,{"stream_name":"stdout","time":1889.334717902,"data":"[vggt_oiavisself] scan freiburg3_long_office_household views 3 seed 1: obs 0.517 unobs 0.0779 amb 0.0132 off 0.392  auroc obs/unobs 0.674  292s\n"}
+,{"stream_name":"stdout","time":1894.531721522,"data":"[vggt_oiavisself] scan freiburg3_long_office_household views 5 seed 1: obs 0.612 unobs 0.0576 amb 0.0150 off 0.315  auroc obs/unobs 0.713  297s\n"}
+,{"stream_name":"stdout","time":1905.217469212,"data":"[vggt_oiavisself] scan freiburg3_long_office_household views 10 seed 1: obs 0.637 unobs 0.0413 amb 0.0096 off 0.312  auroc obs/unobs 0.729  308s\n"}
+,{"stream_name":"stdout","time":1914.447459484,"data":"[vggt_oiavisself] scan freiburg3_teddy views 3 seed 0: obs 0.045 unobs 0.0458 amb 0.0112 off 0.898  auroc obs/unobs 0.158  317s\n"}
+,{"stream_name":"stdout","time":1928.514238827,"data":"[vggt_oiavisself] scan freiburg3_teddy views 5 seed 0: obs 0.063 unobs 0.0484 amb 0.0117 off 0.876  auroc obs/unobs 0.249  331s\n"}
+,{"stream_name":"stdout","time":1940.197371321,"data":"[vggt_oiavisself] scan freiburg3_teddy views 10 seed 0: obs 0.149 unobs 0.1235 amb 0.0104 off 0.718  auroc obs/unobs 0.218  343s\n"}
+,{"stream_name":"stdout","time":1944.045007875,"data":"[vggt_oiavisself] scan freiburg3_teddy views 3 seed 1: obs 0.250 unobs 0.1608 amb 0.0242 off 0.565  auroc obs/unobs 0.262  347s\n"}
+,{"stream_name":"stdout","time":1963.972319734,"data":"[vggt_oiavisself] scan freiburg3_teddy views 5 seed 1: obs 0.112 unobs 0.0804 amb 0.0058 off 0.802  auroc obs/unobs 0.247  366s\n"}
+,{"stream_name":"stdout","time":1993.329187074,"data":"[vggt_oiavisself] scan freiburg3_teddy views 10 seed 1: obs 0.113 unobs 0.0543 amb 0.0054 off 0.828  auroc obs/unobs 0.408  396s\n"}
+,{"stream_name":"stdout","time":1997.203631807,"data":"[vggt_oiavisself] scan freiburg3_cabinet views 3 seed 0: obs 0.592 unobs 0.0561 amb 0.0058 off 0.346  auroc obs/unobs 0.454  400s\n"}
+,{"stream_name":"stdout","time":2002.344515542,"data":"[vggt_oiavisself] scan freiburg3_cabinet views 5 seed 0: obs 0.628 unobs 0.0375 amb 0.0042 off 0.331  auroc obs/unobs 0.530  405s\n"}
+,{"stream_name":"stdout","time":2013.169658903,"data":"[vggt_oiavisself] scan freiburg3_cabinet views 10 seed 0: obs 0.720 unobs 0.0187 amb 0.0026 off 0.259  auroc obs/unobs 0.597  416s\n"}
+,{"stream_name":"stdout","time":2016.705984269,"data":"[vggt_oiavisself] scan freiburg3_cabinet views 3 seed 1: obs 0.652 unobs 0.0389 amb 0.0190 off 0.290  auroc obs/unobs 0.468  419s\n"}
+,{"stream_name":"stdout","time":2021.954914662,"data":"[vggt_oiavisself] scan freiburg3_cabinet views 5 seed 1: obs 0.683 unobs 0.0291 amb 0.0089 off 0.279  auroc obs/unobs 0.364  424s\n"}
+,{"stream_name":"stdout","time":2032.712121459,"data":"[vggt_oiavisself] scan freiburg3_cabinet views 10 seed 1: obs 0.663 unobs 0.0353 amb 0.0031 off 0.299  auroc obs/unobs 0.354  435s\n"}
+,{"stream_name":"stdout","time":2037.178987109,"data":"[vggt_oiavisself] scan freiburg3_large_cabinet views 3 seed 0: obs 0.375 unobs 0.1095 amb 0.0144 off 0.502  auroc obs/unobs 0.450  440s\n"}
+,{"stream_name":"stdout","time":2043.60048143,"data":"[vggt_oiavisself] scan freiburg3_large_cabinet views 5 seed 0: obs 0.314 unobs 0.0770 amb 0.0091 off 0.600  auroc obs/unobs 0.481  446s\n"}
+,{"stream_name":"stdout","time":2058.166089158,"data":"[vggt_oiavisself] scan freiburg3_large_cabinet views 10 seed 0: obs 0.148 unobs 0.0506 amb 0.0035 off 0.798  auroc obs/unobs 0.263  461s\n"}
+,{"stream_name":"stdout","time":2063.571197756,"data":"[vggt_oiavisself] scan freiburg3_large_cabinet views 3 seed 1: obs 0.081 unobs 0.0704 amb 0.0070 off 0.841  auroc obs/unobs 0.315  466s\n"}
+,{"stream_name":"stdout","time":2071.667873052,"data":"[vggt_oiavisself] scan freiburg3_large_cabinet views 5 seed 1: obs 0.076 unobs 0.0370 amb 0.0078 off 0.879  auroc obs/unobs 0.345  474s\n"}
+,{"stream_name":"stdout","time":2088.79675991,"data":"[vggt_oiavisself] scan freiburg3_large_cabinet views 10 seed 1: obs 0.178 unobs 0.0308 amb 0.0052 off 0.786  auroc obs/unobs 0.376  491s\n"}
+,{"stream_name":"stdout","time":2092.599105512,"data":"[vggt_oiavisself] scan freiburg3_structure_texture_far views 3 seed 0: obs 0.849 unobs 0.0312 amb 0.0254 off 0.095  auroc obs/unobs 0.757  495s\n"}
+,{"stream_name":"stdout","time":2097.7044121549998,"data":"[vggt_oiavisself] scan freiburg3_structure_texture_far views 5 seed 0: obs 0.861 unobs 0.0249 amb 0.0206 off 0.094  auroc obs/unobs 0.822  500s\n"}
+,{"stream_name":"stdout","time":2108.757059258,"data":"[vggt_oiavisself] scan freiburg3_structure_texture_far views 10 seed 0: obs 0.877 unobs 0.0110 amb 0.0129 off 0.099  auroc obs/unobs 0.875  511s\n"}
+,{"stream_name":"stdout","time":2112.384661379,"data":"[vggt_oiavisself] scan freiburg3_structure_texture_far views 3 seed 1: obs 0.868 unobs 0.0210 amb 0.0171 off 0.094  auroc obs/unobs 0.895  515s\n"}
+,{"stream_name":"stdout","time":2117.903710257,"data":"[vggt_oiavisself] scan freiburg3_structure_texture_far views 5 seed 1: obs 0.879 unobs 0.0140 amb 0.0157 off 0.092  auroc obs/unobs 0.887  520s\n"}
+,{"stream_name":"stdout","time":2130.939183205,"data":"[vggt_oiavisself] scan freiburg3_structure_texture_far views 10 seed 1: obs 0.892 unobs 0.0055 amb 0.0080 off 0.094  auroc obs/unobs 0.922  533s\n"}
+,{"stream_name":"stdout","time":2131.392188661,"data":"                         frac_obs  frac_unobs  frac_off  frac_gt_unobserved  auroc_obs_unobs  auroc_obs_off\n"}
+,{"stream_name":"stdout","time":2131.392217236,"data":"model           n_views                                                                                    \n"}
+,{"stream_name":"stdout","time":2131.392221497,"data":"vggt            3          0.5536      0.0999    0.3249              0.6163           0.5369         0.6755\n"}
+,{"stream_name":"stdout","time":2131.392224544,"data":"                5          0.5904      0.0692    0.3249              0.5675           0.5606         0.7009\n"}
+,{"stream_name":"stdout","time":2131.392227456,"data":"                10         0.6154      0.0452    0.3303              0.4685           0.6050         0.7057\n"}
+,{"stream_name":"stdout","time":2131.392230394,"data":"vggt_oiavisself 3          0.5536      0.0999    0.3249              0.6163           0.6297         0.7279\n"}
+,{"stream_name":"stdout","time":2131.392233226,"data":"                5          0.5904      0.0692    0.3249              0.5675           0.6675         0.7588\n"}
+,{"stream_name":"stdout","time":2131.392236154,"data":"                10         0.6154      0.0452    0.3303              0.4685           0.7037         0.7669\n"}
+,{"stream_name":"stdout","time":2135.957434238,"data":"[exit 0, 2135s]\n"}
+,{"stream_name":"stdout","time":2135.95749958,"data":"\n"}
+,{"stream_name":"stdout","time":2135.957505664,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2135.957510723,"data":"== real occlusion: pi3x  [2135s]\n"}
+,{"stream_name":"stdout","time":2135.957515004,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":2135.957519647,"data":"\n"}
+,{"stream_name":"stdout","time":2135.957533722,"data":"$ /usr/bin/python3 scripts/realocc_eval.py --co3d-format /kaggle/tmp/tum --scans freiburg1_desk,freiburg1_desk2,freiburg1_room,freiburg1_plant,freiburg1_teddy,freiburg1_360,freiburg2_desk,freiburg3_long_office_household,freiburg3_teddy,freiburg3_cabinet,freiburg3_large_cabinet,freiburg3_structure_texture_far --models pi3x,pi3x_oiavisself --align points --label-mode zagree --out /kaggle/working/results/P18-tum/pi3x\n"}
+,{"stream_name":"stdout","time":2138.507347361,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":2138.665912941,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":2194.642827862,"data":"[pi3x] scan freiburg1_desk views 3 seed 0: obs 0.765 unobs 0.1010 amb 0.0238 off 0.110  auroc obs/unobs 0.867  13s\n"}
+,{"stream_name":"stdout","time":2202.387211421,"data":"[pi3x] scan freiburg1_desk views 5 seed 0: obs 0.794 unobs 0.0859 amb 0.0129 off 0.107  auroc obs/unobs 0.858  21s\n"}
+,{"stream_name":"stdout","time":2216.643453898,"data":"[pi3x] scan freiburg1_desk views 10 seed 0: obs 0.798 unobs 0.0457 amb 0.0160 off 0.140  auroc obs/unobs 0.838  35s\n"}
+,{"stream_name":"stdout","time":2221.606849678,"data":"[pi3x] scan freiburg1_desk views 3 seed 1: obs 0.632 unobs 0.1006 amb 0.0258 off 0.241  auroc obs/unobs 0.854  40s\n"}
+,{"stream_name":"stdout","time":2229.597159997,"data":"[pi3x] scan freiburg1_desk views 5 seed 1: obs 0.658 unobs 0.1026 amb 0.0300 off 0.210  auroc obs/unobs 0.798  48s\n"}
+,{"stream_name":"stdout","time":2244.452282732,"data":"[pi3x] scan freiburg1_desk views 10 seed 1: obs 0.643 unobs 0.0339 amb 0.0161 off 0.307  auroc obs/unobs 0.799  63s\n"}
+,{"stream_name":"stdout","time":2249.867387951,"data":"[pi3x] scan freiburg1_desk2 views 3 seed 0: obs 0.703 unobs 0.1174 amb 0.0397 off 0.140  auroc obs/unobs 0.905  68s\n"}
+,{"stream_name":"stdout","time":2257.666982904,"data":"[pi3x] scan freiburg1_desk2 views 5 seed 0: obs 0.744 unobs 0.0828 amb 0.0351 off 0.138  auroc obs/unobs 0.909  76s\n"}
+,{"stream_name":"stdout","time":2272.266379591,"data":"[pi3x] scan freiburg1_desk2 views 10 seed 0: obs 0.786 unobs 0.0351 amb 0.0075 off 0.171  auroc obs/unobs 0.916  91s\n"}
+,{"stream_name":"stdout","time":2277.203621409,"data":"[pi3x] scan freiburg1_desk2 views 3 seed 1: obs 0.631 unobs 0.1370 amb 0.0166 off 0.215  auroc obs/unobs 0.790  96s\n"}
+,{"stream_name":"stdout","time":2285.22283862,"data":"[pi3x] scan freiburg1_desk2 views 5 seed 1: obs 0.670 unobs 0.1037 amb 0.0174 off 0.208  auroc obs/unobs 0.808  104s\n"}
+,{"stream_name":"stdout","time":2300.035430737,"data":"[pi3x] scan freiburg1_desk2 views 10 seed 1: obs 0.685 unobs 0.0623 amb 0.0085 off 0.244  auroc obs/unobs 0.778  118s\n"}
+,{"stream_name":"stdout","time":2305.25066602,"data":"[pi3x] scan freiburg1_room views 3 seed 0: obs 0.548 unobs 0.0654 amb 0.0175 off 0.369  auroc obs/unobs 0.823  124s\n"}
+,{"stream_name":"stdout","time":2312.852173184,"data":"[pi3x] scan freiburg1_room views 5 seed 0: obs 0.621 unobs 0.0428 amb 0.0162 off 0.320  auroc obs/unobs 0.848  131s\n"}
+,{"stream_name":"stdout","time":2326.995420367,"data":"[pi3x] scan freiburg1_room views 10 seed 0: obs 0.567 unobs 0.0302 amb 0.0118 off 0.391  auroc obs/unobs 0.889  145s\n"}
+,{"stream_name":"stdout","time":2331.78447846,"data":"[pi3x] scan freiburg1_room views 3 seed 1: obs 0.328 unobs 0.0786 amb 0.0237 off 0.569  auroc obs/unobs 0.837  150s\n"}
+,{"stream_name":"stdout","time":2339.581672114,"data":"[pi3x] scan freiburg1_room views 5 seed 1: obs 0.398 unobs 0.0609 amb 0.0193 off 0.522  auroc obs/unobs 0.837  158s\n"}
+,{"stream_name":"stdout","time":2353.954988082,"data":"[pi3x] scan freiburg1_room views 10 seed 1: obs 0.553 unobs 0.0159 amb 0.0162 off 0.415  auroc obs/unobs 0.758  172s\n"}
+,{"stream_name":"stdout","time":2359.21172828,"data":"[pi3x] scan freiburg1_plant views 3 seed 0: obs 0.727 unobs 0.0829 amb 0.0067 off 0.183  auroc obs/unobs 0.865  178s\n"}
+,{"stream_name":"stdout","time":2366.79164192,"data":"[pi3x] scan freiburg1_plant views 5 seed 0: obs 0.754 unobs 0.0696 amb 0.0107 off 0.166  auroc obs/unobs 0.863  185s\n"}
+,{"stream_name":"stdout","time":2380.958675294,"data":"[pi3x] scan freiburg1_plant views 10 seed 0: obs 0.749 unobs 0.0450 amb 0.0122 off 0.194  auroc obs/unobs 0.845  199s\n"}
+,{"stream_name":"stdout","time":2385.693104128,"data":"[pi3x] scan freiburg1_plant views 3 seed 1: obs 0.651 unobs 0.1266 amb 0.0545 off 0.168  auroc obs/unobs 0.820  204s\n"}
+,{"stream_name":"stdout","time":2393.268809305,"data":"[pi3x] scan freiburg1_plant views 5 seed 1: obs 0.705 unobs 0.0872 amb 0.0368 off 0.171  auroc obs/unobs 0.781  212s\n"}
+,{"stream_name":"stdout","time":2407.475393914,"data":"[pi3x] scan freiburg1_plant views 10 seed 1: obs 0.742 unobs 0.0422 amb 0.0196 off 0.196  auroc obs/unobs 0.800  226s\n"}
+,{"stream_name":"stdout","time":2412.980492466,"data":"[pi3x] scan freiburg1_teddy views 3 seed 0: obs 0.685 unobs 0.1517 amb 0.0527 off 0.111  auroc obs/unobs 0.734  231s\n"}
+,{"stream_name":"stdout","time":2420.76294953,"data":"[pi3x] scan freiburg1_teddy views 5 seed 0: obs 0.794 unobs 0.0798 amb 0.0253 off 0.101  auroc obs/unobs 0.794  239s\n"}
+,{"stream_name":"stdout","time":2435.02236993,"data":"[pi3x] scan freiburg1_teddy views 10 seed 0: obs 0.822 unobs 0.0476 amb 0.0207 off 0.110  auroc obs/unobs 0.831  253s\n"}
+,{"stream_name":"stdout","time":2439.822999957,"data":"[pi3x] scan freiburg1_teddy views 3 seed 1: obs 0.564 unobs 0.1967 amb 0.0742 off 0.165  auroc obs/unobs 0.773  258s\n"}
+,{"stream_name":"stdout","time":2447.528603202,"data":"[pi3x] scan freiburg1_teddy views 5 seed 1: obs 0.748 unobs 0.1313 amb 0.0338 off 0.087  auroc obs/unobs 0.737  266s\n"}
+,{"stream_name":"stdout","time":2461.651769215,"data":"[pi3x] scan freiburg1_teddy views 10 seed 1: obs 0.802 unobs 0.0715 amb 0.0191 off 0.107  auroc obs/unobs 0.742  280s\n"}
+,{"stream_name":"stdout","time":2466.704349991,"data":"[pi3x] scan freiburg1_360 views 3 seed 0: obs 0.781 unobs 0.0141 amb 0.0158 off 0.189  auroc obs/unobs 0.881  285s\n"}
+,{"stream_name":"stdout","time":2473.920536587,"data":"[pi3x] scan freiburg1_360 views 5 seed 0: obs 0.776 unobs 0.0090 amb 0.0108 off 0.204  auroc obs/unobs 0.917  292s\n"}
+,{"stream_name":"stdout","time":2487.335582879,"data":"[pi3x] scan freiburg1_360 views 10 seed 0: obs 0.829 unobs 0.0080 amb 0.0063 off 0.157  auroc obs/unobs 0.945  306s\n"}
+,{"stream_name":"stdout","time":2491.940027997,"data":"[pi3x] scan freiburg1_360 views 3 seed 1: obs 0.694 unobs 0.0414 amb 0.0690 off 0.195  auroc obs/unobs 0.807  310s\n"}
+,{"stream_name":"stdout","time":2499.316065778,"data":"[pi3x] scan freiburg1_360 views 5 seed 1: obs 0.749 unobs 0.0325 amb 0.0471 off 0.171  auroc obs/unobs 0.787  318s\n"}
+,{"stream_name":"stdout","time":2512.857917666,"data":"[pi3x] scan freiburg1_360 views 10 seed 1: obs 0.691 unobs 0.0220 amb 0.0247 off 0.262  auroc obs/unobs 0.799  331s\n"}
+,{"stream_name":"stdout","time":2518.189288498,"data":"[pi3x] scan freiburg2_desk views 3 seed 0: obs 0.714 unobs 0.1717 amb 0.0064 off 0.108  auroc obs/unobs 0.856  337s\n"}
+,{"stream_name":"stdout","time":2525.985499716,"data":"[pi3x] scan freiburg2_desk views 5 seed 0: obs 0.808 unobs 0.0953 amb 0.0043 off 0.092  auroc obs/unobs 0.876  344s\n"}
+,{"stream_name":"stdout","time":2540.621309145,"data":"[pi3x] scan freiburg2_desk views 10 seed 0: obs 0.861 unobs 0.0356 amb 0.0015 off 0.102  auroc obs/unobs 0.908  359s\n"}
+,{"stream_name":"stdout","time":2545.638038933,"data":"[pi3x] scan freiburg2_desk views 3 seed 1: obs 0.754 unobs 0.1044 amb 0.0029 off 0.139  auroc obs/unobs 0.864  364s\n"}
+,{"stream_name":"stdout","time":2553.78940352,"data":"[pi3x] scan freiburg2_desk views 5 seed 1: obs 0.795 unobs 0.0673 amb 0.0028 off 0.134  auroc obs/unobs 0.882  372s\n"}
+,{"stream_name":"stdout","time":2568.706416488,"data":"[pi3x] scan freiburg2_desk views 10 seed 1: obs 0.805 unobs 0.0381 amb 0.0029 off 0.154  auroc obs/unobs 0.929  387s\n"}
+,{"stream_name":"stdout","time":2574.400236771,"data":"[pi3x] scan freiburg3_long_office_household views 3 seed 0: obs 0.720 unobs 0.0417 amb 0.0139 off 0.225  auroc obs/unobs 0.839  393s\n"}
+,{"stream_name":"stdout","time":2582.877934155,"data":"[pi3x] scan freiburg3_long_office_household views 5 seed 0: obs 0.463 unobs 0.0442 amb 0.0145 off 0.478  auroc obs/unobs 0.742  401s\n"}
+,{"stream_name":"stdout","time":2598.665215379,"data":"[pi3x] scan freiburg3_long_office_household views 10 seed 0: obs 0.580 unobs 0.0203 amb 0.0051 off 0.395  auroc obs/unobs 0.817  417s\n"}
+,{"stream_name":"stdout","time":2603.887465899,"data":"[pi3x] scan freiburg3_long_office_household views 3 seed 1: obs 0.717 unobs 0.0456 amb 0.0149 off 0.223  auroc obs/unobs 0.815  422s\n"}
+,{"stream_name":"stdout","time":2612.196340678,"data":"[pi3x] scan freiburg3_long_office_household views 5 seed 1: obs 0.745 unobs 0.0361 amb 0.0188 off 0.200  auroc obs/unobs 0.830  431s\n"}
+,{"stream_name":"stdout","time":2627.624217406,"data":"[pi3x] scan freiburg3_long_office_household views 10 seed 1: obs 0.790 unobs 0.0212 amb 0.0096 off 0.179  auroc obs/unobs 0.845  446s\n"}
+,{"stream_name":"stdout","time":2632.582657707,"data":"[pi3x] scan freiburg3_teddy views 3 seed 0: obs 0.424 unobs 0.1445 amb 0.0157 off 0.416  auroc obs/unobs 0.594  451s\n"}
+,{"stream_name":"stdout","time":2639.878029824,"data":"[pi3x] scan freiburg3_teddy views 5 seed 0: obs 0.432 unobs 0.1274 amb 0.0136 off 0.427  auroc obs/unobs 0.584  458s\n"}
+,{"stream_name":"stdout","time":2653.263592598,"data":"[pi3x] scan freiburg3_teddy views 10 seed 0: obs 0.539 unobs 0.0684 amb 0.0086 off 0.384  auroc obs/unobs 0.546  472s\n"}
+,{"stream_name":"stdout","time":2657.801051374,"data":"[pi3x] scan freiburg3_teddy views 3 seed 1: obs 0.475 unobs 0.1390 amb 0.0193 off 0.366  auroc obs/unobs 0.492  476s\n"}
+,{"stream_name":"stdout","time":2671.391225828,"data":"[pi3x] scan freiburg3_teddy views 5 seed 1: obs 0.472 unobs 0.0302 amb 0.0067 off 0.491  auroc obs/unobs 0.660  490s\n"}
+,{"stream_name":"stdout","time":2696.537484883,"data":"[pi3x] scan freiburg3_teddy views 10 seed 1: obs 0.412 unobs 0.0347 amb 0.0036 off 0.550  auroc obs/unobs 0.602  515s\n"}
+,{"stream_name":"stdout","time":2702.252194971,"data":"[pi3x] scan freiburg3_cabinet views 3 seed 0: obs 0.906 unobs 0.0105 amb 0.0189 off 0.064  auroc obs/unobs 0.873  521s\n"}
+,{"stream_name":"stdout","time":2710.68712034,"data":"[pi3x] scan freiburg3_cabinet views 5 seed 0: obs 0.911 unobs 0.0087 amb 0.0127 off 0.068  auroc obs/unobs 0.769  529s\n"}
+,{"stream_name":"stdout","time":2726.758716247,"data":"[pi3x] scan freiburg3_cabinet views 10 seed 0: obs 0.923 unobs 0.0041 amb 0.0043 off 0.068  auroc obs/unobs 0.736  545s\n"}
+,{"stream_name":"stdout","time":2731.944798676,"data":"[pi3x] scan freiburg3_cabinet views 3 seed 1: obs 0.897 unobs 0.0122 amb 0.0169 off 0.074  auroc obs/unobs 0.771  550s\n"}
+,{"stream_name":"stdout","time":2740.30447743,"data":"[pi3x] scan freiburg3_cabinet views 5 seed 1: obs 0.917 unobs 0.0072 amb 0.0121 off 0.064  auroc obs/unobs 0.826  559s\n"}
+,{"stream_name":"stdout","time":2755.984395112,"data":"[pi3x] scan freiburg3_cabinet views 10 seed 1: obs 0.917 unobs 0.0077 amb 0.0045 off 0.070  auroc obs/unobs 0.826  574s\n"}
+,{"stream_name":"stdout","time":2761.164570455,"data":"[pi3x] scan freiburg3_large_cabinet views 3 seed 0: obs 0.586 unobs 0.0320 amb 0.0326 off 0.349  auroc obs/unobs 0.816  580s\n"}
+,{"stream_name":"stdout","time":2768.881790514,"data":"[pi3x] scan freiburg3_large_cabinet views 5 seed 0: obs 0.590 unobs 0.0276 amb 0.0307 off 0.352  auroc obs/unobs 0.827  587s\n"}
+,{"stream_name":"stdout","time":2783.218211346,"data":"[pi3x] scan freiburg3_large_cabinet views 10 seed 0: obs 0.624 unobs 0.0089 amb 0.0075 off 0.360  auroc obs/unobs 0.829  602s\n"}
+,{"stream_name":"stdout","time":2788.123248179,"data":"[pi3x] scan freiburg3_large_cabinet views 3 seed 1: obs 0.595 unobs 0.0281 amb 0.0124 off 0.365  auroc obs/unobs 0.813  607s\n"}
+,{"stream_name":"stdout","time":2796.169168648,"data":"[pi3x] scan freiburg3_large_cabinet views 5 seed 1: obs 0.600 unobs 0.0162 amb 0.0121 off 0.372  auroc obs/unobs 0.724  615s\n"}
+,{"stream_name":"stdout","time":2812.692341524,"data":"[pi3x] scan freiburg3_large_cabinet views 10 seed 1: obs 0.597 unobs 0.0081 amb 0.0071 off 0.387  auroc obs/unobs 0.795  631s\n"}
+,{"stream_name":"stdout","time":2818.39136518,"data":"[pi3x] scan freiburg3_structure_texture_far views 3 seed 0: obs 0.877 unobs 0.0292 amb 0.0265 off 0.067  auroc obs/unobs 0.904  637s\n"}
+,{"stream_name":"stdout","time":2826.800338107,"data":"[pi3x] scan freiburg3_structure_texture_far views 5 seed 0: obs 0.894 unobs 0.0198 amb 0.0234 off 0.063  auroc obs/unobs 0.903  645s\n"}
+,{"stream_name":"stdout","time":2842.513104611,"data":"[pi3x] scan freiburg3_structure_texture_far views 10 seed 0: obs 0.918 unobs 0.0096 amb 0.0120 off 0.060  auroc obs/unobs 0.911  661s\n"}
+,{"stream_name":"stdout","time":2847.802456415,"data":"[pi3x] scan freiburg3_structure_texture_far views 3 seed 1: obs 0.914 unobs 0.0147 amb 0.0122 off 0.059  auroc obs/unobs 0.917  666s\n"}
+,{"stream_name":"stdout","time":2856.255727379,"data":"[pi3x] scan freiburg3_structure_texture_far views 5 seed 1: obs 0.914 unobs 0.0113 amb 0.0126 off 0.063  auroc obs/unobs 0.920  675s\n"}
+,{"stream_name":"stdout","time":2871.943570829,"data":"[pi3x] scan freiburg3_structure_texture_far views 10 seed 1: obs 0.916 unobs 0.0042 amb 0.0073 off 0.072  auroc obs/unobs 0.931  690s\n"}
+,{"stream_name":"stdout","time":2885.026792501,"data":"[pi3x_oiavisself] head from /kaggle/tmp/checkpoints/pi3x_oiavisself.pt (step 1500, val-auroc 0.996)\n"}
+,{"stream_name":"stdout","time":2888.769377784,"data":"[pi3x_oiavisself] scan freiburg1_desk views 3 seed 0: obs 0.765 unobs 0.1010 amb 0.0238 off 0.110  auroc obs/unobs 0.853  4s\n"}
+,{"stream_name":"stdout","time":2893.944955109,"data":"[pi3x_oiavisself] scan freiburg1_desk views 5 seed 0: obs 0.794 unobs 0.0859 amb 0.0129 off 0.107  auroc obs/unobs 0.845  9s\n"}
+,{"stream_name":"stdout","time":2903.09874694,"data":"[pi3x_oiavisself] scan freiburg1_desk views 10 seed 0: obs 0.798 unobs 0.0457 amb 0.0160 off 0.140  auroc obs/unobs 0.831  18s\n"}
+,{"stream_name":"stdout","time":2906.486222704,"data":"[pi3x_oiavisself] scan freiburg1_desk views 3 seed 1: obs 0.632 unobs 0.1006 amb 0.0258 off 0.241  auroc obs/unobs 0.871  21s\n"}
+,{"stream_name":"stdout","time":2911.918678062,"data":"[pi3x_oiavisself] scan freiburg1_desk views 5 seed 1: obs 0.658 unobs 0.1026 amb 0.0300 off 0.210  auroc obs/unobs 0.824  27s\n"}
+,{"stream_name":"stdout","time":2921.455081566,"data":"[pi3x_oiavisself] scan freiburg1_desk views 10 seed 1: obs 0.643 unobs 0.0339 amb 0.0161 off 0.307  auroc obs/unobs 0.811  36s\n"}
+,{"stream_name":"stdout","time":2925.266972437,"data":"[pi3x_oiavisself] scan freiburg1_desk2 views 3 seed 0: obs 0.703 unobs 0.1174 amb 0.0397 off 0.140  auroc obs/unobs 0.867  40s\n"}
+,{"stream_name":"stdout","time":2930.452465534,"data":"[pi3x_oiavisself] scan freiburg1_desk2 views 5 seed 0: obs 0.744 unobs 0.0828 amb 0.0351 off 0.138  auroc obs/unobs 0.887  45s\n"}
+,{"stream_name":"stdout","time":2939.435623023,"data":"[pi3x_oiavisself] scan freiburg1_desk2 views 10 seed 0: obs 0.786 unobs 0.0351 amb 0.0075 off 0.171  auroc obs/unobs 0.907  54s\n"}
+,{"stream_name":"stdout","time":2942.689172712,"data":"[pi3x_oiavisself] scan freiburg1_desk2 views 3 seed 1: obs 0.631 unobs 0.1370 amb 0.0166 off 0.215  auroc obs/unobs 0.776  58s\n"}
+,{"stream_name":"stdout","time":2947.808909804,"data":"[pi3x_oiavisself] scan freiburg1_desk2 views 5 seed 1: obs 0.670 unobs 0.1037 amb 0.0174 off 0.208  auroc obs/unobs 0.762  63s\n"}
+,{"stream_name":"stdout","time":2956.669009348,"data":"[pi3x_oiavisself] scan freiburg1_desk2 views 10 seed 1: obs 0.685 unobs 0.0623 amb 0.0085 off 0.244  auroc obs/unobs 0.727  72s\n"}
+,{"stream_name":"stdout","time":2960.419613887,"data":"[pi3x_oiavisself] scan freiburg1_room views 3 seed 0: obs 0.548 unobs 0.0654 amb 0.0175 off 0.369  auroc obs/unobs 0.734  75s\n"}
+,{"stream_name":"stdout","time":2965.493261268,"data":"[pi3x_oiavisself] scan freiburg1_room views 5 seed 0: obs 0.621 unobs 0.0428 amb 0.0162 off 0.320  auroc obs/unobs 0.810  80s\n"}
+,{"stream_name":"stdout","time":2974.375721168,"data":"[pi3x_oiavisself] scan freiburg1_room views 10 seed 0: obs 0.567 unobs 0.0302 amb 0.0118 off 0.391  auroc obs/unobs 0.875  89s\n"}
+,{"stream_name":"stdout","time":2977.676934879,"data":"[pi3x_oiavisself] scan freiburg1_room views 3 seed 1: obs 0.328 unobs 0.0786 amb 0.0237 off 0.569  auroc obs/unobs 0.768  93s\n"}
+,{"stream_name":"stdout","time":2982.948497152,"data":"[pi3x_oiavisself] scan freiburg1_room views 5 seed 1: obs 0.398 unobs 0.0609 amb 0.0193 off 0.522  auroc obs/unobs 0.773  98s\n"}
+,{"stream_name":"stdout","time":2992.198347826,"data":"[pi3x_oiavisself] scan freiburg1_room views 10 seed 1: obs 0.553 unobs 0.0159 amb 0.0162 off 0.415  auroc obs/unobs 0.866  107s\n"}
+,{"stream_name":"stdout","time":2996.032125666,"data":"[pi3x_oiavisself] scan freiburg1_plant views 3 seed 0: obs 0.727 unobs 0.0829 amb 0.0067 off 0.183  auroc obs/unobs 0.773  111s\n"}
+,{"stream_name":"stdout","time":3001.345720217,"data":"[pi3x_oiavisself] scan freiburg1_plant views 5 seed 0: obs 0.754 unobs 0.0696 amb 0.0107 off 0.166  auroc obs/unobs 0.764  116s\n"}
+,{"stream_name":"stdout","time":3010.426838229,"data":"[pi3x_oiavisself] scan freiburg1_plant views 10 seed 0: obs 0.749 unobs 0.0450 amb 0.0122 off 0.194  auroc obs/unobs 0.785  125s\n"}
+,{"stream_name":"stdout","time":3013.730748807,"data":"[pi3x_oiavisself] scan freiburg1_plant views 3 seed 1: obs 0.651 unobs 0.1266 amb 0.0545 off 0.168  auroc obs/unobs 0.699  129s\n"}
+,{"stream_name":"stdout","time":3018.9352257,"data":"[pi3x_oiavisself] scan freiburg1_plant views 5 seed 1: obs 0.705 unobs 0.0872 amb 0.0368 off 0.171  auroc obs/unobs 0.763  134s\n"}
+,{"stream_name":"stdout","time":3027.920225889,"data":"[pi3x_oiavisself] scan freiburg1_plant views 10 seed 1: obs 0.742 unobs 0.0422 amb 0.0196 off 0.196  auroc obs/unobs 0.818  143s\n"}
+,{"stream_name":"stdout","time":3031.728672472,"data":"[pi3x_oiavisself] scan freiburg1_teddy views 3 seed 0: obs 0.685 unobs 0.1517 amb 0.0527 off 0.111  auroc obs/unobs 0.615  147s\n"}
+,{"stream_name":"stdout","time":3036.854856852,"data":"[pi3x_oiavisself] scan freiburg1_teddy views 5 seed 0: obs 0.794 unobs 0.0798 amb 0.0253 off 0.101  auroc obs/unobs 0.735  152s\n"}
+,{"stream_name":"stdout","time":3045.799124725,"data":"[pi3x_oiavisself] scan freiburg1_teddy views 10 seed 0: obs 0.822 unobs 0.0476 amb 0.0207 off 0.110  auroc obs/unobs 0.749  161s\n"}
+,{"stream_name":"stdout","time":3049.064131621,"data":"[pi3x_oiavisself] scan freiburg1_teddy views 3 seed 1: obs 0.564 unobs 0.1967 amb 0.0742 off 0.165  auroc obs/unobs 0.628  164s\n"}
+,{"stream_name":"stdout","time":3054.179003595,"data":"[pi3x_oiavisself] scan freiburg1_teddy views 5 seed 1: obs 0.748 unobs 0.1313 amb 0.0338 off 0.087  auroc obs/unobs 0.705  169s\n"}
+,{"stream_name":"stdout","time":3063.146982243,"data":"[pi3x_oiavisself] scan freiburg1_teddy views 10 seed 1: obs 0.802 unobs 0.0715 amb 0.0191 off 0.107  auroc obs/unobs 0.791  178s\n"}
+,{"stream_name":"stdout","time":3066.902178925,"data":"[pi3x_oiavisself] scan freiburg1_360 views 3 seed 0: obs 0.781 unobs 0.0141 amb 0.0158 off 0.189  auroc obs/unobs 0.937  182s\n"}
+,{"stream_name":"stdout","time":3072.026897382,"data":"[pi3x_oiavisself] scan freiburg1_360 views 5 seed 0: obs 0.776 unobs 0.0090 amb 0.0108 off 0.204  auroc obs/unobs 0.943  187s\n"}
+,{"stream_name":"stdout","time":3080.987942529,"data":"[pi3x_oiavisself] scan freiburg1_360 views 10 seed 0: obs 0.829 unobs 0.0080 amb 0.0063 off 0.157  auroc obs/unobs 0.965  196s\n"}
+,{"stream_name":"stdout","time":3084.241011964,"data":"[pi3x_oiavisself] scan freiburg1_360 views 3 seed 1: obs 0.694 unobs 0.0414 amb 0.0690 off 0.195  auroc obs/unobs 0.859  199s\n"}
+,{"stream_name":"stdout","time":3089.390606664,"data":"[pi3x_oiavisself] scan freiburg1_360 views 5 seed 1: obs 0.749 unobs 0.0325 amb 0.0471 off 0.171  auroc obs/unobs 0.906  204s\n"}
+,{"stream_name":"stdout","time":3098.350033258,"data":"[pi3x_oiavisself] scan freiburg1_360 views 10 seed 1: obs 0.691 unobs 0.0220 amb 0.0247 off 0.262  auroc obs/unobs 0.860  213s\n"}
+,{"stream_name":"stdout","time":3102.227850043,"data":"[pi3x_oiavisself] scan freiburg2_desk views 3 seed 0: obs 0.714 unobs 0.1717 amb 0.0064 off 0.108  auroc obs/unobs 0.836  217s\n"}
+,{"stream_name":"stdout","time":3107.370711274,"data":"[pi3x_oiavisself] scan freiburg2_desk views 5 seed 0: obs 0.808 unobs 0.0953 amb 0.0043 off 0.092  auroc obs/unobs 0.853  222s\n"}
+,{"stream_name":"stdout","time":3116.396715095,"data":"[pi3x_oiavisself] scan freiburg2_desk views 10 seed 0: obs 0.861 unobs 0.0356 amb 0.0015 off 0.102  auroc obs/unobs 0.863  231s\n"}
+,{"stream_name":"stdout","time":3119.694247751,"data":"[pi3x_oiavisself] scan freiburg2_desk views 3 seed 1: obs 0.754 unobs 0.1044 amb 0.0029 off 0.139  auroc obs/unobs 0.792  235s\n"}
+,{"stream_name":"stdout","time":3124.854883676,"data":"[pi3x_oiavisself] scan freiburg2_desk views 5 seed 1: obs 0.795 unobs 0.0673 amb 0.0028 off 0.134  auroc obs/unobs 0.836  240s\n"}
+,{"stream_name":"stdout","time":3133.835224617,"data":"[pi3x_oiavisself] scan freiburg2_desk views 10 seed 1: obs 0.805 unobs 0.0381 amb 0.0029 off 0.154  auroc obs/unobs 0.878  249s\n"}
+,{"stream_name":"stdout","time":3137.713782788,"data":"[pi3x_oiavisself] scan freiburg3_long_office_household views 3 seed 0: obs 0.720 unobs 0.0417 amb 0.0139 off 0.225  auroc obs/unobs 0.801  253s\n"}
+,{"stream_name":"stdout","time":3143.235820651,"data":"[pi3x_oiavisself] scan freiburg3_long_office_household views 5 seed 0: obs 0.463 unobs 0.0442 amb 0.0145 off 0.478  auroc obs/unobs 0.785  258s\n"}
+,{"stream_name":"stdout","time":3152.847158039,"data":"[pi3x_oiavisself] scan freiburg3_long_office_household views 10 seed 0: obs 0.580 unobs 0.0203 amb 0.0051 off 0.395  auroc obs/unobs 0.833  268s\n"}
+,{"stream_name":"stdout","time":3156.356199161,"data":"[pi3x_oiavisself] scan freiburg3_long_office_household views 3 seed 1: obs 0.717 unobs 0.0456 amb 0.0149 off 0.223  auroc obs/unobs 0.793  271s\n"}
+,{"stream_name":"stdout","time":3161.72923586,"data":"[pi3x_oiavisself] scan freiburg3_long_office_household views 5 seed 1: obs 0.745 unobs 0.0361 amb 0.0188 off 0.200  auroc obs/unobs 0.778  277s\n"}
+,{"stream_name":"stdout","time":3171.07390623,"data":"[pi3x_oiavisself] scan freiburg3_long_office_household views 10 seed 1: obs 0.790 unobs 0.0212 amb 0.0096 off 0.179  auroc obs/unobs 0.733  286s\n"}
+,{"stream_name":"stdout","time":3174.839918258,"data":"[pi3x_oiavisself] scan freiburg3_teddy views 3 seed 0: obs 0.424 unobs 0.1445 amb 0.0157 off 0.416  auroc obs/unobs 0.496  290s\n"}
+,{"stream_name":"stdout","time":3180.052730572,"data":"[pi3x_oiavisself] scan freiburg3_teddy views 5 seed 0: obs 0.432 unobs 0.1274 amb 0.0136 off 0.427  auroc obs/unobs 0.494  295s\n"}
+,{"stream_name":"stdout","time":3189.166040827,"data":"[pi3x_oiavisself] scan freiburg3_teddy views 10 seed 0: obs 0.539 unobs 0.0684 amb 0.0086 off 0.384  auroc obs/unobs 0.600  304s\n"}
+,{"stream_name":"stdout","time":3192.47190921,"data":"[pi3x_oiavisself] scan freiburg3_teddy views 3 seed 1: obs 0.475 unobs 0.1390 amb 0.0193 off 0.366  auroc obs/unobs 0.565  307s\n"}
+,{"stream_name":"stdout","time":3205.257684368,"data":"[pi3x_oiavisself] scan freiburg3_teddy views 5 seed 1: obs 0.472 unobs 0.0302 amb 0.0067 off 0.491  auroc obs/unobs 0.753  320s\n"}
+,{"stream_name":"stdout","time":3229.324364417,"data":"[pi3x_oiavisself] scan freiburg3_teddy views 10 seed 1: obs 0.412 unobs 0.0347 amb 0.0036 off 0.550  auroc obs/unobs 0.708  344s\n"}
+,{"stream_name":"stdout","time":3233.050605429,"data":"[pi3x_oiavisself] scan freiburg3_cabinet views 3 seed 0: obs 0.906 unobs 0.0105 amb 0.0189 off 0.064  auroc obs/unobs 0.854  348s\n"}
+,{"stream_name":"stdout","time":3238.207011717,"data":"[pi3x_oiavisself] scan freiburg3_cabinet views 5 seed 0: obs 0.911 unobs 0.0087 amb 0.0127 off 0.068  auroc obs/unobs 0.904  353s\n"}
+,{"stream_name":"stdout","time":3247.41765737,"data":"[pi3x_oiavisself] scan freiburg3_cabinet views 10 seed 0: obs 0.923 unobs 0.0041 amb 0.0043 off 0.068  auroc obs/unobs 0.900  362s\n"}
+,{"stream_name":"stdout","time":3250.766014064,"data":"[pi3x_oiavisself] scan freiburg3_cabinet views 3 seed 1: obs 0.897 unobs 0.0122 amb 0.0169 off 0.074  auroc obs/unobs 0.806  366s\n"}
+,{"stream_name":"stdout","time":3256.107983692,"data":"[pi3x_oiavisself] scan freiburg3_cabinet views 5 seed 1: obs 0.917 unobs 0.0072 amb 0.0121 off 0.064  auroc obs/unobs 0.883  371s\n"}
+,{"stream_name":"stdout","time":3265.421994618,"data":"[pi3x_oiavisself] scan freiburg3_cabinet views 10 seed 1: obs 0.917 unobs 0.0077 amb 0.0045 off 0.070  auroc obs/unobs 0.917  380s\n"}
+,{"stream_name":"stdout","time":3269.586902682,"data":"[pi3x_oiavisself] scan freiburg3_large_cabinet views 3 seed 0: obs 0.586 unobs 0.0320 amb 0.0326 off 0.349  auroc obs/unobs 0.831  385s\n"}
+,{"stream_name":"stdout","time":3275.622671992,"data":"[pi3x_oiavisself] scan freiburg3_large_cabinet views 5 seed 0: obs 0.590 unobs 0.0276 amb 0.0307 off 0.352  auroc obs/unobs 0.845  391s\n"}
+,{"stream_name":"stdout","time":3286.365231426,"data":"[pi3x_oiavisself] scan freiburg3_large_cabinet views 10 seed 0: obs 0.624 unobs 0.0089 amb 0.0075 off 0.360  auroc obs/unobs 0.890  401s\n"}
+,{"stream_name":"stdout","time":3290.186489213,"data":"[pi3x_oiavisself] scan freiburg3_large_cabinet views 3 seed 1: obs 0.595 unobs 0.0281 amb 0.0124 off 0.365  auroc obs/unobs 0.874  405s\n"}
+,{"stream_name":"stdout","time":3296.314328433,"data":"[pi3x_oiavisself] scan freiburg3_large_cabinet views 5 seed 1: obs 0.600 unobs 0.0162 amb 0.0121 off 0.372  auroc obs/unobs 0.874  411s\n"}
+,{"stream_name":"stdout","time":3309.166395335,"data":"[pi3x_oiavisself] scan freiburg3_large_cabinet views 10 seed 1: obs 0.597 unobs 0.0081 amb 0.0071 off 0.387  auroc obs/unobs 0.924  424s\n"}
+,{"stream_name":"stdout","time":3312.895669108,"data":"[pi3x_oiavisself] scan freiburg3_structure_texture_far views 3 seed 0: obs 0.877 unobs 0.0292 amb 0.0265 off 0.067  auroc obs/unobs 0.908  428s\n"}
+,{"stream_name":"stdout","time":3318.003731844,"data":"[pi3x_oiavisself] scan freiburg3_structure_texture_far views 5 seed 0: obs 0.894 unobs 0.0198 amb 0.0234 off 0.063  auroc obs/unobs 0.917  433s\n"}
+,{"stream_name":"stdout","time":3327.112013081,"data":"[pi3x_oiavisself] scan freiburg3_structure_texture_far views 10 seed 0: obs 0.918 unobs 0.0096 amb 0.0120 off 0.060  auroc obs/unobs 0.943  442s\n"}
+,{"stream_name":"stdout","time":3330.441869031,"data":"[pi3x_oiavisself] scan freiburg3_structure_texture_far views 3 seed 1: obs 0.914 unobs 0.0147 amb 0.0122 off 0.059  auroc obs/unobs 0.946  445s\n"}
+,{"stream_name":"stdout","time":3335.689034444,"data":"[pi3x_oiavisself] scan freiburg3_structure_texture_far views 5 seed 1: obs 0.914 unobs 0.0113 amb 0.0126 off 0.063  auroc obs/unobs 0.948  451s\n"}
+,{"stream_name":"stdout","time":3344.838369629,"data":"[pi3x_oiavisself] scan freiburg3_structure_texture_far views 10 seed 1: obs 0.916 unobs 0.0042 amb 0.0073 off 0.072  auroc obs/unobs 0.961  460s\n"}
+,{"stream_name":"stdout","time":3345.14280923,"data":"                         frac_obs  frac_unobs  frac_off  frac_gt_unobserved  auroc_obs_unobs  auroc_obs_off\n"}
+,{"stream_name":"stdout","time":3345.142867986,"data":"model           n_views                                                                                    \n"}
+,{"stream_name":"stdout","time":3345.142872404,"data":"pi3x            3          0.6787      0.0828    0.2130              0.6163           0.8129         0.8833\n"}
+,{"stream_name":"stdout","time":3345.142874978,"data":"                5          0.7063      0.0575    0.2171              0.5675           0.8116         0.8638\n"}
+,{"stream_name":"stdout","time":3345.142877349,"data":"                10         0.7313      0.0300    0.2281              0.4685           0.8173         0.8569\n"}
+,{"stream_name":"stdout","time":3345.142879651,"data":"pi3x_oiavisself 3          0.6787      0.0828    0.2130              0.6163           0.7867         0.8149\n"}
+,{"stream_name":"stdout","time":3345.142882004,"data":"                5          0.7063      0.0575    0.2171              0.5675           0.8161         0.8230\n"}
+,{"stream_name":"stdout","time":3345.142884312,"data":"                10         0.7313      0.0300    0.2281              0.4685           0.8389         0.8408\n"}
+,{"stream_name":"stdout","time":3346.428609472,"data":"[exit 0, 3346s]\n"}
+,{"stream_name":"stdout","time":3346.428664641,"data":"\n"}
+,{"stream_name":"stdout","time":3346.428671176,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":3346.428676428,"data":"== done  [3346s]\n"}
+,{"stream_name":"stdout","time":3346.428680746,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":3346.429755694,"data":"/kaggle/working/results/P18-tum/pi3x/P12-realocc-tum.csv 45360 4fa371fee59cdbafe75c75639dacf716\n"}
+,{"stream_name":"stdout","time":3346.429816669,"data":"/kaggle/working/results/P18-tum/pi3x/P12-realocc-tum_summary.csv 414 5bad6bc75ee04a2bfb8e1b2b29f9ae65\n"}
+,{"stream_name":"stdout","time":3346.430034015,"data":"/kaggle/working/results/P18-tum/vggt/P12-realocc-tum.csv 45100 a3798684ca97b2a6df1922ddefbf6663\n"}
+,{"stream_name":"stdout","time":3346.430096204,"data":"/kaggle/working/results/P18-tum/vggt/P12-realocc-tum_summary.csv 420 92483cf96a84748f7f62367c43d0798e\n"}
+,{"stream_name":"stderr","time":3348.455698524,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":3348.455724617,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":3348.684570377,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":3348.684593697,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":3349.436855016,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":3350.347576685,"data":"[NbConvertApp] Writing 295228 bytes to __results__.html\n"}
+]
