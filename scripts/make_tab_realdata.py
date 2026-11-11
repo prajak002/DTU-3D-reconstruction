@@ -27,9 +27,10 @@ def p_str(p):
 
 def realocc():
     J = json.load(open(os.path.join(ROOT, "docs", "assets", "p17.json"), encoding="utf-8"))["cells"]
-    L = [r"\begin{tabular}{llrcccccc}", r"\toprule",
+    J.update(json.load(open(os.path.join(ROOT, "docs", "assets", "p18.json"), encoding="utf-8"))["cells"])   # TUM RGB-D
+    L =[r"\begin{tabular}{llrcccccc}", r"\toprule",
          r"dataset & backbone & views & ambiguous & unobs.\ share & native & head & head $-$ native ($p$) & claim \\", r"\midrule"]
-    for ds in ("DTU benchmark", "DTU test", "ETH3D", "CO3Dv2"):
+    for ds in ("DTU benchmark", "DTU test", "ETH3D", "TUM RGB-D", "CO3Dv2"):
         for b in BASES:
             for n in (3, 5, 10):
                 c = J.get(f"{ds}:{n}:{b}")

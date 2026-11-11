@@ -148,9 +148,9 @@ def fig_teaser(N, M, out, P14=None):
             ("single-view geometry, unseen data", None, None),
             ("native", [V[d][b]["auroc"][0] for d in V for b in bases if b in V[d]], BASE),
             ("ours", [V[d][f"{b}_oiavisself"]["auroc"][0] for d in V for b in bases if f"{b}_oiavisself" in V[d]], OBS),
-            ("real unseen surfaces, DTU and ETH3D", None, None),
-            ("native", [c["native"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D")) and c["qualifies"]], BASE),
-            ("ours", [c["head"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D")) and c["qualifies"]], OBS)]
+            ("real unseen surfaces, three datasets", None, None),
+            ("native", [c["native"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D", "TUM")) and c["qualifies"]], BASE),
+            ("ours", [c["head"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D", "TUM")) and c["qualifies"]], OBS)]
     yt, yl = [], []
     y = len(rows)
     for lab, vals, col in rows:
@@ -438,7 +438,8 @@ def fig_realocc(P14, out):
     g = P14["cells"]
     views = [3, 5, 10]
     cols = {"vggt": "#4F6584", "pi3x": "#8FA3BF", "pi3": "#C9D3E2", "da3": "#E3B8A0"}
-    dsets = [("DTU benchmark", "o", None), ("DTU test", "D", "...."), ("ETH3D", "^", "xxxx"), ("CO3Dv2", "s", "////")]
+    dsets = [("DTU benchmark", "o", None), ("DTU test", "D", "...."), ("ETH3D", "^", "xxxx"), ("TUM RGB-D", "v", "++++"),
+             ("CO3Dv2", "s", "////")]
     groups = [(ds, b) for ds, _, _ in dsets for b in ("vggt", "pi3x", "pi3", "da3")]
     fig, (a, b) = plt.subplots(1, 2, figsize=(3.3, 1.7))
     fig.subplots_adjust(left=0.1, right=0.99, top=0.70, bottom=0.2, wspace=0.42)
@@ -453,9 +454,10 @@ def fig_realocc(P14, out):
             c = g.get(f"{ds}:{n}:{bb}")
             if not c:
                 continue
-            b.plot([xi], [c["diff"][0]], marker=mk[ds], ms=2.3, color=ec, mfc=ec if c["holds"] else "white", mew=0.7, ls="none")
+            b.plot([xi], [c["diff"][0]], marker=mk[ds], ms=2.3, color=ec, mfc=ec if c["holds"] else "white", mew=0.6, ls="none")
     a.axhline(0.5, color=IMAG, lw=0.7, ls="--")
-    a.text(2.45, 0.6, "0.5%", fontsize=5.4, color=IMAG, ha="right", va="bottom", bbox=dict(fc="white", ec="none", pad=0.3))
+    a.set_yscale("log"); a.set_ylim(0.06, 14); a.set_yticks([0.1, 1, 10]); a.set_yticklabels(["0.1", "1", "10"])
+    a.text(2.45, 0.54, "0.5%", fontsize=5.4, color=IMAG, ha="right", va="bottom", bbox=dict(fc="white", ec="none", pad=0.3))
     a.set_xticks(range(3)); a.set_xticklabels([f"{n} views" for n in views], fontsize=6.0)
     a.set_ylabel("% of points unobserved", fontsize=5.8, labelpad=1)
     a.set_title("(a) how often", fontsize=6.3, weight="bold", loc="left", pad=2)
@@ -467,7 +469,7 @@ def fig_realocc(P14, out):
         _axstyle(x)
     hs = [Patch(color=cols[bb], label=NAMES[bb]) for bb in ("vggt", "pi3x", "pi3", "da3")]
     hs += [Line2D([], [], marker=m, ls="none", color=MUTED, mfc="white", ms=3, label=d) for d, m, _ in dsets]
-    fig.legend(handles=hs, loc="upper center", ncol=4, fontsize=5.2, frameon=False, bbox_to_anchor=(0.55, 1.03), handlelength=1.0,
+    fig.legend(handles=hs, loc="upper center", ncol=5, fontsize=4.9, frameon=False, bbox_to_anchor=(0.55, 1.03), handlelength=1.0,
                columnspacing=0.7, labelspacing=0.2)
     fig.text(0.55, 0.815, "(b) filled: share >= 0.5% and gain significant (p < 0.05)", fontsize=5.0, color=MUTED, ha="center")
     _save(fig, out)
@@ -533,6 +535,7 @@ def main():
     M = json.load(open(os.path.join(ROOT, "docs", "assets", "matched.json"), encoding="utf-8"))
     # real occlusion with the hole-robust labels (scripts/make_stats_p17.py); same cell layout as the earlier p14.json
     P17 = json.load(open(os.path.join(ROOT, "docs", "assets", "p17.json"), encoding="utf-8"))["cells"]
+    P17.update(json.load(open(os.path.join(ROOT, "docs", "assets", "p18.json"), encoding="utf-8"))["cells"])   # TUM RGB-D
     P14 = {"cells": {k: dict(v, diff=[v["diff"], v["p"]]) for k, v in P17.items() if "adapted" not in k}}
     fig_teaser(N, M, os.path.join(a.out, "fig_teaser"), P14)
     fig_arch(os.path.join(a.out, "fig_arch"))
