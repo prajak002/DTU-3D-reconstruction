@@ -1,0 +1,72 @@
+[{"stream_name":"stdout","time":0.74710136,"data":"\n"}
+,{"stream_name":"stdout","time":0.74713041,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":0.747134333,"data":"== clone  [0s]\n"}
+,{"stream_name":"stdout","time":0.747136673,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":42.20097744,"data":"commit ce943ba\n"}
+,{"stream_name":"stdout","time":42.201008914,"data":"\n"}
+,{"stream_name":"stdout","time":42.201014695,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":42.201019636,"data":"== heads  [41s]\n"}
+,{"stream_name":"stdout","time":42.201023828,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":56.212701221,"data":"vggt cf9589698a1509ec727dd9988d39cb2f /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/vggt_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":56.212733995,"data":"\n"}
+,{"stream_name":"stdout","time":56.212739583,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":56.212748039,"data":"== install backbones (kaggle_prelude.py), gsplat, lpips  [55s]\n"}
+,{"stream_name":"stdout","time":56.212751279,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":72.2310567,"data":"\n"}
+,{"stream_name":"stdout","time":72.231084813,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":72.231090248,"data":"== gsplat rasterizer (builds its CUDA kernels on first use)  [71s]\n"}
+,{"stream_name":"stdout","time":72.231094992,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":72.231099696,"data":"\n"}
+,{"stream_name":"stdout","time":72.231104676,"data":"$ /usr/bin/python3 -c import torch, gsplat; from gsplat import rasterization; m = torch.rand(100, 3).cuda(); m[:, 2] += 2; q = torch.tensor([1., 0, 0, 0]).repeat(100, 1).cuda(); o = rasterization(m, q, torch.full((100, 3), 0.05).cuda(), torch.full((100,), 0.5).cuda(), torch.rand(100, 3).cuda(), torch.eye(4)[None].cuda(), torch.tensor([[[100., 0, 32], [0, 100., 32], [0, 0, 1]]]).cuda(), 64, 64); print('gsplat', gsplat.__version__, o[0].shape, float(o[1].mean()))\n"}
+,{"stream_name":"stdout","time":383.826423676,"data":"gsplat: CUDA extension has been set up successfully in 301.44 seconds.\n"}
+,{"stream_name":"stdout","time":383.953940994,"data":"gsplat 1.5.3 torch.Size([1, 64, 64, 3]) 0.16585686802864075\n"}
+,{"stream_name":"stdout","time":386.628582321,"data":"[exit 0, 386s]\n"}
+,{"stream_name":"stdout","time":386.628616847,"data":"\n"}
+,{"stream_name":"stdout","time":386.628621896,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":386.628626555,"data":"== novel-view test: ['vggt'] scans 3,5,17 views 3,6  [386s]\n"}
+,{"stream_name":"stdout","time":386.628630811,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":386.628635131,"data":"\n"}
+,{"stream_name":"stdout","time":386.628640799,"data":"$ /usr/bin/python3 scripts/nvs_eval.py --dtu /kaggle/input --models vggt --scans 3,5,17 --views 3,6 --save-images 6 --out /kaggle/working/results/P19-nvs/pilot\n"}
+,{"stream_name":"stdout","time":395.676195317,"data":"Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]\n"}
+,{"stream_name":"stderr","time":395.677015292,"data":"/usr/local/lib/python3.13/dist-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.\n"}
+,{"stream_name":"stderr","time":395.677041284,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":395.677046444,"data":"/usr/local/lib/python3.13/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.\n"}
+,{"stream_name":"stderr","time":395.677056315,"data":"  warnings.warn(msg)\n"}
+,{"stream_name":"stdout","time":396.114716781,"data":"Downloading: \"https://download.pytorch.org/models/alexnet-owt-7be5be79.pth\" to /root/.cache/torch/hub/checkpoints/alexnet-owt-7be5be79.pth\n"}
+,{"stream_name":"stderr","time":397.231605213,"data":"\r  0%|          | 0.00/233M [00:00\u003c?, ?B/s]\r  9%|▉         | 21.0M/233M [00:00\u003c00:01, 220MB/s]\r 19%|█▉        | 43.9M/233M [00:00\u003c00:00, 231MB/s]\r 28%|██▊       | 66.4M/233M [00:00\u003c00:00, 233MB/s]\r 38%|███▊      | 88.6M/233M [00:00\u003c00:00, 228MB/s]\r 48%|████▊     | 111M/233M [00:00\u003c00:00, 231MB/s] \r 57%|█████▋    | 133M/233M [00:00\u003c00:00, 230MB/s]\r 67%|██████▋   | 156M/233M [00:00\u003c00:00, 233MB/s]\r 77%|███████▋  | 179M/233M [00:00\u003c00:00, 234MB/s]\r 86%|████████▋ | 201M/233M [00:00\u003c00:00, 229MB/s]\r 96%|█████████▌| 224M/233M [00:01\u003c00:00, 231MB/s]\r100%|██████████| 233M/233M [00:01\u003c00:00, 231MB/s]\n"}
+,{"stream_name":"stdout","time":397.448145813,"data":"Loading model from: /usr/local/lib/python3.13/dist-packages/lpips/weights/v0.1/alex.pth\n"}
+,{"stream_name":"stderr","time":405.347867912,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":448.498553278,"data":"[vggt_oiavisself] head from /kaggle/tmp/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stderr","time":454.5409241,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":454.540965292,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":598.528454908,"data":"[vggt] scan 3 s0 n3 (150s) train 32.5 | all 10.04/10.70/0.463 native 11.35/12.27/0.373 head 10.27/10.97/0.430 random 10.07/10.64/0.461\n"}
+,{"stream_name":"stderr","time":601.268016251,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":601.26806274,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":788.540843887,"data":"[vggt] scan 3 s0 n6 (190s) train 27.0 | all 9.14/9.63/0.589 native 12.67/13.38/0.394 head 11.54/12.03/0.460 random 9.24/9.72/0.576\n"}
+,{"stream_name":"stdout","time":932.570882857,"data":"[vggt] scan 5 s0 n3 (144s) train 32.4 | all 7.82/8.08/0.570 native 9.40/9.64/0.464 head 8.68/9.15/0.491 random 7.82/8.13/0.569\n"}
+,{"stream_name":"stdout","time":1115.853752486,"data":"[vggt] scan 5 s0 n6 (183s) train 26.0 | all 7.81/8.42/0.651 native 10.65/11.64/0.429 head 10.94/11.83/0.437 random 7.84/8.44/0.656\n"}
+,{"stream_name":"stdout","time":1254.857048848,"data":"[vggt] scan 17 s0 n3 (139s) train 35.7 | all 11.94/13.04/0.388 native 14.05/15.00/0.286 head 12.00/13.28/0.385 random 11.45/12.79/0.391\n"}
+,{"stream_name":"stdout","time":1436.386103089,"data":"[vggt] scan 17 s0 n6 (182s) train 31.1 | all 12.94/13.21/0.449 native 13.83/14.38/0.369 head 13.24/13.56/0.421 random 13.07/13.41/0.437\n"}
+,{"stream_name":"stdout","time":1436.418165689,"data":"                       train_psnr    psnr  psnr_common   ssim  lpips  lpips_common  cover\n"}
+,{"stream_name":"stdout","time":1436.418188463,"data":"model n_views variant                                                                    \n"}
+,{"stream_name":"stdout","time":1436.418194688,"data":"vggt  3       all          33.538   9.932       10.604  0.282  0.474         0.386  0.949\n"}
+,{"stream_name":"stdout","time":1436.418199796,"data":"              head         30.929  10.318       11.133  0.303  0.435         0.351  0.910\n"}
+,{"stream_name":"stdout","time":1436.418204524,"data":"              native       32.164  11.604       12.303  0.362  0.374         0.302  0.893\n"}
+,{"stream_name":"stdout","time":1436.41820913,"data":"              random       34.000   9.778       10.518  0.287  0.473         0.384  0.952\n"}
+,{"stream_name":"stdout","time":1436.418218079,"data":"      6       all          28.023   9.964       10.416  0.244  0.563         0.489  0.980\n"}
+,{"stream_name":"stdout","time":1436.418221768,"data":"              head         25.963  11.905       12.472  0.350  0.439         0.379  0.940\n"}
+,{"stream_name":"stdout","time":1436.418226532,"data":"              native       26.637  12.385       13.134  0.394  0.397         0.343  0.913\n"}
+,{"stream_name":"stdout","time":1436.418231354,"data":"              random       28.241  10.051       10.522  0.255  0.556         0.484  0.980\n"}
+,{"stream_name":"stdout","time":1439.163648497,"data":"[exit 0, 1438s]\n"}
+,{"stream_name":"stdout","time":1439.163681966,"data":"\n"}
+,{"stream_name":"stdout","time":1439.163687138,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1439.163691836,"data":"== done  [1438s]\n"}
+,{"stream_name":"stdout","time":1439.163701337,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1439.164816675,"data":"/kaggle/working/results/P19-nvs/pilot/P19-nvs.csv 4647 59d513bed7144de970cf7e2f0d3a18ad\n"}
+,{"stream_name":"stderr","time":1441.200056821,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1441.200086875,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1441.434368328,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1441.434404301,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1442.193941278,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1443.134555581,"data":"[NbConvertApp] Writing 290020 bytes to __results__.html\n"}
+]

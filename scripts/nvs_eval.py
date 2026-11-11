@@ -6,11 +6,12 @@ to the rig with a similarity fitted on the input camera centres; four initial po
   all      every valid predicted point
   native   without the --drop share with the lowest native confidence
   head     without the --drop share with the lowest support score (label-free head <backbone>_oiavisself)
+  both     without the --drop share with the lowest mean rank of the two scores
   random   without a random --drop share (control)
 are each turned into isotropic Gaussians (colour of the pixel, scale from the neighbour distance) and optimised with
 identical settings on the N input images at their rig cameras (no densification, so the point set is the only
 difference). Eight rig views that are not inputs are rendered and scored against the photographs: PSNR, SSIM and
-LPIPS on the full image, and PSNR / LPIPS on the pixels that all four variants cover (accumulated alpha > 0.5), so
+LPIPS on the full image, and PSNR / LPIPS on the pixels that all variants cover (accumulated alpha > 0.5), so
 that a variant is not rewarded or punished for holes alone. train_psnr (input views) is the sanity check of the
 alignment.
 
@@ -30,7 +31,7 @@ import hallu3d as H  # noqa: E402
 from fuse_eval import umeyama  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VARIANTS = ("all", "native", "head", "random")
+VARIANTS = ("all", "native", "head", "both", "random")
 
 
 def held_out_views(views, n_held=8, total=49):
@@ -182,9 +183,13 @@ def main():
                     tr_set, te_set = pack(data), pack(test)
                     rng = np.random.default_rng(1000 * sc + 10 * sd + n)
                     res = {}
+                    from scipy.stats import rankdata
+                    sc_nat, sc_head = c_nat.reshape(-1).astype(np.float64), c_head.reshape(-1).astype(np.float64)
+                    sc_both = np.zeros_like(sc_nat)
+                    sc_both[valid] = rankdata(sc_nat[valid]) + rankdata(sc_head[valid])
                     for var in VARIANTS:
-                        score = c_head if var == "head" else c_nat
-                        keep = keep_mask(valid, score.reshape(-1).astype(np.float64), a.drop, var, rng)
+                        score = {"head": sc_head, "both": sc_both}.get(var, sc_nat)
+                        keep = keep_mask(valid, score, a.drop, var, rng)
                         tr, te, al = fit_and_render(torch, pred[keep], rgb[keep], tr_set, te_set, hw, a.steps, sd)
                         res[var] = dict(tr=tr, te=te, al=al, n=int(keep.sum()))
                     common = torch.stack([res[v]["al"] > 0.5 for v in VARIANTS]).all(0).float()
@@ -214,7 +219,7 @@ def main():
                         cv2.imwrite(os.path.join(a.out, f"{b}_scan{sc}_s{sd}_v{n}.jpg"),
                                     (np.concatenate(strip, 0)[..., ::-1] * 255).astype(np.uint8))
                     pd.DataFrame(rows).to_csv(csv, index=False)
-                    last = {r["variant"]: r for r in rows[-4:]}
+                    last = {r["variant"]: r for r in rows[-len(VARIANTS):]}
                     print(f"[{b}] scan {sc} s{sd} n{n} ({time.time() - t0:.0f}s) train {last['all']['train_psnr']:.1f} | " +
                           " ".join(f"{v} {last[v]['psnr']:.2f}/{last[v]['psnr_common']:.2f}/{last[v]['lpips']:.3f}" for v in VARIANTS),
                           flush=True)
