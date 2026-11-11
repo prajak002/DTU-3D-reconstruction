@@ -84,6 +84,29 @@ def oneside_views(Es, n, seed, pool=12):
     return sorted(int(v) for v in block[pos])
 
 
+def zvisible_flags(gt_pts, zb_pts, in_views, depths_all, Ks, Es, tol=0.03):
+    """Independent visibility for the hole-robust labels (P17, Gate 18): render zb_pts (every ground-truth point of
+    the scene) into each input view as a z-buffer (3x3 minimum filter, as in hole_rate) and call a point of gt_pts
+    z-visible when it lies within tol of the front surface in at least one input view."""
+    from scipy.ndimage import minimum_filter
+    zvis = np.zeros(len(gt_pts), bool)
+    for i in in_views:
+        h, w = depths_all[i].shape
+        u, v, z = H.project(zb_pts, Ks[i], Es[i])
+        ui, vi = np.round(u).astype(int), np.round(v).astype(int)
+        inside = (z > 0) & (ui >= 0) & (ui < w) & (vi >= 0) & (vi < h)
+        zb = np.full((h, w), np.inf)
+        np.minimum.at(zb, (vi[inside], ui[inside]), z[inside])
+        zb = minimum_filter(zb, size=3)
+        u, v, z = H.project(gt_pts, Ks[i], Es[i])
+        ui, vi = np.round(u).astype(int), np.round(v).astype(int)
+        inside = (z > 0) & (ui >= 0) & (ui < w) & (vi >= 0) & (vi < h)
+        ok = np.zeros(len(gt_pts), bool)
+        ok[inside] = z[inside] <= zb[vi[inside], ui[inside]] * (1 + tol)
+        zvis |= ok
+    return zvis
+
+
 def hole_rate(gt_pts, src_view, in_views, depths_all, Ks, Es, tol=0.03):
     """Validity check of the observed test (P14, Gate 12). The depth test calls a ground-truth point observed only
     where an input view's own ground-truth depth exists; a hole in that depth (sparse MVS on CO3Dv2) would label a
@@ -155,6 +178,11 @@ def main():
                          "camera-centre fit degenerate)")
     ap.add_argument("--view-mode", default="spread", choices=["spread", "oneside"],
                     help="spread: the vis protocol's view sets; oneside: views from one end of the DTU rig (Gate 16)")
+    ap.add_argument("--label-mode", default="depth", choices=["depth", "zagree"],
+                    help="depth: unobserved = no input view passes the depth test (P12 to P16); zagree (Gate 18): a "
+                         "ground-truth point the depth test calls unobserved but a z-buffer of the whole scan calls "
+                         "visible in an input view is ambiguous (a hole in that view's reference depth) and is left out "
+                         "of both classes; unobserved = depth test and z-buffer agree")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     if a.dtu:
@@ -189,10 +217,11 @@ def main():
                     m = D[v] > 0
                     pts.append(H.backproject(D[v], Ks[v], Es[v])[m]); src.append(np.full(int(m.sum()), v))
                 pts, src = np.concatenate(pts), np.concatenate(src)
+                pts_all = pts
                 if len(pts) > a.max_gt:
                     k = rng.choice(len(pts), a.max_gt, replace=False); pts, src = pts[k], src[k]
-                gt_cache = {sc: (D, Ks, Es, pts, src)}
-            D, Ks, Es, gt_pts, src = gt_cache[sc]
+                gt_cache = {sc: (D, Ks, Es, pts, src, pts_all)}
+            D, Ks, Es, gt_pts, src, gt_all = gt_cache[sc]
             if a.dtu:
                 views = oneside_views(Es, n, sd) if a.view_mode == "oneside" else H.vis_views(n, sd)
                 data = H.load_scan(root, sc, views, 3)
@@ -230,11 +259,18 @@ def main():
             from scipy.spatial import cKDTree
             dist, idx = cKDTree(gt_pts).query(pred, k=1, workers=-1)
             on = dist < tau
+            if a.label_mode == "zagree":
+                amb = ~obs & zvisible_flags(gt_pts, gt_all, views, D, Ks, Es, a.tol)
+            else:
+                amb = np.zeros(len(gt_pts), bool)
             cls_obs = on & obs[idx]
-            cls_unobs = on & ~obs[idx]
+            cls_unobs = on & ~obs[idx] & ~amb[idx]
+            cls_amb = on & amb[idx]
             cls_off = ~on
             onsurf_valid = float(on[gvalid].mean()) if gvalid.any() else float("nan")
             row = dict(model=mname, scan=sc, seed=sd, n_views=n, align=a.align, view_mode=a.view_mode,
+                       label_mode=a.label_mode, frac_amb=float(cls_amb.mean()),
+                       frac_gt_ambiguous=float(amb.mean()),
                        onsurf_valid=onsurf_valid,
                        n_pred=len(pred), n_gt=len(gt_pts), tau=tau,
                        frac_gt_unobserved=float((~obs).mean()),
@@ -246,7 +282,7 @@ def main():
                        auroc_obs_unobs=H.auroc(score[cls_obs], score[cls_unobs]) if cls_unobs.sum() >= 30 else float("nan"),
                        auroc_obs_off=H.auroc(score[cls_obs], score[cls_off]) if cls_off.sum() >= 30 else float("nan"))
             pd.DataFrame([row]).to_csv(csv, mode="a", header=not os.path.exists(csv), index=False)
-            print(f"[{mname}] scan {sc} views {n} seed {sd}: obs {row['frac_obs']:.3f} unobs {row['frac_unobs']:.4f} "
+            print(f"[{mname}] scan {sc} views {n} seed {sd}: obs {row['frac_obs']:.3f} unobs {row['frac_unobs']:.4f} amb {row['frac_amb']:.4f} "
                   f"off {row['frac_off']:.3f}  auroc obs/unobs {row['auroc_obs_unobs']:.3f}  {time.time() - t0:.0f}s", flush=True)
         if hasattr(model, "free"):
             model.free()
