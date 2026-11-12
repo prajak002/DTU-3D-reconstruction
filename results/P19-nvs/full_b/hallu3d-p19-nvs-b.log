@@ -1,0 +1,351 @@
+[{"stream_name":"stdout","time":0.631064274,"data":"\n"}
+,{"stream_name":"stdout","time":0.631100924,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":0.631106044,"data":"== clone  [0s]\n"}
+,{"stream_name":"stdout","time":0.631109439,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":28.249467691,"data":"commit fb79602\n"}
+,{"stream_name":"stdout","time":28.249518537,"data":"\n"}
+,{"stream_name":"stdout","time":28.249524772,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":28.249530059,"data":"== heads  [28s]\n"}
+,{"stream_name":"stdout","time":28.249534875,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":43.982253286,"data":"pi3 f1d947f9a0c3f53bc8169e73b7cb729f /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/pi3_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":50.599641414,"data":"da3 abdedb64f2069477b9011980e86a2f4c /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/da3_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":50.599668388,"data":"\n"}
+,{"stream_name":"stdout","time":50.599673141,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":50.59967745,"data":"== install backbones (kaggle_prelude.py), gsplat, lpips  [50s]\n"}
+,{"stream_name":"stdout","time":50.599681387,"data":"====================================================================================================\n"}
+,{"stream_name":"stderr","time":65.434591386,"data":"ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\n"}
+,{"stream_name":"stderr","time":65.434616696,"data":"mne 1.13.2 requires decorator\u003e=5.1, but you have decorator 4.4.2 which is incompatible.\n"}
+,{"stream_name":"stderr","time":72.283190268,"data":"ERROR: Package 'depth-anything-3' requires a different Python: 3.13.16 not in '\u003c=3.13,\u003e=3.9'\n"}
+,{"stream_name":"stdout","time":76.18468265,"data":"\n"}
+,{"stream_name":"stdout","time":76.184718018,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":76.184724508,"data":"== gsplat rasterizer (builds its CUDA kernels on first use)  [76s]\n"}
+,{"stream_name":"stdout","time":76.184729046,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":76.184739587,"data":"\n"}
+,{"stream_name":"stdout","time":76.184744762,"data":"$ /usr/bin/python3 -c import torch, gsplat; from gsplat import rasterization; m = torch.rand(100, 3).cuda(); m[:, 2] += 2; q = torch.tensor([1., 0, 0, 0]).repeat(100, 1).cuda(); o = rasterization(m, q, torch.full((100, 3), 0.05).cuda(), torch.full((100,), 0.5).cuda(), torch.rand(100, 3).cuda(), torch.eye(4)[None].cuda(), torch.tensor([[[100., 0, 32], [0, 100., 32], [0, 0, 1]]]).cuda(), 64, 64); print('gsplat', gsplat.__version__, o[0].shape, float(o[1].mean()))\n"}
+,{"stream_name":"stdout","time":394.5045662,"data":"gsplat: CUDA extension has been set up successfully in 311.71 seconds.\n"}
+,{"stream_name":"stdout","time":394.629836445,"data":"gsplat 1.5.3 torch.Size([1, 64, 64, 3]) 0.14763818681240082\n"}
+,{"stream_name":"stdout","time":397.060183374,"data":"[exit 0, 396s]\n"}
+,{"stream_name":"stdout","time":397.060216452,"data":"\n"}
+,{"stream_name":"stdout","time":397.060236822,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":397.06024074,"data":"== novel-view test: ['pi3', 'da3'] scans 21,28,35,37,38,40,43,56,59,66,67,82,86,106,117 views 3,6  [396s]\n"}
+,{"stream_name":"stdout","time":397.06024429,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":397.060247726,"data":"\n"}
+,{"stream_name":"stdout","time":397.060250867,"data":"$ /usr/bin/python3 scripts/nvs_eval.py --dtu /kaggle/input --models pi3,da3 --scans 21,28,35,37,38,40,43,56,59,66,67,82,86,106,117 --views 3,6 --save-images 6 --out /kaggle/working/results/P19-nvs/full_b\n"}
+,{"stream_name":"stdout","time":405.80426867,"data":"Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]\n"}
+,{"stream_name":"stderr","time":405.805043065,"data":"/usr/local/lib/python3.13/dist-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.\n"}
+,{"stream_name":"stderr","time":405.805071948,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":405.805077149,"data":"/usr/local/lib/python3.13/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.\n"}
+,{"stream_name":"stderr","time":405.80508591,"data":"  warnings.warn(msg)\n"}
+,{"stream_name":"stdout","time":406.249146197,"data":"Downloading: \"https://download.pytorch.org/models/alexnet-owt-7be5be79.pth\" to /root/.cache/torch/hub/checkpoints/alexnet-owt-7be5be79.pth\n"}
+,{"stream_name":"stderr","time":407.669907836,"data":"\r  0%|          | 0.00/233M [00:00\u003c?, ?B/s]\r  3%|▎         | 6.12M/233M [00:00\u003c00:03, 64.0MB/s]\r 11%|█         | 25.0M/233M [00:00\u003c00:01, 143MB/s] \r 19%|█▉        | 44.0M/233M [00:00\u003c00:01, 168MB/s]\r 27%|██▋       | 62.1M/233M [00:00\u003c00:01, 176MB/s]\r 34%|███▍      | 80.4M/233M [00:00\u003c00:00, 182MB/s]\r 42%|████▏     | 98.2M/233M [00:00\u003c00:00, 183MB/s]\r 50%|████▉     | 116M/233M [00:00\u003c00:00, 185MB/s] \r 58%|█████▊    | 134M/233M [00:00\u003c00:00, 187MB/s]\r 66%|██████▋   | 154M/233M [00:00\u003c00:00, 194MB/s]\r 75%|███████▍  | 175M/233M [00:01\u003c00:00, 199MB/s]\r 83%|████████▎ | 194M/233M [00:01\u003c00:00, 198MB/s]\r 91%|█████████ | 212M/233M [00:01\u003c00:00, 193MB/s]\r100%|██████████| 233M/233M [00:01\u003c00:00, 187MB/s]\n"}
+,{"stream_name":"stdout","time":407.882088682,"data":"Loading model from: /usr/local/lib/python3.13/dist-packages/lpips/weights/v0.1/alex.pth\n"}
+,{"stream_name":"stdout","time":416.114101944,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stderr","time":416.33540058,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":449.953859974,"data":"[pi3_oiavisself] head from /kaggle/tmp/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stdout","time":637.727684079,"data":"[pi3] scan 21 s0 n3 (188s) train 30.7 | all 10.86/10.94/0.407 native 10.82/10.79/0.412 head 10.49/10.71/0.422 both 10.10/10.43/0.433 random 10.75/10.81/0.411\n"}
+,{"stream_name":"stdout","time":877.541330342,"data":"[pi3] scan 21 s0 n6 (240s) train 26.3 | all 12.16/12.23/0.440 native 11.78/12.01/0.432 head 11.80/12.00/0.429 both 11.53/11.83/0.432 random 12.16/12.25/0.422\n"}
+,{"stream_name":"stdout","time":1048.633520681,"data":"[pi3] scan 28 s0 n3 (171s) train 31.3 | all 10.20/10.64/0.466 native 10.54/11.12/0.442 head 10.27/10.51/0.480 both 11.02/11.23/0.449 random 10.14/10.70/0.473\n"}
+,{"stream_name":"stdout","time":1268.537935869,"data":"[pi3] scan 28 s0 n6 (220s) train 28.1 | all 10.55/10.57/0.469 native 11.69/11.89/0.393 head 11.55/11.66/0.409 both 11.79/11.91/0.390 random 10.61/10.65/0.463\n"}
+,{"stream_name":"stdout","time":1446.518612445,"data":"[pi3] scan 35 s0 n3 (178s) train 34.3 | all 11.57/11.72/0.429 native 12.59/12.80/0.398 head 11.06/11.41/0.449 both 11.32/11.65/0.435 random 11.53/11.55/0.440\n"}
+,{"stream_name":"stdout","time":1679.050238783,"data":"[pi3] scan 35 s0 n6 (233s) train 27.5 | all 12.42/12.84/0.382 native 14.32/15.22/0.377 head 13.22/13.83/0.406 both 13.47/14.14/0.396 random 12.58/13.00/0.378\n"}
+,{"stream_name":"stdout","time":1850.734861276,"data":"[pi3] scan 37 s0 n3 (172s) train 27.3 | all 7.76/7.70/0.543 native 7.91/8.04/0.538 head 7.66/7.73/0.547 both 7.99/7.97/0.522 random 7.64/7.65/0.554\n"}
+,{"stream_name":"stdout","time":2072.897419408,"data":"[pi3] scan 37 s0 n6 (222s) train 27.0 | all 10.11/10.15/0.436 native 10.76/10.90/0.385 head 11.53/11.36/0.363 both 12.06/11.72/0.337 random 10.14/10.22/0.431\n"}
+,{"stream_name":"stdout","time":2254.548477612,"data":"[pi3] scan 38 s0 n3 (182s) train 36.5 | all 10.48/14.86/0.388 native 10.63/15.74/0.377 head 10.89/14.98/0.401 both 11.04/15.82/0.382 random 10.50/14.99/0.387\n"}
+,{"stream_name":"stdout","time":2500.51395003,"data":"[pi3] scan 38 s0 n6 (246s) train 30.0 | all 15.39/16.31/0.301 native 14.95/16.05/0.357 head 14.92/16.13/0.319 both 14.92/16.15/0.352 random 15.36/16.32/0.311\n"}
+,{"stream_name":"stdout","time":2681.402006168,"data":"[pi3] scan 40 s0 n3 (181s) train 32.5 | all 9.87/10.52/0.562 native 9.56/10.16/0.544 head 9.63/10.27/0.584 both 9.86/10.27/0.550 random 10.03/10.58/0.567\n"}
+,{"stream_name":"stdout","time":2919.079884542,"data":"[pi3] scan 40 s0 n6 (238s) train 27.1 | all 10.47/12.03/0.565 native 11.00/12.75/0.503 head 10.91/11.95/0.548 both 11.39/12.31/0.523 random 10.59/12.22/0.561\n"}
+,{"stream_name":"stdout","time":3099.957531449,"data":"[pi3] scan 43 s0 n3 (181s) train 33.0 | all 12.14/14.35/0.299 native 12.07/14.69/0.285 head 12.37/14.39/0.301 both 11.99/14.61/0.287 random 12.08/14.40/0.299\n"}
+,{"stream_name":"stdout","time":3343.872309474,"data":"[pi3] scan 43 s0 n6 (244s) train 27.4 | all 13.60/14.01/0.368 native 13.16/13.74/0.378 head 12.91/13.48/0.384 both 13.25/13.71/0.381 random 13.74/14.15/0.354\n"}
+,{"stream_name":"stdout","time":3521.072953615,"data":"[pi3] scan 56 s0 n3 (177s) train 32.1 | all 14.49/15.45/0.497 native 14.93/16.29/0.464 head 14.44/15.30/0.500 both 14.81/15.98/0.487 random 14.45/15.39/0.502\n"}
+,{"stream_name":"stdout","time":3760.142902987,"data":"[pi3] scan 56 s0 n6 (239s) train 30.4 | all 14.71/14.86/0.512 native 15.24/15.82/0.452 head 15.46/15.94/0.474 both 15.27/15.72/0.472 random 14.67/14.87/0.512\n"}
+,{"stream_name":"stdout","time":3931.312566262,"data":"[pi3] scan 59 s0 n3 (171s) train 30.6 | all 9.87/10.22/0.411 native 10.05/10.40/0.389 head 9.91/10.35/0.398 both 9.54/9.70/0.411 random 10.18/10.25/0.396\n"}
+,{"stream_name":"stdout","time":4149.939427073,"data":"[pi3] scan 59 s0 n6 (219s) train 28.0 | all 12.46/12.69/0.301 native 13.13/13.47/0.280 head 12.21/12.62/0.306 both 12.49/12.79/0.295 random 12.47/12.72/0.297\n"}
+,{"stream_name":"stdout","time":4325.385988413,"data":"[pi3] scan 66 s0 n3 (175s) train 39.2 | all 14.17/14.23/0.416 native 14.26/14.33/0.379 head 13.92/13.99/0.421 both 14.27/14.42/0.405 random 14.03/14.18/0.420\n"}
+,{"stream_name":"stdout","time":4561.054286026,"data":"[pi3] scan 66 s0 n6 (236s) train 32.3 | all 13.43/13.68/0.443 native 15.34/15.30/0.340 head 14.55/14.98/0.393 both 14.62/15.00/0.375 random 13.71/14.00/0.431\n"}
+,{"stream_name":"stdout","time":4740.705133987,"data":"[pi3] scan 67 s0 n3 (180s) train 27.6 | all 11.58/11.30/0.532 native 12.13/11.85/0.520 head 11.30/11.10/0.554 both 11.44/11.28/0.546 random 11.50/11.21/0.531\n"}
+,{"stream_name":"stdout","time":4966.427787612,"data":"[pi3] scan 67 s0 n6 (226s) train 26.7 | all 8.92/8.82/0.630 native 11.30/10.93/0.565 head 9.82/9.57/0.606 both 10.56/10.28/0.589 random 9.17/9.03/0.633\n"}
+,{"stream_name":"stdout","time":5133.847671357,"data":"[pi3] scan 82 s0 n3 (167s) train 35.2 | all 9.48/10.14/0.390 native 10.56/11.09/0.367 head 9.52/10.19/0.400 both 9.09/10.04/0.399 random 9.34/10.13/0.399\n"}
+,{"stream_name":"stdout","time":5352.719952786,"data":"[pi3] scan 82 s0 n6 (219s) train 31.3 | all 9.94/10.24/0.415 native 12.03/12.08/0.357 head 10.77/10.91/0.390 both 11.56/11.61/0.380 random 10.74/10.89/0.384\n"}
+,{"stream_name":"stdout","time":5516.343930767,"data":"[pi3] scan 86 s0 n3 (164s) train 36.3 | all 19.68/19.79/0.453 native 19.31/19.80/0.446 head 19.63/19.77/0.455 both 19.66/19.82/0.460 random 19.67/19.78/0.448\n"}
+,{"stream_name":"stdout","time":5725.853249736,"data":"[pi3] scan 86 s0 n6 (210s) train 35.6 | all 20.76/20.65/0.434 native 21.42/21.27/0.402 head 20.95/20.86/0.418 both 21.32/21.19/0.408 random 20.82/20.71/0.435\n"}
+,{"stream_name":"stdout","time":5907.191465602,"data":"[pi3] scan 106 s0 n3 (181s) train 40.2 | all 17.70/18.22/0.422 native 17.82/18.33/0.405 head 17.97/18.31/0.415 both 17.90/18.43/0.417 random 17.76/18.25/0.416\n"}
+,{"stream_name":"stdout","time":6140.558245708,"data":"[pi3] scan 106 s0 n6 (233s) train 35.4 | all 16.63/16.41/0.504 native 18.14/17.95/0.434 head 17.20/17.00/0.478 both 17.84/17.63/0.445 random 16.71/16.49/0.506\n"}
+,{"stream_name":"stdout","time":6319.89976031,"data":"[pi3] scan 117 s0 n3 (179s) train 38.6 | all 17.97/17.81/0.448 native 18.26/18.12/0.426 head 18.15/18.01/0.448 both 18.38/18.25/0.433 random 17.87/17.72/0.445\n"}
+,{"stream_name":"stdout","time":6559.527948369,"data":"[pi3] scan 117 s0 n6 (240s) train 35.4 | all 16.89/16.45/0.485 native 18.22/18.07/0.411 head 17.94/17.75/0.440 both 18.10/17.96/0.425 random 16.92/16.51/0.482\n"}
+,{"stream_name":"stderr","time":6559.821114134,"data":"/kaggle/tmp/da3/src/depth_anything_3/cfg.py:25: UserWarning: register_new_resolver() is deprecated and will be removed in a future release.\n"}
+,{"stream_name":"stderr","time":6559.821147565,"data":"Use register_resolver() instead.\n"}
+,{"stream_name":"stderr","time":6559.821154095,"data":"See https://github.com/hydra-ecosystem/omegaconf/issues/426 for migration instructions.\n"}
+,{"stream_name":"stderr","time":6559.821161653,"data":"\n"}
+,{"stream_name":"stderr","time":6559.821171261,"data":"  OmegaConf.register_new_resolver(\"eval\", eval)\n"}
+,{"stream_name":"stderr","time":6559.921544433,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/config_defaults.py:47: SyntaxWarning: invalid escape sequence '\\P'\n"}
+,{"stream_name":"stderr","time":6559.921577825,"data":"  IMAGEMAGICK_BINARY = r\"C:\\Program Files\\ImageMagick-6.8.8-Q16\\magick.exe\"\n"}
+,{"stream_name":"stderr","time":6560.042811097,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:294: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":6560.042861752,"data":"  lines_video = [l for l in lines if ' Video: ' in l and re.search('\\d+x\\d+', l)]\n"}
+,{"stream_name":"stderr","time":6560.043242843,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:367: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":6560.043263894,"data":"  rotation_lines = [l for l in lines if 'rotate          :' in l and re.search('\\d+$', l)]\n"}
+,{"stream_name":"stderr","time":6560.043285679,"data":"/usr/local/lib/python3.13/dist-packages/moviepy/video/io/ffmpeg_reader.py:370: SyntaxWarning: invalid escape sequence '\\d'\n"}
+,{"stream_name":"stderr","time":6560.043290579,"data":"  match = re.search('\\d+$', rotation_line)\n"}
+,{"stream_name":"stderr","time":6562.519852292,"data":"error: XDG_RUNTIME_DIR is invalid or not set in the environment.\n"}
+,{"stream_name":"stderr","time":6562.596929566,"data":"ALSA lib confmisc.c:855:(parse_card) cannot find card '0'\n"}
+,{"stream_name":"stderr","time":6562.596971491,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":6562.59697616,"data":"ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings\n"}
+,{"stream_name":"stderr","time":6562.596978955,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":6562.596982007,"data":"ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name\n"}
+,{"stream_name":"stderr","time":6562.596984733,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":6562.596987709,"data":"ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory\n"}
+,{"stream_name":"stderr","time":6562.596990937,"data":"ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default\n"}
+,{"stream_name":"stderr","time":6562.708011954,"data":"ALSA lib confmisc.c:855:(parse_card) cannot find card '0'\n"}
+,{"stream_name":"stderr","time":6562.70806652,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":6562.708073414,"data":"ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings\n"}
+,{"stream_name":"stderr","time":6562.708076451,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":6562.708079507,"data":"ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name\n"}
+,{"stream_name":"stderr","time":6562.70808237,"data":"ALSA lib conf.c:5208:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory\n"}
+,{"stream_name":"stderr","time":6562.70808528,"data":"ALSA lib conf.c:5731:(snd_config_expand) Evaluate error: No such file or directory\n"}
+,{"stream_name":"stderr","time":6562.708088142,"data":"ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default\n"}
+,{"stream_name":"stdout","time":6564.637765882,"data":"\u001b[97m[INFO ] using MLP layer as FFN\u001b[0m\n"}
+,{"stream_name":"stdout","time":6580.357298236,"data":"[da3_oiavisself] head from /kaggle/tmp/checkpoints/da3_oiavisself.pt (step 1500, val-auroc 0.993)\n"}
+,{"stream_name":"stdout","time":6580.608376651,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.05921220779418945 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":6580.668519651,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":6582.009153646,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.3983650207519531 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":6582.010884445,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017671585083007812 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":6582.070336308,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":6583.30953289,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":6759.236393907,"data":"[da3] scan 21 s0 n3 (179s) train 29.2 | all 10.88/11.73/0.411 native 11.16/11.81/0.409 head 10.84/11.68/0.414 both 10.61/11.43/0.421 random 10.86/11.69/0.416\n"}
+,{"stream_name":"stdout","time":6759.533879369,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.06106257438659668 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":6759.564579714,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":6761.793568431,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.255483865737915 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":6761.796616201,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0030357837677001953 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":6761.895092847,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":6764.206577133,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":6998.921616556,"data":"[da3] scan 21 s0 n6 (240s) train 25.5 | all 11.88/11.96/0.473 native 11.44/11.77/0.448 head 11.88/12.04/0.462 both 11.52/11.76/0.455 random 12.09/12.18/0.469\n"}
+,{"stream_name":"stdout","time":6999.135077076,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.03615140914916992 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":6999.161743162,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7000.371287675,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.233736515045166 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7000.373162775,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0019223690032958984 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7000.433940931,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7001.713660454,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7174.884462226,"data":"[da3] scan 28 s0 n3 (176s) train 32.8 | all 11.43/12.17/0.371 native 11.38/12.49/0.364 head 11.84/12.55/0.363 both 11.26/12.03/0.374 random 11.22/12.36/0.368\n"}
+,{"stream_name":"stdout","time":7175.149838954,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.050905704498291016 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":7175.177232149,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7177.409161356,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.2552566528320312 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7177.412074731,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0028924942016601562 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7177.516929465,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7179.824230403,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7395.381398024,"data":"[da3] scan 28 s0 n6 (220s) train 25.2 | all 11.78/11.79/0.448 native 11.93/12.00/0.399 head 11.88/11.90/0.429 both 11.86/11.86/0.422 random 11.99/12.03/0.442\n"}
+,{"stream_name":"stdout","time":7395.580812867,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02477240562438965 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":7395.604196826,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7396.812988065,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2299368381500244 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7396.814898463,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018892288208007812 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7396.875504251,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7398.147281086,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7574.952030487,"data":"[da3] scan 35 s0 n3 (180s) train 32.6 | all 12.09/12.42/0.329 native 11.85/12.26/0.333 head 12.06/12.43/0.328 both 12.08/12.51/0.324 random 12.04/12.41/0.328\n"}
+,{"stream_name":"stdout","time":7575.239614852,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.05336570739746094 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":7575.266158869,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7577.496356319,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.2527010440826416 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7577.499294157,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0030057430267333984 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7577.597384516,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7579.905385103,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7727.894597642,"data":"[da3] scan 35 s0 n6 (153s) train 3.5 | all 2.93/100.00/0.988 native 2.93/100.00/0.988 head 2.93/100.00/0.988 both 2.93/100.00/0.988 random 2.93/100.00/0.988\n"}
+,{"stream_name":"stdout","time":7728.095242883,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.025844335556030273 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":7728.118975008,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7729.333603457,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2360854148864746 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7729.335504022,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0019114017486572266 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7729.395751919,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7730.666294289,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7896.454097959,"data":"[da3] scan 37 s0 n3 (169s) train 30.3 | all 8.03/9.36/0.510 native 8.24/9.43/0.496 head 8.21/9.35/0.504 both 8.13/9.33/0.519 random 8.13/9.32/0.505\n"}
+,{"stream_name":"stdout","time":7896.723871628,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0515134334564209 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":7896.751166681,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7898.989664452,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.261570453643799 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7898.992506456,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002918720245361328 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":7899.090135884,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":7901.425681923,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8109.235022635,"data":"[da3] scan 37 s0 n6 (213s) train 22.9 | all 13.44/14.37/0.373 native 13.65/14.20/0.372 head 13.44/14.19/0.320 both 13.20/14.23/0.328 random 13.83/14.40/0.376\n"}
+,{"stream_name":"stdout","time":8109.445605141,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02737903594970703 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":8109.469805332,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8110.683527736,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2355461120605469 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8110.685413695,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018932819366455078 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8110.74646608,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8112.016002823,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8287.05273221,"data":"[da3] scan 38 s0 n3 (178s) train 34.5 | all 10.13/15.11/0.425 native 10.67/14.92/0.450 head 10.70/15.05/0.441 both 11.22/14.84/0.456 random 10.28/15.17/0.432\n"}
+,{"stream_name":"stdout","time":8287.33811692,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.05701160430908203 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":8287.365033683,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8289.597601488,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.255319356918335 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8289.600697716,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0030448436737060547 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8289.698742639,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8292.027311403,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8521.845917686,"data":"[da3] scan 38 s0 n6 (235s) train 25.6 | all 14.38/14.80/0.391 native 14.45/14.93/0.356 head 14.56/15.14/0.367 both 14.36/15.02/0.353 random 14.60/14.98/0.388\n"}
+,{"stream_name":"stdout","time":8522.049496874,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.027032852172851562 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":8522.073251456,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8523.286333007,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2345073223114014 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8523.28807795,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018563270568847656 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8523.348279893,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8524.617546649,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8699.356153779,"data":"[da3] scan 40 s0 n3 (178s) train 30.1 | all 11.84/14.65/0.438 native 10.57/12.29/0.462 head 11.30/14.67/0.445 both 11.84/14.51/0.441 random 11.65/14.82/0.443\n"}
+,{"stream_name":"stdout","time":8699.633567474,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.04813814163208008 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":8699.660017124,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8701.884595477,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.2469000816345215 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8701.887552557,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002933979034423828 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8701.98419632,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8704.315892002,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8930.98867228,"data":"[da3] scan 40 s0 n6 (232s) train 26.5 | all 12.01/13.25/0.543 native 12.43/13.86/0.398 head 11.27/13.19/0.526 both 11.71/13.11/0.511 random 11.80/13.20/0.542\n"}
+,{"stream_name":"stdout","time":8931.198626701,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.029470205307006836 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":8931.222401454,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8932.436091044,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2351810932159424 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8932.437968827,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0018644332885742188 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":8932.499904863,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":8933.773977224,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9110.886827631,"data":"[da3] scan 43 s0 n3 (180s) train 30.2 | all 10.85/13.05/0.374 native 11.98/13.17/0.379 head 11.43/13.24/0.371 both 11.83/13.23/0.379 random 10.88/13.19/0.369\n"}
+,{"stream_name":"stdout","time":9111.164472253,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.04854440689086914 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":9111.191093299,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9113.426170051,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.2571444511413574 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9113.429428293,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.003625154495239258 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9113.526351482,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9115.851851003,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9356.079257427,"data":"[da3] scan 43 s0 n6 (245s) train 24.7 | all 12.78/13.24/0.446 native 12.74/12.98/0.407 head 12.83/13.33/0.434 both 12.79/13.09/0.416 random 12.89/13.37/0.425\n"}
+,{"stream_name":"stdout","time":9356.278798627,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02513885498046875 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":9356.302090959,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9357.516708126,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.235718011856079 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9357.518457161,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017077922821044922 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9357.573926505,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9358.847343201,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9531.253109162,"data":"[da3] scan 56 s0 n3 (175s) train 29.9 | all 14.50/15.45/0.487 native 14.23/15.16/0.480 head 14.37/15.35/0.487 both 14.36/15.35/0.491 random 14.46/15.41/0.487\n"}
+,{"stream_name":"stdout","time":9531.516214135,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.04743170738220215 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":9531.541926689,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9533.783372926,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.2632436752319336 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9533.786166364,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0027801990509033203 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9533.894165619,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9536.207021715,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9760.459272671,"data":"[da3] scan 56 s0 n6 (229s) train 25.4 | all 13.58/13.42/0.650 native 13.40/13.38/0.620 head 13.58/13.37/0.647 both 13.46/13.32/0.643 random 13.62/13.46/0.650\n"}
+,{"stream_name":"stdout","time":9760.613306813,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.021136760711669922 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":9760.635524426,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9761.849567946,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2341570854187012 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9761.851198075,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017626285552978516 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9761.907382105,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9763.174270089,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9932.59808934,"data":"[da3] scan 59 s0 n3 (172s) train 31.2 | all 10.72/11.02/0.333 native 10.67/10.74/0.339 head 10.77/11.14/0.336 both 10.55/10.97/0.333 random 10.99/11.31/0.321\n"}
+,{"stream_name":"stdout","time":9932.812972683,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0422055721282959 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":9932.838070444,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9935.079402395,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.2626960277557373 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9935.082078645,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002693653106689453 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":9935.178061762,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":9937.504771717,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10148.119359837,"data":"[da3] scan 59 s0 n6 (216s) train 27.6 | all 13.73/15.45/0.323 native 13.41/15.32/0.307 head 13.53/15.41/0.310 both 13.57/15.41/0.312 random 13.66/15.33/0.321\n"}
+,{"stream_name":"stdout","time":10148.281516956,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.021891117095947266 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":10148.304352255,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10149.519053825,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2353484630584717 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10149.520707788,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017554759979248047 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10149.583309716,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10150.855686066,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10323.723354377,"data":"[da3] scan 66 s0 n3 (176s) train 37.0 | all 14.07/14.13/0.360 native 14.02/14.22/0.327 head 14.03/14.11/0.359 both 14.06/14.08/0.363 random 14.08/14.06/0.355\n"}
+,{"stream_name":"stdout","time":10323.963910885,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.047295570373535156 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":10323.991582467,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10326.222154533,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.2545392513275146 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10326.224941868,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002801656723022461 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10326.321612035,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10328.639755881,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10552.334381951,"data":"[da3] scan 66 s0 n6 (229s) train 29.3 | all 15.12/15.14/0.390 native 15.00/14.97/0.378 head 15.12/15.16/0.384 both 15.06/15.11/0.389 random 15.34/15.39/0.397\n"}
+,{"stream_name":"stdout","time":10552.494556101,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.0218505859375 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":10552.51786275,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10553.731511448,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2346889972686768 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10553.733147321,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0016970634460449219 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10553.789231442,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10555.053631298,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10731.264738015,"data":"[da3] scan 67 s0 n3 (179s) train 31.7 | all 12.05/11.45/0.458 native 11.82/11.44/0.451 head 11.76/11.38/0.459 both 11.71/11.37/0.464 random 12.08/11.50/0.449\n"}
+,{"stream_name":"stdout","time":10731.489655158,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.044057369232177734 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":10731.51499958,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10733.736920783,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.243271589279175 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10733.739561109,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002681255340576172 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10733.829847385,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10736.145291875,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10958.421144762,"data":"[da3] scan 67 s0 n6 (227s) train 26.5 | all 9.40/9.03/0.651 native 9.50/9.12/0.641 head 9.32/8.97/0.644 both 9.36/8.99/0.644 random 9.36/9.01/0.649\n"}
+,{"stream_name":"stdout","time":10958.572371703,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.022547245025634766 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":10958.594876343,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10959.806462135,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2320013046264648 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10959.808214275,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.00177001953125 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":10959.869103571,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":10961.138317372,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11127.71529923,"data":"[da3] scan 82 s0 n3 (169s) train 35.3 | all 10.67/11.31/0.329 native 10.89/11.08/0.327 head 10.65/11.19/0.342 both 10.62/11.21/0.338 random 11.16/11.39/0.322\n"}
+,{"stream_name":"stdout","time":11127.955805883,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.04636740684509277 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":11127.982538193,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11130.213804319,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.2538034915924072 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11130.216621176,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0027992725372314453 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11130.305918709,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11132.607661299,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11354.119484434,"data":"[da3] scan 82 s0 n6 (226s) train 30.9 | all 11.94/14.66/0.351 native 11.91/14.73/0.368 head 11.84/14.58/0.353 both 11.94/14.56/0.353 random 12.22/14.98/0.357\n"}
+,{"stream_name":"stdout","time":11354.288386981,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.023325204849243164 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":11354.3110628,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11355.524510875,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2340185642242432 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11355.526209751,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0016732215881347656 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11355.581755088,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11356.850274697,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11517.13182531,"data":"[da3] scan 86 s0 n3 (163s) train 37.3 | all 20.01/19.90/0.447 native 19.70/19.68/0.444 head 19.97/19.88/0.444 both 19.88/19.80/0.450 random 19.95/19.86/0.446\n"}
+,{"stream_name":"stdout","time":11517.367797374,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.04149746894836426 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":11517.394159361,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11519.640652488,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.268711566925049 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11519.643510656,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002854585647583008 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11519.735670345,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11522.052577788,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11716.259114313,"data":"[da3] scan 86 s0 n6 (199s) train 35.8 | all 20.14/19.83/0.468 native 20.07/19.89/0.464 head 20.02/19.77/0.468 both 20.19/20.00/0.455 random 20.16/19.89/0.469\n"}
+,{"stream_name":"stdout","time":11716.450056739,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.02609992027282715 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":11716.473588218,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11717.682664179,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2301623821258545 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11717.684294818,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017764568328857422 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11717.741823676,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11719.017245842,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11896.84093803,"data":"[da3] scan 106 s0 n3 (181s) train 38.1 | all 18.88/19.36/0.370 native 18.59/19.09/0.365 head 18.23/19.06/0.382 both 18.00/18.95/0.383 random 18.79/19.33/0.370\n"}
+,{"stream_name":"stdout","time":11897.088068895,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.043807029724121094 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":11897.114018898,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11899.342229474,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.249969005584717 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11899.344938983,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0027256011962890625 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":11899.437296798,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":11901.752839864,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":12134.302718705,"data":"[da3] scan 106 s0 n6 (237s) train 32.7 | all 17.39/17.22/0.429 native 17.57/17.42/0.411 head 17.27/17.14/0.425 both 17.42/17.29/0.424 random 17.62/17.43/0.416\n"}
+,{"stream_name":"stdout","time":12134.486045637,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.024532318115234375 seconds. Shape:  torch.Size([3, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":12134.508707654,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":12135.725263949,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 1.2371320724487305 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":12135.727023734,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.0017490386962890625 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":12135.791329238,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":12137.062964724,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":12315.267278211,"data":"[da3] scan 117 s0 n3 (181s) train 37.3 | all 19.93/20.13/0.319 native 19.69/20.18/0.318 head 19.81/20.08/0.328 both 19.82/20.06/0.322 random 19.87/20.08/0.323\n"}
+,{"stream_name":"stdout","time":12315.513983465,"data":"\u001b[97m[INFO ] Processed Images Done taking 0.047368526458740234 seconds. Shape:  torch.Size([6, 3, 420, 518])\u001b[0m\n"}
+,{"stream_name":"stdout","time":12315.540543162,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":12317.782000706,"data":"\u001b[97m[INFO ] Model Forward Pass Done. Time: 2.26395845413208 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":12317.784986522,"data":"\u001b[97m[INFO ] Conversion to Prediction Done. Time: 0.002962827682495117 seconds\u001b[0m\n"}
+,{"stream_name":"stdout","time":12317.878074551,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":12320.196691075,"data":"\u001b[97m[INFO ] Selecting reference view using strategy: saddle_balanced\u001b[0m\n"}
+,{"stream_name":"stdout","time":12549.958612739,"data":"[da3] scan 117 s0 n6 (235s) train 32.6 | all 17.50/17.03/0.465 native 17.12/16.99/0.447 head 17.37/16.89/0.471 both 17.38/16.94/0.468 random 17.61/17.14/0.463\n"}
+,{"stream_name":"stdout","time":12549.990561692,"data":"                       train_psnr    psnr  psnr_common   ssim  lpips  lpips_common  cover\n"}
+,{"stream_name":"stdout","time":12549.990587878,"data":"model n_views variant                                                                    \n"}
+,{"stream_name":"stdout","time":12549.990594009,"data":"da3   3       all          33.173  13.072       14.082  0.477  0.398         0.266  0.863\n"}
+,{"stream_name":"stdout","time":12549.990599578,"data":"              both         33.597  13.064       13.979  0.474  0.404         0.270  0.852\n"}
+,{"stream_name":"stdout","time":12549.990605237,"data":"              head         32.940  13.066       14.077  0.474  0.400         0.269  0.861\n"}
+,{"stream_name":"stdout","time":12549.990610316,"data":"              native       34.550  13.030       13.864  0.471  0.396         0.274  0.809\n"}
+,{"stream_name":"stdout","time":12549.990615923,"data":"              random       33.202  13.095       14.127  0.479  0.396         0.266  0.860\n"}
+,{"stream_name":"stdout","time":12549.990621372,"data":"      6       all          26.309  13.200       20.079  0.465  0.493         0.331  0.860\n"}
+,{"stream_name":"stdout","time":12549.990626669,"data":"              both         26.599  13.117       20.047  0.460  0.477         0.320  0.839\n"}
+,{"stream_name":"stdout","time":12549.99063152,"data":"              head         26.353  13.122       20.072  0.464  0.482         0.323  0.851\n"}
+,{"stream_name":"stdout","time":12549.99063644,"data":"              native       26.379  13.171       20.103  0.458  0.467         0.315  0.821\n"}
+,{"stream_name":"stdout","time":12549.990653404,"data":"              random       26.315  13.313       20.187  0.468  0.490         0.329  0.859\n"}
+,{"stream_name":"stdout","time":12549.99065775,"data":"pi3   3       all          33.704  12.522       13.192  0.440  0.444         0.325  0.910\n"}
+,{"stream_name":"stdout","time":12549.990661607,"data":"              both         33.528  12.561       13.325  0.445  0.441         0.320  0.890\n"}
+,{"stream_name":"stdout","time":12549.990665626,"data":"              head         33.414  12.481       13.135  0.438  0.452         0.329  0.905\n"}
+,{"stream_name":"stdout","time":12549.9906695,"data":"              native       33.759  12.763       13.571  0.453  0.426         0.311  0.852\n"}
+,{"stream_name":"stdout","time":12549.990673409,"data":"              random       33.634  12.499       13.172  0.441  0.446         0.326  0.912\n"}
+,{"stream_name":"stdout","time":12549.990677288,"data":"      6       all          29.886  13.230       13.463  0.490  0.446         0.355  0.965\n"}
+,{"stream_name":"stdout","time":12549.990681298,"data":"              both         29.347  14.011       14.263  0.510  0.413         0.330  0.929\n"}
+,{"stream_name":"stdout","time":12549.990685331,"data":"              head         29.520  13.716       14.003  0.503  0.424         0.339  0.945\n"}
+,{"stream_name":"stdout","time":12549.990689224,"data":"              native       28.707  14.165       14.497  0.518  0.404         0.323  0.902\n"}
+,{"stream_name":"stdout","time":12549.990693178,"data":"              random       29.905  13.360       13.602  0.497  0.440         0.351  0.963\n"}
+,{"stream_name":"stdout","time":12553.49579964,"data":"[exit 0, 12553s]\n"}
+,{"stream_name":"stdout","time":12553.495832335,"data":"\n"}
+,{"stream_name":"stdout","time":12553.495838421,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":12553.49584353,"data":"== done  [12553s]\n"}
+,{"stream_name":"stdout","time":12553.495848011,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":12553.497571133,"data":"/kaggle/working/results/P19-nvs/full_b/P19-nvs.csv 58497 d5ff046da080732097aeaefd9c0d3d82\n"}
+,{"stream_name":"stderr","time":12555.61815304,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":12555.618185996,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":12555.842560894,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":12555.842590578,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":12556.751145477,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":12557.30595756,"data":"[NbConvertApp] Writing 290064 bytes to __results__.html\n"}
+]

@@ -1,0 +1,141 @@
+[{"stream_name":"stdout","time":1.017771924,"data":"\n"}
+,{"stream_name":"stdout","time":1.017816651,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":1.017840865,"data":"== clone  [0s]\n"}
+,{"stream_name":"stdout","time":1.017845499,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":26.194703108,"data":"commit fb79602\n"}
+,{"stream_name":"stdout","time":26.194727852,"data":"\n"}
+,{"stream_name":"stdout","time":26.194732424,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":26.194736414,"data":"== heads  [25s]\n"}
+,{"stream_name":"stdout","time":26.194740392,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":43.618932657,"data":"vggt cf9589698a1509ec727dd9988d39cb2f /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/vggt_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":51.312451037,"data":"pi3x fd9bcab8d3507c121b744898c0e2b18e /kaggle/input/datasets/popsensharma/hallu3d-oiavisself-heads/pi3x_oiavisself.pt\n"}
+,{"stream_name":"stdout","time":51.312487944,"data":"\n"}
+,{"stream_name":"stdout","time":51.312493144,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":51.312514133,"data":"== install backbones (kaggle_prelude.py), gsplat, lpips  [50s]\n"}
+,{"stream_name":"stdout","time":51.312520867,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":68.562893469,"data":"\n"}
+,{"stream_name":"stdout","time":68.562933558,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":68.562938592,"data":"== gsplat rasterizer (builds its CUDA kernels on first use)  [68s]\n"}
+,{"stream_name":"stdout","time":68.562941788,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":68.562944939,"data":"\n"}
+,{"stream_name":"stdout","time":68.562948405,"data":"$ /usr/bin/python3 -c import torch, gsplat; from gsplat import rasterization; m = torch.rand(100, 3).cuda(); m[:, 2] += 2; q = torch.tensor([1., 0, 0, 0]).repeat(100, 1).cuda(); o = rasterization(m, q, torch.full((100, 3), 0.05).cuda(), torch.full((100,), 0.5).cuda(), torch.rand(100, 3).cuda(), torch.eye(4)[None].cuda(), torch.tensor([[[100., 0, 32], [0, 100., 32], [0, 0, 1]]]).cuda(), 64, 64); print('gsplat', gsplat.__version__, o[0].shape, float(o[1].mean()))\n"}
+,{"stream_name":"stdout","time":389.427840885,"data":"gsplat: CUDA extension has been set up successfully in 312.82 seconds.\n"}
+,{"stream_name":"stdout","time":389.599170035,"data":"gsplat 1.5.3 torch.Size([1, 64, 64, 3]) 0.15371382236480713\n"}
+,{"stream_name":"stdout","time":392.642013709,"data":"[exit 0, 392s]\n"}
+,{"stream_name":"stdout","time":392.642070048,"data":"\n"}
+,{"stream_name":"stdout","time":392.642080558,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":392.64208559,"data":"== novel-view test: ['vggt', 'pi3x'] scans 21,28,35,37,38,40,43,56,59,66,67,82,86,106,117 views 3,6  [392s]\n"}
+,{"stream_name":"stdout","time":392.642090326,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":392.642108292,"data":"\n"}
+,{"stream_name":"stdout","time":392.642112278,"data":"$ /usr/bin/python3 scripts/nvs_eval.py --dtu /kaggle/input --models vggt,pi3x --scans 21,28,35,37,38,40,43,56,59,66,67,82,86,106,117 --views 3,6 --save-images 6 --out /kaggle/working/results/P19-nvs/full_a\n"}
+,{"stream_name":"stdout","time":402.331536205,"data":"Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]\n"}
+,{"stream_name":"stderr","time":402.332251731,"data":"/usr/local/lib/python3.13/dist-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.\n"}
+,{"stream_name":"stderr","time":402.332263866,"data":"  warnings.warn(\n"}
+,{"stream_name":"stderr","time":402.33226801,"data":"/usr/local/lib/python3.13/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.\n"}
+,{"stream_name":"stderr","time":402.332272731,"data":"  warnings.warn(msg)\n"}
+,{"stream_name":"stdout","time":402.776659021,"data":"Downloading: \"https://download.pytorch.org/models/alexnet-owt-7be5be79.pth\" to /root/.cache/torch/hub/checkpoints/alexnet-owt-7be5be79.pth\n"}
+,{"stream_name":"stderr","time":403.933210122,"data":"\r  0%|          | 0.00/233M [00:00\u003c?, ?B/s]\r  3%|▎         | 7.88M/233M [00:00\u003c00:02, 82.6MB/s]\r 14%|█▍        | 32.4M/233M [00:00\u003c00:01, 185MB/s] \r 24%|██▍       | 56.4M/233M [00:00\u003c00:00, 215MB/s]\r 35%|███▍      | 80.9M/233M [00:00\u003c00:00, 231MB/s]\r 45%|████▌     | 106M/233M [00:00\u003c00:00, 242MB/s] \r 56%|█████▌    | 130M/233M [00:00\u003c00:00, 247MB/s]\r 67%|██████▋   | 155M/233M [00:00\u003c00:00, 251MB/s]\r 77%|███████▋  | 180M/233M [00:00\u003c00:00, 254MB/s]\r 88%|████████▊ | 205M/233M [00:00\u003c00:00, 255MB/s]\r 99%|█████████▊| 230M/233M [00:01\u003c00:00, 257MB/s]\r100%|██████████| 233M/233M [00:01\u003c00:00, 240MB/s]\n"}
+,{"stream_name":"stdout","time":404.153346576,"data":"Loading model from: /usr/local/lib/python3.13/dist-packages/lpips/weights/v0.1/alex.pth\n"}
+,{"stream_name":"stderr","time":413.305365164,"data":"Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\n"}
+,{"stream_name":"stdout","time":455.376446212,"data":"[vggt_oiavisself] head from /kaggle/tmp/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)\n"}
+,{"stream_name":"stderr","time":461.849008061,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":461.849048376,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":635.202055885,"data":"[vggt] scan 21 s0 n3 (180s) train 34.2 | all 10.47/11.21/0.399 native 11.81/12.46/0.343 head 11.25/12.10/0.353 both 11.74/12.29/0.353 random 10.66/11.37/0.390\n"}
+,{"stream_name":"stderr","time":638.535528179,"data":"/usr/local/lib/python3.13/dist-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.\n"}
+,{"stream_name":"stderr","time":638.535570804,"data":"  with torch.cuda.amp.autocast(enabled=False):\n"}
+,{"stream_name":"stdout","time":866.890275637,"data":"[vggt] scan 21 s0 n6 (232s) train 30.0 | all 12.35/12.55/0.356 native 12.71/13.24/0.320 head 12.50/12.91/0.331 both 12.67/13.21/0.326 random 12.52/12.74/0.343\n"}
+,{"stream_name":"stdout","time":1035.781721911,"data":"[vggt] scan 28 s0 n3 (169s) train 33.7 | all 8.82/9.35/0.511 native 11.96/14.00/0.327 head 12.01/13.58/0.359 both 11.92/14.05/0.347 random 9.17/9.94/0.480\n"}
+,{"stream_name":"stdout","time":1251.061938908,"data":"[vggt] scan 28 s0 n6 (215s) train 26.3 | all 8.96/9.19/0.535 native 12.61/12.88/0.305 head 12.59/12.72/0.314 both 12.61/12.81/0.301 random 9.00/9.21/0.530\n"}
+,{"stream_name":"stdout","time":1426.797248279,"data":"[vggt] scan 35 s0 n3 (176s) train 35.2 | all 10.25/10.50/0.457 native 11.67/11.89/0.392 head 11.05/11.62/0.423 both 11.45/11.72/0.402 random 10.33/10.54/0.451\n"}
+,{"stream_name":"stdout","time":1658.993751876,"data":"[vggt] scan 35 s0 n6 (232s) train 28.1 | all 12.15/12.29/0.411 native 13.79/14.36/0.395 head 13.21/13.57/0.415 both 13.29/13.74/0.433 random 11.88/12.17/0.419\n"}
+,{"stream_name":"stdout","time":1828.458115317,"data":"[vggt] scan 37 s0 n3 (169s) train 32.6 | all 7.71/8.04/0.571 native 8.51/8.50/0.504 head 8.30/8.31/0.493 both 8.81/8.49/0.477 random 7.98/8.05/0.566\n"}
+,{"stream_name":"stdout","time":2040.99795218,"data":"[vggt] scan 37 s0 n6 (213s) train 27.7 | all 9.13/9.17/0.517 native 11.88/11.69/0.379 head 11.85/11.38/0.358 both 11.95/11.43/0.351 random 9.39/9.38/0.484\n"}
+,{"stream_name":"stdout","time":2219.912508514,"data":"[vggt] scan 38 s0 n3 (179s) train 37.8 | all 10.49/16.09/0.352 native 11.26/17.40/0.316 head 11.63/17.35/0.335 both 11.73/17.38/0.329 random 10.50/16.15/0.350\n"}
+,{"stream_name":"stdout","time":2459.972541691,"data":"[vggt] scan 38 s0 n6 (240s) train 31.2 | all 15.59/17.28/0.261 native 15.28/18.33/0.271 head 14.95/17.21/0.290 both 14.16/17.02/0.300 random 15.51/17.40/0.262\n"}
+,{"stream_name":"stdout","time":2635.19965205,"data":"[vggt] scan 40 s0 n3 (175s) train 32.0 | all 9.05/9.59/0.611 native 10.02/10.64/0.467 head 9.67/10.40/0.561 both 10.59/11.12/0.500 random 9.38/9.89/0.592\n"}
+,{"stream_name":"stdout","time":2860.792333296,"data":"[vggt] scan 40 s0 n6 (226s) train 27.4 | all 7.82/9.59/0.621 native 11.63/14.47/0.439 head 10.50/13.34/0.487 both 11.58/14.17/0.451 random 7.64/9.30/0.621\n"}
+,{"stream_name":"stdout","time":3035.261390116,"data":"[vggt] scan 43 s0 n3 (174s) train 33.4 | all 10.55/11.58/0.419 native 11.39/12.94/0.347 head 10.97/12.73/0.364 both 12.15/12.86/0.347 random 10.64/11.72/0.414\n"}
+,{"stream_name":"stdout","time":3266.914846867,"data":"[vggt] scan 43 s0 n6 (232s) train 29.9 | all 13.01/14.98/0.332 native 13.54/15.66/0.292 head 13.79/15.29/0.314 both 13.57/15.50/0.304 random 13.29/15.31/0.312\n"}
+,{"stream_name":"stdout","time":3442.465003874,"data":"[vggt] scan 56 s0 n3 (176s) train 35.0 | all 13.64/13.98/0.609 native 15.86/17.56/0.399 head 14.41/15.07/0.478 both 14.63/15.67/0.437 random 13.66/13.97/0.606\n"}
+,{"stream_name":"stdout","time":3671.875218665,"data":"[vggt] scan 56 s0 n6 (229s) train 29.2 | all 11.64/11.56/0.725 native 14.42/14.86/0.532 head 14.50/14.86/0.510 both 14.73/15.31/0.491 random 11.66/11.54/0.722\n"}
+,{"stream_name":"stdout","time":3841.310958998,"data":"[vggt] scan 59 s0 n3 (169s) train 30.1 | all 6.56/7.02/0.587 native 10.71/10.98/0.296 head 9.76/10.20/0.373 both 10.33/10.42/0.314 random 6.49/7.02/0.591\n"}
+,{"stream_name":"stdout","time":4057.535401352,"data":"[vggt] scan 59 s0 n6 (216s) train 28.0 | all 6.97/7.46/0.614 native 10.35/10.79/0.363 head 12.08/12.98/0.315 both 12.17/13.10/0.307 random 7.15/7.66/0.586\n"}
+,{"stream_name":"stdout","time":4230.565454979,"data":"[vggt] scan 66 s0 n3 (173s) train 38.9 | all 11.05/10.79/0.565 native 14.22/14.15/0.401 head 11.84/11.68/0.470 both 12.70/12.72/0.409 random 11.14/10.87/0.563\n"}
+,{"stream_name":"stdout","time":4455.578644667,"data":"[vggt] scan 66 s0 n6 (225s) train 30.3 | all 10.23/9.86/0.621 native 12.81/12.59/0.496 head 12.78/12.55/0.452 both 13.59/13.44/0.419 random 10.21/9.85/0.618\n"}
+,{"stream_name":"stdout","time":4627.934341517,"data":"[vggt] scan 67 s0 n3 (172s) train 38.8 | all 9.42/9.64/0.597 native 13.17/12.66/0.422 head 10.58/10.64/0.529 both 11.47/11.49/0.484 random 9.41/9.62/0.596\n"}
+,{"stream_name":"stdout","time":4849.780905981,"data":"[vggt] scan 67 s0 n6 (222s) train 29.3 | all 9.90/9.29/0.607 native 13.34/13.19/0.486 head 12.70/12.37/0.491 both 13.89/13.88/0.439 random 10.02/9.42/0.598\n"}
+,{"stream_name":"stdout","time":5014.623530204,"data":"[vggt] scan 82 s0 n3 (165s) train 36.0 | all 5.43/5.95/0.704 native 8.31/8.04/0.446 head 7.55/7.71/0.530 both 8.44/8.49/0.448 random 5.41/5.95/0.708\n"}
+,{"stream_name":"stdout","time":5225.97091595,"data":"[vggt] scan 82 s0 n6 (211s) train 25.8 | all 6.08/6.90/0.712 native 9.60/10.19/0.468 head 9.21/9.33/0.459 both 10.28/10.68/0.412 random 6.04/6.87/0.708\n"}
+,{"stream_name":"stdout","time":5399.723786548,"data":"[vggt] scan 86 s0 n3 (174s) train 44.3 | all 19.81/20.03/0.460 native 20.43/20.86/0.411 head 19.89/20.35/0.449 both 20.44/20.84/0.427 random 19.88/20.14/0.455\n"}
+,{"stream_name":"stdout","time":5630.057946305,"data":"[vggt] scan 86 s0 n6 (230s) train 40.7 | all 19.75/20.40/0.477 native 20.91/21.77/0.425 head 20.50/21.37/0.452 both 21.02/21.78/0.428 random 19.78/20.43/0.473\n"}
+,{"stream_name":"stdout","time":5808.573312237,"data":"[vggt] scan 106 s0 n3 (179s) train 42.3 | all 18.08/18.06/0.448 native 20.18/20.94/0.277 head 18.60/18.79/0.381 both 20.58/21.43/0.293 random 18.09/18.08/0.447\n"}
+,{"stream_name":"stdout","time":6041.905035056,"data":"[vggt] scan 106 s0 n6 (233s) train 37.4 | all 16.17/16.01/0.552 native 19.24/19.27/0.410 head 18.54/18.36/0.423 both 19.05/18.93/0.383 random 16.31/16.20/0.546\n"}
+,{"stream_name":"stdout","time":6220.294064822,"data":"[vggt] scan 117 s0 n3 (178s) train 41.3 | all 17.53/17.13/0.489 native 18.84/18.82/0.387 head 18.56/18.60/0.416 both 19.73/20.18/0.366 random 17.65/17.24/0.481\n"}
+,{"stream_name":"stdout","time":6451.471619555,"data":"[vggt] scan 117 s0 n6 (231s) train 35.3 | all 14.91/14.29/0.547 native 17.66/17.44/0.426 head 17.25/17.02/0.440 both 17.59/17.42/0.397 random 15.06/14.45/0.542\n"}
+,{"stream_name":"stdout","time":6451.514512922,"data":"Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead\n"}
+,{"stream_name":"stdout","time":6503.708462647,"data":"[pi3x_oiavisself] head from /kaggle/tmp/checkpoints/pi3x_oiavisself.pt (step 1500, val-auroc 0.996)\n"}
+,{"stream_name":"stdout","time":6677.086510842,"data":"[pi3x] scan 21 s0 n3 (173s) train 32.0 | all 12.53/13.32/0.305 native 11.32/13.37/0.314 head 12.84/13.33/0.300 both 11.75/13.31/0.310 random 12.64/13.36/0.296\n"}
+,{"stream_name":"stdout","time":6903.568457703,"data":"[pi3x] scan 21 s0 n6 (226s) train 26.5 | all 11.57/11.67/0.473 native 11.46/11.66/0.454 head 11.32/11.55/0.468 both 11.41/11.58/0.458 random 11.75/11.87/0.459\n"}
+,{"stream_name":"stdout","time":7060.658968116,"data":"[pi3x] scan 28 s0 n3 (157s) train 29.7 | all 9.79/10.03/0.519 native 9.68/10.05/0.517 head 9.91/10.18/0.537 both 10.08/10.19/0.513 random 9.58/9.98/0.520\n"}
+,{"stream_name":"stdout","time":7267.941993399,"data":"[pi3x] scan 28 s0 n6 (207s) train 28.1 | all 12.03/12.22/0.375 native 12.22/12.46/0.375 head 12.11/12.31/0.374 both 12.02/12.24/0.373 random 12.07/12.27/0.373\n"}
+,{"stream_name":"stdout","time":7427.350917243,"data":"[pi3x] scan 35 s0 n3 (159s) train 32.3 | all 10.51/11.76/0.502 native 11.54/12.42/0.444 head 11.23/12.20/0.474 both 11.28/12.09/0.459 random 10.46/11.73/0.503\n"}
+,{"stream_name":"stdout","time":7642.175297838,"data":"[pi3x] scan 35 s0 n6 (215s) train 28.3 | all 13.30/14.08/0.433 native 13.25/14.12/0.433 head 13.33/14.06/0.425 both 13.32/14.14/0.425 random 13.41/14.22/0.418\n"}
+,{"stream_name":"stdout","time":7803.830876033,"data":"[pi3x] scan 37 s0 n3 (162s) train 30.7 | all 8.41/8.71/0.449 native 8.71/8.89/0.445 head 8.30/8.62/0.443 both 8.55/8.71/0.432 random 8.41/8.72/0.449\n"}
+,{"stream_name":"stdout","time":8015.489944915,"data":"[pi3x] scan 37 s0 n6 (212s) train 25.3 | all 11.67/11.36/0.355 native 11.43/11.48/0.369 head 10.95/11.22/0.371 both 11.44/11.28/0.360 random 11.71/11.38/0.353\n"}
+,{"stream_name":"stdout","time":8182.927554782,"data":"[pi3x] scan 38 s0 n3 (167s) train 33.2 | all 9.66/13.37/0.487 native 10.03/13.54/0.479 head 9.95/13.35/0.486 both 9.97/13.53/0.479 random 9.64/13.33/0.483\n"}
+,{"stream_name":"stdout","time":8411.835859992,"data":"[pi3x] scan 38 s0 n6 (229s) train 25.4 | all 14.17/14.61/0.399 native 13.30/13.99/0.399 head 14.00/14.50/0.398 both 13.80/14.31/0.398 random 14.19/14.63/0.394\n"}
+,{"stream_name":"stdout","time":8584.494005787,"data":"[pi3x] scan 40 s0 n3 (173s) train 31.3 | all 9.67/10.06/0.568 native 9.84/10.34/0.557 head 9.63/10.10/0.587 both 9.71/10.25/0.560 random 10.09/10.45/0.565\n"}
+,{"stream_name":"stdout","time":8727.763622237,"data":"[pi3x] scan 40 s0 n6 (143s) train 5.0 | all 4.91/100.00/1.010 native 4.91/100.00/1.010 head 4.91/100.00/1.010 both 4.91/100.00/1.010 random 4.91/100.00/1.010\n"}
+,{"stream_name":"stdout","time":8899.140632501,"data":"[pi3x] scan 43 s0 n3 (171s) train 33.5 | all 12.02/15.55/0.261 native 11.59/14.60/0.272 head 11.85/15.43/0.271 both 11.79/15.02/0.274 random 11.80/15.68/0.253\n"}
+,{"stream_name":"stdout","time":9130.47068792,"data":"[pi3x] scan 43 s0 n6 (231s) train 28.2 | all 13.44/15.05/0.327 native 13.33/15.12/0.313 head 13.31/14.90/0.327 both 12.89/14.76/0.329 random 13.39/15.10/0.318\n"}
+,{"stream_name":"stdout","time":9292.859657718,"data":"[pi3x] scan 56 s0 n3 (162s) train 33.0 | all 14.26/15.30/0.489 native 14.24/15.43/0.495 head 14.38/15.23/0.500 both 14.28/15.16/0.490 random 14.28/15.27/0.489\n"}
+,{"stream_name":"stdout","time":9509.884894074,"data":"[pi3x] scan 56 s0 n6 (217s) train 31.0 | all 16.00/16.39/0.467 native 15.60/16.09/0.472 head 16.06/16.39/0.472 both 15.44/15.72/0.495 random 16.13/16.44/0.456\n"}
+,{"stream_name":"stdout","time":9669.830130074,"data":"[pi3x] scan 59 s0 n3 (160s) train 30.8 | all 10.80/11.01/0.366 native 11.06/11.47/0.352 head 10.90/11.25/0.352 both 10.76/11.39/0.364 random 10.84/11.28/0.350\n"}
+,{"stream_name":"stdout","time":9882.574665252,"data":"[pi3x] scan 59 s0 n6 (213s) train 26.0 | all 12.93/13.45/0.321 native 12.71/13.29/0.318 head 12.63/13.27/0.319 both 12.65/13.21/0.319 random 13.29/13.68/0.313\n"}
+,{"stream_name":"stdout","time":10046.297356087,"data":"[pi3x] scan 66 s0 n3 (164s) train 33.1 | all 13.93/13.88/0.423 native 14.23/14.26/0.424 head 14.22/14.04/0.421 both 14.19/14.06/0.427 random 13.99/13.94/0.422\n"}
+,{"stream_name":"stdout","time":10262.533589745,"data":"[pi3x] scan 66 s0 n6 (216s) train 29.9 | all 13.28/13.46/0.401 native 13.32/12.98/0.411 head 13.06/13.19/0.421 both 12.63/12.64/0.441 random 13.25/13.36/0.396\n"}
+,{"stream_name":"stdout","time":10429.416427275,"data":"[pi3x] scan 67 s0 n3 (167s) train 30.2 | all 12.15/11.70/0.514 native 12.34/11.99/0.504 head 12.11/11.67/0.523 both 12.10/11.71/0.515 random 12.03/11.57/0.514\n"}
+,{"stream_name":"stdout","time":10647.017980125,"data":"[pi3x] scan 67 s0 n6 (218s) train 31.2 | all 11.99/12.07/0.522 native 13.35/13.06/0.476 head 12.76/12.87/0.517 both 12.93/12.77/0.501 random 12.20/12.24/0.513\n"}
+,{"stream_name":"stdout","time":10803.9130896,"data":"[pi3x] scan 82 s0 n3 (157s) train 35.0 | all 8.92/10.65/0.441 native 9.59/11.09/0.419 head 9.41/10.73/0.441 both 10.66/11.27/0.414 random 10.29/10.82/0.417\n"}
+,{"stream_name":"stdout","time":11014.014755453,"data":"[pi3x] scan 82 s0 n6 (210s) train 29.2 | all 10.97/11.75/0.357 native 11.76/13.13/0.332 head 10.79/11.45/0.370 both 11.05/11.72/0.363 random 11.16/11.88/0.352\n"}
+,{"stream_name":"stdout","time":11166.9500786,"data":"[pi3x] scan 86 s0 n3 (153s) train 39.5 | all 19.74/19.76/0.444 native 19.85/19.74/0.434 head 19.76/19.81/0.439 both 19.55/19.68/0.443 random 19.75/19.81/0.443\n"}
+,{"stream_name":"stdout","time":11363.057253167,"data":"[pi3x] scan 86 s0 n6 (196s) train 38.3 | all 20.59/20.47/0.443 native 20.93/20.82/0.411 head 20.67/20.56/0.424 both 20.85/20.76/0.416 random 20.53/20.41/0.439\n"}
+,{"stream_name":"stdout","time":11526.928003076,"data":"[pi3x] scan 106 s0 n3 (164s) train 39.1 | all 18.32/18.82/0.417 native 17.94/18.35/0.404 head 18.05/18.57/0.407 both 18.07/18.51/0.407 random 18.29/18.79/0.409\n"}
+,{"stream_name":"stdout","time":11739.921582065,"data":"[pi3x] scan 106 s0 n6 (213s) train 34.3 | all 16.87/16.69/0.458 native 17.53/17.37/0.451 head 16.96/16.76/0.457 both 17.39/17.21/0.461 random 16.98/16.78/0.461\n"}
+,{"stream_name":"stdout","time":11904.888915094,"data":"[pi3x] scan 117 s0 n3 (165s) train 38.1 | all 16.52/16.29/0.448 native 16.52/16.33/0.461 head 16.86/16.75/0.447 both 16.44/16.34/0.452 random 16.47/16.24/0.449\n"}
+,{"stream_name":"stdout","time":12121.864081041,"data":"[pi3x] scan 117 s0 n6 (217s) train 35.8 | all 16.64/16.32/0.476 native 17.24/16.92/0.443 head 17.50/17.20/0.449 both 17.41/17.10/0.449 random 16.64/16.33/0.469\n"}
+,{"stream_name":"stdout","time":12121.917899495,"data":"                       train_psnr    psnr  psnr_common   ssim  lpips  lpips_common  cover\n"}
+,{"stream_name":"stdout","time":12121.917924173,"data":"model n_views variant                                                                    \n"}
+,{"stream_name":"stdout","time":12121.917930022,"data":"pi3x  3       all          33.439  12.481       13.346  0.440  0.442         0.308  0.889\n"}
+,{"stream_name":"stdout","time":12121.917940801,"data":"              both         33.356  12.613       13.415  0.442  0.436         0.307  0.863\n"}
+,{"stream_name":"stdout","time":12121.917944319,"data":"              head         33.075  12.627       13.417  0.441  0.442         0.308  0.878\n"}
+,{"stream_name":"stdout","time":12121.917947524,"data":"              native       33.438  12.565       13.457  0.445  0.435         0.305  0.829\n"}
+,{"stream_name":"stdout","time":12121.917950702,"data":"              random       33.352  12.570       13.398  0.442  0.437         0.307  0.883\n"}
+,{"stream_name":"stdout","time":12121.917961164,"data":"      6       all          28.163  13.357       19.972  0.485  0.454         0.302  0.894\n"}
+,{"stream_name":"stdout","time":12121.917964639,"data":"              both         27.482  13.343       19.963  0.477  0.453         0.304  0.871\n"}
+,{"stream_name":"stdout","time":12121.91796784,"data":"              head         27.836  13.358       20.016  0.480  0.453         0.302  0.887\n"}
+,{"stream_name":"stdout","time":12121.917971004,"data":"              native       27.414  13.489       20.166  0.480  0.444         0.298  0.837\n"}
+,{"stream_name":"stdout","time":12121.917974241,"data":"              random       28.348  13.441       20.040  0.489  0.448         0.297  0.892\n"}
+,{"stream_name":"stdout","time":12121.917977392,"data":"vggt  3       all          36.387  11.257       11.930  0.406  0.519         0.367  0.928\n"}
+,{"stream_name":"stdout","time":12121.917980632,"data":"              both         36.027  13.116       13.944  0.493  0.396         0.267  0.869\n"}
+,{"stream_name":"stdout","time":12121.917983662,"data":"              head         35.949  12.406       13.276  0.463  0.434         0.299  0.890\n"}
+,{"stream_name":"stdout","time":12121.917986779,"data":"              native       36.381  13.223       14.122  0.504  0.382         0.260  0.858\n"}
+,{"stream_name":"stdout","time":12121.917989815,"data":"              random       36.670  11.359       12.037  0.412  0.513         0.361  0.925\n"}
+,{"stream_name":"stdout","time":12121.917992852,"data":"      6       all          30.433  11.644       12.054  0.442  0.526         0.394  0.972\n"}
+,{"stream_name":"stdout","time":12121.918005506,"data":"              both         29.217  14.144       14.829  0.547  0.383         0.285  0.890\n"}
+,{"stream_name":"stdout","time":12121.918008334,"data":"              head         29.296  13.797       14.350  0.529  0.403         0.301  0.911\n"}
+,{"stream_name":"stdout","time":12121.918010765,"data":"              native       30.364  13.985       14.716  0.537  0.401         0.299  0.888\n"}
+,{"stream_name":"stdout","time":12121.918013216,"data":"              random       30.727  11.698       12.128  0.451  0.518         0.388  0.971\n"}
+,{"stream_name":"stdout","time":12126.864067087,"data":"[exit 0, 12126s]\n"}
+,{"stream_name":"stdout","time":12126.864110511,"data":"\n"}
+,{"stream_name":"stdout","time":12126.864116423,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":12126.864121269,"data":"== done  [12126s]\n"}
+,{"stream_name":"stdout","time":12126.864125182,"data":"====================================================================================================\n"}
+,{"stream_name":"stdout","time":12126.865343082,"data":"/kaggle/working/results/P19-nvs/full_a/P19-nvs.csv 56440 e0cf613198a1c2cb523b2b6b4cd2ec1a\n"}
+,{"stream_name":"stderr","time":12129.052051028,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":12129.052080203,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":12129.348279325,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":12129.348308193,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":12130.183703396,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":12131.198234662,"data":"[NbConvertApp] Writing 290066 bytes to __results__.html\n"}
+]
