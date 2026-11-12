@@ -37,6 +37,37 @@ def main():
         tests = [f"{c}: {m:+.4f} (p = {q:.5f})" for c in ("auroc_head", "auroc_native", "absrel_S", "absrel_U")
                  for m, q in [signflip(pv[c]["ablate"] - pv[c]["rand"])]]
         L += ["", "ablate minus rand: " + "; ".join(tests), ""]
+    L += ["## C. Variance-matched control for the causal test (declared in LOG.md before the run)", "",
+          "`pc0` to `pc2`: the same edit along the three highest-variance principal directions of the patch tokens after the support "
+          "direction is projected out. p: paired sign-flip over scans, ablate against that direction.", ""]
+    ok = tot = 0
+    for b in ("vggt", "pi3x", "pi3"):
+        p = os.path.join("results", "P21b-causal", f"P21-causal-{b}.csv")
+        if not os.path.exists(p):
+            continue
+        d = pd.read_csv(p)
+        d["cond"] = d["mode"].str.replace(r"rand\d", "rand", regex=True)
+        g = d.groupby(["scan", "cond"]).mean(numeric_only=True).reset_index()
+        t = g.groupby("cond")[cols].mean()
+        pv = g.pivot(index="scan", columns="cond")
+        v = pd.read_csv(os.path.join("results", "P21b-causal", f"P21-causal-{b}-variance.csv"))
+        L += [f"### {b}", "", "token variance per layer, support direction / pc0 / pc1 / pc2: "
+              + "; ".join(f"{r.var_support:.1f} / {r.var_pc0:.1f} / {r.var_pc1:.1f} / {r.var_pc2:.1f}" for r in v.itertuples()), "",
+              "| condition | head AUROC | native AUROC | AbsRel supported | AbsRel single-view | ablate - this: head AUROC (p) | AbsRel single-view (p) |",
+              "|---|---|---|---|---|---|---|"]
+        for c in ("none", "ablate", "rand", "pc0", "pc1", "pc2"):
+            r = t.loc[c]
+            extra = "| | |"
+            if c.startswith("pc"):
+                m, q = signflip(pv["auroc_head"]["ablate"] - pv["auroc_head"][c])
+                m2, q2 = signflip(pv["absrel_U"]["ablate"] - pv["absrel_U"][c])
+                tot += 1
+                ok += int(m < 0 and q < 0.05)
+                extra = f"| {m:+.3f} ({q:.5f}) | {m2:+.4f} ({q2:.5f}) |"
+            L.append(f"| {c} | {r.auroc_head:.3f} | {r.auroc_native:.3f} | {r.absrel_S:.4f} | {r.absrel_U:.4f} {extra}")
+        L.append("")
+    L += [f"**Stated criterion:** ablating the support direction lowers the head's AUROC more than ablating the principal direction, "
+          f"p < 0.05, in {ok} of {tot} comparisons (needed: all).", ""]
     L += ["## B. Foreign-view test (Gate 22)", "",
           "K - 1 views of a DTU benchmark scan plus one view of another scan (`scan`) or Gaussian noise (`noise`); 18 scans, seeds 0 to 2. "
           "`sep`: share of genuine views whose mean score is above the foreign view's (chance 0.5). p: paired sign-flip over the 54 captures, head against native.", "",

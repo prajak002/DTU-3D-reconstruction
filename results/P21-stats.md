@@ -40,6 +40,51 @@ ablate minus rand: auroc_head: -0.3841 (p = 0.00000); auroc_native: -0.2524 (p =
 
 ablate minus rand: auroc_head: -0.3434 (p = 0.00000); auroc_native: -0.3861 (p = 0.00000); absrel_S: +0.0529 (p = 0.00000); absrel_U: +0.1613 (p = 0.00000)
 
+## C. Variance-matched control for the causal test (declared in LOG.md before the run)
+
+`pc0` to `pc2`: the same edit along the three highest-variance principal directions of the patch tokens after the support direction is projected out. p: paired sign-flip over scans, ablate against that direction.
+
+### vggt
+
+token variance per layer, support direction / pc0 / pc1 / pc2: 1.7 / 1.6 / 1.6 / 0.8; 3.0 / 2.7 / 1.4 / 1.3; 48.7 / 58.7 / 40.3 / 18.2; 133.1 / 181.8 / 159.9 / 46.5
+
+| condition | head AUROC | native AUROC | AbsRel supported | AbsRel single-view | ablate - this: head AUROC (p) | AbsRel single-view (p) |
+|---|---|---|---|---|---|---|
+| none | 0.994 | 0.790 | 0.0058 | 0.0110 | | |
+| ablate | 0.659 | 0.560 | 0.0373 | 0.1407 | | |
+| rand | 0.994 | 0.788 | 0.0058 | 0.0109 | | |
+| pc0 | 0.991 | 0.816 | 0.0189 | 0.0388 | -0.333 (0.00000) | +0.1018 (0.00000) |
+| pc1 | 0.994 | 0.830 | 0.0216 | 0.0274 | -0.335 (0.00000) | +0.1132 (0.00000) |
+| pc2 | 0.994 | 0.778 | 0.0182 | 0.0339 | -0.335 (0.00000) | +0.1068 (0.00000) |
+
+### pi3x
+
+token variance per layer, support direction / pc0 / pc1 / pc2: 10.2 / 20.7 / 16.1 / 13.6
+
+| condition | head AUROC | native AUROC | AbsRel supported | AbsRel single-view | ablate - this: head AUROC (p) | AbsRel single-view (p) |
+|---|---|---|---|---|---|---|
+| none | 0.991 | 0.830 | 0.0155 | 0.0262 | | |
+| ablate | 0.607 | 0.577 | 0.0179 | 0.0384 | | |
+| rand | 0.991 | 0.830 | 0.0155 | 0.0264 | | |
+| pc0 | 0.991 | 0.841 | 0.1279 | 0.1530 | -0.384 (0.00000) | -0.1146 (0.00000) |
+| pc1 | 0.991 | 0.819 | 0.0243 | 0.0390 | -0.384 (0.00000) | -0.0006 (0.83280) |
+| pc2 | 0.977 | 0.823 | 0.1052 | 0.0806 | -0.370 (0.00000) | -0.0422 (0.00005) |
+
+### pi3
+
+token variance per layer, support direction / pc0 / pc1 / pc2: 12.8 / 19.6 / 16.9 / 10.9
+
+| condition | head AUROC | native AUROC | AbsRel supported | AbsRel single-view | ablate - this: head AUROC (p) | AbsRel single-view (p) |
+|---|---|---|---|---|---|---|
+| none | 0.991 | 0.818 | 0.0135 | 0.0202 | | |
+| ablate | 0.648 | 0.432 | 0.0665 | 0.1818 | | |
+| rand | 0.991 | 0.818 | 0.0135 | 0.0204 | | |
+| pc0 | 0.991 | 0.797 | 0.0197 | 0.0326 | -0.344 (0.00000) | +0.1492 (0.00000) |
+| pc1 | 0.982 | 0.773 | 0.0335 | 0.0328 | -0.334 (0.00000) | +0.1490 (0.00000) |
+| pc2 | 0.986 | 0.819 | 0.0218 | 0.0307 | -0.338 (0.00000) | +0.1511 (0.00000) |
+
+**Stated criterion:** ablating the support direction lowers the head's AUROC more than ablating the principal direction, p < 0.05, in 9 of 9 comparisons (needed: all).
+
 ## B. Foreign-view test (Gate 22)
 
 K - 1 views of a DTU benchmark scan plus one view of another scan (`scan`) or Gaussian noise (`noise`); 18 scans, seeds 0 to 2. `sep`: share of genuine views whose mean score is above the foreign view's (chance 0.5). p: paired sign-flip over the 54 captures, head against native.
