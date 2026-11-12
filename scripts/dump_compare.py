@@ -26,11 +26,15 @@ def main():
     ap.add_argument("--detectors", default=",pvf8,reproj,oiavisself",
                     help="suffixes after the backbone name; the empty one is native confidence")
     ap.add_argument("--out", default=os.path.join("results", "P20-dump"))
+    ap.add_argument("--hd", action="store_true",
+                    help="also write each score at the model's resolution and the full-size photographs (for display)")
     a = ap.parse_args()
     root = H.find_dtu_root((a.dtu,))
     os.makedirs(a.out, exist_ok=True)
     cfg = {"vis_views": [int(v) for v in a.views.split(",")], "seeds": [int(s) for s in a.seeds.split(",")],
            "dump_dir": os.path.join(a.out, "dtu")}
+    if a.hd:
+        cfg["dump_hd"] = True
     if a.scans:
         cfg["scans"] = [int(s) for s in a.scans.split(",")]
     csv = os.path.join(a.out, "P20-dump.csv")

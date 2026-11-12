@@ -32,6 +32,28 @@ def load_cell(dump, base, key):
     return out
 
 
+def _up(a, hw, thr=None):
+    """Display only: bilinear resize to hw; a mask is resized as a float map and cut at 0.5 (smooth outline)."""
+    import cv2
+    x = cv2.resize(a.astype(np.float32), (hw[1], hw[0]), interpolation=cv2.INTER_LINEAR)
+    return x > thr if thr is not None else x
+
+
+def load_hd(hd, base, key, r, c):
+    """Full-size photograph and each detector's score at the model's resolution (dump_compare.py --hd), resized to
+    the photograph. Labels and thresholds stay the low-resolution ones every number is computed from; the labels
+    are upsampled for display. A detector without a full-resolution dump is upsampled from its low-resolution map."""
+    rgb = np.load(os.path.join(hd, "hd", "rgb", key + ".npz"))["rgb"][r].astype(np.float32) / 255
+    hw = rgb.shape[:2]
+    conf = {}
+    for pat, _ in DETS:
+        q = os.path.join(hd, "hd", pat.format(b=base), key + ".npz")
+        lo = c["conf"][pat]
+        src = np.load(q)["conf"][r].astype(np.float64) if os.path.exists(q) else (lo[r] if lo is not None else None)
+        conf[pat] = None if src is None else _up(np.nan_to_num(src, nan=-1e30, posinf=1e30, neginf=-1e30), hw)
+    return rgb, _up(c["U"][r], hw, 0.5), _up(c["S"][r], hw, 0.5), conf
+
+
 def threshold(conf, S, keep=0.9):
     """Score above which `keep` of the supported pixels of the capture lie (all its views together)."""
     s = conf[S]
@@ -70,6 +92,7 @@ def main():
     ap.add_argument("--rows", nargs="*", default=[], help="cell_key:view_index, e.g. 28__s0__v5:3")
     ap.add_argument("--keep", type=float, default=0.9)
     ap.add_argument("--rank", action="store_true")
+    ap.add_argument("--hd", default=None, help="dump written with dump_compare.py --hd: draw at full resolution")
     ap.add_argument("--out", default=os.path.join("paper", "figures", "fig_compare.pdf"))
     a = ap.parse_args()
     # a detector that was not dumped (HAD needs its own checkout and checkpoint) gets no column
@@ -83,32 +106,36 @@ def main():
     specs = [r.rsplit(":", 1) for r in a.rows]
     cols = ["photograph", "ground truth"] + [n for _, n in DETS]
     h0, w0 = load_cell(a.dump, a.base, specs[0][0])["U"].shape[1:]
-    pw = 1.75
+    pw = 2.3 if a.hd else 1.75
     fig, ax = plt.subplots(len(specs), len(cols), figsize=(len(cols) * pw, len(specs) * pw * h0 / w0 + 0.3), squeeze=False)
     for i, (key, row) in enumerate(specs):
         r = int(row)
         c = load_cell(a.dump, a.base, key)
         U, S = c["U"], c["S"]
         rgb = (c["rgb"][r].astype(np.float32) / 255) if c["rgb"] is not None else np.zeros((*U.shape[1:], 3), np.float32)
+        Ur, Sr, chd = U[r], S[r], None
+        if a.hd:
+            c_lo = load_cell(a.dump, a.base, key)      # thresholds and leak from the dump the numbers come from
+            rgb, Ur, Sr, chd = load_hd(a.hd, a.base, key, r, c_lo)
         gray = rgb.mean(-1, keepdims=True)
         gt = np.repeat(0.25 * gray, 3, -1) + 0.75 * DARK
-        gt[S[r]] = 0.3 * gray[S[r]] + 0.7 * GREEN
-        gt[U[r]] = 0.3 * gray[U[r]] + 0.7 * RED
+        gt[Sr] = 0.3 * gray[Sr] + 0.7 * GREEN
+        gt[Ur] = 0.3 * gray[Ur] + 0.7 * RED
         panels, notes = [rgb, gt], ["", f"{100 * U[r].sum() / max((U[r] | S[r]).sum(), 1):.0f}% single-view"]
         for pat, _ in DETS:
             conf = c["conf"][pat]
             if conf is None:
                 panels.append(np.zeros_like(rgb) + DARK); notes.append("not run"); continue
             lk, tau = leak(conf, U, S, a.keep)
-            keep = conf[r] >= tau
+            keep = (chd[pat] >= tau) if chd is not None else (conf[r] >= tau)
             P = np.repeat(0.25 * gray, 3, -1) + 0.75 * DARK
-            m = keep & S[r]; P[m] = 0.3 * gray[m] + 0.7 * GREEN
-            m = keep & U[r]; P[m] = 0.15 * gray[m] + 0.85 * RED
+            m = keep & Sr; P[m] = 0.3 * gray[m] + 0.7 * GREEN
+            m = keep & Ur; P[m] = 0.15 * gray[m] + 0.85 * RED
             panels.append(P)
-            lv = float((keep & U[r]).sum() / max(U[r].sum(), 1))
+            lv = float(((conf[r] >= tau) & U[r]).sum() / max(U[r].sum(), 1))   # always from the measured maps
             notes.append(f"leak {100 * lv:.0f}%")
         for j, P in enumerate(panels):
-            ax[i, j].imshow(np.clip(P, 0, 1)); ax[i, j].set_xticks([]); ax[i, j].set_yticks([])
+            ax[i, j].imshow(np.clip(P, 0, 1), interpolation="lanczos" if a.hd else None); ax[i, j].set_xticks([]); ax[i, j].set_yticks([])
             for sp in ax[i, j].spines.values():
                 sp.set_linewidth(0.4)
             if i == 0:
@@ -119,8 +146,8 @@ def main():
                               bbox=dict(facecolor="black", alpha=0.6, pad=1.2, edgecolor="none"))
     fig.subplots_adjust(left=0.004, right=0.996, top=0.94, bottom=0.004, wspace=0.03, hspace=0.03)
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
-    fig.savefig(a.out, dpi=300)
-    fig.savefig(os.path.splitext(a.out)[0] + ".png", dpi=200)
+    fig.savefig(a.out, dpi=600 if a.hd else 300)
+    fig.savefig(os.path.splitext(a.out)[0] + ".png", dpi=300 if a.hd else 200)
     print("wrote", a.out)
 
 

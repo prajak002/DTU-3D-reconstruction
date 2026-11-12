@@ -19,6 +19,9 @@ T0 = time.time()
 REPO = "/kaggle/tmp/repo"
 COMMIT = os.environ.get("HALLU3D_COMMIT", "PINNED_COMMIT")
 BASES = os.environ.get("HALLU3D_BASES", "vggt,pi3x").split(",")
+STAGES = os.environ.get("HALLU3D_STAGES", "1,2,3,4").split(",")      # "hd": full-resolution dumps for the figure
+TUM_BASES = [b for b in os.environ.get("HALLU3D_TUM_BASES", ",".join(BASES)).split(",") if b]
+HD_SCANS = "37,82,28"   # the three benchmark scans with the largest single-view share (rule fixed in LOG.md)
 OUT, CK = "/kaggle/working/results/P20-baselines", "/kaggle/tmp/checkpoints"
 RAW, TUM = "/kaggle/tmp/tum_raw", "/kaggle/tmp/tum"
 SC = ("freiburg1_desk,freiburg1_desk2,freiburg1_room,freiburg1_plant,freiburg1_teddy,freiburg1_360,freiburg2_desk,"
@@ -100,24 +103,33 @@ for s in SC.split(","):
 print("reorder exit codes", [j.wait() for j in jobs], f"{time.time() - T0:.0f}s", flush=True)
 print(sorted(os.listdir(TUM)), flush=True)
 
-for b in BASES:
+if "hd" in STAGES:
+    banner("full-resolution dumps for the comparison figure")
+    sh(sys.executable, "scripts/dump_compare.py", "--dtu", "/kaggle/input", "--bases", ",".join(BASES),
+       "--scans", HD_SCANS, "--hd", "--out", "/kaggle/working/results/P20-dump-hd")
+
+for b in (TUM_BASES if "1" in STAGES else []):
     banner(f"stage 1, TUM RGB-D: {b}")
     sh(sys.executable, "scripts/realocc_eval.py", "--co3d-format", TUM, "--scans", SC, "--models", detectors(b),
        "--align", "points", "--label-mode", "zagree", "--out", f"{OUT}/{b}")
 
-for b in BASES:
+for b in (BASES if "2" in STAGES else []):
     banner(f"stage 2, DTU benchmark scans at 3 views: {b}")
     sh(sys.executable, "scripts/realocc_eval.py", "--dtu", "/kaggle/input", "--models", detectors(b),
        "--views", "3", "--label-mode", "zagree", "--out", f"{OUT}/{b}_dtu")
 
-banner("stage 3, per-pixel dumps for the comparison figure: 18 DTU benchmark scans, 5 views, seed 0")
-sh(sys.executable, "scripts/dump_compare.py", "--dtu", "/kaggle/input", "--bases", ",".join(BASES),
-   "--out", "/kaggle/working/results/P20-dump")
+if "3" in STAGES:
+    banner("stage 3, per-pixel dumps for the comparison figure: 18 DTU benchmark scans, 5 views, seed 0")
+    sh(sys.executable, "scripts/dump_compare.py", "--dtu", "/kaggle/input", "--bases", ",".join(BASES),
+       "--out", "/kaggle/working/results/P20-dump")
 
-if HAD_OK:   # separate invocations appended to the same CSVs: a failure here cannot touch the rows above
+if HAD_OK and "4" in STAGES:   # separate invocations appended to the same CSVs: a failure here cannot touch the rows above
     banner("stage 4, HAD scorer: dumps, then real occlusion at 3 and 5 views")
     sh(sys.executable, "scripts/dump_compare.py", "--dtu", "/kaggle/input", "--bases", ",".join(BASES),
        "--detectors", "had", "--out", "/kaggle/working/results/P20-dump")
+    if "hd" in STAGES:
+        sh(sys.executable, "scripts/dump_compare.py", "--dtu", "/kaggle/input", "--bases", ",".join(BASES),
+           "--scans", HD_SCANS, "--hd", "--detectors", "had", "--out", "/kaggle/working/results/P20-dump-hd")
     for b in BASES:
         sh(sys.executable, "scripts/realocc_eval.py", "--dtu", "/kaggle/input", "--models", f"{b}_had",
            "--views", "3", "--label-mode", "zagree", "--out", f"{OUT}/{b}_dtu")

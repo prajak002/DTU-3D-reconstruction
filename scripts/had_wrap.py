@@ -38,6 +38,31 @@ def _stub(name, **attrs):
             setattr(sys.modules[parent], child, m)
 
 
+def _stub_xformers():
+    """Their transformer calls xformers.ops.memory_efficient_attention on (batch, tokens, heads, dim) tensors. When
+    xformers is not installed the same attention is computed with torch's scaled_dot_product_attention (identical
+    mathematics, a different kernel), so the checkpoint runs on a stock torch install."""
+    try:
+        import xformers.ops  # noqa: F401
+        return
+    except Exception:
+        pass
+    import torch.nn.functional as F
+
+    def memory_efficient_attention(q, k, v, attn_bias=None, p=0.0, op=None):
+        x = F.scaled_dot_product_attention(q.transpose(1, 2), k.transpose(1, 2), v.transpose(1, 2),
+                                           attn_mask=attn_bias, dropout_p=p)
+        return x.transpose(1, 2)
+
+    ns = types.SimpleNamespace(FwOp=None, BwOp=None)
+    ops = types.ModuleType("xformers.ops")
+    ops.memory_efficient_attention = memory_efficient_attention
+    ops.fmha = types.SimpleNamespace(flash=ns, cutlass=ns)
+    top = types.ModuleType("xformers")
+    top.ops = ops
+    sys.modules["xformers"], sys.modules["xformers.ops"] = top, ops
+
+
 def had_hw(out_hw, long_side=512, patch=8):
     """Scorer resolution: long side 512 (the training size), the capture's aspect ratio, multiples of the patch."""
     h, w = out_hw
@@ -67,6 +92,7 @@ class HADWrap:
             raise RuntimeError("HAD_ROOT and HAD_CKPT must point at the HAD checkout and its checkpoint")
         for n in ("fused_ssim", "piq", "piq.functional"):
             _stub(n, fused_ssim=None, gaussian_filter=None)
+        _stub_xformers()
         sys.path.insert(0, os.path.join(root, "scripts"))
         import run_lvsm_hallucination as R
         self.R = R

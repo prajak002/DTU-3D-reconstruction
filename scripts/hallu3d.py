@@ -896,6 +896,19 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
                 valid = int((data["depths"] > 0).sum())
                 if cfg.get("dump_dir"):          # per-pixel scores for the risk-coverage / calibration analysis
                     _dump_vis(cfg["dump_dir"], mname, scan, seed, n, d * m["scale"], c, data["depths"], lab, data["imgs"])
+                    if cfg.get("dump_hd"):       # display only: the same score at the model's resolution, and the
+                        try:                     # photographs at their own resolution; no metric reads these
+                            _, c_hd = model.predict(data["imgs"], model_hw, model_hw)
+                            key = f"{scan}__s{seed}__v{n}"
+                            hp = os.path.join(cfg["dump_dir"], "hd", mname, key + ".npz")
+                            os.makedirs(os.path.dirname(hp), exist_ok=True)
+                            np.savez_compressed(hp, conf=c_hd.astype(np.float32))
+                            rp = os.path.join(cfg["dump_dir"], "hd", "rgb", key + ".npz")
+                            if not os.path.exists(rp):
+                                os.makedirs(os.path.dirname(rp), exist_ok=True)
+                                np.savez_compressed(rp, rgb=(np.clip(data["imgs"], 0, 1) * 255).astype(np.uint8))
+                        except Exception as e:
+                            print(f"[dump_hd] {mname} {scan}: {e!r}", flush=True)
                 rows.append(dict(model=mname, scan=scan, seed=seed, radius_frac=0.0, fill=f"vis{n}", n_views=n,
                                  frac_U=nU / max(valid, 1), frac_S=nS / max(valid, 1), skipped=False, **m))
             if not rows:
