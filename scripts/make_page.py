@@ -256,7 +256,7 @@ def page():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Observe, Imagine, Abstain</title>
-<meta name="description" content="HalluBench-3D and the label-free support head: measuring and detecting geometry that feed-forward 3D models return without having seen it. CVPR 2027 submission.">
+<meta name="description" content="HalluBench-3D and the label-free support head: measuring and detecting geometry that feed-forward 3D models return without having seen it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
 <style>{CSS}</style>
@@ -272,7 +272,7 @@ def page():
 <header class="measure">
   <h1>Observe, Imagine, <em>Abstain</em></h1>
   <p class="lede">When a 3D model has not seen a surface, does it say so? We measured five of them. Mostly, no. Then we taught them to say so, without any labels.</p>
-  <p class="sub">Detecting hallucinated geometry in feed-forward 3D reconstruction. Anonymous submission to CVPR 2027.</p>
+  <p class="sub">Detecting hallucinated geometry in feed-forward 3D reconstruction.</p>
   <div class="buttons">
     <a class="primary" href="assets/paper.pdf">Paper (PDF)</a>
     <a href="assets/supp.pdf">Supplement</a>
@@ -419,7 +419,7 @@ def page():
   title     = {{Observe, Imagine, Abstain: Detecting Hallucinated Geometry
                in Feed-Forward 3D Reconstruction}},
   author    = {{Anonymous}},
-  booktitle = {{CVPR submission}},
+  note = {{Preprint}},
   year      = {{2027}}
 }}</pre>
 </section>

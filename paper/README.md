@@ -1,6 +1,6 @@
 # Paper build
 
-- `tex/main.tex`, `tex/refs.bib`, CVPR 2027 author-kit style (`cvpr.sty`, `ieeenat_fullname.bst`), review mode (anonymous, line numbers).
+- `tex/main.tex`, `tex/refs.bib`, conference author-kit style (`cvpr.sty`, `ieeenat_fullname.bst`), review mode (anonymous, line numbers).
 - Build: `cd paper/tex && tectonic main.tex` (XeTeX via tectonic; pdflatex also works with the same sources).
 - Figures: `python scripts/make_figures.py` writes `paper/figures/fig1..fig9` (PDF + PNG) from the CSVs in `results/`. No number is typed by hand.
 - Demo video: `python scripts/make_demo.py` writes `paper/demo/demo.mp4`; see `paper/demo/README.md` for what is live and what is replayed.
