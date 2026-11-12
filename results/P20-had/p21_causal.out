@@ -1,0 +1,69 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[vggt_oiavisself] head from /home/hallu/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)
+[fit] vggt layer 0: |mean_S - mean_U| = 2.307, supported 37534, single-view 4626
+[fit] vggt layer 1: |mean_S - mean_U| = 3.355, supported 37534, single-view 4626
+[fit] vggt layer 2: |mean_S - mean_U| = 13.542, supported 37534, single-view 4626
+[fit] vggt layer 3: |mean_S - mean_U| = 22.413, supported 37534, single-view 4626
+[fit] vggt: 6s
+[vggt] scan 3: head AUROC none 0.998 ablate 0.710 rand0 0.998 | AbsRel_S none 0.0047 ablate 0.0416
+[vggt] scan 5: head AUROC none 0.997 ablate 0.826 rand0 0.997 | AbsRel_S none 0.0043 ablate 0.0339
+[vggt] scan 17: head AUROC none 0.993 ablate 0.834 rand0 0.993 | AbsRel_S none 0.0069 ablate 0.0368
+[vggt] scan 21: head AUROC none 0.996 ablate 0.629 rand0 0.996 | AbsRel_S none 0.0062 ablate 0.0384
+[vggt] scan 28: head AUROC none 0.997 ablate 0.690 rand0 0.997 | AbsRel_S none 0.0051 ablate 0.0397
+[vggt] scan 35: head AUROC none 1.000 ablate 0.910 rand0 1.000 | AbsRel_S none 0.0042 ablate 0.0197
+[vggt] scan 37: head AUROC none 0.991 ablate 0.428 rand0 0.991 | AbsRel_S none 0.0063 ablate 0.0254
+[vggt] scan 38: head AUROC none 0.999 ablate 0.691 rand0 0.999 | AbsRel_S none 0.0047 ablate 0.0236
+[vggt] scan 40: head AUROC none 0.998 ablate 0.597 rand0 0.998 | AbsRel_S none 0.0054 ablate 0.0403
+[vggt] scan 43: head AUROC none 0.998 ablate 0.320 rand0 0.998 | AbsRel_S none 0.0049 ablate 0.0373
+[vggt] scan 56: head AUROC none 0.997 ablate 0.625 rand0 0.997 | AbsRel_S none 0.0052 ablate 0.0386
+[vggt] scan 59: head AUROC none 0.997 ablate 0.561 rand0 0.997 | AbsRel_S none 0.0048 ablate 0.0386
+[vggt] scan 66: head AUROC none 0.995 ablate 0.729 rand0 0.995 | AbsRel_S none 0.0057 ablate 0.0401
+[vggt] scan 67: head AUROC none 0.997 ablate 0.876 rand0 0.997 | AbsRel_S none 0.0047 ablate 0.0349
+[vggt] scan 82: head AUROC none 0.988 ablate 0.464 rand0 0.988 | AbsRel_S none 0.0054 ablate 0.0478
+[vggt] scan 86: head AUROC none 0.959 ablate 0.769 rand0 0.958 | AbsRel_S none 0.0155 ablate 0.0465
+[vggt] scan 106: head AUROC none 0.996 ablate 0.569 rand0 0.996 | AbsRel_S none 0.0056 ablate 0.0452
+[vggt] scan 117: head AUROC none 0.998 ablate 0.627 rand0 0.998 | AbsRel_S none 0.0041 ablate 0.0429
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+[pi3x_oiavisself] head from /home/hallu/checkpoints/pi3x_oiavisself.pt (step 1500, val-auroc 0.996)
+[fit] pi3x layer 0: |mean_S - mean_U| = 5.846, supported 37534, single-view 4626
+[fit] pi3x: 7s
+[pi3x] scan 3: head AUROC none 0.996 ablate 0.626 rand0 0.996 | AbsRel_S none 0.0138 ablate 0.0191
+[pi3x] scan 5: head AUROC none 0.998 ablate 0.574 rand0 0.998 | AbsRel_S none 0.0088 ablate 0.0141
+[pi3x] scan 17: head AUROC none 0.982 ablate 0.745 rand0 0.982 | AbsRel_S none 0.0201 ablate 0.0233
+[pi3x] scan 21: head AUROC none 0.993 ablate 0.464 rand0 0.993 | AbsRel_S none 0.0093 ablate 0.0133
+[pi3x] scan 28: head AUROC none 0.995 ablate 0.612 rand0 0.995 | AbsRel_S none 0.0161 ablate 0.0244
+[pi3x] scan 35: head AUROC none 0.998 ablate 0.814 rand0 0.998 | AbsRel_S none 0.0084 ablate 0.0116
+[pi3x] scan 37: head AUROC none 0.986 ablate 0.701 rand0 0.986 | AbsRel_S none 0.0127 ablate 0.0156
+[pi3x] scan 38: head AUROC none 0.999 ablate 0.669 rand0 0.999 | AbsRel_S none 0.0136 ablate 0.0161
+[pi3x] scan 40: head AUROC none 0.996 ablate 0.617 rand0 0.996 | AbsRel_S none 0.0106 ablate 0.0173
+[pi3x] scan 43: head AUROC none 0.997 ablate 0.336 rand0 0.997 | AbsRel_S none 0.0045 ablate 0.0126
+[pi3x] scan 56: head AUROC none 0.997 ablate 0.560 rand0 0.997 | AbsRel_S none 0.0175 ablate 0.0168
+[pi3x] scan 59: head AUROC none 0.996 ablate 0.549 rand0 0.996 | AbsRel_S none 0.0090 ablate 0.0151
+[pi3x] scan 66: head AUROC none 0.995 ablate 0.522 rand0 0.995 | AbsRel_S none 0.0190 ablate 0.0148
+[pi3x] scan 67: head AUROC none 0.994 ablate 0.857 rand0 0.994 | AbsRel_S none 0.0173 ablate 0.0143
+[pi3x] scan 82: head AUROC none 0.986 ablate 0.424 rand0 0.986 | AbsRel_S none 0.0163 ablate 0.0158
+[pi3x] scan 86: head AUROC none 0.934 ablate 0.732 rand0 0.935 | AbsRel_S none 0.0420 ablate 0.0381
+[pi3x] scan 106: head AUROC none 0.995 ablate 0.505 rand0 0.995 | AbsRel_S none 0.0201 ablate 0.0183
+[pi3x] scan 117: head AUROC none 0.998 ablate 0.614 rand0 0.998 | AbsRel_S none 0.0197 ablate 0.0212
+[pi3_oiavisself] head from /home/hallu/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)
+[fit] pi3 layer 0: |mean_S - mean_U| = 6.685, supported 37534, single-view 4626
+[fit] pi3: 4s
+[pi3] scan 3: head AUROC none 0.995 ablate 0.650 rand0 0.995 | AbsRel_S none 0.0190 ablate 0.0738
+[pi3] scan 5: head AUROC none 0.998 ablate 0.618 rand0 0.998 | AbsRel_S none 0.0067 ablate 0.0675
+[pi3] scan 17: head AUROC none 0.987 ablate 0.817 rand0 0.987 | AbsRel_S none 0.0223 ablate 0.0608
+[pi3] scan 21: head AUROC none 0.995 ablate 0.529 rand0 0.995 | AbsRel_S none 0.0082 ablate 0.0627
+[pi3] scan 28: head AUROC none 0.997 ablate 0.632 rand0 0.997 | AbsRel_S none 0.0168 ablate 0.0822
+[pi3] scan 35: head AUROC none 0.998 ablate 0.826 rand0 0.998 | AbsRel_S none 0.0093 ablate 0.0493
+[pi3] scan 37: head AUROC none 0.989 ablate 0.657 rand0 0.989 | AbsRel_S none 0.0077 ablate 0.0399
+[pi3] scan 38: head AUROC none 0.999 ablate 0.759 rand0 0.999 | AbsRel_S none 0.0114 ablate 0.0529
+[pi3] scan 40: head AUROC none 0.997 ablate 0.571 rand0 0.997 | AbsRel_S none 0.0124 ablate 0.0691
+[pi3] scan 43: head AUROC none 0.998 ablate 0.386 rand0 0.998 | AbsRel_S none 0.0086 ablate 0.0670
+[pi3] scan 56: head AUROC none 0.997 ablate 0.696 rand0 0.997 | AbsRel_S none 0.0118 ablate 0.0763
+[pi3] scan 59: head AUROC none 0.998 ablate 0.585 rand0 0.998 | AbsRel_S none 0.0100 ablate 0.0773
+[pi3] scan 66: head AUROC none 0.995 ablate 0.586 rand0 0.995 | AbsRel_S none 0.0069 ablate 0.0722
+[pi3] scan 67: head AUROC none 0.994 ablate 0.860 rand0 0.994 | AbsRel_S none 0.0131 ablate 0.0650
+[pi3] scan 82: head AUROC none 0.986 ablate 0.504 rand0 0.986 | AbsRel_S none 0.0173 ablate 0.0804
+[pi3] scan 86: head AUROC none 0.925 ablate 0.765 rand0 0.925 | AbsRel_S none 0.0370 ablate 0.0580
+[pi3] scan 106: head AUROC none 0.996 ablate 0.546 rand0 0.996 | AbsRel_S none 0.0144 ablate 0.0794
+[pi3] scan 117: head AUROC none 0.997 ablate 0.673 rand0 0.997 | AbsRel_S none 0.0099 ablate 0.0623
+CAUSAL_DONE

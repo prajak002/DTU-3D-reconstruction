@@ -146,7 +146,7 @@ def main():
                               bbox=dict(facecolor="black", alpha=0.6, pad=1.2, edgecolor="none"))
     fig.subplots_adjust(left=0.004, right=0.996, top=0.94, bottom=0.004, wspace=0.03, hspace=0.03)
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
-    fig.savefig(a.out, dpi=600 if a.hd else 300)
+    fig.savefig(a.out, dpi=300)
     fig.savefig(os.path.splitext(a.out)[0] + ".png", dpi=300 if a.hd else 200)
     print("wrote", a.out)
 

@@ -50,7 +50,7 @@ Other work on reliability in feed-forward 3D asks whether a prediction is *wrong
 | Native confidence of VGGT, Pi3, Pi3X, DA3, MapAnything | every pixel | is this depth likely to be wrong? | nothing | baseline in every table |
 | Perturbation variance (ReVar3R style) | every point | does the prediction move when the input is perturbed? | 4 to 8 extra forwards | reimplemented; below native confidence on the benchmark (AUROC 0.52 to 0.60) |
 | Reprojection with the model's own cameras | every pixel | do the predicted views agree geometrically? | predicted cameras | the head's teacher; the head beats it on three of four datasets and ties on the fourth |
-| HAD hallucination scorer | every pixel of a generated view | is this image consistent with the posed inputs? | known cameras and a second 24-layer network | wrapped as a baseline (`scripts/had_wrap.py`) |
+| HAD hallucination scorer | every pixel of a generated view | is this image consistent with the posed inputs? | known cameras and a second 24-layer network | run with ground-truth cameras (`scripts/had_wrap.py`); its own renderings of DTU reached 11.3 dB, below the 15 dB validity bar fixed in advance, so no comparison is claimed |
 | Trust3R | every pixel | how uncertain is this point? | an evidential head on MASt3R image pairs | cited; different backbone |
 | GeoCond | every camera | is this pose reliable? | an adapter on the backbone | cited; not per pixel |
 | Co-VGGT, "Does VGGT know what it does not know?" | view pairs, scenes | do two views overlap; will pose estimation fail? | a probe on frozen VGGT | cited; not per pixel |
@@ -64,6 +64,49 @@ Measured on identical pixels, single-view against supported geometry (full table
 | **support head, label-free** | **0.98 to 0.99** | **0.88 to 0.94** | **0.95 to 0.98** | **0.92 to 0.94** |
 
 AUROC, range over VGGT-1B, Pi3X, Pi3 and Depth Anything 3. The head never saw any of these scenes; it trains on 79 DTU training scans for ten minutes.
+
+### Side by side at one operating point
+
+<p align="center">
+  <img src="paper/figures/fig_compare.png" width="100%" alt="Three DTU scenes. Columns: photograph, ground-truth support, then what passes each detector's filter: native confidence, perturbation variance, reprojection, support head. Red pixels are single-view geometry that got through; the head column is almost free of red.">
+  <br><sub>Every detector's threshold keeps 90% of the supported pixels. Green: supported pixels that pass. Red: single-view pixels that pass (the leak). VGGT, five views; rows are the three benchmark scans with the largest single-view share, chosen by that rule before looking at any detector.</sub>
+</p>
+
+Share of single-view geometry that passes, mean over the 18 DTU benchmark scans (lower is better):
+
+| backbone | native confidence | perturbation variance | reprojection | **support head** |
+|---|---|---|---|---|
+| VGGT-1B | 47.1% | 64.1% | 6.1% | **1.1%** |
+| Pi3X | 45.3% | 84.5% | 11.5% | **1.6%** |
+| Pi3 | 55.4% | 88.2% | 6.5% | **1.7%** |
+| Depth Anything 3 | 36.8% | 86.3% | 12.2% | **3.8%** |
+
+On real occlusion (DTU at three views and TUM RGB-D at three, five and ten), the head's mean AUROC is above perturbation variance and above reprojection in 16 of 16 settings; the difference is significant in 11 and 14 of them. The pre-registered bar against perturbation variance was 12 of 16, so that gate is recorded as failed by one setting (`results/P20-stats.md`).
+
+### The signal is causal: one direction, and the backbone uses it
+
+Take the difference between the mean token of supported and of single-view patches (fitted on 12 training scans) and set the tokens' component along it to its mean before any head reads them. Mean over the 18 benchmark scans, as unedited / direction removed / random direction removed:
+
+| backbone | support head AUROC | native confidence AUROC | depth error, single-view pixels |
+|---|---|---|---|
+| VGGT-1B | 0.994 / **0.659** / 0.994 | 0.790 / **0.560** / 0.788 | 1.1% / **14.1%** / 1.1% |
+| Pi3X | 0.991 / **0.607** / 0.991 | 0.830 / **0.577** / 0.830 | 2.6% / **3.8%** / 2.6% |
+| Pi3 | 0.991 / **0.648** / 0.991 | 0.818 / **0.432** / 0.818 | 2.0% / **18.2%** / 2.0% |
+
+Removing one direction per layer breaks the detector, the model's own confidence and its geometry; the same edit along a random direction changes nothing. Shifting the tokens along the direction moves reported confidence up or down (Pi3, single-view pixels: 0.28, 0.50, 0.79) while depth changes by under 0.4%. The backbone computes support and relies on it for geometry, yet its confidence separates seen from unseen far less well than the head. Caveat: the random directions carry less token variance than the support direction, so a variance-matched control is still owed (`results/P21-stats.md`).
+
+### It also catches a photograph from another scene
+
+Four views of one DTU scan plus one view of a different scan, the single-outlier setting of ["Can these views be one scene?"](https://arxiv.org/abs/2605.18754). Averaging each detector's score over a view, how often is the foreign view ranked last (chance 20%)?
+
+| backbone | native confidence | reprojection | **support head** |
+|---|---|---|---|
+| VGGT-1B | 78% | 89% | **98%** |
+| Pi3X | 85% | 94% | **94%** |
+| Pi3 | 89% | **96%** | 93% |
+| Depth Anything 3 | 87% | 89% | **100%** |
+
+The head was never trained on foreign views. It beats native confidence significantly on three of four backbones (the pre-registered bar, Gate 22). With ten views every detector is near 100%. When the foreign view is pure Gaussian noise, native confidence is the better detector on Pi3 and Pi3X (100% against 59% to 61%).
 
 ## Contents
 

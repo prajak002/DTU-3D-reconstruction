@@ -1,0 +1,571 @@
++ '[' -d /home/HAD ']'
++ git clone -q https://github.com/xiliu8006/HAD.git /home/HAD
++ git -C /home/HAD checkout -q 484afb4ef24fb62de56c2233123e8030cb82c604
++ pip install -q easydict omegaconf einops lpips torchmetrics jaxtyping imageio gdown
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
++ mkdir -p /home/had_ckpt
++ '[' -f /home/had_ckpt/ckpt_0000000000010000.pt ']'
++ python -m gdown 1004LRTsUr0k1D42Ivcg2Q2Zbzjx2mVCg -O /home/had_ckpt/ckpt_0000000000010000.pt
+Downloading...
+From (original): https://drive.google.com/uc?id=1004LRTsUr0k1D42Ivcg2Q2Zbzjx2mVCg
+From (redirected): https://drive.google.com/uc?id=1004LRTsUr0k1D42Ivcg2Q2Zbzjx2mVCg&confirm=t&uuid=269f87b9-44b7-4587-8d4a-5389e5bcf7f4
+To: /home/had_ckpt/ckpt_0000000000010000.pt
+  0%|          | 0.00/784M [00:00<?, ?B/s]  0%|          | 524k/784M [00:00<05:26, 2.40MB/s]  0%|          | 1.57M/784M [00:00<02:26, 5.34MB/s]  1%|          | 4.19M/784M [00:00<01:02, 12.6MB/s]  1%|          | 8.91M/784M [00:00<00:57, 13.6MB/s]  2%|▏         | 13.1M/784M [00:01<00:54, 14.1MB/s]  2%|▏         | 17.3M/784M [00:01<01:03, 12.1MB/s]  3%|▎         | 21.5M/784M [00:01<00:58, 13.1MB/s]  3%|▎         | 25.7M/784M [00:01<00:46, 16.4MB/s]  4%|▎         | 27.8M/784M [00:02<00:48, 15.7MB/s]  4%|▍         | 32.0M/784M [00:02<00:44, 17.0MB/s]  4%|▍         | 34.1M/784M [00:02<00:47, 15.7MB/s]  5%|▍         | 38.3M/784M [00:02<00:43, 17.1MB/s]  5%|▌         | 40.4M/784M [00:02<00:47, 15.6MB/s]  5%|▌         | 42.5M/784M [00:02<00:45, 16.4MB/s]  6%|▌         | 46.7M/784M [00:03<00:43, 16.8MB/s]  7%|▋         | 52.4M/784M [00:03<00:31, 22.9MB/s]  7%|▋         | 55.1M/784M [00:03<00:34, 21.1MB/s]  7%|▋         | 57.7M/784M [00:03<00:42, 17.2MB/s]  8%|▊         | 59.8M/784M [00:04<01:44, 6.93MB/s]  9%|▊         | 67.1M/784M [00:04<00:56, 12.7MB/s]  9%|▉         | 70.3M/784M [00:05<00:58, 12.1MB/s] 10%|▉         | 75.0M/784M [00:05<00:44, 16.0MB/s] 10%|▉         | 78.1M/784M [00:05<00:51, 13.8MB/s] 11%|█         | 83.9M/784M [00:05<00:36, 19.1MB/s] 11%|█         | 87.0M/784M [00:05<00:42, 16.2MB/s] 12%|█▏        | 91.8M/784M [00:06<00:33, 20.5MB/s] 12%|█▏        | 94.9M/784M [00:06<00:52, 13.1MB/s] 13%|█▎        | 103M/784M [00:06<00:33, 20.5MB/s]  14%|█▎        | 106M/784M [00:06<00:32, 20.8MB/s] 14%|█▍        | 111M/784M [00:06<00:28, 23.8MB/s] 15%|█▍        | 114M/784M [00:07<00:28, 23.7MB/s] 15%|█▌        | 118M/784M [00:07<00:27, 24.3MB/s] 16%|█▌        | 122M/784M [00:07<00:28, 23.5MB/s] 16%|█▋        | 128M/784M [00:07<00:23, 28.1MB/s] 17%|█▋        | 133M/784M [00:07<00:24, 26.6MB/s] 18%|█▊        | 138M/784M [00:07<00:20, 31.1MB/s] 18%|█▊        | 143M/784M [00:08<00:19, 32.1MB/s] 19%|█▊        | 146M/784M [00:08<00:22, 28.1MB/s] 19%|█▉        | 151M/784M [00:08<00:19, 31.9MB/s] 20%|█▉        | 156M/784M [00:08<00:23, 26.9MB/s] 21%|██        | 161M/784M [00:08<00:19, 32.6MB/s] 21%|██        | 166M/784M [00:08<00:21, 28.3MB/s] 22%|██▏       | 170M/784M [00:10<01:00, 10.1MB/s] 22%|██▏       | 173M/784M [00:10<00:59, 10.3MB/s] 22%|██▏       | 175M/784M [00:10<00:55, 10.9MB/s] 23%|██▎       | 182M/784M [00:10<00:34, 17.2MB/s] 24%|██▍       | 187M/784M [00:10<00:30, 19.3MB/s] 25%|██▍       | 193M/784M [00:10<00:23, 25.1MB/s] 25%|██▌       | 198M/784M [00:10<00:21, 27.4MB/s] 26%|██▌       | 201M/784M [00:11<00:21, 27.7MB/s] 26%|██▋       | 208M/784M [00:11<00:17, 33.8MB/s] 27%|██▋       | 212M/784M [00:11<00:17, 33.4MB/s] 28%|██▊       | 219M/784M [00:11<00:16, 34.4MB/s] 29%|██▊       | 224M/784M [00:11<00:14, 38.6MB/s] 29%|██▉       | 229M/784M [00:11<00:14, 37.5MB/s] 30%|██▉       | 233M/784M [00:11<00:16, 33.1MB/s] 30%|███       | 238M/784M [00:12<00:20, 27.2MB/s] 31%|███       | 245M/784M [00:12<00:14, 36.1MB/s] 32%|███▏      | 250M/784M [00:12<00:13, 38.3MB/s] 32%|███▏      | 254M/784M [00:12<00:16, 32.0MB/s] 33%|███▎      | 261M/784M [00:12<00:13, 39.4MB/s] 34%|███▍      | 266M/784M [00:12<00:14, 36.2MB/s] 35%|███▍      | 272M/784M [00:12<00:12, 40.5MB/s] 35%|███▌      | 277M/784M [00:13<00:14, 34.1MB/s] 36%|███▌      | 283M/784M [00:13<00:12, 38.6MB/s] 37%|███▋      | 288M/784M [00:13<00:14, 33.3MB/s] 37%|███▋      | 292M/784M [00:13<00:14, 32.9MB/s] 38%|███▊      | 300M/784M [00:13<00:12, 39.5MB/s] 39%|███▉      | 307M/784M [00:13<00:10, 45.7MB/s] 40%|███▉      | 312M/784M [00:14<00:12, 37.2MB/s] 40%|████      | 317M/784M [00:14<00:12, 37.1MB/s] 41%|████      | 321M/784M [00:14<00:14, 32.4MB/s] 41%|████▏     | 325M/784M [00:15<00:44, 10.3MB/s] 42%|████▏     | 331M/784M [00:15<00:31, 14.2MB/s] 43%|████▎     | 339M/784M [00:15<00:21, 20.3MB/s] 44%|████▍     | 344M/784M [00:16<00:20, 21.6MB/s] 45%|████▍     | 349M/784M [00:16<00:17, 25.0MB/s] 45%|████▌     | 353M/784M [00:17<00:41, 10.3MB/s] 46%|████▌     | 361M/784M [00:17<00:28, 15.0MB/s] 47%|████▋     | 365M/784M [00:17<00:25, 16.3MB/s] 48%|████▊     | 373M/784M [00:17<00:18, 22.5MB/s] 48%|████▊     | 377M/784M [00:17<00:16, 24.9MB/s] 49%|████▊     | 382M/784M [00:18<00:16, 24.7MB/s] 50%|████▉     | 388M/784M [00:18<00:12, 31.7MB/s] 50%|█████     | 393M/784M [00:18<00:13, 29.3MB/s] 51%|█████     | 398M/784M [00:18<00:11, 32.6MB/s] 51%|█████▏    | 402M/784M [00:18<00:11, 31.9MB/s] 52%|█████▏    | 407M/784M [00:18<00:10, 36.4MB/s] 53%|█████▎    | 412M/784M [00:18<00:12, 29.3MB/s] 54%|█████▎    | 419M/784M [00:19<00:09, 36.7MB/s] 54%|█████▍    | 424M/784M [00:19<00:10, 33.4MB/s] 55%|█████▍    | 428M/784M [00:19<00:10, 35.3MB/s] 55%|█████▌    | 433M/784M [00:19<00:10, 32.2MB/s] 56%|█████▌    | 439M/784M [00:19<00:08, 39.8MB/s] 57%|█████▋    | 444M/784M [00:19<00:08, 40.2MB/s] 57%|█████▋    | 449M/784M [00:20<00:13, 25.7MB/s] 58%|█████▊    | 456M/784M [00:20<00:09, 33.9MB/s] 59%|█████▉    | 461M/784M [00:20<00:10, 31.4MB/s] 59%|█████▉    | 466M/784M [00:20<00:09, 33.3MB/s] 60%|██████    | 470M/784M [00:20<00:08, 35.7MB/s] 61%|██████    | 477M/784M [00:20<00:07, 41.6MB/s] 61%|██████▏   | 481M/784M [00:20<00:07, 39.4MB/s] 62%|██████▏   | 486M/784M [00:20<00:07, 41.2MB/s] 63%|██████▎   | 491M/784M [00:21<00:07, 39.0MB/s] 63%|██████▎   | 497M/784M [00:21<00:06, 41.8MB/s] 64%|██████▍   | 501M/784M [00:21<00:06, 42.0MB/s] 65%|██████▍   | 506M/784M [00:21<00:09, 30.4MB/s] 65%|██████▌   | 511M/784M [00:21<00:08, 34.0MB/s] 66%|██████▌   | 516M/784M [00:21<00:08, 32.2MB/s] 67%|██████▋   | 524M/784M [00:21<00:06, 38.6MB/s] 68%|██████▊   | 531M/784M [00:22<00:05, 43.6MB/s] 69%|██████▊   | 537M/784M [00:22<00:06, 36.5MB/s] 69%|██████▉   | 543M/784M [00:22<00:05, 40.5MB/s] 70%|███████   | 549M/784M [00:22<00:05, 44.2MB/s] 71%|███████   | 554M/784M [00:22<00:06, 37.7MB/s] 71%|███████▏  | 559M/784M [00:22<00:05, 40.0MB/s] 72%|███████▏  | 564M/784M [00:23<00:07, 30.8MB/s] 73%|███████▎  | 570M/784M [00:23<00:06, 34.9MB/s] 73%|███████▎  | 574M/784M [00:23<00:13, 15.7MB/s] 74%|███████▍  | 578M/784M [00:24<00:11, 18.6MB/s] 74%|███████▍  | 584M/784M [00:24<00:09, 21.7MB/s] 75%|███████▌  | 589M/784M [00:24<00:07, 26.1MB/s] 76%|███████▌  | 597M/784M [00:24<00:05, 34.5MB/s] 77%|███████▋  | 602M/784M [00:24<00:04, 37.3MB/s] 77%|███████▋  | 607M/784M [00:24<00:04, 36.3MB/s] 78%|███████▊  | 612M/784M [00:24<00:04, 38.4MB/s] 79%|███████▊  | 617M/784M [00:24<00:04, 34.1MB/s] 80%|███████▉  | 623M/784M [00:25<00:03, 40.2MB/s] 80%|████████  | 628M/784M [00:25<00:03, 40.7MB/s] 81%|████████  | 633M/784M [00:25<00:04, 36.3MB/s] 81%|████████▏ | 638M/784M [00:25<00:03, 39.2MB/s] 82%|████████▏ | 643M/784M [00:25<00:04, 33.6MB/s] 83%|████████▎ | 649M/784M [00:26<00:08, 15.5MB/s] 84%|████████▎ | 656M/784M [00:26<00:05, 21.5MB/s] 84%|████████▍ | 660M/784M [00:27<00:07, 15.6MB/s] 85%|████████▌ | 667M/784M [00:27<00:05, 21.0MB/s] 86%|████████▌ | 672M/784M [00:27<00:05, 21.0MB/s] 87%|████████▋ | 679M/784M [00:27<00:03, 28.4MB/s] 87%|████████▋ | 684M/784M [00:27<00:03, 31.3MB/s] 88%|████████▊ | 688M/784M [00:27<00:02, 32.6MB/s] 88%|████████▊ | 693M/784M [00:27<00:02, 33.7MB/s] 89%|████████▉ | 698M/784M [00:27<00:02, 37.0MB/s] 90%|████████▉ | 705M/784M [00:28<00:02, 33.5MB/s] 91%|█████████ | 709M/784M [00:29<00:06, 11.3MB/s] 92%|█████████▏| 717M/784M [00:29<00:04, 16.6MB/s] 92%|█████████▏| 722M/784M [00:29<00:03, 17.7MB/s] 93%|█████████▎| 726M/784M [00:29<00:02, 19.9MB/s] 94%|█████████▎| 734M/784M [00:29<00:01, 26.8MB/s] 94%|█████████▍| 738M/784M [00:30<00:01, 29.0MB/s] 95%|█████████▍| 743M/784M [00:30<00:01, 32.3MB/s] 95%|█████████▌| 748M/784M [00:30<00:01, 28.8MB/s] 96%|█████████▌| 753M/784M [00:30<00:00, 32.6MB/s] 97%|█████████▋| 757M/784M [00:30<00:00, 26.7MB/s] 97%|█████████▋| 763M/784M [00:30<00:00, 32.2MB/s] 98%|█████████▊| 768M/784M [00:30<00:00, 31.7MB/s] 99%|█████████▊| 772M/784M [00:31<00:00, 33.7MB/s] 99%|█████████▉| 776M/784M [00:31<00:00, 26.6MB/s]100%|██████████| 784M/784M [00:31<00:00, 24.9MB/s]
++ sha256sum /home/had_ckpt/ckpt_0000000000010000.pt
+dd272986eaded1eee8058af4cc619ec94c0dab320942e2549db6d1ea84a2acce  /home/had_ckpt/ckpt_0000000000010000.pt
++ export HAD_ROOT=/home/HAD HAD_CKPT=/home/had_ckpt/ckpt_0000000000010000.pt
++ HAD_ROOT=/home/HAD
++ HAD_CKPT=/home/had_ckpt/ckpt_0000000000010000.pt
++ python scripts/dump_compare.py --dtu /home/data/dtu --bases vggt --detectors had --out /home/hallu/results/P20-dump-had
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading LVSM checkpoint from /home/had_ckpt/ckpt_0000000000010000.pt
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 9.70 dB (all captures so far 9.70 dB, 5 views)
+[vggt_had] scan 3  auroc=0.406  cur=0.916  absrel_U=0.011 (S 0.005)  fracU=0.045  9s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 9.15 dB (all captures so far 9.43 dB, 10 views)
+[vggt_had] scan 5  auroc=0.312  cur=0.986  absrel_U=0.007 (S 0.004)  fracU=0.034  10s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 9.78 dB (all captures so far 9.55 dB, 15 views)
+[vggt_had] scan 17  auroc=0.388  cur=0.924  absrel_U=0.013 (S 0.007)  fracU=0.096  12s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 9.05 dB (all captures so far 9.42 dB, 20 views)
+[vggt_had] scan 21  auroc=0.330  cur=0.933  absrel_U=0.008 (S 0.006)  fracU=0.100  13s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 10.84 dB (all captures so far 9.71 dB, 25 views)
+[vggt_had] scan 28  auroc=0.388  cur=0.936  absrel_U=0.010 (S 0.005)  fracU=0.186  15s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 10.88 dB (all captures so far 9.90 dB, 30 views)
+[vggt_had] scan 35  auroc=0.408  cur=0.948  absrel_U=0.008 (S 0.004)  fracU=0.062  17s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 8.47 dB (all captures so far 9.70 dB, 35 views)
+[vggt_had] scan 37  auroc=0.125  cur=0.978  absrel_U=0.012 (S 0.006)  fracU=0.241  18s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 9.98 dB (all captures so far 9.73 dB, 40 views)
+[vggt_had] scan 38  auroc=0.270  cur=0.951  absrel_U=0.012 (S 0.005)  fracU=0.106  20s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 9.40 dB (all captures so far 9.70 dB, 45 views)
+[vggt_had] scan 40  auroc=0.185  cur=0.962  absrel_U=0.012 (S 0.005)  fracU=0.179  22s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 10.24 dB (all captures so far 9.75 dB, 50 views)
+[vggt_had] scan 43  auroc=0.149  cur=0.973  absrel_U=0.007 (S 0.005)  fracU=0.102  23s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 14.28 dB (all captures so far 10.16 dB, 55 views)
+[vggt_had] scan 56  auroc=0.194  cur=0.995  absrel_U=0.009 (S 0.005)  fracU=0.109  25s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 10.06 dB (all captures so far 10.15 dB, 60 views)
+[vggt_had] scan 59  auroc=0.200  cur=0.984  absrel_U=0.008 (S 0.005)  fracU=0.125  26s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 12.56 dB (all captures so far 10.34 dB, 65 views)
+[vggt_had] scan 66  auroc=0.627  cur=0.948  absrel_U=0.008 (S 0.006)  fracU=0.098  28s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 8.81 dB (all captures so far 10.23 dB, 70 views)
+[vggt_had] scan 67  auroc=0.724  cur=0.784  absrel_U=0.016 (S 0.005)  fracU=0.099  29s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 9.42 dB (all captures so far 10.18 dB, 75 views)
+[vggt_had] scan 82  auroc=0.235  cur=0.970  absrel_U=0.012 (S 0.005)  fracU=0.190  31s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 16.91 dB (all captures so far 10.60 dB, 80 views)
+[vggt_had] scan 86  auroc=0.554  cur=0.937  absrel_U=0.025 (S 0.015)  fracU=0.071  32s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 14.34 dB (all captures so far 10.82 dB, 85 views)
+[vggt_had] scan 106  auroc=0.473  cur=0.911  absrel_U=0.009 (S 0.006)  fracU=0.087  33s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 12.69 dB (all captures so far 10.92 dB, 90 views)
+[vggt_had] scan 117  auroc=0.315  cur=0.976  absrel_U=0.009 (S 0.004)  fracU=0.088  35s
+[dump] vggt_had: 65s
++ python scripts/dump_compare.py --dtu /home/data/dtu --bases vggt --scans 37,82,28 --hd --detectors had --out /home/hallu/results/P20-dump-hd-had
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading LVSM checkpoint from /home/had_ckpt/ckpt_0000000000010000.pt
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 8.47 dB (all captures so far 8.47 dB, 5 views)
+[dump_hd] vggt_had 37: RuntimeError('HADWrap.predict called before set_cams')
+[vggt_had] scan 37  auroc=0.125  cur=0.978  absrel_U=0.012 (S 0.006)  fracU=0.241  8s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 9.42 dB (all captures so far 8.94 dB, 10 views)
+[dump_hd] vggt_had 82: RuntimeError('HADWrap.predict called before set_cams')
+[vggt_had] scan 82  auroc=0.235  cur=0.970  absrel_U=0.012 (S 0.005)  fracU=0.190  10s
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 5 views at 408x512: render PSNR 10.84 dB (all captures so far 9.58 dB, 15 views)
+[dump_hd] vggt_had 28: RuntimeError('HADWrap.predict called before set_cams')
+[vggt_had] scan 28  auroc=0.388  cur=0.936  absrel_U=0.010 (S 0.005)  fracU=0.186  11s
+[dump] vggt_had: 43s
++ for b in vggt pi3x pi3 da3
++ python scripts/realocc_eval.py --dtu /home/data/dtu --models vggt_had,vggt_oiavisself,vggt --views 3 --label-mode zagree --out /home/hallu/results/P20-had/vggt_dtu
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading LVSM checkpoint from /home/had_ckpt/ckpt_0000000000010000.pt
+/root/miniconda3/envs/py3.10/lib/python3.10/site-packages/vggt/models/vggt.py:65: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with torch.cuda.amp.autocast(enabled=False):
+[vggt_had] 3 views at 408x512: render PSNR 8.87 dB (all captures so far 8.87 dB, 3 views)
+[vggt_had] scan 3 views 3 seed 0: obs 0.261 unobs 0.0043 amb 0.0050 off 0.730  auroc obs/unobs 0.498  8s
+[vggt_had] 3 views at 408x512: render PSNR 10.44 dB (all captures so far 9.65 dB, 6 views)
+[vggt_had] scan 3 views 3 seed 1: obs 0.049 unobs 0.0012 amb 0.0009 off 0.949  auroc obs/unobs 0.587  10s
+[vggt_had] 3 views at 408x512: render PSNR 8.55 dB (all captures so far 9.29 dB, 9 views)
+[vggt_had] scan 5 views 3 seed 0: obs 0.504 unobs 0.0040 amb 0.0055 off 0.486  auroc obs/unobs 0.575  12s
+[vggt_had] 3 views at 408x512: render PSNR 11.59 dB (all captures so far 9.86 dB, 12 views)
+[vggt_had] scan 5 views 3 seed 1: obs 0.490 unobs 0.0059 amb 0.0049 off 0.499  auroc obs/unobs 0.434  15s
+[vggt_had] 3 views at 408x512: render PSNR 9.16 dB (all captures so far 9.72 dB, 15 views)
+[vggt_had] scan 17 views 3 seed 0: obs 0.614 unobs 0.0054 amb 0.0097 off 0.371  auroc obs/unobs 0.512  16s
+[vggt_had] 3 views at 408x512: render PSNR 13.02 dB (all captures so far 10.27 dB, 18 views)
+[vggt_had] scan 17 views 3 seed 1: obs 0.886 unobs 0.0023 amb 0.0079 off 0.104  auroc obs/unobs 0.453  18s
+[vggt_had] 3 views at 408x512: render PSNR 7.53 dB (all captures so far 9.88 dB, 21 views)
+[vggt_had] scan 21 views 3 seed 0: obs 0.503 unobs 0.0075 amb 0.0062 off 0.483  auroc obs/unobs 0.502  20s
+[vggt_had] 3 views at 408x512: render PSNR 11.28 dB (all captures so far 10.06 dB, 24 views)
+[vggt_had] scan 21 views 3 seed 1: obs 0.487 unobs 0.0055 amb 0.0072 off 0.500  auroc obs/unobs 0.556  22s
+[vggt_had] 3 views at 408x512: render PSNR 8.49 dB (all captures so far 9.88 dB, 27 views)
+[vggt_had] scan 28 views 3 seed 0: obs 0.772 unobs 0.0048 amb 0.0043 off 0.219  auroc obs/unobs 0.624  24s
+[vggt_had] 3 views at 408x512: render PSNR 11.05 dB (all captures so far 10.00 dB, 30 views)
+[vggt_had] scan 28 views 3 seed 1: obs 0.735 unobs 0.0133 amb 0.0029 off 0.249  auroc obs/unobs 0.407  26s
+[vggt_had] 3 views at 408x512: render PSNR 9.28 dB (all captures so far 9.93 dB, 33 views)
+[vggt_had] scan 35 views 3 seed 0: obs 0.399 unobs 0.0024 amb 0.0004 off 0.599  auroc obs/unobs 0.375  28s
+[vggt_had] 3 views at 408x512: render PSNR 9.47 dB (all captures so far 9.90 dB, 36 views)
+[vggt_had] scan 35 views 3 seed 1: obs 0.292 unobs 0.0384 amb 0.0000 off 0.670  auroc obs/unobs 0.334  30s
+[vggt_had] 3 views at 408x512: render PSNR 8.16 dB (all captures so far 9.76 dB, 39 views)
+[vggt_had] scan 37 views 3 seed 0: obs 0.576 unobs 0.0300 amb 0.0035 off 0.390  auroc obs/unobs 0.399  33s
+[vggt_had] 3 views at 408x512: render PSNR 12.79 dB (all captures so far 9.98 dB, 42 views)
+[vggt_had] scan 37 views 3 seed 1: obs 0.785 unobs 0.0285 amb 0.0028 off 0.183  auroc obs/unobs 0.367  35s
+[vggt_had] 3 views at 408x512: render PSNR 9.45 dB (all captures so far 9.94 dB, 45 views)
+[vggt_had] scan 38 views 3 seed 0: obs 0.509 unobs 0.0036 amb 0.0026 off 0.485  auroc obs/unobs 0.171  37s
+[vggt_had] 3 views at 408x512: render PSNR 12.13 dB (all captures so far 10.08 dB, 48 views)
+[vggt_had] scan 38 views 3 seed 1: obs 0.542 unobs 0.0062 amb 0.0019 off 0.450  auroc obs/unobs 0.593  39s
+[vggt_had] 3 views at 408x512: render PSNR 9.20 dB (all captures so far 10.03 dB, 51 views)
+[vggt_had] scan 40 views 3 seed 0: obs 0.436 unobs 0.0115 amb 0.0019 off 0.550  auroc obs/unobs 0.365  41s
+[vggt_had] 3 views at 408x512: render PSNR 10.59 dB (all captures so far 10.06 dB, 54 views)
+[vggt_had] scan 40 views 3 seed 1: obs 0.314 unobs 0.0077 amb 0.0013 off 0.677  auroc obs/unobs 0.313  43s
+[vggt_had] 3 views at 408x512: render PSNR 7.71 dB (all captures so far 9.94 dB, 57 views)
+[vggt_had] scan 43 views 3 seed 0: obs 0.544 unobs 0.0075 amb 0.0027 off 0.446  auroc obs/unobs 0.487  45s
+[vggt_had] 3 views at 408x512: render PSNR 10.93 dB (all captures so far 9.99 dB, 60 views)
+[vggt_had] scan 43 views 3 seed 1: obs 0.935 unobs 0.0045 amb 0.0014 off 0.059  auroc obs/unobs 0.566  47s
+[vggt_had] 3 views at 408x512: render PSNR 13.06 dB (all captures so far 10.13 dB, 63 views)
+[vggt_had] scan 56 views 3 seed 0: obs 0.700 unobs 0.0066 amb 0.0042 off 0.289  auroc obs/unobs 0.225  49s
+[vggt_had] 3 views at 408x512: render PSNR 15.45 dB (all captures so far 10.37 dB, 66 views)
+[vggt_had] scan 56 views 3 seed 1: obs 0.671 unobs 0.0236 amb 0.0048 off 0.301  auroc obs/unobs 0.349  51s
+[vggt_had] 3 views at 408x512: render PSNR 7.54 dB (all captures so far 10.25 dB, 69 views)
+[vggt_had] scan 59 views 3 seed 0: obs 0.685 unobs 0.0025 amb 0.0055 off 0.307  auroc obs/unobs 0.454  54s
+[vggt_had] 3 views at 408x512: render PSNR 12.46 dB (all captures so far 10.34 dB, 72 views)
+[vggt_had] scan 59 views 3 seed 1: obs 0.750 unobs 0.0103 amb 0.0036 off 0.236  auroc obs/unobs 0.258  55s
+[vggt_had] 3 views at 408x512: render PSNR 9.72 dB (all captures so far 10.32 dB, 75 views)
+[vggt_had] scan 66 views 3 seed 0: obs 0.313 unobs 0.0055 amb 0.0026 off 0.679  auroc obs/unobs 0.318  57s
+[vggt_had] 3 views at 408x512: render PSNR 13.78 dB (all captures so far 10.45 dB, 78 views)
+[vggt_had] scan 66 views 3 seed 1: obs 0.178 unobs 0.0031 amb 0.0013 off 0.818  auroc obs/unobs 0.489  59s
+[vggt_had] 3 views at 408x512: render PSNR 8.58 dB (all captures so far 10.38 dB, 81 views)
+[vggt_had] scan 67 views 3 seed 0: obs 0.479 unobs 0.0041 amb 0.0010 off 0.516  auroc obs/unobs 0.791  60s
+[vggt_had] 3 views at 408x512: render PSNR 13.10 dB (all captures so far 10.48 dB, 84 views)
+[vggt_had] scan 67 views 3 seed 1: obs 0.220 unobs 0.0022 amb 0.0014 off 0.776  auroc obs/unobs 0.470  62s
+[vggt_had] 3 views at 408x512: render PSNR 7.71 dB (all captures so far 10.38 dB, 87 views)
+[vggt_had] scan 82 views 3 seed 0: obs 0.701 unobs 0.0102 amb 0.0060 off 0.283  auroc obs/unobs 0.554  64s
+[vggt_had] 3 views at 408x512: render PSNR 11.82 dB (all captures so far 10.43 dB, 90 views)
+[vggt_had] scan 82 views 3 seed 1: obs 0.512 unobs 0.0322 amb 0.0028 off 0.453  auroc obs/unobs 0.643  66s
+[vggt_had] 3 views at 408x512: render PSNR 18.13 dB (all captures so far 10.68 dB, 93 views)
+[vggt_had] scan 86 views 3 seed 0: obs 0.142 unobs 0.0046 amb 0.0085 off 0.845  auroc obs/unobs 0.641  67s
+[vggt_had] 3 views at 408x512: render PSNR 20.58 dB (all captures so far 10.99 dB, 96 views)
+[vggt_had] scan 86 views 3 seed 1: obs 0.181 unobs 0.0095 amb 0.0187 off 0.791  auroc obs/unobs 0.537  69s
+[vggt_had] 3 views at 408x512: render PSNR 13.96 dB (all captures so far 11.08 dB, 99 views)
+[vggt_had] scan 106 views 3 seed 0: obs 0.653 unobs 0.0034 amb 0.0068 off 0.336  auroc obs/unobs 0.427  70s
+[vggt_had] 3 views at 408x512: render PSNR 15.72 dB (all captures so far 11.22 dB, 102 views)
+[vggt_had] scan 106 views 3 seed 1: obs 0.753 unobs 0.0061 amb 0.0071 off 0.234  auroc obs/unobs 0.390  72s
+[vggt_had] 3 views at 408x512: render PSNR 12.10 dB (all captures so far 11.24 dB, 105 views)
+[vggt_had] scan 117 views 3 seed 0: obs 0.441 unobs 0.0054 amb 0.0074 off 0.546  auroc obs/unobs 0.245  74s
+[vggt_had] 3 views at 408x512: render PSNR 14.90 dB (all captures so far 11.34 dB, 108 views)
+[vggt_had] scan 117 views 3 seed 1: obs 0.365 unobs 0.0032 amb 0.0037 off 0.628  auroc obs/unobs 0.559  76s
+[vggt_oiavisself] head from /home/hallu/checkpoints/vggt_oiavisself.pt (step 1500, val-auroc 0.997)
+[vggt_oiavisself] scan 3 views 3 seed 0: obs 0.261 unobs 0.0043 amb 0.0050 off 0.730  auroc obs/unobs 0.871  1s
+[vggt_oiavisself] scan 3 views 3 seed 1: obs 0.049 unobs 0.0012 amb 0.0009 off 0.949  auroc obs/unobs 0.632  2s
+[vggt_oiavisself] scan 5 views 3 seed 0: obs 0.504 unobs 0.0040 amb 0.0055 off 0.486  auroc obs/unobs 0.911  3s
+[vggt_oiavisself] scan 5 views 3 seed 1: obs 0.490 unobs 0.0059 amb 0.0049 off 0.499  auroc obs/unobs 0.915  4s
+[vggt_oiavisself] scan 17 views 3 seed 0: obs 0.614 unobs 0.0054 amb 0.0097 off 0.371  auroc obs/unobs 0.739  5s
+[vggt_oiavisself] scan 17 views 3 seed 1: obs 0.886 unobs 0.0023 amb 0.0079 off 0.104  auroc obs/unobs 0.871  6s
+[vggt_oiavisself] scan 21 views 3 seed 0: obs 0.503 unobs 0.0075 amb 0.0062 off 0.483  auroc obs/unobs 0.899  7s
+[vggt_oiavisself] scan 21 views 3 seed 1: obs 0.487 unobs 0.0055 amb 0.0072 off 0.500  auroc obs/unobs 0.883  8s
+[vggt_oiavisself] scan 28 views 3 seed 0: obs 0.772 unobs 0.0048 amb 0.0043 off 0.219  auroc obs/unobs 0.871  9s
+[vggt_oiavisself] scan 28 views 3 seed 1: obs 0.735 unobs 0.0133 amb 0.0029 off 0.249  auroc obs/unobs 0.892  10s
+[vggt_oiavisself] scan 35 views 3 seed 0: obs 0.399 unobs 0.0024 amb 0.0004 off 0.599  auroc obs/unobs 0.972  12s
+[vggt_oiavisself] scan 35 views 3 seed 1: obs 0.292 unobs 0.0384 amb 0.0000 off 0.670  auroc obs/unobs 0.812  13s
+[vggt_oiavisself] scan 37 views 3 seed 0: obs 0.576 unobs 0.0300 amb 0.0035 off 0.390  auroc obs/unobs 0.706  15s
+[vggt_oiavisself] scan 37 views 3 seed 1: obs 0.785 unobs 0.0285 amb 0.0028 off 0.183  auroc obs/unobs 0.756  17s
+[vggt_oiavisself] scan 38 views 3 seed 0: obs 0.509 unobs 0.0036 amb 0.0026 off 0.485  auroc obs/unobs 0.876  18s
+[vggt_oiavisself] scan 38 views 3 seed 1: obs 0.542 unobs 0.0062 amb 0.0019 off 0.450  auroc obs/unobs 0.904  18s
+[vggt_oiavisself] scan 40 views 3 seed 0: obs 0.436 unobs 0.0115 amb 0.0019 off 0.550  auroc obs/unobs 0.738  19s
+[vggt_oiavisself] scan 40 views 3 seed 1: obs 0.314 unobs 0.0077 amb 0.0013 off 0.677  auroc obs/unobs 0.793  20s
+[vggt_oiavisself] scan 43 views 3 seed 0: obs 0.544 unobs 0.0075 amb 0.0027 off 0.446  auroc obs/unobs 0.893  21s
+[vggt_oiavisself] scan 43 views 3 seed 1: obs 0.935 unobs 0.0045 amb 0.0014 off 0.059  auroc obs/unobs 0.907  22s
+[vggt_oiavisself] scan 56 views 3 seed 0: obs 0.700 unobs 0.0066 amb 0.0042 off 0.289  auroc obs/unobs 0.866  23s
+[vggt_oiavisself] scan 56 views 3 seed 1: obs 0.671 unobs 0.0236 amb 0.0048 off 0.301  auroc obs/unobs 0.834  24s
+[vggt_oiavisself] scan 59 views 3 seed 0: obs 0.685 unobs 0.0025 amb 0.0055 off 0.307  auroc obs/unobs 0.835  25s
+[vggt_oiavisself] scan 59 views 3 seed 1: obs 0.750 unobs 0.0103 amb 0.0036 off 0.236  auroc obs/unobs 0.890  26s
+[vggt_oiavisself] scan 66 views 3 seed 0: obs 0.313 unobs 0.0055 amb 0.0026 off 0.679  auroc obs/unobs 0.725  27s
+[vggt_oiavisself] scan 66 views 3 seed 1: obs 0.178 unobs 0.0031 amb 0.0013 off 0.818  auroc obs/unobs 0.867  29s
+[vggt_oiavisself] scan 67 views 3 seed 0: obs 0.479 unobs 0.0041 amb 0.0010 off 0.516  auroc obs/unobs 0.922  30s
+[vggt_oiavisself] scan 67 views 3 seed 1: obs 0.220 unobs 0.0022 amb 0.0014 off 0.776  auroc obs/unobs 0.896  31s
+[vggt_oiavisself] scan 82 views 3 seed 0: obs 0.701 unobs 0.0102 amb 0.0060 off 0.283  auroc obs/unobs 0.738  32s
+[vggt_oiavisself] scan 82 views 3 seed 1: obs 0.512 unobs 0.0322 amb 0.0028 off 0.453  auroc obs/unobs 0.586  33s
+[vggt_oiavisself] scan 86 views 3 seed 0: obs 0.142 unobs 0.0046 amb 0.0085 off 0.845  auroc obs/unobs 0.707  34s
+[vggt_oiavisself] scan 86 views 3 seed 1: obs 0.181 unobs 0.0095 amb 0.0187 off 0.791  auroc obs/unobs 0.776  35s
+[vggt_oiavisself] scan 106 views 3 seed 0: obs 0.653 unobs 0.0034 amb 0.0068 off 0.336  auroc obs/unobs 0.884  36s
+[vggt_oiavisself] scan 106 views 3 seed 1: obs 0.753 unobs 0.0061 amb 0.0071 off 0.234  auroc obs/unobs 0.816  37s
+[vggt_oiavisself] scan 117 views 3 seed 0: obs 0.441 unobs 0.0054 amb 0.0074 off 0.546  auroc obs/unobs 0.883  38s
+[vggt_oiavisself] scan 117 views 3 seed 1: obs 0.365 unobs 0.0032 amb 0.0037 off 0.628  auroc obs/unobs 0.797  39s
+[vggt] scan 3 views 3 seed 0: obs 0.261 unobs 0.0043 amb 0.0050 off 0.730  auroc obs/unobs 0.654  1s
+[vggt] scan 3 views 3 seed 1: obs 0.049 unobs 0.0012 amb 0.0009 off 0.949  auroc obs/unobs 0.788  2s
+[vggt] scan 5 views 3 seed 0: obs 0.504 unobs 0.0040 amb 0.0055 off 0.486  auroc obs/unobs 0.563  3s
+[vggt] scan 5 views 3 seed 1: obs 0.490 unobs 0.0059 amb 0.0049 off 0.499  auroc obs/unobs 0.744  4s
+[vggt] scan 17 views 3 seed 0: obs 0.614 unobs 0.0054 amb 0.0097 off 0.371  auroc obs/unobs 0.686  5s
+[vggt] scan 17 views 3 seed 1: obs 0.886 unobs 0.0023 amb 0.0079 off 0.104  auroc obs/unobs 0.964  6s
+[vggt] scan 21 views 3 seed 0: obs 0.503 unobs 0.0075 amb 0.0062 off 0.483  auroc obs/unobs 0.705  7s
+[vggt] scan 21 views 3 seed 1: obs 0.487 unobs 0.0055 amb 0.0072 off 0.500  auroc obs/unobs 0.783  8s
+[vggt] scan 28 views 3 seed 0: obs 0.772 unobs 0.0048 amb 0.0043 off 0.219  auroc obs/unobs 0.928  9s
+[vggt] scan 28 views 3 seed 1: obs 0.735 unobs 0.0133 amb 0.0029 off 0.249  auroc obs/unobs 0.571  10s
+[vggt] scan 35 views 3 seed 0: obs 0.399 unobs 0.0024 amb 0.0004 off 0.599  auroc obs/unobs 0.824  11s
+[vggt] scan 35 views 3 seed 1: obs 0.292 unobs 0.0384 amb 0.0000 off 0.670  auroc obs/unobs 0.703  12s
+[vggt] scan 37 views 3 seed 0: obs 0.576 unobs 0.0300 amb 0.0035 off 0.390  auroc obs/unobs 0.601  14s
+[vggt] scan 37 views 3 seed 1: obs 0.785 unobs 0.0285 amb 0.0028 off 0.183  auroc obs/unobs 0.745  15s
+[vggt] scan 38 views 3 seed 0: obs 0.509 unobs 0.0036 amb 0.0026 off 0.485  auroc obs/unobs 0.921  16s
+[vggt] scan 38 views 3 seed 1: obs 0.542 unobs 0.0062 amb 0.0019 off 0.450  auroc obs/unobs 0.904  17s
+[vggt] scan 40 views 3 seed 0: obs 0.436 unobs 0.0115 amb 0.0019 off 0.550  auroc obs/unobs 0.845  18s
+[vggt] scan 40 views 3 seed 1: obs 0.314 unobs 0.0077 amb 0.0013 off 0.677  auroc obs/unobs 0.767  19s
+[vggt] scan 43 views 3 seed 0: obs 0.544 unobs 0.0075 amb 0.0027 off 0.446  auroc obs/unobs 0.743  20s
+[vggt] scan 43 views 3 seed 1: obs 0.935 unobs 0.0045 amb 0.0014 off 0.059  auroc obs/unobs 0.900  20s
+[vggt] scan 56 views 3 seed 0: obs 0.700 unobs 0.0066 amb 0.0042 off 0.289  auroc obs/unobs 0.859  22s
+[vggt] scan 56 views 3 seed 1: obs 0.671 unobs 0.0236 amb 0.0048 off 0.301  auroc obs/unobs 0.651  23s
+[vggt] scan 59 views 3 seed 0: obs 0.685 unobs 0.0025 amb 0.0055 off 0.307  auroc obs/unobs 0.813  24s
+[vggt] scan 59 views 3 seed 1: obs 0.750 unobs 0.0103 amb 0.0036 off 0.236  auroc obs/unobs 0.721  25s
+[vggt] scan 66 views 3 seed 0: obs 0.313 unobs 0.0055 amb 0.0026 off 0.679  auroc obs/unobs 0.909  26s
+[vggt] scan 66 views 3 seed 1: obs 0.178 unobs 0.0031 amb 0.0013 off 0.818  auroc obs/unobs 0.900  28s
+[vggt] scan 67 views 3 seed 0: obs 0.479 unobs 0.0041 amb 0.0010 off 0.516  auroc obs/unobs 0.935  29s
+[vggt] scan 67 views 3 seed 1: obs 0.220 unobs 0.0022 amb 0.0014 off 0.776  auroc obs/unobs 0.945  30s
+[vggt] scan 82 views 3 seed 0: obs 0.701 unobs 0.0102 amb 0.0060 off 0.283  auroc obs/unobs 0.850  31s
+[vggt] scan 82 views 3 seed 1: obs 0.512 unobs 0.0322 amb 0.0028 off 0.453  auroc obs/unobs 0.666  32s
+[vggt] scan 86 views 3 seed 0: obs 0.142 unobs 0.0046 amb 0.0085 off 0.845  auroc obs/unobs 0.468  33s
+[vggt] scan 86 views 3 seed 1: obs 0.181 unobs 0.0095 amb 0.0187 off 0.791  auroc obs/unobs 0.782  34s
+[vggt] scan 106 views 3 seed 0: obs 0.653 unobs 0.0034 amb 0.0068 off 0.336  auroc obs/unobs 0.839  35s
+[vggt] scan 106 views 3 seed 1: obs 0.753 unobs 0.0061 amb 0.0071 off 0.234  auroc obs/unobs 0.909  35s
+[vggt] scan 117 views 3 seed 0: obs 0.441 unobs 0.0054 amb 0.0074 off 0.546  auroc obs/unobs 0.821  37s
+[vggt] scan 117 views 3 seed 1: obs 0.365 unobs 0.0032 amb 0.0037 off 0.628  auroc obs/unobs 0.908  38s
+                         frac_obs  frac_unobs  frac_off  frac_gt_unobserved  auroc_obs_unobs  auroc_obs_off
+model           n_views                                                                                    
+vggt            3          0.5104      0.0091    0.4761              0.1121           0.7866         0.7466
+vggt_had        3          0.5104      0.0091    0.4761              0.1121           0.4575         0.4928
+vggt_oiavisself 3          0.5104      0.0091    0.4761              0.1121           0.8296         0.6847
++ for b in vggt pi3x pi3 da3
++ python scripts/realocc_eval.py --dtu /home/data/dtu --models pi3x_had,pi3x_oiavisself,pi3x --views 3 --label-mode zagree --out /home/hallu/results/P20-had/pi3x_dtu
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading LVSM checkpoint from /home/had_ckpt/ckpt_0000000000010000.pt
+[pi3x_had] 3 views at 408x512: render PSNR 8.87 dB (all captures so far 8.87 dB, 3 views)
+[pi3x_had] scan 3 views 3 seed 0: obs 0.140 unobs 0.0012 amb 0.0014 off 0.857  auroc obs/unobs 0.408  8s
+[pi3x_had] 3 views at 408x512: render PSNR 10.44 dB (all captures so far 9.65 dB, 6 views)
+[pi3x_had] scan 3 views 3 seed 1: obs 0.014 unobs 0.0030 amb 0.0004 off 0.983  auroc obs/unobs 0.499  10s
+[pi3x_had] 3 views at 408x512: render PSNR 8.55 dB (all captures so far 9.29 dB, 9 views)
+[pi3x_had] scan 5 views 3 seed 0: obs 0.116 unobs 0.0039 amb 0.0009 off 0.880  auroc obs/unobs 0.457  12s
+[pi3x_had] 3 views at 408x512: render PSNR 11.59 dB (all captures so far 9.86 dB, 12 views)
+[pi3x_had] scan 5 views 3 seed 1: obs 0.141 unobs 0.0000 amb 0.0011 off 0.858  auroc obs/unobs nan  14s
+[pi3x_had] 3 views at 408x512: render PSNR 9.16 dB (all captures so far 9.72 dB, 15 views)
+[pi3x_had] scan 17 views 3 seed 0: obs 0.307 unobs 0.0087 amb 0.0083 off 0.676  auroc obs/unobs 0.471  16s
+[pi3x_had] 3 views at 408x512: render PSNR 13.02 dB (all captures so far 10.27 dB, 18 views)
+[pi3x_had] scan 17 views 3 seed 1: obs 0.492 unobs 0.0064 amb 0.0062 off 0.495  auroc obs/unobs 0.495  18s
+[pi3x_had] 3 views at 408x512: render PSNR 7.53 dB (all captures so far 9.88 dB, 21 views)
+[pi3x_had] scan 21 views 3 seed 0: obs 0.553 unobs 0.0160 amb 0.0071 off 0.424  auroc obs/unobs 0.571  20s
+[pi3x_had] 3 views at 408x512: render PSNR 11.28 dB (all captures so far 10.06 dB, 24 views)
+[pi3x_had] scan 21 views 3 seed 1: obs 0.146 unobs 0.0121 amb 0.0024 off 0.840  auroc obs/unobs 0.651  22s
+[pi3x_had] 3 views at 408x512: render PSNR 8.49 dB (all captures so far 9.88 dB, 27 views)
+[pi3x_had] scan 28 views 3 seed 0: obs 0.088 unobs 0.0051 amb 0.0004 off 0.906  auroc obs/unobs 0.528  24s
+[pi3x_had] 3 views at 408x512: render PSNR 11.05 dB (all captures so far 10.00 dB, 30 views)
+[pi3x_had] scan 28 views 3 seed 1: obs 0.456 unobs 0.0373 amb 0.0035 off 0.503  auroc obs/unobs 0.372  26s
+[pi3x_had] 3 views at 408x512: render PSNR 9.28 dB (all captures so far 9.93 dB, 33 views)
+[pi3x_had] scan 35 views 3 seed 0: obs 0.018 unobs 0.0004 amb 0.0046 off 0.977  auroc obs/unobs nan  28s
+[pi3x_had] 3 views at 408x512: render PSNR 9.47 dB (all captures so far 9.90 dB, 36 views)
+[pi3x_had] scan 35 views 3 seed 1: obs 0.004 unobs 0.0108 amb 0.0001 off 0.985  auroc obs/unobs 0.384  30s
+[pi3x_had] 3 views at 408x512: render PSNR 8.16 dB (all captures so far 9.76 dB, 39 views)
+[pi3x_had] scan 37 views 3 seed 0: obs 0.279 unobs 0.0230 amb 0.0028 off 0.695  auroc obs/unobs 0.397  32s
+[pi3x_had] 3 views at 408x512: render PSNR 12.79 dB (all captures so far 9.98 dB, 42 views)
+[pi3x_had] scan 37 views 3 seed 1: obs 0.010 unobs 0.0000 amb 0.0002 off 0.989  auroc obs/unobs nan  35s
+[pi3x_had] 3 views at 408x512: render PSNR 9.45 dB (all captures so far 9.94 dB, 45 views)
+[pi3x_had] scan 38 views 3 seed 0: obs 0.031 unobs 0.0074 amb 0.0012 off 0.960  auroc obs/unobs 0.494  38s
+[pi3x_had] 3 views at 408x512: render PSNR 12.13 dB (all captures so far 10.08 dB, 48 views)
+[pi3x_had] scan 38 views 3 seed 1: obs 0.117 unobs 0.0274 amb 0.0005 off 0.855  auroc obs/unobs 0.343  40s
+[pi3x_had] 3 views at 408x512: render PSNR 9.20 dB (all captures so far 10.03 dB, 51 views)
+[pi3x_had] scan 40 views 3 seed 0: obs 0.139 unobs 0.0077 amb 0.0015 off 0.851  auroc obs/unobs 0.357  42s
+[pi3x_had] 3 views at 408x512: render PSNR 10.59 dB (all captures so far 10.06 dB, 54 views)
+[pi3x_had] scan 40 views 3 seed 1: obs 0.204 unobs 0.0098 amb 0.0008 off 0.786  auroc obs/unobs 0.594  44s
+[pi3x_had] 3 views at 408x512: render PSNR 7.71 dB (all captures so far 9.94 dB, 57 views)
+[pi3x_had] scan 43 views 3 seed 0: obs 0.605 unobs 0.0070 amb 0.0049 off 0.383  auroc obs/unobs 0.354  46s
+[pi3x_had] 3 views at 408x512: render PSNR 10.93 dB (all captures so far 9.99 dB, 60 views)
+[pi3x_had] scan 43 views 3 seed 1: obs 0.080 unobs 0.0162 amb 0.0031 off 0.901  auroc obs/unobs 0.595  48s
+[pi3x_had] 3 views at 408x512: render PSNR 13.06 dB (all captures so far 10.13 dB, 63 views)
+[pi3x_had] scan 56 views 3 seed 0: obs 0.084 unobs 0.0084 amb 0.0022 off 0.906  auroc obs/unobs 0.302  50s
+[pi3x_had] 3 views at 408x512: render PSNR 15.45 dB (all captures so far 10.37 dB, 66 views)
+[pi3x_had] scan 56 views 3 seed 1: obs 0.083 unobs 0.0100 amb 0.0012 off 0.906  auroc obs/unobs 0.373  52s
+[pi3x_had] 3 views at 408x512: render PSNR 7.54 dB (all captures so far 10.25 dB, 69 views)
+[pi3x_had] scan 59 views 3 seed 0: obs 0.156 unobs 0.0014 amb 0.0014 off 0.841  auroc obs/unobs 0.118  54s
+[pi3x_had] 3 views at 408x512: render PSNR 12.46 dB (all captures so far 10.34 dB, 72 views)
+[pi3x_had] scan 59 views 3 seed 1: obs 0.043 unobs 0.0029 amb 0.0022 off 0.952  auroc obs/unobs 0.583  57s
+[pi3x_had] 3 views at 408x512: render PSNR 9.72 dB (all captures so far 10.32 dB, 75 views)
+[pi3x_had] scan 66 views 3 seed 0: obs 0.158 unobs 0.0027 amb 0.0017 off 0.837  auroc obs/unobs 0.576  59s
+[pi3x_had] 3 views at 408x512: render PSNR 13.78 dB (all captures so far 10.45 dB, 78 views)
+[pi3x_had] scan 66 views 3 seed 1: obs 0.050 unobs 0.0199 amb 0.0012 off 0.929  auroc obs/unobs 0.506  61s
+[pi3x_had] 3 views at 408x512: render PSNR 8.58 dB (all captures so far 10.38 dB, 81 views)
+[pi3x_had] scan 67 views 3 seed 0: obs 0.060 unobs 0.0001 amb 0.0000 off 0.940  auroc obs/unobs nan  63s
+[pi3x_had] 3 views at 408x512: render PSNR 13.10 dB (all captures so far 10.48 dB, 84 views)
+[pi3x_had] scan 67 views 3 seed 1: obs 0.106 unobs 0.0038 amb 0.0005 off 0.890  auroc obs/unobs 0.627  65s
+[pi3x_had] 3 views at 408x512: render PSNR 7.71 dB (all captures so far 10.38 dB, 87 views)
+[pi3x_had] scan 82 views 3 seed 0: obs 0.085 unobs 0.0073 amb 0.0024 off 0.905  auroc obs/unobs 0.449  67s
+[pi3x_had] 3 views at 408x512: render PSNR 11.82 dB (all captures so far 10.43 dB, 90 views)
+[pi3x_had] scan 82 views 3 seed 1: obs 0.023 unobs 0.0164 amb 0.0018 off 0.958  auroc obs/unobs 0.434  69s
+[pi3x_had] 3 views at 408x512: render PSNR 18.13 dB (all captures so far 10.68 dB, 93 views)
+[pi3x_had] scan 86 views 3 seed 0: obs 0.052 unobs 0.0011 amb 0.0042 off 0.943  auroc obs/unobs 0.565  71s
+[pi3x_had] 3 views at 408x512: render PSNR 20.58 dB (all captures so far 10.99 dB, 96 views)
+[pi3x_had] scan 86 views 3 seed 1: obs 0.045 unobs 0.0017 amb 0.0051 off 0.949  auroc obs/unobs 0.551  73s
+[pi3x_had] 3 views at 408x512: render PSNR 13.96 dB (all captures so far 11.08 dB, 99 views)
+[pi3x_had] scan 106 views 3 seed 0: obs 0.132 unobs 0.0059 amb 0.0023 off 0.860  auroc obs/unobs 0.708  75s
+[pi3x_had] 3 views at 408x512: render PSNR 15.72 dB (all captures so far 11.22 dB, 102 views)
+[pi3x_had] scan 106 views 3 seed 1: obs 0.121 unobs 0.0094 amb 0.0010 off 0.869  auroc obs/unobs 0.514  77s
+[pi3x_had] 3 views at 408x512: render PSNR 12.10 dB (all captures so far 11.24 dB, 105 views)
+[pi3x_had] scan 117 views 3 seed 0: obs 0.055 unobs 0.0140 amb 0.0006 off 0.930  auroc obs/unobs 0.211  79s
+[pi3x_had] 3 views at 408x512: render PSNR 14.90 dB (all captures so far 11.34 dB, 108 views)
+[pi3x_had] scan 117 views 3 seed 1: obs 0.126 unobs 0.0033 amb 0.0022 off 0.868  auroc obs/unobs 0.704  81s
+[pi3x_oiavisself] head from /home/hallu/checkpoints/pi3x_oiavisself.pt (step 1500, val-auroc 0.996)
+[pi3x_oiavisself] scan 3 views 3 seed 0: obs 0.140 unobs 0.0012 amb 0.0014 off 0.857  auroc obs/unobs 0.763  1s
+[pi3x_oiavisself] scan 3 views 3 seed 1: obs 0.014 unobs 0.0030 amb 0.0004 off 0.983  auroc obs/unobs 0.668  3s
+[pi3x_oiavisself] scan 5 views 3 seed 0: obs 0.116 unobs 0.0039 amb 0.0009 off 0.880  auroc obs/unobs 0.879  4s
+[pi3x_oiavisself] scan 5 views 3 seed 1: obs 0.141 unobs 0.0000 amb 0.0011 off 0.858  auroc obs/unobs nan  6s
+[pi3x_oiavisself] scan 17 views 3 seed 0: obs 0.307 unobs 0.0087 amb 0.0083 off 0.676  auroc obs/unobs 0.755  7s
+[pi3x_oiavisself] scan 17 views 3 seed 1: obs 0.492 unobs 0.0064 amb 0.0062 off 0.495  auroc obs/unobs 0.929  8s
+[pi3x_oiavisself] scan 21 views 3 seed 0: obs 0.553 unobs 0.0160 amb 0.0071 off 0.424  auroc obs/unobs 0.907  10s
+[pi3x_oiavisself] scan 21 views 3 seed 1: obs 0.146 unobs 0.0121 amb 0.0024 off 0.840  auroc obs/unobs 0.834  11s
+[pi3x_oiavisself] scan 28 views 3 seed 0: obs 0.088 unobs 0.0051 amb 0.0004 off 0.906  auroc obs/unobs 0.875  12s
+[pi3x_oiavisself] scan 28 views 3 seed 1: obs 0.456 unobs 0.0373 amb 0.0035 off 0.503  auroc obs/unobs 0.816  13s
+[pi3x_oiavisself] scan 35 views 3 seed 0: obs 0.018 unobs 0.0004 amb 0.0046 off 0.977  auroc obs/unobs nan  15s
+[pi3x_oiavisself] scan 35 views 3 seed 1: obs 0.004 unobs 0.0108 amb 0.0001 off 0.985  auroc obs/unobs 0.744  16s
+[pi3x_oiavisself] scan 37 views 3 seed 0: obs 0.279 unobs 0.0230 amb 0.0028 off 0.695  auroc obs/unobs 0.706  18s
+[pi3x_oiavisself] scan 37 views 3 seed 1: obs 0.010 unobs 0.0000 amb 0.0002 off 0.989  auroc obs/unobs nan  20s
+[pi3x_oiavisself] scan 38 views 3 seed 0: obs 0.031 unobs 0.0074 amb 0.0012 off 0.960  auroc obs/unobs 0.576  22s
+[pi3x_oiavisself] scan 38 views 3 seed 1: obs 0.117 unobs 0.0274 amb 0.0005 off 0.855  auroc obs/unobs 0.743  23s
+[pi3x_oiavisself] scan 40 views 3 seed 0: obs 0.139 unobs 0.0077 amb 0.0015 off 0.851  auroc obs/unobs 0.799  24s
+[pi3x_oiavisself] scan 40 views 3 seed 1: obs 0.204 unobs 0.0098 amb 0.0008 off 0.786  auroc obs/unobs 0.677  26s
+[pi3x_oiavisself] scan 43 views 3 seed 0: obs 0.605 unobs 0.0070 amb 0.0049 off 0.383  auroc obs/unobs 0.910  27s
+[pi3x_oiavisself] scan 43 views 3 seed 1: obs 0.080 unobs 0.0162 amb 0.0031 off 0.901  auroc obs/unobs 0.772  28s
+[pi3x_oiavisself] scan 56 views 3 seed 0: obs 0.084 unobs 0.0084 amb 0.0022 off 0.906  auroc obs/unobs 0.927  29s
+[pi3x_oiavisself] scan 56 views 3 seed 1: obs 0.083 unobs 0.0100 amb 0.0012 off 0.906  auroc obs/unobs 0.875  31s
+[pi3x_oiavisself] scan 59 views 3 seed 0: obs 0.156 unobs 0.0014 amb 0.0014 off 0.841  auroc obs/unobs 0.964  32s
+[pi3x_oiavisself] scan 59 views 3 seed 1: obs 0.043 unobs 0.0029 amb 0.0022 off 0.952  auroc obs/unobs 0.920  34s
+[pi3x_oiavisself] scan 66 views 3 seed 0: obs 0.158 unobs 0.0027 amb 0.0017 off 0.837  auroc obs/unobs 0.896  35s
+[pi3x_oiavisself] scan 66 views 3 seed 1: obs 0.050 unobs 0.0199 amb 0.0012 off 0.929  auroc obs/unobs 0.833  37s
+[pi3x_oiavisself] scan 67 views 3 seed 0: obs 0.060 unobs 0.0001 amb 0.0000 off 0.940  auroc obs/unobs nan  38s
+[pi3x_oiavisself] scan 67 views 3 seed 1: obs 0.106 unobs 0.0038 amb 0.0005 off 0.890  auroc obs/unobs 0.918  40s
+[pi3x_oiavisself] scan 82 views 3 seed 0: obs 0.085 unobs 0.0073 amb 0.0024 off 0.905  auroc obs/unobs 0.730  42s
+[pi3x_oiavisself] scan 82 views 3 seed 1: obs 0.023 unobs 0.0164 amb 0.0018 off 0.958  auroc obs/unobs 0.443  43s
+[pi3x_oiavisself] scan 86 views 3 seed 0: obs 0.052 unobs 0.0011 amb 0.0042 off 0.943  auroc obs/unobs 0.724  44s
+[pi3x_oiavisself] scan 86 views 3 seed 1: obs 0.045 unobs 0.0017 amb 0.0051 off 0.949  auroc obs/unobs 0.928  46s
+[pi3x_oiavisself] scan 106 views 3 seed 0: obs 0.132 unobs 0.0059 amb 0.0023 off 0.860  auroc obs/unobs 0.936  47s
+[pi3x_oiavisself] scan 106 views 3 seed 1: obs 0.121 unobs 0.0094 amb 0.0010 off 0.869  auroc obs/unobs 0.662  49s
+[pi3x_oiavisself] scan 117 views 3 seed 0: obs 0.055 unobs 0.0140 amb 0.0006 off 0.930  auroc obs/unobs 0.829  50s
+[pi3x_oiavisself] scan 117 views 3 seed 1: obs 0.126 unobs 0.0033 amb 0.0022 off 0.868  auroc obs/unobs 0.867  52s
+[pi3x] scan 3 views 3 seed 0: obs 0.140 unobs 0.0012 amb 0.0014 off 0.857  auroc obs/unobs 0.732  1s
+[pi3x] scan 3 views 3 seed 1: obs 0.014 unobs 0.0030 amb 0.0004 off 0.983  auroc obs/unobs 0.661  3s
+[pi3x] scan 5 views 3 seed 0: obs 0.116 unobs 0.0039 amb 0.0009 off 0.880  auroc obs/unobs 0.682  4s
+[pi3x] scan 5 views 3 seed 1: obs 0.141 unobs 0.0000 amb 0.0011 off 0.858  auroc obs/unobs nan  5s
+[pi3x] scan 17 views 3 seed 0: obs 0.307 unobs 0.0087 amb 0.0083 off 0.676  auroc obs/unobs 0.696  6s
+[pi3x] scan 17 views 3 seed 1: obs 0.492 unobs 0.0064 amb 0.0062 off 0.495  auroc obs/unobs 0.884  8s
+[pi3x] scan 21 views 3 seed 0: obs 0.553 unobs 0.0160 amb 0.0071 off 0.424  auroc obs/unobs 0.774  9s
+[pi3x] scan 21 views 3 seed 1: obs 0.146 unobs 0.0121 amb 0.0024 off 0.840  auroc obs/unobs 0.702  10s
+[pi3x] scan 28 views 3 seed 0: obs 0.088 unobs 0.0051 amb 0.0004 off 0.906  auroc obs/unobs 0.503  11s
+[pi3x] scan 28 views 3 seed 1: obs 0.456 unobs 0.0373 amb 0.0035 off 0.503  auroc obs/unobs 0.801  12s
+[pi3x] scan 35 views 3 seed 0: obs 0.018 unobs 0.0004 amb 0.0046 off 0.977  auroc obs/unobs nan  14s
+[pi3x] scan 35 views 3 seed 1: obs 0.004 unobs 0.0108 amb 0.0001 off 0.985  auroc obs/unobs 0.836  16s
+[pi3x] scan 37 views 3 seed 0: obs 0.279 unobs 0.0230 amb 0.0028 off 0.695  auroc obs/unobs 0.540  17s
+[pi3x] scan 37 views 3 seed 1: obs 0.010 unobs 0.0000 amb 0.0002 off 0.989  auroc obs/unobs nan  20s
+[pi3x] scan 38 views 3 seed 0: obs 0.031 unobs 0.0074 amb 0.0012 off 0.960  auroc obs/unobs 0.423  21s
+[pi3x] scan 38 views 3 seed 1: obs 0.117 unobs 0.0274 amb 0.0005 off 0.855  auroc obs/unobs 0.623  22s
+[pi3x] scan 40 views 3 seed 0: obs 0.139 unobs 0.0077 amb 0.0015 off 0.851  auroc obs/unobs 0.714  24s
+[pi3x] scan 40 views 3 seed 1: obs 0.204 unobs 0.0098 amb 0.0008 off 0.786  auroc obs/unobs 0.384  25s
+[pi3x] scan 43 views 3 seed 0: obs 0.605 unobs 0.0070 amb 0.0049 off 0.383  auroc obs/unobs 0.874  26s
+[pi3x] scan 43 views 3 seed 1: obs 0.080 unobs 0.0162 amb 0.0031 off 0.901  auroc obs/unobs 0.696  27s
+[pi3x] scan 56 views 3 seed 0: obs 0.084 unobs 0.0084 amb 0.0022 off 0.906  auroc obs/unobs 0.899  29s
+[pi3x] scan 56 views 3 seed 1: obs 0.083 unobs 0.0100 amb 0.0012 off 0.906  auroc obs/unobs 0.810  30s
+[pi3x] scan 59 views 3 seed 0: obs 0.156 unobs 0.0014 amb 0.0014 off 0.841  auroc obs/unobs 0.941  31s
+[pi3x] scan 59 views 3 seed 1: obs 0.043 unobs 0.0029 amb 0.0022 off 0.952  auroc obs/unobs 0.692  33s
+[pi3x] scan 66 views 3 seed 0: obs 0.158 unobs 0.0027 amb 0.0017 off 0.837  auroc obs/unobs 0.593  34s
+[pi3x] scan 66 views 3 seed 1: obs 0.050 unobs 0.0199 amb 0.0012 off 0.929  auroc obs/unobs 0.607  36s
+[pi3x] scan 67 views 3 seed 0: obs 0.060 unobs 0.0001 amb 0.0000 off 0.940  auroc obs/unobs nan  37s
+[pi3x] scan 67 views 3 seed 1: obs 0.106 unobs 0.0038 amb 0.0005 off 0.890  auroc obs/unobs 0.901  39s
+[pi3x] scan 82 views 3 seed 0: obs 0.085 unobs 0.0073 amb 0.0024 off 0.905  auroc obs/unobs 0.577  40s
+[pi3x] scan 82 views 3 seed 1: obs 0.023 unobs 0.0164 amb 0.0018 off 0.958  auroc obs/unobs 0.322  41s
+[pi3x] scan 86 views 3 seed 0: obs 0.052 unobs 0.0011 amb 0.0042 off 0.943  auroc obs/unobs 0.945  42s
+[pi3x] scan 86 views 3 seed 1: obs 0.045 unobs 0.0017 amb 0.0051 off 0.949  auroc obs/unobs 0.738  43s
+[pi3x] scan 106 views 3 seed 0: obs 0.132 unobs 0.0059 amb 0.0023 off 0.860  auroc obs/unobs 0.862  44s
+[pi3x] scan 106 views 3 seed 1: obs 0.121 unobs 0.0094 amb 0.0010 off 0.869  auroc obs/unobs 0.681  46s
+[pi3x] scan 117 views 3 seed 0: obs 0.055 unobs 0.0140 amb 0.0006 off 0.930  auroc obs/unobs 0.862  47s
+[pi3x] scan 117 views 3 seed 1: obs 0.126 unobs 0.0033 amb 0.0022 off 0.868  auroc obs/unobs 0.700  48s
+                         frac_obs  frac_unobs  frac_off  frac_gt_unobserved  auroc_obs_unobs  auroc_obs_off
+model           n_views                                                                                    
+pi3x            3          0.1477      0.0087    0.8414              0.1121           0.7080         0.6489
+pi3x_had        3          0.1477      0.0087    0.8414              0.1121           0.4747         0.4350
+pi3x_oiavisself 3          0.1477      0.0087    0.8414              0.1121           0.8064         0.6887
++ for b in vggt pi3x pi3 da3
++ python scripts/realocc_eval.py --dtu /home/data/dtu --models pi3_had,pi3_oiavisself,pi3 --views 3 --label-mode zagree --out /home/hallu/results/P20-had/pi3_dtu
+Warning, cannot find cuda-compiled version of RoPE2D, using a slow pytorch version instead
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading LVSM checkpoint from /home/had_ckpt/ckpt_0000000000010000.pt
+[pi3_had] 3 views at 408x512: render PSNR 8.87 dB (all captures so far 8.87 dB, 3 views)
+[pi3_had] scan 3 views 3 seed 0: obs 0.148 unobs 0.0007 amb 0.0032 off 0.848  auroc obs/unobs 0.514  7s
+[pi3_had] 3 views at 408x512: render PSNR 10.44 dB (all captures so far 9.65 dB, 6 views)
+[pi3_had] scan 3 views 3 seed 1: obs 0.043 unobs 0.0010 amb 0.0016 off 0.954  auroc obs/unobs 0.424  8s
+[pi3_had] 3 views at 408x512: render PSNR 8.55 dB (all captures so far 9.29 dB, 9 views)
+[pi3_had] scan 5 views 3 seed 0: obs 0.552 unobs 0.0000 amb 0.0029 off 0.445  auroc obs/unobs nan  10s
+[pi3_had] 3 views at 408x512: render PSNR 11.59 dB (all captures so far 9.86 dB, 12 views)
+[pi3_had] scan 5 views 3 seed 1: obs 0.464 unobs 0.0128 amb 0.0043 off 0.519  auroc obs/unobs 0.359  11s
+[pi3_had] 3 views at 408x512: render PSNR 9.16 dB (all captures so far 9.72 dB, 15 views)
+[pi3_had] scan 17 views 3 seed 0: obs 0.199 unobs 0.0051 amb 0.0050 off 0.791  auroc obs/unobs 0.474  13s
+[pi3_had] 3 views at 408x512: render PSNR 13.02 dB (all captures so far 10.27 dB, 18 views)
+[pi3_had] scan 17 views 3 seed 1: obs 0.367 unobs 0.0343 amb 0.0022 off 0.596  auroc obs/unobs 0.309  14s
+[pi3_had] 3 views at 408x512: render PSNR 7.53 dB (all captures so far 9.88 dB, 21 views)
+[pi3_had] scan 21 views 3 seed 0: obs 0.291 unobs 0.0026 amb 0.0047 off 0.702  auroc obs/unobs 0.668  16s
+[pi3_had] 3 views at 408x512: render PSNR 11.28 dB (all captures so far 10.06 dB, 24 views)
+[pi3_had] scan 21 views 3 seed 1: obs 0.092 unobs 0.0086 amb 0.0019 off 0.897  auroc obs/unobs 0.624  17s
+[pi3_had] 3 views at 408x512: render PSNR 8.49 dB (all captures so far 9.88 dB, 27 views)
+[pi3_had] scan 28 views 3 seed 0: obs 0.150 unobs 0.0073 amb 0.0014 off 0.841  auroc obs/unobs 0.535  20s
+[pi3_had] 3 views at 408x512: render PSNR 11.05 dB (all captures so far 10.00 dB, 30 views)
+[pi3_had] scan 28 views 3 seed 1: obs 0.377 unobs 0.0048 amb 0.0065 off 0.611  auroc obs/unobs 0.620  21s
+[pi3_had] 3 views at 408x512: render PSNR 9.28 dB (all captures so far 9.93 dB, 33 views)
+[pi3_had] scan 35 views 3 seed 0: obs 0.188 unobs 0.0030 amb 0.0006 off 0.808  auroc obs/unobs 0.279  23s
+[pi3_had] 3 views at 408x512: render PSNR 9.47 dB (all captures so far 9.90 dB, 36 views)
+[pi3_had] scan 35 views 3 seed 1: obs 0.009 unobs 0.0446 amb 0.0002 off 0.946  auroc obs/unobs 0.466  24s
+[pi3_had] 3 views at 408x512: render PSNR 8.16 dB (all captures so far 9.76 dB, 39 views)
+[pi3_had] scan 37 views 3 seed 0: obs 0.068 unobs 0.0037 amb 0.0012 off 0.927  auroc obs/unobs 0.152  27s
+[pi3_had] 3 views at 408x512: render PSNR 12.79 dB (all captures so far 9.98 dB, 42 views)
+[pi3_had] scan 37 views 3 seed 1: obs 0.000 unobs 0.0000 amb 0.0000 off 1.000  auroc obs/unobs nan  31s
+[pi3_had] 3 views at 408x512: render PSNR 9.45 dB (all captures so far 9.94 dB, 45 views)
+[pi3_had] scan 38 views 3 seed 0: obs 0.192 unobs 0.0166 amb 0.0035 off 0.788  auroc obs/unobs 0.498  33s
+[pi3_had] 3 views at 408x512: render PSNR 12.13 dB (all captures so far 10.08 dB, 48 views)
+[pi3_had] scan 38 views 3 seed 1: obs 0.120 unobs 0.0122 amb 0.0019 off 0.866  auroc obs/unobs 0.103  34s
+[pi3_had] 3 views at 408x512: render PSNR 9.20 dB (all captures so far 10.03 dB, 51 views)
+[pi3_had] scan 40 views 3 seed 0: obs 0.160 unobs 0.0033 amb 0.0006 off 0.836  auroc obs/unobs 0.531  36s
+[pi3_had] 3 views at 408x512: render PSNR 10.59 dB (all captures so far 10.06 dB, 54 views)
+[pi3_had] scan 40 views 3 seed 1: obs 0.423 unobs 0.0120 amb 0.0028 off 0.563  auroc obs/unobs 0.140  37s
+[pi3_had] 3 views at 408x512: render PSNR 7.71 dB (all captures so far 9.94 dB, 57 views)
+[pi3_had] scan 43 views 3 seed 0: obs 0.534 unobs 0.0140 amb 0.0019 off 0.450  auroc obs/unobs 0.331  38s
+[pi3_had] 3 views at 408x512: render PSNR 10.93 dB (all captures so far 9.99 dB, 60 views)
+[pi3_had] scan 43 views 3 seed 1: obs 0.134 unobs 0.0135 amb 0.0007 off 0.851  auroc obs/unobs 0.430  40s
+[pi3_had] 3 views at 408x512: render PSNR 13.06 dB (all captures so far 10.13 dB, 63 views)
+[pi3_had] scan 56 views 3 seed 0: obs 0.178 unobs 0.0020 amb 0.0021 off 0.818  auroc obs/unobs 0.260  42s
+[pi3_had] 3 views at 408x512: render PSNR 15.45 dB (all captures so far 10.37 dB, 66 views)
+[pi3_had] scan 56 views 3 seed 1: obs 0.062 unobs 0.0091 amb 0.0003 off 0.928  auroc obs/unobs 0.464  43s
+[pi3_had] 3 views at 408x512: render PSNR 7.54 dB (all captures so far 10.25 dB, 69 views)
+[pi3_had] scan 59 views 3 seed 0: obs 0.076 unobs 0.0058 amb 0.0020 off 0.916  auroc obs/unobs 0.496  45s
+[pi3_had] 3 views at 408x512: render PSNR 12.46 dB (all captures so far 10.34 dB, 72 views)
+[pi3_had] scan 59 views 3 seed 1: obs 0.259 unobs 0.0042 amb 0.0030 off 0.734  auroc obs/unobs 0.669  46s
+[pi3_had] 3 views at 408x512: render PSNR 9.72 dB (all captures so far 10.32 dB, 75 views)
+[pi3_had] scan 66 views 3 seed 0: obs 0.127 unobs 0.0241 amb 0.0011 off 0.848  auroc obs/unobs 0.442  48s
+[pi3_had] 3 views at 408x512: render PSNR 13.78 dB (all captures so far 10.45 dB, 78 views)
+[pi3_had] scan 66 views 3 seed 1: obs 0.095 unobs 0.0238 amb 0.0021 off 0.879  auroc obs/unobs 0.519  50s
+[pi3_had] 3 views at 408x512: render PSNR 8.58 dB (all captures so far 10.38 dB, 81 views)
+[pi3_had] scan 67 views 3 seed 0: obs 0.150 unobs 0.0018 amb 0.0006 off 0.848  auroc obs/unobs 0.441  51s
+[pi3_had] 3 views at 408x512: render PSNR 13.10 dB (all captures so far 10.48 dB, 84 views)
+[pi3_had] scan 67 views 3 seed 1: obs 0.109 unobs 0.0047 amb 0.0007 off 0.886  auroc obs/unobs 0.599  52s
+[pi3_had] 3 views at 408x512: render PSNR 7.71 dB (all captures so far 10.38 dB, 87 views)
+[pi3_had] scan 82 views 3 seed 0: obs 0.159 unobs 0.0115 amb 0.0040 off 0.825  auroc obs/unobs 0.377  54s
+[pi3_had] 3 views at 408x512: render PSNR 11.82 dB (all captures so far 10.43 dB, 90 views)
+[pi3_had] scan 82 views 3 seed 1: obs 0.044 unobs 0.0164 amb 0.0009 off 0.939  auroc obs/unobs 0.361  55s
+[pi3_had] 3 views at 408x512: render PSNR 18.13 dB (all captures so far 10.68 dB, 93 views)
+[pi3_had] scan 86 views 3 seed 0: obs 0.028 unobs 0.0004 amb 0.0024 off 0.969  auroc obs/unobs nan  56s
+[pi3_had] 3 views at 408x512: render PSNR 20.58 dB (all captures so far 10.99 dB, 96 views)
+[pi3_had] scan 86 views 3 seed 1: obs 0.092 unobs 0.0011 amb 0.0051 off 0.901  auroc obs/unobs 0.472  58s
+[pi3_had] 3 views at 408x512: render PSNR 13.96 dB (all captures so far 11.08 dB, 99 views)
+[pi3_had] scan 106 views 3 seed 0: obs 0.203 unobs 0.0046 amb 0.0018 off 0.791  auroc obs/unobs 0.723  59s
+[pi3_had] 3 views at 408x512: render PSNR 15.72 dB (all captures so far 11.22 dB, 102 views)
+[pi3_had] scan 106 views 3 seed 1: obs 0.105 unobs 0.0098 amb 0.0012 off 0.884  auroc obs/unobs 0.573  61s
+[pi3_had] 3 views at 408x512: render PSNR 12.10 dB (all captures so far 11.24 dB, 105 views)
+[pi3_had] scan 117 views 3 seed 0: obs 0.079 unobs 0.0115 amb 0.0004 off 0.909  auroc obs/unobs 0.337  62s
+[pi3_had] 3 views at 408x512: render PSNR 14.90 dB (all captures so far 11.34 dB, 108 views)
+[pi3_had] scan 117 views 3 seed 1: obs 0.064 unobs 0.0046 amb 0.0014 off 0.930  auroc obs/unobs 0.614  64s
+[pi3_oiavisself] head from /home/hallu/checkpoints/pi3_oiavisself.pt (step 1500, val-auroc 0.997)
+[pi3_oiavisself] scan 3 views 3 seed 0: obs 0.148 unobs 0.0007 amb 0.0032 off 0.848  auroc obs/unobs 0.955  1s
+[pi3_oiavisself] scan 3 views 3 seed 1: obs 0.043 unobs 0.0010 amb 0.0016 off 0.954  auroc obs/unobs 0.821  2s
+[pi3_oiavisself] scan 5 views 3 seed 0: obs 0.552 unobs 0.0000 amb 0.0029 off 0.445  auroc obs/unobs nan  3s
+[pi3_oiavisself] scan 5 views 3 seed 1: obs 0.464 unobs 0.0128 amb 0.0043 off 0.519  auroc obs/unobs 0.941  4s
+[pi3_oiavisself] scan 17 views 3 seed 0: obs 0.199 unobs 0.0051 amb 0.0050 off 0.791  auroc obs/unobs 0.736  5s
+[pi3_oiavisself] scan 17 views 3 seed 1: obs 0.367 unobs 0.0343 amb 0.0022 off 0.596  auroc obs/unobs 0.870  5s
+[pi3_oiavisself] scan 21 views 3 seed 0: obs 0.291 unobs 0.0026 amb 0.0047 off 0.702  auroc obs/unobs 0.731  6s
+[pi3_oiavisself] scan 21 views 3 seed 1: obs 0.092 unobs 0.0086 amb 0.0019 off 0.897  auroc obs/unobs 0.679  7s
+[pi3_oiavisself] scan 28 views 3 seed 0: obs 0.150 unobs 0.0073 amb 0.0014 off 0.841  auroc obs/unobs 0.877  8s
+[pi3_oiavisself] scan 28 views 3 seed 1: obs 0.377 unobs 0.0048 amb 0.0065 off 0.611  auroc obs/unobs 0.810  9s
+[pi3_oiavisself] scan 35 views 3 seed 0: obs 0.188 unobs 0.0030 amb 0.0006 off 0.808  auroc obs/unobs 0.850  10s
+[pi3_oiavisself] scan 35 views 3 seed 1: obs 0.009 unobs 0.0446 amb 0.0002 off 0.946  auroc obs/unobs 0.434  11s
+[pi3_oiavisself] scan 37 views 3 seed 0: obs 0.068 unobs 0.0037 amb 0.0012 off 0.927  auroc obs/unobs 0.776  12s
+[pi3_oiavisself] scan 37 views 3 seed 1: obs 0.000 unobs 0.0000 amb 0.0000 off 1.000  auroc obs/unobs nan  17s
+[pi3_oiavisself] scan 38 views 3 seed 0: obs 0.192 unobs 0.0166 amb 0.0035 off 0.788  auroc obs/unobs 0.850  17s
+[pi3_oiavisself] scan 38 views 3 seed 1: obs 0.120 unobs 0.0122 amb 0.0019 off 0.866  auroc obs/unobs 0.647  18s
+[pi3_oiavisself] scan 40 views 3 seed 0: obs 0.160 unobs 0.0033 amb 0.0006 off 0.836  auroc obs/unobs 0.875  19s
+[pi3_oiavisself] scan 40 views 3 seed 1: obs 0.423 unobs 0.0120 amb 0.0028 off 0.563  auroc obs/unobs 0.918  20s
+[pi3_oiavisself] scan 43 views 3 seed 0: obs 0.534 unobs 0.0140 amb 0.0019 off 0.450  auroc obs/unobs 0.964  21s
+[pi3_oiavisself] scan 43 views 3 seed 1: obs 0.134 unobs 0.0135 amb 0.0007 off 0.851  auroc obs/unobs 0.652  22s
+[pi3_oiavisself] scan 56 views 3 seed 0: obs 0.178 unobs 0.0020 amb 0.0021 off 0.818  auroc obs/unobs 0.929  23s
+[pi3_oiavisself] scan 56 views 3 seed 1: obs 0.062 unobs 0.0091 amb 0.0003 off 0.928  auroc obs/unobs 0.834  24s
+[pi3_oiavisself] scan 59 views 3 seed 0: obs 0.076 unobs 0.0058 amb 0.0020 off 0.916  auroc obs/unobs 0.355  25s
+[pi3_oiavisself] scan 59 views 3 seed 1: obs 0.259 unobs 0.0042 amb 0.0030 off 0.734  auroc obs/unobs 0.397  26s
+[pi3_oiavisself] scan 66 views 3 seed 0: obs 0.127 unobs 0.0241 amb 0.0011 off 0.848  auroc obs/unobs 0.744  27s
+[pi3_oiavisself] scan 66 views 3 seed 1: obs 0.095 unobs 0.0238 amb 0.0021 off 0.879  auroc obs/unobs 0.630  27s
+[pi3_oiavisself] scan 67 views 3 seed 0: obs 0.150 unobs 0.0018 amb 0.0006 off 0.848  auroc obs/unobs 0.993  29s
+[pi3_oiavisself] scan 67 views 3 seed 1: obs 0.109 unobs 0.0047 amb 0.0007 off 0.886  auroc obs/unobs 0.944  29s
+[pi3_oiavisself] scan 82 views 3 seed 0: obs 0.159 unobs 0.0115 amb 0.0040 off 0.825  auroc obs/unobs 0.684  31s
+[pi3_oiavisself] scan 82 views 3 seed 1: obs 0.044 unobs 0.0164 amb 0.0009 off 0.939  auroc obs/unobs 0.524  32s
+[pi3_oiavisself] scan 86 views 3 seed 0: obs 0.028 unobs 0.0004 amb 0.0024 off 0.969  auroc obs/unobs nan  32s
+[pi3_oiavisself] scan 86 views 3 seed 1: obs 0.092 unobs 0.0011 amb 0.0051 off 0.901  auroc obs/unobs 0.867  33s
+[pi3_oiavisself] scan 106 views 3 seed 0: obs 0.203 unobs 0.0046 amb 0.0018 off 0.791  auroc obs/unobs 0.865  34s
+[pi3_oiavisself] scan 106 views 3 seed 1: obs 0.105 unobs 0.0098 amb 0.0012 off 0.884  auroc obs/unobs 0.627  35s
+[pi3_oiavisself] scan 117 views 3 seed 0: obs 0.079 unobs 0.0115 amb 0.0004 off 0.909  auroc obs/unobs 0.841  36s
+[pi3_oiavisself] scan 117 views 3 seed 1: obs 0.064 unobs 0.0046 amb 0.0014 off 0.930  auroc obs/unobs 0.936  37s
+[pi3] scan 3 views 3 seed 0: obs 0.148 unobs 0.0007 amb 0.0032 off 0.848  auroc obs/unobs 0.942  1s
+[pi3] scan 3 views 3 seed 1: obs 0.043 unobs 0.0010 amb 0.0016 off 0.954  auroc obs/unobs 0.695  1s
+[pi3] scan 5 views 3 seed 0: obs 0.552 unobs 0.0000 amb 0.0029 off 0.445  auroc obs/unobs nan  3s
+[pi3] scan 5 views 3 seed 1: obs 0.464 unobs 0.0128 amb 0.0043 off 0.519  auroc obs/unobs 0.813  4s
+[pi3] scan 17 views 3 seed 0: obs 0.199 unobs 0.0051 amb 0.0050 off 0.791  auroc obs/unobs 0.487  4s
+[pi3] scan 17 views 3 seed 1: obs 0.367 unobs 0.0343 amb 0.0022 off 0.596  auroc obs/unobs 0.727  5s
+[pi3] scan 21 views 3 seed 0: obs 0.291 unobs 0.0026 amb 0.0047 off 0.702  auroc obs/unobs 0.610  6s
+[pi3] scan 21 views 3 seed 1: obs 0.092 unobs 0.0086 amb 0.0019 off 0.897  auroc obs/unobs 0.198  6s
+[pi3] scan 28 views 3 seed 0: obs 0.150 unobs 0.0073 amb 0.0014 off 0.841  auroc obs/unobs 0.276  7s
+[pi3] scan 28 views 3 seed 1: obs 0.377 unobs 0.0048 amb 0.0065 off 0.611  auroc obs/unobs 0.811  8s
+[pi3] scan 35 views 3 seed 0: obs 0.188 unobs 0.0030 amb 0.0006 off 0.808  auroc obs/unobs 0.633  9s
+[pi3] scan 35 views 3 seed 1: obs 0.009 unobs 0.0446 amb 0.0002 off 0.946  auroc obs/unobs 0.160  10s
+[pi3] scan 37 views 3 seed 0: obs 0.068 unobs 0.0037 amb 0.0012 off 0.927  auroc obs/unobs 0.886  11s
+[pi3] scan 37 views 3 seed 1: obs 0.000 unobs 0.0000 amb 0.0000 off 1.000  auroc obs/unobs nan  15s
+[pi3] scan 38 views 3 seed 0: obs 0.192 unobs 0.0166 amb 0.0035 off 0.788  auroc obs/unobs 0.853  16s
+[pi3] scan 38 views 3 seed 1: obs 0.120 unobs 0.0122 amb 0.0019 off 0.866  auroc obs/unobs 0.885  16s
+[pi3] scan 40 views 3 seed 0: obs 0.160 unobs 0.0033 amb 0.0006 off 0.836  auroc obs/unobs 0.591  17s
+[pi3] scan 40 views 3 seed 1: obs 0.423 unobs 0.0120 amb 0.0028 off 0.563  auroc obs/unobs 0.935  18s
+[pi3] scan 43 views 3 seed 0: obs 0.534 unobs 0.0140 amb 0.0019 off 0.450  auroc obs/unobs 0.793  19s
+[pi3] scan 43 views 3 seed 1: obs 0.134 unobs 0.0135 amb 0.0007 off 0.851  auroc obs/unobs 0.671  19s
+[pi3] scan 56 views 3 seed 0: obs 0.178 unobs 0.0020 amb 0.0021 off 0.818  auroc obs/unobs 0.773  20s
+[pi3] scan 56 views 3 seed 1: obs 0.062 unobs 0.0091 amb 0.0003 off 0.928  auroc obs/unobs 0.903  21s
+[pi3] scan 59 views 3 seed 0: obs 0.076 unobs 0.0058 amb 0.0020 off 0.916  auroc obs/unobs 0.232  22s
+[pi3] scan 59 views 3 seed 1: obs 0.259 unobs 0.0042 amb 0.0030 off 0.734  auroc obs/unobs 0.454  22s
+[pi3] scan 66 views 3 seed 0: obs 0.127 unobs 0.0241 amb 0.0011 off 0.848  auroc obs/unobs 0.684  23s
+[pi3] scan 66 views 3 seed 1: obs 0.095 unobs 0.0238 amb 0.0021 off 0.879  auroc obs/unobs 0.269  24s
+[pi3] scan 67 views 3 seed 0: obs 0.150 unobs 0.0018 amb 0.0006 off 0.848  auroc obs/unobs 0.897  25s
+[pi3] scan 67 views 3 seed 1: obs 0.109 unobs 0.0047 amb 0.0007 off 0.886  auroc obs/unobs 0.830  26s
+[pi3] scan 82 views 3 seed 0: obs 0.159 unobs 0.0115 amb 0.0040 off 0.825  auroc obs/unobs 0.504  26s
+[pi3] scan 82 views 3 seed 1: obs 0.044 unobs 0.0164 amb 0.0009 off 0.939  auroc obs/unobs 0.401  27s
+[pi3] scan 86 views 3 seed 0: obs 0.028 unobs 0.0004 amb 0.0024 off 0.969  auroc obs/unobs nan  28s
+[pi3] scan 86 views 3 seed 1: obs 0.092 unobs 0.0011 amb 0.0051 off 0.901  auroc obs/unobs 0.532  28s
+[pi3] scan 106 views 3 seed 0: obs 0.203 unobs 0.0046 amb 0.0018 off 0.791  auroc obs/unobs 0.880  29s

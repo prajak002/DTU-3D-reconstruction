@@ -1,0 +1,4 @@
+model,n_views,frac_obs,frac_unobs,frac_off,frac_gt_unobserved,auroc_obs_unobs,auroc_obs_off
+vggt,3,0.5104,0.0091,0.4761,0.1121,0.7866,0.7466
+vggt_had,3,0.5104,0.0091,0.4761,0.1121,0.4575,0.4928
+vggt_oiavisself,3,0.5104,0.0091,0.4761,0.1121,0.8296,0.6847

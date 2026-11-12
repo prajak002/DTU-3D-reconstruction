@@ -1,0 +1,4 @@
+model,n_views,frac_obs,frac_unobs,frac_off,frac_gt_unobserved,auroc_obs_unobs,auroc_obs_off
+pi3x,3,0.1477,0.0087,0.8414,0.1121,0.708,0.6489
+pi3x_had,3,0.1477,0.0087,0.8414,0.1121,0.4747,0.435
+pi3x_oiavisself,3,0.1477,0.0087,0.8414,0.1121,0.8064,0.6887
