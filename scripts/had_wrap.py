@@ -98,7 +98,23 @@ class HADWrap:
         self.R = R
         self.torch = self.base.torch
         self.dev = "cuda" if self.torch.cuda.is_available() else "cpu"
-        self._model = R.load_lvsm(os.path.join(root, "LVSM"), ckpt, self.dev)
+        # R.load_lvsm chains `.to(device).eval()`, and their class overrides train() without returning self, so the
+        # chain yields None at the pinned commit. Same steps here, unchained.
+        import importlib
+        from easydict import EasyDict as edict
+        from omegaconf import OmegaConf
+        lroot = os.path.join(root, "LVSM")
+        for p in (root, os.path.dirname(lroot)):
+            if p not in sys.path:
+                sys.path.append(p)
+        config = edict(OmegaConf.load(os.path.join(lroot, "configs", "LVSM_scene_decoder_only_conf_512.yaml")))
+        config.training.checkpoint_dir = str(ckpt)
+        module, cname = config.model.class_name.rsplit(".", 1)
+        model = importlib.import_module(f"LVSM.{module}").__dict__[cname](config)
+        model.to(self.dev)
+        model.eval()
+        model.load_ckpt(config.training.checkpoint_dir)
+        self._model = model
 
     def _score_view(self, imgs_t, c2w, intr, i, refs, hw):
         torch, R = self.torch, self.R

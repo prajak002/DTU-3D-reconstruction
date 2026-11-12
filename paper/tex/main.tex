@@ -169,6 +169,13 @@ The decisive control is the \emph{per-image head}: same head, same labels, on to
 \label{fig:qual}
 \end{figure*}
 
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_compare}
+\caption{\textbf{Four detectors at the same operating point} (VGGT, DTU, five views). Each detector's threshold keeps 90\% of the supported pixels; a panel shows what passes: green, supported pixels; red, single-view pixels (the leak, percentage in the corner). Rows are the three benchmark scans with the largest single-view share. Mean leak over the 18 benchmark scans: native confidence 47.1\%, perturbation variance~\cite{revar3r} 64.1\%, reprojection with the model's own cameras 6.1\%, the head 1.1\%.}
+\label{fig:compare}
+\end{figure*}
+
 \begin{table}[t]
 \centering
 \caption{\textbf{Single-view geometry on clean views,} mean over four backbones (VGGT-1B, Pi3X, Pi3, DA3; per-backbone numbers and intervals in the supplement). Our heads are tinted, the best value per column is bold. No head saw these scenes.}
@@ -179,7 +186,7 @@ The decisive control is the \emph{per-image head}: same head, same labels, on to
 \end{table}
 
 \paragraph{Four datasets the head never saw.}
-Figure~\ref{fig:results} and Table~\ref{tab:vis}: trained on DTU training scans only, the label-free head separates single-view from supported geometry at \auroc{} 0.98 to 0.99 on DTU, 0.88 to 0.94 on CO3Dv2, 0.95 to 0.98 on ETH3D and 0.92 to 0.94 on the landmark photographs, against 0.55 to 0.89 for native confidence. It is within 0.02 of a head trained on ground-truth visibility, beats its teacher, reprojection, on DTU, CO3Dv2 and the landmarks, and ties it on ETH3D, where adjacent DSLR views make reprojection as good as any head. On the landmark photographs, where people stand in front of the monument and the model's own cameras are least reliable, the head beats reprojection by 0.11 to 0.13. Figure~\ref{fig:qual} shows what this looks like.
+Figure~\ref{fig:results} and Table~\ref{tab:vis}: trained on DTU training scans only, the label-free head separates single-view from supported geometry at \auroc{} 0.98 to 0.99 on DTU, 0.88 to 0.94 on CO3Dv2, 0.95 to 0.98 on ETH3D and 0.92 to 0.94 on the landmark photographs, against 0.55 to 0.89 for native confidence. It is within 0.02 of a head trained on ground-truth visibility, beats its teacher, reprojection, on DTU, CO3Dv2 and the landmarks, and ties it on ETH3D, where adjacent DSLR views make reprojection as good as any head. On the landmark photographs, where people stand in front of the monument and the model's own cameras are least reliable, the head beats reprojection by 0.11 to 0.13. Figure~\ref{fig:qual} shows what this looks like. Figure~\ref{fig:compare} sets the head beside two detectors that need no training: on the four backbones it lets 1.1\% to 3.8\% of single-view pixels through the 90\% filter, reprojection 6.1\% to 12.2\%, and aligned perturbation variance 64\% to 88\%.
 
 \begin{figure}[t]
 \centering

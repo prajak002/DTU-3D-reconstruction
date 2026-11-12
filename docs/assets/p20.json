@@ -16,6 +16,22 @@
    "holds": false,
    "n": 12
   },
+  "TUM RGB-D:3:pi3x": {
+   "share": 0.08279,
+   "native": 0.81292,
+   "head": 0.78669,
+   "perturbation": 0.61803,
+   "reprojection": 0.65616,
+   "d_pert": 0.16865,
+   "p_pert": 0.00255,
+   "d_reproj": 0.13053,
+   "p_reproj": 0.00165,
+   "d_native": -0.02623,
+   "p_native": 0.13589,
+   "qualifies": true,
+   "holds": true,
+   "n": 12
+  },
   "TUM RGB-D:3:pi3": {
    "share": 0.08174,
    "native": 0.78015,
@@ -64,6 +80,22 @@
    "holds": false,
    "n": 12
   },
+  "TUM RGB-D:5:pi3x": {
+   "share": 0.05747,
+   "native": 0.81164,
+   "head": 0.81611,
+   "perturbation": 0.61227,
+   "reprojection": 0.64451,
+   "d_pert": 0.20384,
+   "p_pert": 0.0006,
+   "d_reproj": 0.17161,
+   "p_reproj": 0.0006,
+   "d_native": 0.00447,
+   "p_native": 0.77821,
+   "qualifies": true,
+   "holds": true,
+   "n": 12
+  },
   "TUM RGB-D:5:pi3": {
    "share": 0.0564,
    "native": 0.80379,
@@ -110,6 +142,22 @@
    "p_native": 0.02545,
    "qualifies": true,
    "holds": false,
+   "n": 12
+  },
+  "TUM RGB-D:10:pi3x": {
+   "share": 0.03002,
+   "native": 0.81731,
+   "head": 0.8389,
+   "perturbation": 0.61798,
+   "reprojection": 0.65084,
+   "d_pert": 0.22092,
+   "p_pert": 0.0006,
+   "d_reproj": 0.18806,
+   "p_reproj": 0.00135,
+   "d_native": 0.02159,
+   "p_native": 0.22224,
+   "qualifies": true,
+   "holds": true,
    "n": 12
   },
   "TUM RGB-D:10:pi3": {
@@ -209,8 +257,8 @@
    "n": 18
   }
  },
- "qualifying": 13,
- "holds": 8,
- "beats_reprojection": 11,
+ "qualifying": 16,
+ "holds": 11,
+ "beats_reprojection": 14,
  "gate21": false
 }

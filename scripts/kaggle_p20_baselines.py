@@ -108,6 +108,16 @@ if "hd" in STAGES:
     sh(sys.executable, "scripts/dump_compare.py", "--dtu", "/kaggle/input", "--bases", ",".join(BASES),
        "--scans", HD_SCANS, "--hd", "--out", "/kaggle/working/results/P20-dump-hd")
 
+if "foreign" in STAGES:   # fourteenth pass (LOG.md): one view of another scan, or noise, among the inputs
+    banner("foreign-view test")
+    sh(sys.executable, "scripts/foreign_eval.py", "--dtu", "/kaggle/input", "--bases", ",".join(BASES),
+       "--out", "/kaggle/working/results/P21-foreign")
+
+if "causal" in STAGES:    # fourteenth pass (LOG.md): edit the tokens along the support direction
+    banner("causal test of the support direction")
+    sh(sys.executable, "scripts/causal_eval.py", "--dtu", "/kaggle/input",
+       "--bases", ",".join(b for b in BASES if b in ("vggt", "pi3x", "pi3")), "--out", "/kaggle/working/results/P21-causal")
+
 for b in (TUM_BASES if "1" in STAGES else []):
     banner(f"stage 1, TUM RGB-D: {b}")
     sh(sys.executable, "scripts/realocc_eval.py", "--co3d-format", TUM, "--scans", SC, "--models", detectors(b),

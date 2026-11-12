@@ -7,12 +7,15 @@ Real occlusion with hole-robust labels; four detectors per backbone scored in on
 | views | backbone | scenes | unobserved share | native | perturbation | reprojection | head | head - perturbation (p) | head - reprojection (p) | head - native (p) | holds |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | 3 | vggt | 12 | 9.99% | 0.537 | 0.596 | 0.591 | 0.630 | +0.033 (0.576) | +0.039 (0.3879) | +0.093 (0.0054) | no |
+| 3 | pi3x | 12 | 8.28% | 0.813 | 0.618 | 0.656 | 0.787 | +0.169 (0.00255) | +0.131 (0.00165) | -0.026 (0.1359) | yes |
 | 3 | pi3 | 12 | 8.17% | 0.780 | 0.566 | 0.656 | 0.793 | +0.227 (0.00165) | +0.137 (0.00135) | +0.013 (0.4755) | yes |
 | 3 | da3 | 12 | 8.02% | 0.656 | 0.619 | 0.611 | 0.704 | +0.086 (0.177) | +0.093 (0.00475) | +0.048 (0.05685) | no |
 | 5 | vggt | 12 | 6.92% | 0.561 | 0.569 | 0.597 | 0.668 | +0.098 (0.218) | +0.071 (0.21) | +0.107 (0.00085) | no |
+| 5 | pi3x | 12 | 5.75% | 0.812 | 0.612 | 0.645 | 0.816 | +0.204 (0.0006) | +0.172 (0.0006) | +0.004 (0.7782) | yes |
 | 5 | pi3 | 12 | 5.64% | 0.804 | 0.583 | 0.659 | 0.830 | +0.247 (0.0006) | +0.171 (0.0006) | +0.026 (0.2206) | yes |
 | 5 | da3 | 12 | 5.92% | 0.659 | 0.639 | 0.613 | 0.751 | +0.112 (0.056) | +0.138 (0.0006) | +0.092 (0.0068) | no |
 | 10 | vggt | 12 | 4.52% | 0.605 | 0.600 | 0.587 | 0.704 | +0.104 (0.2011) | +0.117 (0.02855) | +0.099 (0.02545) | no |
+| 10 | pi3x | 12 | 3.00% | 0.817 | 0.618 | 0.651 | 0.839 | +0.221 (0.0006) | +0.188 (0.00135) | +0.022 (0.2222) | yes |
 | 10 | pi3 | 12 | 2.88% | 0.794 | 0.595 | 0.655 | 0.842 | +0.247 (0.0006) | +0.186 (0.0006) | +0.048 (0.01935) | yes |
 | 10 | da3 | 12 | 3.57% | 0.711 | 0.652 | 0.613 | 0.772 | +0.121 (0.01075) | +0.160 (0.0006) | +0.061 (0.0446) | yes |
 
@@ -25,4 +28,4 @@ Real occlusion with hole-robust labels; four detectors per backbone scored in on
 | 3 | pi3 | 18 | 0.91% | 0.660 | 0.521 | 0.669 | 0.784 | +0.255 (0.00045) | +0.115 (0.0001) | +0.124 (0.00295) | yes |
 | 3 | da3 | 18 | 1.22% | 0.623 | 0.472 | 0.644 | 0.717 | +0.245 (0.0003) | +0.073 (0.0248) | +0.094 (0.01955) | yes |
 
-**Gate 21 fails:** the head beats the aligned perturbation variance in 8 of 13 qualifying cells (needed: three quarters). Reported, no rule: it beats reprojection at p < 0.05 in 11 of 13.
+**Gate 21 fails:** the head beats the aligned perturbation variance in 11 of 16 qualifying cells (needed: three quarters). Reported, no rule: it beats reprojection at p < 0.05 in 14 of 16.
