@@ -237,6 +237,8 @@ def main():
                 data = co3d.load_co3d_scene(root, sc, views)
             out_hw = data["depths"].shape[1:]
             model_hw = tuple(data.get("model_hw", H.DEFAULT_CFG["model_hw"]))
+            if hasattr(model, "set_cams"):   # detectors that are given the ground-truth cameras
+                model.set_cams(data["K_dep"] if "K_dep" in data else data["K"], data["E"])
             d, c = model.predict(data["imgs"], model_hw, out_hw)
             torch = base.torch
             x = base._prep(data["imgs"], model_hw)

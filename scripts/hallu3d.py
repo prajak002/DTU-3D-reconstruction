@@ -888,6 +888,8 @@ def run_vis(root, model_names, cfg=None, out_csv="vis_results.csv", model_factor
                                             gt=data["depths"].astype(np.float32), U=U, S=S, conf=c.astype(np.float32),
                                             depth=d.astype(np.float16))
                 else:
+                    if hasattr(model, "set_cams"):   # detectors that are given the ground-truth cameras
+                        model.set_cams(data["K_dep"] if "K_dep" in data else data["K"], data["E"])
                     d, c = model.predict(data["imgs"], model_hw, out_hw)
                 m = compute_metrics(d, c, data["depths"], U, S, cfg)
                 m.update(pm)
@@ -1379,6 +1381,10 @@ def make_model(name):
     m = re.fullmatch(r"(.+)_reproj", name)
     if m:
         return ReprojWrap(MODEL_REGISTRY[m.group(1)]())
+    m = re.fullmatch(r"(.+)_had", name)             # HAD's hallucination scorer, given ground-truth cameras
+    if m:
+        from had_wrap import HADWrap
+        return HADWrap(MODEL_REGISTRY[m.group(1)]())
     m = re.fullmatch(r"(.+)_(border|dedge)", name)
     if m:
         return HeuristicWrap(MODEL_REGISTRY[m.group(1)](), m.group(2))
