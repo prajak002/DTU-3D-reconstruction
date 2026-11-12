@@ -107,7 +107,7 @@ def patch_labels(lab, ph, pw):
     return f(lab["U"]), f(lab["S"])
 
 
-def run_base(base, root, out, scans, cfg):
+def run_base(base, root, out, scans, cfg, eval_root=None, view_mode="adjacent"):
     import pandas as pd
     torch = __import__("torch")
     head = H.make_model(f"{base}_oiavisself")           # OIAWrap: .base (backbone wrapper), .head, .pick
@@ -115,9 +115,9 @@ def run_base(base, root, out, scans, cfg):
     model_hw = tuple(cfg["model_hw"])
     ph, pw = model_hw[0] // O.PATCH, model_hw[1] // O.PATCH
 
-    def forward(imgs, mode):
+    def forward(imgs, mode, mhw=None):
         ed.mode, ed.cap = mode, {}
-        x = wrap._prep(imgs, model_hw)
+        x = wrap._prep(imgs, mhw or model_hw)
         with torch.no_grad():
             d, c, F = fwd(wrap, x, wrap.dtype, ed)
             if not torch.isfinite(d).all():
@@ -130,6 +130,15 @@ def run_base(base, root, out, scans, cfg):
     def load(scan):
         data = H.load_scan(root, scan, H.vis_views(N_VIEWS, 0, mode=cfg.get("view_mode", "spread")), cfg["light"])
         return data, H.vis_labels(data, cfg)
+
+    def load_eval(scan):
+        # a second dataset in the repository's CO3D format (ETH3D): the direction stays the one fitted on DTU
+        if eval_root is None:
+            return load(scan) + (model_hw,)
+        import co3d
+        views = H.vis_views(N_VIEWS, 0, total=co3d.n_frames(eval_root, scan), mode=view_mode)
+        data = co3d.load_co3d_scene(eval_root, scan, views)
+        return data, H.vis_labels(data, cfg), tuple(data["model_hw"])
 
     # ---- fit the direction on training scans
     t0, sums = time.time(), None
@@ -183,13 +192,13 @@ def run_base(base, root, out, scans, cfg):
     # ---- evaluate on the benchmark scans
     rows, modes = [], ["none", "ablate"] + [f"rand{k}" for k in range(N_RAND)] + [f"pc{k}" for k in range(N_PC)] + ["plus", "minus"]
     for scan in scans:
-        data, lab = load(scan)
+        data, lab, mhw = load_eval(scan)
         U, S, gt = lab["U"], lab["S"], data["depths"]
         if U.sum() < 50 or S.sum() < 50:
             continue
         hw, ref = gt.shape[1:], None
         for mode in modes:
-            d, c, F = forward(data["imgs"], mode)
+            d, c, F = forward(data["imgs"], mode, mhw)
             with torch.no_grad():
                 score = 1.0 - torch.sigmoid(O.upsample_logit(torch, head.head(F), hw).float())
             d = H._resize_t(d[:, None].float(), hw, "area")[:, 0].cpu().numpy()
@@ -218,15 +227,20 @@ def main():
     ap.add_argument("--dtu", required=True)
     ap.add_argument("--bases", default="vggt,pi3x,pi3")
     ap.add_argument("--scans", default=None)
+    ap.add_argument("--eval-co3d", default=None, help="evaluate on scenes of this CO3D-format root (ETH3D) instead of DTU")
+    ap.add_argument("--view-mode", default="adjacent")
     ap.add_argument("--out", default=os.path.join("results", "P21-causal"))
     a = ap.parse_args()
     root = H.find_dtu_root((a.dtu,))
     os.makedirs(a.out, exist_ok=True)
     cfg = dict(H.DEFAULT_CFG)
-    scans = [int(s) for s in a.scans.split(",")] if a.scans else cfg["scans"]
+    if a.eval_co3d:
+        scans = a.scans.split(",")
+    else:
+        scans = [int(s) for s in a.scans.split(",")] if a.scans else cfg["scans"]
     for b in a.bases.split(","):
         try:
-            run_base(b, root, a.out, scans, cfg)
+            run_base(b, root, a.out, scans, cfg, a.eval_co3d, a.view_mode)
         except Exception:
             print(f"[causal] {b} failed:\n{traceback.format_exc()}", flush=True)
 
