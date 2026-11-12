@@ -8,7 +8,9 @@ On the 18 benchmark scans the tokens are then edited before every output head of
   none      no edit
   ablate    the component along the direction is set to its mean over the capture (the direction carries no
             information any more; every other component is untouched)
-  rand<k>   the same edit along a random direction (control for "any edit of this size")
+  rand<k>   the same edit along a random direction (control for "any edit of this rank")
+  pc<k>     the same edit along the k-th principal direction of the patch tokens, after the support direction is
+            projected out (control for "any edit of this energy": these are the highest-variance directions left)
   plus      every patch token is moved by +alpha * (mean_supported - mean_single) along the direction
   minus     the opposite move
 
@@ -32,7 +34,7 @@ import oia_head as O  # noqa: E402
 
 FIT_SCANS = [7, 8, 14, 16, 18, 19, 20, 22, 30, 31, 36, 39]      # DTU training scans (oia_head.DTU_TRAIN_SCANS)
 assert not set(FIT_SCANS) & set(H.DEFAULT_CFG["scans"]) and set(FIT_SCANS) <= set(O.DTU_TRAIN_SCANS)
-N_VIEWS, N_RAND, ALPHA = 5, 3, 1.0
+N_VIEWS, N_RAND, N_PC, ALPHA = 5, 3, 3, 1.0
 
 
 class Editor:
@@ -45,9 +47,9 @@ class Editor:
         self.cap[li] = t.detach()
         if self.mode in (None, "none"):
             return t
-        u = (self.rand[self.mode][li] if self.mode.startswith("rand") else self.dirs[li]).to(t.dtype)
+        u = (self.rand[self.mode][li] if self.mode in self.rand else self.dirs[li]).to(t.dtype)
         proj = (t * u).sum(-1, keepdim=True)
-        if self.mode in ("ablate",) or self.mode.startswith("rand"):
+        if self.mode == "ablate" or self.mode in self.rand:
             return t - (proj - proj.mean(dim=tuple(range(t.dim() - 1)), keepdim=True)) * u
         sign = 1.0 if self.mode == "plus" else -1.0
         return t + sign * ALPHA * float(self.delta[li]) * u
@@ -141,27 +143,45 @@ def run_base(base, root, out, scans, cfg):
         Up, Sp = patch_labels(lab, ph, pw)
         Um, Sm = torch.from_numpy(Up.reshape(-1)).to(wrap.device), torch.from_numpy(Sp.reshape(-1)).to(wrap.device)
         if sums is None:
-            sums = {li: [0, 0, 0, 0] for li in ed.cap}
+            sums = {li: [0, 0, 0, 0, 0, 0, 0] for li in ed.cap}
         for li, t in ed.cap.items():
             t = t.reshape(-1, t.shape[-1]).double()
             s = sums[li]
             s[0], s[1], s[2], s[3] = s[0] + t[Sm].sum(0), s[1] + int(Sm.sum()), s[2] + t[Um].sum(0), s[3] + int(Um.sum())
+            s[4], s[5], s[6] = s[4] + t.sum(0), s[5] + t.T @ t, s[6] + t.shape[0]
     ed.dirs, ed.delta = {}, {}
     g = torch.Generator(device="cpu").manual_seed(0)
-    for li, (ss, ns, su, nu) in sums.items():
+    var_rows = []
+    for k in range(N_PC):
+        ed.rand[f"pc{k}"] = {}
+    for li, (ss, ns, su, nu, st, stt, nt) in sums.items():
         diff = (ss / max(ns, 1) - su / max(nu, 1)).float()
         ed.delta[li] = diff.norm().item()
         ed.dirs[li] = diff / diff.norm()
         print(f"[fit] {base} layer {li}: |mean_S - mean_U| = {ed.delta[li]:.3f}, supported {ns}, single-view {nu}", flush=True)
+        mu = st / nt
+        cov = stt / nt - torch.outer(mu, mu)                      # covariance of all patch tokens of the fit scans
+        u = ed.dirs[li].double()
+        Pm = torch.eye(len(u), dtype=torch.float64, device=u.device) - torch.outer(u, u)
+        w, V = torch.linalg.eigh(Pm @ cov @ Pm)                   # ascending
+        v_sup = float(u @ cov @ u)
+        row = dict(base=base, layer=li, var_support=v_sup, var_total=float(torch.trace(cov)))
+        for k in range(N_PC):
+            ed.rand[f"pc{k}"][li] = V[:, -1 - k].float()
+            row[f"var_pc{k}"] = float(w[-1 - k])
+        var_rows.append(row)
+        print(f"[fit] {base} layer {li}: token variance along support direction {v_sup:.3f}, along pc0..{N_PC - 1} "
+              + " ".join(f"{row[f'var_pc{k}']:.3f}" for k in range(N_PC)) + f", total {row['var_total']:.1f}", flush=True)
     for k in range(N_RAND):
         ed.rand[f"rand{k}"] = {}
         for li, u in ed.dirs.items():
             r = torch.randn(u.shape, generator=g).to(u.device)
             ed.rand[f"rand{k}"][li] = r / r.norm()
+    pd.DataFrame(var_rows).to_csv(os.path.join(out, f"P21-causal-{base}-variance.csv"), index=False)
     print(f"[fit] {base}: {time.time() - t0:.0f}s", flush=True)
 
     # ---- evaluate on the benchmark scans
-    rows, modes = [], ["none", "ablate"] + [f"rand{k}" for k in range(N_RAND)] + ["plus", "minus"]
+    rows, modes = [], ["none", "ablate"] + [f"rand{k}" for k in range(N_RAND)] + [f"pc{k}" for k in range(N_PC)] + ["plus", "minus"]
     for scan in scans:
         data, lab = load(scan)
         U, S, gt = lab["U"], lab["S"], data["depths"]
@@ -187,7 +207,7 @@ def run_base(base, root, out, scans, cfg):
                              dchange_S=float(rel[S].mean()), dchange_U=float(rel[U].mean())))
         r = {x["mode"]: x for x in rows[-len(modes):]}
         print(f"[{base}] scan {scan}: head AUROC none {r['none']['auroc_head']:.3f} ablate {r['ablate']['auroc_head']:.3f} "
-              f"rand0 {r['rand0']['auroc_head']:.3f} | AbsRel_S none {r['none']['absrel_S']:.4f} ablate {r['ablate']['absrel_S']:.4f}",
+              f"rand0 {r['rand0']['auroc_head']:.3f} pc0 {r['pc0']['auroc_head']:.3f} | AbsRel_S none {r['none']['absrel_S']:.4f} ablate {r['ablate']['absrel_S']:.4f}",
               flush=True)
         pd.DataFrame(rows).to_csv(os.path.join(out, f"P21-causal-{base}.csv"), index=False)
     head.free()
