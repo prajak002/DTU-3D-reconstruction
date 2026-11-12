@@ -68,9 +68,28 @@ AUROC, range over VGGT-1B, Pi3X, Pi3 and Depth Anything 3. The head never saw an
 ### Side by side at one operating point
 
 <p align="center">
-  <img src="paper/figures/fig_compare.png" width="100%" alt="Three DTU scenes. Columns: photograph, ground-truth support, then what passes each detector's filter: native confidence, perturbation variance, reprojection, support head. Red pixels are single-view geometry that got through; the head column is almost free of red.">
+  <a href="docs/assets/compare/fig_compare_vggt.png"><img src="docs/assets/compare/fig_compare_vggt.png" width="100%" alt="Three DTU scenes. Columns: photograph, ground-truth support, then what passes each detector's filter: native confidence, perturbation variance, reprojection, support head. Red pixels are single-view geometry that got through; the head column is almost free of red."></a>
   <br><sub>Every detector's threshold keeps 90% of the supported pixels. Green: supported pixels that pass. Red: single-view pixels that pass (the leak). VGGT, five views; rows are the three benchmark scans with the largest single-view share, chosen by that rule before looking at any detector.</sub>
 </p>
+
+<details>
+<summary><b>The same three scenes on the other backbones</b> (click an image for full resolution, 4140 px wide)</summary>
+<br>
+<p align="center">
+  <b>Pi3X</b><br>
+  <a href="docs/assets/compare/fig_compare_pi3x.png"><img src="docs/assets/compare/fig_compare_pi3x.png" width="100%" alt="The comparison on Pi3X"></a>
+</p>
+<p align="center">
+  <b>Pi3</b><br>
+  <a href="docs/assets/compare/fig_compare_pi3.png"><img src="docs/assets/compare/fig_compare_pi3.png" width="100%" alt="The comparison on Pi3"></a>
+</p>
+<p align="center">
+  <b>Depth Anything 3</b><br>
+  <a href="docs/assets/compare/fig_compare_da3.png"><img src="docs/assets/compare/fig_compare_da3.png" width="100%" alt="The comparison on Depth Anything 3"></a>
+</p>
+</details>
+
+Badge colour follows the measured leak: green under 5%, amber 5% to 20%, red above. Washed-out areas are pixels the detector rejects or that carry no label. The per-pixel maps behind these images are in the release (`P20-dump.tar.gz`, `P20-dump-hd.tar.gz`); `scripts/make_fig_compare.py` redraws them.
 
 Share of single-view geometry that passes, mean over the 18 DTU benchmark scans (lower is better):
 

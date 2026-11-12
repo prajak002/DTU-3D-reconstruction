@@ -19,7 +19,8 @@ import numpy as np
 
 DETS = [("{b}", "native confidence"), ("{b}_pvf8", "perturbation variance"), ("{b}_reproj", "reprojection"),
         ("{b}_had", "HAD scorer (GT cameras)"), ("{b}_oiavisself", "support head (ours)")]
-GREEN, RED, DARK = np.array([0.16, 0.62, 0.56]), np.array([0.82, 0.29, 0.36]), np.array([0.11, 0.17, 0.21])
+GREEN, RED, DARK = np.array([0.10, 0.62, 0.52]), np.array([0.88, 0.18, 0.26]), np.array([0.11, 0.17, 0.21])
+OURS, INK, GOOD, AMBER, BAD = "#0f8a73", "#2b303b", "#12866f", "#c9820a", "#cf2e40"
 
 
 def load_cell(dump, base, key):
@@ -118,33 +119,40 @@ def main():
             c_lo = load_cell(a.dump, a.base, key)      # thresholds and leak from the dump the numbers come from
             rgb, Ur, Sr, chd = load_hd(a.hd, a.base, key, r, c_lo)
         gray = rgb.mean(-1, keepdims=True)
-        gt = np.repeat(0.25 * gray, 3, -1) + 0.75 * DARK
-        gt[Sr] = 0.3 * gray[Sr] + 0.7 * GREEN
-        gt[Ur] = 0.3 * gray[Ur] + 0.7 * RED
+        pale = np.repeat(0.35 * gray + 0.62, 3, -1)            # rejected or unlabelled: washed-out photograph
+        gt = pale.copy()
+        gt[Sr] = 0.45 * rgb[Sr] + 0.55 * GREEN
+        gt[Ur] = 0.30 * rgb[Ur] + 0.70 * RED
         panels, notes = [rgb, gt], ["", f"{100 * U[r].sum() / max((U[r] | S[r]).sum(), 1):.0f}% single-view"]
+        leaks = [None, None]
         for pat, _ in DETS:
             conf = c["conf"][pat]
             if conf is None:
-                panels.append(np.zeros_like(rgb) + DARK); notes.append("not run"); continue
+                panels.append(pale.copy()); notes.append("not run"); leaks.append(None); continue
             lk, tau = leak(conf, U, S, a.keep)
             keep = (chd[pat] >= tau) if chd is not None else (conf[r] >= tau)
-            P = np.repeat(0.25 * gray, 3, -1) + 0.75 * DARK
-            m = keep & Sr; P[m] = 0.3 * gray[m] + 0.7 * GREEN
-            m = keep & Ur; P[m] = 0.15 * gray[m] + 0.85 * RED
+            P = pale.copy()
+            m = keep & Sr; P[m] = 0.45 * rgb[m] + 0.55 * GREEN
+            m = keep & Ur; P[m] = 0.22 * rgb[m] + 0.78 * RED
             panels.append(P)
             lv = float(((conf[r] >= tau) & U[r]).sum() / max(U[r].sum(), 1))   # always from the measured maps
-            notes.append(f"leak {100 * lv:.0f}%")
+            notes.append(f"leak {100 * lv:.0f}%"); leaks.append(lv)
         for j, P in enumerate(panels):
             ax[i, j].imshow(np.clip(P, 0, 1), interpolation="lanczos" if a.hd else None); ax[i, j].set_xticks([]); ax[i, j].set_yticks([])
+            ours = j == len(cols) - 1
             for sp in ax[i, j].spines.values():
-                sp.set_linewidth(0.4)
+                sp.set_linewidth(1.4 if ours else 0.5)
+                sp.set_edgecolor(OURS if ours else "#c9ced6")
             if i == 0:
-                ax[i, j].set_title(cols[j], fontsize=7.5, pad=3,
-                                   fontweight="bold" if j == len(cols) - 1 else "normal")
+                ax[i, j].set_title(cols[j], fontsize=8, pad=5, color=OURS if ours else INK,
+                                   fontweight="bold" if ours else "medium")
             if notes[j]:
-                ax[i, j].text(0.03, 0.04, notes[j], transform=ax[i, j].transAxes, fontsize=6.5, color="white",
-                              bbox=dict(facecolor="black", alpha=0.6, pad=1.2, edgecolor="none"))
-    fig.subplots_adjust(left=0.004, right=0.996, top=0.94, bottom=0.004, wspace=0.03, hspace=0.03)
+                lv = leaks[j]                       # badge colour by the measured leak: low green, middle amber, high red
+                face = "#3b4252" if lv is None else (GOOD if lv < 0.05 else AMBER if lv < 0.20 else BAD)
+                ax[i, j].text(0.035, 0.05, notes[j], transform=ax[i, j].transAxes, fontsize=7, color="white",
+                              fontweight="bold", bbox=dict(boxstyle="round,pad=0.32", facecolor=face, alpha=0.95, edgecolor="none"))
+    fig.patch.set_facecolor("white")
+    fig.subplots_adjust(left=0.006, right=0.994, top=0.93, bottom=0.008, wspace=0.035, hspace=0.045)
     os.makedirs(os.path.dirname(a.out) or ".", exist_ok=True)
     fig.savefig(a.out, dpi=300)
     fig.savefig(os.path.splitext(a.out)[0] + ".png", dpi=300 if a.hd else 200)
