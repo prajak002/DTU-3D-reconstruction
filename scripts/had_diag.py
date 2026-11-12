@@ -32,6 +32,7 @@ def main():
     ap.add_argument("--scan", type=int, default=37)
     ap.add_argument("--views", type=int, default=5)
     ap.add_argument("--out", default=os.path.join("results", "P22-had-diag"))
+    ap.add_argument("--quick", action="store_true", help="camera-convention and scene-scale sweep only")
     a = ap.parse_args()
     os.makedirs(a.out, exist_ok=True)
     root = H.find_dtu_root((a.dtu,))
@@ -60,7 +61,11 @@ def main():
     c2w_all = torch.from_numpy(np.linalg.inv(E).astype(np.float32)).to(dev)
     H0, W0 = data["imgs"].shape[1:3]
 
-    def run(hw, i, refs, half, tag, scale=1.35):
+    FLIP = torch.diag(torch.tensor([1.0, -1.0, -1.0, 1.0])).to(dev)        # OpenCV <-> OpenGL camera axes
+    CONV = {"c2w": lambda: c2w_all, "w2c": lambda: torch.from_numpy(E.astype(np.float32)).to(dev),
+            "c2w_gl": lambda: c2w_all @ FLIP}
+
+    def run(hw, i, refs, half, tag, scale=1.35, conv="c2w"):
         h, wd = hw
         ims = np.stack([cv2.resize(im, (wd, h), interpolation=cv2.INTER_AREA) for im in data["imgs"]])
         t = torch.from_numpy(ims).permute(0, 3, 1, 2).float().clamp(0, 1).to(dev)
@@ -68,7 +73,8 @@ def main():
         K[:, 0] *= wd / W0
         K[:, 1] *= h / H0
         intr = torch.from_numpy(np.stack([K[:, 0, 0], K[:, 1, 1], K[:, 0, 2], K[:, 1, 2]], -1).astype(np.float32)).to(dev)
-        poses = R.preprocess_poses(torch.cat([c2w_all[refs], c2w_all[i:i + 1]], 0).clone(), scale)
+        cw = CONV[conv]()
+        poses = R.preprocess_poses(torch.cat([cw[refs], cw[i:i + 1]], 0).clone(), scale)
         rc, tc = poses[:-1][None], poses[-1:][None]
         ri, ti = intr[refs][None], intr[i:i + 1][None]
         ro, rd = R.compute_rays(rc, ri, h, wd, dev)
@@ -90,6 +96,15 @@ def main():
         return ps
 
     others = lambda i: [j for j in range(N) if j != i]
+    if a.quick:
+        for conv in ("c2w", "w2c", "c2w_gl"):
+            for sc in (0.1, 0.25, 0.5, 1.0, 1.35):
+                ps = [run((408, 512), i, others(i), True, f"{conv}_scale{sc}", sc, conv) for i in (0, 2)]
+                print(f"== {conv} scale {sc}: mean PSNR {np.mean(ps):.2f} dB", flush=True)
+        cen = c2w_all[:, :3, 3]
+        print("[geom] camera centres (mm):", cen.cpu().numpy().round(0).tolist())
+        print("[geom] pairwise centre distance max %.0f, median depth %.0f" % (float(torch.cdist(cen, cen).max()), float(np.median(data["depths"][data["depths"] > 0]))))
+        return
     for hw in ((408, 512), (512, 512), (288, 512), (256, 320)):
         for half in (True, False):
             tag = f"{hw[0]}x{hw[1]}_{'fp16' if half else 'fp32'}"

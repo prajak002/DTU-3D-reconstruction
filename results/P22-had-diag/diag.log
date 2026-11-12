@@ -1,0 +1,39 @@
+Loading LVSM checkpoint from /home/had_ckpt/ckpt_0000000000010000.pt
+[keys] model 365, checkpoint 365, missing 0, unexpected 0, shape mismatch 0
+[keys] missing: top-level modules []; first []
+[keys] unexpected: top-level modules []; first []
+[keys] shape: top-level modules []; first []
+[keys] checkpoint top-level entries: ['model', 'optimizer', 'lr_scheduler', 'fwdbwd_pass_step', 'param_update_step']
+[408x512_fp16] view 0 refs [1, 2, 3, 4]: render range [0.07, 0.85] mean 0.447  PSNR 7.39 dB, mean scorer conf 0.957
+[408x512_fp16] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.602  PSNR 10.76 dB, mean scorer conf 0.975
+== 408x512_fp16: mean PSNR 9.08 dB
+[408x512_fp32] view 0 refs [1, 2, 3, 4]: render range [0.07, 0.85] mean 0.448  PSNR 7.39 dB, mean scorer conf 0.957
+[408x512_fp32] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.602  PSNR 10.76 dB, mean scorer conf 0.975
+== 408x512_fp32: mean PSNR 9.08 dB
+[512x512_fp16] view 0 refs [1, 2, 3, 4]: render range [0.08, 0.84] mean 0.434  PSNR 7.16 dB, mean scorer conf 0.954
+[512x512_fp16] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.593  PSNR 10.58 dB, mean scorer conf 0.975
+== 512x512_fp16: mean PSNR 8.87 dB
+[512x512_fp32] view 0 refs [1, 2, 3, 4]: render range [0.08, 0.84] mean 0.434  PSNR 7.16 dB, mean scorer conf 0.954
+[512x512_fp32] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.593  PSNR 10.57 dB, mean scorer conf 0.975
+== 512x512_fp32: mean PSNR 8.87 dB
+[288x512_fp16] view 0 refs [1, 2, 3, 4]: render range [0.16, 0.89] mean 0.466  PSNR 8.45 dB, mean scorer conf 0.958
+[288x512_fp16] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.580  PSNR 10.00 dB, mean scorer conf 0.975
+== 288x512_fp16: mean PSNR 9.23 dB
+[288x512_fp32] view 0 refs [1, 2, 3, 4]: render range [0.16, 0.89] mean 0.466  PSNR 8.45 dB, mean scorer conf 0.958
+[288x512_fp32] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.580  PSNR 10.00 dB, mean scorer conf 0.975
+== 288x512_fp32: mean PSNR 9.23 dB
+[256x320_fp16] view 0 refs [1, 2, 3, 4]: render range [0.11, 0.86] mean 0.457  PSNR 7.67 dB, mean scorer conf 0.949
+[256x320_fp16] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.596  PSNR 10.60 dB, mean scorer conf 0.970
+== 256x320_fp16: mean PSNR 9.13 dB
+[256x320_fp32] view 0 refs [1, 2, 3, 4]: render range [0.11, 0.86] mean 0.457  PSNR 7.66 dB, mean scorer conf 0.949
+[256x320_fp32] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.595  PSNR 10.60 dB, mean scorer conf 0.970
+== 256x320_fp32: mean PSNR 9.13 dB
+[identity_408x512_fp32] view 0 refs [0, 1, 2, 3, 4]: render range [0.05, 1.00] mean 0.697  PSNR 24.91 dB, mean scorer conf 0.970
+== identity (target is one of the references): PSNR 24.91 dB
+[scale1.0_408x512_fp32] view 2 refs [0, 1, 3, 4]: render range [0.02, 1.00] mean 0.601  PSNR 10.27 dB, mean scorer conf 0.976
+== scene scale factor 1.0: PSNR 10.27 dB
+[scale2.0_408x512_fp32] view 2 refs [0, 1, 3, 4]: render range [0.04, 1.00] mean 0.532  PSNR 9.06 dB, mean scorer conf 0.976
+== scene scale factor 2.0: PSNR 9.06 dB
+[scale4.0_408x512_fp32] view 2 refs [0, 1, 3, 4]: render range [0.07, 0.97] mean 0.490  PSNR 8.11 dB, mean scorer conf 0.976
+== scene scale factor 4.0: PSNR 8.11 dB
+DIAG_DONE
