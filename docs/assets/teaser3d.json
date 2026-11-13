@@ -1,13 +1,14 @@
 {
  "name": "DTU scan 37",
  "base": "vggt",
- "points": 99288,
+ "points": 1588608,
  "bad_share": 0.1717226653774877,
- "kept": 0.40512448634276044,
+ "kept": 0.40514462976391913,
  "bad_kept": 0.02932551319648094,
+ "no_reference": 0.2850390625,
  "video": {
   "name": "video, window 16",
-  "points": 744841,
+  "points": 2979364,
   "bad_share": 0.10910516472643154,
   "kept": 0.714282645557911,
   "bad_kept": 0.08021804936873969

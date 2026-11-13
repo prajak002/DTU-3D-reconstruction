@@ -205,11 +205,12 @@ def fig_teaser(N, M, out, P14=None):
     support head keeps. Right: the matched patches (2D) and the headline ranges."""
     c = Canvas(6.875, 2.45)
     T = json.load(open(os.path.join(ROOT, "docs", "assets", "teaser3d.json"), encoding="utf-8"))
-    cw, ch, gx, gy, gx0 = 1.55, 1.06, 0.03, 0.05, 0.17
+    cw, ch, gx, gy, gx0, win = 1.40, 1.06, 0.05, 0.05, 0.17, 1.20
+    xc = lambda k: gx0 + win + 0.13 + k * (cw + gx)          # left edge of the two 3D panels
     box = dict(fc="black", ec="none", alpha=0.6, pad=1.4)
-    rows3d = [("teaser3d_all.png", "teaser3d_keep.png", T, "static scene, 5 views",
-               "red: seen by one view only ({:.0f}%)", "keeps {:.0f}% of red, {:.0f}% of all points", IMAG),
-              ("teaser3d_video_all.png", "teaser3d_video_keep.png", T["video"], "video, 10 frames",
+    rows3d = [("teaser3d_all.png", "teaser3d_keep.png", T, "static scene",
+               "red: one view only ({:.0f}%)", "keeps {:.0f}% of red, {:.0f}% of all points", IMAG),
+              ("teaser3d_video_all.png", "teaser3d_video_keep.png", T["video"], "moving scene",
                "purple: moved during the video ({:.0f}%)", "keeps {:.0f}% of purple, {:.0f}% of all points", "#8E44AD")]
     calls = [("seen by one view only:\nno second view confirms it", "removed by the head", None),
              ("the walking person:\none copy per frame", "person removed", "also removed:\nsome background")]
@@ -220,9 +221,19 @@ def fig_teaser(N, M, out, P14=None):
         nz = np.argwhere((ia < 250).any(2))                      # one crop per row: the extent of the full cloud
         (y0, x0), (y1, x1) = np.maximum(nz.min(0) - 10, 0), nz.max(0) + 10
         y = c.H - 0.15 - ch - r * (ch + gy)
+        # the photographs first: the middle view in front, two more behind it
+        pref = "teaser3d_in_" if r == 0 else "teaser3d_video_in_"
+        ph_in = [np.asarray(Image.open(os.path.join(FIG, f"{pref}{j}.png")).convert("RGB")) for j in range(3)]
+        pw_i = win - 0.10
+        ph_i = pw_i * ph_in[0].shape[0] / ph_in[0].shape[1]
+        for j in (2, 1, 0):
+            c.image(ph_in[j], gx0 + 0.05 * j, y + (ch - ph_i) / 2 - 0.035 + 0.035 * j, pw_i, ph_i, None, lw=0.8, ec="white" if j else PANEL_EC)
+        c.arrow(gx0 + win + 0.015, y + ch / 2, xc(0) - 0.01, y + ch / 2, lw=1.1, ms=7)
+        if r == 0:
+            c.text(gx0 + win / 2, y + ch + 0.03, "Observe: the photographs", fontsize=6.3, weight="bold", ha="center", va="bottom", color=INK)
         for k, (im, note) in enumerate(((ia, na.format(100 * st["bad_share"])),
                                         (ik, nk_.format(100 * st["bad_kept"], 100 * st["kept"])))):
-            ax = c.fig.add_axes(R(c.W, c.H, gx0 + k * (cw + gx), y, cw, ch))
+            ax = c.fig.add_axes(R(c.W, c.H, xc(k), y, cw, ch))
             ax.imshow(im[y0:y1, x0:x1], interpolation="lanczos"); ax.set_anchor("C")
             # callout: an arrow to the most interior point of the region it names, found in the renders themselves
             A, K_ = ia[y0:y1, x0:x1].astype(int), ik[y0:y1, x0:x1].astype(int)
@@ -238,13 +249,15 @@ def fig_teaser(N, M, out, P14=None):
                 import cv2
                 other = removed & ~(cv2.dilate(marked.astype(np.uint8), np.ones((15, 15), np.uint8)) > 0)
                 po = _interior(other)
-                if po is not None:
-                    ax.annotate(call_also, xy=po, xycoords="data", xytext=(0.03, 0.955), textcoords="axes fraction", ha="left",
+                if po is not None:                                      # a note, no arrow: this region is scattered
+                    ax.annotate(call_also, xy=(0.03, 0.955), xycoords="axes fraction", xytext=(0.03, 0.955), textcoords="axes fraction", ha="left",
                                 va="top", fontsize=5.0, color=MUTED, zorder=30, annotation_clip=False, linespacing=1.15,
                                 bbox=dict(fc="white", ec=MUTED, lw=0.5, boxstyle="round,pad=0.25"),
-                                arrowprops=dict(arrowstyle="-|>", color=MUTED, lw=0.7, shrinkA=1, shrinkB=1, mutation_scale=5,
-                                                connectionstyle="arc3,rad=-0.25"))
-            if pt is not None:
+                                )
+            if pt is not None and k == 1 and r == 0:                    # the removed points surround the object: a label, no arrow
+                ax.text(0.975, 0.955, "single-view points removed", transform=ax.transAxes, ha="right", va="top", fontsize=5.5,
+                        weight="bold", color=lc, zorder=30, bbox=dict(fc="white", ec=lc, lw=0.6, boxstyle="round,pad=0.25"))
+            elif pt is not None:
                 ax.annotate(lab, xy=pt, xycoords="data", xytext=(0.975, 0.955), textcoords="axes fraction",
                             ha="right", va="top", fontsize=5.5, weight="bold", color=lc, zorder=30, annotation_clip=False,
                             bbox=dict(fc="white", ec=lc, lw=0.6, pad=1.6, boxstyle="round,pad=0.25"),
@@ -253,34 +266,34 @@ def fig_teaser(N, M, out, P14=None):
             ax.set_xticks([]); ax.set_yticks([])
             for sp in ax.spines.values():
                 sp.set_visible(False)
-            c.ax.add_patch(Rectangle((gx0 + k * (cw + gx), y), cw, ch, fc="none", ec=PANEL_EC, lw=0.6, zorder=6))
+            c.ax.add_patch(Rectangle((xc(k), y), cw, ch, fc="none", ec=PANEL_EC, lw=0.6, zorder=6))
             # figure-level text: the image axes sit above the canvas axes
-            c.fig.text((gx0 + k * (cw + gx) + 0.045) / c.W, (y + 0.045) / c.H, note, fontsize=5.3, color="white", weight="bold",
+            c.fig.text((xc(k) + 0.045) / c.W, (y + 0.045) / c.H, note, fontsize=5.0, color="white", weight="bold",
                        va="bottom", ha="left", bbox=box, zorder=20)
             if k == 0:              # row name, upright beside the row
                 c.text(gx0 - 0.07, y + ch / 2, name, fontsize=6.2, color=INK, weight="bold", va="center", ha="center", rotation=90)
             if r == 0:
-                c.text(gx0 + k * (cw + gx) + cw / 2, y + ch + 0.03, ("predicted points, all views fused", "points the support head keeps")[k],
-                       fontsize=6.8, weight="bold", ha="center", va="bottom", color=(INK, OBS)[k])
+                c.text(xc(k) + cw / 2, y + ch + 0.03, ("Imagine: the 3D model's output", "Abstain: what our head keeps")[k],
+                       fontsize=6.3, weight="bold", ha="center", va="bottom", color=(IMAG, OBS)[k])
     # matched patches
-    xr = gx0 + 2 * cw + gx + 0.14
+    xr = xc(1) + cw + 0.14
     c.ax.plot([xr - 0.07, xr - 0.07], [0.06, c.H - 0.04], color=PANEL_EC, lw=0.6)
     wr = c.W - 0.02 - xr
-    ph = 0.75
+    ph = 0.585
     pw = ph * 242 / 194
-    x0p = xr + (wr - 3 * pw - 2 * 0.04) / 2
+    x0p = xr + (wr - 3 * pw - 2 * 0.03) / 2
     yp = c.H - 0.15 - ph
-    tk = dict(tfs=6.6, lw=0.7)
-    nk = dict(ha="center", va="top", fontsize=5.7, linespacing=1.2)
-    vpanel(c, 0, x0p, yp, pw, ph, "input view (gray fill)", photo=True, **tk)
-    c.text(x0p + pw / 2, yp - 0.05, "red: hidden in every view\ngreen: seen in another view", color=MUTED, **nk)
-    vpanel(c, 2, x0p + pw + 0.04, yp, pw, ph, "native confidence", tcolor=IMAG, **tk)
-    c.text(x0p + 1.5 * pw + 0.04, yp - 0.05, "dark on both patches:\nreads the patch", color=IMAG, weight="bold", **nk)
-    vpanel(c, 4, x0p + 2 * pw + 0.08, yp, pw, ph, "support head (ours)", tcolor=OBS, **tk)
-    c.text(x0p + 2.5 * pw + 0.08, yp - 0.05, "dark only where\nno view sees", color=OBS, weight="bold", **nk)
+    tk = dict(tfs=5.6, lw=0.7)
+    nk = dict(ha="center", va="top", fontsize=5.0, linespacing=1.2)
+    vpanel(c, 0, x0p, yp, pw, ph, "input (gray fill)", photo=True, **tk)
+    c.text(x0p + pw / 2, yp - 0.05, "red: hidden in every view\ngreen: seen in another", color=MUTED, **nk)
+    vpanel(c, 2, x0p + pw + 0.03, yp, pw, ph, "native confidence", tcolor=IMAG, **tk)
+    c.text(x0p + 1.5 * pw + 0.03, yp - 0.05, "dark on both:\nreads the patch", color=IMAG, weight="bold", **nk)
+    vpanel(c, 4, x0p + 2 * pw + 0.06, yp, pw, ph, "support head", tcolor=OBS, **tk)
+    c.text(x0p + 2.5 * pw + 0.06, yp - 0.05, "dark only where\nno view sees", color=OBS, weight="bold", **nk)
     # headline ranges
-    aw = 2.05
-    ax = c.fig.add_axes(R(c.W, c.H, xr + 0.78, 0.27, aw, yp - 0.27 - 0.30))
+    aw = 1.12
+    ax = c.fig.add_axes(R(c.W, c.H, xr + 0.42, 0.27, aw, yp - 0.27 - 0.27))
     V = N["vis"]
     MC = {k: M[k]["cells"] for k in ("DTU", "CO3Dv2")}
     bases = ("vggt", "pi3x", "pi3", "da3")
@@ -299,22 +312,22 @@ def fig_teaser(N, M, out, P14=None):
     for k, (lab, vals, col) in enumerate(rows):
         if vals is None:                      # a heading takes a taller slot and sits at its bottom, clear of the bar above
             y -= 1.55 if k else 1.0
-            ax.text(-0.74 / aw, y, lab, fontsize=6.0, weight="bold", color=INK, va="center", ha="left",
+            ax.text(-0.40 / aw, y, lab, fontsize=5.5, weight="bold", color=INK, va="center", ha="left",
                     transform=ax.get_yaxis_transform(), zorder=5, bbox=dict(fc="white", ec="none", pad=0.8))
             continue
         y -= 1.0
         lo, hi = min(vals), max(vals)
         ax.plot([lo, hi], [y, y], color=col, lw=4.2, solid_capstyle="round")
-        ax.text(hi + 0.045, y, f"{lo:.2f}–{hi:.2f}", fontsize=5.8, va="center", color=col, weight="bold")
+        ax.text(hi + 0.045, y, f"{lo:.2f}–{hi:.2f}", fontsize=5.3, va="center", color=col, weight="bold")
         yt.append(y); yl.append(lab)
-    ax.set_yticks(yt); ax.set_yticklabels(yl, fontsize=5.9, color=MUTED); ax.tick_params(axis="y", length=0, pad=1)
+    ax.set_yticks(yt); ax.set_yticklabels(yl, fontsize=5.3, color=MUTED); ax.tick_params(axis="y", length=0, pad=1)
     ax.axvline(0.5, color=MUTED, lw=0.5, ls=":", zorder=1)
-    ax.set_xlim(0.36, 1.24); ax.set_ylim(y - 0.75, -0.45)
+    ax.set_xlim(0.36, 1.42); ax.set_ylim(y - 0.75, -0.45)
     ax.set_xticks([0.5, 0.75, 1.0]); ax.set_xticklabels(["0.5", "0.75", "1"]); ax.tick_params(axis="x", labelsize=5.9, length=2, pad=1)
     for sp in ("top", "right", "left"):
         ax.spines[sp].set_visible(False)
     ax.spines["bottom"].set_bounds(0.36, 1.0)
-    ax.set_xlabel("AUROC (0.5: chance)", fontsize=5.9, labelpad=1, x=0.36)
+    ax.set_xlabel("AUROC (0.5: chance)", fontsize=5.6, labelpad=1, x=0.3)
     c.fig.savefig(out + ".pdf", dpi=600); c.fig.savefig(out + ".png", dpi=600)
     plt.close(c.fig)
 

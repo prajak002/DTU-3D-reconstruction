@@ -41,7 +41,7 @@ def hexrgb(c):
     return np.array([int(c[i:i + 2], 16) for i in (1, 3, 5)], np.uint8)
 
 
-def render_row(d, score, rgb, S, bad, Kd, Es, bad_col, r=2):
+def render_row(d, score, rgb, S, bad, Kd, Es, bad_col, r=2, view=(0.30, 0.22, 0.28)):
     """d (N,h,w) predicted depth in the cameras' scale, score (N,h,w), rgb (N,h,w,3), S supported, bad the ground-truth
     class shown in column 3. Returns the four renders and the row's numbers."""
     n = len(d)
@@ -56,7 +56,7 @@ def render_row(d, score, rgb, S, bad, Kd, Es, bad_col, r=2):
     centre = np.median(P, 0)
     dist = np.linalg.norm(centre - Cc)
     right, down, fwd = Rcw[:, 0], Rcw[:, 1], Rcw[:, 2]
-    Ev = look_at(Cc - 0.30 * dist * fwd - 0.22 * dist * down + 0.28 * dist * right, centre, -down)
+    Ev = look_at(Cc - view[0] * dist * fwd - view[1] * dist * down + view[2] * dist * right, centre, -down)
     # focal length from the cloud's extent, so that every row fills its panel in the same way
     Pc = P @ Ev[:3, :3].T + Ev[:3, 3]
     ok = Pc[:, 2] > 0.05
