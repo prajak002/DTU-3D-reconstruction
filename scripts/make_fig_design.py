@@ -214,6 +214,10 @@ def fig_teaser(N, M, out, P14=None):
                "purple: moved during the video ({:.0f}%)", "keeps {:.0f}% of purple, {:.0f}% of all points", "#8E44AD")]
     calls = [("seen by one view only:\nno second view confirms it", "removed by the head", None),
              ("the walking person:\none copy per frame", "person removed", "also removed:\nsome background")]
+    y_bot = c.H - 0.15 - 2 * ch - gy
+    for k, (fc_, ec_, lw_) in enumerate((("#F1F3F5", "#9AA5B1", 0.9), ("#E3F3F1", OBS, 1.6))):
+        c.ax.add_patch(FancyBboxPatch((xc(k) - 0.022, y_bot - 0.03), cw + 0.044, 2 * ch + gy + 0.06,
+                                      boxstyle="round,pad=0,rounding_size=0.07", fc=fc_, ec=ec_, lw=lw_, zorder=1))
     for r, (fa, fk, st, name, na, nk_, col) in enumerate(rows3d):
         call_all, call_keep, call_also = calls[r]
         ia = np.asarray(Image.open(os.path.join(FIG, fa)).convert("RGB"))
@@ -226,6 +230,13 @@ def fig_teaser(N, M, out, P14=None):
         ph_in = [np.asarray(Image.open(os.path.join(FIG, f"{pref}{j}.png")).convert("RGB")) for j in range(3)]
         pw_i = win - 0.10
         ph_i = pw_i * ph_in[0].shape[0] / ph_in[0].shape[1]
+        sx0, sx1 = gx0 - 0.035, gx0 + pw_i + 0.135
+        sy0, sy1 = y + (ch - ph_i) / 2 - 0.035 - 0.085, y + (ch - ph_i) / 2 + 0.035 + ph_i + 0.085
+        c.ax.add_patch(Rectangle((sx0, sy0), sx1 - sx0, sy1 - sy0, fc="#15191E", ec="none", zorder=1))
+        for hx in np.arange(sx0 + 0.035, sx1 - 0.05, 0.085):
+            for hy in (sy0 + 0.017, sy1 - 0.017 - 0.036):
+                c.ax.add_patch(FancyBboxPatch((hx, hy), 0.042, 0.036, boxstyle="round,pad=0,rounding_size=0.008", fc="white",
+                                              ec="none", zorder=2))
         for j in (2, 1, 0):
             c.image(ph_in[j], gx0 + 0.05 * j, y + (ch - ph_i) / 2 - 0.035 + 0.035 * j, pw_i, ph_i, None, lw=0.8, ec="white" if j else PANEL_EC)
         c.arrow(gx0 + win + 0.015, y + ch / 2, xc(0) - 0.01, y + ch / 2, lw=1.1, ms=7)
@@ -250,15 +261,17 @@ def fig_teaser(N, M, out, P14=None):
                 other = removed & ~(cv2.dilate(marked.astype(np.uint8), np.ones((15, 15), np.uint8)) > 0)
                 po = _interior(other)
                 if po is not None:                                      # a note, no arrow: this region is scattered
-                    ax.annotate(call_also, xy=(0.03, 0.955), xycoords="axes fraction", xytext=(0.03, 0.955), textcoords="axes fraction", ha="left",
-                                va="top", fontsize=5.0, color=MUTED, zorder=30, annotation_clip=False, linespacing=1.15,
+                    ax.annotate(call_also, xy=(0.03, 0.16), xycoords="axes fraction", xytext=(0.03, 0.16), textcoords="axes fraction", ha="left",
+                                va="bottom", fontsize=4.8, color=MUTED, zorder=30, annotation_clip=False, linespacing=1.15,
                                 bbox=dict(fc="white", ec=MUTED, lw=0.5, boxstyle="round,pad=0.25"),
                                 )
             if pt is not None and k == 1 and r == 0:                    # the removed points surround the object: a label, no arrow
-                ax.text(0.975, 0.955, "single-view points removed", transform=ax.transAxes, ha="right", va="top", fontsize=5.5,
+                ax.text(0.975, 0.955, "\u2713 single-view points removed", transform=ax.transAxes, ha="right", va="top", fontsize=5.3,
+                        fontfamily="DejaVu Sans",
                         weight="bold", color=lc, zorder=30, bbox=dict(fc="white", ec=lc, lw=0.6, boxstyle="round,pad=0.25"))
             elif pt is not None:
-                ax.annotate(lab, xy=pt, xycoords="data", xytext=(0.975, 0.955), textcoords="axes fraction",
+                ax.annotate(("\u2713 " + lab) if k else lab, xy=pt, xycoords="data", xytext=(0.975, 0.955), textcoords="axes fraction",
+                            **({"fontfamily": "DejaVu Sans"} if k else {}),
                             ha="right", va="top", fontsize=5.5, weight="bold", color=lc, zorder=30, annotation_clip=False,
                             bbox=dict(fc="white", ec=lc, lw=0.6, pad=1.6, boxstyle="round,pad=0.25"),
                             arrowprops=dict(arrowstyle="-|>", color=lc, lw=0.9, shrinkA=1, shrinkB=1, mutation_scale=6,
@@ -266,7 +279,6 @@ def fig_teaser(N, M, out, P14=None):
             ax.set_xticks([]); ax.set_yticks([])
             for sp in ax.spines.values():
                 sp.set_visible(False)
-            c.ax.add_patch(Rectangle((xc(k), y), cw, ch, fc="none", ec=PANEL_EC, lw=0.6, zorder=6))
             # figure-level text: the image axes sit above the canvas axes
             c.fig.text((xc(k) + 0.045) / c.W, (y + 0.045) / c.H, note, fontsize=5.0, color="white", weight="bold",
                        va="bottom", ha="left", bbox=box, zorder=20)
