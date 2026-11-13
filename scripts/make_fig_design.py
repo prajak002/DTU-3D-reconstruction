@@ -186,19 +186,35 @@ def vpanel(c, i, x, y, w, h, title, lw=1.15, photo=False, up=6, **kw):
     return ax
 
 
+def _interior(mask):
+    """(x, y) of the most interior pixel of the largest connected region of a boolean mask, or None."""
+    import cv2
+    m = cv2.morphologyEx(mask.astype(np.uint8), cv2.MORPH_OPEN, np.ones((5, 5), np.uint8))
+    n, lab, stats, _ = cv2.connectedComponentsWithStats(m, connectivity=8)
+    if n < 2:
+        return None
+    big = 1 + int(np.argmax(stats[1:, cv2.CC_STAT_AREA]))
+    d = cv2.distanceTransform((lab == big).astype(np.uint8), cv2.DIST_L2, 5)
+    y, x = np.unravel_index(int(np.argmax(d)), d.shape)
+    return float(x), float(y)
+
+
 def fig_teaser(N, M, out, P14=None):
     """Hero figure. Left: two captures fused in 3D from logged predictions (scripts/make_fig_gallery3d.py: predicted
     depth, dataset cameras), a static DTU capture and a video with a walking person, each beside the points the
     support head keeps. Right: the matched patches (2D) and the headline ranges."""
     c = Canvas(6.875, 2.45)
     T = json.load(open(os.path.join(ROOT, "docs", "assets", "teaser3d.json"), encoding="utf-8"))
-    cw, ch, gx, gy = 1.55, 1.06, 0.03, 0.05
+    cw, ch, gx, gy, gx0 = 1.55, 1.06, 0.03, 0.05, 0.17
     box = dict(fc="black", ec="none", alpha=0.6, pad=1.4)
-    rows3d = [("teaser3d_all.png", "teaser3d_keep.png", T, "static capture, 5 views",
+    rows3d = [("teaser3d_all.png", "teaser3d_keep.png", T, "static scene, 5 views",
                "red: seen by one view only ({:.0f}%)", "keeps {:.0f}% of red, {:.0f}% of all points", IMAG),
-              ("teaser3d_video_all.png", "teaser3d_video_keep.png", T["video"], "video with a walking person, 10 frames",
+              ("teaser3d_video_all.png", "teaser3d_video_keep.png", T["video"], "video, 10 frames",
                "purple: moved during the video ({:.0f}%)", "keeps {:.0f}% of purple, {:.0f}% of all points", "#8E44AD")]
+    calls = [("seen by one view only:\nno second view confirms it", "removed by the head"),
+             ("the walking person:\none copy per frame", "copies removed by the head")]
     for r, (fa, fk, st, name, na, nk_, col) in enumerate(rows3d):
+        call_all, call_keep = calls[r]
         ia = np.asarray(Image.open(os.path.join(FIG, fa)).convert("RGB"))
         ik = np.asarray(Image.open(os.path.join(FIG, fk)).convert("RGB"))
         nz = np.argwhere((ia < 250).any(2))                      # one crop per row: the extent of the full cloud
@@ -206,23 +222,36 @@ def fig_teaser(N, M, out, P14=None):
         y = c.H - 0.15 - ch - r * (ch + gy)
         for k, (im, note) in enumerate(((ia, na.format(100 * st["bad_share"])),
                                         (ik, nk_.format(100 * st["bad_kept"], 100 * st["kept"])))):
-            ax = c.fig.add_axes(R(c.W, c.H, 0.03 + k * (cw + gx), y, cw, ch))
+            ax = c.fig.add_axes(R(c.W, c.H, gx0 + k * (cw + gx), y, cw, ch))
             ax.imshow(im[y0:y1, x0:x1], interpolation="lanczos"); ax.set_anchor("C")
+            # callout: an arrow to the most interior point of the region it names, found in the renders themselves
+            A, K_ = ia[y0:y1, x0:x1].astype(int), ik[y0:y1, x0:x1].astype(int)
+            rgbc = np.array([int(col[i:i + 2], 16) for i in (1, 3, 5)])
+            if k == 0:
+                mask, lab, lc = (np.abs(A - rgbc).sum(2) < 40), call_all, col
+            else:
+                mask, lab, lc = ((A < 250).any(2) & (K_ >= 250).all(2)), call_keep, INK
+            pt = _interior(mask)
+            if pt is not None:
+                ax.annotate(lab, xy=pt, xycoords="data", xytext=(0.975, 0.955), textcoords="axes fraction",
+                            ha="right", va="top", fontsize=5.5, weight="bold", color=lc, zorder=30, annotation_clip=False,
+                            bbox=dict(fc="white", ec=lc, lw=0.6, pad=1.6, boxstyle="round,pad=0.25"),
+                            arrowprops=dict(arrowstyle="-|>", color=lc, lw=0.9, shrinkA=1, shrinkB=1, mutation_scale=6,
+                                            connectionstyle="arc3,rad=0.18"))
             ax.set_xticks([]); ax.set_yticks([])
             for sp in ax.spines.values():
                 sp.set_visible(False)
-            c.ax.add_patch(Rectangle((0.03 + k * (cw + gx), y), cw, ch, fc="none", ec=PANEL_EC, lw=0.6, zorder=6))
+            c.ax.add_patch(Rectangle((gx0 + k * (cw + gx), y), cw, ch, fc="none", ec=PANEL_EC, lw=0.6, zorder=6))
             # figure-level text: the image axes sit above the canvas axes
-            c.fig.text((0.03 + k * (cw + gx) + 0.045) / c.W, (y + 0.045) / c.H, note, fontsize=5.3, color="white", weight="bold",
+            c.fig.text((gx0 + k * (cw + gx) + 0.045) / c.W, (y + 0.045) / c.H, note, fontsize=5.3, color="white", weight="bold",
                        va="bottom", ha="left", bbox=box, zorder=20)
-            if k == 0:
-                c.fig.text(0.075 / c.W, (y + ch - 0.045) / c.H, name, fontsize=5.6, color="white", weight="bold", va="top", ha="left",
-                           bbox=box, zorder=20)
+            if k == 0:              # row name, upright beside the row
+                c.text(gx0 - 0.07, y + ch / 2, name, fontsize=6.2, color=INK, weight="bold", va="center", ha="center", rotation=90)
             if r == 0:
-                c.text(0.03 + k * (cw + gx) + cw / 2, y + ch + 0.03, ("predicted points, all views fused", "points the support head keeps")[k],
+                c.text(gx0 + k * (cw + gx) + cw / 2, y + ch + 0.03, ("predicted points, all views fused", "points the support head keeps")[k],
                        fontsize=6.8, weight="bold", ha="center", va="bottom", color=(INK, OBS)[k])
     # matched patches
-    xr = 0.03 + 2 * cw + gx + 0.14
+    xr = gx0 + 2 * cw + gx + 0.14
     c.ax.plot([xr - 0.07, xr - 0.07], [0.06, c.H - 0.04], color=PANEL_EC, lw=0.6)
     wr = c.W - 0.02 - xr
     ph = 0.75
