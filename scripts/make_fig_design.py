@@ -115,29 +115,102 @@ class Canvas:
 
 
 # ----------------------------------------------------------------------------- teaser
+def mvec(i):
+    """Panel i of fig_matched.pdf at source resolution: the embedded image and its outlines as vector polylines
+    (pixel coordinates, colour, dashed), so the teaser carries sharp outlines instead of a crop of a rendered page."""
+    import fitz
+    page = fitz.open(os.path.join(FIG, "fig_matched.pdf"))[0]
+    xref = sorted((page.get_image_rects(im[0])[0].x0, im[0]) for im in page.get_images(full=True))[i][1]
+    r = page.get_image_rects(xref)[0]
+    pix = fitz.Pixmap(page.parent, xref)
+    img = np.frombuffer(pix.samples, np.uint8).reshape(pix.height, pix.width, pix.n)[..., :3]
+    lines = []
+    for d in page.get_drawings():
+        if d["type"] != "s" or not r.contains(d["rect"]):
+            continue
+        dashed = "[]" not in str(d.get("dashes"))
+        cur = []
+        for it in d["items"]:
+            if it[0] != "l":
+                continue
+            if cur and (abs(cur[-1][0] - it[1].x) > 1e-3 or abs(cur[-1][1] - it[1].y) > 1e-3):
+                lines.append((np.array(cur), d["color"], dashed)); cur = []
+            if not cur:
+                cur.append((it[1].x, it[1].y))
+            cur.append((it[2].x, it[2].y))
+        if cur:
+            lines.append((np.array(cur), d["color"], dashed))
+    out = []
+    for xy, col, dashed in lines:
+        px = np.stack([(xy[:, 0] - r.x0) / r.width * pix.width - 0.5, (xy[:, 1] - r.y0) / r.height * pix.height - 0.5], 1)
+        out.append((px, col, dashed))
+    return img, out
+
+
+def _smooth(px, k=7):
+    """Moving average along an outline: removes the pixel staircase of the low-resolution mask, keeps its shape."""
+    if len(px) < 2 * k:
+        return px
+    closed = np.allclose(px[0], px[-1], atol=1e-3)
+    ker = np.ones(k) / k
+    if closed:
+        q = np.concatenate([px[-k:-1], px, px[1:k]])
+        out = np.stack([np.convolve(q[:, j], ker, "same") for j in (0, 1)], 1)[k - 1:k - 1 + len(px)]
+        out[-1] = out[0]
+        return out
+    q = np.concatenate([np.repeat(px[:1], k // 2, 0), px, np.repeat(px[-1:], k // 2, 0)])
+    return np.stack([np.convolve(q[:, j], ker, "valid") for j in (0, 1)], 1)
+
+
+def vpanel(c, i, x, y, w, h, title, lw=1.15, photo=False, up=6, **kw):
+    """One teaser panel. The source image is upsampled (Lanczos) so that it prints smooth; a photograph also gets an
+    unsharp mask (display only, no content is generated). Outlines are vector, smoothed, with a white halo."""
+    import matplotlib.patheffects as pe
+    from PIL import ImageFilter
+    img, lines = mvec(i)
+    H0, W0 = img.shape[:2]
+    im = Image.fromarray(np.ascontiguousarray(img)).resize((W0 * up, H0 * up), Image.LANCZOS if photo else Image.BICUBIC)
+    if photo:
+        im = im.filter(ImageFilter.UnsharpMask(radius=1.2 * up, percent=110, threshold=2))
+        im = im.filter(ImageFilter.UnsharpMask(radius=0.5 * up, percent=60, threshold=2))
+    ax = c.image(np.asarray(im), x, y, w, h, title, **kw)
+    ax.images[0].set_extent((-0.5, W0 - 0.5, H0 - 0.5, -0.5))
+    for px, col, dashed in lines:
+        px = _smooth(px)
+        if not dashed:
+            ax.plot(px[:, 0], px[:, 1], color="white", lw=lw + 0.6, solid_capstyle="round", solid_joinstyle="round", alpha=0.9)
+        ax.plot(px[:, 0], px[:, 1], color=col, lw=lw, ls=(0, (3.0, 1.5)) if dashed else "-", solid_capstyle="round",
+                solid_joinstyle="round", dash_capstyle="round",
+                path_effects=[pe.Stroke(linewidth=lw + 0.6, foreground="white", alpha=0.9), pe.Normal()] if dashed else None)
+    ax.set_xlim(-0.5, W0 - 0.5); ax.set_ylim(H0 - 0.5, -0.5)
+    return ax
+
+
 def fig_teaser(N, M, out, P14=None):
     c = Canvas(6.875, 1.42)
-    iw, ih, yb = 1.0, 1.0 * 286 / 361, 0.42
-    x_in1, x_in2, x_nat, x_ours = 0.04, 1.10, 2.92, 3.99
-    c.image(mpanel(0), x_in1, yb, iw, ih, "input view (gray fill)")
-    c.image(mpanel(1), x_in2, yb, iw, ih, "another input view")
-    c.text(1.07, yb - 0.07, "red: hidden in every view (imagined)\ngreen: hidden here, seen in another view (observed)",
-           ha="center", va="top", fontsize=6.1, color=MUTED, linespacing=1.25)
-    bx = 2.18
-    c.box(bx, yb + 0.13, 0.62, ih - 0.26, fc=FROZEN_FC, ec=FROZEN_EC, lw=0.9, r=0.06)
-    c.text(bx + 0.31, yb + ih / 2 + 0.11, "frozen 3D model", ha="center", va="center", fontsize=6.6, weight="bold")
-    c.text(bx + 0.31, yb + ih / 2 - 0.08, "VGGT, Pi3, Pi3X,\nDepth Anything 3", ha="center", va="center", fontsize=5.8, color=MUTED,
+    iw, yb = 1.08, 0.40
+    ih = iw * 194 / 242
+    x_in1, x_in2, x_nat, x_ours = 0.03, 1.16, 3.01, 4.14
+    tk = dict(tfs=7.2, lw=0.7)
+    vpanel(c, 0, x_in1, yb, iw, ih, "input view (gray fill)", photo=True, **tk)
+    vpanel(c, 1, x_in2, yb, iw, ih, "another input view", photo=True, **tk)
+    c.text((x_in1 + x_in2 + iw) / 2, yb - 0.07, "red: hidden in every view (imagined)\ngreen: hidden here, seen in another view (observed)",
+           ha="center", va="top", fontsize=6.3, color=MUTED, linespacing=1.3)
+    bx, bw = 2.345, 0.58
+    c.box(bx, yb + 0.10, bw, ih - 0.20, fc=FROZEN_FC, ec=FROZEN_EC, lw=0.9, r=0.06)
+    c.text(bx + bw / 2, yb + ih / 2 + 0.17, "frozen\n3D model", ha="center", va="center", fontsize=7.0, weight="bold", linespacing=1.15)
+    c.text(bx + bw / 2, yb + ih / 2 - 0.14, "VGGT, Pi3,\nPi3X, Depth\nAnything 3", ha="center", va="center", fontsize=5.9, color=MUTED,
            linespacing=1.2)
-    c.arrow(2.11, yb + ih / 2, bx, yb + ih / 2)
-    c.arrow(bx + 0.62, yb + ih / 2, x_nat - 0.01, yb + ih / 2)
-    c.image(mpanel(2), x_nat, yb, iw, ih, "native confidence", tcolor=IMAG)
-    c.image(mpanel(4), x_ours, yb, iw, ih, "support head (ours)", tcolor=OBS)
-    c.text(x_nat + iw / 2, yb - 0.07, "dark on both patches:\nreads the patch", ha="center", va="top", fontsize=6.1, color=IMAG,
-           weight="bold", linespacing=1.2)
-    c.text(x_ours + iw / 2, yb - 0.07, "dark only where no view sees:\nreads cross-view support", ha="center", va="top", fontsize=6.1,
-           color=OBS, weight="bold", linespacing=1.2)
+    c.arrow(x_in2 + iw + 0.015, yb + ih / 2, bx, yb + ih / 2)
+    c.arrow(bx + bw, yb + ih / 2, x_nat - 0.01, yb + ih / 2)
+    vpanel(c, 2, x_nat, yb, iw, ih, "native confidence", tcolor=IMAG, **tk)
+    vpanel(c, 4, x_ours, yb, iw, ih, "support head (ours)", tcolor=OBS, **tk)
+    c.text(x_nat + iw / 2, yb - 0.07, "dark on both patches:\nreads the patch", ha="center", va="top", fontsize=6.3, color=IMAG,
+           weight="bold", linespacing=1.25)
+    c.text(x_ours + iw / 2, yb - 0.07, "dark only where\nno view sees: reads\ncross-view support", ha="center", va="top", fontsize=6.3,
+           color=OBS, weight="bold", linespacing=1.25)
     # headline ranges
-    ax = c.fig.add_axes(R(c.W, c.H, 5.62, yb + 0.02, 1.2, ih + 0.06))
+    ax = c.fig.add_axes(R(c.W, c.H, 5.72, 0.27, 1.13, c.H - 0.29))
     V = N["vis"]
     MC = {k: M[k]["cells"] for k in ("DTU", "CO3Dv2")}
     bases = ("vggt", "pi3x", "pi3", "da3")
@@ -152,26 +225,28 @@ def fig_teaser(N, M, out, P14=None):
             ("native", [c["native"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D", "TUM")) and c["qualifies"]], BASE),
             ("ours", [c["head"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D", "TUM")) and c["qualifies"]], OBS)]
     yt, yl = [], []
-    y = len(rows)
-    for lab, vals, col in rows:
-        y -= 1
-        if vals is None:
-            ax.text(-0.33, y + 0.12, lab, fontsize=5.9, weight="bold", color=INK, va="center", ha="left",
-                    transform=ax.get_yaxis_transform())
+    y = 0.0
+    for k, (lab, vals, col) in enumerate(rows):
+        if vals is None:                      # a heading takes a taller slot and sits at its bottom, clear of the bar above
+            y -= 1.55 if k else 1.0
+            ax.text(-0.335, y, lab, fontsize=6.0, weight="bold", color=INK, va="center", ha="left",
+                    transform=ax.get_yaxis_transform(), zorder=5, bbox=dict(fc="white", ec="none", pad=0.8))
             continue
+        y -= 1.0
         lo, hi = min(vals), max(vals)
-        ax.plot([lo, hi], [y, y], color=col, lw=4.0, solid_capstyle="round")
-        ax.text(hi + 0.025, y, f"{lo:.2f}–{hi:.2f}", fontsize=5.6, va="center", color=col, weight="bold")
+        ax.plot([lo, hi], [y, y], color=col, lw=4.2, solid_capstyle="round")
+        ax.text(hi + 0.045, y, f"{lo:.2f}–{hi:.2f}", fontsize=5.8, va="center", color=col, weight="bold")
         yt.append(y); yl.append(lab)
-    ax.set_yticks(yt); ax.set_yticklabels(yl, fontsize=5.8, color=MUTED); ax.tick_params(axis="y", length=0, pad=1)
-    ax.axvline(0.5, color=MUTED, lw=0.5, ls=":")
-    ax.set_xlim(0.33, 1.32); ax.set_ylim(-0.6, len(rows) - 0.3)
-    ax.set_xticks([0.5, 0.75, 1.0]); ax.set_xticklabels(["0.5", "0.75", "1"]); ax.tick_params(axis="x", labelsize=5.8, length=2, pad=1)
+    ax.set_yticks(yt); ax.set_yticklabels(yl, fontsize=5.9, color=MUTED); ax.tick_params(axis="y", length=0, pad=1)
+    ax.axvline(0.5, color=MUTED, lw=0.5, ls=":", zorder=1)
+    ax.set_xlim(0.36, 1.42); ax.set_ylim(y - 0.75, -0.45)
+    ax.set_xticks([0.5, 0.75, 1.0]); ax.set_xticklabels(["0.5", "0.75", "1"]); ax.tick_params(axis="x", labelsize=5.9, length=2, pad=1)
     for sp in ("top", "right", "left"):
         ax.spines[sp].set_visible(False)
-    ax.spines["bottom"].set_bounds(0.33, 1.0)
-    ax.set_xlabel("AUROC (0.5: chance)", fontsize=5.8, labelpad=1)
-    c.save(out)
+    ax.spines["bottom"].set_bounds(0.36, 1.0)
+    ax.set_xlabel("AUROC (0.5: chance)", fontsize=5.9, labelpad=1, x=0.3)
+    c.fig.savefig(out + ".pdf", dpi=600); c.fig.savefig(out + ".png", dpi=600)
+    plt.close(c.fig)
 
 
 # ----------------------------------------------------------------------------- architecture
