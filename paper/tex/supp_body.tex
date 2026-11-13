@@ -378,6 +378,13 @@ Every other experiment uses rigid scenes. We ran the DTU-trained label-free head
 \label{fig:dynamic-stats}
 \end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig_dynamic3d}
+\caption{\textbf{A moving scene in 3D} (VGGT, TUM RGB-D \emph{walking\_xyz}, the ten-frame window with the largest share of moving pixels). The predicted depth of all ten frames is fused into one point cloud with the dataset's motion-capture cameras (drawn as frustums; the dump stores depth and scores, not the backbone's own cameras) and rendered from one fixed viewpoint. (a) The person who walks during the window is reconstructed once per frame and appears as overlapping copies. (b) The same points coloured by the support head. (c) The points the head keeps at the benchmark's operating point (the threshold that keeps 90\% of the supported static pixels): 71\% of all points, and 8\% of the points on moving surfaces. The head also drops static geometry few frames agree on, such as the ceiling behind the person.}
+\label{fig:dynamic3d}
+\end{figure}
+
 \paragraph{HAD's hallucination scorer (no valid comparison).}
 We ran the released scoring network of HAD (reference in the paper) on the DTU captures, giving it the ground-truth cameras it requires, and fixed in advance that its scores would count only if its own renderings of the scored views reached 15~dB. They reached 11.3~dB on three-view DTU captures, so by that rule its scores (which were at chance, \auroc{} 0.46 to 0.47) are not a valid measurement of the method and we claim no comparison. We then checked the wrapper without any label: the checkpoint's 365 tensors all match the model, half and full precision and four resolutions give the same renderings (8.9 to 9.2~dB on a five-view capture), a reference view rendered at its own pose reaches 24.9~dB, and neither the inverse pose convention, the OpenGL axis convention nor five scene scales raises quality above 10.4~dB. The renderings show the scene at the right viewpoint, blurred and misregistered: the convention is right and the renderer does not reproduce DTU views at these baselines (cameras up to 0.87~m apart at 0.74~m depth). HAD targets generated novel views with known cameras; our setting is unposed input views.
 
