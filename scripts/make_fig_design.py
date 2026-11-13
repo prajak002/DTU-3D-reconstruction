@@ -187,28 +187,36 @@ def vpanel(c, i, x, y, w, h, title, lw=1.15, photo=False, up=6, **kw):
 
 
 def fig_teaser(N, M, out, P14=None):
-    c = Canvas(6.875, 1.42)
-    iw, yb = 1.08, 0.40
+    """Left: the matched patches (2D). Middle: one real DTU capture in 3D, from scripts/make_fig_gallery3d.py (the
+    benchmark scan with the largest single-view share; predicted depth, rig cameras) and the points the head keeps.
+    Right: the headline ranges."""
+    c = Canvas(6.875, 1.37)
+    iw, yb = 0.98, 0.39
     ih = iw * 194 / 242
-    x_in1, x_in2, x_nat, x_ours = 0.03, 1.16, 3.01, 4.14
-    tk = dict(tfs=7.2, lw=0.7)
-    vpanel(c, 0, x_in1, yb, iw, ih, "input view (gray fill)", photo=True, **tk)
-    vpanel(c, 1, x_in2, yb, iw, ih, "another input view", photo=True, **tk)
-    c.text((x_in1 + x_in2 + iw) / 2, yb - 0.07, "red: hidden in every view (imagined)\ngreen: hidden here, seen in another view (observed)",
-           ha="center", va="top", fontsize=6.3, color=MUTED, linespacing=1.3)
-    bx, bw = 2.345, 0.58
-    c.box(bx, yb + 0.10, bw, ih - 0.20, fc=FROZEN_FC, ec=FROZEN_EC, lw=0.9, r=0.06)
-    c.text(bx + bw / 2, yb + ih / 2 + 0.17, "frozen\n3D model", ha="center", va="center", fontsize=7.0, weight="bold", linespacing=1.15)
-    c.text(bx + bw / 2, yb + ih / 2 - 0.14, "VGGT, Pi3,\nPi3X, Depth\nAnything 3", ha="center", va="center", fontsize=5.9, color=MUTED,
-           linespacing=1.2)
-    c.arrow(x_in2 + iw + 0.015, yb + ih / 2, bx, yb + ih / 2)
-    c.arrow(bx + bw, yb + ih / 2, x_nat - 0.01, yb + ih / 2)
+    x_in, x_nat, x_ours = 0.03, 1.04, 2.05
+    tk = dict(tfs=6.5, lw=0.7)
+    nk = dict(ha="center", va="top", fontsize=5.9, linespacing=1.22)
+    vpanel(c, 0, x_in, yb, iw, ih, "input view (gray fill)", photo=True, **tk)
+    c.text(x_in + iw / 2, yb - 0.06, "red: hidden in every view\ngreen: hidden here, seen\nin another view", color=MUTED, **nk)
     vpanel(c, 2, x_nat, yb, iw, ih, "native confidence", tcolor=IMAG, **tk)
+    c.text(x_nat + iw / 2, yb - 0.06, "dark on both patches:\nreads the patch", color=IMAG, weight="bold", **nk)
     vpanel(c, 4, x_ours, yb, iw, ih, "support head (ours)", tcolor=OBS, **tk)
-    c.text(x_nat + iw / 2, yb - 0.07, "dark on both patches:\nreads the patch", ha="center", va="top", fontsize=6.3, color=IMAG,
-           weight="bold", linespacing=1.25)
-    c.text(x_ours + iw / 2, yb - 0.07, "dark only where\nno view sees: reads\ncross-view support", ha="center", va="top", fontsize=6.3,
-           color=OBS, weight="bold", linespacing=1.25)
+    c.text(x_ours + iw / 2, yb - 0.06, "dark only where\nno view sees", color=OBS, weight="bold", **nk)
+    T = json.load(open(os.path.join(ROOT, "docs", "assets", "teaser3d.json"), encoding="utf-8"))
+    r_all = np.asarray(Image.open(os.path.join(FIG, "teaser3d_all.png")).convert("RGB"))
+    r_keep = np.asarray(Image.open(os.path.join(FIG, "teaser3d_keep.png")).convert("RGB"))
+    nz = np.argwhere((r_all < 250).any(2))                       # one crop for both renders: the extent of the full cloud
+    (y0, x0), (y1, x1) = np.maximum(nz.min(0) - 12, 0), nz.max(0) + 12
+    w3 = min(ih * (x1 - x0) / (y1 - y0), 1.0)
+    x_a = x_ours + iw + 0.14
+    x_k = x_a + w3 + 0.03
+    for im, x, title, col in ((r_all, x_a, "real capture, fused", INK), (r_keep, x_k, "points the head keeps", OBS)):
+        ax = c.image(im[y0:y1, x0:x1], x, yb, w3, ih, title, tcolor=col, **tk)
+        ax.images[0].set_interpolation("lanczos")
+    c.text(x_a + w3 / 2, yb - 0.06, f"red: only one view saw it\n({100 * T['bad_share']:.0f}% of the points)", color=IMAG, weight="bold", **nk)
+    c.text(x_k + w3 / 2, yb - 0.06, f"{100 * T['bad_kept']:.0f}% of the red points,\n{100 * T['kept']:.0f}% of all points", color=OBS,
+           weight="bold", **nk)
+    c.ax.plot([x_a - 0.07, x_a - 0.07], [yb - 0.30, yb + ih + 0.14], color=PANEL_EC, lw=0.6)
     # headline ranges
     ax = c.fig.add_axes(R(c.W, c.H, 5.72, 0.27, 1.13, c.H - 0.29))
     V = N["vis"]

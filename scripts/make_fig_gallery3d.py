@@ -72,6 +72,9 @@ def render_row(d, score, rgb, S, bad, Kd, Es, bad_col, r=2):
     cams = lambda im: draw_cams(im, Es, Kd[0], hw_d, Ev, Kv, size=0.06 * dist)
     ims = [cams(splat(P, C, Ev, Kv, HW, r)), splat(P, Cb, Ev, Kv, HW, r), splat(P, Cs, Ev, Kv, HW, r),
            cams(splat(P[keep], C[keep], Ev, Kv, HW, r))]
+    # for the teaser: the cloud in its colours with the unsupported points marked, and the kept cloud, without cameras
+    ims.append(splat(P, np.where(B[:, None], hexrgb(bad_col)[None], C), Ev, Kv, HW, r))
+    ims.append(splat(P[keep], C[keep], Ev, Kv, HW, r))
     return ims, dict(points=len(P), bad_share=float(B.mean()), kept=float(keep.mean()),
                      bad_kept=float(keep[B].mean()) if B.any() else float("nan"))
 
@@ -132,6 +135,13 @@ def main():
     ap.add_argument("--out", default=os.path.join(ROOT, "paper", "figures", "fig_gallery3d"))
     a = ap.parse_args()
     rows = dtu_rows(a) + video_rows(a)
+    # the teaser (scripts/make_fig_design.py) shows the first DTU row: saved as images with its numbers
+    import json
+    from PIL import Image
+    name, _, ims, st, _, _ = rows[0]
+    Image.fromarray(ims[4]).save(os.path.join(os.path.dirname(a.out), "teaser3d_all.png"))
+    Image.fromarray(ims[5]).save(os.path.join(os.path.dirname(a.out), "teaser3d_keep.png"))
+    json.dump(dict(name=name, base=a.base, **st), open(os.path.join(ROOT, "docs", "assets", "teaser3d.json"), "w"), indent=1)
     wr = [0.62, 1, 1, 1, 1]
     fig = plt.figure(figsize=(6.875, 1.33 * len(rows) + 0.22))
     gs = fig.add_gridspec(len(rows), 5, width_ratios=wr, left=0.03, right=0.997, top=1 - 0.22 / (1.33 * len(rows) + 0.22),
