@@ -1,0 +1,428 @@
+% !TEX root = supp.tex
+% Supplementary material body. Input by supp.tex (standalone PDF; the main PDF no longer carries it).
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+\paragraph{Compute.}
+The benchmark involves no training, and all its model runs fit on one 16 GB GPU in about eight hours. The support head trains in ten to twenty-five minutes on one GPU (1500 steps); scoring one detector on one dataset takes one to five minutes on an H200. Every threshold and pass condition was fixed before the run that uses it.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig3_metrics}
+\caption{\textbf{Per-run spread on DTU.} \auroc{} and \cur{} for every (scan, seed, radius) run under blur and noise fills, with pooled means and intervals. The spread across scans is wide for every model; the intervals in the main tables come from resampling scans.}
+\label{fig:metrics}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig5_fills}
+\caption{\textbf{Fill ablation.} \cur{} per model and fill on DTU and CO3Dv2 (five seeds) and for the inpainted fill on DTU (two seeds, three models). A visible gray patch gives the lowest leakage; natural-statistics and inpainted fills give more.}
+\label{fig:fills}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig7_perscene}
+\caption{\textbf{Per-scene \cur{}} (blur fill, radius 0.18, mean over seeds) for every model on DTU scans and CO3Dv2 scenes. Rows are scenes, columns are models.}
+\label{fig:perscene}
+\end{figure}
+
+\paragraph{Correctness guards.}
+Before any model is scored we check that ground-truth depth reprojects consistently between view pairs and that unsupported points of view $i$, where visible in view $j$, land inside view $j$'s hidden mask. DTU: reprojection agreement 0.80 to 0.82 at a 1\% depth tolerance, U-transfer 0.96 to 0.99. CO3Dv2 (cameras converted from PyTorch3D and checked against the official point cloud): with an occlusion-aware 3\% tolerance, agreement 0.92 to 1.00 and U-transfer 0.90 to 0.98 on 17 of 18 scenes; the eighteenth scores 0.80, is kept, and removing it changes nothing (Section~4 of the paper). ETH3D: agreement 0.996 to 1.000 on all scenes; nine of twelve pass the U-transfer check and three are excluded before any model is run.
+
+\paragraph{Pipeline validation.}
+On a synthetic DTU-format scene, an oracle that knows what is hidden scores \auroc{} 1.000 and \cur{} 0.000, and a blind guesser with flat confidence scores \auroc{} 0.500 and \cur{} 0.90 (the 10\% of supported pixels dropped by $\tau$ is the expected floor). These numbers validate the code, not any model.
+
+\paragraph{Table 1 with intervals.}
+The paper's Table 1 shows means; Table~\ref{tab:leak_full} adds 95\% cluster-bootstrap intervals over scenes, \curerr{} and the confidence ratio (median confidence inside the hidden region over its clean value), with the matched split's \auroc$_m$ and \cur$_m$.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Native confidence, full numbers.} Blur and noise pooled, 18 scenes $\times$ 5 seeds $\times$ 2 radii; mean [95\% CI]; matched split seeds 0 and 1, radius 0.18.}
+\label{tab:leak_full}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tab_leak_full}}
+\end{table}
+
+\paragraph{DTU and CO3Dv2, full configuration per fill.}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{DTU, five models, full configuration.} 18 scans $\times$ 5 mask seeds $\times$ 2 radii $\times$ 3 fills, pooled over radii; mean [95\% cluster-bootstrap CI over scans]. \emph{conf ratio} is the median confidence inside the hidden region divided by its value under clean input. The pooled numbers are in Table 1 of the main paper.}
+\label{tab:dtu_full}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llcccccc}
+\toprule
+model & fill & \auroc & \cur & \curerr & $\absrel_U$ & $\absrel_U$ ctrl & conf ratio \\
+\midrule
+VGGT-1B & gray  & \ci{0.973}{0.955}{0.987} & \ci{0.067}{0.031}{0.111} & 0.000 & 0.018 & 0.006 & 0.051 \\
+VGGT-1B & blur  & \ci{0.886}{0.843}{0.922} & \ci{0.263}{0.203}{0.324} & 0.000 & 0.011 & 0.006 & 0.241 \\
+VGGT-1B & noise & \ci{0.919}{0.892}{0.945} & \ci{0.222}{0.145}{0.304} & 0.000 & 0.014 & 0.006 & 0.192 \\
+Pi3 & gray  & \ci{0.981}{0.972}{0.988} & \ci{0.053}{0.025}{0.085} & 0.001 & 0.020 & 0.014 & 0.057 \\
+Pi3 & blur  & \ci{0.923}{0.895}{0.947} & \ci{0.236}{0.156}{0.326} & 0.001 & 0.018 & 0.014 & 0.261 \\
+Pi3 & noise & \ci{0.902}{0.865}{0.934} & \ci{0.325}{0.219}{0.438} & 0.002 & 0.020 & 0.014 & 0.411 \\
+Pi3X & gray  & \ci{0.940}{0.902}{0.971} & \ci{0.202}{0.085}{0.337} & 0.002 & 0.022 & 0.017 & 0.335 \\
+Pi3X & blur  & \ci{0.826}{0.782}{0.865} & \ci{0.512}{0.397}{0.630} & 0.002 & 0.020 & 0.017 & 0.739 \\
+Pi3X & noise & \ci{0.801}{0.734}{0.864} & \ci{0.551}{0.390}{0.711} & 0.004 & 0.022 & 0.017 & 1.091 \\
+MapAnything & gray  & \ci{0.861}{0.812}{0.905} & \ci{0.374}{0.272}{0.480} & \ci{0.195}{0.125}{0.269} & 0.222 & 0.111 & 0.650 \\
+MapAnything & blur  & \ci{0.773}{0.720}{0.825} & \ci{0.580}{0.482}{0.672} & \ci{0.277}{0.197}{0.361} & 0.135 & 0.111 & 0.677 \\
+MapAnything & noise & \ci{0.712}{0.645}{0.773} & \ci{0.664}{0.566}{0.758} & \ci{0.295}{0.211}{0.390} & 0.129 & 0.111 & 0.709 \\
+Depth Anything 3 & gray  & \ci{0.723}{0.664}{0.780} & \ci{0.703}{0.596}{0.804} & 0.003 & 0.017 & 0.013 & 0.804 \\
+Depth Anything 3 & blur  & \ci{0.682}{0.611}{0.744} & \ci{0.711}{0.619}{0.796} & 0.003 & 0.016 & 0.013 & 0.800 \\
+Depth Anything 3 & noise & \ci{0.740}{0.686}{0.793} & \ci{0.690}{0.578}{0.793} & 0.001 & 0.017 & 0.013 & 0.855 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{CO3Dv2, five models, full configuration.} 18 scenes $\times$ 5 seeds $\times$ 2 radii $\times$ 3 fills, pooled over radii; mean [95\% CI over scenes]. The pooled numbers are quoted in Section 5.3 of the main paper.}
+\label{tab:co3d}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\begin{tabular}{llccccccc}
+\toprule
+model & fill & \auroc & \cur & \curerr & $\absrel_S$ & $\absrel_U$ & $\absrel_U$ ctrl & conf ratio \\
+\midrule
+VGGT-1B & gray  & \ci{0.747}{0.692}{0.802} & \ci{0.565}{0.453}{0.677} & 0.029 & 0.029 & 0.031 & 0.027 & 0.634 \\
+VGGT-1B & blur  & \ci{0.772}{0.717}{0.825} & \ci{0.534}{0.416}{0.652} & 0.034 & 0.029 & 0.031 & 0.027 & 0.603 \\
+VGGT-1B & noise & \ci{0.590}{0.517}{0.656} & \ci{0.767}{0.693}{0.839} & 0.029 & 0.029 & 0.029 & 0.027 & 0.805 \\
+Pi3 & gray  & \ci{0.930}{0.894}{0.958} & \ci{0.196}{0.118}{0.283} & 0.002 & 0.015 & 0.016 & 0.013 & 0.351 \\
+Pi3 & blur  & \ci{0.903}{0.860}{0.939} & \ci{0.251}{0.170}{0.334} & 0.002 & 0.015 & 0.016 & 0.013 & 0.389 \\
+Pi3 & noise & \ci{0.880}{0.813}{0.929} & \ci{0.293}{0.193}{0.405} & 0.002 & 0.015 & 0.015 & 0.013 & 0.472 \\
+Pi3X & gray  & \ci{0.863}{0.825}{0.899} & \ci{0.329}{0.248}{0.408} & 0.001 & 0.017 & 0.022 & 0.014 & 0.749 \\
+Pi3X & blur  & \ci{0.720}{0.661}{0.777} & \ci{0.584}{0.500}{0.668} & 0.002 & 0.017 & 0.018 & 0.014 & 0.877 \\
+Pi3X & noise & \ci{0.743}{0.680}{0.798} & \ci{0.556}{0.462}{0.650} & 0.001 & 0.017 & 0.019 & 0.014 & 0.867 \\
+MapAnything & gray  & \ci{0.609}{0.554}{0.665} & \ci{0.786}{0.721}{0.849} & 0.004 & 0.041 & 0.029 & 0.034 & 0.632 \\
+MapAnything & blur  & \ci{0.575}{0.514}{0.637} & \ci{0.801}{0.735}{0.863} & 0.008 & 0.042 & 0.028 & 0.034 & 0.674 \\
+MapAnything & noise & \ci{0.578}{0.524}{0.631} & \ci{0.819}{0.765}{0.870} & 0.007 & 0.041 & 0.033 & 0.034 & 0.690 \\
+Depth Anything 3 & gray  & \ci{0.619}{0.560}{0.674} & \ci{0.816}{0.751}{0.877} & 0.001 & 0.019 & 0.015 & 0.014 & 0.874 \\
+Depth Anything 3 & blur  & \ci{0.622}{0.574}{0.668} & \ci{0.813}{0.748}{0.872} & 0.001 & 0.018 & 0.015 & 0.014 & 0.853 \\
+Depth Anything 3 & noise & \ci{0.618}{0.553}{0.679} & \ci{0.780}{0.702}{0.854} & 0.000 & 0.019 & 0.016 & 0.014 & 0.901 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Lab rig versus phone captures, plotted.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig4_dtu_vs_co3d}
+\caption{\textbf{Lab rig versus phone captures.} Pooled blur-and-noise \cur{} and \auroc{} per model on DTU and CO3Dv2 with 95\% intervals. Pi3 is the only model whose numbers transfer; VGGT, MapAnything and DA3 leak markedly more on CO3Dv2.}
+\label{fig:dtuco3d}
+\end{figure}
+
+
+\paragraph{The benchmark protocol, in a figure.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig2_pipeline}
+\caption{\textbf{The benchmark protocol.} A sphere is placed on the ground-truth surface; every pixel in every view whose ground-truth point falls inside it is hidden, so the hidden region is 3D-consistent. Hidden pixels are filled (gray, blur, noise or inpaint), the model runs on the filled views, and its depth and confidence are scored against the unsupported (U), supported (S) and ring labels. The same pixels are also scored under clean input as a control.}
+\label{fig:pipeline}
+\end{figure}
+
+\paragraph{The filled patch, in pictures.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{fig1_teaser}
+\caption{\textbf{What a model does with a surface it cannot see.} Top: a DTU scan with one 3D region of the ground-truth surface hidden in all ten input views and inpainted so no seam remains (the inpainted fill of Section~4 of the paper). Bottom: a CO3Dv2 phone capture treated the same way. The top row shows the protocol: the same 3D sphere hides the region in every view, including a view from the other side of the rig. The bottom row shows what the backbone (VGGT) does with it: plausible geometry inside the hidden region, with confidence close to its value outside. The cyan contour marks the unsupported pixels. Model panels are the recorded run outputs.}
+\label{fig:teaser}
+\end{figure}
+
+\paragraph{Fused point clouds at matched coverage.}
+Each backbone's per-view depths are back-projected with its own predicted cameras into one cloud, aligned to the ground-truth frame by a similarity transform fitted on the camera centres, and compared with the ground-truth cloud of the same views at a tolerance of 1\% of the scene's median depth: accuracy is the fraction of predicted points within tolerance of a ground-truth point, completeness the converse. A detector keeps the given fraction of points with the highest score; random dropping and an oracle that drops single-view pixels first are the references. Table~\ref{tab:fuse}: 18 DTU scans and 9 ETH3D scenes, 5 and 10 views, two view sets; the rows marked $\times$ are the label-free head multiplied by native confidence. The absolute accuracies on ETH3D are low because the predicted cameras of a building scan align poorly to the laser frame; the comparison between detectors at matched coverage is what the table is for.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Fused point cloud at matched coverage}, accuracy / completeness against the laser or MVS cloud.}
+\label{tab:fuse}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{\input{tab_fuse}}
+\end{table}
+
+\paragraph{Detectors on the filled patches.}
+The cheap alternatives and the fill-trained heads of Sections 4 and 6 of the main paper, on the Table 1 rows with blur, radius 0.18 and seed 0. A fuller perturbation baseline (photometric, blur, flip and view-permutation perturbations, $K=8$, least-squares scale alignment, median-absolute-deviation spread) scores \auroc{} 0.52 to 0.60 and \cur{} 0.74 to 0.86 on all five backbones over blur and noise, worse than native confidence everywhere. On 22 further DTU scans (the MVSNet test split, seed 0, radius 0.18) the ranking of Table 1 holds: VGGT \auroc{} 0.908 / \cur{} 0.233, Pi3 0.919 / 0.272, Pi3X 0.850 / 0.539, DA3 0.755 / 0.650, MapAnything 0.697 / 0.693 with \curerr{} 0.287. On the nine ETH3D scenes under the full fill protocol native confidence leaks more than on DTU, \cur{} 0.61 (Pi3) to 0.79 (VGGT), and the fill-trained head scores 0.981 against its per-image control's 0.987.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Detectors on the filled patches, DTU} (18 scans, seed 0, blur, radius 0.18; native and perturbation rows re-run on the detectors' hardware, so every pair is scored on identical rows). The three learned rows per backbone are the \emph{fill-trained} heads: they find the fill, not the missing support (Section~5 of the paper), which is why the per-image control matches them. The visibility-trained heads are in the main paper.}
+\label{tab:detectors}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{0.7\textwidth}{!}{\begin{tabular}{llccc}
+\toprule
+backbone & detector & fwd & \auroc & \cur \\
+\midrule
+VGGT-1B & native confidence & 1 & \ci{0.915}{0.883}{0.943} & \ci{0.255}{0.157}{0.364} \\
+VGGT-1B & perturbation var., $K{=}4$ & 4 & \ci{0.666}{0.602}{0.729} & \ci{0.627}{0.521}{0.732} \\
+VGGT-1B & reprojection consistency & 1 & \ci{0.488}{0.473}{0.506} & \ci{0.931}{0.903}{0.954} \\
+VGGT-1B & fill-trained linear probe & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
+VGGT-1B & fill-trained per-image control & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
+VGGT-1B & fill-trained support head & 1 & \ci{1.000}{1.000}{1.000} & \ci{0.000}{0.000}{0.000} \\
+Pi3X & native confidence & 1 & \ci{0.832}{0.782}{0.879} & \ci{0.502}{0.362}{0.642} \\
+Pi3X & perturbation var., $K{=}4$ & 4 & \ci{0.550}{0.491}{0.608} & \ci{0.824}{0.754}{0.886} \\
+Pi3X & reprojection consistency & 1 & \ci{0.478}{0.435}{0.518} & \ci{0.929}{0.899}{0.955} \\
+Pi3X & fill-trained per-image control & 1 & \ci{1.000}{0.999}{1.000} & \ci{0.000}{0.000}{0.001} \\
+Pi3X & fill-trained support head & 1 & \ci{0.999}{0.999}{1.000} & \ci{0.001}{0.000}{0.003} \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\paragraph{Stress tests.}
+Section 5.2 of the main paper summarises this table.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Stress tests on DTU.} 18 scans $\times$ 2 mask seeds, radius 0.18, models VGGT, Pi3X, DA3. Reference rows are the matching cells of Table~1 of the paper (blur, 10 spread views, seeds 0 and 1). Last column: paired \cur{} difference against the reference with a sign-flip $p$ over scans.}
+\label{tab:stress}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llccccl}
+\toprule
+model & test & \auroc & \cur & \curerr & $\absrel_U$ & \cur{} vs ref \\
+\midrule
+VGGT-1B & reference & \ci{0.902}{0.868}{0.930} & \ci{0.259}{0.175}{0.349} & 0.000 & 0.010 & \\
+VGGT-1B & inpaint fill & \ci{0.867}{0.821}{0.907} & \ci{0.347}{0.255}{0.443} & 0.001 & 0.018 & $+0.088$ ($p=0.031$) \\
+VGGT-1B & 5 views & 0.902 & \ci{0.269}{0.173}{0.377} & 0.000 & 0.011 & $+0.010$ ($p=0.63$) \\
+VGGT-1B & 3 views & 0.899 & \ci{0.259}{0.167}{0.361} & 0.000 & 0.013 & $+0.001$ ($p=0.98$) \\
+VGGT-1B & low parallax & 0.911 & \ci{0.214}{0.110}{0.334} & 0.000 & 0.021 & $-0.045$ ($p=0.35$) \\
+VGGT-1B & + distractor & 0.905 & \ci{0.257}{0.179}{0.340} & 0.000 & 0.011 & $-0.002$ ($p=0.90$) \\
+Pi3X & reference & \ci{0.828}{0.781}{0.870} & \ci{0.521}{0.390}{0.650} & 0.002 & 0.024 & \\
+Pi3X & inpaint fill & \ci{0.786}{0.731}{0.836} & \ci{0.589}{0.473}{0.702} & 0.004 & 0.022 & $+0.068$ ($p=0.005$) \\
+Pi3X & 5 views & 0.822 & \ci{0.539}{0.411}{0.661} & 0.006 & 0.024 & $+0.018$ ($p=0.44$) \\
+Pi3X & 3 views & 0.840 & \ci{0.497}{0.373}{0.618} & 0.032 & 0.051 & $-0.024$ ($p=0.64$) \\
+Pi3X & low parallax & 0.812 & \ci{0.523}{0.376}{0.671} & 0.040 & 0.050 & $+0.002$ ($p=0.98$) \\
+Pi3X & + distractor & 0.829 & \ci{0.510}{0.368}{0.650} & 0.002 & 0.024 & $-0.011$ ($p=0.66$) \\
+DA3 & reference & \ci{0.712}{0.632}{0.783} & \ci{0.679}{0.569}{0.791} & 0.006 & 0.018 & \\
+DA3 & inpaint fill & 0.726 & \ci{0.688}{0.605}{0.774} & 0.009 & 0.018 & $+0.008$ ($p=0.87$) \\
+DA3 & 5 views & 0.697 & \ci{0.785}{0.703}{0.865} & 0.005 & 0.019 & $+0.106$ ($p=0.008$) \\
+DA3 & 3 views & 0.729 & \ci{0.667}{0.560}{0.770} & 0.018 & 0.031 & $-0.012$ ($p=0.81$) \\
+DA3 & low parallax & \ci{0.863}{0.785}{0.925} & \ci{0.372}{0.230}{0.520} & 0.008 & 0.029 & $-0.307$ ($p=0.0003$) \\
+DA3 & + distractor & \ci{0.660}{0.580}{0.734} & \ci{0.775}{0.680}{0.868} & 0.003 & 0.019 & $+0.096$ ($p=0.0004$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\paragraph{Stress tests, plotted.}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{fig6_stress}
+\caption{\textbf{Stress tests.} \cur{} under each stress condition against the reference, with intervals. View count does nothing for VGGT and Pi3X; the inpainted fill raises leakage; DA3 alone reacts to parallax and to a distractor.}
+\label{fig:stress}
+\end{figure}
+
+
+\paragraph{Every detector on the true-visibility protocol.}
+Table~\ref{tab:vis_supp} lists every detector of the main paper's Table 3 with 95\% cluster-bootstrap intervals over scenes, including the fill-trained heads and the linear probe trained on self-support labels. 
+
+\begin{table}[h]
+\centering
+\caption{\textbf{True-visibility protocol, every detector}, pooled over scenes and view counts as in the main paper, with 95\% cluster-bootstrap intervals over scenes.}
+\label{tab:vis_supp}
+\tiny
+\setlength{\tabcolsep}{2pt}
+\resizebox{\textwidth}{!}{\input{tab_vis_supp}}
+\end{table}
+
+\paragraph{Operating points from the per-pixel scores.}
+Table~\ref{tab:bands} is computed from the per-pixel scores on the labelled pixels of every cell (scene, seed, view count), each cell weighing the same. AURC: area under the single-view rate of the kept pixels against coverage (oracle: supported pixels first). AbsRel of all labelled pixels and of the half with the highest score. CUR / keep: fraction of single-view pixels passing and fraction of supported pixels kept at a threshold fixed (a) on the other scenes of the same dataset so that 90\% of their supported pixels pass (leave-one-scene-out), (b) on DTU and applied unchanged (frozen; the DTU row has none). Bands: fraction of pixels marked observed / abstain / imagined at the paper's fixed thresholds; the single-view rate and AbsRel inside the observed band.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Operating points.} See the paragraph above for the columns.}
+\label{tab:bands}
+\tiny
+\setlength{\tabcolsep}{2pt}
+\resizebox{\textwidth}{!}{\input{tab_bands}}
+\end{table}
+
+\paragraph{Cross-model disagreement.}
+Two backbones run on the same views; view by view the second depth is aligned to the first by the median ratio over all valid pixels, and minus the relative disagreement is the confidence. Table~\ref{tab:xmodel}: on the benchmark's filled patches every pair is at chance, and on real single-view geometry (DTU, clean views) disagreement scores 0.50 to 0.63, so models also agree with one another where only one view supports the surface. Agreement between models, unlike agreement between views, carries no signal in either case.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Cross-model disagreement as a detector.} Filled patches: DTU seed 0, blur, radius 0.18 (18 scans); CO3Dv2 blur and noise, seed 0, radius 0.18 (18 scenes). Single-view: the DTU vis protocol pooled over 3, 5 and 10 views. 95\% cluster-bootstrap intervals over scenes.}
+\label{tab:xmodel}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\resizebox{\textwidth}{!}{\input{tab_xmodel}}
+\end{table}
+
+\paragraph{Fill sensitivity of the invented surface.}
+If the surface a backbone returns inside the hidden region were fixed by the prior, changing the pixels the region is filled with would not move it. For every benchmark cell (seed 0, radius 0.18) the same hidden sphere is filled three ways (gray, blur, noise), the backbone runs on each, the three depths are aligned to the blur run by a per-view median ratio over the pixels outside the hidden region (the input mask, not a label), and every pixel's score is minus the relative spread of its depth over the three fills, so a pixel whose depth depends on the fill scores low. Table~\ref{tab:refill}: \auroc{} and \cur{} of that score on the cell's $U$ / $S$ labels, the same for the blur-noise pair alone, the median relative spread inside and outside the hidden region, native confidence on the blur run of the same cells, and the single-view variant (the region refilled in view 0 only, gray and noise against blur, scored on the pixels of that view and on those of the nine untouched views). Refilling the region in a single view moves the surface in that view (\auroc{} 0.93 to 0.97 on its pixels, median spread 0.7 to 5.4\%) and, an order of magnitude less, in the nine untouched views (0.73 to 0.88 on theirs, spread 0.1 to 0.7\%): the invented surface follows the pixels of the view it is drawn in, with a weaker pull from the other views. 18 DTU scans and 18 CO3Dv2 scenes, four backbones.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Fill sensitivity of the invented surface.} The depth spread over three fills of the same hidden sphere as a detector, against native confidence on the same cells; the last two columns of each block refill one view only. 95\% cluster-bootstrap intervals over scenes.}
+\label{tab:refill}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tab_refill}}
+\end{table}
+
+
+\paragraph{The matched split.}
+Table~\ref{tab:matched_heads}: every detector on the matched-patch protocol of the paper's Section~3 (three identical patches per scene: hidden everywhere, hidden except in an evidence set of 1, 2 or half the views, hidden only in the evidence set), DTU and CO3Dv2, blur and noise pooled, seeds 0 and 1, radius 0.18. \auroc$_m$ and \cur$_m$ score the imagined patch against the filled-but-observed one; \emph{patch} scores clean supported pixels against the filled-but-observed ones; the evidence columns split the observed pixels by how many clean views see them (one at low or high parallax, two or more). The per-image controls are the pipeline check: they must stay near chance.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Matched split, every detector.}}
+\label{tab:matched_heads}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tab_matched_heads}}
+\end{table}
+
+\paragraph{Provenance.}
+Table~\ref{tab:prov}: the provenance heads of Section~5 of the paper on the vis cells of every dataset, support \auroc{} and \cur{} of the aggregated score next to the conv head of the main table on the same cells, and the attribution columns (prov-\auroc, its in-frame variant that keeps only views whose frame contains the point, top-1) against the reprojection test with the model's own cameras read per view. Means over scene means. Figure~\ref{fig:prov_all} shows one scene per dataset.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Provenance heads.} Support score (\auroc, \cur) and attribution (prov-\auroc{} over every ordered pair of views, its in-frame variant, top-1 on supported pixels) per backbone and dataset.}
+\label{tab:prov}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tab_prov}}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig_prov_all}
+\caption{\textbf{Which view saw it, one scene per dataset} (VGGT, label-free provenance head, five input views, scenes the head never saw). Per row: the reference view with three query pixels, the ground-truth number of other views that see each pixel, the number the head attributes, and the head's probability per other input view for each query (bar colour: ground truth).}
+\label{fig:prov_all}
+\end{figure}
+
+\paragraph{Twenty views.}
+With 20 clean DTU views, twice the most the heads saw in training, the visibility heads score \auroc{} 0.990 to 0.993 and the label-free heads 0.990 to 0.992, native confidence falls to 0.61 (VGGT) and 0.83 (Pi3X), reprojection consistency scores 0.93 and 0.89, and the per-image control rises to 0.94: with twenty views the few remaining single-view pixels sit at the frame edge, and the control reads the edge.
+
+\paragraph{Real occlusion against dense references: protocol.}
+The backbone runs on $N$ clean input views (3, 5 or 10; DTU: the spread view sets rotated by the seed; CO3Dv2, ETH3D and TUM RGB-D: adjacent frames, ETH3D and TUM RGB-D ordered by co-visibility). Every input pixel is back-projected with the predicted depth and cameras and placed in the ground-truth frame by a similarity transform: fitted on the camera centres on DTU and ETH3D, and on the input pixels that carry ground-truth depth on CO3Dv2 and TUM RGB-D, whose neighbouring video frames make a fit on camera centres degenerate (a cell then needs at least half of those pixels on the scanned surface; the measured share is 0.67 to 0.98). Each predicted point is matched to the nearest point of the dense reference (DTU: all 49 rig views; CO3Dv2: the MVS depth of every known frame; ETH3D: the laser depth of every image; TUM RGB-D: the sensor depth of 80 frames spread evenly over the sequence, readings beyond 4\,m dropped), at most 600k points, within $\tau = 1\%$ of the median depth. A reference point is \emph{observed} when at least one input view sees it (it projects into the view onto that view's own ground-truth depth within 3\%). It is \emph{unobserved} when no input view passes that test and a z-buffer of the whole reference rendered into each input view ($3\times3$ minimum filter, the same 3\% tolerance) also finds it visible in none. A point the depth test calls unobserved and the z-buffer calls visible is \emph{ambiguous}: it sits in a gap of that view's reference depth, and predicted points nearest to it are left out of both classes. Predicted points on an unobserved surface are the positives; the score is the detector's confidence; \auroc{} is computed per (scene, seed, view count) when at least 30 points are unobserved. A cell (dataset, backbone, view count) supports a detection claim when the unobserved share averages at least 0.5\% and the head beats native confidence at $p<0.05$ (paired sign-flip over scenes). The TUM RGB-D sequences, chosen by name before any detector was run: freiburg1 desk, desk2, room, plant, teddy and 360; freiburg2 desk; freiburg3 long\_office\_household, teddy, cabinet, large\_cabinet and structure\_texture\_far.
+
+\paragraph{Why the labels are hole-robust.}
+The observed test needs ground-truth depth in the input view; a hole there would label a surface the camera does see as unobserved. The share of z-visible reference points that the depth test alone calls unobserved is 0.001 to 0.004 on DTU, 0.034 to 0.081 on CO3Dv2 and 0.31 to 0.35 on ETH3D, whose laser depth has gaps. The ambiguous class removes those points: it holds 0.1 to 0.4\% of the predicted points on DTU, 0.9 to 2.8\% on TUM RGB-D, 1.6 to 3.4\% on CO3Dv2 and 1.9 to 6.7\% on ETH3D, where it is several times the unobserved class. The labels are defined from geometry alone and were fixed before any detector was scored with them.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Real occlusion against dense references, every cell.} \auroc{} for predicted points on observed against unobserved surfaces, mean over scenes (two seeds each); paired sign-flip $p$ over scenes. \emph{ambiguous}: share of predicted points the hole-robust labels leave out. \emph{claim}: yes / no where the cell qualifies (unobserved share $\ge 0.5\%$), -- where the share is below 0.5\%. DTU benchmark 18 scans, DTU test 22, ETH3D 12 scenes, TUM RGB-D 12 sequences, CO3Dv2 18 scenes.}
+\label{tab:realocc}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\textwidth}{!}{\input{tab_realocc}}
+\end{table}
+
+\paragraph{Capacity.}
+Table~\ref{tab:capacity}: three heads trained on the same frozen features with the same label-free labels and schedule (1500 steps), scored with the real-occlusion protocol, plus the per-image control. Parameters: \input{tab_capacity_params} The cross-view transformer head has two global-attention blocks over the tokens of all views (2D sinusoidal positions, a learned view embedding). It reaches a validation \auroc{} of 0.993 on its own labels yet is better than the conv head in none of the 12 cells.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Capacity on real occlusion.} \auroc{} observed against unobserved points, mean over scenes; last column paired sign-flip over scenes. This comparison was run before the hole-robust labels, so its ETH3D cells include the ambiguous points; on DTU alone the reading is the same.}
+\label{tab:capacity}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{\input{tab_capacity}}
+\end{table}
+
+\paragraph{Fused reconstruction at three views.}
+Table~\ref{tab:down3}: the fused-cloud protocol above with three input views, where real unseen geometry is most common, on the 18 DTU benchmark scans, the 22 DTU test scans and 12 ETH3D scenes, two view sets each. The head's cloud is about as accurate as native confidence's and keeps less single-view geometry in every row.
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Fused point cloud at three views.} Accuracy at the given coverage, the head's accuracy and F1 change against native confidence (paired sign-flip $p$ over scenes), and the single-view share of the kept points.}
+\label{tab:down3}
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\textwidth}{!}{\input{tab_down3}}
+\end{table}
+
+\paragraph{The matched head and the one-view case.}
+On the matched split the per-image controls score 0.585 to 0.591 \auroc$_m$ on DTU (bound 0.60), the heads 0.703 to 0.768 with ground-truth placement and 0.693 to 0.772 label-free. With one clean low-parallax view the heads reach 0.68 to 0.75; fine-tuning the VGGT heads for 1000 more steps with one-view evidence sampled at probability 0.7 leaves that case at 0.713 and 0.715, so the limit is the evidence, not the training budget.
+
+\paragraph{Causal test of the support direction (details and caveats).}
+Direction per hooked layer: mean supported token minus mean single-view token, fitted with ground-truth labels on DTU training scans 7, 8, 14, 16, 18, 19, 20, 22, 30, 31, 36 and 39 at five views; evaluation on the 18 benchmark scans at five views. VGGT: the four aggregator layers the depth head reads; Pi3 and Pi3X: the decoder tokens, edited where the point and confidence decoders read them. Mean over scans, unedited / ablated / random direction: support-head \auroc{} 0.994 / 0.659 / 0.994 (VGGT), 0.991 / 0.607 / 0.991 (Pi3X), 0.991 / 0.648 / 0.991 (Pi3); native-confidence \auroc{} 0.790 / 0.560 / 0.788, 0.830 / 0.577 / 0.830, 0.818 / 0.432 / 0.818; AbsRel on single-view pixels 0.011 / 0.141 / 0.011, 0.026 / 0.038 / 0.026, 0.020 / 0.182 / 0.020 (every ablated-against-random difference $p<0.03$, paired sign-flip over scans; all but the two Pi3X depth differences $p<10^{-4}$). The test was declared exploratory before the run, with both readings (read but unused; used) stated in advance. The random directions are isotropic and carry little token variance, so a second control, declared before it was run, repeats the edit along the three highest-variance principal directions of the patch tokens after the support direction is projected out. Token variance along the support direction / these three: 133 / 182, 160, 47 in the last VGGT layer (49 / 59, 40, 18 in the layer before; the two early layers carry under 4 along any of them), 10 / 21, 16, 14 on Pi3X and 13 / 20, 17, 11 on Pi3. Under these edits the support head stays at \auroc{} 0.991--0.994 (VGGT), 0.977--0.991 (Pi3X) and 0.982--0.991 (Pi3), and native confidence at 0.78--0.83, 0.82--0.84 and 0.77--0.82; the support direction's effect on the head is larger than each of them on each backbone ($p<10^{-4}$, nine of nine comparisons, the criterion stated in advance). Depth is where the backbones differ: AbsRel on single-view pixels under the three matched edits is 0.027--0.039 on VGGT and 0.031--0.033 on Pi3, far below the support direction's 0.141 and 0.182, but 0.039--0.153 on Pi3X, at or above the support direction's 0.038. On Pi3X the depth effect is therefore not specific to the support direction and we do not claim it.
+
+\paragraph{Causal test on ETH3D (partial transfer).}
+The same directions, fitted on DTU training scans, are applied without refitting to the nine ETH3D scenes of the single-view table (five adjacent views). Support-head \auroc{}, unedited / support direction ablated / random / the three variance-matched directions: 0.981 / 0.829 / 0.981 / 0.946--0.970 (VGGT), 0.970 / 0.829 / 0.969 / 0.946--0.971 (Pi3X), 0.953 / 0.874 / 0.953 / 0.911--0.948 (Pi3). The criterion fixed before the run asked for the support direction to exceed every matched direction at $p<0.05$ (exact paired sign-flip over nine scenes) on every backbone; it is met in six of nine comparisons (all three on Pi3X, two on VGGT, one on Pi3), so it is not met. Depth error on single-view pixels under the support direction rises from 2.6--2.8\% to 8.8--9.1\% on VGGT and Pi3, above every matched direction on Pi3 ($p=0.004$) and above one of three on VGGT; on Pi3X, as on DTU, the matched directions damage depth more. We therefore state the causal result for DTU, and for ETH3D only that a direction fitted on another dataset still lowers the detector where a random one does not.
+
+\paragraph{Foreign-view test (details).}
+$K-1$ views of a DTU benchmark scan plus one view of another benchmark scan at a seeded position; 18 scans, three seeds, 54 captures. Each detector's per-pixel score is averaged over each view; \emph{sep} is the share of genuine views that score above the foreign one. At $K=5$, sep for native confidence / reprojection / head: 0.880 / 0.954 / 0.991 (VGGT), 0.958 / 0.986 / 0.986 (Pi3X), 0.954 / 0.986 / 0.972 (Pi3), 0.894 / 0.963 / 1.000 (DA3); the head exceeds native confidence at $p<0.05$ on VGGT, Pi3X and DA3 (the rule fixed in advance asked for three of four). At $K=10$ every detector is near 1 and none differs. With a Gaussian-noise view in place of the foreign photograph, native confidence reaches sep 1.000 on Pi3 and Pi3X and the head 0.870 and 0.875 ($p<10^{-4}$, the head is worse); on VGGT and DA3 both are at or near 1. The head was never trained on foreign or noise views.
+
+\paragraph{Moving scenes, full video (rule not met).}
+Every other experiment uses rigid scenes. We ran the DTU-trained label-free heads, unchanged, on the eight TUM RGB-D sequences with moving people (two people sitting or walking at a desk, four camera motions each) and, as a control, on five static sequences of the same camera. Each sequence is taken whole: 200 frames in temporal order, cut into 20 consecutive windows of ten frames, one forward pass per window. Labels come from sensor depth and motion-capture poses only. The sensor point of each pixel is projected into the other nine frames of its window; a pixel is \emph{supported} if at least two frames see it, \emph{single-view} if none does, and \emph{moving} if at least two frames look through it (their depth is farther by more than 10\% over a $3\times3$ neighbourhood), which cannot happen in a rigid scene. Supported and single-view pixels stay clear of every such violation, so the single-view class no longer mixes unseen surfaces with moved ones. On the static sequences every moving pixel is label noise: 0.16\% of the pixels, against 5.1\% on the dynamic sequences (the rule fixed in advance read the moving class only below a quarter). The unit is the sequence, with an exact paired sign-flip over the eight dynamic sequences; the rule asked for the head to exceed native confidence at $p<0.05$ on three of four backbones.
+
+\emph{Supported against single-view, static pixels of the dynamic sequences.} \auroc{} for native confidence / reprojection / head: 0.556 / 0.648 / 0.700 (VGGT, $p=0.008$), 0.749 / 0.712 / 0.780 (Pi3X, $p=0.13$), 0.745 / 0.702 / 0.787 (Pi3, $p=0.09$), 0.542 / 0.693 / 0.764 (DA3, $p=0.008$). The head is the best of the three on every backbone, significantly above native confidence on two, so the rule is not met. On the static control, under the same video protocol, the head reaches 0.808 / 0.892 / 0.893 / 0.889 against 0.616 / 0.822 / 0.790 / 0.749 for native confidence: the head is about 0.1 \auroc{} lower on the sequences with moving people.
+
+\emph{Supported against moving.} Native confidence / reprojection / head: 0.602 / 0.830 / 0.764 (VGGT), 0.850 / 0.866 / 0.755 (Pi3X), 0.815 / 0.879 / 0.768 (Pi3), 0.616 / 0.857 / 0.783 (DA3). The head exceeds native confidence on VGGT and DA3 ($p=0.008$) and is below it on Pi3X ($p=0.016$) and Pi3; the rule is not met. Reprojection, which tests agreement of the predicted geometry directly, is the best detector of moving surfaces on all four backbones. The head does not tell a moved surface from an unseen one (single-view against moving: 0.42 to 0.54). Depth error (AbsRel after median scaling on supported pixels) is 0.03 to 0.07 on supported, 0.09 to 0.11 on single-view and 0.13 to 0.21 on moving pixels, so moving surfaces are where these backbones are least accurate. We therefore state the claims for rigid scenes.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_dynamic}
+\caption{\textbf{Moving scenes} (VGGT, TUM RGB-D \emph{walking\_xyz}; the three windows with the largest share of moving pixels, middle frame of each, chosen by that rule). Labels: supported (green), single-view (red), moving (purple; outlined on the score maps). Each score is shown between its 2nd and 98th percentile within the window, with the window's \auroc{} for supported against single-view (static) and against moving. The head is dark on the walking person and bright on the desk every frame sees; on Pi3X and Pi3 it shows no such gain over native confidence (see the paragraph above).}
+\label{fig:dynamic}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_dynamic_models}
+\caption{\textbf{The same window on four backbones} (TUM RGB-D \emph{walking\_xyz}, the window with the largest share of moving pixels, middle frame). Top: native confidence. Bottom: the support head. Bottom left: the labels (supported green, single-view red, moving purple; the moving class is outlined on every map). Numbers are the window's \auroc{} for supported against single-view (static) and against moving pixels. The head separates the static part on every backbone in this window; it is dark on the walking person on VGGT and DA3 and not on Pi3X and Pi3, where native confidence does as well or better.}
+\label{fig:dynamic-models}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_dynamic_stats}
+\caption{\textbf{Moving scenes in numbers.} (a) Supported against single-view on the static pixels of the eight dynamic sequences: bars are means over sequences, dots are sequences, the line is the head's level on the five static sequences of the same camera. (b) Supported against moving: reprojection is the best detector on every backbone. (c) The whole \emph{walking\_xyz} video on VGGT, window by window (static part), with the share of moving pixels in each window.}
+\label{fig:dynamic-stats}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{fig_dynamic3d}
+\caption{\textbf{A moving scene in 3D} (VGGT, TUM RGB-D \emph{walking\_xyz}, the ten-frame window with the largest share of moving pixels). The predicted depth of all ten frames is fused into one point cloud with the dataset's motion-capture cameras (drawn as frustums; the dump stores depth and scores, not the backbone's own cameras) and rendered from one fixed viewpoint. (a) The person who walks during the window is reconstructed once per frame and appears as overlapping copies. (b) The same points coloured by the support head. (c) The points the head keeps at the benchmark's operating point (the threshold that keeps 90\% of the supported static pixels): 71\% of all points, and 8\% of the points on moving surfaces. The head also drops static geometry few frames agree on, such as the ceiling behind the person.}
+\label{fig:dynamic3d}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{fig_radar}
+\caption{\textbf{Single-view geometry on every dataset and backbone.} \auroc{} of native confidence, reprojection with the backbone's own cameras and the label-free support head on the 16 dataset and backbone pairs of the true-visibility protocol (the radial axis starts at chance, 0.5). The head is above native confidence on all 16 and above reprojection on 14; reprojection is ahead on ETH3D for Pi3X and Pi3.}
+\label{fig:radar}
+\end{figure}
+
+\begin{figure*}[p]
+\centering
+\includegraphics[width=\textwidth]{fig_gallery3d}
+\caption{\textbf{3D gallery} (VGGT). Rows are chosen by rule: the three DTU benchmark scans with the largest share of single-view pixels (five views), and the three ten-frame windows of the TUM RGB-D \emph{walking\_xyz} video with the largest share of moving pixels. Columns: one input view; the predicted depth of all views fused into one cloud with the dataset's cameras (rig calibration on DTU, motion capture on TUM; not the backbone's own cameras); the points no other view supports according to the ground truth (single-view in red, moving in purple); the points coloured by the support head; the points the head keeps at the benchmark's operating point, the threshold that keeps 90\% of the supported pixels of that capture. On DTU the head keeps the object and drops the table and background that one view saw (0\% to 3\% of the single-view points remain, 41\% to 54\% of all points); in the video the walking person, reconstructed once per frame, is removed (3\% to 8\% of the moving points remain, 57\% to 71\% of all points).}
+\label{fig:gallery3d}
+\end{figure*}
+
+\paragraph{Further figures.}
+Four figures referred to in the paper: the stress tests, the head's bands on unseen captures, the provenance variant, and what cross-view agreement certifies.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.48\textwidth]{fig_stress}
+\includegraphics[width=0.48\textwidth]{fig_limit}
+\caption{\textbf{Left: stress tests on DTU} (blur, radius 0.18, seeds 0 and 1). A seamless inpainted fill raises the leak; fewer views or a distractor image leave it unchanged. \textbf{Right: what agreement certifies.} On the benchmark's own patch, which every view shows, no cross-view test separates the invented surface; refilling the hole does.}
+\label{fig:supp-stress-limit}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.62\textwidth]{fig_qual}
+\includegraphics[width=0.36\textwidth]{fig_prov}
+\caption{\textbf{Left: what the label-free head says on unseen captures.} Per dataset: photograph; ground-truth support (red: no other view sees it, green: two or more do); native confidence; reprojection; per-image control; the head's bands (green observed, yellow abstain, red imagined). \textbf{Right: which view saw it} (provenance variant, VGGT, an unseen DTU scan).}
+\label{fig:supp-qual-prov}
+\end{figure}
+
+\paragraph{HAD's hallucination scorer (no valid comparison).}
+We ran the released scoring network of HAD (reference in the paper) on the DTU captures, giving it the ground-truth cameras it requires, and fixed in advance that its scores would count only if its own renderings of the scored views reached 15~dB. They reached 11.3~dB on three-view DTU captures, so by that rule its scores (which were at chance, \auroc{} 0.46 to 0.47) are not a valid measurement of the method and we claim no comparison. We then checked the wrapper without any label: the checkpoint's 365 tensors all match the model, half and full precision and four resolutions give the same renderings (8.9 to 9.2~dB on a five-view capture), a reference view rendered at its own pose reaches 24.9~dB, and neither the inverse pose convention, the OpenGL axis convention nor five scene scales raises quality above 10.4~dB. The renderings show the scene at the right viewpoint, blurred and misregistered: the convention is right and the renderer does not reproduce DTU views at these baselines (cameras up to 0.87~m apart at 0.74~m depth). HAD targets generated novel views with known cameras; our setting is unposed input views.
+
+\paragraph{Novel-view rendering from filtered points (negative result).}
+We tested whether removing unsupported points helps a downstream renderer. Gaussian splatting is initialised from the predicted points of the input views, either all of them or without the 20\% a detector trusts least (a random 20\%, lowest native confidence, lowest support score, or lowest mean rank of both), with identical optimisation, and scored on eight held-out rig views of 15 DTU scans that no head and no benchmark setting used, at three and six input views on four backbones (eight settings; the rule was fixed before the run). In LPIPS the head's filter is significantly better than no filter in 4 of 8 settings (VGGT at both view counts, by 0.09 and 0.12; Pi3 and DA3 at six views), and significantly better than native confidence's filter in none; it is significantly worse in 4 (by 0.007 to 0.05). The combined rank is never better than native confidence. Rendering quality is driven by depth error, which native confidence ranks; support is a different quantity, and removing single-view points does not by itself improve a renderer.
+
+\paragraph{Gaussian-splatting backbone (partial run).}
+AnySplat (reference in the paper), a feed-forward 3D Gaussian-splatting model, was scored on the DTU configuration with its per-pixel Gaussian opacity as confidence (120 of 540 rows) and with the rendered accumulated alpha (450 of 540 rows), bf16 on one L4. Pooled over blur and noise: opacity \auroc{} 0.583 / \cur{} 0.718, rendered alpha 0.632 / 0.745, \curerr{} 0.02 and 0.06; the noise fill drives the opacity below chance (0.36). The representation does not change the answer: a Gaussian the model places on an unseen surface is as opaque as one on an observed surface. The run stopped behind other jobs on the shared card and is reported as partial.

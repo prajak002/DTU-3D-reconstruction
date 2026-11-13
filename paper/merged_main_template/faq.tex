@@ -1,0 +1,35 @@
+% faq.tex -- BODY ONLY. Input from supp.tex after additional.tex.
+\section{Frequently asked questions}
+\label{sec:supp-faq}
+
+\newcommand{\faq}[1]{\par\medskip\noindent\textbf{#1}\par\nobreak\smallskip\noindent}
+
+\faq{1. What exactly does the head certify?}
+Support, as defined in Eq.~(1) of the paper: the number of input views that observe the surface behind a pixel. It does not certify that the depth is correct. The two targets differ. Native confidence already ranks error (Proposition~S1). The head ranks support, which native confidence cannot (Proposition~S2).
+
+\faq{2. A surface every view agrees on passes the head. Is that a weakness?}
+It is the boundary of the problem, not of the method. Proposition~S4 shows that two worlds with the same images give every score of those images the same value. No detector that reads the inputs can cross that line: reprojection, model disagreement and the head all stop there. We measure the line (visibility heads 0.70 to 0.75 on the benchmark's own patch) and show what does cross it: an intervention on the inputs. Refilling the hole three ways separates the patch at \auroc{} 0.82 to 0.98.
+
+\faq{3. Are hidden spheres and gray fills too artificial?}
+They are diagnostic. The benchmark needs a region whose label is known for certain, and hiding a 3D region from every view gives one. Three facts tie it to real captures. An inpainted fill without seams raises the leak, so the gray fill is a lower bound. The matched split removes the patch cue, and the head still separates the patches. On real scans with no patch at all, the head beats native confidence in 19 of 28 settings.
+
+\faq{4. Why is the real-occlusion claim made at three views on DTU?}
+Because that is where unseen geometry exists. With ten spread views under 0.5\% of the predicted points lie on surfaces no view saw; a claim on so few points would not be reliable. We fixed the 0.5\% threshold before the runs and report every cell, including the ones below it.
+
+\faq{5. Where does the head not beat native confidence, and why?}
+In three places. On Pi3X for ETH3D and TUM RGB-D, native confidence is already strong (0.80 and above), so little is left to gain. On CO3Dv2 phone orbits the reference depth is sparse multi-view stereo, and adjacent frames leave almost no unseen surface. In no setting is the head significantly worse.
+
+\faq{6. The head adds no fused-cloud accuracy. Why use it?}
+Because accuracy is not what it measures. On DTU single-view geometry is nearly as accurate as supported geometry, so an error filter and a support filter reach the same accuracy. They keep different points. At equal accuracy the head's cloud contains 18\% to 39\% less single-view geometry. A user who must know what was photographed needs the second property.
+
+\faq{7. What happens when the scene moves?}
+The definition of support assumes a rigid scene. We tested the head, unchanged, on eight videos with moving people. On static geometry it has the highest score of the three detectors on all four backbones, significantly on VGGT and DA3. For the moving surfaces themselves reprojection is the better detector on all four. This is the expected division of labour: a moved surface is seen by every frame, so its support is not missing; what fails is agreement, which reprojection tests directly. The two scores are complementary, and both come from one forward pass.
+
+\faq{8. Why does a single low-parallax view give a moderate gain?}
+The evidence model of Sec.~S1 predicts it. Each extra view adds a log-likelihood term that scales with parallax. One nearby view adds little. The measured values follow the model: 0.68 to 0.75 with one view, 0.80 to 0.92 with three or more.
+
+\faq{9. Does a larger head help?}
+No. A linear probe is within 0.03 of our head, and a cross-view transformer head is better in none of the settings tested. The signal is already linearly readable in the frozen features. A small head is therefore the right size, and it costs under 1\% of a backbone forward.
+
+\faq{10. Could the head have learned a dataset shortcut?}
+The per-image control tests exactly this. It is the same head with the same labels on tokens taken before cross-view attention. It falls below chance off the lab rig and stays at 0.56 to 0.61 under matched labels. The gap between head and control is cross-view information by Proposition~S3.

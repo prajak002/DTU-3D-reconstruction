@@ -1,0 +1,274 @@
+% =====================================================================
+% additional.tex  --  BODY ONLY. Do not add \documentclass or \begin{document}.
+% Use from supp.tex (inside the document) with:   \input{additional}
+% Needs amsmath + amssymb (already loaded by CVPR preambles).
+% Add the two entries in refs_additions.bib to refs.bib.
+% =====================================================================
+\makeatletter
+\@ifundefined{c@suppprop}{\newcounter{suppprop}}{}
+\renewcommand{\thesuppprop}{S\arabic{suppprop}}
+\@ifundefined{proposition}{%
+  \newenvironment{proposition}[1][]{\refstepcounter{suppprop}\par\medskip\noindent
+    \textbf{Proposition~\thesuppprop}\if\relax\detokenize{#1}\relax\else\ \textbf{(#1)}\fi\textbf{.}\ \itshape}%
+   {\par\medskip}}{}
+\makeatother
+\providecommand{\auroc}{\textsc{auroc}}
+\providecommand{\cur}{\textsc{cur}}
+\providecommand{\E}{\mathbb{E}}
+
+\section{Why the method works: logical and mathematical justification}
+\label{sec:supp-why}
+
+This section states, under explicit assumptions, why native confidence cannot
+detect missing support, why cross-view tokens can, why a head trained on its
+backbone's own reprojection labels can match a ground-truth head and beat its
+teacher, and why no detector of the inputs can catch an invention every view
+agrees on. It ends with a check that the reported \auroc{} and \cur{} values
+agree with each other.
+
+\paragraph{Notation.}
+View $i$ of image set $\mathcal{I}=\{I_1,\dots,I_N\}$; pixel $p$; support label
+$Y\!\in\!\{0,1\}$ ($1$ for supported, S; $0$ for unsupported, U); depth error
+$e=|\hat D_i(p)-D_i(p)|/D_i(p)$. Per-image tokens
+$z^{0}_i=E(I_i)$ depend on $I_i$ only; cross-view tokens
+$z_i=A(\mathcal{I})$ depend on all views. A score $s$ is any real function;
+$\auroc(s)=P(s_S>s_U)+\tfrac12P(s_S=s_U)$, and $\cur_\tau(s)=P(s_U>\tau)$ with
+$\tau$ chosen so that $P(s_S>\tau)=0.9$.
+
+% ---------------------------------------------------------------------------
+\subsection{Native confidence predicts error, not support}
+
+DUSt3R and its descendants train confidence with a confidence-weighted
+regression loss~\cite{wang2024dust3r}
+\begin{equation}
+  \mathcal{L}(C)=C\,e-\alpha\log C,\qquad \alpha>0,
+  \label{eq:confloss}
+\end{equation}
+applied only where ground-truth depth exists. For backbones whose exact loss
+differs, the argument below holds for any loss whose minimiser is a
+decreasing function of expected error.
+
+\begin{proposition}[Loss-optimal confidence]\label{prop:conf}
+For a head with input $z$, the minimiser of $\E[\mathcal{L}(C)\mid z]$ is
+\begin{equation}
+  C^\star(z)=\frac{\alpha}{m(z)},\qquad m(z)=\E[e\mid z].
+  \label{eq:copt}
+\end{equation}
+Consequently $C^\star$ carries information about $Y$ only through $m(z)$.
+If $e\perp Y\mid z$, then $C^\star$ and $Y$ are conditionally independent
+given $m(z)$, and $\auroc(C^\star)$ for S versus U is the \auroc{} of expected
+error for separating S from U.
+\end{proposition}
+\par\noindent\emph{Proof.}~
+$\partial_C\E[\mathcal{L}\mid z]=m(z)-\alpha/C=0$ gives Eq.~\eqref{eq:copt};
+the second derivative $\alpha/C^2>0$ makes this the minimum. $C^\star$ is a
+function of $m(z)$ alone.
+\hfill$\square$\par
+
+\noindent\emph{Reading.} The objective contains no term that depends on $Y$, so
+nothing pushes the head to encode support even when $z$ contains it. Invented
+depth is accurate (\textsc{AbsRel}$_U$ 0.011 to 0.022, main paper, Sec.~4), so
+$m(z)$ is nearly the same on S and U, and Eq.~\eqref{eq:copt} predicts high
+confidence on invented geometry. This is the leak in main-paper Table~1.
+Proposition~\ref{prop:conf} also explains main-paper Gate~11: filtering for
+accuracy is an error-ranking task, which $C^\star$ already performs, so adding
+a support score does not raise fused-cloud F1. Support and accuracy are
+different targets and need different scores.
+
+% ---------------------------------------------------------------------------
+\subsection{The matched split forces chance for any single-view score}
+
+\begin{proposition}[Exchangeability]\label{prop:exch}
+Suppose that, in the scored view $i$, the pixels of patch A (U) and patch B
+(S$_m$) are exchangeable: the joint law of $(I_i,p)$ for $p\!\in\!A$ equals
+that for $p\!\in\!B$ (matched area, depth, texture and fill, with roles
+assigned independently of view-$i$ appearance). Then every score
+$s=f(I_i,p)$, including any function of $z^0_i$, satisfies
+\begin{equation}
+  \auroc_m(s)=\tfrac12,\qquad \cur_m(s)=0.90 .
+  \label{eq:chance}
+\end{equation}
+\end{proposition}
+\par\noindent\emph{Proof.}~
+Exchangeability gives $s_A\overset{d}{=}s_B$, so for independent draws
+$P(s_B>s_A)=P(s_A>s_B)$ and $\auroc_m=\tfrac12$. With identical laws, the
+threshold that passes 90\% of B passes 90\% of A.
+\hfill$\square$\par
+
+\begin{proposition}[Information ordering]\label{prop:order}
+Let $\mathcal{F}_0=\{f(I_i,p)\}$ and $\mathcal{F}=\{f(\mathcal{I},p)\}$. Since
+$\mathcal{F}_0\subset\mathcal{F}$,
+$\sup_{\mathcal{F}}\auroc\ge\sup_{\mathcal{F}_0}\auroc$, and the supremum over
+each class is attained by the posterior $\eta(x)=P(Y\!=\!1\mid x)$ of its
+input~\cite{menon2015corrupted}. Under the matched split, any
+$\auroc_m>\tfrac12$ therefore measures information that comes from views
+other than $i$.
+\end{proposition}
+
+\noindent\emph{Reading.} Eq.~\eqref{eq:chance} gives the reference values for
+the shaded columns of main-paper Table~1. Native confidence scores
+$\auroc_m$ 0.43 to 0.55 and $\cur_m$ 0.80 to 0.87, close to chance: it acts as
+a single-view score even though the backbone's tokens have cross-view inputs,
+as Proposition~\ref{prop:conf} predicts. The per-image control is a member of
+$\mathcal{F}_0$ by construction, so Eq.~\eqref{eq:chance} explains why it stays
+at 0.56 to 0.61. The residual above $\tfrac12$ is the cost of approximate
+matching (image-border and placement cues), which the pre-registered 0.60 bound
+caps. Proposition~\ref{prop:order} explains why the control is decisive: the
+support head and the control share architecture, labels and training, and
+differ only in whether their input is in $\mathcal{F}$ or $\mathcal{F}_0$.
+
+% ---------------------------------------------------------------------------
+\subsection{Why cross-view tokens carry support}
+
+Support is defined over the view set: $Y(p)=1$ iff the ground-truth point at
+$p$ is visible in some view $j\neq i$. It is a property of $\mathcal{I}$, not
+of $I_i$. Cross-view attention computes, for each token, a weighting over
+tokens in the other views; when the surface at $p$ appears in view $j$, the
+token has a matching partner there, and when it does not, it has none. The
+backbone must compute this correspondence to triangulate, so the information
+is available whether or not any head reads it. A linear probe reaches
+\auroc{} 0.99 (main paper, Figure~8). This shows the information is linearly
+decodable, which is why a head of 1.7 to 3.3\,M parameters is enough and why a
+probe on all four tapped layers is within 0.015 of any head we trained.
+
+\paragraph{Evidence grows with views.}
+Model each other view $j$ as contributing an independent log-likelihood-ratio
+term $\ell_j$ for $Y$, with mean $\pm\mu/2$ and variance $\sigma^2$. Summing
+$k$ views gives separation $d'_k=\sqrt{k}\,\mu/\sigma$, and under a binormal
+score model
+\begin{equation}
+  \auroc_k=\Phi\!\big(\sqrt{k}\,d'_1/\sqrt2\big).
+  \label{eq:views}
+\end{equation}
+From a one-view value of 0.68 to 0.75, Eq.~\eqref{eq:views} predicts 0.75 to 0.83
+for two views and 0.79 to 0.88 for three. The measured values are 0.80 to 0.92
+for three or more views (main paper, Sec.~5). The per-view term $\mu$ scales with
+parallax, which triangulation needs, so a single low-parallax view gives
+little evidence. That is consistent with main-paper Gate~9: the one-view fine-tune
+stops at 0.71, short of 0.75, because there is little evidence to read, not
+because the head is too small.
+
+% ---------------------------------------------------------------------------
+\subsection{Learning from the backbone's own reprojection labels}
+
+The label-free head trains on $\tilde Y$, the reprojection test on the
+backbone's own depth and cameras. Treat $\tilde Y$ as a corrupted copy of $Y$
+with class-conditional flip rates $\rho_{+}=P(\tilde Y\!=\!0\mid Y\!=\!1)$ and
+$\rho_{-}=P(\tilde Y\!=\!1\mid Y\!=\!0)$.
+
+\begin{proposition}[Rank preservation~\cite{menon2015corrupted}]\label{prop:noise}
+With $\eta(z)=P(Y\!=\!1\mid z)$ and $\tilde\eta(z)=P(\tilde Y\!=\!1\mid z)$,
+\begin{equation}
+  \tilde\eta(z)=\rho_{-}+(1-\rho_{+}-\rho_{-})\,\eta(z).
+  \label{eq:noisy}
+\end{equation}
+If $\rho_{+}+\rho_{-}<1$, then $\tilde\eta$ is a strictly increasing affine
+function of $\eta$ and $\auroc(\tilde\eta)=\auroc(\eta)$. A head that estimates
+$\tilde\eta$ by binary cross-entropy has, in the limit, the same \auroc{} as a
+head trained on ground truth.
+\end{proposition}
+\par\noindent\emph{Proof.}~
+$\tilde\eta=P(\tilde Y\!=\!1\mid Y\!=\!1)\eta+P(\tilde Y\!=\!1\mid Y\!=\!0)(1-\eta)
+=(1-\rho_{+})\eta+\rho_{-}(1-\eta)$. \auroc{} depends only on the ordering of
+scores, which a strictly increasing map preserves. Cross-entropy is a proper
+loss, so its population minimiser is $\tilde\eta$.
+\hfill$\square$\par
+
+\noindent\emph{Why the head can beat its teacher.} The teacher scores each
+pixel with its own reprojection, $t=g(\eta(z))+\xi$, where $\xi$ is
+per-pixel depth and pose noise that the tokens do not predict. The head
+estimates $\E[\tilde Y\mid z]$ and so averages $\xi$ out. Under a binormal
+model with signal variance $\sigma^2$ and noise variance $\sigma_\xi^2$, the
+teacher's separation drops to $d'/\sqrt{1+\sigma_\xi^2/\sigma^2}$, while the
+head keeps $d'$. This matches main-paper Gates~3 and~4: on DTU the label-free
+head reaches 0.99 against 0.94 for reprojection.
+
+\noindent\emph{When it fails.} Eq.~\eqref{eq:noisy} needs
+$\rho_{+}+\rho_{-}<1$, and the gap shrinks as $(1-\rho_{+}-\rho_{-})$ falls.
+In practice $\rho$ also depends on $z$, which can reorder pixels. Both effects
+are largest where the teacher's geometry is poor. This is why adapting
+VGGT label-free on CO3Dv2 loses 0.09, and why the DTU-trained head is the safe
+default (main paper, Sec.~6).
+
+% ---------------------------------------------------------------------------
+\subsection{Why labels from fills need the matched control}
+
+Let $F$ be any appearance cue, such as the fill. If training makes $F$ predict
+$\tilde Y$, the loss-optimal head uses $F$; this is what happens with the
+benchmark's fills (\auroc{} 1.000, with the per-image control learning the
+same shortcut). Matched labels make $F$ uninformative by design:
+$P(F\mid\tilde Y\!=\!1)=P(F\mid\tilde Y\!=\!0)$, so $I(\tilde Y;F)=0$. The
+population minimiser then gains nothing from $F$ and must use what still
+predicts $\tilde Y$, which by Proposition~\ref{prop:order} is cross-view
+evidence. The per-image control is the test that this worked: it must stay at
+chance under the same labels.
+
+% ---------------------------------------------------------------------------
+\subsection{The limit: consistency is not observation}
+
+\begin{proposition}[Indistinguishability]\label{prop:limit}
+Let world $W_1$ contain a surface $X$ that no view sees, which every view shows
+as a patch $P$, and let $W_2$ contain a real surface that looks like $P$ in
+every view. If both worlds produce the same images $\mathcal{I}$, then every
+score $s=f(\mathcal{I},p)$, and every test built from the backbone's outputs
+(which are themselves functions of $\mathcal{I}$), gives the same value in both.
+No such score can label the patch pixels U in $W_1$ and S in $W_2$.
+\end{proposition}
+\par\noindent\emph{Proof.}~
+$s$ is a function of $\mathcal{I}$ and $p$, which are equal in the two worlds.
+\hfill$\square$\par
+
+\noindent\emph{Reading.} This is main-paper Figure~13 and the first limitation
+in Sec.~7. Reprojection, model disagreement and the support head are all
+functions of $\mathcal{I}$, so none of them separates a patch that every view
+shows. Refilling the hole does separate it, because refilling changes
+$\mathcal{I}$: it is an intervention, not a function of the inputs.
+Consequently the head certifies multi-view agreement, not truth. Reprojection
+consistency is necessary for support, not sufficient, which is why
+reprojection is at chance on the patches (0.49, 0.48).
+
+% ---------------------------------------------------------------------------
+\subsection{Consistency check between \auroc{} and \cur}
+
+If scores on S and U are Gaussian with equal variance and separation $d'$,
+then $\auroc=\Phi(d'/\sqrt2)$, and with $z_{0.9}=\Phi^{-1}(0.9)=1.2816$,
+\begin{equation}
+  \cur=\Phi\!\big(z_{0.9}-\sqrt2\,\Phi^{-1}(\auroc)\big).
+  \label{eq:binormal}
+\end{equation}
+Eq.~\eqref{eq:binormal} predicts each table's \cur{} from its \auroc{} alone
+(Table~\ref{tab:binormal}). For the support head it fits within 0.02 on all
+four datasets, and for native confidence on DTU within 0.01. The two metrics
+are therefore consistent with each other, not two separate results. The fit is
+worst for reprojection on Photo Tourism (0.16), where the score is a count of
+views and the Gaussian model does not hold. On the matched split the model
+predicts 0.87 to 0.94, above the measured 0.80 to 0.87, because the two
+patches' score distributions differ in spread even when their medians agree.
+
+\begin{table}[!t]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llccc@{}}
+\toprule
+detector & data & \auroc & \cur{} meas. & \cur{} pred. \\
+\midrule
+native conf.   & DTU     & 0.82 & 0.49 & 0.50 \\
+native conf.   & CO3Dv2  & 0.67 & 0.80 & 0.75 \\
+native conf.   & ETH3D   & 0.76 & 0.50 & 0.61 \\
+native conf.   & Photot. & 0.82 & 0.46 & 0.50 \\
+reprojection   & DTU     & 0.94 & 0.13 & 0.18 \\
+reprojection   & ETH3D   & 0.97 & 0.07 & 0.08 \\
+reprojection   & Photot. & 0.82 & 0.34 & 0.50 \\
+head, label-free & DTU   & 0.99 & 0.03 & 0.02 \\
+head, label-free & CO3Dv2& 0.92 & 0.23 & 0.24 \\
+head, label-free & ETH3D & 0.97 & 0.09 & 0.08 \\
+head, label-free & Photot.& 0.93 & 0.19 & 0.21 \\
+\midrule
+chance (Prop.~\ref{prop:exch}) & any & 0.50 & --- & 0.90 \\
+\bottomrule
+\end{tabular}
+\caption{Measured \cur{} against the binormal prediction of
+Eq.~\eqref{eq:binormal} from \auroc{} alone (values from main-paper
+Table~2, averaged over backbones).}
+\label{tab:binormal}
+\end{table}
