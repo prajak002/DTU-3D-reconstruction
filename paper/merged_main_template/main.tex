@@ -288,9 +288,9 @@ No cross-view test fires on a surface every view shows. On the benchmark's own p
 \paragraph{Scope.}
 The head certifies multi-view agreement. This is the strongest guarantee any function of the inputs can give: a surface every view agrees on produces the same images as a real one (Proposition~S4).
 Unseen geometry is under 0.5\% of the points beyond three DTU views, so the DTU claim is made at three views; ETH3D and TUM RGB-D extend it. The head wins 19 of 28 settings and is never significantly worse. The other cells are Pi3X on ETH3D and TUM RGB-D, where native confidence is already strong, and CO3Dv2 phone orbits.
-Under motion its lead on static geometry is significant on two of four backbones. A single low-parallax view is the hardest matched case, as the evidence model predicts (supplement, FAQ).
+Under motion its lead on static geometry is significant on two of four backbones. A single low-parallax view is the hardest matched case (FAQ).
 
-\paragraph{Conclusion.} Feed-forward 3D models do not say when they have not seen a surface. Their confidence reacts to appearance. Their cross-view tokens carry the answer. A light head, trained on the backbone's own agreement, reads it on captures it never saw, on real unseen surfaces in three datasets, and in video. More capacity reads no more. Abstaining now costs one extra forward pass.
+\paragraph{Conclusion.} Feed-forward 3D models do not say when they have not seen a surface. Their confidence reacts to appearance. Their cross-view tokens carry the answer. A light head, trained on the backbone's own agreement, reads it on captures it never saw, on real unseen surfaces in three datasets, and in video. More capacity reads no more.
 
 %------------------------------------------------------------------------
 \section*{LLM Usage Statement}
