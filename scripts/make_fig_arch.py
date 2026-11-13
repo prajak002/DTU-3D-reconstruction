@@ -37,7 +37,7 @@ def main():
     ap.add_argument("--dump", default=os.path.join(ROOT, "results", "P20-dump", "dtu"))
     ap.add_argument("--hd", default=os.path.join(ROOT, "results", "P20-dump-hd", "dtu", "hd"))
     ap.add_argument("--base", default="vggt")
-    ap.add_argument("--out", default=os.path.join(ROOT, "paper", "figures", "fig_arch"))
+    ap.add_argument("--out", default=os.path.join(ROOT, "paper", "figures", "fig_arch_training"))
     a = ap.parse_args()
     key = max(glob.glob(os.path.join(a.dump, "labels", "*__s0__v5.npz")), key=lambda p: float(np.load(p)["U"].mean()))
     key = os.path.basename(key)[:-4]
