@@ -114,5 +114,7 @@ if __name__ == "__main__":
     ap.add_argument("raw_root")
     ap.add_argument("out_root")
     ap.add_argument("--scenes", default=None)
+    ap.add_argument("--n-frames", type=int, default=N_FRAMES,
+                    help="frames taken evenly over the sequence, in temporal order (dynamic_eval.py: 200, not reordered)")
     a = ap.parse_args()
-    preprocess_tum(a.raw_root, a.out_root, a.scenes.split(",") if a.scenes else None)
+    preprocess_tum(a.raw_root, a.out_root, a.scenes.split(",") if a.scenes else None, n_frames=a.n_frames)
