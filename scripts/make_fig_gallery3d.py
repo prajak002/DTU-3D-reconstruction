@@ -141,7 +141,16 @@ def main():
     name, _, ims, st, _, _ = rows[0]
     Image.fromarray(ims[4]).save(os.path.join(os.path.dirname(a.out), "teaser3d_all.png"))
     Image.fromarray(ims[5]).save(os.path.join(os.path.dirname(a.out), "teaser3d_keep.png"))
-    json.dump(dict(name=name, base=a.base, **st), open(os.path.join(ROOT, "docs", "assets", "teaser3d.json"), "w"), indent=1)
+    T = dict(name=name, base=a.base, **st)
+    # and the video window with the largest share of moving pixels (the rule of the other moving-scene figures)
+    df = pd.read_csv(os.path.join(ROOT, "results", "P23-dynamic", a.base, "P23-dynamic.csv"))
+    x = df[(df.scan == "freiburg3_walking_xyz") & (df.model == a.base)].set_index("window")
+    vname = f"video, window {int(x.frac_M.idxmax())}"
+    _, _, vims, vst, _, _ = next(r for r in rows if r[0] == vname)
+    Image.fromarray(vims[4]).save(os.path.join(os.path.dirname(a.out), "teaser3d_video_all.png"))
+    Image.fromarray(vims[5]).save(os.path.join(os.path.dirname(a.out), "teaser3d_video_keep.png"))
+    T["video"] = dict(name=vname, **vst)
+    json.dump(T, open(os.path.join(ROOT, "docs", "assets", "teaser3d.json"), "w"), indent=1)
     wr = [0.62, 1, 1, 1, 1]
     fig = plt.figure(figsize=(6.875, 1.33 * len(rows) + 0.22))
     gs = fig.add_gridspec(len(rows), 5, width_ratios=wr, left=0.03, right=0.997, top=1 - 0.22 / (1.33 * len(rows) + 0.22),

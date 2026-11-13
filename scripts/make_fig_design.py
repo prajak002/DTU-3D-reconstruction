@@ -187,38 +187,59 @@ def vpanel(c, i, x, y, w, h, title, lw=1.15, photo=False, up=6, **kw):
 
 
 def fig_teaser(N, M, out, P14=None):
-    """Left: the matched patches (2D). Middle: one real DTU capture in 3D, from scripts/make_fig_gallery3d.py (the
-    benchmark scan with the largest single-view share; predicted depth, rig cameras) and the points the head keeps.
-    Right: the headline ranges."""
-    c = Canvas(6.875, 1.37)
-    iw, yb = 0.98, 0.39
-    ih = iw * 194 / 242
-    x_in, x_nat, x_ours = 0.03, 1.04, 2.05
-    tk = dict(tfs=6.5, lw=0.7)
-    nk = dict(ha="center", va="top", fontsize=5.9, linespacing=1.22)
-    vpanel(c, 0, x_in, yb, iw, ih, "input view (gray fill)", photo=True, **tk)
-    c.text(x_in + iw / 2, yb - 0.06, "red: hidden in every view\ngreen: hidden here, seen\nin another view", color=MUTED, **nk)
-    vpanel(c, 2, x_nat, yb, iw, ih, "native confidence", tcolor=IMAG, **tk)
-    c.text(x_nat + iw / 2, yb - 0.06, "dark on both patches:\nreads the patch", color=IMAG, weight="bold", **nk)
-    vpanel(c, 4, x_ours, yb, iw, ih, "support head (ours)", tcolor=OBS, **tk)
-    c.text(x_ours + iw / 2, yb - 0.06, "dark only where\nno view sees", color=OBS, weight="bold", **nk)
+    """Hero figure. Left: two captures fused in 3D from logged predictions (scripts/make_fig_gallery3d.py: predicted
+    depth, dataset cameras), a static DTU capture and a video with a walking person, each beside the points the
+    support head keeps. Right: the matched patches (2D) and the headline ranges."""
+    c = Canvas(6.875, 2.45)
     T = json.load(open(os.path.join(ROOT, "docs", "assets", "teaser3d.json"), encoding="utf-8"))
-    r_all = np.asarray(Image.open(os.path.join(FIG, "teaser3d_all.png")).convert("RGB"))
-    r_keep = np.asarray(Image.open(os.path.join(FIG, "teaser3d_keep.png")).convert("RGB"))
-    nz = np.argwhere((r_all < 250).any(2))                       # one crop for both renders: the extent of the full cloud
-    (y0, x0), (y1, x1) = np.maximum(nz.min(0) - 12, 0), nz.max(0) + 12
-    w3 = min(ih * (x1 - x0) / (y1 - y0), 1.0)
-    x_a = x_ours + iw + 0.14
-    x_k = x_a + w3 + 0.03
-    for im, x, title, col in ((r_all, x_a, "real capture, fused", INK), (r_keep, x_k, "points the head keeps", OBS)):
-        ax = c.image(im[y0:y1, x0:x1], x, yb, w3, ih, title, tcolor=col, **tk)
-        ax.images[0].set_interpolation("lanczos")
-    c.text(x_a + w3 / 2, yb - 0.06, f"red: only one view saw it\n({100 * T['bad_share']:.0f}% of the points)", color=IMAG, weight="bold", **nk)
-    c.text(x_k + w3 / 2, yb - 0.06, f"{100 * T['bad_kept']:.0f}% of the red points,\n{100 * T['kept']:.0f}% of all points", color=OBS,
-           weight="bold", **nk)
-    c.ax.plot([x_a - 0.07, x_a - 0.07], [yb - 0.30, yb + ih + 0.14], color=PANEL_EC, lw=0.6)
+    cw, ch, gx, gy = 1.55, 1.06, 0.03, 0.05
+    box = dict(fc="black", ec="none", alpha=0.6, pad=1.4)
+    rows3d = [("teaser3d_all.png", "teaser3d_keep.png", T, "static capture, 5 views",
+               "red: seen by one view only ({:.0f}%)", "keeps {:.0f}% of red, {:.0f}% of all points", IMAG),
+              ("teaser3d_video_all.png", "teaser3d_video_keep.png", T["video"], "video with a walking person, 10 frames",
+               "purple: moved during the video ({:.0f}%)", "keeps {:.0f}% of purple, {:.0f}% of all points", "#8E44AD")]
+    for r, (fa, fk, st, name, na, nk_, col) in enumerate(rows3d):
+        ia = np.asarray(Image.open(os.path.join(FIG, fa)).convert("RGB"))
+        ik = np.asarray(Image.open(os.path.join(FIG, fk)).convert("RGB"))
+        nz = np.argwhere((ia < 250).any(2))                      # one crop per row: the extent of the full cloud
+        (y0, x0), (y1, x1) = np.maximum(nz.min(0) - 10, 0), nz.max(0) + 10
+        y = c.H - 0.15 - ch - r * (ch + gy)
+        for k, (im, note) in enumerate(((ia, na.format(100 * st["bad_share"])),
+                                        (ik, nk_.format(100 * st["bad_kept"], 100 * st["kept"])))):
+            ax = c.fig.add_axes(R(c.W, c.H, 0.03 + k * (cw + gx), y, cw, ch))
+            ax.imshow(im[y0:y1, x0:x1], interpolation="lanczos"); ax.set_anchor("C")
+            ax.set_xticks([]); ax.set_yticks([])
+            for sp in ax.spines.values():
+                sp.set_visible(False)
+            c.ax.add_patch(Rectangle((0.03 + k * (cw + gx), y), cw, ch, fc="none", ec=PANEL_EC, lw=0.6, zorder=6))
+            # figure-level text: the image axes sit above the canvas axes
+            c.fig.text((0.03 + k * (cw + gx) + 0.045) / c.W, (y + 0.045) / c.H, note, fontsize=5.3, color="white", weight="bold",
+                       va="bottom", ha="left", bbox=box, zorder=20)
+            if k == 0:
+                c.fig.text(0.075 / c.W, (y + ch - 0.045) / c.H, name, fontsize=5.6, color="white", weight="bold", va="top", ha="left",
+                           bbox=box, zorder=20)
+            if r == 0:
+                c.text(0.03 + k * (cw + gx) + cw / 2, y + ch + 0.03, ("predicted points, all views fused", "points the support head keeps")[k],
+                       fontsize=6.8, weight="bold", ha="center", va="bottom", color=(INK, OBS)[k])
+    # matched patches
+    xr = 0.03 + 2 * cw + gx + 0.14
+    c.ax.plot([xr - 0.07, xr - 0.07], [0.06, c.H - 0.04], color=PANEL_EC, lw=0.6)
+    wr = c.W - 0.02 - xr
+    ph = 0.75
+    pw = ph * 242 / 194
+    x0p = xr + (wr - 3 * pw - 2 * 0.04) / 2
+    yp = c.H - 0.15 - ph
+    tk = dict(tfs=6.6, lw=0.7)
+    nk = dict(ha="center", va="top", fontsize=5.7, linespacing=1.2)
+    vpanel(c, 0, x0p, yp, pw, ph, "input view (gray fill)", photo=True, **tk)
+    c.text(x0p + pw / 2, yp - 0.05, "red: hidden in every view\ngreen: seen in another view", color=MUTED, **nk)
+    vpanel(c, 2, x0p + pw + 0.04, yp, pw, ph, "native confidence", tcolor=IMAG, **tk)
+    c.text(x0p + 1.5 * pw + 0.04, yp - 0.05, "dark on both patches:\nreads the patch", color=IMAG, weight="bold", **nk)
+    vpanel(c, 4, x0p + 2 * pw + 0.08, yp, pw, ph, "support head (ours)", tcolor=OBS, **tk)
+    c.text(x0p + 2.5 * pw + 0.08, yp - 0.05, "dark only where\nno view sees", color=OBS, weight="bold", **nk)
     # headline ranges
-    ax = c.fig.add_axes(R(c.W, c.H, 5.72, 0.27, 1.13, c.H - 0.29))
+    aw = 2.05
+    ax = c.fig.add_axes(R(c.W, c.H, xr + 0.78, 0.27, aw, yp - 0.27 - 0.30))
     V = N["vis"]
     MC = {k: M[k]["cells"] for k in ("DTU", "CO3Dv2")}
     bases = ("vggt", "pi3x", "pi3", "da3")
@@ -237,7 +258,7 @@ def fig_teaser(N, M, out, P14=None):
     for k, (lab, vals, col) in enumerate(rows):
         if vals is None:                      # a heading takes a taller slot and sits at its bottom, clear of the bar above
             y -= 1.55 if k else 1.0
-            ax.text(-0.335, y, lab, fontsize=6.0, weight="bold", color=INK, va="center", ha="left",
+            ax.text(-0.74 / aw, y, lab, fontsize=6.0, weight="bold", color=INK, va="center", ha="left",
                     transform=ax.get_yaxis_transform(), zorder=5, bbox=dict(fc="white", ec="none", pad=0.8))
             continue
         y -= 1.0
@@ -247,12 +268,12 @@ def fig_teaser(N, M, out, P14=None):
         yt.append(y); yl.append(lab)
     ax.set_yticks(yt); ax.set_yticklabels(yl, fontsize=5.9, color=MUTED); ax.tick_params(axis="y", length=0, pad=1)
     ax.axvline(0.5, color=MUTED, lw=0.5, ls=":", zorder=1)
-    ax.set_xlim(0.36, 1.42); ax.set_ylim(y - 0.75, -0.45)
+    ax.set_xlim(0.36, 1.24); ax.set_ylim(y - 0.75, -0.45)
     ax.set_xticks([0.5, 0.75, 1.0]); ax.set_xticklabels(["0.5", "0.75", "1"]); ax.tick_params(axis="x", labelsize=5.9, length=2, pad=1)
     for sp in ("top", "right", "left"):
         ax.spines[sp].set_visible(False)
     ax.spines["bottom"].set_bounds(0.36, 1.0)
-    ax.set_xlabel("AUROC (0.5: chance)", fontsize=5.9, labelpad=1, x=0.3)
+    ax.set_xlabel("AUROC (0.5: chance)", fontsize=5.9, labelpad=1, x=0.36)
     c.fig.savefig(out + ".pdf", dpi=600); c.fig.savefig(out + ".png", dpi=600)
     plt.close(c.fig)
 
