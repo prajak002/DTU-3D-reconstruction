@@ -203,9 +203,9 @@ def fig_teaser(N, M, out, P14=None):
     """Hero figure. Left: two captures fused in 3D from logged predictions (scripts/make_fig_gallery3d.py: predicted
     depth, dataset cameras), a static DTU capture and a video with a walking person, each beside the points the
     support head keeps. Right: the matched patches (2D) and the headline ranges."""
-    c = Canvas(6.875, 2.45)
+    c = Canvas(6.875, 2.90)
     T = json.load(open(os.path.join(ROOT, "docs", "assets", "teaser3d.json"), encoding="utf-8"))
-    cw, ch, gx, gy, gx0, win = 1.40, 1.06, 0.05, 0.05, 0.17, 1.20
+    cw, ch, gx, gy, gx0, win = 2.50, 1.16, 0.07, 0.05, 0.17, 1.39
     xc = lambda k: gx0 + win + 0.13 + k * (cw + gx)          # left edge of the two 3D panels
     box = dict(fc="black", ec="none", alpha=0.6, pad=1.4)
     rows3d = [("teaser3d_all.png", "teaser3d_keep.png", T, "static scene",
@@ -216,7 +216,7 @@ def fig_teaser(N, M, out, P14=None):
              ("? Which points moved\nduring the video", "person removed", "also removed:\nsome background")]
     y_bot = c.H - 0.15 - 2 * ch - gy
     for k, (fc_, ec_, lw_) in enumerate((("#F1F3F5", "#9AA5B1", 0.9), ("#E3F3F1", OBS, 1.6))):
-        c.ax.add_patch(FancyBboxPatch((xc(k) - 0.022, y_bot - 0.03), cw + 0.044, 2 * ch + gy + 0.06,
+        c.ax.add_patch(FancyBboxPatch((xc(k) - 0.022, y_bot - 0.36), cw + 0.044, 2 * ch + gy + 0.39,
                                       boxstyle="round,pad=0,rounding_size=0.07", fc=fc_, ec=ec_, lw=lw_, zorder=1))
     for r, (fa, fk, st, name, na, nk_, col) in enumerate(rows3d):
         call_all, call_keep, call_also = calls[r]
@@ -228,7 +228,7 @@ def fig_teaser(N, M, out, P14=None):
         # the photographs first: the middle view in front, two more behind it
         pref = "teaser3d_in_" if r == 0 else "teaser3d_video_in_"
         ph_in = [np.asarray(Image.open(os.path.join(FIG, f"{pref}{j}.png")).convert("RGB")) for j in range(3)]
-        pw_i = win - 0.10
+        pw_i = win - 0.16
         ph_i = pw_i * ph_in[0].shape[0] / ph_in[0].shape[1]
         sx0, sx1 = gx0 - 0.035, gx0 + pw_i + 0.135
         sy0, sy1 = y + (ch - ph_i) / 2 - 0.035 - 0.085, y + (ch - ph_i) / 2 + 0.035 + ph_i + 0.085
@@ -241,7 +241,7 @@ def fig_teaser(N, M, out, P14=None):
             c.image(ph_in[j], gx0 + 0.05 * j, y + (ch - ph_i) / 2 - 0.035 + 0.035 * j, pw_i, ph_i, None, lw=0.8, ec="white" if j else PANEL_EC)
         c.arrow(gx0 + win + 0.015, y + ch / 2, xc(0) - 0.01, y + ch / 2, lw=1.1, ms=7)
         if r == 0:
-            c.text(gx0 + win / 2, y + ch + 0.03, "Observe: photos", fontsize=6.3, weight="bold", ha="center", va="bottom", color=INK)
+            c.text(gx0 + win / 2, y + ch + 0.03, "Observe: the photographs", fontsize=6.3, weight="bold", ha="center", va="bottom", color=INK)
         for k, (im, note) in enumerate(((ia, na.format(100 * st["bad_share"])),
                                         (ik, nk_.format(100 * st["bad_kept"], 100 * st["kept"])))):
             ax = c.fig.add_axes(R(c.W, c.H, xc(k), y, cw, ch))
@@ -285,61 +285,26 @@ def fig_teaser(N, M, out, P14=None):
             if k == 0:              # row name, upright beside the row
                 c.text(gx0 - 0.07, y + ch / 2, name, fontsize=6.2, color=INK, weight="bold", va="center", ha="center", rotation=90)
             if r == 0:
-                c.text(xc(k) + cw / 2, y + ch + 0.03, ("Imagine: model output", "Abstain: our head")[k],
+                c.text(xc(k) + cw / 2, y + ch + 0.03, ("(a) Imagine: the 3D model alone", "(b) Abstain: with our support head")[k],
                        fontsize=6.3, weight="bold", ha="center", va="bottom", color=(IMAG, OBS)[k])
-    # matched patches
-    xr = xc(1) + cw + 0.14
-    c.ax.plot([xr - 0.07, xr - 0.07], [0.06, c.H - 0.04], color=PANEL_EC, lw=0.6)
-    wr = c.W - 0.02 - xr
-    ph = 0.585
-    pw = ph * 242 / 194
-    x0p = xr + (wr - 3 * pw - 2 * 0.03) / 2
-    yp = c.H - 0.15 - ph
-    tk = dict(tfs=5.6, lw=0.7)
-    nk = dict(ha="center", va="top", fontsize=5.0, linespacing=1.2)
-    vpanel(c, 0, x0p, yp, pw, ph, "input (gray fill)", photo=True, **tk)
-    c.text(x0p + pw / 2, yp - 0.05, "red: hidden in every view\ngreen: seen in another", color=MUTED, **nk)
-    vpanel(c, 2, x0p + pw + 0.03, yp, pw, ph, "native confidence", tcolor=IMAG, **tk)
-    c.text(x0p + 1.5 * pw + 0.03, yp - 0.05, "dark on both:\nreads the patch", color=IMAG, weight="bold", **nk)
-    vpanel(c, 4, x0p + 2 * pw + 0.06, yp, pw, ph, "support head", tcolor=OBS, **tk)
-    c.text(x0p + 2.5 * pw + 0.06, yp - 0.05, "dark only where\nno view sees", color=OBS, weight="bold", **nk)
-    # headline ranges
-    aw = 1.12
-    ax = c.fig.add_axes(R(c.W, c.H, xr + 0.42, 0.27, aw, yp - 0.27 - 0.27))
-    V = N["vis"]
+    # the question, and the two answers with their logged numbers
     MC = {k: M[k]["cells"] for k in ("DTU", "CO3Dv2")}
     bases = ("vggt", "pi3x", "pi3", "da3")
-    rows = [("imagined vs observed patch", None, None),
-            ("native", [MC[d][b]["auroc_m"][0] for d in MC for b in ("vggt", "pi3x", "pi3", "da3", "mapanything") if b in MC[d]], BASE),
-            ("per-image", [MC[d][f"{b}_oiamatchselfpatch"]["auroc_m"][0] for d in MC for b in bases if f"{b}_oiamatchselfpatch" in MC[d]], CTRL),
-            ("ours", [MC[d][f"{b}_oiamatchself"]["auroc_m"][0] for d in MC for b in bases if f"{b}_oiamatchself" in MC[d]], OBS),
-            ("single-view geometry, unseen data", None, None),
-            ("native", [V[d][b]["auroc"][0] for d in V for b in bases if b in V[d]], BASE),
-            ("ours", [V[d][f"{b}_oiavisself"]["auroc"][0] for d in V for b in bases if f"{b}_oiavisself" in V[d]], OBS),
-            ("real unseen surfaces, three datasets", None, None),
-            ("native", [c["native"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D", "TUM")) and c["qualifies"]], BASE),
-            ("ours", [c["head"] for k, c in P14["cells"].items() if k.startswith(("DTU", "ETH3D", "TUM")) and c["qualifies"]], OBS)]
-    yt, yl = [], []
-    y = 0.0
-    for k, (lab, vals, col) in enumerate(rows):
-        if vals is None:                      # a heading takes a taller slot and sits at its bottom, clear of the bar above
-            y -= 1.55 if k else 1.0
-            ax.text(-0.40 / aw, y, lab, fontsize=5.5, weight="bold", color=INK, va="center", ha="left",
-                    transform=ax.get_yaxis_transform(), zorder=5, bbox=dict(fc="white", ec="none", pad=0.8))
-            continue
-        y -= 1.0
-        lo, hi = min(vals), max(vals)
-        ax.plot([lo, hi], [y, y], color=col, lw=4.2, solid_capstyle="round")
-        ax.text(hi + 0.045, y, f"{lo:.2f}–{hi:.2f}", fontsize=5.3, va="center", color=col, weight="bold")
-        yt.append(y); yl.append(lab)
-    ax.set_yticks(yt); ax.set_yticklabels(yl, fontsize=5.3, color=MUTED); ax.tick_params(axis="y", length=0, pad=1)
-    ax.axvline(0.5, color=MUTED, lw=0.5, ls=":", zorder=1)
-    ax.set_xlim(0.36, 1.42); ax.set_ylim(y - 0.75, -0.45)
-    ax.set_xticks([0.5, 0.75, 1.0]); ax.set_xticklabels(["0.5", "0.75", "1"]); ax.tick_params(axis="x", labelsize=5.9, length=2, pad=1)
-    for sp in ("top", "right", "left"):
-        ax.spines[sp].set_visible(False)
-    ax.spines["bottom"].set_bounds(0.36, 1.0)
-    ax.set_xlabel("AUROC (0.5: chance)", fontsize=5.6, labelpad=1, x=0.3)
+    nat_m = [MC[d][b]["auroc_m"][0] for d in MC for b in bases + ("mapanything",) if b in MC[d]]
+    our_m = [MC[d][f"{b}_oiamatchself"]["auroc_m"][0] for d in MC for b in bases if f"{b}_oiamatchself" in MC[d]]
+    V = N["vis"]
+    nat_v = [V[d][b]["auroc"][0] for d in V for b in bases if b in V[d]]
+    our_v = [V[d][f"{b}_oiavisself"]["auroc"][0] for d in V for b in bases if f"{b}_oiavisself" in V[d]]
+    ya = y_bot - 0.19
+    c.text(gx0 - 0.035, ya, "Q: Which of this geometry\ndid a camera really see?", fontsize=6.6, weight="bold", color=INK, ha="left",
+           va="center", linespacing=1.2)
+    kw = dict(fontsize=5.9, ha="center", va="center", linespacing=1.28, weight="bold", fontfamily="DejaVu Sans")
+    c.text(xc(0) + cw / 2, ya, "\u2717 native confidence cannot say\n"
+           f"AUROC {min(nat_m):.2f}\u2013{max(nat_m):.2f} on identical patches (chance 0.5)\n"
+           f"{min(nat_v):.2f}\u2013{max(nat_v):.2f} on unseen data", color=IMAG, **kw)
+    c.text(xc(1) + cw / 2, ya, "\u2713 our support head can\n"
+           f"AUROC {min(our_m):.2f}\u2013{max(our_m):.2f} on identical patches\n"
+           f"{min(our_v):.2f}\u2013{max(our_v):.2f} on unseen data", color=OBS, **kw)
     c.fig.savefig(out + ".pdf", dpi=600); c.fig.savefig(out + ".png", dpi=600)
     plt.close(c.fig)
 
