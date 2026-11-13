@@ -211,10 +211,10 @@ def fig_teaser(N, M, out, P14=None):
                "red: seen by one view only ({:.0f}%)", "keeps {:.0f}% of red, {:.0f}% of all points", IMAG),
               ("teaser3d_video_all.png", "teaser3d_video_keep.png", T["video"], "video, 10 frames",
                "purple: moved during the video ({:.0f}%)", "keeps {:.0f}% of purple, {:.0f}% of all points", "#8E44AD")]
-    calls = [("seen by one view only:\nno second view confirms it", "removed by the head"),
-             ("the walking person:\none copy per frame", "copies removed by the head")]
+    calls = [("seen by one view only:\nno second view confirms it", "removed by the head", None),
+             ("the walking person:\none copy per frame", "person removed", "also removed:\nsome background")]
     for r, (fa, fk, st, name, na, nk_, col) in enumerate(rows3d):
-        call_all, call_keep = calls[r]
+        call_all, call_keep, call_also = calls[r]
         ia = np.asarray(Image.open(os.path.join(FIG, fa)).convert("RGB"))
         ik = np.asarray(Image.open(os.path.join(FIG, fk)).convert("RGB"))
         nz = np.argwhere((ia < 250).any(2))                      # one crop per row: the extent of the full cloud
@@ -227,17 +227,29 @@ def fig_teaser(N, M, out, P14=None):
             # callout: an arrow to the most interior point of the region it names, found in the renders themselves
             A, K_ = ia[y0:y1, x0:x1].astype(int), ik[y0:y1, x0:x1].astype(int)
             rgbc = np.array([int(col[i:i + 2], 16) for i in (1, 3, 5)])
+            marked = np.abs(A - rgbc).sum(2) < 40                       # the red / purple points of the left render
+            removed = (A < 250).any(2) & (K_ >= 250).all(2)             # drawn on the left, empty on the right
             if k == 0:
-                mask, lab, lc = (np.abs(A - rgbc).sum(2) < 40), call_all, col
-            else:
-                mask, lab, lc = ((A < 250).any(2) & (K_ >= 250).all(2)), call_keep, INK
+                mask, lab, lc = marked, call_all, col
+            else:                                                       # where the marked points were and are no longer
+                mask, lab, lc = marked & removed, call_keep, col
             pt = _interior(mask)
+            if k == 1 and call_also:                                    # what else the head dropped: say so on the figure
+                import cv2
+                other = removed & ~(cv2.dilate(marked.astype(np.uint8), np.ones((15, 15), np.uint8)) > 0)
+                po = _interior(other)
+                if po is not None:
+                    ax.annotate(call_also, xy=po, xycoords="data", xytext=(0.03, 0.955), textcoords="axes fraction", ha="left",
+                                va="top", fontsize=5.0, color=MUTED, zorder=30, annotation_clip=False, linespacing=1.15,
+                                bbox=dict(fc="white", ec=MUTED, lw=0.5, boxstyle="round,pad=0.25"),
+                                arrowprops=dict(arrowstyle="-|>", color=MUTED, lw=0.7, shrinkA=1, shrinkB=1, mutation_scale=5,
+                                                connectionstyle="arc3,rad=-0.25"))
             if pt is not None:
                 ax.annotate(lab, xy=pt, xycoords="data", xytext=(0.975, 0.955), textcoords="axes fraction",
                             ha="right", va="top", fontsize=5.5, weight="bold", color=lc, zorder=30, annotation_clip=False,
                             bbox=dict(fc="white", ec=lc, lw=0.6, pad=1.6, boxstyle="round,pad=0.25"),
                             arrowprops=dict(arrowstyle="-|>", color=lc, lw=0.9, shrinkA=1, shrinkB=1, mutation_scale=6,
-                                            connectionstyle="arc3,rad=0.18"))
+                                            connectionstyle=f"arc3,rad={-0.18 if k else 0.18}"))
             ax.set_xticks([]); ax.set_yticks([])
             for sp in ax.spines.values():
                 sp.set_visible(False)
