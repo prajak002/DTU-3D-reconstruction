@@ -22,11 +22,11 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch, Polygon, Rectang
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INK, MUTED = "#1D2B36", "#5C6B77"
-BLUE_FC, BLUE_EC = "#DCEBFA", "#3B7DC4"
-GREEN_FC, GREEN_EC = "#E3F3E6", "#2E9E5B"
-YEL_FC, YEL_EC = "#FBEFC4", "#B8922A"
+BLUE_FC, BLUE_EC = "#E7EEF6", "#7C9CBF"
+GREEN_FC, GREEN_EC = "#E3F3F1", "#2A9D8F"
+YEL_FC, YEL_EC = "#FBFAF7", "#B9B3A6"
 GRAY_FC, GRAY_EC = "#EEF0F2", "#7B8794"
-PURPLE = "#7E57C2"
+PURPLE = "#5B8DB8"
 OBS, ABST, IMAG = "#2A9D8F", "#E9C46A", "#D1495B"
 plt.rcParams.update({"font.family": "sans-serif", "font.sans-serif": ["Helvetica", "Arial", "Liberation Sans", "DejaVu Sans"],
                      "pdf.fonttype": 42})
@@ -94,24 +94,29 @@ def main():
 
     # ---------------- (a) training framework
     yc = 1.47
-    for j, v in ((1, order[1]), (0, order[0])):                  # two photographs, stacked
-        img(rgb[v], 0.04 + 0.06 * j, yc - 0.33 - 0.09 * j + 0.12, 0.80, 0.80 * h / w)
-    txt(0.50, 2.22, "N unposed photos", weight="bold")
-    arrow(0.93, yc, 1.10, yc)
+    pw = 0.80; ph = pw * h / w                                   # two whole photographs, aligned, one above the other
+    for j, v in enumerate(order[:2]):
+        img(rgb[v], 0.07, 1.50 - j * (ph + 0.05), pw, ph)
+    txt(0.07 + pw / 2, 2.22, "N unposed photos", weight="bold", fs=6.2)
+    arrow(0.07 + pw + 0.03, yc, 1.10, yc)
     box(1.10, 0.80, 1.02, 1.50, BLUE_FC, BLUE_EC, lw=1.3)
-    snowflake(1.27, 2.15); txt(1.70, 2.15, "frozen 3D\nbackbone", weight="bold", fs=6.4)
+    txt(1.61, 2.21, "frozen 3D backbone", weight="bold", fs=6.2)
+    txt(1.61, 2.035, "VGGT-1B, Pi3, Pi3X,\nDepth Anything 3", fs=4.4, color=MUTED)
     box(1.19, 1.47, 0.84, 0.44, "#F3F8FE", BLUE_EC, lw=0.8); txt(1.61, 1.69, "per-image\nencoder", fs=6.2)
     box(1.19, 0.90, 0.84, 0.44, "#F3F8FE", BLUE_EC, lw=0.8); txt(1.61, 1.12, "cross-view\nattention", fs=6.2)
     arrow(2.12, 1.12, 2.36, 1.12)
     for k, bh in enumerate((0.14, 0.24, 0.34, 0.44)):
         ax.add_patch(Rectangle((2.42 + 0.105 * k, 0.94), 0.075, bh, fc=PURPLE, ec="none", zorder=3))
-    txt(2.60, 0.79, "cross-view\ntokens", fs=6.0, weight="bold", color=PURPLE)
+    txt(2.60, 0.78, "cross-view tokens\n(4 tapped layers)", fs=5.2, weight="bold", color=PURPLE)
     arrow(2.86, 1.12, 3.05, 1.12)
-    box(3.05, 0.84, 0.72, 0.56, GREEN_FC, GREEN_EC, lw=1.3); txt(3.36, 1.12, "support\nhead", weight="bold", fs=6.4); flame(3.64, 1.12)
-    arrow(3.77, 1.12, 3.96, 1.12)
-    box(3.96, 0.76, 1.02, 0.72, GREEN_FC, GREEN_EC, lw=1.0)
-    txt(4.47, 1.35, "Training objective", weight="bold", fs=6.4)
-    txt(4.47, 1.02, "binary cross-entropy\n(head, agreement labels)", fs=5.6)
+    box(3.05, 0.72, 0.80, 0.80, GREEN_FC, GREEN_EC, lw=1.3); txt(3.45, 1.40, "support head", weight="bold", fs=6.4)
+    txt(3.45, 1.17, "LayerNorm, 1\u00d71 proj.\ntwo 3\u00d73 conv\n1 logit per patch", fs=4.7, color=INK)
+    txt(3.45, 0.83, "trained, 1.7\u20133.3 M param.", fs=4.5, color=GREEN_EC, weight="bold")
+    arrow(3.85, 1.12, 4.02, 1.12)
+    box(4.02, 0.72, 0.98, 0.80, "white", GREEN_EC, lw=1.0)
+    txt(4.51, 1.39, "Training objective", weight="bold", fs=6.2)
+    txt(4.51, 1.14, "class-balanced\nbinary cross-entropy", fs=5.3)
+    txt(4.51, 0.86, "1500 steps, 79 DTU scans", fs=4.6, color=MUTED)
     # per-image control
     box(2.42, 1.80, 1.36, 0.44, GRAY_FC, GRAY_EC, lw=0.9, ls=(0, (3, 2)))
     txt(3.10, 2.02, "per-image control\n(same head, no cross-view tokens)", fs=5.5)
@@ -122,8 +127,8 @@ def main():
     box(2.20, 0.08, 1.92, 0.50, YEL_FC, YEL_EC, lw=1.0)
     txt(3.16, 0.45, "Label-free teacher", weight="bold", fs=6.4)
     txt(3.16, 0.23, "reproject each point into the other views,\ncount the views that agree", fs=5.5)
-    ax.plot([4.12, 4.47], [0.33, 0.33], color=INK, lw=1.0, zorder=4); arrow(4.47, 0.33, 4.47, 0.76)
-    txt(4.55, 0.55, "agreement labels\n(no ground truth)", fs=5.5, ha="left", color=MUTED)
+    ax.plot([4.12, 4.51], [0.33, 0.33], color=INK, lw=1.0, zorder=4); arrow(4.51, 0.33, 4.51, 0.72)
+    txt(4.57, 0.52, "agreement labels\n(no ground truth)", fs=5.2, ha="left", color=MUTED)
     txt(2.55, 2.38, "(a) Training framework", weight="bold", fs=6.8)
     # ---------------- (b) what the head outputs
     x0 = 5.14
@@ -135,13 +140,14 @@ def main():
         img(rgb[v], x0 + 0.07, y, iw, ih); arrow(x0 + 0.07 + iw + 0.02, y + ih / 2, x0 + 0.07 + iw + 0.14, y + ih / 2)
         img(bands(v), x0 + 0.07 + iw + 0.16, y, iw, ih)
     yl = 0.345
-    for k, (col, name) in enumerate(((OBS, "observed"), (ABST, "abstain"), (IMAG, "imagined"))):
-        ax.add_patch(Rectangle((x0 + 0.09 + 0.54 * k, yl - 0.04), 0.09, 0.09, fc=col, ec="none", zorder=5))
-        txt(x0 + 0.21 + 0.54 * k, yl, name, fs=5.6, ha="left")
-    txt(x0 + (W - x0 - 0.04) / 2, 0.18, "one extra forward pass, backbone unchanged", fs=5.2, color=MUTED)
+    for k, (col, name, xo) in enumerate(((OBS, "observed > 0.7", 0.07), (ABST, "abstain", 0.74), (IMAG, "imagined < 0.3", 1.10))):
+        ax.add_patch(Rectangle((x0 + xo, yl - 0.04), 0.08, 0.08, fc=col, ec="none", zorder=5))
+        txt(x0 + xo + 0.10, yl, name, fs=4.6, ha="left")
+    txt(x0 + (W - x0 - 0.04) / 2, 0.18, "one extra forward, under 1% of the backbone cost", fs=4.8, color=MUTED)
     # legend
-    snowflake(0.14, 0.33, r=0.06); txt(0.25, 0.33, "frozen", fs=5.6, ha="left")
-    flame(0.14, 0.15, s=0.065); txt(0.25, 0.15, "trainable", fs=5.6, ha="left")
+    box(0.08, 0.29, 0.13, 0.09, BLUE_FC, BLUE_EC, lw=0.8, r=0.02); txt(0.26, 0.335, "frozen", fs=5.4, ha="left")
+    box(0.08, 0.12, 0.13, 0.09, GREEN_FC, GREEN_EC, lw=0.8, r=0.02); txt(0.26, 0.165, "trained", fs=5.4, ha="left")
+    box(0.72, 0.29, 0.13, 0.09, GRAY_FC, GRAY_EC, lw=0.8, r=0.02, ls=(0, (2, 1.5))); txt(0.90, 0.335, "control", fs=5.4, ha="left")
     fig.savefig(a.out + ".pdf", dpi=500); fig.savefig(a.out + ".png", dpi=500)
     print("->", a.out, key, "views", [int(v) for v in order[:2]],
           "bands (observed/abstain/imagined):", [round(float(x), 3) for x in ((sc > 0.7).mean(), ((sc <= 0.7) & (sc >= 0.3)).mean(), (sc < 0.3).mean())])
