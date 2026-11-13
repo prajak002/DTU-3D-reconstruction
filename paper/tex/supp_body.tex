@@ -364,6 +364,20 @@ Every other experiment uses rigid scenes. We ran the DTU-trained label-free head
 \label{fig:dynamic}
 \end{figure}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_dynamic_models}
+\caption{\textbf{The same window on four backbones} (TUM RGB-D \emph{walking\_xyz}, the window with the largest share of moving pixels, middle frame). Top: native confidence. Bottom: the support head. Bottom left: the labels (supported green, single-view red, moving purple; the moving class is outlined on every map). Numbers are the window's \auroc{} for supported against single-view (static) and against moving pixels. The head separates the static part on every backbone in this window; it is dark on the walking person on VGGT and DA3 and not on Pi3X and Pi3, where native confidence does as well or better.}
+\label{fig:dynamic-models}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.95\textwidth]{fig_dynamic_stats}
+\caption{\textbf{Moving scenes in numbers.} (a) Supported against single-view on the static pixels of the eight dynamic sequences: bars are means over sequences, dots are sequences, the line is the head's level on the five static sequences of the same camera. (b) Supported against moving: reprojection is the best detector on every backbone. (c) The whole \emph{walking\_xyz} video on VGGT, window by window (static part), with the share of moving pixels in each window.}
+\label{fig:dynamic-stats}
+\end{figure}
+
 \paragraph{HAD's hallucination scorer (no valid comparison).}
 We ran the released scoring network of HAD (reference in the paper) on the DTU captures, giving it the ground-truth cameras it requires, and fixed in advance that its scores would count only if its own renderings of the scored views reached 15~dB. They reached 11.3~dB on three-view DTU captures, so by that rule its scores (which were at chance, \auroc{} 0.46 to 0.47) are not a valid measurement of the method and we claim no comparison. We then checked the wrapper without any label: the checkpoint's 365 tensors all match the model, half and full precision and four resolutions give the same renderings (8.9 to 9.2~dB on a five-view capture), a reference view rendered at its own pose reaches 24.9~dB, and neither the inverse pose convention, the OpenGL axis convention nor five scene scales raises quality above 10.4~dB. The renderings show the scene at the right viewpoint, blurred and misregistered: the convention is right and the renderer does not reproduce DTU views at these baselines (cameras up to 0.87~m apart at 0.74~m depth). HAD targets generated novel views with known cameras; our setting is unposed input views.
 
