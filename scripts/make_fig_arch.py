@@ -95,9 +95,9 @@ def main():
     # ---------------- (a) training framework
     yc = 1.47
     for j, v in ((1, order[1]), (0, order[0])):                  # two photographs, stacked
-        img(rgb[v], 0.05 + 0.07 * j, yc - 0.36 - 0.10 * j + 0.12, 0.86, 0.86 * h / w)
+        img(rgb[v], 0.04 + 0.06 * j, yc - 0.33 - 0.09 * j + 0.12, 0.80, 0.80 * h / w)
     txt(0.50, 2.22, "N unposed photos", weight="bold")
-    arrow(0.99, yc, 1.10, yc)
+    arrow(0.93, yc, 1.10, yc)
     box(1.10, 0.80, 1.02, 1.50, BLUE_FC, BLUE_EC, lw=1.3)
     snowflake(1.27, 2.15); txt(1.70, 2.15, "frozen 3D\nbackbone", weight="bold", fs=6.4)
     box(1.19, 1.47, 0.84, 0.44, "#F3F8FE", BLUE_EC, lw=0.8); txt(1.61, 1.69, "per-image\nencoder", fs=6.2)
@@ -129,9 +129,9 @@ def main():
     x0 = 5.14
     box(x0, 0.08, W - x0 - 0.04, 2.24, "white", "#7B8794", lw=1.0, r=0.09)
     txt(x0 + (W - x0 - 0.04) / 2, 2.38, "(b) What the head outputs", weight="bold", fs=6.8)
-    iw = 0.775; ih = iw * h / w
+    iw = 0.715; ih = iw * h / w
     for r_, v in enumerate(order[:2]):
-        y = 1.62 - r_ * (ih + 0.07)
+        y = 1.66 - r_ * (ih + 0.07)
         img(rgb[v], x0 + 0.07, y, iw, ih); arrow(x0 + 0.07 + iw + 0.02, y + ih / 2, x0 + 0.07 + iw + 0.14, y + ih / 2)
         img(bands(v), x0 + 0.07 + iw + 0.16, y, iw, ih)
     yl = 0.345
