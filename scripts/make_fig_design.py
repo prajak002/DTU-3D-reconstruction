@@ -212,8 +212,8 @@ def fig_teaser(N, M, out, P14=None):
                "red: one view only ({:.0f}%)", "keeps {:.0f}% of red, {:.0f}% of all points", IMAG),
               ("teaser3d_video_all.png", "teaser3d_video_keep.png", T["video"], "moving scene",
                "purple: moved during the video ({:.0f}%)", "keeps {:.0f}% of purple, {:.0f}% of all points", "#8E44AD")]
-    calls = [("seen by one view only:\nno second view confirms it", "removed by the head", None),
-             ("the walking person:\none copy per frame", "person removed", "also removed:\nsome background")]
+    calls = [("? Which points did\na camera really see", "removed by the head", None),
+             ("? Which points moved\nduring the video", "person removed", "also removed:\nsome background")]
     y_bot = c.H - 0.15 - 2 * ch - gy
     for k, (fc_, ec_, lw_) in enumerate((("#F1F3F5", "#9AA5B1", 0.9), ("#E3F3F1", OBS, 1.6))):
         c.ax.add_patch(FancyBboxPatch((xc(k) - 0.022, y_bot - 0.03), cw + 0.044, 2 * ch + gy + 0.06,
@@ -241,7 +241,7 @@ def fig_teaser(N, M, out, P14=None):
             c.image(ph_in[j], gx0 + 0.05 * j, y + (ch - ph_i) / 2 - 0.035 + 0.035 * j, pw_i, ph_i, None, lw=0.8, ec="white" if j else PANEL_EC)
         c.arrow(gx0 + win + 0.015, y + ch / 2, xc(0) - 0.01, y + ch / 2, lw=1.1, ms=7)
         if r == 0:
-            c.text(gx0 + win / 2, y + ch + 0.03, "Observe: the photographs", fontsize=6.3, weight="bold", ha="center", va="bottom", color=INK)
+            c.text(gx0 + win / 2, y + ch + 0.03, "Observe: photos", fontsize=6.3, weight="bold", ha="center", va="bottom", color=INK)
         for k, (im, note) in enumerate(((ia, na.format(100 * st["bad_share"])),
                                         (ik, nk_.format(100 * st["bad_kept"], 100 * st["kept"])))):
             ax = c.fig.add_axes(R(c.W, c.H, xc(k), y, cw, ch))
@@ -270,7 +270,7 @@ def fig_teaser(N, M, out, P14=None):
                         fontfamily="DejaVu Sans",
                         weight="bold", color=lc, zorder=30, bbox=dict(fc="white", ec=lc, lw=0.6, boxstyle="round,pad=0.25"))
             elif pt is not None:
-                ax.annotate(("\u2713 " + lab) if k else lab, xy=pt, xycoords="data", xytext=(0.975, 0.955), textcoords="axes fraction",
+                ax.annotate(("\u2713 " + lab) if k else (lab + "?"), xy=pt, xycoords="data", xytext=(0.975, 0.955), textcoords="axes fraction",
                             **({"fontfamily": "DejaVu Sans"} if k else {}),
                             ha="right", va="top", fontsize=5.5, weight="bold", color=lc, zorder=30, annotation_clip=False,
                             bbox=dict(fc="white", ec=lc, lw=0.6, pad=1.6, boxstyle="round,pad=0.25"),
@@ -285,7 +285,7 @@ def fig_teaser(N, M, out, P14=None):
             if k == 0:              # row name, upright beside the row
                 c.text(gx0 - 0.07, y + ch / 2, name, fontsize=6.2, color=INK, weight="bold", va="center", ha="center", rotation=90)
             if r == 0:
-                c.text(xc(k) + cw / 2, y + ch + 0.03, ("Imagine: the 3D model's output", "Abstain: what our head keeps")[k],
+                c.text(xc(k) + cw / 2, y + ch + 0.03, ("Imagine: model output", "Abstain: our head")[k],
                        fontsize=6.3, weight="bold", ha="center", va="bottom", color=(IMAG, OBS)[k])
     # matched patches
     xr = xc(1) + cw + 0.14

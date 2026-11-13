@@ -76,7 +76,10 @@ def main():
     ims[4] = ims_g[4]
     st["no_reference"] = float((L["gt"] == 0).mean())
     Image.fromarray(ims[4]).save(os.path.join(a.out, "teaser3d_all.png"))
-    for j, v in enumerate((len(views) // 2, 0, len(views) - 1)):        # the photographs themselves: middle view first
+    # the photographs themselves; in front, by rule, the view that shows most of the object (largest share of
+    # pixels with reference depth), so that the rig's backdrop does not fill the picture
+    order = np.argsort(-(L["gt"] > 0).reshape(len(views), -1).mean(1))
+    for j, v in enumerate(order[:3]):
         Image.fromarray(rgb[v]).save(os.path.join(a.out, f"teaser3d_in_{j}.png"))
     Image.fromarray(ims[5]).save(os.path.join(a.out, "teaser3d_keep.png"))
     T.update(name=f"DTU scan {key.split('__')[0]}", base=a.base, **st)
